@@ -1,13 +1,15 @@
-import Header from "./(header)/Header";
+import { ComponentPropsWithoutRef } from "react";
+import { cn } from "@/utils/cn";
+
 export default function LayoutDT({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+  className,
+  ...props
+}: ComponentPropsWithoutRef<"div">) {
   return (
-    <>
-      <Header>DT Header</Header>
+    <div className={cn("", className)} {...props}>
+      LayoutDT
       {children}
-    </>
+    </div>
   );
 }

@@ -1,8 +1,12 @@
 "use client";
 import { useMatchMediaSize } from "@/hooks";
 import { defaultTheme } from "../tailwind.config";
-import LayoutDT from "./LayoutDT";
 import LayoutMobile from "./LayoutMobile";
+import LayoutDT from "./LayoutDT";
+import HeaderMobile from "./(header)/HeaderMobile";
+import HeaderDT from "./(header)/HeaderDT";
+
+const layoutCls = "h-screen grid";
 
 export default function Layouts({
   children,
@@ -13,9 +17,13 @@ export default function Layouts({
   return (
     <>
       {isSmall ? (
-        <LayoutMobile>SMALL SCREEN {children}</LayoutMobile>
+        <LayoutMobile className={layoutCls}>
+          <HeaderMobile /> {children}
+        </LayoutMobile>
       ) : (
-        <LayoutDT>{children}</LayoutDT>
+        <LayoutDT className={layoutCls}>
+          <HeaderDT /> {children}
+        </LayoutDT>
       )}
     </>
   );

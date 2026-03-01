@@ -1,12 +1,14 @@
 import { ComponentPropsWithoutRef } from "react";
+import { cn } from "@/utils/cn";
 
-export default function Header({
+export default function HeaderDT({
   children,
   className,
   ...props
 }: ComponentPropsWithoutRef<"header">) {
   return (
-    <header className={`header-root ${className}`} {...props}>
+    <header className={cn("", className)} {...props}>
+      Header DT
       {children}
     </header>
   );
