@@ -1,3 +1,11 @@
-import defaultTheme from "tailwindcss/defaultTheme";
+import type { Config } from "tailwindcss";
 
-export { defaultTheme };
+import { BREAKPOINTS } from "./constants/index";
+
+const config: Config = {
+  theme: {
+    screens: BREAKPOINTS,
+  },
+};
+
+export default config;
