@@ -1,4 +1,4 @@
-import { capitalize } from "@inktree/utils/strings";
+import { capitalize } from "@inktree/utils";
 
 const useStateCode = (variableName: string) => {
   return `const [${variableName}, set${capitalize(
