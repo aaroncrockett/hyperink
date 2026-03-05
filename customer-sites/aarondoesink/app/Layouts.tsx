@@ -21,6 +21,7 @@ const layoutComponents = {
   },
 } as const;
 
+// TODO: possible refactoring if repeated
 const mediaQueries = {
   mobile: `(max-width: ${defaultTheme.screens.sm})`,
   desktop: `(min-width: ${parseInt(defaultTheme.screens.sm) + 1} + rem)`,
