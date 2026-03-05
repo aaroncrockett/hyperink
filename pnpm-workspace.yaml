@@ -3,3 +3,4 @@ packages:
   - "customer-sites/*"
   - "packages/ui/*"
   - "packages/utils"
+  - "packages/hooks"

@@ -1,8 +1,7 @@
 "use client";
 
 import { defaultTheme } from "../tailwind.config";
-import { useActiveBreakpoint } from "@/hooks/useActiveBreakpoint";
-
+import { useActiveBreakpoint } from "@inktree/hooks";
 import LayoutMobile from "./LayoutMobile";
 import LayoutDT from "./LayoutDT";
 
