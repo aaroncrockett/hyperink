@@ -1,42 +1,40 @@
 "use client";
 
-import { BREAKPOINTS } from "@/constants";
+import Header from "./(header)/Header";
+
 import { useActiveBreakpoint } from "@inktree/hooks";
-import LayoutMobile from "./LayoutMobile";
-import LayoutDT from "./LayoutDT";
 
-import HeaderMobile from "./(header)/HeaderMobile";
-import HeaderDT from "./(header)/HeaderDT";
+import { BREAKPOINTS } from "@/constants";
+import { cn } from "@/utils/cn";
 
-const layoutCls = "h-screen grid";
-
-const layoutComponents = {
-  mobile: {
-    Layout: LayoutMobile,
-    Header: HeaderMobile,
-  },
+const layoutComponentProps = {
   desktop: {
-    Layout: LayoutDT,
-    Header: HeaderDT,
+    cls: "",
   },
-} as const;
+  mobile: {
+    cls: "",
+  },
+};
 
 // TODO: possible refactoring if repeated
 const mediaQueries = {
   mobile: `(max-width: ${BREAKPOINTS.sm})`,
 } as const;
 
-type Screen = keyof typeof layoutComponents;
+type Screen = "desktop" | "mobile";
 
 export default function Layouts({ children }: { children: React.ReactNode }) {
-  const screen: Screen | null = useActiveBreakpoint(mediaQueries);
-
-  const { Layout, Header } = layoutComponents[screen ?? "desktop"];
+  const screen: Screen = useActiveBreakpoint(mediaQueries) ?? "desktop";
 
   return (
-    <Layout className={layoutCls}>
-      <Header />
+    <div
+      className={cn(
+        "h-screen grid grid-rows-[auto_1fr_auto]",
+        layoutComponentProps[screen].cls,
+      )}
+    >
+      <Header type={screen} />
       {children}
-    </Layout>
+    </div>
   );
 }
