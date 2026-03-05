@@ -8,7 +8,6 @@ export default function LayoutDT({
 }: ComponentPropsWithoutRef<"div">) {
   return (
     <div className={cn("", className)} {...props}>
-      LayoutDT
       {children}
     </div>
   );

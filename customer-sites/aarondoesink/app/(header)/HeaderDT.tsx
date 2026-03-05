@@ -8,7 +8,6 @@ export default function HeaderDT({
 }: ComponentPropsWithoutRef<"header">) {
   return (
     <header className={cn("", className)} {...props}>
-      Header DT
       {children}
     </header>
   );

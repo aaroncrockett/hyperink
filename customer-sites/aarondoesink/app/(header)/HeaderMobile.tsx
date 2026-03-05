@@ -8,8 +8,9 @@ export default function HeaderMobile({
 }: ComponentPropsWithoutRef<"header">) {
   return (
     <header className={cn("shadow sticky top-0 z-10 ", className)} {...props}>
-      Header Mobile
-      {children}
+      <div className="flex items-center justify-between max-w-6xl mx-auto w-full p-2 lg:p-4">
+        {children}
+      </div>
     </header>
   );
 }

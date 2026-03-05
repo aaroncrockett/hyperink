@@ -1,30 +1,43 @@
 "use client";
-import { useMatchMediaSize } from "@/hooks";
+
 import { defaultTheme } from "../tailwind.config";
+import { useActiveBreakpoint } from "@/hooks/useActiveBreakpoint";
+
 import LayoutMobile from "./LayoutMobile";
 import LayoutDT from "./LayoutDT";
+
 import HeaderMobile from "./(header)/HeaderMobile";
 import HeaderDT from "./(header)/HeaderDT";
 
 const layoutCls = "h-screen grid";
 
-export default function Layouts({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  const isSmall = useMatchMediaSize(defaultTheme.screens.sm);
+const layoutComponents = {
+  mobile: {
+    Layout: LayoutMobile,
+    Header: HeaderMobile,
+  },
+  desktop: {
+    Layout: LayoutDT,
+    Header: HeaderDT,
+  },
+} as const;
+
+const mediaQueries = {
+  mobile: `(max-width: ${defaultTheme.screens.sm})`,
+  desktop: `(min-width: ${parseInt(defaultTheme.screens.sm) + 1} + rem)`,
+} as const;
+
+type Screen = keyof typeof layoutComponents;
+
+export default function Layouts({ children }: { children: React.ReactNode }) {
+  const screen: Screen | null = useActiveBreakpoint(mediaQueries);
+
+  const { Layout, Header } = layoutComponents[screen ?? "mobile"];
+
   return (
-    <>
-      {isSmall ? (
-        <LayoutMobile className={layoutCls}>
-          <HeaderMobile /> {children}
-        </LayoutMobile>
-      ) : (
-        <LayoutDT className={layoutCls}>
-          <HeaderDT /> {children}
-        </LayoutDT>
-      )}
-    </>
+    <Layout className={layoutCls}>
+      <Header />
+      {children}
+    </Layout>
   );
 }
