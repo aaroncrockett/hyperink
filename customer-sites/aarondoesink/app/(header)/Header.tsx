@@ -40,7 +40,7 @@ export default function Header({
           headerComponentProps[type].wrapperCls,
         )}
       >
-        <div>+</div>
+        <div>{children}</div>
 
         <Image
           src="/images/logo-text.webp"
@@ -49,8 +49,6 @@ export default function Header({
           height={40}
           className={headerComponentProps[type].logoImgCls}
         />
-
-        {children}
 
         <button className="btn bg-primary-500">BookNow</button>
       </div>

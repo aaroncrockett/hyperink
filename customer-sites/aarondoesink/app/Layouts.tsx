@@ -1,6 +1,10 @@
 "use client";
 
+import MenuMobile from "./(header)/MenuMobile";
+import MenuDesktop from "./(header)/MenuDesktop";
+
 import Header from "./(header)/Header";
+
 import { useActiveBreakpoint } from "@inktree/hooks";
 import { BREAKPOINTS } from "@/constants";
 import { cn } from "@/utils/cn";
@@ -9,7 +13,7 @@ const mediaQueries = {
   mobile: `(max-width: ${BREAKPOINTS.sm})`,
 } as const;
 
-type Screen = "desktop" | "mobile";
+type Screen = "mobile" | "desktop";
 
 const layoutComponentProps = {
   desktop: {
@@ -35,11 +39,17 @@ export default function Layouts({ children }: { children: React.ReactNode }) {
 
   return (
     <div className={cn("h-screen", cls.layout)}>
-      <nav className={cn("bg-gray-100", cls.nav)}>
-        {screen === "desktop" && "Left Sidebar / Nav"}
-      </nav>
+      <div className={cn("bg-gray-100", cls.nav)}>
+        {screen === "desktop" && <MenuDesktop>asdf</MenuDesktop>}
+      </div>
 
-      <Header type={screen} className={cls.header} />
+      <Header type={screen} className={cls.header}>
+        {screen === "mobile" && (
+          <MenuMobile>
+            <p>menu</p>
+          </MenuMobile>
+        )}
+      </Header>
 
       <main className={cls.main}>{children}</main>
 
