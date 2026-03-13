@@ -36,21 +36,21 @@ export default function Header({
     >
       <div
         className={cn(
-          "flex items-center justify-between max-w-6xl mx-auto w-full p-2 lg:p-4",
+          "flex items-center justify-between max-w-6xl mx-auto w-full p-2 lg:p-4 shadow-2xs",
           headerComponentProps[type].wrapperCls,
         )}
       >
         <div>{children}</div>
 
         <Image
-          src="/images/logo-text.webp"
+          src="/images/logo-text.svg"
           alt="Aaron Does Ink - Logo"
           width={201}
           height={40}
           className={headerComponentProps[type].logoImgCls}
         />
 
-        <button className="btn bg-primary-500">BookNow</button>
+        <button className="btn bg-secondary-500">BookNow</button>
       </div>
     </header>
   );

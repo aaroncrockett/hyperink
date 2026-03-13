@@ -20,14 +20,14 @@ const layoutComponentProps = {
     layout: "grid grid-cols-[200px_1fr] grid-rows-[auto_1fr_auto]",
     nav: "col-start-1 row-start-1 row-span-3",
     header: "col-start-2 row-start-1",
-    main: "col-start-2 row-start-2",
+    main: "col-start-2 row-start-2 noise-bg",
     footer: "col-start-2 row-start-3",
   },
   mobile: {
     layout: "grid grid-rows-[auto_1fr_auto]",
     nav: "hidden",
     header: "",
-    main: "",
+    main: "noise-bg",
     footer: "",
   },
 } as const;
@@ -39,7 +39,7 @@ export default function Layouts({ children }: { children: React.ReactNode }) {
 
   return (
     <div className={cn("h-screen", cls.layout)}>
-      <div className={cn("bg-gray-100", cls.nav)}>
+      <div className={cn("bg-gray-100  ", cls.nav)}>
         {screen === "desktop" && <MenuDesktop>asdf</MenuDesktop>}
       </div>
 
