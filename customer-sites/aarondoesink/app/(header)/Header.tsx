@@ -1,21 +1,25 @@
+import { ReactNode } from "react";
 import { ComponentPropsWithoutRef } from "react";
-import Image from "next/image";
+
 import { cn } from "@/utils/cn";
 
 type HeaderProps = ComponentPropsWithoutRef<"header"> & {
   type: "desktop" | "mobile";
+  lead?: ReactNode;
+  tail?: ReactNode;
+  closeIcon?: ReactNode;
 };
 
 const headerComponentProps = {
   desktop: {
     cls: "",
     wrapperCls: "",
-    logoImgCls: "",
+    leadImgCls: "",
   },
   mobile: {
     cls: "",
     wrapperCls: "",
-    logoImgCls: "",
+    leadImgCls: "",
   },
 };
 
@@ -23,6 +27,8 @@ export default function Header({
   children,
   type,
   className,
+  lead,
+  tail,
   ...props
 }: HeaderProps) {
   return (
@@ -40,17 +46,10 @@ export default function Header({
           headerComponentProps[type].wrapperCls,
         )}
       >
+        {lead}
         <div>{children}</div>
 
-        <Image
-          src="/images/logo-text.svg"
-          alt="Aaron Does Ink - Logo"
-          width={201}
-          height={40}
-          className={headerComponentProps[type].logoImgCls}
-        />
-
-        <button className="btn bg-secondary-500">BookNow</button>
+        {tail}
       </div>
     </header>
   );

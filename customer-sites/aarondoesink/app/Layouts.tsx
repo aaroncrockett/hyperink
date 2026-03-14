@@ -1,8 +1,7 @@
 "use client";
-
+import Image from "next/image";
 import MenuMobile from "./(header)/MenuMobile";
 import MenuDesktop from "./(header)/MenuDesktop";
-
 import Header from "./(header)/Header";
 
 import { useActiveBreakpoint } from "@inktree/hooks";
@@ -39,16 +38,28 @@ export default function Layouts({ children }: { children: React.ReactNode }) {
 
   return (
     <div className={cn("h-screen", cls.layout)}>
-      <div className={cn("bg-gray-100  ", cls.nav)}>
+      <nav className={cn("bg-gray-100  ", cls.nav)}>
         {screen === "desktop" && <MenuDesktop>asdf</MenuDesktop>}
-      </div>
+      </nav>
 
-      <Header type={screen} className={cls.header}>
-        {screen === "mobile" && (
-          <MenuMobile>
-            <p>menu</p>
-          </MenuMobile>
-        )}
+      <Header
+        type="desktop"
+        lead={
+          screen === "mobile" ? (
+            <MenuMobile title="hello!">
+              <nav></nav>
+            </MenuMobile>
+          ) : undefined
+        }
+        tail={<button className="btn bg-secondary-500">BookNow</button>}
+      >
+        <Image
+          src="/images/logo-text.svg"
+          alt="Aaron Does Ink - Logo"
+          width={201}
+          height={40}
+          className="h-10 w-auto"
+        />
       </Header>
 
       <main className={cls.main}>{children}</main>
