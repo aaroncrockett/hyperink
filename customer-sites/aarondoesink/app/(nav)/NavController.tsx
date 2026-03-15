@@ -22,11 +22,10 @@ const navCls = {
   "mobile-footer": "",
 };
 const ulCls: Record<NavType, string> = {
-  desktop: "",
-  mobile: "",
+  desktop: "flex flex-col gap-2",
+  mobile: "flex flex-col gap-2",
   "mobile-footer": "flex flex-row justify-around gap-4 w-full",
 };
-
 const linkCls: Record<NavType, string> = {
   desktop: "flex-row gap-2",
   mobile: "flex-row gap-2",
