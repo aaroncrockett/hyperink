@@ -38,7 +38,7 @@ export default function Layouts({ children }: { children: React.ReactNode }) {
   return (
     <div className={cn("h-screen", cls.layout)}>
       {screen === "desktop" && (
-        <Card>
+        <Card className="h-full row-span-3">
           <Nav type={screen} />
         </Card>
       )}
