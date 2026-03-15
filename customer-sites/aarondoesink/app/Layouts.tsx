@@ -5,6 +5,7 @@ import MenuMobile from "./(header)/MenuMobile";
 import Header from "./(header)/Header";
 import Footer from "./(footer)/Footer";
 import Nav from "./(nav)/Nav";
+import Card from "@/ui/card";
 
 import { useActiveBreakpoint } from "@inktree/hooks";
 import { BREAKPOINTS } from "@/constants";
@@ -37,9 +38,9 @@ export default function Layouts({ children }: { children: React.ReactNode }) {
   return (
     <div className={cn("h-screen", cls.layout)}>
       {screen === "desktop" && (
-        <div>
+        <Card>
           <Nav type={screen} />
-        </div>
+        </Card>
       )}
 
       <Header
@@ -50,7 +51,7 @@ export default function Layouts({ children }: { children: React.ReactNode }) {
             </MenuMobile>
           ) : undefined
         }
-        tail={<button className="btn bg-secondary-500">BookNow</button>}
+        tail={<button className="btn bg-secondary-500">Book Now</button>}
       >
         <Image
           src="/images/logo-text.svg"

@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { Dialog, Portal } from "@skeletonlabs/skeleton-react";
 import { Menu, XIcon } from "lucide-react";
+import Card from "@/ui/card";
 
 type MenuMobileProps = {
   children: ReactNode;
@@ -31,17 +32,19 @@ export default function MenuMobile({
             />
             <Dialog.Positioner className="fixed inset-0 z-50 flex justify-start">
               <Dialog.Content
-                className={`h-screen card bg-surface-100-900 w-sm p-4 space-y-4 shadow-md ${animModal}`}
+                className={`h-screen bg-surface-100-900 w-sm shadow-md ${animModal}`}
               >
-                <div className="flex justify-between items-center">
-                  <Dialog.Title className="text-2xl font-bold">
-                    {title}
-                  </Dialog.Title>
-                  <Dialog.CloseTrigger className="btn-icon preset-tonal">
-                    {closeIcon}
-                  </Dialog.CloseTrigger>
-                </div>
-                {children}
+                <Card>
+                  <div className="flex justify-between items-center">
+                    <Dialog.Title className="text-2xl font-bold">
+                      {title}
+                    </Dialog.Title>
+                    <Dialog.CloseTrigger className="btn-icon preset-tonal">
+                      {closeIcon}
+                    </Dialog.CloseTrigger>
+                  </div>
+                  {children}
+                </Card>
               </Dialog.Content>
             </Dialog.Positioner>
           </Portal>
