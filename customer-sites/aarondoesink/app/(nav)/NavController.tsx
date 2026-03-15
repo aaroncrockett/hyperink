@@ -1,18 +1,56 @@
 import { ComponentPropsWithoutRef } from "react";
-import NavBase from "./NavBase";
 
-const navComponentProps = {
-  desktop: "col-start-1 row-start-1 row-span-3 bg-gray-10",
-  mobile: "",
-};
+import Link from "next/link";
+
+import NavBase from "./NavBase";
+import {
+  MENU_LINKS,
+  MOBILE_FOOTER_LINKS,
+} from "../../constants/internal-links";
+
+import { cn } from "@/utils/cn";
+
+type NavType = "desktop" | "mobile" | "mobile-footer";
 
 type NavProps = ComponentPropsWithoutRef<"nav"> & {
-  type: "desktop" | "mobile";
+  type: NavType;
 };
-export default function NavController({ children, type, ...props }: NavProps) {
+
+const navCls = {
+  desktop: "col-start-1 row-start-1 row-span-3 bg-gray-10",
+  mobile: "",
+  "mobile-footer": "",
+};
+const ulCls: Record<NavType, string> = {
+  desktop: "",
+  mobile: "",
+  "mobile-footer": "flex flex-row justify-around gap-4 w-full",
+};
+
+const linkCls: Record<NavType, string> = {
+  desktop: "flex-row gap-2",
+  mobile: "flex-row gap-2",
+  "mobile-footer": "flex-col gap-0.5 items-center font-bold text-sm",
+};
+
+export default function NavController({ type, ...props }: NavProps) {
+  const links = type === "mobile-footer" ? MOBILE_FOOTER_LINKS : MENU_LINKS;
   return (
-    <NavBase className={navComponentProps[type]} {...props}>
-      {children}
+    <NavBase className={navCls[type]} {...props}>
+      <ul className={ulCls[type]}>
+        {links.map((link) => {
+          const Icon = link.icon;
+
+          return (
+            <li key={link.href}>
+              <Link href={link.href} className={cn("flex", linkCls[type])}>
+                {Icon && <Icon className="w-6 h-6" />}
+                {link.name.toUpperCase()}
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
     </NavBase>
   );
 }

@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+
 import MenuMobile from "./(header)/MenuMobile";
 import Header from "./(header)/Header";
 import Footer from "./(footer)/Footer";
@@ -19,12 +20,12 @@ const layoutComponentProps = {
   desktop: {
     layout: "grid grid-cols-[200px_1fr] grid-rows-[auto_1fr_auto]",
     main: "col-start-2 row-start-2 noise-bg",
-    footer: "col-start-2 row-start-3",
+    footer: "col-start-2 row-start-3 p-4",
   },
   mobile: {
     layout: "grid grid-rows-[auto_1fr_auto]",
     main: "noise-bg",
-    footer: "",
+    footer: "p-2",
   },
 } as const;
 
@@ -35,7 +36,11 @@ export default function Layouts({ children }: { children: React.ReactNode }) {
 
   return (
     <div className={cn("h-screen", cls.layout)}>
-      {screen === "desktop" && <Nav type={screen} />}
+      {screen === "desktop" && (
+        <div>
+          <Nav type={screen} />
+        </div>
+      )}
 
       <Header
         lead={
@@ -58,7 +63,15 @@ export default function Layouts({ children }: { children: React.ReactNode }) {
 
       <main className={cls.main}>{children}</main>
 
-      <Footer className={cn("bg-primary-500", cls.footer)}>footer</Footer>
+      <Footer className={cn("bg-primary-500", cls.footer)}>
+        {screen === "mobile" && <Nav type="mobile-footer" />}
+        {screen === "desktop" && (
+          <div>
+            Deved By Aaron Does Everything (Tattoos, Web Apps, Web Sites, Web
+            Design, Graphic Design, Illustration, Painting)
+          </div>
+        )}
+      </Footer>
     </div>
   );
 }
