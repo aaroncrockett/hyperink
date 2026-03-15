@@ -17,7 +17,7 @@ export const INTERNAL_LINKS = {
     icon: Zap,
   },
   tattoos: {
-    href: "/tatoos",
+    href: "/tattoos",
     name: "tattoos",
     icon: PenTool,
   },
