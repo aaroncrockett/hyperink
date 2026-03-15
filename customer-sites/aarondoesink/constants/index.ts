@@ -5,3 +5,5 @@ export const BREAKPOINTS = {
   xl: "80rem",
   "2xl": "96rem",
 } as const;
+
+export { INTERNAL_LINKS } from "./internal-links";
