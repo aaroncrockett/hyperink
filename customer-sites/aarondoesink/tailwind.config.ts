@@ -4,6 +4,12 @@ import { BREAKPOINTS } from "./constants/index";
 
 const config: Config = {
   theme: {
+    extend: {
+      fontFamily: {
+        body: ["var(--font-outfit)"],
+        heading: ["var(--font-bebas)"],
+      },
+    },
     screens: BREAKPOINTS,
   },
 };
