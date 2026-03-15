@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef } from "react";
 
-type NavProps = ComponentPropsWithoutRef<"nav"> & {};
-export default function DTNav({ children, className, ...props }: NavProps) {
+type Nav = ComponentPropsWithoutRef<"nav"> & {};
+export default function Nav({ children, className, ...props }: Nav) {
   return (
     <nav className={className} {...props}>
       {children}
