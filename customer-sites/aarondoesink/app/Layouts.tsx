@@ -1,15 +1,16 @@
 "use client";
 import Image from "next/image";
 import MenuMobile from "./(header)/MenuMobile";
-import MenuDesktop from "./(header)/MenuDesktop";
 import Header from "./(header)/Header";
+import Footer from "./(footer)/Footer";
+import Nav from "./(nav)/Nav";
 
 import { useActiveBreakpoint } from "@inktree/hooks";
 import { BREAKPOINTS } from "@/constants";
 import { cn } from "@/utils/cn";
 
 const mediaQueries = {
-  mobile: `(max-width: ${BREAKPOINTS.sm})`,
+  mobile: `(max-width: ${BREAKPOINTS.lg})`,
 } as const;
 
 type Screen = "mobile" | "desktop";
@@ -17,15 +18,11 @@ type Screen = "mobile" | "desktop";
 const layoutComponentProps = {
   desktop: {
     layout: "grid grid-cols-[200px_1fr] grid-rows-[auto_1fr_auto]",
-    nav: "col-start-1 row-start-1 row-span-3",
-    header: "col-start-2 row-start-1",
     main: "col-start-2 row-start-2 noise-bg",
     footer: "col-start-2 row-start-3",
   },
   mobile: {
     layout: "grid grid-rows-[auto_1fr_auto]",
-    nav: "hidden",
-    header: "",
     main: "noise-bg",
     footer: "",
   },
@@ -38,16 +35,13 @@ export default function Layouts({ children }: { children: React.ReactNode }) {
 
   return (
     <div className={cn("h-screen", cls.layout)}>
-      <nav className={cn("bg-gray-100  ", cls.nav)}>
-        {screen === "desktop" && <MenuDesktop>asdf</MenuDesktop>}
-      </nav>
+      {screen === "desktop" && <Nav type={screen} />}
 
       <Header
-        type="desktop"
         lead={
           screen === "mobile" ? (
             <MenuMobile title="hello!">
-              <nav></nav>
+              {screen === "mobile" && <Nav type={screen} />}
             </MenuMobile>
           ) : undefined
         }
@@ -64,7 +58,7 @@ export default function Layouts({ children }: { children: React.ReactNode }) {
 
       <main className={cls.main}>{children}</main>
 
-      <footer className={cn("bg-gray-200", cls.footer)}>Footer</footer>
+      <Footer className={cn("bg-primary-500", cls.footer)}>footer</Footer>
     </div>
   );
 }

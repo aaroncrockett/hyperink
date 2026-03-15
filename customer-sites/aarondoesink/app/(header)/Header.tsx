@@ -1,55 +1,45 @@
 import { ReactNode } from "react";
 import { ComponentPropsWithoutRef } from "react";
+import Image from "next/image";
 
 import { cn } from "@/utils/cn";
 
 type HeaderProps = ComponentPropsWithoutRef<"header"> & {
-  type: "desktop" | "mobile";
   lead?: ReactNode;
   tail?: ReactNode;
   closeIcon?: ReactNode;
-};
-
-const headerComponentProps = {
-  desktop: {
-    cls: "",
-    wrapperCls: "",
-    leadImgCls: "",
-  },
-  mobile: {
-    cls: "",
-    wrapperCls: "",
-    leadImgCls: "",
-  },
+  wrapperCls?: string;
 };
 
 export default function Header({
   children,
-  type,
   className,
+  wrapperCls,
   lead,
   tail,
   ...props
 }: HeaderProps) {
   return (
-    <header
-      className={cn(
-        "shadow sticky top-0 z-10",
-        headerComponentProps[type].cls,
-        className,
-      )}
-      {...props}
-    >
+    <header className={cn("shadow-md sticky top-0 z-10", className)} {...props}>
       <div
         className={cn(
           "flex items-center justify-between max-w-6xl mx-auto w-full p-2 lg:p-4 shadow-2xs",
-          headerComponentProps[type].wrapperCls,
+          wrapperCls,
         )}
       >
         {lead}
         <div>{children}</div>
 
         {tail}
+      </div>
+      <div className="absolute bottom-[40px]- left-0 w-full pointer-events-none">
+        <Image
+          src="/images/header-bottom.png"
+          alt="Header bottom decoration"
+          width={4214}
+          height={40}
+          className="w-auto h-auto mx-auto block"
+        />
       </div>
     </header>
   );

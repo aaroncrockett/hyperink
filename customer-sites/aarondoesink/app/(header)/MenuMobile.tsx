@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 import { Dialog, Portal } from "@skeletonlabs/skeleton-react";
 import { Menu, XIcon } from "lucide-react";
-import Image from "next/image";
 
 type MenuMobileProps = {
   children: ReactNode;
