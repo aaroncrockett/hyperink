@@ -10,7 +10,7 @@ export default function Home() {
             src: "/images/pdx-tatt-artist.webp",
             width: 1540,
             height: 275,
-            className: "w-full h-auto",
+            className: "w-[94%] sm:w-2/3 h-auto mx-auto",
           }}
           text="PDX Tattoo Artist"
           className="w-auto h-full"
@@ -18,7 +18,7 @@ export default function Home() {
         <Heading
           as="h2"
           text="Flash & custom tattoos"
-          className="text-2xl uppercase text-center font-bold"
+          className="xs:text-4xl text-xl uppercase text-center font-bold"
         ></Heading>
       </Page>
     </div>
