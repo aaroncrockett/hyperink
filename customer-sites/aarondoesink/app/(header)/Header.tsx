@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { ComponentPropsWithoutRef } from "react";
-import Image from "next/image";
+import styles from "./Header.module.css";
 
 import { cn } from "@/utils/cn";
 
@@ -20,10 +20,17 @@ export default function Header({
   ...props
 }: HeaderProps) {
   return (
-    <header className={cn("shadow-md sticky top-0 z-10", className)} {...props}>
+    <header
+      className={cn(
+        styles.header,
+        "adi-header shadow-lg sticky top-0 z-10",
+        className,
+      )}
+      {...props}
+    >
       <div
         className={cn(
-          "flex items-center justify-between max-w-6xl mx-auto w-full p-2 lg:p-4 shadow-2xs",
+          "flex items-center justify-between max-w-6xl mx-auto w-full p-5 px-4 shadow-2xs",
           wrapperCls,
         )}
       >
@@ -31,15 +38,6 @@ export default function Header({
         <div>{children}</div>
 
         {tail}
-      </div>
-      <div className="absolute bottom-[40px]- left-0 w-full pointer-events-none">
-        <Image
-          src="/images/header-bottom.png"
-          alt="Header bottom decoration"
-          width={4214}
-          height={40}
-          className="w-auto h-auto mx-auto block"
-        />
       </div>
     </header>
   );
