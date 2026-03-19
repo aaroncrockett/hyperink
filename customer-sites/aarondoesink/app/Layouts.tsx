@@ -38,7 +38,7 @@ export default function Layouts({ children }: { children: React.ReactNode }) {
   return (
     <div className={cn("h-screen", cls.layout)}>
       {screen === "desktop" && (
-        <Card className="h-full row-span-3">
+        <Card className="h-full row-span-3 noise-bg-opac-0pt8">
           <Nav type={screen} />
         </Card>
       )}
@@ -51,14 +51,18 @@ export default function Layouts({ children }: { children: React.ReactNode }) {
             </MenuMobile>
           ) : undefined
         }
-        tail={<button className="btn bg-secondary-500">Book Now</button>}
+        tail={
+          <button className="btn-sm sm:btn preset-filled-secondary-500 whitespace-nowrap">
+            Book Now
+          </button>
+        }
       >
         <Image
           src="/images/logo-text.svg"
           alt="Aaron Does Ink - Logo"
           width={201}
           height={40}
-          className="h-10 w-auto"
+          className="h-10 px-4 sm:px-0 w-auto mx-auto"
         />
       </Header>
 

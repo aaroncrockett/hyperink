@@ -3,8 +3,8 @@ import Heading from "@/ui/heading";
 
 export default function Home() {
   return (
-    <div>
-      <Page>
+    <Page>
+      <section className="flex flex-col space-y-1 sm:space-y-2 md:space-y-3 xl:space-y-4">
         <Heading
           image={{
             src: "/images/pdx-tatt-artist.webp",
@@ -18,9 +18,9 @@ export default function Home() {
         <Heading
           as="h2"
           text="Flash & custom tattoos"
-          className="xs:text-4xl text-xl uppercase text-center font-bold"
+          className="uppercase text-center font-bold text-xl [@media(min-width:20rem)]:text-2xl [@media(min-width:26rem)]:text-3xl  [@media(min-width:36rem)]:text-4xl [@media(min-width:60rem)]:text-5xl [@media(min-width:80rem)]:text-6xl "
         ></Heading>
-      </Page>
-    </div>
+      </section>
+    </Page>
   );
 }

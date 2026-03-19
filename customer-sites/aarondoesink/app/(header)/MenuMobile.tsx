@@ -32,9 +32,9 @@ export default function MenuMobile({
             />
             <Dialog.Positioner className="fixed inset-0 z-50 flex justify-start">
               <Dialog.Content
-                className={`h-screen bg-surface-100-900 w-sm shadow-md ${animModal}`}
+                className={`h-screen  w-sm shadow-sm relative ${animModal}`}
               >
-                <Card>
+                <Card className="bg-surface-100/95 noise-bg-opac-0pt8 h-full">
                   <div className="flex justify-between items-center">
                     <Dialog.Title className="text-2xl font-bold">
                       {title}
