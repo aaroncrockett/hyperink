@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev:cms": "pnpm --filter cms dev",
-    "dev:aarondoesink": "pnpm --filter aarondoesink dev",
+    "dev:adi": "pnpm --filter aarondoesink dev",
     "dev:tools": "pnpm --filter tools dev",
     "build": "pnpm --recursive --aggregate-output build",
     "lint": "pnpm --recursive --aggregate-output lint",
