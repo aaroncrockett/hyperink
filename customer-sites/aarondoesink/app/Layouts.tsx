@@ -46,7 +46,7 @@ export default function Layouts({ children }: { children: React.ReactNode }) {
       <Header
         lead={
           screen === "mobile" ? (
-            <MenuMobile title="hello!">
+            <MenuMobile title="ALL LINKS">
               {screen === "mobile" && <Nav type={screen} />}
             </MenuMobile>
           ) : undefined

@@ -6,7 +6,10 @@ type PageProps = ComponentPropsWithoutRef<"div">;
 export default function Page({ children, className, ...props }: PageProps) {
   return (
     <div
-      className={cn("w-full  p-4 lg:p-4 pt-6 lg:pt-8", className)}
+      className={cn(
+        "w-full mx-auto max-w-275 p-4 lg:p-4 pt-6 lg:pt-8",
+        className,
+      )}
       {...props}
     >
       {children}

@@ -29,7 +29,7 @@ const ulCls: Record<NavType, string> = {
 const linkCls: Record<NavType, string> = {
   desktop: "flex-row gap-2",
   mobile: "flex-row gap-2",
-  "mobile-footer": "flex-col gap-0.5 items-center font-bold text-sm",
+  "mobile-footer": "flex-col gap-0.5 items-center font-bold text-sm text-white",
 };
 
 export default function NavController({ type, ...props }: NavProps) {
@@ -43,7 +43,7 @@ export default function NavController({ type, ...props }: NavProps) {
           return (
             <li key={link.href}>
               <Link href={link.href} className={cn("flex", linkCls[type])}>
-                {Icon && <Icon className="w-6 h-6" />}
+                {Icon && <Icon className="w-5 h-5" />}
                 {link.name.toUpperCase()}
               </Link>
             </li>
