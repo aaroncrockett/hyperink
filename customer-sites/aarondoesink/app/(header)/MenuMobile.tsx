@@ -6,6 +6,7 @@ import Card from "@/ui/card";
 
 type MenuMobileProps = {
   children: ReactNode;
+  className?: string;
   title?: ReactNode;
   closeIcon?: ReactNode;
   triggerIcon?: ReactNode;
@@ -17,13 +18,14 @@ const animModal =
   "transition transition-discrete opacity-0 -translate-x-full starting:data-[state=open]:opacity-0 starting:data-[state=open]:-translate-x-full data-[state=open]:opacity-100 data-[state=open]:translate-x-0";
 
 export default function MenuMobile({
+  className,
   children,
   title = "",
   closeIcon = <XIcon />,
   triggerIcon = <Menu />,
 }: MenuMobileProps) {
   return (
-    <div>
+    <div className={className}>
       <Dialog>
         <Dialog.Trigger>
           {triggerIcon}

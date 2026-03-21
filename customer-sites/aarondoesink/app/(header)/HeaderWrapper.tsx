@@ -13,7 +13,7 @@ export default function HeaderWrapper({}) {
   return (
     <Header
       lead={
-        <MenuMobile title="ALL LINKS">
+        <MenuMobile className="block lg:hidden" title="ALL LINKS">
           <Nav className="block lg:hidden" />
         </MenuMobile>
       }
