@@ -1,7 +1,7 @@
 "use client";
 import dynamic from "next/dynamic";
 
-const MenuMobile = dynamic(() => import("../(header)/MenuMobile"), {
+const MenuMobile = dynamic(() => import("./MenuMobile"), {
   ssr: false,
 });
 

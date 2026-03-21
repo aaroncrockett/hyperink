@@ -36,7 +36,6 @@ export default function Header({
       >
         {lead}
         {children}
-
         {tail}
       </div>
     </header>
