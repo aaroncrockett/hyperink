@@ -1,16 +1,20 @@
 import { createServerClient } from "@supabase/ssr";
-import type { Cookies } from "../types";
+import type { Cookies, AuthClient } from "../types";
+
+let client: any = null;
+
+const authClient: AuthClient = {
+  signInWithPassword: (data: unknown) => {
+    return client.auth.signInWithPassword(data);
+  },
+};
 
 export const createSbServerClient = (
   publicUrl: string,
   publicKey: string,
   cookieMethods: Cookies,
-  action: string,
 ) => {
-  // if (action === "login-email") {
-  //   const client = createServerClient(publicUrl, publicKey, cookieMethods);
-  //   client.auth
-  //   return client
-  // }
-  // return createServerClient(publicUrl, publicKey, cookieMethods);
+  client = createServerClient(publicUrl, publicKey, cookieMethods);
+
+  return authClient;
 };

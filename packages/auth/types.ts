@@ -1,4 +1,27 @@
-type Vendor = "supabase" | "firebase";
+import type { AuthApiError, Session } from "@supabase/supabase-js";
+
+export type Vendor = "supabase";
+
+export type VendorConfigMap = {
+  supabase: SupabaseConfig;
+};
+
+export type AuthClient = {
+  signInWithPassword: SignInWithPassword;
+};
+
+export type SignInWithPassword = (credentials: {
+  email: string;
+  password: string;
+}) => Promise<{
+  data: { session: Session | null; user: any | null };
+  error: AuthApiError | null;
+}>;
+
+export type CreateClient = <K extends Vendor>(
+  vendor: K,
+  config: VendorConfigMap[K],
+) => Promise<AuthClient>;
 
 export interface Cookies {
   cookies: {
@@ -23,20 +46,4 @@ export interface SupabaseConfig {
   publicKey: string;
   publicUrl: string;
   cookieMethods: Cookies;
-  action: string;
 }
-interface FirebaseConfig {
-  clientType: "server" | "client";
-  publicKey: string;
-  publicUrl: string;
-}
-
-type VendorConfigMap = {
-  supabase: SupabaseConfig;
-  firebase: FirebaseConfig;
-};
-
-export type InitAuthFunction = <K extends Vendor>(
-  vendor: K,
-  config: VendorConfigMap[K],
-) => Promise<VendorConfigMap[K]>;

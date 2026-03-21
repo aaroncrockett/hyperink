@@ -1,23 +1,18 @@
-import type { InitAuthFunction, SupabaseConfig } from "./types";
+import type { CreateClient, SupabaseConfig, AuthClient } from "./types";
 import { createSbServerClient } from "./supabase/server";
+export const createClient: CreateClient = async (vendor, config) => {
+  const types = ["server", "client"] as const;
 
-let supabaseClient: ReturnType<typeof createSbServerClient> | null = null;
-
-export const init: InitAuthFunction = async (vendor, config) => {
-  if (vendor === "supabase") {
-    const supabaseConfig = config as SupabaseConfig;
-
-    const types = ["server", "client"] as const;
-    if (!types.includes(supabaseConfig.clientType)) {
-      throw new Error(
-        `Invalid type "${supabaseConfig.clientType}". Must be one of ${types.join(", ")}`,
-      );
-      // createSbServerClient()
-    }
-    if (vendor === "firebase") {
-      console.log("firebase");
-    }
+  if (!types.includes(config.clientType)) {
+    throw new Error(
+      `Invalid type "${config.clientType}". Must be one of ${types.join(", ")}`,
+    );
   }
 
-  return config;
+  return createSbServerClient(
+    config.publicKey,
+    config.publicUrl,
+    config.cookieMethods,
+  );
 };
+export type { SupabaseConfig, AuthClient };
