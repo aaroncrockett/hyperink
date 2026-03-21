@@ -28,7 +28,7 @@ export default function NavController({
                 href={link.href}
                 className={cn(
                   linkCls,
-                  "flex-col gap-0.5 items-center font-bold text-sm text-white",
+                  "flex flex-col gap-0.5 items-center font-bold text-sm text-white",
                 )}
               >
                 {Icon && <Icon className="w-5 h-5" />}
