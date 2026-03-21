@@ -1,14 +1,15 @@
 import { ComponentPropsWithoutRef } from "react";
 import { cn } from "@/utils/cn";
 import Link from "next/link";
-import { MENU_LINKS } from "../../constants/internal-links";
+import { MOBILE_FOOTER_LINKS } from "../../constants/internal-links";
 
 type NavProps = ComponentPropsWithoutRef<"nav"> & {
   ulCls?: string;
   liCls?: string;
   linkCls?: string;
 };
-export default function Nav({
+
+export default function NavController({
   className,
   ulCls,
   liCls,
@@ -16,19 +17,19 @@ export default function Nav({
   ...props
 }: NavProps) {
   return (
-    <nav
-      className={cn("col-start-1 row-start-1 row-span-3 bg-gray-10", className)}
-      {...props}
-    >
-      <ul className={cn("flex flex-col gap-2", ulCls)}>
-        {MENU_LINKS.map((link) => {
+    <nav className={cn(className)} {...props}>
+      <ul className={cn("flex flex-row justify-around gap-4 w-full", ulCls)}>
+        {MOBILE_FOOTER_LINKS.map((link) => {
           const Icon = link.icon;
 
           return (
             <li key={link.href} className={cn(liCls)}>
               <Link
                 href={link.href}
-                className={cn(linkCls, "flex flex-row gap-2")}
+                className={cn(
+                  linkCls,
+                  "flex flex-col gap-0.5 items-center font-bold text-sm text-white",
+                )}
               >
                 {Icon && <Icon className="w-5 h-5" />}
                 {link.name.toUpperCase()}

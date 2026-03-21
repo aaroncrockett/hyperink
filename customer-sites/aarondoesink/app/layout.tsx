@@ -1,7 +1,14 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Outfit } from "next/font/google";
 
-import LayoutWrapper from "./LayoutWrapper";
+import Card from "@/ui/card";
+import { cn } from "@/utils/cn";
+
+import HeaderWrapper from "./(header)/HeaderWrapper";
+import Footer from "./(footer)/Footer";
+import FooterNav from "./(nav)/FooterNav";
+import Nav from "./(nav)/Nav";
+
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -49,7 +56,32 @@ export default function RootLayout({
       lang="en"
     >
       <body className={`antialiased h-full`}>
-        {<LayoutWrapper>{children}</LayoutWrapper>}
+        <div
+          className={cn(
+            "h-screen grid grid-rows-[auto_1fr_auto] lg:grid-cols-[200px_1fr]",
+          )}
+        >
+          {/* hidden: default - shown:lg*/}
+          <Card className="h-full row-span-3 noise-bg-opac-0pt8 hidden lg:block">
+            <Nav className="hidden lg:block" />
+          </Card>
+          <HeaderWrapper />
+
+          <main className={`noise-bg lg:col-start-2 lg:row-start-2`}>
+            {children}
+          </main>
+
+          <Footer className="bg-primary-500 lg:col-start-2 lg:row-start-3 p-2 sm:p-4">
+            {/* shown: default - hidden:lg*/}
+            <FooterNav className="flex lg:hidden w-full" />
+
+            {/* hidden: default - shown:lg*/}
+            <div className="hidden lg:block">
+              Deved By Aaron Does Everything (Tattoos, Web Apps, Web Sites, Web
+              Design, Graphic Design, Illustration, Painting)
+            </div>
+          </Footer>
+        </div>
       </body>
     </html>
   );

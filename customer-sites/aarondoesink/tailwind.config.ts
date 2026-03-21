@@ -1,7 +1,5 @@
 import type { Config } from "tailwindcss";
 
-import { BREAKPOINTS } from "./constants/index";
-
 const config: Config = {
   theme: {
     extend: {
@@ -10,7 +8,6 @@ const config: Config = {
         heading: ["var(--font-bebas)"],
       },
     },
-    screens: BREAKPOINTS,
   },
 };
 

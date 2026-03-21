@@ -1,7 +1,7 @@
+"use client";
 import { ReactNode } from "react";
 import { ComponentPropsWithoutRef } from "react";
 import styles from "./Header.module.css";
-
 import { cn } from "@/utils/cn";
 
 type HeaderProps = ComponentPropsWithoutRef<"header"> & {
@@ -35,8 +35,7 @@ export default function Header({
         )}
       >
         {lead}
-        <div>{children}</div>
-
+        {children}
         {tail}
       </div>
     </header>
