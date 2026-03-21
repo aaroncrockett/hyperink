@@ -8,9 +8,18 @@ export type VendorConfigMap = {
 
 export type AuthClient = {
   signInWithPassword: SignInWithPassword;
+  signUp: SignUp;
 };
 
 export type SignInWithPassword = (credentials: {
+  email: string;
+  password: string;
+}) => Promise<{
+  data: { session: Session | null; user: any | null };
+  error: AuthApiError | null;
+}>;
+
+export type SignUp = (credentials: {
   email: string;
   password: string;
 }) => Promise<{

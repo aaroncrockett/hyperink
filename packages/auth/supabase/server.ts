@@ -7,6 +7,9 @@ const authClient: AuthClient = {
   signInWithPassword: (data: unknown) => {
     return client.auth.signInWithPassword(data);
   },
+  signUp: (data: unknown) => {
+    return client.auth.signUp(data);
+  },
 };
 
 export const createSbServerClient = (
