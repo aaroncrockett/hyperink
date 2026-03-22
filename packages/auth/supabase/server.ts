@@ -1,17 +1,28 @@
 import { createServerClient } from "@supabase/ssr";
-import type { Cookies, AuthClient } from "../types";
+import type { Cookies, AuthClient, SignInWithOauthConfig } from "../types";
 
 let client: any = null;
 
 const authClient: AuthClient = {
-  signInWithPassword: (data: unknown) => {
+  async signInWithOAuth(config: SignInWithOauthConfig) {
+    if (config.provider === "google") {
+      return await client.auth.signInWithOAuth(config);
+    }
+  },
+  async signInWithPassword(data: unknown) {
     return client.auth.signInWithPassword(data);
   },
-  signUp: (data: unknown) => {
+  async signUp(data: unknown) {
     return client.auth.signUp(data);
   },
-  verifyOtp(config: unknown) {
+  async exchangeCodeForSession(code: string) {
+    return client.auth.exchangeCodeForSession(code);
+  },
+  async verifyOtp(config: unknown) {
     return client.auth.verifyOtp(config);
+  },
+  async getUser() {
+    return client.auth.getUser();
   },
 };
 

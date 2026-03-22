@@ -23,11 +23,7 @@ export async function login(formData: FormData) {
 }
 
 export async function signup(formData: FormData) {
-  console.log("hello?");
   const authClient: AuthClient = await createClient();
-
-  console.log("fomrdata");
-  console.log(formData);
 
   const data = {
     email: formData.get("email") as string,
@@ -35,11 +31,33 @@ export async function signup(formData: FormData) {
   };
   const { error } = await authClient.signUp(data);
 
-  console.log(error);
-
   if (error) {
     redirect("/error");
   }
   revalidatePath("/", "layout");
   redirect("/admin");
+}
+
+export async function signInWithGoogle() {
+  const authClient: AuthClient = await createClient();
+
+  const { data, error } = await authClient.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
+    },
+  });
+
+  if (error) {
+    console.error(error);
+    redirect("/error");
+  }
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  if (data.url) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    redirect(data.url);
+  }
 }
