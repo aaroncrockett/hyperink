@@ -1,3 +1,5 @@
+"use server";
+
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
@@ -17,20 +19,27 @@ export async function login(formData: FormData) {
     redirect("/error");
   }
   revalidatePath("/", "layout");
-  redirect("/account");
+  redirect("/admin");
 }
 
 export async function signup(formData: FormData) {
+  console.log("hello?");
   const authClient: AuthClient = await createClient();
+
+  console.log("fomrdata");
+  console.log(formData);
 
   const data = {
     email: formData.get("email") as string,
     password: formData.get("password") as string,
   };
   const { error } = await authClient.signUp(data);
+
+  console.log(error);
+
   if (error) {
     redirect("/error");
   }
   revalidatePath("/", "layout");
-  redirect("/account");
+  redirect("/admin");
 }

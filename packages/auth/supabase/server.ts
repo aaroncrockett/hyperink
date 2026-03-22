@@ -10,11 +10,14 @@ const authClient: AuthClient = {
   signUp: (data: unknown) => {
     return client.auth.signUp(data);
   },
+  verifyOtp(config: unknown) {
+    return client.auth.verifyOtp(config);
+  },
 };
 
 export const createSbServerClient = (
-  publicUrl: string,
   publicKey: string,
+  publicUrl: string,
   cookieMethods: Cookies,
 ) => {
   client = createServerClient(publicUrl, publicKey, cookieMethods);

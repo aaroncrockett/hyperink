@@ -36,8 +36,8 @@ export async function createClient(): Promise<AuthClient> {
 
   const config: SupabaseConfig = {
     clientType: "server",
-    publicKey: "",
-    publicUrl: "",
+    publicKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    publicUrl: process.env.NEXT_PUBLIC_SUPABASE_URL!,
     cookieMethods: cookieMethods,
   };
 
