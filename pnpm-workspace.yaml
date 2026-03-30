@@ -4,5 +4,4 @@ packages:
   - "packages/ui/*"
   - "packages/utils"
   - "packages/hooks"
-  - "packages/auth"
-  - "packages/storage"
+  - "packages/db"
