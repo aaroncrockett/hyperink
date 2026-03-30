@@ -3,10 +3,10 @@ import { cookies } from "next/headers";
 import {
   createClient as createServerClient,
   type SupabaseConfig,
-  type AuthClient,
-} from "@inktree/auth";
+  type Client,
+} from "@inktree/db";
 
-export async function createClient(): Promise<AuthClient> {
+export async function createClient(): Promise<Client> {
   type CookieItem = {
     name: string;
     value: string;

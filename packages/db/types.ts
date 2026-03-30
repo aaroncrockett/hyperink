@@ -18,7 +18,12 @@ export type Client = {
   signInWithOAuth: SignInWithOauth;
   exchangeCodeForSession: ExchangeCodeForSession;
   getUser: GetUser;
+  uploadFile: UploadFile;
+  removeFile: RemoveFile;
+  insertRow: InsertRow;
 };
+
+// Auth
 
 export type SignInWithPassword = (credentials: {
   email: string;
@@ -64,6 +69,37 @@ export type GetUser = () => Promise<{
   data: { user: User | null };
   error: AuthApiError | null;
 }>;
+
+// Storage
+
+export type StorageUploadResponse = {
+  path: string;
+  bucket: string;
+  error: AuthApiError | null;
+};
+
+export type UploadFile = (params: {
+  bucket: string;
+  path: string;
+  file: File | Blob;
+}) => Promise<StorageUploadResponse>;
+
+export type RemoveFile = (params: { bucket: string; path: string }) => Promise<{
+  data: any;
+  error: AuthApiError | null;
+}>;
+
+// DB
+
+export type InsertRow = <T extends Record<string, any>>(params: {
+  table: string;
+  values: T;
+}) => Promise<{
+  data: T[] | null;
+  error: AuthApiError | null;
+}>;
+
+// Create Client
 
 export type CreateClient = <K extends Vendor>(
   vendor: K,

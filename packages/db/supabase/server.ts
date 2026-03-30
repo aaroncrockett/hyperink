@@ -24,8 +24,26 @@ const client: Client = {
   async getUser() {
     return clientClosure.auth.getUser();
   },
-};
+  async uploadFile({ bucket, path, file }) {
+    const { data, error } = await clientClosure.storage
+      .from(bucket)
+      .upload(path, file);
 
+    if (error) return { path: "", bucket, error };
+
+    return { path: data.path, bucket, error: null };
+  },
+  async removeFile({ bucket, path }) {
+    const { data, error } = await clientClosure.storage
+      .from(bucket)
+      .remove([path]);
+    return { data, error };
+  },
+  async insertRow({ table, values }) {
+    const { data, error } = await clientClosure.from(table).insert(values);
+    return { data, error };
+  },
+};
 export const createSbServerClient = (
   publicKey: string,
   publicUrl: string,

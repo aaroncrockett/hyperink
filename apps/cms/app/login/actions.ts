@@ -3,17 +3,17 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
-import type { AuthClient } from "@inktree/auth";
+import type { Client } from "../../../../packages/db";
 
 export async function login(formData: FormData) {
-  const authClient: AuthClient = await createClient();
+  const client: Client = await createClient();
 
   const data = {
     email: formData.get("email") as string,
     password: formData.get("password") as string,
   };
 
-  const { error } = await authClient.signInWithPassword(data);
+  const { error } = await client.signInWithPassword(data);
 
   if (error) {
     redirect("/error");
@@ -23,13 +23,13 @@ export async function login(formData: FormData) {
 }
 
 export async function signup(formData: FormData) {
-  const authClient: AuthClient = await createClient();
+  const client: Client = await createClient();
 
   const data = {
     email: formData.get("email") as string,
     password: formData.get("password") as string,
   };
-  const { error } = await authClient.signUp(data);
+  const { error } = await client.signUp(data);
 
   if (error) {
     redirect("/error");
@@ -39,9 +39,9 @@ export async function signup(formData: FormData) {
 }
 
 export async function signInWithGoogle() {
-  const authClient: AuthClient = await createClient();
+  const client: Client = await createClient();
 
-  const { data, error } = await authClient.signInWithOAuth({
+  const { data, error } = await client.signInWithOAuth({
     provider: "google",
     options: {
       redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
