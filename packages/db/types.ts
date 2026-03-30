@@ -11,7 +11,7 @@ export type VendorConfigMap = {
   supabase: SupabaseConfig;
 };
 
-export type AuthClient = {
+export type Client = {
   signInWithPassword: SignInWithPassword;
   signUp: SignUp;
   verifyOtp: VerifyOtp;
@@ -68,7 +68,7 @@ export type GetUser = () => Promise<{
 export type CreateClient = <K extends Vendor>(
   vendor: K,
   config: VendorConfigMap[K],
-) => Promise<AuthClient>;
+) => Promise<Client>;
 
 export interface Cookies {
   cookies: {
