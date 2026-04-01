@@ -15,6 +15,21 @@ export async function GET(request: Request) {
     const { error } = await client.exchangeCodeForSession(code);
 
     if (!error) {
+      const {
+        data: { user },
+      } = await client.getUser();
+      if (!user) throw new Error("Unauthorized");
+
+      const { error } = await client.insertRow({
+        table: "profile",
+        values: { id: user.id, email: user.email },
+      });
+
+      if (error) {
+        if (error?.code === "23505") return { data: null, error: null };
+        return NextResponse.redirect(`${origin}/error`);
+      }
+
       return NextResponse.redirect(`${origin}${next}`);
     }
   }
