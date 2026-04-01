@@ -32,6 +32,4 @@ export async function uploadImage({
     await client.removeFile({ bucket, path });
     throw dbError;
   }
-
-  return { path };
 }
