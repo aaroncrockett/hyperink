@@ -1,32 +1,56 @@
 "use server";
 
 import { type Client } from "@inktree/db";
+import type {
+  TattooCollection,
+  TattooGroup,
+  TattooStyle,
+  TattooTag,
+} from "@inktree/db";
 
 type UploadParams = {
   bucket: string;
-  table: string;
-  file: File | Blob;
-  userId: string;
   client: Client;
+  collections: TattooCollection[];
+  file: File | Blob;
+  groups: TattooGroup[];
+  name: string;
+  styles: TattooStyle[];
+  table: string;
+  tags: TattooTag[];
+  userId: string;
 };
 
 export async function uploadImage({
-  client,
   bucket,
-  table,
+  client,
+  collections,
   file,
+  groups,
+  name,
+  styles,
+  table,
+  tags,
   userId,
 }: UploadParams) {
   const { path, error } = await client.uploadFile({
     bucket,
-    path: `${userId}/${crypto.randomUUID()}`,
     file,
+    path: `${userId}/${crypto.randomUUID()}`,
   });
   if (error) throw error;
 
   const { error: dbError } = await client.insertRow({
     table,
-    values: { user_id: userId, path },
+    values: {
+      collections,
+      groups,
+      name,
+      path,
+      styles,
+      tags,
+      user_id: userId,
+    },
   });
   if (dbError) {
     await client.removeFile({ bucket, path });

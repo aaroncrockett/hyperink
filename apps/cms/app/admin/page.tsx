@@ -1,11 +1,18 @@
-import { createClient } from "@/utils/supabase/server";
-import type { Client } from "../../../../packages/db";
-
 import { uploadImage } from "./actions";
-
-// const { data, error } = await supabase.storage
-//   .from("user-uploads")
-//   .upload(`${user.id}/${file.name}`, file);
+import { createClient } from "@/utils/supabase/server";
+import type {
+  TattooCollection,
+  TattooGroup,
+  TattooStyle,
+  TattooTag,
+  Client,
+} from "@inktree/db";
+import {
+  tattooCollections,
+  tattooGroups,
+  tattooStyles,
+  tattooTags,
+} from "@inktree/db";
 
 export default async function AdminPage() {
   const client: Client = await createClient();
@@ -15,13 +22,89 @@ export default async function AdminPage() {
   } = await client.getUser();
 
   return (
-    <div>
-      <h1>ADMIN</h1>
-      {/* <pre>{JSON.stringify(user, null, 2)}</pre> */}
-      <p>Hello, {user?.user_metadata.full_name}</p>
-      <form action={uploadImage}>
-        <input type="file" name="file" required />
-        <button type="submit">Upload</button>
+    <div className="mx-auto w-full max-w-4xl px-4 py-8 bg-slate-100">
+      <h1 className="text-3xl">ADMIN</h1>
+      <p>Hello {user?.user_metadata.full_name}</p>
+
+      <form
+        action={uploadImage}
+        className="bg-slate-50 p-6 border flex flex-col space-y-4"
+      >
+        <div className=" flex-col space-y-1">
+          <h3 className="text-xl">Styles:</h3>
+          {tattooStyles.map((style: TattooStyle) => (
+            <label
+              key={style}
+              className="flex items-center gap-1 px-3 py-1 border rounded cursor-pointer hover:bg-slate-200"
+            >
+              <input
+                type="checkbox"
+                name="styles"
+                value={style}
+                className="accent-indigo-600"
+              />
+              <span className="capitalize">{style}</span>
+            </label>
+          ))}
+        </div>
+        <div className="flex-col space-y-1">
+          <h3 className="text-xl">Collections:</h3>
+          {tattooCollections.map((collection: TattooCollection) => (
+            <label
+              key={collection}
+              className="flex items-center gap-1 px-3 py-1 border rounded cursor-pointer hover:bg-slate-200"
+            >
+              <input
+                type="checkbox"
+                name="collections"
+                value={collection}
+                className="accent-indigo-600"
+              />
+              <span className="capitalize">{collection}</span>
+            </label>
+          ))}
+        </div>
+
+        <div className="flex-col space-y-1">
+          <h3 className="text-xl">Groups:</h3>
+          {tattooGroups.map((group: TattooGroup) => (
+            <label
+              key={group}
+              className="flex items-center gap-1 px-3 py-1 border rounded cursor-pointer hover:bg-slate-200"
+            >
+              <input
+                type="checkbox"
+                name="groups"
+                value={group}
+                className="accent-indigo-600"
+              />
+              <span className="capitalize">{group}</span>
+            </label>
+          ))}
+        </div>
+
+        <div className="flex-col space-y-1">
+          <h3 className="text-xl">Tags:</h3>
+          {tattooTags.map((tag: TattooTag) => (
+            <label
+              key={tag}
+              className="flex items-center gap-1 px-3 py-1 border rounded cursor-pointer hover:bg-slate-200"
+            >
+              <input
+                type="checkbox"
+                name="tags"
+                value={tag}
+                className="accent-indigo-600"
+              />
+              <span className="capitalize">{tag}</span>
+            </label>
+          ))}
+        </div>
+        <input className="input" type="file" name="file" required />
+
+        <button className="btn preset-filled-secondary-500" type="submit">
+          Upload
+        </button>
       </form>
     </div>
   );

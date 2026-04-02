@@ -1,4 +1,5 @@
-import type { CreateClient, SupabaseConfig, Client } from "./types";
+import type { CreateClient } from "./types";
+
 import { createSbServerClient } from "./supabase/server";
 export const createClient: CreateClient = async (vendor, config) => {
   const types = ["server", "client"] as const;
@@ -15,4 +16,6 @@ export const createClient: CreateClient = async (vendor, config) => {
     config.cookieMethods,
   );
 };
-export type { SupabaseConfig, Client };
+export * from "./supabase/constants";
+export type * from "./types";
+export type * from "./supabase/types";
