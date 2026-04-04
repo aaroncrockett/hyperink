@@ -43,6 +43,15 @@ const client: Client = {
     const { data, error } = await clientClosure.from(table).insert(values);
     return { data, error };
   },
+  async selectFrom({ table, values }) {
+    const { data, error } = await clientClosure
+      .from(table)
+      .select(values.select)
+      .contains(values.contains.key, values.contains.value)
+      .order(values.order.key, values.order.value);
+
+    return { data, error };
+  },
 };
 export const createSbServerClient = (
   publicKey: string,

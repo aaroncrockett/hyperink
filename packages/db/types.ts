@@ -20,7 +20,8 @@ export type Client = {
   getUser: GetUser;
   uploadFile: UploadFile;
   removeFile: RemoveFile;
-  insertRow: InsertRow;
+  insertRow: From;
+  selectFrom: From;
 };
 
 // Auth
@@ -91,7 +92,7 @@ export type RemoveFile = (params: { bucket: string; path: string }) => Promise<{
 
 // DB
 
-export type InsertRow = <T extends Record<string, any>>(params: {
+export type From = <T extends Record<string, any>>(params: {
   table: string;
   values: T;
 }) => Promise<{
