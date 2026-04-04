@@ -16,6 +16,6 @@ export const createClient: CreateClient = async (vendor, config) => {
     config.cookieMethods,
   );
 };
-export * from "./supabase/constants";
+export * from "./tables";
 export type * from "./types";
-export type * from "./supabase/types";
+export type * from "./tables/types";

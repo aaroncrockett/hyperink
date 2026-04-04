@@ -92,11 +92,18 @@ export type RemoveFile = (params: { bucket: string; path: string }) => Promise<{
 
 // DB
 
-export type From = <T extends Record<string, any>>(params: {
+// 1️⃣ If AuthApiError doesn't exist, define a placeholder
+export type AuthApiError = any;
+
+// 2️⃣ The generic From type
+export type From = <
+  TInsert extends Record<string, any>,
+  TResult = unknown,
+>(params: {
   table: string;
-  values: T;
+  values: TInsert;
 }) => Promise<{
-  data: T[] | null;
+  data: TResult[] | null;
   error: AuthApiError | null;
 }>;
 
