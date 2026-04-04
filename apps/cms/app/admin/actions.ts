@@ -2,20 +2,15 @@
 
 import { createClient } from "@/utils/supabase/server";
 import { uploadImage as uploadImageUtil } from "@/utils";
-import type {
-  TattooCollection,
-  TattooGroup,
-  TattooStyle,
-  TattooTag,
-} from "@inktree/db";
+import type {} from "@inktree/db";
 
 export async function uploadImage(formData: FormData) {
   const file = formData.get("file") as File;
   const fileName = file.name;
-  const styles = formData.getAll("styles") as TattooStyle[];
-  const collections = formData.getAll("collections") as TattooCollection[];
-  const groups = formData.getAll("groups") as TattooGroup[];
-  const tags = formData.getAll("tags") as TattooTag[];
+  const styles = formData.getAll("styles");
+  const collections = formData.getAll("collections");
+  const groups = formData.getAll("groups");
+  const tags = formData.getAll("tags");
 
   if (!file) throw new Error("No file");
 

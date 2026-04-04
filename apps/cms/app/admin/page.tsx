@@ -1,12 +1,6 @@
 import { uploadImage } from "./actions";
 import { createClient } from "@/utils/supabase/server";
-import type {
-  TattooCollection,
-  TattooGroup,
-  TattooStyle,
-  TattooTag,
-  Client,
-} from "@inktree/db";
+import type { Client } from "@inktree/db";
 import {
   tattooCollections,
   tattooGroups,
@@ -32,7 +26,7 @@ export default async function AdminPage() {
       >
         <div className=" flex-col space-y-1">
           <h3 className="text-xl">Styles:</h3>
-          {tattooStyles.map((style: TattooStyle) => (
+          {tattooStyles.map((style) => (
             <label
               key={style}
               className="flex items-center gap-1 px-3 py-1 border rounded cursor-pointer hover:bg-slate-200"
@@ -49,7 +43,7 @@ export default async function AdminPage() {
         </div>
         <div className="flex-col space-y-1">
           <h3 className="text-xl">Collections:</h3>
-          {tattooCollections.map((collection: TattooCollection) => (
+          {tattooCollections.map((collection) => (
             <label
               key={collection}
               className="flex items-center gap-1 px-3 py-1 border rounded cursor-pointer hover:bg-slate-200"
@@ -67,7 +61,7 @@ export default async function AdminPage() {
 
         <div className="flex-col space-y-1">
           <h3 className="text-xl">Groups:</h3>
-          {tattooGroups.map((group: TattooGroup) => (
+          {tattooGroups.map((group) => (
             <label
               key={group}
               className="flex items-center gap-1 px-3 py-1 border rounded cursor-pointer hover:bg-slate-200"
@@ -85,7 +79,7 @@ export default async function AdminPage() {
 
         <div className="flex-col space-y-1">
           <h3 className="text-xl">Tags:</h3>
-          {tattooTags.map((tag: TattooTag) => (
+          {tattooTags.map((tag) => (
             <label
               key={tag}
               className="flex items-center gap-1 px-3 py-1 border rounded cursor-pointer hover:bg-slate-200"
