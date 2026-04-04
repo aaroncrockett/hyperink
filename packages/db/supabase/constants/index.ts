@@ -22,6 +22,6 @@ export const tattooTags = [
   "photo-based illustrational",
 ].map((item) => item.toLowerCase());
 
-export const tattooGroups = ["Flash", "Tattoos"].map((item) =>
-  item.toLowerCase(),
+export const tattooGroups = ["flash", "tattoos", "portfolio-tattoos", "hp"].map(
+  (item) => item.toLowerCase(),
 );
