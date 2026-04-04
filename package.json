@@ -3,8 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev:cms": "pnpm --filter cms dev",
-    "dev:adi": "pnpm --filter aarondoesink dev",
+    "dev:cms": "PORT=3000 pnpm --filter cms dev",
+    "dev:adi": "PORT=3001 pnpm --filter aarondoesink dev",
     "dev:tools": "pnpm --filter tools dev",
     "build": "pnpm --recursive --aggregate-output build",
     "lint": "pnpm --recursive --aggregate-output lint",
