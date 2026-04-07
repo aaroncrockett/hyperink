@@ -1,5 +1,11 @@
 import { SupabaseClient } from "@supabase/supabase-js";
 
+const table = "user-images"
+
+export function addImage() {
+
+}
+
 
  export  async function insertRow(client: SupabaseClient,{ table, values }) {
     const { data, error } = await client.from(table).insert(values);

@@ -73,7 +73,6 @@ export interface Cookies {
 }
 
 export interface SupabaseConfig {
-  clientType: "server" | "client";
   publicKey: string;
   publicUrl: string;
   cookieMethods: Cookies;
@@ -86,6 +85,5 @@ export type VendorConfigMap = {
 };
 
 export type CreateClient = <K extends Vendor>(
-  vendor: K,
   config: VendorConfigMap[K],
 ) => Promise<Client>;
