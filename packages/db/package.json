@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@supabase/ssr": "^0.9.0",
-    "@supabase/supabase-js": "^2.99.3"
+    "@supabase/supabase-js": "^2.99.3",
+    "@supabase/storage-js": "2.101.1"
   }
 }
