@@ -3,27 +3,35 @@ import type {
   GetUser,
   SignInWithPassword,
   SignUp,
+  VerifyOtp,
+  SignInWithOAuth,
 } from "./types";
 
-import { createOrGetClient } from "./index";
-import { SupabaseClient } from "@supabase/supabase-js";
-
-export const signInWithPassword: SignInWithPassword = async (data) => {
-  const client = await createOrGetClient();
-  return client.auth.signInWithPassword(data);
+export const verifyOtp: VerifyOtp = async (authedClient, data) => {
+  return authedClient.auth.verifyOtp(data);
 };
 
-export const signUp: SignUp = async (data) => {
-  const client = await createOrGetClient();
-  return client.auth.signUp(data);
+export const signInWithPassword: SignInWithPassword = async (
+  authedClient,
+  data,
+) => {
+  return authedClient.auth.signInWithPassword(data);
 };
 
-export const exchangeCodeForSession: ExchangeCodeForSession = async (code) => {
-  const client = await createOrGetClient();
-  return client.auth.exchangeCodeForSession(code);
+export const signUp: SignUp = async (authedClient, data) => {
+  return authedClient.auth.signUp(data);
+};
+export const signInWithOAuth: SignInWithOAuth = async (authedClient, data) => {
+  return authedClient.auth.signInWithOAuth(data);
 };
 
-export const getUser: GetUser = async () => {
-  const client = await createOrGetClient();
-  return client.auth.getUser();
+export const exchangeCodeForSession: ExchangeCodeForSession = async (
+  authedClient,
+  code,
+) => {
+  return authedClient.auth.exchangeCodeForSession(code);
+};
+
+export const getUser: GetUser = async (authedClient) => {
+  return authedClient.auth.getUser();
 };

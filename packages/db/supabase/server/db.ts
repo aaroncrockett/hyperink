@@ -1,22 +1,11 @@
 import { SupabaseClient } from "@supabase/supabase-js";
+import { Database } from "../types/tables";
 
-const table = "user-images"
+export async function insertRow<
+  T extends keyof Database["public"]["Tables"],
+  V extends Database["public"]["Tables"][T]["Insert"],
+>(authedClient: SupabaseClient, table: T, values: V | V[]) {
+  const { data, error } = await authedClient.from(table).insert(values);
 
-export function addImage() {
-
+  return { data, error };
 }
-
-
- export  async function insertRow(client: SupabaseClient,{ table, values }) {
-    const { data, error } = await client.from(table).insert(values);
-    return { data, error };
- }
-  export async function selectFrom(client: SupabaseClient,{ table, values }) {
-    const { data, error } = await client
-      .from(table)
-      .select(values.select)
-      .contains(values.contains.key, values.contains.value)
-      .order(values.order.key, values.order.value);
-
-    return { data, error };
-  },

@@ -195,7 +195,7 @@ export type Database = {
       };
       user_images: {
         Row: {
-          collection: string | null;
+          collections: string[] | null;
           created_at: string | null;
           groups: string[] | null;
           id: string;
@@ -206,7 +206,7 @@ export type Database = {
           user_id: string;
         };
         Insert: {
-          collection?: string | null;
+          collections?: string[] | null;
           created_at?: string | null;
           groups?: string[] | null;
           id?: string;
@@ -217,7 +217,7 @@ export type Database = {
           user_id: string;
         };
         Update: {
-          collection?: string | null;
+          collections?: string[] | null;
           created_at?: string | null;
           groups?: string[] | null;
           id?: string;

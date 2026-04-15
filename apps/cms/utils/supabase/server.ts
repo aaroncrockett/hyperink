@@ -1,12 +1,32 @@
 // import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import {
-  createClient as createServerClient,
-  type SupabaseConfig,
-  type Client,
+  createServerClientAndAuth as createClientAndAuth,
+  exchangeCodeForSession,
+  getUser,
+  insertRow,
+  removeFile,
+  uploadFile,
+  verifyOtp,
+  signInWithPassword,
+  signUp,
+  signInWithOAuth,
 } from "@inktree/db";
 
-export async function createClient(): Promise<Client> {
+import type { SupabaseConfig, Client, Database } from "@inktree/db";
+
+export type { Client };
+
+export {
+  exchangeCodeForSession,
+  getUser,
+  verifyOtp,
+  signInWithPassword,
+  signUp,
+  signInWithOAuth,
+};
+
+export async function createServerClientAndAuth(): Promise<Client> {
   type CookieItem = {
     name: string;
     value: string;
@@ -35,11 +55,40 @@ export async function createClient(): Promise<Client> {
   };
 
   const config: SupabaseConfig = {
-    clientType: "server",
     publicKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     publicUrl: process.env.NEXT_PUBLIC_SUPABASE_URL!,
     cookieMethods: cookieMethods,
   };
 
-  return createServerClient("supabase", config);
+  return createClientAndAuth(config);
+}
+
+type TableName = keyof Database["public"]["Tables"];
+
+type UploadParams<T extends TableName> = Partial<
+  Database["public"]["Tables"][T]["Insert"]
+>;
+
+export async function uploadImage<T extends TableName>(
+  authedClient: Client,
+  bucket: string,
+  table: T,
+  file: File,
+  params: UploadParams<"user_images">,
+) {
+  const path = `${params.user_id}/${crypto.randomUUID()}`;
+  const { data, error } = await uploadFile(authedClient, {
+    bucket,
+    file,
+    path: `${params.user_id}/${crypto.randomUUID()}`,
+  });
+
+  if (error) throw error;
+
+  const { error: dbError } = await insertRow(authedClient, table, params);
+
+  if (dbError) {
+    await removeFile(authedClient, { bucket, path });
+    throw dbError;
+  }
 }

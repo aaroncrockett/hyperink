@@ -3,28 +3,43 @@ import type {
   SupabaseClient,
   VerifyOtpParams,
   AuthResponse,
+  OAuthResponse
   UserResponse,
+  SignInWithOAuthCredentials,
 } from "@supabase/supabase-js";
 
 import type { FileObject, StorageError } from "@supabase/storage-js";
 
 // --- Auth ---
 
+export type SignInWithOAuth = (
+  authedClient: SupabaseClient,
+  data: SignInWithOAuthCredentials,
+) => Promise<OAuthResponse>;
+
 export type SignInWithPassword = (
+  authedClient: SupabaseClient,
   data: SignInWithPasswordCredentials,
 ) => Promise<AuthResponse>;
 
 export type SignUp = (
+  authedClient: SupabaseClient,
   data: SignInWithPasswordCredentials,
 ) => Promise<AuthResponse>;
 
-export type ExchangeCodeForSession = (code: string) => Promise<AuthResponse>;
+export type ExchangeCodeForSession = (
+  authedClient: SupabaseClient,
+  code: string,
+) => Promise<AuthResponse>;
 
-export type VerifyOtp = (config: VerifyOtpParams) => Promise<AuthResponse>;
+export type VerifyOtp = (
+  authedClient: SupabaseClient,
+  config: VerifyOtpParams,
+) => Promise<AuthResponse>;
 
-export type GetUser = (client: SupabaseClient) => Promise<UserResponse>;
+export type GetUser = (authedClient: SupabaseClient) => Promise<UserResponse>;
 
-// --- Upload ---
+// --- Storage ---
 
 export type UploadFileParams = {
   bucket: string;
@@ -32,12 +47,8 @@ export type UploadFileParams = {
   file: File | Blob;
 };
 
-// ❌ DELETE THIS
-// import type { FileObject, StorageError } from "@supabase/storage-js";
-
-// --- Upload ---
-
 export type UploadFile = (
+  authedClient: SupabaseClient,
   params: UploadFileParams,
 ) => Promise<
   ReturnType<SupabaseClient["storage"]["from"]>["upload"] extends (
@@ -48,6 +59,7 @@ export type UploadFile = (
 >;
 
 export type RemoveFile = (
+  authedClient: SupabaseClient,
   params: RemoveFileParams,
 ) => Promise<
   ReturnType<SupabaseClient["storage"]["from"]>["remove"] extends (

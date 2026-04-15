@@ -1,6 +1,11 @@
 import { NextResponse } from "next/server";
-import { createClient } from "@/utils/supabase/server";
-import type { Client } from "../../../../../packages/db";
+import {
+  createServerClientAndAuth,
+  exchangeCodeForSession,
+  getUser,
+} from "@/utils/supabase/server";
+
+import type { Client } from "@/utils/supabase/server";
 
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url);
@@ -10,25 +15,25 @@ export async function GET(request: Request) {
   if (!next.startsWith("/admin")) next = "/admin";
 
   if (code) {
-    const client: Client = await createClient();
+    const authedClient: Client = await createServerClientAndAuth();
 
-    const { error } = await client.exchangeCodeForSession(code);
+    const { error } = await exchangeCodeForSession(authedClient, code);
 
     if (!error) {
       const {
         data: { user },
-      } = await client.getUser();
+      } = await getUser(authedClient);
       if (!user) throw new Error("Unauthorized");
 
-      const { error } = await client.insertRow({
-        table: "profile",
-        values: { id: user.id, email: user.email },
-      });
+      // const { error } = await authedClient.insertRow({
+      //   table: "profile",
+      //   values: { id: user.id, email: user.email },
+      // });
 
-      if (error) {
-        if (error?.code === "23505") return { data: null, error: null };
-        return NextResponse.redirect(`${origin}/error`);
-      }
+      // if (error) {
+      //   if (error?.code === "23505") return { data: null, error: null };
+      //   return NextResponse.redirect(`${origin}/error`);
+      // }
 
       return NextResponse.redirect(`${origin}${next}`);
     }

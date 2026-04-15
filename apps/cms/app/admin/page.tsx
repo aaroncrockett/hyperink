@@ -1,19 +1,19 @@
 import { uploadImage } from "./actions";
-import { createClient } from "@/utils/supabase/server";
+import { createServerClientAndAuth, getUser } from "@/utils/supabase/server";
 import type { Client } from "@inktree/db";
 import {
-  tattooCollections,
-  tattooGroups,
-  tattooStyles,
-  tattooTags,
+  TattooStyles,
+  TattooCollections,
+  TattooGroups,
+  TattooTags,
 } from "@inktree/db";
 
 export default async function AdminPage() {
-  const client: Client = await createClient();
+  const authedClient: Client = await createServerClientAndAuth();
 
   const {
     data: { user },
-  } = await client.getUser();
+  } = await getUser(authedClient);
 
   return (
     <div className="mx-auto w-full max-w-4xl px-4 py-8 bg-slate-100">
@@ -26,7 +26,7 @@ export default async function AdminPage() {
       >
         <div className=" flex-col space-y-1">
           <h3 className="text-xl">Styles:</h3>
-          {tattooStyles.map((style) => (
+          {TattooStyles.map((style) => (
             <label
               key={style}
               className="flex items-center gap-1 px-3 py-1 border rounded cursor-pointer hover:bg-slate-200"
@@ -43,7 +43,7 @@ export default async function AdminPage() {
         </div>
         <div className="flex-col space-y-1">
           <h3 className="text-xl">Collections:</h3>
-          {tattooCollections.map((collection) => (
+          {TattooCollections.map((collection) => (
             <label
               key={collection}
               className="flex items-center gap-1 px-3 py-1 border rounded cursor-pointer hover:bg-slate-200"
@@ -61,7 +61,7 @@ export default async function AdminPage() {
 
         <div className="flex-col space-y-1">
           <h3 className="text-xl">Groups:</h3>
-          {tattooGroups.map((group) => (
+          {TattooGroups.map((group) => (
             <label
               key={group}
               className="flex items-center gap-1 px-3 py-1 border rounded cursor-pointer hover:bg-slate-200"
@@ -79,7 +79,7 @@ export default async function AdminPage() {
 
         <div className="flex-col space-y-1">
           <h3 className="text-xl">Tags:</h3>
-          {tattooTags.map((tag) => (
+          {TattooTags.map((tag) => (
             <label
               key={tag}
               className="flex items-center gap-1 px-3 py-1 border rounded cursor-pointer hover:bg-slate-200"
