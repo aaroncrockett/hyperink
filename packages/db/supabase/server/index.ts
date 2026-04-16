@@ -17,4 +17,3 @@ export const createServerClientAndAuth: CreateClient = async (
 
 export * from "./auth";
 export * from "./storage";
-export * from "./db";

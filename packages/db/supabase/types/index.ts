@@ -17,7 +17,7 @@ export type Tattoo = AppTables["tattoos"];
 export type UserImage = AppTables["user_images"];
 
 export type TattooStyle = NonNullable<UserImage["styles"]>[number];
-export type TattooCollection = NonNullable<UserImage["collections"]>;
+export type TattooCollection = NonNullable<UserImage["collections"]>[number];
 export type TattooGroup = NonNullable<UserImage["groups"]>[number];
 export type TattooTag = NonNullable<UserImage["tags"]>[number];
 

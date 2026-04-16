@@ -2,10 +2,10 @@ import { NextResponse } from "next/server";
 import {
   createServerClientAndAuth,
   exchangeCodeForSession,
-  getUser,
-} from "@/utils/supabase/server";
+  getAuthedUser,
+} from "@/utils/db/server";
 
-import type { Client } from "@/utils/supabase/server";
+import type { Client } from "@/utils/db/server";
 
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url);
@@ -22,18 +22,8 @@ export async function GET(request: Request) {
     if (!error) {
       const {
         data: { user },
-      } = await getUser(authedClient);
+      } = await getAuthedUser(authedClient);
       if (!user) throw new Error("Unauthorized");
-
-      // const { error } = await authedClient.insertRow({
-      //   table: "profile",
-      //   values: { id: user.id, email: user.email },
-      // });
-
-      // if (error) {
-      //   if (error?.code === "23505") return { data: null, error: null };
-      //   return NextResponse.redirect(`${origin}/error`);
-      // }
 
       return NextResponse.redirect(`${origin}${next}`);
     }

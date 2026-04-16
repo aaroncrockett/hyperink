@@ -5,7 +5,7 @@
 
 .noise-bg {
   background-color: var(--color-surface-50);
-  opacity: 0.7;
+
   background-image: url("data:image/svg+xml;utf8,\
 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'>\
 <filter id='noise'>\
@@ -18,7 +18,7 @@
 .noise-bg-opac-0pt8 {
   background-color: var(--color-surface-50);
   background-blend-mode: lighten;
-  opacity: 0.9;
+
   background-image: url("data:image/svg+xml;utf8,\
 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'>\
 <filter id='noise'>\

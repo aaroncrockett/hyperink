@@ -195,36 +195,42 @@ export type Database = {
       };
       user_images: {
         Row: {
-          collections: string[] | null;
+          collections:
+            | Database["public"]["Enums"]["tattoo_collections"][]
+            | null;
           created_at: string | null;
-          groups: string[] | null;
+          groups: Database["public"]["Enums"]["tattoo_groups"][] | null;
           id: string;
           name: string | null;
           path: string;
           styles: Database["public"]["Enums"]["tattoo_styles"][] | null;
-          tags: string[] | null;
+          tags: Database["public"]["Enums"]["tattoo_tags"][] | null;
           user_id: string;
         };
         Insert: {
-          collections?: string[] | null;
+          collections?:
+            | Database["public"]["Enums"]["tattoo_collections"][]
+            | null;
           created_at?: string | null;
-          groups?: string[] | null;
+          groups?: Database["public"]["Enums"]["tattoo_groups"][] | null;
           id?: string;
           name?: string | null;
           path: string;
           styles?: Database["public"]["Enums"]["tattoo_styles"][] | null;
-          tags?: string[] | null;
+          tags?: Database["public"]["Enums"]["tattoo_tags"][] | null;
           user_id: string;
         };
         Update: {
-          collections?: string[] | null;
+          collections?:
+            | Database["public"]["Enums"]["tattoo_collections"][]
+            | null;
           created_at?: string | null;
-          groups?: string[] | null;
+          groups?: Database["public"]["Enums"]["tattoo_groups"][] | null;
           id?: string;
           name?: string | null;
           path?: string;
           styles?: Database["public"]["Enums"]["tattoo_styles"][] | null;
-          tags?: string[] | null;
+          tags?: Database["public"]["Enums"]["tattoo_tags"][] | null;
           user_id?: string;
         };
         Relationships: [
@@ -245,13 +251,25 @@ export type Database = {
       [_ in never]: never;
     };
     Enums: {
+      tattoo_collections:
+        | "queer & spicey - filtered"
+        | "queery & spicey - collage"
+        | "neo-expressionist"
+        | "pixel tatts"
+        | "gaymer/anime"
+        | "just whatever";
+      tattoo_groups: "flash" | "tattoos" | "hp" | "portfolio-tattoos";
       tattoo_styles:
         | "traditional"
-        | "photo-based-illustrational"
         | "illustrational"
         | "blackwork"
         | "micro"
         | "photo-realism";
+      tattoo_tags:
+        | "color"
+        | "blackwork"
+        | "black & gray"
+        | "photo-based illustrational";
     };
     CompositeTypes: {
       [_ in never]: never;
@@ -382,13 +400,27 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
+      tattoo_collections: [
+        "queer & spicey - filtered",
+        "queery & spicey - collage",
+        "neo-expressionist",
+        "pixel tatts",
+        "gaymer/anime",
+        "just whatever",
+      ],
+      tattoo_groups: ["flash", "tattoos", "hp", "portfolio-tattoos"],
       tattoo_styles: [
         "traditional",
-        "photo-based-illustrational",
         "illustrational",
         "blackwork",
         "micro",
         "photo-realism",
+      ],
+      tattoo_tags: [
+        "color",
+        "blackwork",
+        "black & gray",
+        "photo-based illustrational",
       ],
     },
   },

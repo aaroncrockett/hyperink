@@ -5,31 +5,31 @@ import type {
   TattooGroup,
 } from "./index";
 
-export const TattooStyles: TattooStyle[] = [
+export const TATTOO_STYLES: TattooStyle[] = [
   "traditional",
   "illustrational",
   "blackwork",
   "micro",
   "photo-realism",
-].map((item) => item.toLowerCase() as TattooStyle);
+] satisfies readonly TattooStyle[];
 
-export const TattooCollections: TattooCollection[] = [
-  "Queer & Spicey - Filtered",
-  "Queery & Spicey - Collage",
-  "Neo-expressionist",
-  "Pixel Tatts",
-  "Gaymer/Anime",
-  "Just Whatever",
-].map((item) => item.toLowerCase() as TattooCollection);
+export const TATTOO_COLLECTIONS: TattooCollection[] = [
+  "queer & spicey - filtered",
+  "queery & spicey - collage",
+  "neo-expressionist",
+  "pixel tatts",
+  "gaymer/anime",
+  "just whatever",
+] satisfies readonly TattooCollection[];
 
-export const TattooTags: TattooTag[] = [
+export const TATTOO_TAGS: TattooTag[] = [
   "color",
   "blackwork",
   "black & gray",
   "photo-based illustrational",
-].map((item) => item.toLowerCase() as TattooTag);
+] satisfies readonly TattooTag[];
 
-export const TattooGroups: TattooGroup[] = [
+export const TATTOO_GROUPS: TattooGroup[] = [
   "flash",
   "tattoos",
   "portfolio-tattoos",

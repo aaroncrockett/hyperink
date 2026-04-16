@@ -68,6 +68,25 @@ export default function Home() {
           <li className="ml-1 text-xl">🔥</li>
         </ul>
       </section>
+      <section className="w-full">
+        <div className="relative w-full h-[40vh] sm:h-[50vh] md:h-[60vh]">
+          <Image
+            src="/images/hp/aaron-does-flash.webp"
+            alt="Aaron Does Flash"
+            width={1829}
+            height={1119}
+            priority
+            className="w-full h-auto"
+          />
+        </div>
+      </section>
+      <section>
+        <Heading
+          as="h2"
+          text="Custom & Flash Tatts"
+          className="uppercase text-center font-bold text-xl [@media(min-width:20rem)]:text-2xl [@media(min-width:26rem)]:text-3xl  [@media(min-width:36rem)]:text-4xl [@media(min-width:60rem)]:text-5xl [@media(min-width:80rem)]:text-6xl "
+        ></Heading>
+      </section>
     </Page>
   );
 }

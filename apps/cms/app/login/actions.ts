@@ -7,8 +7,8 @@ import {
   signInWithPassword,
   signUp,
   signInWithOAuth,
-} from "@/utils/supabase/server";
-import type { Client } from "@/utils/supabase/server";
+} from "@/utils/db/server";
+import type { Client } from "@/utils/db/server";
 
 export async function login(formData: FormData) {
   const client: Client = await createServerClientAndAuth();

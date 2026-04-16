@@ -1,19 +1,14 @@
 "use server";
 
-import { createServerClientAndAuth, getUser } from "@/utils/supabase/server";
-import { uploadImage as uploadImageUtil } from "@/utils/supabase/server";
-import type {
-  TattooStyle,
-  TattooCollection,
-  TattooGroup,
-  TattooTag,
-} from "@inktree/db";
+import { createServerClientAndAuth, getAuthedUser } from "@/utils/db/server";
+import { uploadUserImage } from "@/utils/db/server";
+import type { TattooGroup, TattooTag } from "@inktree/db";
 
 export async function uploadImage(formData: FormData) {
   const file = formData.get("file") as File;
   const fileName = file.name;
-  const styles = formData.getAll("styles");
-  const collections = formData.getAll("collections");
+  // const styles = formData.getAll("styles");
+  // const collections = formData.getAll("collections");
 
   const groups = formData
     .getAll("groups")
@@ -27,22 +22,13 @@ export async function uploadImage(formData: FormData) {
 
   const {
     data: { user },
-  } = await getUser(authedClient);
+  } = await getAuthedUser(authedClient);
   if (!user) throw new Error("Unauthorized");
 
-  return await uploadImageUtil(
-    authedClient,
-    "user-images",
-    "user_images",
-    file,
-    {
-      collections,
-      file,
-      groups,
-      name: fileName,
-      styles,
-      tags,
-      user_id: user.id,
-    },
-  );
+  return await uploadUserImage(authedClient, file, {
+    groups,
+    name: fileName,
+    tags,
+    user_id: user.id,
+  });
 }
