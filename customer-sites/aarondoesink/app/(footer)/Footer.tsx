@@ -19,7 +19,7 @@ export default function Footer({
     <footer
       className={cn(
         styles.footer,
-        "relative bg-primary-500 flex items-center justify-between max-w-6xl mx-auto w-full p-5 px-4 ",
+        "sticky lg:relative bottom-0 h-auto bg-primary-500 flex items-center justify-between max-w-6xl mx-auto w-full p-5 px-4 ",
         className,
       )}
       {...props}

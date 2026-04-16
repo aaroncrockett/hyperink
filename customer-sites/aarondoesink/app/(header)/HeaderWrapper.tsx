@@ -1,6 +1,8 @@
 "use client";
 import dynamic from "next/dynamic";
 
+import Link from "next/link";
+
 const MenuMobile = dynamic(() => import("./MenuMobile"), {
   ssr: false,
 });
@@ -23,13 +25,15 @@ export default function HeaderWrapper({}) {
         </button>
       }
     >
-      <Image
-        src="/images/logo-text.svg"
-        alt="Aaron Does Ink - Logo"
-        width={201}
-        height={40}
-        className="h-10 px-4 sm:px-0 w-auto mx-auto"
-      />
+      <Link className="h-10 px-4 sm:px-0 w-auto mx-auto" href="/">
+        <Image
+          src="/images/logo-text.svg"
+          alt="Aaron Does Ink - Logo"
+          width={201}
+          height={40}
+          className="h-10 w-auto mx-auto"
+        />
+      </Link>
     </Header>
   );
 }

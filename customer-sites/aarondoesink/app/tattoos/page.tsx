@@ -1,9 +1,10 @@
 import Page from "@/ui/page";
+import Heading from "@/ui/heading";
 
 export default async function Tattoos() {
   return (
     <Page>
-      <h1 className="text-3xl font-bold mb-6">Tattoos</h1>
+      <Heading as="h2" text="Tattoos"></Heading>
     </Page>
   );
 }

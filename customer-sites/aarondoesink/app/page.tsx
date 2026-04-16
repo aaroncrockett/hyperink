@@ -50,13 +50,13 @@ export default function Home() {
         <Heading
           as="h2"
           text="🔥 Flash & custom tattoos 🔥"
-          className="uppercase text-center font-bold text-xl [@media(min-width:20rem)]:text-2xl [@media(min-width:26rem)]:text-3xl  [@media(min-width:36rem)]:text-4xl [@media(min-width:60rem)]:text-5xl [@media(min-width:80rem)]:text-6xl "
+          className="text-center font-bold"
         ></Heading>
 
         <ul className="flex justify-center items-center py-3 mb-0">
           <li>
             <Link
-              href=""
+              href="https://www.instagram.com/aaron.does.ink"
               target="_blank"
               className="mr-0.5 flex brand-font items-center justify-center text-xs md:text-base gap-1 text-surface-950"
             >
@@ -72,7 +72,7 @@ export default function Home() {
 
           <li>
             <Link
-              href=""
+              href="/about"
               target="_blank"
               className="mr-0.5 flex brand-font items-center justify-center text-xs md:text-base gap-1 text-surface-950"
             >
@@ -84,16 +84,21 @@ export default function Home() {
           </li>
         </ul>
         <div className="w-full">
-          <Image
-            src="/images/hp/aaron-does-flash.webp"
-            alt="Aaron Does Flash"
-            width={1829}
-            height={1119}
-            priority
-          />
+          <Link
+            href="/flash"
+            className="mr-0.5 flex brand-font items-center justify-center text-xs md:text-base gap-1 text-surface-950"
+          >
+            <Image
+              src="/images/hp/aaron-does-flash.webp"
+              alt="Aaron Does Flash"
+              width={1829}
+              height={1119}
+              priority
+            />
+          </Link>
         </div>
       </section>
-      <section className="grid gap-1 sm:gap-2 grid-cols-2 w-full h-full">
+      <section className="grid gap-1 grid-cols-2 w-full h-full">
         <div className="w-full h-full relative">
           <video
             ref={videoRef}
@@ -110,7 +115,7 @@ export default function Home() {
           />
         </div>
 
-        <div className="grid grid-rows-2 gap-0.5">
+        <div className="grid grid-rows-2 gap-1">
           <div className="relative aspect-square w-full h-full ">
             <Link href="/tattoos">
               <Image
@@ -138,8 +143,10 @@ export default function Home() {
       <section>
         <Heading
           as="h2"
+          className="text-center text-primary-700 font-bold"
+          leading="[@media(min-width:26rem)]:leading-6! [@media(min-width:36rem)]:leading-10! [@media(min-width:60rem)]:leading-14! [@media(min-width:80rem)]:leading-20!"
+          size="[@media(min-width:20rem)]:text-2xl [@media(min-width:26rem)]:text-3xl [@media(min-width:36rem)]:text-4xl [@media(min-width:60rem)]:text-5xl [@media(min-width:80rem)]:text-6xl"
           text="Custom & Flash Tatts"
-          className="uppercase text-center font-bold text-xl [@media(min-width:20rem)]:text-2xl [@media(min-width:26rem)]:text-3xl  [@media(min-width:26rem)]:leading-6!  [@media(min-width:36rem)]:text-4xl [@media(min-width:36rem)]:leading-10! [@media(min-width:60rem)]:text-5xl [@media(min-width:60rem)]:leading-14! [@media(min-width:80rem)]:text-6xl [@media(min-width:80rem)]:leading-20! text-primary-700"
         ></Heading>
       </section>
     </Page>
