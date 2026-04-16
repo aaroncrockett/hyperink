@@ -1,11 +1,39 @@
+"use client";
+
 import Page from "@/ui/page";
 import Heading from "@/ui/heading";
 
 import Image from "next/image";
 import Link from "next/link";
+
+import { useEffect, useRef } from "react";
+
 import { Instagram, Facebook } from "lucide-react";
 
 export default function Home() {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            video.play();
+          } else {
+            video.pause();
+          }
+        });
+      },
+      { threshold: 0.4 },
+    );
+
+    observer.observe(video);
+
+    return () => observer.disconnect();
+  }, []);
   return (
     <Page>
       <section className="flex flex-col space-y-1 sm:space-y-2 md:space-y-3 xl:space-y-4">
@@ -21,27 +49,24 @@ export default function Home() {
         ></Heading>
         <Heading
           as="h2"
-          text="Flash & custom tattoos"
+          text="🔥 Flash & custom tattoos 🔥"
           className="uppercase text-center font-bold text-xl [@media(min-width:20rem)]:text-2xl [@media(min-width:26rem)]:text-3xl  [@media(min-width:36rem)]:text-4xl [@media(min-width:60rem)]:text-5xl [@media(min-width:80rem)]:text-6xl "
         ></Heading>
 
-        <ul className="flex justify-center items-center gap-1 py-3">
-          <li className="mr-2.5 text-xl">🏳️‍🌈</li>
-
+        <ul className="flex justify-center items-center py-3 mb-0">
           <li>
             <Link
               href=""
               target="_blank"
-              className="mr-2 flex brand-font items-center justify-center text-xs md:text-base gap-1 text-surface-950"
+              className="mr-0.5 flex brand-font items-center justify-center text-xs md:text-base gap-1 text-surface-950"
             >
-              <div className="w-8 h-8 relative">
-                <Image
-                  src="/images/blue-sky.svg"
-                  alt="BlueSky"
-                  fill
-                  className="object-contain"
-                />
-              </div>
+              <Instagram
+                className="w-8 h-8 text-secondary-800 d"
+                strokeWidth={2}
+              />
+              <span className="text-lg font-bold text-secondary-500">
+                Instagram
+              </span>
             </Link>
           </li>
 
@@ -51,40 +76,70 @@ export default function Home() {
               target="_blank"
               className="mr-0.5 flex brand-font items-center justify-center text-xs md:text-base gap-1 text-surface-950"
             >
-              <Instagram className="w-8 h-8 text-black" strokeWidth={2} />
+              <span className="ml-2.5 text-4xl">🏳️‍🌈</span>
+              <span className="text-lg font-bold text-secondary-500">
+                About Me
+              </span>
             </Link>
           </li>
-
-          <li>
-            <Link
-              href=""
-              target="_blank"
-              className="flex brand-font items-center justify-center text-xs gap-0.5 md:text-base text-surface-950"
-            >
-              <Facebook className="w-8 h-8 text-black" strokeWidth={2} />
-            </Link>
-          </li>
-
-          <li className="ml-1 text-xl">🔥</li>
         </ul>
-      </section>
-      <section className="w-full">
-        <div className="relative w-full h-[40vh] sm:h-[50vh] md:h-[60vh]">
+        <div className="w-full">
           <Image
             src="/images/hp/aaron-does-flash.webp"
             alt="Aaron Does Flash"
             width={1829}
             height={1119}
             priority
-            className="w-full h-auto"
           />
         </div>
       </section>
+      <section className="grid gap-1 sm:gap-2 grid-cols-2 w-full h-full">
+        <div className="w-full h-full relative">
+          <video
+            ref={videoRef}
+            src="/videos/hp-vid-logan-tatt.mp4"
+            autoPlay
+            muted
+            playsInline
+            controls
+            className="w-full h-full object-cover "
+            onEnded={(e) => {
+              const video = e.target as HTMLVideoElement;
+              video.pause();
+            }}
+          />
+        </div>
+
+        <div className="grid grid-rows-2 gap-0.5">
+          <div className="relative aspect-square w-full h-full ">
+            <Link href="/tattoos">
+              <Image
+                src="/images/hp/devil-balloon.webp"
+                alt="Rectangle 1"
+                fill
+                className="object-cover "
+              />
+            </Link>
+          </div>
+
+          <div className="relative aspect-square w-full h-full">
+            <Link href="/tattoos">
+              <Image
+                src="/images/hp/jump-rope.webp"
+                alt="Rectangle 2"
+                fill
+                className="object-cover "
+              />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section>
         <Heading
           as="h2"
           text="Custom & Flash Tatts"
-          className="uppercase text-center font-bold text-xl [@media(min-width:20rem)]:text-2xl [@media(min-width:26rem)]:text-3xl  [@media(min-width:36rem)]:text-4xl [@media(min-width:60rem)]:text-5xl [@media(min-width:80rem)]:text-6xl "
+          className="uppercase text-center font-bold text-xl [@media(min-width:20rem)]:text-2xl [@media(min-width:26rem)]:text-3xl  [@media(min-width:26rem)]:leading-6!  [@media(min-width:36rem)]:text-4xl [@media(min-width:36rem)]:leading-10! [@media(min-width:60rem)]:text-5xl [@media(min-width:60rem)]:leading-14! [@media(min-width:80rem)]:text-6xl [@media(min-width:80rem)]:leading-20! text-primary-700"
         ></Heading>
       </section>
     </Page>

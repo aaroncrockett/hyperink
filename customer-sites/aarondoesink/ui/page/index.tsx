@@ -7,7 +7,7 @@ export default function Page({ children, className, ...props }: PageProps) {
   return (
     <div
       className={cn(
-        "w-full mx-auto max-w-275 p-4 lg:p-4 pt-6 lg:pt-8",
+        "w-full mx-auto max-w-275 p-4 lg:p-4 py-8 lg:py-10 flex flex-col space-y-4",
         className,
       )}
       {...props}

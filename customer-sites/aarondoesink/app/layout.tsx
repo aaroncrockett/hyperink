@@ -67,9 +67,7 @@ export default function RootLayout({
           </Card>
           <HeaderWrapper />
 
-          <main
-            className={`noise-bg lg:col-start-2 lg:row-start-2 relative z-0`}
-          >
+          <main className={`noise-bg lg:col-start-2 lg:row-start-2`}>
             {children}
           </main>
 
