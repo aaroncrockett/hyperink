@@ -76,7 +76,7 @@ export default function RootLayout({
             <FooterNav className="flex lg:hidden w-full" />
 
             {/* hidden: default - shown:lg*/}
-            <div className="hidden lg:block">
+            <div className="hidden lg:block text-sm">
               Deved By Aaron Does Everything (Tattoos, Web Apps, Web Sites, Web
               Design, Graphic Design, Illustration, Painting)
             </div>
