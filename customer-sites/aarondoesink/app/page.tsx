@@ -42,7 +42,7 @@ export default function Home() {
             src: "/images/pdx-tatt-artist.webp",
             width: 1540,
             height: 275,
-            className: "w-[94%] sm:w-2/3 h-auto mx-auto",
+            className: "w-[94%] sm:w-2/3 h-auto mx-auto drop-shadow-sm",
           }}
           text="PDX Tattoo Artist"
           className="w-auto h-full"
@@ -50,7 +50,7 @@ export default function Home() {
         <Heading
           as="h2"
           text="🔥 Flash & custom tattoos 🔥"
-          className="text-center font-bold"
+          className="text-center font-bold "
         ></Heading>
 
         <ul className="flex justify-center items-center py-3 mb-0">
@@ -83,10 +83,10 @@ export default function Home() {
             </Link>
           </li>
         </ul>
-        <div className="w-full">
+        <div className="w-full ">
           <Link
             href="/flash"
-            className="mr-0.5 flex brand-font items-center justify-center text-xs md:text-base gap-1 text-surface-950"
+            className="mr-0.5 flex brand-font items-center justify-center text-xs md:text-base gap-1 text-surface-950 drop-shadow-sm"
           >
             <Image
               src="/images/hp/aaron-does-flash.webp"
@@ -99,7 +99,7 @@ export default function Home() {
         </div>
       </section>
       <section className="grid gap-1 grid-cols-2 w-full h-full">
-        <div className="w-full h-full relative">
+        <div className="w-full h-full relative drop-shadow-sm">
           <video
             ref={videoRef}
             src="/videos/hp-vid-logan-tatt.mp4"
@@ -116,24 +116,24 @@ export default function Home() {
         </div>
 
         <div className="grid grid-rows-2 gap-1">
-          <div className="relative aspect-square w-full h-full ">
+          <div className="relative aspect-square w-full h-full drop-shadow-sm">
             <Link href="/tattoos">
               <Image
                 src="/images/hp/devil-balloon.webp"
                 alt="Rectangle 1"
                 fill
-                className="object-cover "
+                className="object-coverdrop-shadow-sm "
               />
             </Link>
           </div>
 
-          <div className="relative aspect-square w-full h-full">
+          <div className="relative aspect-square w-full h-full drop-shadow-sm">
             <Link href="/tattoos">
               <Image
                 src="/images/hp/jump-rope.webp"
                 alt="Rectangle 2"
                 fill
-                className="object-cover "
+                className="object-cover drop-shadow-sm"
               />
             </Link>
           </div>

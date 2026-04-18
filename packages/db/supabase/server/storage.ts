@@ -1,5 +1,5 @@
 import { SupabaseClient } from "@supabase/supabase-js";
-import type { RemoveFile, UploadFile } from "./types";
+import type { RemoveFile, UploadFile, GetPublicURL } from "./types";
 
 export const uploadFile: UploadFile = async (
   authedClient: SupabaseClient,
@@ -27,6 +27,15 @@ export const removeFile: RemoveFile = async (
   if (error) {
     return { data: null, error };
   }
+
+  return { data: data ?? [], error: null };
+};
+
+export const getPublicUrl: GetPublicURL = async (
+  authedClient: SupabaseClient,
+  { bucket, path },
+) => {
+  const { data } = await authedClient.storage.from(bucket).getPublicUrl(path);
 
   return { data: data ?? [], error: null };
 };

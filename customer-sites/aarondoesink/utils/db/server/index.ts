@@ -1,12 +1,52 @@
-// import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import {
-  createClient as createServerClient,
-  type SupabaseConfig,
-  type Client,
+  createServerClientAndAuth as createClientAndAuth,
+  exchangeCodeForSession,
+  getUser,
+  verifyOtp,
+  signInWithPassword,
+  signUp,
+  signInWithOAuth,
+  TATTOO_COLLECTIONS,
+  TATTOO_GROUPS,
+  TATTOO_STYLES,
+  TATTOO_TAGS,
 } from "@inktree/db";
 
-export async function createClient(): Promise<Client> {
+import {
+  uploadUserImage,
+  getUserImages,
+  getUserImagesFromList,
+} from "./userImages";
+import { getProfileId } from "./users";
+
+import type {
+  SupabaseConfig,
+  Client,
+  Tattoo,
+  UserImage,
+  Profile,
+} from "@inktree/db";
+export type { Client, Tattoo, UserImage, Profile };
+
+export {
+  exchangeCodeForSession,
+  getProfileId,
+  getUser as getAuthedUser,
+  getUserImages,
+  getUserImagesFromList,
+  signInWithOAuth,
+  signInWithPassword,
+  signUp,
+  TATTOO_COLLECTIONS,
+  TATTOO_GROUPS,
+  TATTOO_STYLES,
+  TATTOO_TAGS,
+  uploadUserImage,
+  verifyOtp,
+};
+
+export async function createServerClientAndAuth(): Promise<Client> {
   type CookieItem = {
     name: string;
     value: string;
@@ -35,11 +75,10 @@ export async function createClient(): Promise<Client> {
   };
 
   const config: SupabaseConfig = {
-    clientType: "server",
     publicKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     publicUrl: process.env.NEXT_PUBLIC_SUPABASE_URL!,
     cookieMethods: cookieMethods,
   };
 
-  return createServerClient("supabase", config);
+  return createClientAndAuth(config);
 }

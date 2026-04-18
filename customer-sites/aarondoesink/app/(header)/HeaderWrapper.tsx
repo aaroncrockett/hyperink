@@ -20,7 +20,7 @@ export default function HeaderWrapper({}) {
         </MenuMobile>
       }
       tail={
-        <button className="btn-sm sm:btn preset-filled-secondary-500 whitespace-nowrap">
+        <button className="btn-sm sm:btn preset-filled-secondary-500 whitespace-nowrap drop-shadow-xs">
           Book Now
         </button>
       }

@@ -69,6 +69,17 @@ export type RemoveFile = (
     : never
 >;
 
+export type GetPublicURLParams = RemoveFileParams;
+
+export type GetPublicURLResponse = ReturnType<
+  ReturnType<SupabaseClient["storage"]["from"]>["getPublicUrl"]
+>;
+
+export type GetPublicURL = (
+  authedClient: SupabaseClient,
+  params: GetPublicURLParams,
+) => Promise<GetPublicURLResponse>;
+
 export type RemoveFileParams = {
   bucket: string;
   path: string;

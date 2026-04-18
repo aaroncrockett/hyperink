@@ -56,28 +56,25 @@ export default function Heading({
     }
   }
 
-  const textCls = cn(
-    "",
-    className + alignment + color + leading + sizeCalc + weight,
+  const textCls = cn(className, alignment, color, leading, sizeCalc, weight);
+
+  const content = image ? (
+    <>
+      <span className="sr-only">{text}</span>
+      <Image
+        src={image.src}
+        width={image.width}
+        height={image.height}
+        className={image.className}
+        alt=""
+        priority
+      />
+    </>
+  ) : (
+    text
   );
 
-  return React.createElement(
-    as,
-    { className: cn("", textCls) },
-    image ? (
-      <>
-        <span className="sr-only">{text}</span>
-        <Image
-          src={image.src}
-          width={image.width}
-          height={image.height}
-          className={image.className}
-          alt=""
-          priority
-        />
-      </>
-    ) : (
-      <span>{text}</span>
-    ),
-  );
+  const Tag = as;
+
+  return <Tag className={textCls}>{content}</Tag>;
 }

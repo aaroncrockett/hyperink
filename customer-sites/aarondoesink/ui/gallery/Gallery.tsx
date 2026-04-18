@@ -1,0 +1,34 @@
+import { GalleryProvider } from "./GalleryProvider";
+import { Lightbox } from "./LightBox";
+import { GalleryGrid } from "./GalleryGrid";
+
+export const dynamic = "force-dynamic";
+
+import {
+  createServerClientAndAuth,
+  getUserImagesFromList,
+} from "@/utils/db/server";
+
+const authedClient = await createServerClientAndAuth();
+
+const images = await getUserImagesFromList(
+  authedClient,
+  {
+    name: "groups",
+    value: ["portfolio-tattoos"],
+  },
+  10,
+
+  // {
+  //   cache: "no-store",
+  // },
+);
+
+export default function Gallery() {
+  return (
+    <GalleryProvider>
+      <GalleryGrid images={images} />
+      <Lightbox images={images} />
+    </GalleryProvider>
+  );
+}
