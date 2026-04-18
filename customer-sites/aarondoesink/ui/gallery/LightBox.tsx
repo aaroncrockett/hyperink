@@ -39,7 +39,13 @@ export function Lightbox({ images }: { images: any[] }) {
       onClick={close}
       className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center"
     >
-      <button onClick={prev} className="absolute left-4 text-white">
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          prev();
+        }}
+        className="absolute left-4 text-white"
+      >
         ←
       </button>
 
@@ -52,7 +58,13 @@ export function Lightbox({ images }: { images: any[] }) {
         />
       </div>
 
-      <button onClick={next} className="absolute right-4 text-white">
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          next();
+        }}
+        className="absolute right-4 text-white"
+      >
         →
       </button>
     </div>,
