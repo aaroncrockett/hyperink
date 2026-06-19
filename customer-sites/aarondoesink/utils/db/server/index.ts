@@ -1,22 +1,22 @@
 import { cookies } from "next/headers";
 import {
   createServerClientAndAuth as createClientAndAuth,
-  exchangeCodeForSession,
-  getUser,
+  // exchangeCodeForSession,
+  // getUser,
   verifyOtp,
-  signInWithPassword,
-  signUp,
-  signInWithOAuth,
-  TATTOO_COLLECTIONS,
-  TATTOO_GROUPS,
-  TATTOO_STYLES,
-  TATTOO_TAGS,
+  // signInWithPassword,
+  // signUp,
+  // signInWithOAuth,
+  // TATTOO_COLLECTIONS,
+  // TATTOO_GROUPS,
+  // TATTOO_STYLES,
+  // TATTOO_TAGS,
 } from "@inktree/db";
 
 import {
   uploadUserImage,
   getUserImages,
-  getUserImagesFromList,
+  getUserImagesByGroupType,
 } from "./userImages";
 import { getProfileId } from "./users";
 
@@ -30,19 +30,19 @@ import type {
 export type { Client, Tattoo, UserImage, Profile };
 
 export {
-  exchangeCodeForSession,
-  getProfileId,
-  getUser as getAuthedUser,
-  getUserImages,
-  getUserImagesFromList,
-  signInWithOAuth,
-  signInWithPassword,
-  signUp,
-  TATTOO_COLLECTIONS,
-  TATTOO_GROUPS,
-  TATTOO_STYLES,
-  TATTOO_TAGS,
-  uploadUserImage,
+  // exchangeCodeForSession,
+  // getProfileId,
+  // getUser as getAuthedUser,
+  // getUserImages,
+  // getUserImagesFromList,
+  // signInWithOAuth,
+  // signInWithPassword,
+  // signUp,
+  // TATTOO_COLLECTIONS,
+  // TATTOO_GROUPS,
+  // TATTOO_STYLES,
+  // TATTOO_TAGS,
+  // uploadUserImage,
   verifyOtp,
 };
 

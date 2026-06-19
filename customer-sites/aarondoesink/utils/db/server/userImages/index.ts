@@ -7,11 +7,6 @@ type QueryOptions = {
   pinned?: boolean;
 };
 
-type UserImageLists = {
-  name: "groups" | "tags" | "styles" | "collections";
-  value: string[];
-};
-
 import type { Client, UserImage } from "@inktree/db";
 
 export async function storeUserImageData(
@@ -81,23 +76,36 @@ export async function getUserImages(authedClient: Client, number?: number) {
   return imagesWithUrls;
 }
 
-export async function getUserImagesFromList(
+async function selectAllContaining(
   authedClient: Client,
-  list: UserImageLists,
-  number?: number,
-  opts?: QueryOptions,
+  arrayName: string,
+  containing: string[],
 ) {
-  let query = authedClient
+  const { data } = await authedClient
     .from(table)
     .select("*")
-    .contains(list.name, list.value);
+    .contains(arrayName, containing);
+
+  return data;
+}
+
+async function getQueryWithLimit(query, limit?: number) {
+  return limit !== undefined ? await query.limit(limit) : await query;
+}
+
+export async function getUserImagesByGroupType(
+  authedClient: Client,
+  number?: number,
+  type?: string,
+  opts?: QueryOptions,
+) {
+  let query = selectAllContaining(authedClient, "groups", type);
 
   if (opts?.pinned) {
     query = query.order("pinned", { ascending: true });
   }
 
-  const { data: images } =
-    number !== undefined ? await query.limit(number) : await query;
+  const { data: images } = await getQueryWithLimit(query, number);
 
   if (!images) return [];
 

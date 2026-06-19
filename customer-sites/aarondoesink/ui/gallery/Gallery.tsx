@@ -6,12 +6,12 @@ export const dynamic = "force-dynamic";
 
 import {
   createServerClientAndAuth,
-  getUserImagesFromList,
+  getUserImagesByGroup,
 } from "@/utils/db/server";
 
 const authedClient = await createServerClientAndAuth();
 
-const images = await getUserImagesFromList(
+const images = await getUserImagesByGroup(
   authedClient,
   {
     name: "groups",
@@ -19,9 +19,9 @@ const images = await getUserImagesFromList(
   },
   10,
 
-  // {
-  //   cache: "no-store",
-  // },
+  {
+    cache: "no-store",
+  },
 );
 
 export default function Gallery() {

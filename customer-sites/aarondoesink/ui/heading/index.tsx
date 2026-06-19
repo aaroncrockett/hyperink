@@ -2,6 +2,18 @@ import React from "react";
 import Image from "next/image";
 import { cn } from "@/utils/cn";
 
+const props = {
+  size: {
+    name: "size",
+  },
+};
+
+const page = {
+  name: "Heading",
+  imports: [{ name: React, from: "" }],
+  props: props,
+  vars: [{ name: "sizeCalc", value: props.size }],
+};
 type HeadingProps = {
   text: string;
   image?: {

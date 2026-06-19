@@ -7,10 +7,6 @@ import {
   signInWithPassword,
   signUp,
   signInWithOAuth,
-  TATTOO_COLLECTIONS,
-  TATTOO_GROUPS,
-  TATTOO_STYLES,
-  TATTOO_TAGS,
 } from "@inktree/db";
 
 import { uploadUserImage } from "./userImages";
@@ -32,10 +28,6 @@ export {
   signInWithOAuth,
   signInWithPassword,
   signUp,
-  TATTOO_COLLECTIONS,
-  TATTOO_GROUPS,
-  TATTOO_STYLES,
-  TATTOO_TAGS,
   uploadUserImage,
   verifyOtp,
 };
