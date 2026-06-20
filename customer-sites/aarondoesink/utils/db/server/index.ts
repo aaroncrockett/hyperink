@@ -1,24 +1,8 @@
 import { cookies } from "next/headers";
 import {
   createServerClientAndAuth as createClientAndAuth,
-  // exchangeCodeForSession,
-  // getUser,
   verifyOtp,
-  // signInWithPassword,
-  // signUp,
-  // signInWithOAuth,
-  // TATTOO_COLLECTIONS,
-  // TATTOO_GROUPS,
-  // TATTOO_STYLES,
-  // TATTOO_TAGS,
 } from "@inktree/db";
-
-import {
-  uploadUserImage,
-  getUserImages,
-  getUserImagesByGroupType,
-} from "./userImages";
-import { getProfileId } from "./users";
 
 import type {
   SupabaseConfig,
@@ -29,22 +13,7 @@ import type {
 } from "@inktree/db";
 export type { Client, Tattoo, UserImage, Profile };
 
-export {
-  // exchangeCodeForSession,
-  // getProfileId,
-  // getUser as getAuthedUser,
-  // getUserImages,
-  // getUserImagesFromList,
-  // signInWithOAuth,
-  // signInWithPassword,
-  // signUp,
-  // TATTOO_COLLECTIONS,
-  // TATTOO_GROUPS,
-  // TATTOO_STYLES,
-  // TATTOO_TAGS,
-  // uploadUserImage,
-  verifyOtp,
-};
+export { verifyOtp };
 
 export async function createServerClientAndAuth(): Promise<Client> {
   type CookieItem = {

@@ -18,3 +18,4 @@ export const createServerClientAndAuth: CreateClient = async (
 export type { SupabaseClient };
 export * from "./auth";
 export * from "./storage";
+export * from "./api";

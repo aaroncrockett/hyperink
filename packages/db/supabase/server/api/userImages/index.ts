@@ -1,4 +1,6 @@
-import { removeFile, uploadFile, getPublicUrl } from "@inktree/db";
+import { removeFile, uploadFile, getPublicUrl } from "../../../../index";
+
+import { selectAllContaining, getQueryWithLimit } from "../helpers";
 
 const table = "user_images";
 const bucket = "user-images";
@@ -7,7 +9,7 @@ type QueryOptions = {
   pinned?: boolean;
 };
 
-import type { Client, UserImage } from "@inktree/db";
+import type { Client, UserImage } from "../../../../index";
 
 export async function storeUserImageData(
   authedClient: Client,
@@ -76,38 +78,21 @@ export async function getUserImages(authedClient: Client, number?: number) {
   return imagesWithUrls;
 }
 
-async function selectAllContaining(
-  authedClient: Client,
-  arrayName: string,
-  containing: string[],
-) {
-  const { data } = await authedClient
-    .from(table)
-    .select("*")
-    .contains(arrayName, containing);
-
-  return data;
-}
-
-async function getQueryWithLimit(query, limit?: number) {
-  return limit !== undefined ? await query.limit(limit) : await query;
-}
-
 export async function getUserImagesByGroupType(
   authedClient: Client,
   number?: number,
   type?: string,
   opts?: QueryOptions,
 ) {
-  let query = selectAllContaining(authedClient, "groups", type);
+  if (!type) return [];
+
+  let query = selectAllContaining(authedClient, table, "groups", [type]);
 
   if (opts?.pinned) {
     query = query.order("pinned", { ascending: true });
   }
 
   const { data: images } = await getQueryWithLimit(query, number);
-
-  if (!images) return [];
 
   const imagesWithUrls = await Promise.all(
     images.map(async (img) => {
@@ -122,6 +107,9 @@ export async function getUserImagesByGroupType(
       };
     }),
   );
-
   return imagesWithUrls;
+}
+
+export function selectAllGroups(authedClient: Client) {
+  return authedClient.from(table).select("groups");
 }

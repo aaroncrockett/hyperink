@@ -1,9 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 
-import type { Client } from "@inktree/db";
-
-export type { Client };
+import type { Client } from "../../../../index";
 
 const table = "profile";
 

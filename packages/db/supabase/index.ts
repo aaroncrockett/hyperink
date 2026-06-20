@@ -1,5 +1,4 @@
 export * from "./server";
-export * from "./types/consts";
 export type {
   SupabaseConfig,
   Client,
@@ -11,5 +10,7 @@ export type {
   TattooTag,
   UserImage,
 } from "./types";
+
+export * from "./types/consts";
 
 export type { Database } from "./types/tables";

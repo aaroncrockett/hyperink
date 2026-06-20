@@ -4,10 +4,9 @@ import { GalleryGrid } from "./GalleryGrid";
 
 export const dynamic = "force-dynamic";
 
-import {
-  createServerClientAndAuth,
-  getUserImagesByGroup,
-} from "@/utils/db/server";
+import { createServerClientAndAuth } from "@/utils/db/server";
+
+import { getUserImagesByGroup } from "@inktree/db";
 
 const authedClient = await createServerClientAndAuth();
 
