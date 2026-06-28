@@ -4,10 +4,6 @@ export type {
   Client,
   Profile,
   Tattoo,
-  TattooCollection,
-  TattooGroup,
-  TattooStyle,
-  TattooTag,
   UserImage,
 } from "./types";
 

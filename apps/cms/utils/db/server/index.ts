@@ -3,14 +3,13 @@ import {
   createServerClientAndAuth as createClientAndAuth,
   exchangeCodeForSession,
   getUser,
+  getProfileId,
   verifyOtp,
   signInWithPassword,
   signUp,
   signInWithOAuth,
+  uploadUserImage,
 } from "@inktree/db";
-
-import { uploadUserImage } from "./userImages";
-import { getProfileId } from "./users";
 
 import type {
   SupabaseConfig,

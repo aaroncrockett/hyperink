@@ -1,22 +1,9 @@
-"use server";
-
 import { createServerClientAndAuth, getAuthedUser } from "@/utils/db/server";
 import { uploadUserImage } from "@/utils/db/server";
-import type { TattooGroup, TattooTag } from "@inktree/db";
-
+import { getImageInputs } from "../../ImageInputs";
 export async function uploadImage(formData: FormData) {
-  const file = formData.get("file") as File;
-  const fileName = file.name;
-  // const styles = formData.getAll("styles");
-  // const collections = formData.getAll("collections");
-
-  const groups = formData
-    .getAll("groups")
-    .map((v) => v.toString()) as TattooGroup[];
-
-  const tags = formData.getAll("tags").map((v) => v.toString()) as TattooTag[];
-
-  if (!file) throw new Error("No file");
+  const { file, fileName, styles, collections, groups, tags } =
+    await getImageInputs(formData);
 
   const authedClient = await createServerClientAndAuth();
 
@@ -27,6 +14,8 @@ export async function uploadImage(formData: FormData) {
 
   return await uploadUserImage(authedClient, file, {
     groups,
+    styles,
+    collections,
     name: fileName,
     tags,
     user_id: user.id,

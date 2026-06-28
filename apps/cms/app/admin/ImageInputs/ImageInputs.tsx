@@ -1,20 +1,24 @@
-import { uploadImage } from "./actions";
-// import {
-//   TATTOO_COLLECTIONS,
-//   TATTOO_GROUPS,
-//   TATTOO_STYLES,
-//   TATTOO_TAGS,
-// } from "@/utils/db/server";
+import {
+  getUserTattooOptionsByGroups,
+  getUserTattooOptionsByCollections,
+  getUserTattooOptionsByStyles,
+  getUserTattooOptionsByTags,
+} from "./index";
+import { createServerClientAndAuth } from "@/utils/db/server";
+
+const client = await createServerClientAndAuth();
 
 export default async function UploadImage() {
+  const groups = await getUserTattooOptionsByGroups(client);
+  // const collections = await getUserTattooOptionsByCollections(client);
+  const styles = await getUserTattooOptionsByStyles(client);
+  const tags = await getUserTattooOptionsByTags(client);
+
   return (
-    <form
-      action={uploadImage}
-      className="bg-slate-50 p-6 border flex flex-col space-y-4"
-    >
+    <div>
       <div className="flex-col space-y-1">
-        <h3 className="text-xl">Styles:</h3>
-        {/* {TATTOO_STYLES.map((style) => (
+        <h3 className="text-xl">Styles: groups</h3>
+        {styles.map((style) => (
           <label
             key={style}
             className="flex items-center gap-1 px-3 py-1 border rounded hover:bg-slate-200"
@@ -27,30 +31,28 @@ export default async function UploadImage() {
             />
             <span className="capitalize">{style}</span>
           </label>
-        ))} */}
+        ))}
       </div>
-
       <div className="flex-col space-y-1">
         <h3 className="text-xl">Collections:</h3>
         {/* {TATTOO_COLLECTIONS.map((collection) => (
-          <label
-            key={collection}
-            className="flex items-center gap-1 px-3 py-1 border rounded hover:bg-slate-200"
-          >
-            <input
-              type="checkbox"
-              name="collections"
-              value={collection}
-              className="accent-indigo-600"
-            />
-            <span className="capitalize">{collection}</span>
-          </label>
-        ))} */}
+              <label
+                key={collection}
+                className="flex items-center gap-1 px-3 py-1 border rounded hover:bg-slate-200"
+              >
+                <input
+                  type="checkbox"
+                  name="collections"
+                  value={collection}
+                  className="accent-indigo-600"
+                />
+                <span className="capitalize">{collection}</span>
+              </label>
+            ))} */}
       </div>
-
       <div className="flex-col space-y-1">
         <h3 className="text-xl">Groups:</h3>
-        {/* {TATTOO_GROUPS.map((group) => (
+        {groups.map((group) => (
           <label
             key={group}
             className="flex items-center gap-1 px-3 py-1 border rounded hover:bg-slate-200"
@@ -63,12 +65,11 @@ export default async function UploadImage() {
             />
             <span className="capitalize">{group}</span>
           </label>
-        ))} */}
+        ))}
       </div>
-
       <div className="flex-col space-y-1">
         <h3 className="text-xl">Tags:</h3>
-        {/* {TATTOO_TAGS.map((tag) => (
+        {tags.map((tag) => (
           <label
             key={tag}
             className="flex items-center gap-1 px-3 py-1 border rounded hover:bg-slate-200"
@@ -81,14 +82,12 @@ export default async function UploadImage() {
             />
             <span className="capitalize">{tag}</span>
           </label>
-        ))} */}
+        ))}
+        {/* {groups && groups.length > 0 && (
+          <h3 className="text-xl">Styles: {groups[0]}</h3>
+        )} */}
       </div>
-
       <input className="input" type="file" name="file" required />
-
-      <button className="btn preset-filled-secondary-500" type="submit">
-        Upload
-      </button>
-    </form>
+    </div>
   );
 }

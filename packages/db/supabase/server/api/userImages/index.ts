@@ -1,7 +1,5 @@
 import { removeFile, uploadFile, getPublicUrl } from "../../../../index";
 
-import { selectAllContaining, getQueryWithLimit } from "../helpers";
-
 const table = "user_images";
 const bucket = "user-images";
 
@@ -10,46 +8,6 @@ type QueryOptions = {
 };
 
 import type { Client, UserImage } from "../../../../index";
-
-export async function storeUserImageData(
-  authedClient: Client,
-  path: string,
-  params: Partial<UserImage> & { user_id: string },
-) {
-  const { error } = await authedClient.from(table).insert({
-    ...params,
-    path,
-  });
-
-  return error;
-}
-
-export async function uploadUserImage(
-  authedClient: Client,
-  file: File,
-  params: Partial<UserImage> & { user_id: string },
-) {
-  const path = `${params.user_id}/${crypto.randomUUID()}`;
-
-  const { error } = await uploadFile(authedClient, {
-    bucket,
-    file,
-    path,
-  });
-
-  if (error) throw error;
-
-  const dbError = await storeUserImageData(
-    authedClient,
-    path,
-    params as Omit<typeof params, "user_id"> & { user_id: string },
-  );
-
-  if (dbError) {
-    await removeFile(authedClient, { bucket, path });
-    throw dbError;
-  }
-}
 
 export async function getUserImages(authedClient: Client, number?: number) {
   let query = authedClient.from(table).select("*");
@@ -78,7 +36,7 @@ export async function getUserImages(authedClient: Client, number?: number) {
   return imagesWithUrls;
 }
 
-export async function getUserImagesByGroupType(
+export async function getUserImagesByGroupsContaining(
   authedClient: Client,
   number?: number,
   type?: string,
@@ -86,13 +44,14 @@ export async function getUserImagesByGroupType(
 ) {
   if (!type) return [];
 
-  let query = selectAllContaining(authedClient, table, "groups", [type]);
+  let query = authedClient.from(table).select("*").contains("groups", type);
 
   if (opts?.pinned) {
     query = query.order("pinned", { ascending: true });
   }
 
-  const { data: images } = await getQueryWithLimit(query, number);
+  const { data: images } =
+    number !== undefined ? await query.limit(number) : await query;
 
   const imagesWithUrls = await Promise.all(
     images.map(async (img) => {
@@ -110,6 +69,41 @@ export async function getUserImagesByGroupType(
   return imagesWithUrls;
 }
 
-export function selectAllGroups(authedClient: Client) {
+export function getUserImagesByGroups(authedClient: Client) {
   return authedClient.from(table).select("groups");
+}
+
+export async function storeUserImageData(
+  authedClient: Client,
+  path: string,
+  params: Partial<UserImage>,
+) {
+  const { error } = await authedClient.from(table).insert({
+    ...params,
+    path,
+  });
+
+  return error;
+}
+
+export async function uploadUserImage(
+  authedClient: Client,
+  file: File,
+  params: Partial<UserImage>,
+) {
+  const path = `${params.user_id}/${crypto.randomUUID()}`;
+  const { error } = await uploadFile(authedClient, {
+    bucket,
+    file,
+    path: path,
+  });
+
+  if (error) throw error;
+
+  const dbError = await storeUserImageData(authedClient, path, params);
+
+  if (dbError) {
+    await removeFile(authedClient, { bucket, path });
+    throw dbError;
+  }
 }

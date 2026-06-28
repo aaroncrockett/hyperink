@@ -1,11 +1,11 @@
-// import { uploadImage } from "./actions";
+import Link from "next/link";
 import {
   createServerClientAndAuth,
   getAuthedUser,
   getProfileId,
 } from "@/utils/db/server";
 import type { Client } from "@/utils/db/server";
-import UploadImage from "./UploadImage";
+// import UploadImage from "./UploadImage";
 
 export default async function AdminPage() {
   const authedClient: Client = await createServerClientAndAuth();
@@ -28,7 +28,24 @@ export default async function AdminPage() {
       <p>Hello {user?.user_metadata.full_name}</p>
 
       {userId ? (
-        <UploadImage />
+        <div>
+          <li>
+            <Link href="/admin/create-tattoo-options">
+              Create Tattoo Options
+            </Link>
+          </li>
+          <li>
+            <Link href="/admin/create-tattoo-record">
+              Create a tattoo record
+            </Link>
+          </li>
+          <li>
+            <Link href="/admin/upload-image">Upload an image</Link>
+          </li>
+          <li>
+            <Link href="/admin/create-flash">Create Flash</Link>
+          </li>
+        </div>
       ) : (
         <button className="btn">Create Profile</button>
       )}

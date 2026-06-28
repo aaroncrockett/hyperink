@@ -9,7 +9,6 @@ import { createServerClient } from "@supabase/ssr";
 export const createServerClientAndAuth: CreateClient = async (
   config: SupabaseConfig,
 ) => {
-  console.log(config);
   return createServerClient(config.publicUrl, config.publicKey, {
     cookies: config.cookieMethods.cookies,
   });
