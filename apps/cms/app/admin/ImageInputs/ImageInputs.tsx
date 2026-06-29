@@ -1,6 +1,6 @@
 import {
   getUserTattooOptionsByGroups,
-  getUserTattooOptionsByCollections,
+  getUserTattooOptionsByCategories,
   getUserTattooOptionsByStyles,
   getUserTattooOptionsByTags,
 } from "./index";
@@ -10,7 +10,7 @@ const client = await createServerClientAndAuth();
 
 export default async function UploadImage() {
   const groups = await getUserTattooOptionsByGroups(client);
-  // const collections = await getUserTattooOptionsByCollections(client);
+  const categories = await getUserTattooOptionsByCategories(client);
   const styles = await getUserTattooOptionsByStyles(client);
   const tags = await getUserTattooOptionsByTags(client);
 
@@ -35,20 +35,20 @@ export default async function UploadImage() {
       </div>
       <div className="flex-col space-y-1">
         <h3 className="text-xl">Collections:</h3>
-        {/* {TATTOO_COLLECTIONS.map((collection) => (
-              <label
-                key={collection}
-                className="flex items-center gap-1 px-3 py-1 border rounded hover:bg-slate-200"
-              >
-                <input
-                  type="checkbox"
-                  name="collections"
-                  value={collection}
-                  className="accent-indigo-600"
-                />
-                <span className="capitalize">{collection}</span>
-              </label>
-            ))} */}
+        {categories.map((category) => (
+          <label
+            key={category}
+            className="flex items-center gap-1 px-3 py-1 border rounded hover:bg-slate-200"
+          >
+            <input
+              type="checkbox"
+              name="categories"
+              value={category}
+              className="accent-indigo-600"
+            />
+            <span className="capitalize">{category}</span>
+          </label>
+        ))}
       </div>
       <div className="flex-col space-y-1">
         <h3 className="text-xl">Groups:</h3>

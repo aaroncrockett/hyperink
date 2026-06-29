@@ -1,7 +1,7 @@
 import {
   getProfileTattooOptionsByGroups,
   getProfileTattooOptionsByTags,
-  getProfileTattooOptionsByCollections,
+  getProfileTattooOptionsByCategories,
   getProfileTattooOptionsByStyles,
 } from "@inktree/db";
 import type { Client } from "@inktree/db";
@@ -27,8 +27,8 @@ export function getUserTattooOptionsByTags(authedClient: Client) {
   return getProfileTattooOptionsByTags(authedClient);
 }
 
-export function getUserTattooOptionsByCollections(authedClient: Client) {
-  return getProfileTattooOptionsByCollections(authedClient);
+export function getUserTattooOptionsByCategories(authedClient: Client) {
+  return getProfileTattooOptionsByCategories(authedClient);
 }
 
 export function getUserTattooOptionsByStyles(authedClient: Client) {

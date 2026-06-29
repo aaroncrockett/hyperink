@@ -1,23 +1,6 @@
-// import { removeFile, uploadFile, getPublicUrl } from "../../../../index";
-
 const table = "profile_tattoo_options";
 
 import type { Client } from "../../../../index";
-
-// export async function getProfileTattooOptions(
-//   authedClient: Client,
-//   number?: number,
-// ) {
-//   let query = authedClient.from(table).select("*");
-
-//   if (number !== undefined) {
-//     query = query.limit(number);
-//   }
-//   const { data: options } = await query;
-//   if (!options) return [];
-
-//   return options;
-// }
 
 export async function getProfileTattooOptionsByTags(authedClient: Client) {
   const { data, error } = await authedClient
@@ -30,17 +13,17 @@ export async function getProfileTattooOptionsByTags(authedClient: Client) {
   return data.tags;
 }
 
-export async function getProfileTattooOptionsByCollections(
+export async function getProfileTattooOptionsByCategories(
   authedClient: Client,
 ) {
   const { data, error } = await authedClient
     .from(table)
-    .select("collections")
+    .select("categories")
     .single();
 
   if (error) throw error;
 
-  return data.collections;
+  return data.categories;
 }
 
 export async function getProfileTattooOptionsByStyles(authedClient: Client) {
