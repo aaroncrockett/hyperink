@@ -2,18 +2,6 @@ import React from "react";
 import Image from "next/image";
 import { cn } from "@inktree/utils/cn";
 
-const props = {
-  size: {
-    name: "size",
-  },
-};
-
-const page = {
-  name: "Heading",
-  imports: [{ name: React, from: "" }],
-  props: props,
-  vars: [{ name: "sizeCalc", value: props.size }],
-};
 type HeadingProps = {
   text: string;
   image?: {
@@ -72,7 +60,7 @@ export default function Heading({
 
   const content = image ? (
     <>
-      <span className="sr-only">{text}</span>
+      <span className="hidden">{text}</span>
       <Image
         src={image.src}
         width={image.width}
