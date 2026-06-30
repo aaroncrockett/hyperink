@@ -38,22 +38,29 @@ export async function getUserImages(authedClient: Client, number?: number) {
 
 export async function getUserImagesByGroupsContaining(
   authedClient: Client,
-  number?: number,
   type?: string,
+  number?: number,
   opts?: QueryOptions,
 ) {
   if (!type) return [];
 
-  let query = authedClient.from(table).select("*").contains("groups", type);
+  let query = authedClient.from(table).select("*").or(`groups.cs.["${type}"]`);
 
   if (opts?.pinned) {
     query = query.order("pinned", { ascending: true });
   }
 
-  const { data: images } =
+  const { data: images, error } =
     number !== undefined ? await query.limit(number) : await query;
 
-  const imagesWithUrls = await Promise.all(
+  if (error) {
+    console.error(error);
+    return [];
+  }
+
+  if (!images) return [];
+
+  return Promise.all(
     images.map(async (img) => {
       const { data } = await getPublicUrl(authedClient, {
         bucket,
@@ -66,7 +73,6 @@ export async function getUserImagesByGroupsContaining(
       };
     }),
   );
-  return imagesWithUrls;
 }
 
 export function getUserImagesByGroups(authedClient: Client) {

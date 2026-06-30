@@ -1,12 +1,14 @@
-import { GalleryProvider } from "./GalleryProvider";
-import { Lightbox } from "./LightBox";
-import { GalleryGrid } from "./GalleryGrid";
+"use server";
+import Gallery from "./Gallery";
 
-export default function GalleryWrapper({ images }: { images: any }) {
-  return (
-    <GalleryProvider>
-      <GalleryGrid images={images} />
-      <Lightbox images={images} />
-    </GalleryProvider>
-  );
+import type { UserImage } from "@inktree/db";
+
+type GalleryServerProps = {
+  getImages: () => Promise<UserImage[]>;
+};
+
+export default async function GalleryServer({ getImages }: GalleryServerProps) {
+  const images = await getImages();
+
+  return <Gallery images={images} />;
 }

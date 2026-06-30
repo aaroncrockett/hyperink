@@ -1,3 +1,4 @@
+"use client";
 import { GalleryProvider } from "./GalleryProvider";
 import { Lightbox } from "./LightBox";
 import { GalleryGrid } from "./GalleryGrid";
@@ -5,12 +6,10 @@ import { GalleryGrid } from "./GalleryGrid";
 import type { UserImage } from "@inktree/db";
 
 type GalleryProps = {
-  getImages: () => Promise<UserImage[]>;
+  images: UserImage[];
 };
 
-export default async function Gallery({ getImages }: GalleryProps) {
-  const images = await getImages();
-
+export default function Gallery({ images }: GalleryProps) {
   return (
     <GalleryProvider>
       <GalleryGrid images={images} />
