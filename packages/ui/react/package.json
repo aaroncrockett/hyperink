@@ -9,6 +9,7 @@
     "check": "tsc --noEmit"
   },
   "dependencies": {
+    "@inktree/utils": "workspace:*",
     "@skeletonlabs/skeleton": "^4.12.1",
     "@skeletonlabs/skeleton-react": "^4.12.1",
     "tailwindcss": "^4",

@@ -1,5 +1,4 @@
-import Page from "@/ui/page";
-import Heading from "@/ui/heading";
+import { Page, Heading } from "@inktree/ui-react/components";
 
 export default async function Flash() {
   return (

@@ -1,7 +1,6 @@
 "use client";
 
-import Page from "@/ui/page";
-import Heading from "@/ui/heading";
+import { Page, Heading } from "@inktree/ui-react/components";
 
 import Image from "next/image";
 import Link from "next/link";

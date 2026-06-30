@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef } from "react";
-import { cn } from "@/utils/cn";
+import { cn } from "@inktree/utils/cn";
 
 type PageProps = ComponentPropsWithoutRef<"div"> & {
   display?: string;

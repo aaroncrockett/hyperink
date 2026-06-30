@@ -2,7 +2,7 @@
 import { ReactNode } from "react";
 import { Dialog, Portal } from "@skeletonlabs/skeleton-react";
 import { Menu, XIcon } from "lucide-react";
-import Card from "@/ui/card";
+import { Card } from "@inktree/ui-react/components";
 
 type MenuMobileProps = {
   children: ReactNode;

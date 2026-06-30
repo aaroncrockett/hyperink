@@ -1,7 +1,5 @@
 "use client";
-
-import Page from "@/ui/page";
-import Heading from "@/ui/heading";
+import { Page, Heading } from "@inktree/ui-react/components";
 
 import dynamic from "next/dynamic";
 import { Accordion } from "@skeletonlabs/skeleton-react";

@@ -1,3 +1,4 @@
+"use server";
 import { createServerClientAndAuth, getAuthedUser } from "@/utils/db/server";
 import { uploadUserImage } from "@/utils/db/server";
 import { getImageInputs } from "../../ImageInputs";

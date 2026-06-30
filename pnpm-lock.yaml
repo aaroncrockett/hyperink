@@ -26,15 +26,15 @@ importers:
       '@inktree/db':
         specifier: workspace:*
         version: link:../../packages/db
+      '@inktree/ui-react':
+        specifier: workspace:*
+        version: link:../../packages/ui/react
       '@supabase/ssr':
         specifier: ^0.9.0
         version: 0.9.0(@supabase/supabase-js@2.99.3)
       '@supabase/supabase-js':
         specifier: ^2.99.3
         version: 2.99.3
-      clsx:
-        specifier: ^2.1.1
-        version: 2.1.1
       next:
         specifier: 16.2.0
         version: 16.2.0(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -44,9 +44,6 @@ importers:
       react-dom:
         specifier: 19.2.4
         version: 19.2.4(react@19.2.4)
-      tailwind-merge:
-        specifier: ^3.5.0
-        version: 3.5.0
     devDependencies:
       '@skeletonlabs/skeleton':
         specifier: ^4.12.1
@@ -199,6 +196,9 @@ importers:
 
   packages/ui/react:
     dependencies:
+      '@inktree/utils':
+        specifier: workspace:*
+        version: link:../../utils
       '@skeletonlabs/skeleton':
         specifier: ^4.12.1
         version: 4.12.1(tailwindcss@4.2.1)

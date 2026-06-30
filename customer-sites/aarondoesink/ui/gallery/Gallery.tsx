@@ -2,28 +2,15 @@ import { GalleryProvider } from "./GalleryProvider";
 import { Lightbox } from "./LightBox";
 import { GalleryGrid } from "./GalleryGrid";
 
-export const dynamic = "force-dynamic";
+import type { UserImage } from "@inktree/db";
 
-import { createServerClientAndAuth } from "@/utils/db/server";
+type GalleryProps = {
+  getImages: () => Promise<UserImage[]>;
+};
 
-import { getUserImagesByGroup } from "@inktree/db";
+export default async function Gallery({ getImages }: GalleryProps) {
+  const images = await getImages();
 
-const authedClient = await createServerClientAndAuth();
-
-const images = await getUserImagesByGroup(
-  authedClient,
-  {
-    name: "groups",
-    value: ["portfolio-tattoos"],
-  },
-  10,
-
-  {
-    cache: "no-store",
-  },
-);
-
-export default function Gallery() {
   return (
     <GalleryProvider>
       <GalleryGrid images={images} />
