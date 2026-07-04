@@ -21,7 +21,7 @@ export default async function AdminPage() {
   }
 
   return (
-    <div className=" grid">
+    <div className="grid">
       <h1 className="text-3xl">ADMIN</h1>
 
       {userId ? (

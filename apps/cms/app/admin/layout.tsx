@@ -25,7 +25,7 @@ export default async function RootLayout({
   }
   return (
     <div lang="en" className="">
-      <div className="flex flex-row gap-4 w-full">
+      <div className="flex flex-row w-full gap-4 ">
         {userId ? (
           <ul>
             <li>

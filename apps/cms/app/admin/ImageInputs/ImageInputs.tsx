@@ -76,7 +76,7 @@ export default function ImageInputs({
       </div>
 
       <div className="mt-4 space-y-2">
-        <div className="bg-surface-100 p-2">
+        <div className="p-2 bg-surface-100">
           <h3 className="text-xl">{isSetOfImgs ? "Files" : "File"}</h3>
           <label className="flex items-center gap-2">
             <input
@@ -121,7 +121,7 @@ export default function ImageInputs({
             >
               <img
                 src={URL.createObjectURL(file)}
-                className="w-full h-24 object-cover"
+                className="object-cover w-full h-24"
               />
               {coverIndex === index && <div>Cover</div>}
             </button>
