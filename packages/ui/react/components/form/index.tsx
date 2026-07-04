@@ -21,11 +21,7 @@ export default async function Form({
   return (
     <form action={action} className={cn(padding, space, className)} {...props}>
       {children}
-      <button
-        className="btn bg-red-500
-      "
-        type="submit"
-      >
+      <button type="submit" className="btn preset-filled-primary-500">
         Submit
       </button>
     </form>
