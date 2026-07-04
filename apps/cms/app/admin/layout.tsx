@@ -24,7 +24,7 @@ export default async function RootLayout({
     userId = data?.id?.toString() ?? undefined;
   }
   return (
-    <div lang="en" data-theme="cerberus" className="">
+    <div lang="en" className="">
       <div className="flex flex-row gap-4 w-full">
         {userId ? (
           <ul>
