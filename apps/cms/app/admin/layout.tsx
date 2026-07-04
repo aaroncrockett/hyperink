@@ -25,30 +25,32 @@ export default async function RootLayout({
   }
   return (
     <div lang="en" data-theme="cerberus" className="">
-      {userId ? (
-        <ul>
-          <li>
-            <Link href="/admin/create-tattoo-options">
-              Create Tattoo Options
-            </Link>
-          </li>
-          <li>
-            <Link href="/admin/create-tattoo-record">
-              Create a tattoo record
-            </Link>
-          </li>
-          <li>
-            <Link href="/admin/upload-image">Upload an image</Link>
-          </li>
-          <li>
-            <Link href="/admin/create-flash">Create Flash</Link>
-          </li>
-        </ul>
-      ) : (
-        <>asdf</>
-      )}
+      <div className="flex flex-row gap-4 w-full">
+        {userId ? (
+          <ul>
+            <li>
+              <Link href="/admin/create-tattoo-options">
+                Create Tattoo Options
+              </Link>
+            </li>
+            <li>
+              <Link href="/admin/create-tattoo-record">
+                Create a tattoo record
+              </Link>
+            </li>
+            <li>
+              <Link href="/admin/upload-image">Upload an image</Link>
+            </li>
+            <li>
+              <Link href="/admin/create-flash">Create Flash</Link>
+            </li>
+          </ul>
+        ) : (
+          <>asdf</>
+        )}
 
-      {children}
+        {children}
+      </div>
     </div>
   );
 }

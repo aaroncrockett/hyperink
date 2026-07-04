@@ -29,6 +29,9 @@ importers:
       '@inktree/ui-react':
         specifier: workspace:*
         version: link:../../packages/ui/react
+      '@inktree/utils':
+        specifier: workspace:*
+        version: link:../../packages/utils
       '@supabase/ssr':
         specifier: ^0.9.0
         version: 0.9.0(@supabase/supabase-js@2.99.3)

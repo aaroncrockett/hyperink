@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { cn } from "@inktree/utils/cn";
+import { cn } from "@inktree/utils/";
 
 type HeadingProps = {
   text: string;
