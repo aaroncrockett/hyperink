@@ -25,9 +25,9 @@ export default async function RootLayout({
   }
   return (
     <div lang="en" className="">
-      <div className="flex flex-row w-full gap-4 ">
+      <div className="flex flex-row w-full gap-4 bg-surface-50 ">
         {userId ? (
-          <ul>
+          <ul className="flex flex-col gap-2 p-4 bg-surface-100">
             <li>
               <Link href="/admin/create-tattoo-options">
                 Create Tattoo Options
@@ -46,10 +46,9 @@ export default async function RootLayout({
             </li>
           </ul>
         ) : (
-          <>asdf</>
+          <>fill out yo profile</>
         )}
-
-        {children}
+        <div className="p-4">{children}</div>
       </div>
     </div>
   );

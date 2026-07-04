@@ -20,7 +20,7 @@ export default function ImageInputs({
   const [coverIndex, setCoverIndex] = useState(0);
 
   return (
-    <div className="grid p-4 border rounded bg-slate-50">
+    <div className="grid p-4 border ">
       <div className="grid grid-cols-2 gap-4">
         <div>
           <h3 className="text-xl">{EDITABLE_COLS.styles.name}:</h3>
