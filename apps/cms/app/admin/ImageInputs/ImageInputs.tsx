@@ -15,7 +15,7 @@ export default function ImageInputs({
   groups,
   tags,
 }: ImageInputsProps) {
-  const [isImgSet, setIsImgSet] = useState(false);
+  const [isSetOfImgs, setIsSetOfImgs] = useState(false);
   const [files, setFiles] = useState<File[]>([]);
   const [coverIndex, setCoverIndex] = useState(0);
 
@@ -76,41 +76,41 @@ export default function ImageInputs({
       </div>
 
       <div className="mt-4 space-y-2">
-        <label className="flex items-center gap-2">
+        <div className="bg-surface-100 p-2">
+          <h3 className="text-xl">{isSetOfImgs ? "Files" : "File"}</h3>
+          <label className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              checked={isSetOfImgs}
+              className="checkbox"
+              onChange={(e) => {
+                setIsSetOfImgs(e.target.checked);
+              }}
+            />
+            Series
+          </label>
           <input
-            type="checkbox"
-            checked={isImgSet}
+            type="file"
+            name="files"
+            accept="image/*"
             onChange={(e) => {
-              setIsImgSet(e.target.checked);
+              const selected = Array.from(e.target.files ?? []);
+              setFiles(selected);
+              setCoverIndex(0);
             }}
+            className="input preset-filled-surface-200"
+            multiple={isSetOfImgs}
           />
-          Series
-        </label>
-        {/* 
-        <h3 className="text-xl">{EDITABLE_COLS.readable_name.name}:</h3> */}
-        <h3 className="text-xl">Files:</h3>
-        <input
-          type="file"
-          name="files"
-          accept="image/*"
-          onChange={(e) => {
-            const selected = Array.from(e.target.files ?? []);
-            setFiles(selected);
-            setCoverIndex(0);
-          }}
-          multiple={isImgSet}
-        />
+        </div>
       </div>
 
-      {/* {isImgSet && ( */}
       <div className="grid grid-cols-4 gap-2 mt-2">
         {files.map((file, index) => (
           <div key={index} className="flex flex-col gap-1">
             <input
               type="text"
               name="readableName"
-              placeholder="Enter your name"
-              ß
+              placeholder="Enter a title"
             />
             <button
               type="button"
