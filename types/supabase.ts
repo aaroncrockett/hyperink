@@ -1,4 +1,6 @@
-export type Json =
+Need to install the following packages:
+supabase@2.109.0
+Ok to proceed? (y) export type Json =
   | string
   | number
   | boolean
@@ -289,8 +291,13 @@ export type Database = {
           created_at: string | null
           groups: Json | null
           id: string
+          is_cover: boolean
           name: string | null
           path: string
+          pinned: number | null
+          readable_name: string | null
+          set_id: string | null
+          set_order: number | null
           styles: Json | null
           tags: Json | null
           tattoo_id: string | null
@@ -301,8 +308,13 @@ export type Database = {
           created_at?: string | null
           groups?: Json | null
           id?: string
+          is_cover?: boolean
           name?: string | null
           path: string
+          pinned?: number | null
+          readable_name?: string | null
+          set_id?: string | null
+          set_order?: number | null
           styles?: Json | null
           tags?: Json | null
           tattoo_id?: string | null
@@ -313,8 +325,13 @@ export type Database = {
           created_at?: string | null
           groups?: Json | null
           id?: string
+          is_cover?: boolean
           name?: string | null
           path?: string
+          pinned?: number | null
+          readable_name?: string | null
+          set_id?: string | null
+          set_order?: number | null
           styles?: Json | null
           tags?: Json | null
           tattoo_id?: string | null

@@ -21,7 +21,7 @@ export default async function AdminPage() {
   }
 
   return (
-    <div className="mx-auto w-full max-w-4xl px-4 py-8 bg-slate-100">
+    <div className=" grid">
       <h1 className="text-3xl">ADMIN</h1>
 
       {userId ? (

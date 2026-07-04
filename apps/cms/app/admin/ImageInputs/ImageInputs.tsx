@@ -1,93 +1,135 @@
-import {
-  getUserTattooOptionsByGroups,
-  getUserTattooOptionsByCategories,
-  getUserTattooOptionsByStyles,
-  getUserTattooOptionsByTags,
-} from "./index";
-import { createServerClientAndAuth } from "@/utils/db/server";
+"use client";
+import { useState } from "react";
+import { EDITABLE_COLS } from "@inktree/db";
 
-const client = await createServerClientAndAuth();
+type ImageInputsProps = {
+  styles: string[];
+  categories: string[];
+  groups: string[];
+  tags: string[];
+};
 
-export default async function UploadImage() {
-  const groups = await getUserTattooOptionsByGroups(client);
-  const categories = await getUserTattooOptionsByCategories(client);
-  const styles = await getUserTattooOptionsByStyles(client);
-  const tags = await getUserTattooOptionsByTags(client);
+export default function ImageInputs({
+  styles,
+  categories,
+  groups,
+  tags,
+}: ImageInputsProps) {
+  const [isImgSet, setIsImgSet] = useState(false);
+  const [files, setFiles] = useState<File[]>([]);
+  const [coverIndex, setCoverIndex] = useState(0);
 
   return (
-    <div>
-      <div className="flex-col space-y-1">
-        <h3 className="text-xl">Styles: groups</h3>
-        {styles.map((style) => (
-          <label
-            key={style}
-            className="flex items-center gap-1 px-3 py-1 border rounded hover:bg-slate-200"
-          >
+    <div className="grid p-4 border rounded bg-slate-50">
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <h3 className="text-xl">{EDITABLE_COLS.styles.name}:</h3>
+          {styles.map((style) => (
+            <label
+              key={style}
+              className="flex items-center gap-1 px-3 py-1 border rounded"
+            >
+              <input type="checkbox" name="styles" value={style} />
+              <span className="capitalize">{style}</span>
+            </label>
+          ))}
+        </div>
+
+        <div>
+          <h3 className="text-xl">{EDITABLE_COLS.collections.name}:</h3>
+          {categories.map((category) => (
+            <label
+              key={category}
+              className="flex items-center gap-1 px-3 py-1 border rounded"
+            >
+              <input type="checkbox" name="categories" value={category} />
+              <span className="capitalize">{category}</span>
+            </label>
+          ))}
+        </div>
+
+        <div>
+          <h3 className="text-xl">{EDITABLE_COLS.groups.name}:</h3>
+          {groups.map((group) => (
+            <label
+              key={group}
+              className="flex items-center gap-1 px-3 py-1 border rounded"
+            >
+              <input type="checkbox" name="groups" value={group} />
+              <span className="capitalize">{group}</span>
+            </label>
+          ))}
+        </div>
+
+        <div>
+          <h3 className="text-xl">{EDITABLE_COLS.tags.name}:</h3>
+          {tags.map((tag) => (
+            <label
+              key={tag}
+              className="flex items-center gap-1 px-3 py-1 border rounded"
+            >
+              <input type="checkbox" name="tags" value={tag} />
+              <span className="capitalize">{tag}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-4 space-y-2">
+        <label className="flex items-center gap-2">
+          <input
+            type="checkbox"
+            checked={isImgSet}
+            onChange={(e) => {
+              setIsImgSet(e.target.checked);
+            }}
+          />
+          Series
+        </label>
+        {/* 
+        <h3 className="text-xl">{EDITABLE_COLS.readable_name.name}:</h3> */}
+        <h3 className="text-xl">Files:</h3>
+        <input
+          type="file"
+          name="files"
+          accept="image/*"
+          onChange={(e) => {
+            const selected = Array.from(e.target.files ?? []);
+            setFiles(selected);
+            setCoverIndex(0);
+          }}
+          multiple={isImgSet}
+        />
+      </div>
+
+      {/* {isImgSet && ( */}
+      <div className="grid grid-cols-4 gap-2 mt-2">
+        {files.map((file, index) => (
+          <div key={index} className="flex flex-col gap-1">
             <input
-              type="checkbox"
-              name="styles"
-              value={style}
-              className="accent-indigo-600"
+              type="text"
+              name="readableName"
+              placeholder="Enter your name"
+              ß
             />
-            <span className="capitalize">{style}</span>
-          </label>
+            <button
+              type="button"
+              onClick={() => setCoverIndex(index)}
+              className={`border p-2 ${
+                coverIndex === index ? "border-green-500" : ""
+              }`}
+            >
+              <img
+                src={URL.createObjectURL(file)}
+                className="w-full h-24 object-cover"
+              />
+              {coverIndex === index && <div>Cover</div>}
+            </button>
+          </div>
         ))}
       </div>
-      <div className="flex-col space-y-1">
-        <h3 className="text-xl">Collections:</h3>
-        {categories.map((category) => (
-          <label
-            key={category}
-            className="flex items-center gap-1 px-3 py-1 border rounded hover:bg-slate-200"
-          >
-            <input
-              type="checkbox"
-              name="categories"
-              value={category}
-              className="accent-indigo-600"
-            />
-            <span className="capitalize">{category}</span>
-          </label>
-        ))}
-      </div>
-      <div className="flex-col space-y-1">
-        <h3 className="text-xl">Groups:</h3>
-        {groups.map((group) => (
-          <label
-            key={group}
-            className="flex items-center gap-1 px-3 py-1 border rounded hover:bg-slate-200"
-          >
-            <input
-              type="checkbox"
-              name="groups"
-              value={group}
-              className="accent-indigo-600"
-            />
-            <span className="capitalize">{group}</span>
-          </label>
-        ))}
-      </div>
-      <div className="flex-col space-y-1">
-        <h3 className="text-xl">Tags:</h3>
-        {tags.map((tag) => (
-          <label
-            key={tag}
-            className="flex items-center gap-1 px-3 py-1 border rounded hover:bg-slate-200"
-          >
-            <input
-              type="checkbox"
-              name="tags"
-              value={tag}
-              className="accent-indigo-600"
-            />
-            <span className="capitalize">{tag}</span>
-          </label>
-        ))}
-        {/* {groups && groups.length > 0 && (
-          <h3 className="text-xl">Styles: {groups[0]}</h3>
-        )} */}
-      </div>
-      <input className="input" type="file" name="file" required />
+
+      <input type="hidden" name="coverIndex" value={String(coverIndex)} />
     </div>
   );
 }
