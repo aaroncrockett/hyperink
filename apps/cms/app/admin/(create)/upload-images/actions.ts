@@ -3,6 +3,7 @@ import { createServerClientAndAuth, getAuthedUser } from "@/utils/db/server";
 import { uploadUserImage } from "@/utils/db/server";
 import { getImageFormInputs } from "../../ImageInputs";
 import { randomUUID } from "crypto";
+import { revalidatePath } from "next/cache";
 
 export async function uploadImage(formData: FormData) {
   const {
@@ -43,5 +44,6 @@ export async function uploadImage(formData: FormData) {
     });
   });
 
+  revalidatePath("/admin/(create)/upload-images");
   return await Promise.all(uploads);
 }
