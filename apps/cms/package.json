@@ -12,6 +12,7 @@
     "@inktree/db": "workspace:*",
     "@inktree/ui-react": "workspace:*",
     "@inktree/utils": "workspace:*",
+    "@inktree/consts": "workspace:*",
     "@supabase/ssr": "^0.9.0",
     "@supabase/supabase-js": "^2.99.3",
     "next": "16.2.0",

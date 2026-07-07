@@ -1,20 +1,17 @@
 "use server";
 
-import { Form, Heading } from "@inktree/ui-react/components";
+import { Form, Heading, Page } from "@inktree/ui-react/components";
 import { uploadImage } from "./actions";
-import Provider from "./_components/UploadImageProvider";
-import { FormContent } from "./_components/FormContent";
+import FormContent from "./FormContentWrapper";
 
 export default async function UploadImagePage() {
   return (
-    <Provider>
-      <div className="bg-slate-50 p-6 border flex flex-col space-y-4">
-        <Heading text="Upload Image or Images" as="h3" />
+    <Page>
+      <Heading text="Upload Images" as="h2" />
 
-        <Form action={uploadImage}>
-          <FormContent />
-        </Form>
-      </div>
-    </Provider>
+      <Form action={uploadImage}>
+        <FormContent />
+      </Form>
+    </Page>
   );
 }

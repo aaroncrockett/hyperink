@@ -25,7 +25,7 @@ export default async function RootLayout({
   }
   return (
     <div lang="en" className="">
-      <div className="flex flex-row w-full gap-4 bg-surface-50 ">
+      <div className="flex flex-row gap-4 bg-surface-50 ">
         {userId ? (
           <ul className="flex flex-col gap-2 p-4 bg-surface-100">
             <li>
@@ -48,7 +48,7 @@ export default async function RootLayout({
         ) : (
           <>fill out yo profile</>
         )}
-        <div className="p-4">{children}</div>
+        <div className="p-4 w-full">{children}</div>
       </div>
     </div>
   );

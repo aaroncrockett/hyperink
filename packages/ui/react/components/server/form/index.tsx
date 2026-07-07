@@ -1,4 +1,4 @@
-"use client";
+"use server";
 import { cn } from "@inktree/utils";
 
 import { ReactNode, ComponentPropsWithoutRef } from "react";
@@ -10,7 +10,7 @@ type FormProps = ComponentPropsWithoutRef<"form"> & {
   space?: string;
 };
 
-export default function Form({
+export default async function Form({
   action,
   children,
   className,

@@ -1,20 +1,13 @@
 "use server";
 import { createServerClientAndAuth, getAuthedUser } from "@/utils/db/server";
 import { uploadUserImage } from "@/utils/db/server";
-import { getImageFormInputs } from "../../ImageInputs";
+import { getImageFormInputs } from "./helpers";
 import { randomUUID } from "crypto";
-import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export async function uploadImage(formData: FormData) {
-  const {
-    files,
-    styles,
-    collections,
-    groups,
-    tags,
-    coverIndex,
-    readableNames,
-  } = await getImageFormInputs(formData);
+  const { files, styles, collections, groups, tags, setOrder, readableNames } =
+    await getImageFormInputs(formData);
 
   const authedClient = await createServerClientAndAuth();
 
@@ -23,27 +16,24 @@ export async function uploadImage(formData: FormData) {
   } = await getAuthedUser(authedClient);
   if (!user) throw new Error("Unauthorized");
 
+  const isImgSet = files.length > 1;
+  const setId = isImgSet ? randomUUID() : null;
+
   const uploads = files.map((file, index) => {
-    const isCover =
-      typeof coverIndex === "number" ? index === coverIndex : index === 0;
-    const readableName = readableNames[index] || file.name;
-
-    const isImgSet = files.length > 1;
-
     return uploadUserImage(authedClient, file, {
       groups,
       styles,
       collections,
       tags,
-      readable_name: readableName,
+      readable_name: readableNames[index],
       name: file.name,
       user_id: user.id,
-      is_cover: isCover,
-      set_order: isImgSet ? index : null,
-      set_id: isImgSet ? randomUUID() : null,
+      is_cover: index === 0,
+      set_order: isImgSet ? setOrder[index] : null,
+      set_id: setId,
     });
   });
 
-  revalidatePath("/admin/(create)/upload-images");
+  redirect("/admin/upload-images");
   return await Promise.all(uploads);
 }

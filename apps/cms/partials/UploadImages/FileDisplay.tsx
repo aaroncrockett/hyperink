@@ -1,8 +1,8 @@
 import Image from "next/image";
-import type { UploadImageFile } from "../../UploadImageContext";
+import type { ImageFile } from "./types";
 
 type FilePreviewProps = {
-  file: UploadImageFile;
+  file: ImageFile;
 };
 
 export default function FilePreview({ file }: FilePreviewProps) {
