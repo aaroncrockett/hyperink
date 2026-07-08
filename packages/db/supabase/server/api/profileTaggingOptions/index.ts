@@ -1,8 +1,8 @@
-const table = "profile_tattoo_options";
+const table = "profile_tagging_options";
 
 import type { Client } from "../../../../index";
 
-export async function getProfileTattooOptionsByTags(authedClient: Client) {
+export async function getProfileTaggingOptionsByTags(authedClient: Client) {
   const { data, error } = await authedClient
     .from(table)
     .select("tags")
@@ -13,7 +13,7 @@ export async function getProfileTattooOptionsByTags(authedClient: Client) {
   return data.tags;
 }
 
-export async function getProfileTattooOptionsByCategories(
+export async function getProfileTaggingOptionsByCategories(
   authedClient: Client,
 ) {
   const { data, error } = await authedClient
@@ -26,7 +26,7 @@ export async function getProfileTattooOptionsByCategories(
   return data.categories;
 }
 
-export async function getProfileTattooOptionsByStyles(authedClient: Client) {
+export async function getProfileTaggingOptionsByStyles(authedClient: Client) {
   const { data, error } = await authedClient
     .from(table)
     .select("styles")
@@ -36,7 +36,7 @@ export async function getProfileTattooOptionsByStyles(authedClient: Client) {
 
   return data.styles;
 }
-export async function getProfileTattooOptionsByGroups(authedClient: Client) {
+export async function getProfileTaggingOptionsByGroups(authedClient: Client) {
   const { data, error } = await authedClient
     .from(table)
     .select("groups")

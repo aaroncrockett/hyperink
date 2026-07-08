@@ -1,10 +1,10 @@
-export const TABLE = "user_images";
+export const TABLE_TATTOO_IMAGES = "tattoo_images";
 export const BUCKET = "user-images";
 
 export const EDITABLE_COLS = {
   collections: {
-    key: "categories",
-    name: "categories",
+    key: "collections",
+    name: "Collections",
   },
   styles: {
     key: "styles",
@@ -14,10 +14,6 @@ export const EDITABLE_COLS = {
     key: "tags",
     name: "Tags",
   },
-  groups: {
-    key: "groups",
-    name: "Groups",
-  },
   readable_name: {
     key: "readable_name",
     name: "Name",
@@ -26,9 +22,9 @@ export const EDITABLE_COLS = {
     key: "tattoo_id",
     name: "Related tattoo",
   },
-  pinned: {
-    key: "pinned",
-    name: "Pinned order",
+  pinned_order: {
+    key: "pinned_order",
+    name: "Pinned Order",
   },
 };
 

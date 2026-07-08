@@ -39,7 +39,9 @@ export default async function RootLayout({
               </Link>
             </li>
             <li>
-              <Link href="/admin/upload-images">Upload images</Link>
+              <Link href="/admin/upload-tattoo-images">
+                Upload tattoo images
+              </Link>
             </li>
             <li>
               <Link href="/admin/create-flash">Create Flash</Link>

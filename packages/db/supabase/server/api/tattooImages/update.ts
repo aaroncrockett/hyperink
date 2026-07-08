@@ -1,5 +1,5 @@
 import type { Client, UserImage } from "../../../../index";
-import { TABLE } from "./consts";
+import { TABLE_TATTOO_IMAGES as TABLE } from "./consts";
 
 export async function updateUserImage(
   authedClient: Client,

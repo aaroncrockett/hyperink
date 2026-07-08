@@ -1,6 +1,6 @@
 import { removeFile, uploadFile, getPublicUrl } from "../../../../index";
 import type { Client, UserImage } from "../../../../index";
-import { TABLE, BUCKET } from "./consts";
+import { TABLE_TATTOO_IMAGES as TABLE, BUCKET } from "./consts";
 
 export async function storeUserImageData(
   authedClient: Client,

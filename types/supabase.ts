@@ -1,366 +1,593 @@
-Need to install the following packages:
-supabase@2.109.0
-Ok to proceed? (y) export type Json =
+export type Json =
   | string
   | number
   | boolean
   | null
   | { [key: string]: Json | undefined }
-  | Json[]
+  | Json[];
 
 export type Database = {
   // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "13.0.5"
-  }
+    PostgrestVersion: "13.0.5";
+  };
   public: {
     Tables: {
-      clients: {
+      client: {
         Row: {
-          created_at: string | null
-          id: number
-          uuid_id: string
-        }
+          bluesky_id: string | null;
+          created_at: string | null;
+          email: string | null;
+          first_name: string | null;
+          gender: string | null;
+          id: string;
+          instagram_id: string | null;
+          last_name: string | null;
+          phone: string | null;
+          preferred_name: string | null;
+          user_id: string;
+        };
         Insert: {
-          created_at?: string | null
-          id?: never
-          uuid_id?: string
-        }
+          bluesky_id?: string | null;
+          created_at?: string | null;
+          email?: string | null;
+          first_name?: string | null;
+          gender?: string | null;
+          id?: string;
+          instagram_id?: string | null;
+          last_name?: string | null;
+          phone?: string | null;
+          preferred_name?: string | null;
+          user_id: string;
+        };
         Update: {
-          created_at?: string | null
-          id?: never
-          uuid_id?: string
-        }
-        Relationships: []
-      }
+          bluesky_id?: string | null;
+          created_at?: string | null;
+          email?: string | null;
+          first_name?: string | null;
+          gender?: string | null;
+          id?: string;
+          instagram_id?: string | null;
+          last_name?: string | null;
+          phone?: string | null;
+          preferred_name?: string | null;
+          user_id?: string;
+        };
+        Relationships: [];
+      };
+      client_tattoo: {
+        Row: {
+          client_id: string;
+          completed_at: string | null;
+          created_at: string;
+          deposit_amount: number | null;
+          deposit_amount_paid_at: string | null;
+          deposit_amount_paid_progress: number | null;
+          drawing_amount: number | null;
+          drawing_amount_paid_at: string | null;
+          drawing_amount_paid_progress: number | null;
+          estimated_hours: number | null;
+          estimated_price: number | null;
+          id: string;
+          inks_used: Json | null;
+          my_total_farout_reschedules: number | null;
+          my_total_nearby_reschedules: number | null;
+          my_total_noshows: number | null;
+          needles_used: Json | null;
+          notes: string | null;
+          required_aftercare_given: boolean | null;
+          required_id_checked: boolean | null;
+          required_pre_paperwork_complete: boolean | null;
+          title: string;
+          total_farout_reschedules: number | null;
+          total_nearby_reschedules: number | null;
+          total_noshows: number | null;
+          total_price: number | null;
+          total_price_paid: number | null;
+          total_price_paid_at: string | null;
+          total_session_hours: number | null;
+          total_tattooed_hours: number | null;
+          total_tipped_paid: number | null;
+          type: string | null;
+          updated_at: string;
+        };
+        Insert: {
+          client_id: string;
+          completed_at?: string | null;
+          created_at?: string;
+          deposit_amount?: number | null;
+          deposit_amount_paid_at?: string | null;
+          deposit_amount_paid_progress?: number | null;
+          drawing_amount?: number | null;
+          drawing_amount_paid_at?: string | null;
+          drawing_amount_paid_progress?: number | null;
+          estimated_hours?: number | null;
+          estimated_price?: number | null;
+          id?: string;
+          inks_used?: Json | null;
+          my_total_farout_reschedules?: number | null;
+          my_total_nearby_reschedules?: number | null;
+          my_total_noshows?: number | null;
+          needles_used?: Json | null;
+          notes?: string | null;
+          required_aftercare_given?: boolean | null;
+          required_id_checked?: boolean | null;
+          required_pre_paperwork_complete?: boolean | null;
+          title: string;
+          total_farout_reschedules?: number | null;
+          total_nearby_reschedules?: number | null;
+          total_noshows?: number | null;
+          total_price?: number | null;
+          total_price_paid?: number | null;
+          total_price_paid_at?: string | null;
+          total_session_hours?: number | null;
+          total_tattooed_hours?: number | null;
+          total_tipped_paid?: number | null;
+          type?: string | null;
+          updated_at?: string;
+        };
+        Update: {
+          client_id?: string;
+          completed_at?: string | null;
+          created_at?: string;
+          deposit_amount?: number | null;
+          deposit_amount_paid_at?: string | null;
+          deposit_amount_paid_progress?: number | null;
+          drawing_amount?: number | null;
+          drawing_amount_paid_at?: string | null;
+          drawing_amount_paid_progress?: number | null;
+          estimated_hours?: number | null;
+          estimated_price?: number | null;
+          id?: string;
+          inks_used?: Json | null;
+          my_total_farout_reschedules?: number | null;
+          my_total_nearby_reschedules?: number | null;
+          my_total_noshows?: number | null;
+          needles_used?: Json | null;
+          notes?: string | null;
+          required_aftercare_given?: boolean | null;
+          required_id_checked?: boolean | null;
+          required_pre_paperwork_complete?: boolean | null;
+          title?: string;
+          total_farout_reschedules?: number | null;
+          total_nearby_reschedules?: number | null;
+          total_noshows?: number | null;
+          total_price?: number | null;
+          total_price_paid?: number | null;
+          total_price_paid_at?: string | null;
+          total_session_hours?: number | null;
+          total_tattooed_hours?: number | null;
+          total_tipped_paid?: number | null;
+          type?: string | null;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "client_tattoo_client_id_fkey";
+            columns: ["client_id"];
+            isOneToOne: false;
+            referencedRelation: "client";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      client_tattoo_session: {
+        Row: {
+          client_tattoo_id: string;
+          completed_at: string | null;
+          created_at: string;
+          farout_reschedule: boolean | null;
+          id: string;
+          my_farout_reschedules: number | null;
+          my_nearby_reschedules: number | null;
+          my_noshows: number | null;
+          nearby_reschedule: boolean | null;
+          noshow: boolean | null;
+          notes: string | null;
+          price_paid: number;
+          scheduled_date: string | null;
+          scheduled_time: string | null;
+          session_hours: number | null;
+          session_number: number;
+          tattooed_hours: number | null;
+          tip_paid: number;
+          updated_at: string;
+        };
+        Insert: {
+          client_tattoo_id: string;
+          completed_at?: string | null;
+          created_at?: string;
+          farout_reschedule?: boolean | null;
+          id?: string;
+          my_farout_reschedules?: number | null;
+          my_nearby_reschedules?: number | null;
+          my_noshows?: number | null;
+          nearby_reschedule?: boolean | null;
+          noshow?: boolean | null;
+          notes?: string | null;
+          price_paid?: number;
+          scheduled_date?: string | null;
+          scheduled_time?: string | null;
+          session_hours?: number | null;
+          session_number: number;
+          tattooed_hours?: number | null;
+          tip_paid?: number;
+          updated_at?: string;
+        };
+        Update: {
+          client_tattoo_id?: string;
+          completed_at?: string | null;
+          created_at?: string;
+          farout_reschedule?: boolean | null;
+          id?: string;
+          my_farout_reschedules?: number | null;
+          my_nearby_reschedules?: number | null;
+          my_noshows?: number | null;
+          nearby_reschedule?: boolean | null;
+          noshow?: boolean | null;
+          notes?: string | null;
+          price_paid?: number;
+          scheduled_date?: string | null;
+          scheduled_time?: string | null;
+          session_hours?: number | null;
+          session_number?: number;
+          tattooed_hours?: number | null;
+          tip_paid?: number;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "client_tattoo_session_client_tattoo_id_fkey";
+            columns: ["client_tattoo_id"];
+            isOneToOne: false;
+            referencedRelation: "client_tattoo";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      client_tattoo_touchup: {
+        Row: {
+          client_tattoo_id: string;
+          completed_at: string | null;
+          created_at: string;
+          farout_reschedule: boolean | null;
+          id: string;
+          nearby_reschedule: boolean | null;
+          noshow: boolean | null;
+          notes: string | null;
+          price: number;
+          price_paid: number;
+          scheduled_date: string | null;
+          scheduled_time: string | null;
+          session_hours: number | null;
+          tattooed_hours: number | null;
+          tip_paid: number;
+          touchup_number: number;
+          updated_at: string;
+        };
+        Insert: {
+          client_tattoo_id: string;
+          completed_at?: string | null;
+          created_at?: string;
+          farout_reschedule?: boolean | null;
+          id?: string;
+          nearby_reschedule?: boolean | null;
+          noshow?: boolean | null;
+          notes?: string | null;
+          price?: number;
+          price_paid?: number;
+          scheduled_date?: string | null;
+          scheduled_time?: string | null;
+          session_hours?: number | null;
+          tattooed_hours?: number | null;
+          tip_paid?: number;
+          touchup_number: number;
+          updated_at?: string;
+        };
+        Update: {
+          client_tattoo_id?: string;
+          completed_at?: string | null;
+          created_at?: string;
+          farout_reschedule?: boolean | null;
+          id?: string;
+          nearby_reschedule?: boolean | null;
+          noshow?: boolean | null;
+          notes?: string | null;
+          price?: number;
+          price_paid?: number;
+          scheduled_date?: string | null;
+          scheduled_time?: string | null;
+          session_hours?: number | null;
+          tattooed_hours?: number | null;
+          tip_paid?: number;
+          touchup_number?: number;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "client_tattoo_touchup_client_tattoo_id_fkey";
+            columns: ["client_tattoo_id"];
+            isOneToOne: false;
+            referencedRelation: "client_tattoo";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      flash: {
+        Row: {
+          availability: number | null;
+          collections: Json | null;
+          created_at: string | null;
+          id: string;
+          meta_data: Json | null;
+          name: string | null;
+          path: string;
+          pinned_order: number | null;
+          readable_name: string | null;
+          styles: Json | null;
+          tags: Json | null;
+          total_availability: number | null;
+          user_id: string;
+        };
+        Insert: {
+          availability?: number | null;
+          collections?: Json | null;
+          created_at?: string | null;
+          id?: string;
+          meta_data?: Json | null;
+          name?: string | null;
+          path: string;
+          pinned_order?: number | null;
+          readable_name?: string | null;
+          styles?: Json | null;
+          tags?: Json | null;
+          total_availability?: number | null;
+          user_id: string;
+        };
+        Update: {
+          availability?: number | null;
+          collections?: Json | null;
+          created_at?: string | null;
+          id?: string;
+          meta_data?: Json | null;
+          name?: string | null;
+          path?: string;
+          pinned_order?: number | null;
+          readable_name?: string | null;
+          styles?: Json | null;
+          tags?: Json | null;
+          total_availability?: number | null;
+          user_id?: string;
+        };
+        Relationships: [];
+      };
       profile: {
         Row: {
-          created_at: string | null
-          email: string
-          id: string
-        }
+          created_at: string | null;
+          email: string;
+          first_name: string | null;
+          id: string;
+          last_name: string | null;
+        };
         Insert: {
-          created_at?: string | null
-          email: string
-          id: string
-        }
+          created_at?: string | null;
+          email: string;
+          first_name?: string | null;
+          id: string;
+          last_name?: string | null;
+        };
         Update: {
-          created_at?: string | null
-          email?: string
-          id?: string
-        }
-        Relationships: []
-      }
+          created_at?: string | null;
+          email?: string;
+          first_name?: string | null;
+          id?: string;
+          last_name?: string | null;
+        };
+        Relationships: [];
+      };
+      profile_image: {
+        Row: {
+          created_at: string | null;
+          id: string;
+          meta_data: Json | null;
+          name: string | null;
+          path: string;
+          readable_name: string | null;
+          user_id: string;
+        };
+        Insert: {
+          created_at?: string | null;
+          id?: string;
+          meta_data?: Json | null;
+          name?: string | null;
+          path: string;
+          readable_name?: string | null;
+          user_id: string;
+        };
+        Update: {
+          created_at?: string | null;
+          id?: string;
+          meta_data?: Json | null;
+          name?: string | null;
+          path?: string;
+          readable_name?: string | null;
+          user_id?: string;
+        };
+        Relationships: [];
+      };
+      profile_tagging_options: {
+        Row: {
+          categories: Json;
+          created_at: string;
+          id: string;
+          styles: Json;
+          tags: Json;
+          updated_at: string;
+          user_id: string;
+        };
+        Insert: {
+          categories?: Json;
+          created_at?: string;
+          id?: string;
+          styles?: Json;
+          tags?: Json;
+          updated_at?: string;
+          user_id: string;
+        };
+        Update: {
+          categories?: Json;
+          created_at?: string;
+          id?: string;
+          styles?: Json;
+          tags?: Json;
+          updated_at?: string;
+          user_id?: string;
+        };
+        Relationships: [];
+      };
       profile_tattoo_options: {
         Row: {
-          categories: Json
-          created_at: string
-          groups: Json
-          profile_id: string
-          styles: Json
-          tags: Json
-          updated_at: string
-        }
+          created_at: string;
+          id: string;
+          inks: Json;
+          needles: Json;
+          updated_at: string;
+          user_id: string;
+        };
         Insert: {
-          categories?: Json
-          created_at?: string
-          groups?: Json
-          profile_id: string
-          styles?: Json
-          tags?: Json
-          updated_at?: string
-        }
+          created_at?: string;
+          id?: string;
+          inks?: Json;
+          needles?: Json;
+          updated_at?: string;
+          user_id: string;
+        };
         Update: {
-          categories?: Json
-          created_at?: string
-          groups?: Json
-          profile_id?: string
-          styles?: Json
-          tags?: Json
-          updated_at?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "profile_tattoo_options_profile_id_fkey"
-            columns: ["profile_id"]
-            isOneToOne: true
-            referencedRelation: "profile"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      tattoo_options: {
+          created_at?: string;
+          id?: string;
+          inks?: Json;
+          needles?: Json;
+          updated_at?: string;
+          user_id?: string;
+        };
+        Relationships: [];
+      };
+      tattoo_image: {
         Row: {
-          created_at: string
-          needles: Json
-          tattoo_id: string
-          updated_at: string
-        }
+          collections: Json | null;
+          created_at: string | null;
+          flash_id: string | null;
+          id: string;
+          is_portfolio_img: boolean | null;
+          meta_data: Json | null;
+          name: string | null;
+          path: string;
+          pinned_order: number | null;
+          readable_name: string | null;
+          set_id: string | null;
+          set_order: number | null;
+          styles: Json | null;
+          tags: Json | null;
+          user_id: string;
+        };
         Insert: {
-          created_at?: string
-          needles?: Json
-          tattoo_id: string
-          updated_at?: string
-        }
+          collections?: Json | null;
+          created_at?: string | null;
+          flash_id?: string | null;
+          id?: string;
+          is_portfolio_img?: boolean | null;
+          meta_data?: Json | null;
+          name?: string | null;
+          path: string;
+          pinned_order?: number | null;
+          readable_name?: string | null;
+          set_id?: string | null;
+          set_order?: number | null;
+          styles?: Json | null;
+          tags?: Json | null;
+          user_id: string;
+        };
         Update: {
-          created_at?: string
-          needles?: Json
-          tattoo_id?: string
-          updated_at?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "tattoo_options_tattoo_id_fkey"
-            columns: ["tattoo_id"]
-            isOneToOne: true
-            referencedRelation: "tattoos"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      tattoo_requests: {
+          collections?: Json | null;
+          created_at?: string | null;
+          flash_id?: string | null;
+          id?: string;
+          is_portfolio_img?: boolean | null;
+          meta_data?: Json | null;
+          name?: string | null;
+          path?: string;
+          pinned_order?: number | null;
+          readable_name?: string | null;
+          set_id?: string | null;
+          set_order?: number | null;
+          styles?: Json | null;
+          tags?: Json | null;
+          user_id?: string;
+        };
+        Relationships: [];
+      };
+      tattoo_request: {
         Row: {
-          created_at: string
-          email: string | null
-          id: number
-          notes: string | null
-          paid: boolean | null
-          phone: string | null
-          preferred_name: string | null
-          type: string | null
-        }
+          bluesky_id: string | null;
+          created_at: string;
+          email: string | null;
+          first_name: string | null;
+          gender: string | null;
+          id: string;
+          instagram_id: string | null;
+          last_name: string | null;
+          notes: string | null;
+          paid_amount: boolean | null;
+          phone: string | null;
+          preferred_name: string | null;
+          returning_client: boolean | null;
+          type: string | null;
+          user_id: string;
+        };
         Insert: {
-          created_at?: string
-          email?: string | null
-          id?: number
-          notes?: string | null
-          paid?: boolean | null
-          phone?: string | null
-          preferred_name?: string | null
-          type?: string | null
-        }
+          bluesky_id?: string | null;
+          created_at?: string;
+          email?: string | null;
+          first_name?: string | null;
+          gender?: string | null;
+          id?: string;
+          instagram_id?: string | null;
+          last_name?: string | null;
+          notes?: string | null;
+          paid_amount?: boolean | null;
+          phone?: string | null;
+          preferred_name?: string | null;
+          returning_client?: boolean | null;
+          type?: string | null;
+          user_id: string;
+        };
         Update: {
-          created_at?: string
-          email?: string | null
-          id?: number
-          notes?: string | null
-          paid?: boolean | null
-          phone?: string | null
-          preferred_name?: string | null
-          type?: string | null
-        }
-        Relationships: []
-      }
-      tattoo_sessions: {
-        Row: {
-          amount: number
-          amount_paid: number
-          completed_at: string | null
-          created_at: string
-          estimated_hours: number | null
-          id: string
-          notes: string | null
-          scheduled_date: string | null
-          scheduled_time: string | null
-          session_number: number
-          tattoo_id: string
-          tip: number
-          total_hours: number | null
-          updated_at: string
-        }
-        Insert: {
-          amount?: number
-          amount_paid?: number
-          completed_at?: string | null
-          created_at?: string
-          estimated_hours?: number | null
-          id?: string
-          notes?: string | null
-          scheduled_date?: string | null
-          scheduled_time?: string | null
-          session_number: number
-          tattoo_id: string
-          tip?: number
-          total_hours?: number | null
-          updated_at?: string
-        }
-        Update: {
-          amount?: number
-          amount_paid?: number
-          completed_at?: string | null
-          created_at?: string
-          estimated_hours?: number | null
-          id?: string
-          notes?: string | null
-          scheduled_date?: string | null
-          scheduled_time?: string | null
-          session_number?: number
-          tattoo_id?: string
-          tip?: number
-          total_hours?: number | null
-          updated_at?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "tattoo_sessions_tattoo_id_fkey"
-            columns: ["tattoo_id"]
-            isOneToOne: false
-            referencedRelation: "tattoos"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      tattoos: {
-        Row: {
-          client_id: string
-          completed_at: string | null
-          created_at: string | null
-          deposit_amount: number | null
-          deposit_amount_paid_at: string | null
-          deposit_amount_paid_progress: number | null
-          drawing_amount: number | null
-          drawing_amount_paid_at: string | null
-          drawing_amount_paid_progress: number | null
-          estimated_price: number | null
-          estimated_time: number | null
-          id: string
-          inks: Json | null
-          needles_used: Json | null
-          notes: string | null
-          tipped_total: number | null
-          title: string
-          total_price: number | null
-          type: string | null
-        }
-        Insert: {
-          client_id: string
-          completed_at?: string | null
-          created_at?: string | null
-          deposit_amount?: number | null
-          deposit_amount_paid_at?: string | null
-          deposit_amount_paid_progress?: number | null
-          drawing_amount?: number | null
-          drawing_amount_paid_at?: string | null
-          drawing_amount_paid_progress?: number | null
-          estimated_price?: number | null
-          estimated_time?: number | null
-          id?: string
-          inks?: Json | null
-          needles_used?: Json | null
-          notes?: string | null
-          tipped_total?: number | null
-          title: string
-          total_price?: number | null
-          type?: string | null
-        }
-        Update: {
-          client_id?: string
-          completed_at?: string | null
-          created_at?: string | null
-          deposit_amount?: number | null
-          deposit_amount_paid_at?: string | null
-          deposit_amount_paid_progress?: number | null
-          drawing_amount?: number | null
-          drawing_amount_paid_at?: string | null
-          drawing_amount_paid_progress?: number | null
-          estimated_price?: number | null
-          estimated_time?: number | null
-          id?: string
-          inks?: Json | null
-          needles_used?: Json | null
-          notes?: string | null
-          tipped_total?: number | null
-          title?: string
-          total_price?: number | null
-          type?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "tattoos_client_id_fkey"
-            columns: ["client_id"]
-            isOneToOne: false
-            referencedRelation: "clients"
-            referencedColumns: ["uuid_id"]
-          },
-        ]
-      }
-      user_images: {
-        Row: {
-          collections: Json | null
-          created_at: string | null
-          groups: Json | null
-          id: string
-          is_cover: boolean
-          name: string | null
-          path: string
-          pinned: number | null
-          readable_name: string | null
-          set_id: string | null
-          set_order: number | null
-          styles: Json | null
-          tags: Json | null
-          tattoo_id: string | null
-          user_id: string
-        }
-        Insert: {
-          collections?: Json | null
-          created_at?: string | null
-          groups?: Json | null
-          id?: string
-          is_cover?: boolean
-          name?: string | null
-          path: string
-          pinned?: number | null
-          readable_name?: string | null
-          set_id?: string | null
-          set_order?: number | null
-          styles?: Json | null
-          tags?: Json | null
-          tattoo_id?: string | null
-          user_id: string
-        }
-        Update: {
-          collections?: Json | null
-          created_at?: string | null
-          groups?: Json | null
-          id?: string
-          is_cover?: boolean
-          name?: string | null
-          path?: string
-          pinned?: number | null
-          readable_name?: string | null
-          set_id?: string | null
-          set_order?: number | null
-          styles?: Json | null
-          tags?: Json | null
-          tattoo_id?: string | null
-          user_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "user_images_tattoo_id_fkey"
-            columns: ["tattoo_id"]
-            isOneToOne: false
-            referencedRelation: "tattoos"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "user_images_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "profile"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-    }
+          bluesky_id?: string | null;
+          created_at?: string;
+          email?: string | null;
+          first_name?: string | null;
+          gender?: string | null;
+          id?: string;
+          instagram_id?: string | null;
+          last_name?: string | null;
+          notes?: string | null;
+          paid_amount?: boolean | null;
+          phone?: string | null;
+          preferred_name?: string | null;
+          returning_client?: boolean | null;
+          type?: string | null;
+          user_id?: string;
+        };
+        Relationships: [];
+      };
+    };
     Views: {
-      [_ in never]: never
-    }
+      [_ in never]: never;
+    };
     Functions: {
-      [_ in never]: never
-    }
+      [_ in never]: never;
+    };
     Enums: {
       tattoo_collections:
         | "queer & spicey - filtered"
@@ -368,46 +595,49 @@ export type Database = {
         | "neo-expressionist"
         | "pixel tatts"
         | "gaymer/anime"
-        | "just whatever"
-      tattoo_groups: "flash" | "tattoos" | "hp" | "portfolio-tattoos"
+        | "just whatever";
+      tattoo_groups: "flash" | "tattoos" | "hp" | "portfolio-tattoos";
       tattoo_styles:
         | "traditional"
         | "illustrational"
         | "blackwork"
         | "micro"
-        | "photo-realism"
+        | "photo-realism";
       tattoo_tags:
         | "color"
         | "blackwork"
         | "black & gray"
-        | "photo-based illustrational"
-    }
+        | "photo-based illustrational";
+    };
     CompositeTypes: {
-      [_ in never]: never
-    }
-  }
-}
+      [_ in never]: never;
+    };
+  };
+};
 
-type DatabaseWithoutInternals = Omit<Database, "__InternalSupabase">
+type DatabaseWithoutInternals = Omit<Database, "__InternalSupabase">;
 
-type DefaultSchema = DatabaseWithoutInternals[Extract<keyof Database, "public">]
+type DefaultSchema = DatabaseWithoutInternals[Extract<
+  keyof Database,
+  "public"
+>];
 
 export type Tables<
   DefaultSchemaTableNameOrOptions extends
     | keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])
     | { schema: keyof DatabaseWithoutInternals },
   TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof DatabaseWithoutInternals
+    schema: keyof DatabaseWithoutInternals;
   }
     ? keyof (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
         DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
     : never = never,
 > = DefaultSchemaTableNameOrOptions extends {
-  schema: keyof DatabaseWithoutInternals
+  schema: keyof DatabaseWithoutInternals;
 }
   ? (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
       DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])[TableName] extends {
-      Row: infer R
+      Row: infer R;
     }
     ? R
     : never
@@ -415,95 +645,95 @@ export type Tables<
         DefaultSchema["Views"])
     ? (DefaultSchema["Tables"] &
         DefaultSchema["Views"])[DefaultSchemaTableNameOrOptions] extends {
-        Row: infer R
+        Row: infer R;
       }
       ? R
       : never
-    : never
+    : never;
 
 export type TablesInsert<
   DefaultSchemaTableNameOrOptions extends
     | keyof DefaultSchema["Tables"]
     | { schema: keyof DatabaseWithoutInternals },
   TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof DatabaseWithoutInternals
+    schema: keyof DatabaseWithoutInternals;
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
     : never = never,
 > = DefaultSchemaTableNameOrOptions extends {
-  schema: keyof DatabaseWithoutInternals
+  schema: keyof DatabaseWithoutInternals;
 }
   ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Insert: infer I
+      Insert: infer I;
     }
     ? I
     : never
   : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
     ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
-        Insert: infer I
+        Insert: infer I;
       }
       ? I
       : never
-    : never
+    : never;
 
 export type TablesUpdate<
   DefaultSchemaTableNameOrOptions extends
     | keyof DefaultSchema["Tables"]
     | { schema: keyof DatabaseWithoutInternals },
   TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof DatabaseWithoutInternals
+    schema: keyof DatabaseWithoutInternals;
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
     : never = never,
 > = DefaultSchemaTableNameOrOptions extends {
-  schema: keyof DatabaseWithoutInternals
+  schema: keyof DatabaseWithoutInternals;
 }
   ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Update: infer U
+      Update: infer U;
     }
     ? U
     : never
   : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
     ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
-        Update: infer U
+        Update: infer U;
       }
       ? U
       : never
-    : never
+    : never;
 
 export type Enums<
   DefaultSchemaEnumNameOrOptions extends
     | keyof DefaultSchema["Enums"]
     | { schema: keyof DatabaseWithoutInternals },
   EnumName extends DefaultSchemaEnumNameOrOptions extends {
-    schema: keyof DatabaseWithoutInternals
+    schema: keyof DatabaseWithoutInternals;
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
     : never = never,
 > = DefaultSchemaEnumNameOrOptions extends {
-  schema: keyof DatabaseWithoutInternals
+  schema: keyof DatabaseWithoutInternals;
 }
   ? DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"][EnumName]
   : DefaultSchemaEnumNameOrOptions extends keyof DefaultSchema["Enums"]
     ? DefaultSchema["Enums"][DefaultSchemaEnumNameOrOptions]
-    : never
+    : never;
 
 export type CompositeTypes<
   PublicCompositeTypeNameOrOptions extends
     | keyof DefaultSchema["CompositeTypes"]
     | { schema: keyof DatabaseWithoutInternals },
   CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
-    schema: keyof DatabaseWithoutInternals
+    schema: keyof DatabaseWithoutInternals;
   }
     ? keyof DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
     : never = never,
 > = PublicCompositeTypeNameOrOptions extends {
-  schema: keyof DatabaseWithoutInternals
+  schema: keyof DatabaseWithoutInternals;
 }
   ? DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
   : PublicCompositeTypeNameOrOptions extends keyof DefaultSchema["CompositeTypes"]
     ? DefaultSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
-    : never
+    : never;
 
 export const Constants = {
   public: {
@@ -532,4 +762,4 @@ export const Constants = {
       ],
     },
   },
-} as const
+} as const;

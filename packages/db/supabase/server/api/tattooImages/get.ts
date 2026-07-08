@@ -1,5 +1,5 @@
 import { getPublicUrl } from "../../../../index";
-import { TABLE, BUCKET } from "./consts";
+import { TABLE_TATTOO_IMAGES as TABLE, BUCKET } from "./consts";
 
 type QueryOptions = {
   pinned?: boolean;
