@@ -14,7 +14,7 @@ export default function Form({
   action,
   children,
   className,
-  padding = "p-4",
+  padding = "",
   space = "space-y-4",
   ...props
 }: FormProps) {

@@ -7,12 +7,9 @@ type Props = {
 
 export function ClientResults({ clients, onSelectClient }: Props) {
   return (
-    <ul className="flex flex-col p-2">
+    <ul className="">
       {clients.map((client) => (
-        <li
-          className="p-2 odd:bg-surface-100 even:bg-surface-200"
-          key={client.id}
-        >
+        <li className=" odd:bg-surface-100 even:bg-surface-200" key={client.id}>
           <button
             className="btn preset-filled-primary-500"
             type="button"

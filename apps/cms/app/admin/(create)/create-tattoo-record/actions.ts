@@ -33,26 +33,24 @@ export async function getClient(
   }
 
   const email = formData.get("email")?.toString();
-  const phoneValue = formData.get("phone")?.toString();
+  const phone = formData.get("phone")?.toString();
 
   let result;
 
   if (email) {
     result = await getClientPersonByEmail(authedClient, email);
-  } else if (phoneValue) {
-    result = await getClientPersonByPhone(authedClient, Number(phoneValue));
-  } else {
-    return {
-      clients: [],
-    };
   }
 
-  if (result.error) {
+  if (phone) {
+    result = await getClientPersonByPhone(authedClient, Number(phone));
+  }
+
+  if (result?.error) {
     throw new Error(result.error.message);
   }
 
   return {
-    clients: result.data,
+    clients: result?.data,
   };
 }
 

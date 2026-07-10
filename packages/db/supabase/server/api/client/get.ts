@@ -1,4 +1,5 @@
 import { TABLE_CLIENT_PERSON as TABLE } from "./consts";
+import { getYearDateRange } from "@inktree/utils";
 
 import type { Client } from "../../../../index";
 
@@ -22,6 +23,53 @@ export async function getClientPersonByPhone(
     .from(TABLE)
     .select("*")
     .eq("phone", string);
+
+  return { data, error };
+}
+
+export async function getClientPersonByPreferredName(
+  authedClient: Client,
+  preferredName: string,
+) {
+  const { data, error } = await authedClient
+    .from(TABLE)
+    .select("*")
+    .eq("preferred_name", preferredName);
+
+  return { data, error };
+}
+
+export async function getClientPersonByLastdName(
+  authedClient: Client,
+  lastName: string,
+) {
+  const { data, error } = await authedClient
+    .from(TABLE)
+    .select("*")
+    .eq("last_name", lastName);
+
+  return { data, error };
+}
+
+export async function getClientPeopleByTattooYear(
+  authedClient: Client,
+  year: number,
+) {
+  const { startDate, endDate } = getYearDateRange(year);
+
+  const { data, error } = await authedClient
+    .from(TABLE)
+    .select(
+      `
+      *,
+      client_tattoo!inner (
+        id,
+        completed_at
+      )
+    `,
+    )
+    .gte("client_tattoo.completed_at", startDate)
+    .lt("client_tattoo.completed_at", endDate);
 
   return { data, error };
 }

@@ -185,6 +185,9 @@ importers:
 
   packages/db:
     dependencies:
+      '@inktree/utils':
+        specifier: workspace:*
+        version: link:../utils
       '@supabase/ssr':
         specifier: ^0.9.0
         version: 0.9.0(@supabase/supabase-js@2.99.3)
