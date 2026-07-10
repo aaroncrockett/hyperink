@@ -4,6 +4,7 @@ import { createServerClientAndAuth, getAuthedUser } from "@/utils/db/server";
 import {
   getClientPersonByEmail,
   getClientPersonByPhone,
+  getClientPersonByPreferredName,
   type ClientTable,
 } from "@inktree/db";
 
@@ -34,6 +35,8 @@ export async function getClient(
 
   const email = formData.get("email")?.toString();
   const phone = formData.get("phone")?.toString();
+  const preferredName = formData.get("preferredName")?.toString();
+  // const year = formData.get("year")?.toString();
 
   let result;
 
@@ -43,6 +46,10 @@ export async function getClient(
 
   if (phone) {
     result = await getClientPersonByPhone(authedClient, Number(phone));
+  }
+
+  if (preferredName) {
+    result = await getClientPersonByPreferredName(authedClient, preferredName);
   }
 
   if (result?.error) {

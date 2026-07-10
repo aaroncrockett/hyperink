@@ -16,29 +16,45 @@ export function ClientTattooFormContent({ clientId, preferredName }: Props) {
       <input type="hidden" name="client_id" value={clientId} />
 
       {TATTOO_FORM_COLS.map(({ key, inputType }) => (
-        <div key={key}>
-          <label>{EDITABLE_CLIENT_TATTOO_COLS[key].name}</label>
-
+        <div
+          className="flex flex-row justify-start items-center gap-2"
+          key={key}
+        >
           {inputType === "text" && (
-            <input type="text" className="input" name={key} />
+            <>
+              <label>{EDITABLE_CLIENT_TATTOO_COLS[key].name}</label>
+              <input type="text" className="input" name={key} />
+            </>
           )}
 
           {inputType === "number" && (
-            <input type="number" className="input" name={key} />
+            <>
+              <label>{EDITABLE_CLIENT_TATTOO_COLS[key].name}</label>
+              <input type="number" className="input" name={key} />
+            </>
           )}
 
           {inputType === "checkbox" && (
-            <input type="checkbox" className="checkbox" name={key} />
+            <>
+              <input type="checkbox" className="checkbox" name={key} />
+              <label>{EDITABLE_CLIENT_TATTOO_COLS[key].name}</label>
+            </>
           )}
 
           {inputType === "textarea" && (
-            <textarea className="textarea" name={key} />
+            <>
+              <label>{EDITABLE_CLIENT_TATTOO_COLS[key].name}</label>
+              <textarea className="textarea" name={key} />
+            </>
           )}
 
           {inputType === "select" && (
-            <select className="select" name={key}>
-              <option value="">Select...</option>
-            </select>
+            <>
+              <label>{EDITABLE_CLIENT_TATTOO_COLS[key].name}</label>
+              <select className="select" name={key}>
+                <option value="">Select...</option>
+              </select>
+            </>
           )}
         </div>
       ))}

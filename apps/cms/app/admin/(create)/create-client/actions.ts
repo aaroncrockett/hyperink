@@ -33,7 +33,7 @@ export async function createClient(formData: FormData) {
   }
   if (createTattoo) {
     redirect(
-      `/admin/create-tattoo-record?clientId=${client.id}&clientPreferredName=${client.preferred_name}`,
+      `/admin/create-tattoo-record?clientId=${client.id}&preferredName=${client.preferred_name}`,
     );
   }
 

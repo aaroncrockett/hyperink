@@ -15,11 +15,11 @@ export const EDITABLE_CLIENT_TATTOO_COLS = {
   },
   deposit_amount_progress: {
     key: "deposit_amount_progress",
-    name: "Deposit Progress",
+    name: "Deposit Amount Paid",
   },
   deposit_amount_paid_at: {
     key: "deposit_amount_paid_at",
-    name: "Deposit Paid At",
+    name: "Deposit Payment Complete",
   },
   drawing_amount: {
     key: "drawing_amount",
@@ -27,11 +27,11 @@ export const EDITABLE_CLIENT_TATTOO_COLS = {
   },
   drawing_amount_progress: {
     key: "drawing_amount_progress",
-    name: "Drawing Progress",
+    name: "Drawing Amount Paid",
   },
   drawing_amount_paid_at: {
     key: "drawing_amount_paid_at",
-    name: "Drawing Paid At",
+    name: "Drawing Payment Complete",
   },
   total_price: {
     key: "total_price",
@@ -39,11 +39,11 @@ export const EDITABLE_CLIENT_TATTOO_COLS = {
   },
   paid_progress: {
     key: "paid_progress",
-    name: "Paid Progress",
+    name: "Paid Amount",
   },
   total_paid_at: {
     key: "total_paid_at",
-    name: "Total Paid At",
+    name: "Total Payment Complete",
   },
   notes: {
     key: "notes",

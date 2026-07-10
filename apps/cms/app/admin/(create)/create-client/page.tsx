@@ -30,6 +30,11 @@ export default function CreateClientPage() {
             Email Address
           </label>
           <input id="email" name="email" type="email" className="input" />
+        </div>
+        <div className="flex flex-row gap-2 justify-start items-center">
+          <label htmlFor="create_tattoo" className="">
+            Create A Tattoo with the client
+          </label>
           <input
             id="create_tattoo"
             name="create_tattoo"
