@@ -1,4 +1,4 @@
-export const TABLE_TATTOO_IMAGES = "tattoo_images";
+export const TABLE_TATTOO_IMAGE = "tattoo_image";
 export const BUCKET = "user-images";
 
 export const EDITABLE_COLS = {

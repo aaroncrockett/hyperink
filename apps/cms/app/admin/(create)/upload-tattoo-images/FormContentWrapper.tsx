@@ -1,6 +1,5 @@
+"use server";
 import {
-  getProfileTaggingOptionsByGroups,
-  getProfileTaggingOptionsByCategories,
   getProfileTaggingOptionsByStyles,
   getProfileTaggingOptionsByTags,
 } from "@inktree/db";
@@ -12,18 +11,8 @@ const client = await createServerClientAndAuth();
 
 export default async function FormContentWrapper() {
   const styles = (await getProfileTaggingOptionsByStyles(client)) as string[];
-  const categories = (await getProfileTaggingOptionsByCategories(
-    client,
-  )) as string[];
-  const groups = (await getProfileTaggingOptionsByGroups(client)) as string[];
+
   const tags = (await getProfileTaggingOptionsByTags(client)) as string[];
 
-  return (
-    <FormContent
-      styles={styles}
-      categories={categories}
-      groups={groups}
-      tags={tags}
-    />
-  );
+  return <FormContent styles={styles} tags={tags} />;
 }

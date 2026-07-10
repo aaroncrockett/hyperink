@@ -14,11 +14,12 @@ import {
 import type {
   SupabaseConfig,
   Client,
-  Tattoo,
-  UserImage,
+  TattooImage,
+  ClientTattoo,
   Profile,
 } from "@inktree/db";
-export type { Client, Tattoo, UserImage, Profile };
+
+export type { Client, TattooImage, ClientTattoo, Profile };
 
 export {
   exchangeCodeForSession,

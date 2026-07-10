@@ -14,17 +14,10 @@ import { Heading } from "@inktree/ui-react/components";
 
 export type FormContentProps = {
   styles: string[];
-  categories: string[];
-  groups: string[];
   tags: string[];
 };
 
-export default function FormContent({
-  styles,
-  categories,
-  groups,
-  tags,
-}: FormContentProps) {
+export default function FormContent({ styles, tags }: FormContentProps) {
   const [files, setFiles] = useState<ImageFile[]>([]);
 
   console.log("FormContent files:", files);
@@ -71,12 +64,7 @@ export default function FormContent({
           </div>
         </>
       )}
-      <FilesData
-        styles={styles}
-        categories={categories}
-        groups={groups}
-        tags={tags}
-      />
+      <FilesData styles={styles} tags={tags} />
     </div>
   );
 }

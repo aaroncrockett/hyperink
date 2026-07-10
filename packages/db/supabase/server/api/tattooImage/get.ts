@@ -1,11 +1,11 @@
 import { getPublicUrl } from "../../../../index";
-import { TABLE_TATTOO_IMAGES as TABLE, BUCKET } from "./consts";
+import { TABLE_TATTOO_IMAGE as TABLE, BUCKET } from "./consts";
 
 type QueryOptions = {
   pinned?: boolean;
 };
 
-import type { Client, UserImage } from "../../../../index";
+import type { Client, TattooImage } from "../../../../index";
 
 export async function getUserImages(authedClient: Client, number?: number) {
   let query = authedClient.from(TABLE).select("*");

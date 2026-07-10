@@ -1,10 +1,10 @@
-import type { Client, UserImage } from "../../../../index";
-import { TABLE_TATTOO_IMAGES as TABLE } from "./consts";
+import type { Client, TattooImage } from "../../../types";
+import { TABLE_TATTOO_IMAGE as TABLE } from "./consts";
 
 export async function updateUserImage(
   authedClient: Client,
   id: string,
-  updates: Partial<UserImage>,
+  updates: Partial<TattooImage>,
 ) {
   return authedClient
     .from(TABLE)

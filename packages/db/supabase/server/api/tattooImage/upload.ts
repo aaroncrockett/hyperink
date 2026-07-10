@@ -1,11 +1,11 @@
 import { removeFile, uploadFile, getPublicUrl } from "../../../../index";
-import type { Client, UserImage } from "../../../../index";
-import { TABLE_TATTOO_IMAGES as TABLE, BUCKET } from "./consts";
+import type { Client, TattooImage } from "../../../../index";
+import { TABLE_TATTOO_IMAGE as TABLE, BUCKET } from "./consts";
 
 export async function storeUserImageData(
   authedClient: Client,
   path: string,
-  params: Partial<UserImage>,
+  params: Partial<TattooImage>,
 ) {
   const { error } = await authedClient.from(TABLE).insert({
     ...params,
@@ -18,7 +18,7 @@ export async function storeUserImageData(
 export async function uploadUserImage(
   authedClient: Client,
   file: File,
-  params: Partial<UserImage>,
+  params: Partial<TattooImage>,
 ) {
   const path = `${params.user_id}/${crypto.randomUUID()}`;
   const { error } = await uploadFile(authedClient, {

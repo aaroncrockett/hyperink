@@ -1,4 +1,7 @@
-import Link from "next/link";
+import type { ReactNode } from "react";
+
+import AdminNav from "./AdminNav";
+
 import {
   createServerClientAndAuth,
   getAuthedUser,
@@ -9,7 +12,7 @@ import type { Client } from "@/utils/db/server";
 export default async function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   const authedClient: Client = await createServerClientAndAuth();
 
@@ -17,39 +20,18 @@ export default async function RootLayout({
     data: { user },
   } = await getAuthedUser(authedClient);
 
-  let userId: string | undefined = undefined;
+  let userId: string | undefined;
 
   if (user) {
     const { data } = await getProfileId(authedClient, user.id);
-    userId = data?.id?.toString() ?? undefined;
+    userId = data?.id?.toString();
   }
+
   return (
-    <div lang="en" className="">
-      <div className="flex flex-row gap-4 bg-surface-50 ">
-        {userId ? (
-          <ul className="flex flex-col gap-2 p-4 bg-surface-100">
-            <li>
-              <Link href="/admin/create-tattoo-options">
-                Create Tattoo Options
-              </Link>
-            </li>
-            <li>
-              <Link href="/admin/create-tattoo-record">
-                Create a tattoo record
-              </Link>
-            </li>
-            <li>
-              <Link href="/admin/upload-tattoo-images">
-                Upload tattoo images
-              </Link>
-            </li>
-            <li>
-              <Link href="/admin/create-flash">Create Flash</Link>
-            </li>
-          </ul>
-        ) : (
-          <>fill out yo profile</>
-        )}
+    <div lang="en" className="h-screen">
+      <div className="grid grid-cols-[220px_1fr] bg-surface-50 h-full">
+        {userId ? <AdminNav /> : <>fill out yo profile</>}
+
         <div className="p-4 w-full">{children}</div>
       </div>
     </div>
