@@ -19,7 +19,7 @@ export type FormContentProps = {
   tags: string[];
 };
 
-export default function FormContent({
+export function ImagesFormContent({
   styles,
   categories,
   groups,

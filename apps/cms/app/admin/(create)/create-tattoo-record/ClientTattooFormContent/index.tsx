@@ -1,0 +1,1 @@
+export { ClientTattooFormContent } from "./FormContent";

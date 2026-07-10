@@ -1,1 +1,1 @@
-export { default as CreateImagesFormContent } from "./FormContent";
+export { ImagesFormContent } from "./FormContent";

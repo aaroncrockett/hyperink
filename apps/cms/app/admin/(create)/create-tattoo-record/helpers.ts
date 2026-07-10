@@ -1,6 +1,6 @@
-import { EDITABLE_TATTOO_COLS } from "@inktree/db";
+import { EDITABLE_CLIENT_TATTOO_COLS } from "@inktree/db";
 
-type TattooColKey = keyof typeof EDITABLE_TATTOO_COLS;
+type TattooColKey = keyof typeof EDITABLE_CLIENT_TATTOO_COLS;
 
 export const TATTOO_FORM_COLS = [
   { key: "title", inputType: "text" },
@@ -19,10 +19,3 @@ export const TATTOO_FORM_COLS = [
   key: TattooColKey;
   inputType: "text" | "number" | "checkbox" | "textarea" | "select";
 }[];
-
-// export const CREATE_TATTOO_FORM_FIELDS = CREATE_TATTOO_FORM_COLS.map(
-//   ({ key, inputType }) => ({
-//     ...EDITABLE_TATTOO_COLS[key],
-//     inputType,
-//   }),
-// );

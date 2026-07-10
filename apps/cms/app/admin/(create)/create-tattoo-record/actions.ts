@@ -1,22 +1,65 @@
 "use server";
 
 import { createServerClientAndAuth, getAuthedUser } from "@/utils/db/server";
+import {
+  getClientPersonByEmail,
+  getClientPersonByPhone,
+  type ClientTable,
+} from "@inktree/db";
 
 type GetClient = {
-  data: {
+  clients: ClientTable | null;
+};
+
+type CreateTattoo = {
+  clientId: string;
+  clientTattoo: {
     id: string;
   } | null;
 };
+
 export async function getClient(
   _prevState: GetClient,
   formData: FormData,
 ): Promise<GetClient> {
+  const authedClient = await createServerClientAndAuth();
+
+  const {
+    data: { user },
+  } = await getAuthedUser(authedClient);
+
+  if (!user) {
+    throw new Error("Unauthorized");
+  }
+
+  const email = formData.get("email")?.toString();
+  const phoneValue = formData.get("phone")?.toString();
+
+  let result;
+
+  if (email) {
+    result = await getClientPersonByEmail(authedClient, email);
+  } else if (phoneValue) {
+    result = await getClientPersonByPhone(authedClient, Number(phoneValue));
+  } else {
+    return {
+      clients: [],
+    };
+  }
+
+  if (result.error) {
+    throw new Error(result.error.message);
+  }
+
   return {
-    data: { id: "" },
+    clients: result.data,
   };
 }
 
-export async function createTattoo(formData: FormData) {
+export async function createTattoo(
+  prevState: CreateTattoo,
+  formData: FormData,
+) {
   const authedClient = await createServerClientAndAuth();
 
   const {
@@ -48,13 +91,16 @@ export async function createTattoo(formData: FormData) {
   //   };
 
   //   const { error } = await authedClient
-  //     .from("tattoos")
+  //     .from("client_tattoo")
   //     .insert(tattooData);
 
   //   if (error) throw new Error(error.message);
 
   // redirect("/admin/tattoos");
   return {
-    data: [],
+    clientId: "",
+    clientTattoo: {
+      id: "",
+    },
   };
 }
