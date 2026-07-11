@@ -1,7 +1,7 @@
 import type { Client, ClientTable } from "../../../../index";
-import { TABLE_CLIENT_PERSON as TABLE } from "./consts";
+import { TABLE_CLIENT_TATTOO as TABLE } from "./consts";
 
-export async function createClientPerson(
+export async function createClientTattoo(
   authedClient: Client,
   params: Partial<ClientTable>,
 ) {

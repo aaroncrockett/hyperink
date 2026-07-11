@@ -64,12 +64,12 @@ export async function getClientPeopleByTattooYear(
       *,
       client_tattoo!inner (
         id,
-        completed_at
+        created_at
       )
     `,
     )
-    .gte("client_tattoo.completed_at", startDate)
-    .lt("client_tattoo.completed_at", endDate);
+    .gte("client_tattoo.created_at", startDate)
+    .lt("client_tattoo.created_at", endDate);
 
   return { data, error };
 }

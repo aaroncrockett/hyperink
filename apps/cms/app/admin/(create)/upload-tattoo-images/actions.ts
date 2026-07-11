@@ -117,7 +117,7 @@ export async function uploadImage(
 ): Promise<FormState> {
   try {
     const { files, styles, tags, setOrder, readableNames } =
-      await getImageFormInputs(formData);
+      getImageFormInputs(formData);
 
     const authedClient = await createServerClientAndAuth();
 

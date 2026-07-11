@@ -5,18 +5,16 @@ import {
   getClientPersonByEmail,
   getClientPersonByPhone,
   getClientPersonByPreferredName,
+  getClientPeopleByTattooYear,
+  createClientTattoo,
   type ClientTable,
 } from "@inktree/db";
 
+import { redirect } from "next/navigation";
+
+import { getClientTattooInputs } from "./helpers";
 type GetClient = {
   clients: ClientTable | null;
-};
-
-type CreateTattoo = {
-  clientId: string;
-  clientTattoo: {
-    id: string;
-  } | null;
 };
 
 export async function getClient(
@@ -36,7 +34,7 @@ export async function getClient(
   const email = formData.get("email")?.toString();
   const phone = formData.get("phone")?.toString();
   const preferredName = formData.get("preferredName")?.toString();
-  // const year = formData.get("year")?.toString();
+  const tattooYear = Number(formData.get("tattooYear"));
 
   let result;
 
@@ -52,6 +50,10 @@ export async function getClient(
     result = await getClientPersonByPreferredName(authedClient, preferredName);
   }
 
+  if (tattooYear) {
+    result = await getClientPeopleByTattooYear(authedClient, tattooYear);
+  }
+
   if (result?.error) {
     throw new Error(result.error.message);
   }
@@ -61,10 +63,7 @@ export async function getClient(
   };
 }
 
-export async function createTattoo(
-  prevState: CreateTattoo,
-  formData: FormData,
-) {
+export async function createTattoo(formData: FormData) {
   const authedClient = await createServerClientAndAuth();
 
   const {
@@ -73,39 +72,19 @@ export async function createTattoo(
 
   if (!user) throw new Error("Unauthorized");
 
-  console.log(formData);
+  const tattoos = getClientTattooInputs(formData);
 
-  //   const tattooData = {
-  //     title: formData.get("title"),
-  //     type: formData.get("type"),
-  //     deposit_amount: Number(formData.get("deposit_amount")) || 0,
-  //     deposit_amount_progress:
-  //       Number(formData.get("deposit_amount_progress")) || 0,
-  //     deposit_amount_paid_at:
-  //       formData.get("deposit_amount_paid_at") === "on",
-  //     drawing_amount: Number(formData.get("drawing_amount")) || 0,
-  //     drawing_amount_progress:
-  //       Number(formData.get("drawing_amount_progress")) || 0,
-  //     drawing_amount_paid_at:
-  //       formData.get("drawing_amount_paid_at") === "on",
-  //     total_price: Number(formData.get("total_price")) || 0,
-  //     paid_progress: Number(formData.get("paid_progress")) || 0,
-  //     total_paid_at: formData.get("total_paid_at") === "on",
-  //     notes: formData.get("notes"),
-  //     user_id: user.id,
-  //   };
+  const clientId = formData.get("client_id")?.toString();
 
-  //   const { error } = await authedClient
-  //     .from("client_tattoo")
-  //     .insert(tattooData);
-
-  //   if (error) throw new Error(error.message);
-
-  // redirect("/admin/tattoos");
-  return {
-    clientId: "",
-    clientTattoo: {
-      id: "",
-    },
+  if (!clientId) {
+    throw new Error("Missing client id");
+  }
+  const tattooData = {
+    ...getClientTattooInputs(formData),
+    client_id: clientId,
   };
+
+  const { data, error } = await createClientTattoo(authedClient, tattooData);
+
+  redirect("/admin");
 }

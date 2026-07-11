@@ -1,4 +1,4 @@
-type LookupType = "email" | "phone" | "preferredName";
+import type { LookupType } from "./types";
 
 type Props = {
   lookupType: LookupType;
@@ -46,6 +46,19 @@ export function GetClientFormContent({ lookupType }: Props) {
             placeholder="Client preferred name"
           />
         </div>
+      );
+
+    case "tattooYear":
+      return (
+        <input
+          id="tattooYear"
+          name="tattooYear"
+          type="number"
+          className="input"
+          placeholder="Year Tattooed"
+          min={2000}
+          max={new Date().getFullYear()}
+        />
       );
   }
 }

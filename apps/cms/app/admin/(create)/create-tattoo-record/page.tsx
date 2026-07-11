@@ -14,7 +14,7 @@ import { useActionState, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 
-type LookupType = "email" | "phone" | "preferredName";
+import type { LookupType } from "./types";
 
 const initClientState = {
   clients: null,
@@ -68,6 +68,7 @@ export default function CreateClientTattooPage() {
             <option value="email">Email</option>
             <option value="phone">Phone</option>
             <option value="preferredName">Preferred Name</option>
+            <option value="tattooYear">Tattoo Year</option>
           </select>
 
           <Form action={getClientAction}>

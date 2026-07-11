@@ -1,4 +1,4 @@
-import { TABLE_CLIENT_PERSON_TATTOO as TABLE } from "./consts";
+import { TABLE_CLIENT_TATTOO as TABLE } from "./consts";
 
 import type { Client, TattooImage } from "../../../../index";
 

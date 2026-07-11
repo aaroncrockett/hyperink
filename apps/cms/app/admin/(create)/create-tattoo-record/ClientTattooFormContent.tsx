@@ -1,6 +1,6 @@
 // FormContent.tsx
 
-import { TATTOO_FORM_COLS } from "../helpers";
+import { TATTOO_FORM_COLS } from "./helpers";
 import { EDITABLE_CLIENT_TATTOO_COLS } from "@inktree/db";
 
 type Props = {
@@ -27,12 +27,12 @@ export function ClientTattooFormContent({ clientId, preferredName }: Props) {
             </>
           )}
 
-          {inputType === "number" && (
+          {/* {inputType === "number" && (
             <>
               <label>{EDITABLE_CLIENT_TATTOO_COLS[key].name}</label>
               <input type="number" className="input" name={key} />
             </>
-          )}
+          )} */}
 
           {inputType === "checkbox" && (
             <>
