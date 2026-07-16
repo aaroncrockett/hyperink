@@ -59,6 +59,7 @@ export async function getClient(
   }
 
   return {
+    ..._prevState,
     clients: result?.data,
   };
 }

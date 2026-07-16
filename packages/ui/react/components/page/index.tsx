@@ -16,7 +16,7 @@ export default function Page({
   display = "flex flex-col",
   margin = "mx-auto",
   maxWidth = "max-w-275",
-  padding = "px-4 py-8 lg:py-10",
+  padding = "px-4 !py-6 lg:py-6!",
   space = "space-y-4",
   width = "w-full",
   ...props

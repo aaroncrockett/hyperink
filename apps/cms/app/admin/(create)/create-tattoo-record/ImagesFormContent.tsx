@@ -27,8 +27,6 @@ export function ImagesFormContent({
 }: FormContentProps) {
   const [files, setFiles] = useState<ImageFile[]>([]);
 
-  console.log("FormContent files:", files);
-
   return (
     <div className="grid p-4 border ">
       <Heading text="Upload Files" as="h2" />

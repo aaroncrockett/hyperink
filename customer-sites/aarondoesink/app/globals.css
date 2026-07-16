@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source "../../../packages/ui/react/components/**/*.{js,ts,jsx,tsx}";
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-react";
 @import "./adi.css";

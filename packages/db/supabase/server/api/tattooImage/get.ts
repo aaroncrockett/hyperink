@@ -34,45 +34,41 @@ export async function getUserImages(authedClient: Client, number?: number) {
   return imagesWithUrls;
 }
 
-export async function getUserImagesByGroupsContaining(
-  authedClient: Client,
-  type?: string,
-  number?: number,
-  opts?: QueryOptions,
-) {
-  if (!type) return [];
+// export async function getTattooImagesContaining(
+//   authedClient: Client,
+//   type?: string,
+//   number?: number,
+//   opts?: QueryOptions,
+// ) {
+//   if (!type) return [];
 
-  let query = authedClient.from(TABLE).select("*").or(`groups.cs.["${type}"]`);
+//   let query = authedClient.from(TABLE).select("*").or(`groups.cs.["${type}"]`);
 
-  if (opts?.pinned) {
-    query = query.order("pinned", { ascending: true });
-  }
+//   if (opts?.pinned) {
+//     query = query.order("pinned", { ascending: true });
+//   }
 
-  const { data: images, error } =
-    number !== undefined ? await query.limit(number) : await query;
+//   const { data: images, error } =
+//     number !== undefined ? await query.limit(number) : await query;
 
-  if (error) {
-    console.error(error);
-    return [];
-  }
+//   if (error) {
+//     console.error(error);
+//     return [];
+//   }
 
-  if (!images) return [];
+//   if (!images) return [];
 
-  return Promise.all(
-    images.map(async (img) => {
-      const { data } = await getPublicUrl(authedClient, {
-        bucket: BUCKET,
-        path: img.path,
-      });
+//   return Promise.all(
+//     images.map(async (img) => {
+//       const { data } = await getPublicUrl(authedClient, {
+//         bucket: BUCKET,
+//         path: img.path,
+//       });
 
-      return {
-        ...img,
-        url: data.publicUrl,
-      };
-    }),
-  );
-}
-
-export function getUserImagesByGroups(authedClient: Client) {
-  return authedClient.from(TABLE).select("groups");
-}
+//       return {
+//         ...img,
+//         url: data.publicUrl,
+//       };
+//     }),
+//   );
+// }

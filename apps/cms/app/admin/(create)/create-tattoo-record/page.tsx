@@ -3,7 +3,7 @@
 import { LINKS_ADMIN } from "@/app/consts";
 
 import { ClientTattooFormContent } from "./ClientTattooFormContent";
-import { GetClientFormContent } from "./GetClientFormContent";
+import { GetClientFormContent } from "../GetClientFormContent";
 import { ClientResults } from "./ClientResults";
 
 import { createTattoo, getClient } from "./actions";
@@ -14,10 +14,10 @@ import { useActionState, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 
-import type { LookupType } from "./types";
+import type { LookupType } from "../types";
 
 const initClientState = {
-  clients: null,
+  client: null,
 };
 
 export default function CreateClientTattooPage() {
@@ -25,7 +25,7 @@ export default function CreateClientTattooPage() {
 
   const [lookupType, setLookupType] = useState<LookupType>("email");
 
-  const [clientState, getClientAction] = useActionState(
+  const [clientState, getClientAction, clientPending] = useActionState(
     getClient,
     initClientState,
   );

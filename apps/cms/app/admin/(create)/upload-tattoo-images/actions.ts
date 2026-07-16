@@ -8,8 +8,12 @@ import {
   uploadUserImage,
 } from "@/utils/db/server";
 import {
-  getClientPersonByEmail as getClientPersonByEmailInktree,
-  getClientPersonByPhone as getClientPersonByPhoneInkTree,
+  getClientPersonByEmail,
+  getClientPeopleByTattooYear,
+  getClientPersonByPreferredName,
+  getClientPersonByPhone,
+  // getClientTattoosByClientId,
+  // getClientTattoosByClientIdAndYear,
 } from "@inktree/db";
 import type { ClientTable, ClientTattoo, TattooImage } from "@inktree/db";
 
@@ -17,17 +21,16 @@ import { getImageFormInputs } from "./helpers";
 
 export type ClientFormState = {
   client: Partial<ClientTable> | null;
-  // clientTattoos: Partial<ClientTattoo>[] | null;
-  // tattooImages: Partial<TattooImage>[] | null;
-  error: string | null;
 };
 
 export async function getClient(
-  state: ClientFormState,
+  _prevState: ClientFormState,
   formData: FormData,
 ): Promise<ClientFormState> {
   const email = formData.get("email") as string;
   const phone = formData.get("phone") as string;
+  const tattooYear = Number(formData.get("tattoo_year"));
+  const preferredName = formData.get("preferred_name")?.toString();
 
   const authedClient = await createServerClientAndAuth();
 
@@ -35,81 +38,37 @@ export async function getClient(
     data: { user },
   } = await getAuthedUser(authedClient);
 
-  const newState = {};
-
   if (!user) {
-    return {
-      ...state,
-      error: "unahorized",
-    };
+    throw new Error("Unauthorized");
   }
+
   let client;
+
   if (email) {
-    client = getClientPersonByEmailInktree(authedClient, email);
+    client = await getClientPersonByEmail(authedClient, email);
   }
   if (phone) {
-    client = getClientPersonByEmailInktree(authedClient, phone);
+    client = await getClientPersonByPhone(authedClient, phone);
+  }
+  if (tattooYear) {
+    client = await getClientPeopleByTattooYear(authedClient, tattooYear);
+  }
+  if (preferredName) {
+    client = await getClientPersonByPreferredName(authedClient, preferredName);
   }
 
   if (!client) {
     return {
-      ...state,
+      ..._prevState,
       client: null,
-      error: "no client",
     };
   }
 
   return {
-    ...state,
+    ..._prevState,
     client: client,
-    error: null,
   };
 }
-
-// export async function getClientPersonByPhone(
-//   state: FormState,
-//   formData: FormData,
-// ): Promise<FormState> {
-//   const phone = formData.get("phone");
-
-//   if (typeof phone !== "string") {
-//     return {
-//       ...state,
-//       client: null,
-//       error: "Invalid phone",
-//     };
-//   }
-
-//   const authedClient = await createServerClientAndAuth();
-
-//   const {
-//     data: { user },
-//   } = await getAuthedUser(authedClient);
-
-//   if (!user) {
-//     return {
-//       ...state,
-//       client: null,
-//       error: "unauthorized",
-//     };
-//   }
-
-//   const client = await getClientPersonByPhoneInkTree(authedClient, phone);
-
-//   if (!client) {
-//     return {
-//       ...state,
-//       client: null,
-//       error: "no client",
-//     };
-//   }
-
-//   return {
-//     ...state,
-//     client,
-//     error: null,
-//   };
-// }
 
 export async function uploadImage(
   state: FormState,

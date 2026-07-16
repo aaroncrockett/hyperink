@@ -17,12 +17,12 @@ export async function getClientPersonByEmail(
 
 export async function getClientPersonByPhone(
   authedClient: Client,
-  string: number,
+  phone: string,
 ) {
   const { data, error } = await authedClient
     .from(TABLE)
     .select("*")
-    .eq("phone", string);
+    .eq("phone", phone);
 
   return { data, error };
 }

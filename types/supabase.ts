@@ -316,45 +316,48 @@ export type Database = {
       }
       flash: {
         Row: {
-          availability: number | null
           collections: Json | null
           created_at: string | null
           id: string
           meta_data: Json | null
           name: string | null
+          number_sold: number | null
           path: string
           pinned_order: number | null
           readable_name: string | null
+          sold_at: string | null
           styles: Json | null
           tags: Json | null
           total_availability: number | null
           user_id: string
         }
         Insert: {
-          availability?: number | null
           collections?: Json | null
           created_at?: string | null
           id?: string
           meta_data?: Json | null
           name?: string | null
+          number_sold?: number | null
           path: string
           pinned_order?: number | null
           readable_name?: string | null
+          sold_at?: string | null
           styles?: Json | null
           tags?: Json | null
           total_availability?: number | null
           user_id: string
         }
         Update: {
-          availability?: number | null
           collections?: Json | null
           created_at?: string | null
           id?: string
           meta_data?: Json | null
           name?: string | null
+          number_sold?: number | null
           path?: string
           pinned_order?: number | null
           readable_name?: string | null
+          sold_at?: string | null
           styles?: Json | null
           tags?: Json | null
           total_availability?: number | null
