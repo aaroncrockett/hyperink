@@ -49,16 +49,18 @@ export default function CreateClientTattooPage() {
         </Form>
       ) : (
         <>
-          <Heading as="h4" text="Lookup A client" />
-          <p>
-            No client created yet?{" "}
-            <Link
-              className="text-secondary-500"
-              href={LINKS_ADMIN.createClient.href}
-            >
-              {LINKS_ADMIN.createClient.label}
-            </Link>
-          </p>
+          <div className="flex items-center gap-2">
+            <Heading as="h3" text="Lookup A client" />
+            <p className="flex items-center gap-2 whitespace-nowrap">
+              <span>No client created yet?</span>
+              <Link
+                className="text-secondary-500"
+                href={LINKS_ADMIN.createClient.href}
+              >
+                {LINKS_ADMIN.createClient.label}
+              </Link>
+            </p>
+          </div>
 
           <label className="lable">Lookup By</label>
           <select
