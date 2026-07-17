@@ -1,5 +1,6 @@
-export { default as Card } from "./card";
-export { default as Form } from "./form";
+export { default as Card } from "./Card";
+export { default as Form } from "./Form";
 // export { default as Gallery } from "./gallery";
-export { default as Heading } from "./heading";
-export { default as Page } from "./page";
+export { default as Heading } from "./Heading";
+export { default as Page } from "./Page";
+export { default as SelectState } from "./SelectState";

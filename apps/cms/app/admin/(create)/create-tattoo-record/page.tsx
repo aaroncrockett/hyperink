@@ -62,26 +62,6 @@ export default function CreateClientTattooPage() {
             </p>
           </div>
 
-          <label className="lable">Lookup By</label>
-          <select
-            value={lookupType}
-            onChange={(e) => setLookupType(e.target.value as LookupType)}
-            className="select"
-          >
-            <option value="email">Email</option>
-            <option value="phone">Phone</option>
-            <option value="preferredName">Preferred Name</option>
-            <option value="tattooYear">Tattoo Year</option>
-          </select>
-
-          <Form
-            action={async () => {
-              return await getClientAction();
-            }}
-          >
-            <FormContentGetClient lookupType={lookupType} />
-          </Form>
-
           {clientState.clients?.length ? (
             <ClientResults
               clients={clientState.clients}

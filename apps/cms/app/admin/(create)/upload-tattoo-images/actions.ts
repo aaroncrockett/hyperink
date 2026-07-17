@@ -48,16 +48,23 @@ export async function getClient(
   let client;
 
   if (email) {
-    client = await getClientPersonByEmail(authedClient, email);
+    const result = await getClientPersonByEmail(authedClient, email);
+    client = result.data;
   }
   if (phone) {
-    client = await getClientPersonByPhone(authedClient, phone);
+    const result = await getClientPersonByPhone(authedClient, phone);
+    client = result.data;
   }
-  if (tattooYear) {
-    client = await getClientPeopleByTattooYear(authedClient, tattooYear);
-  }
+  // if (tattooYear) {
+  //   const clients = await getClientPeopleByTattooYear(authedClient, tattooYear);
+  //   client = clients?.data?.[0] || null;
+  // }
   if (preferredName) {
-    client = await getClientPersonByPreferredName(authedClient, preferredName);
+    const result = await getClientPersonByPreferredName(
+      authedClient,
+      preferredName,
+    );
+    client = result.data;
   }
 
   if (!client) {
