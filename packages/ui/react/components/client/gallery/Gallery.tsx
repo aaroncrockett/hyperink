@@ -6,11 +6,11 @@ export const dynamic = "force-dynamic";
 
 import { createServerClientAndAuth } from "@/utils/db/server";
 
-import { getUserImagesByGroup } from "@inktree/db";
+import { getTattooImagesByGroup } from "@inktree/db";
 
 const authedClient = await createServerClientAndAuth();
 
-const images = await getUserImagesByGroup(
+const images = await getTattooImagesByGroup(
   authedClient,
   {
     name: "groups",

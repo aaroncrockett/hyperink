@@ -1,12 +1,19 @@
-import type { ClientTable } from "../../../types";
+import type { ClientTable } from "@inktree/db";
 
 export const TABLE_CLIENT_PERSON = "client";
 
 export const CLIENT_COLS = [
   "id",
-  "preferred_name",
+  "user_id",
+  "created_at",
+  "bluesky_id",
   "email",
+  "first_name",
+  "gender",
+  "instagram_id",
+  "last_name",
   "phone",
+  "preferred_name",
 ] as const satisfies (keyof ClientTable)[];
 
 export const CLIENT_COLS_KEY_VAL = CLIENT_COLS.reduce(

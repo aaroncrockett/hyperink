@@ -14,12 +14,13 @@ import {
 import {
   createServerClientAndAuth,
   getAuthedUser,
-  uploadUserImage,
+  uploadTattooImage,
 } from "@/utils/db/server";
-import type { ClientTwable } from "@inktree/db";
+
+import type { ClientTable } from "@inktree/db";
 
 // local
-import { getImageFormInputs } from "./helpers";
+import { getImageFormInputs } from "./_helpers";
 
 export type ClientFormState = {
   client: Partial<ClientTable> | null;
@@ -99,7 +100,7 @@ export async function uploadImage(
 
     const uploads = await Promise.all(
       files.map((file, index) =>
-        uploadUserImage(authedClient, file, {
+        uploadTattooImage(authedClient, file, {
           styles,
           tags,
           readable_name: readableNames[index],

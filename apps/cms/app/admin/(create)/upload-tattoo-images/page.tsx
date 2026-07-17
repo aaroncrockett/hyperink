@@ -1,18 +1,19 @@
 "use client";
-// react
+// React
 import { useActionState, useState } from "react";
-// inktree
+// Inktree
 import { Form, Heading, Page } from "@inktree/ui-react/components/client";
-// local
+// Local Parent(s)
+import { FormContentGetClient } from "../(features)/FormContentGetClient/";
+import type { LookupType } from "../(features)/FormContentGetClient/types";
+// Local
 import { getClient } from "./actions";
-import { GetClientFormContent } from "../GetClientFormContent";
-import type { LookupType } from "../types";
 
 const initClientState = {
   client: null,
 };
 
-export default function UploadImagePage() {
+export default function UploadTattooImagePage() {
   const [clientState, clientAction] = useActionState(
     getClient,
     initClientState,
@@ -37,7 +38,7 @@ export default function UploadImagePage() {
       </select>
 
       <Form action={async (formData: FormData) => await clientAction(formData)}>
-        <GetClientFormContent lookupType={lookupType} />
+        <FormContentGetClient lookupType={lookupType} />
       </Form>
       {clientState.client?.email ? "email" : "none"}
       {clientState.client?.phone ? "phone?" : "no phone bro"}

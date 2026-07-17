@@ -12,7 +12,7 @@ import {
 
 import { redirect } from "next/navigation";
 
-import { getClientTattooInputs } from "./helpers";
+import { getClientTattooInputs } from "./_helpers";
 type GetClient = {
   clients: ClientTable | null;
 };

@@ -1,13 +1,13 @@
-import { getPublicUrl } from "../../../../index";
+import { getPublicUrl } from "@inktree/db/supabase/server";
 import { TABLE_TATTOO_IMAGE as TABLE, BUCKET } from "./consts";
 
 type QueryOptions = {
   pinned?: boolean;
 };
 
-import type { Client, TattooImage } from "../../../../index";
+import type { Client, TattooImage } from "@inktree/db";
 
-export async function getUserImages(authedClient: Client, number?: number) {
+export async function getTattooImages(authedClient: Client, number?: number) {
   let query = authedClient.from(TABLE).select("*");
 
   if (number !== undefined) {

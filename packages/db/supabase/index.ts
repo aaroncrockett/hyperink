@@ -8,4 +8,4 @@ export type {
   ClientTable,
 } from "./types";
 
-export type { Database } from "./types/tables";
+export type { Database } from "@inktree/db/supabase/types/supabase";

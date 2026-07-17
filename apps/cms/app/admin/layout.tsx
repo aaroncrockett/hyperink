@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import AdminNav from "./AdminNav";
+import AdminNav from "./_components/AdminNav";
 
 import {
   createServerClientAndAuth,

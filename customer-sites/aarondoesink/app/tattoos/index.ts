@@ -1,4 +1,4 @@
-import { getUserImages } from "@inktree/db";
+import { getTattooImages } from "@inktree/db";
 import { createServerClientAndAuth } from "@/utils/db/server";
 export async function getImages() {
   // const authClient = await createServerClientAndAuth();

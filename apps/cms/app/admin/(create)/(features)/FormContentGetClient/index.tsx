@@ -4,7 +4,7 @@ type Props = {
   lookupType: LookupType;
 };
 
-export function GetClientFormContent({ lookupType }: Props) {
+export function FormContentGetClient({ lookupType }: Props) {
   switch (lookupType) {
     case "email":
       return (

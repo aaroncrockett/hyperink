@@ -8,7 +8,7 @@ import {
   signInWithPassword,
   signUp,
   signInWithOAuth,
-  uploadUserImage,
+  uploadTattooImage,
 } from "@inktree/db";
 
 import type {
@@ -28,7 +28,7 @@ export {
   signInWithOAuth,
   signInWithPassword,
   signUp,
-  uploadUserImage,
+  uploadTattooImage,
   verifyOtp,
 };
 

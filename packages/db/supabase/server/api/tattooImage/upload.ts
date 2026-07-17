@@ -2,7 +2,7 @@ import { removeFile, uploadFile, getPublicUrl } from "../../../../index";
 import type { Client, TattooImage } from "../../../../index";
 import { TABLE_TATTOO_IMAGE as TABLE, BUCKET } from "./consts";
 
-export async function storeUserImageData(
+export async function storeTattooImageData(
   authedClient: Client,
   path: string,
   params: Partial<TattooImage>,
@@ -15,7 +15,7 @@ export async function storeUserImageData(
   return error;
 }
 
-export async function uploadUserImage(
+export async function uploadTattooImage(
   authedClient: Client,
   file: File,
   params: Partial<TattooImage>,
@@ -29,7 +29,7 @@ export async function uploadUserImage(
 
   if (error) throw error;
 
-  const dbError = await storeUserImageData(authedClient, path, params);
+  const dbError = await storeTattooImageData(authedClient, path, params);
 
   if (dbError) {
     await removeFile(authedClient, { bucket: BUCKET, path });
