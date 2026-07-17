@@ -1,27 +1,22 @@
 "use client";
-
+// react
 import { useActionState, useState } from "react";
-import { Form, Heading, Page } from "@inktree/ui-react/components";
-
-import type { LookupType } from "../types";
-
-// import FormContent from "./FormContentWrapper";
+// inktree
+import { Form, Heading, Page } from "@inktree/ui-react/components/client";
+// local
 import { getClient } from "./actions";
 import { GetClientFormContent } from "../GetClientFormContent";
+import type { LookupType } from "../types";
+
 const initClientState = {
   client: null,
 };
 
 export default function UploadImagePage() {
-  const [clientState, clientAction, clientPending] = useActionState(
+  const [clientState, clientAction] = useActionState(
     getClient,
     initClientState,
   );
-
-  // const [uploadState, uploadAction, uploadPending] = useActionState(
-  //   uploadImage,
-  //   initialState,
-  // );
 
   const [lookupType, setLookupType] = useState<LookupType>("email");
 
@@ -41,7 +36,7 @@ export default function UploadImagePage() {
         <option value="tattooYear">Tattoo Year</option>
       </select>
 
-      <Form action={clientAction}>
+      <Form action={async (formData: FormData) => await clientAction(formData)}>
         <GetClientFormContent lookupType={lookupType} />
       </Form>
       {clientState.client?.email ? "email" : "none"}

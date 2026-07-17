@@ -1,4 +1,5 @@
-import { Heading, Page, ServerForm } from "@inktree/ui-react/components";
+import { Heading, Page } from "@inktree/ui-react/components/client";
+import { Form as ServerForm } from "@inktree/ui-react/components/server";
 
 import { createClient } from "./actions";
 

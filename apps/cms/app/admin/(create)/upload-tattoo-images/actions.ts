@@ -1,22 +1,24 @@
 "use server";
-
+// node
 import { randomUUID } from "crypto";
 
-import {
-  createServerClientAndAuth,
-  getAuthedUser,
-  uploadUserImage,
-} from "@/utils/db/server";
+// inktree
 import {
   getClientPersonByEmail,
   getClientPeopleByTattooYear,
   getClientPersonByPreferredName,
   getClientPersonByPhone,
-  // getClientTattoosByClientId,
-  // getClientTattoosByClientIdAndYear,
 } from "@inktree/db";
-import type { ClientTable, ClientTattoo, TattooImage } from "@inktree/db";
 
+// local outter
+import {
+  createServerClientAndAuth,
+  getAuthedUser,
+  uploadUserImage,
+} from "@/utils/db/server";
+import type { ClientTwable } from "@inktree/db";
+
+// local
 import { getImageFormInputs } from "./helpers";
 
 export type ClientFormState = {

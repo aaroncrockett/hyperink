@@ -4,7 +4,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 
 export type Client = SupabaseClient<Database>;
 
-import type { Database } from "./tables";
+import type { Database } from "./supabase";
 
 type PlainRows<T extends Record<string, any>> = {
   [K in keyof T]: T[K] extends { Row: infer R } ? R : never;

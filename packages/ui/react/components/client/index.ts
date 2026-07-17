@@ -1,5 +1,4 @@
 export { default as Card } from "./card";
-export { default as ServerForm } from "./server/form";
 export { default as Form } from "./form";
 // export { default as Gallery } from "./gallery";
 export { default as Heading } from "./heading";

@@ -1,4 +1,4 @@
-import type { ClientTable } from "../../../types";
+import type { ClientTable } from "";
 
 export const TABLE_CLIENT_PERSON = "client";
 

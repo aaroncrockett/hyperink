@@ -1,0 +1,9 @@
+{
+  "name": "@inktree/helpers",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@inktree/db": "workspace:*",
+    "@inktree/utils": "workspace:*"
+  }
+}

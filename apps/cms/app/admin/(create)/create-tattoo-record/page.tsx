@@ -8,7 +8,7 @@ import { ClientResults } from "./ClientResults";
 
 import { createTattoo, getClient } from "./actions";
 
-import { Form, Heading, Page } from "@inktree/ui-react/components";
+import { Form, Heading, Page } from "@inktree/ui-react/components/client";
 
 import { useActionState, useState } from "react";
 import { useSearchParams } from "next/navigation";
