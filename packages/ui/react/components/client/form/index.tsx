@@ -4,7 +4,7 @@ import { cn } from "@inktree/utils";
 import { ReactNode, ComponentPropsWithoutRef } from "react";
 
 type FormProps = ComponentPropsWithoutRef<"form"> & {
-  action: (formData: FormData) => Promise<void>;
+  action: ComponentPropsWithoutRef<"form">["action"];
   children: ReactNode;
   padding?: string;
   space?: string;
