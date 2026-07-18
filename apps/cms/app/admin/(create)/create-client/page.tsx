@@ -6,7 +6,11 @@ import { Form } from "@inktree/ui-react/components/client";
 import FormContentCreateClient from "./_components/FormContentCrdeateClient";
 
 const initialState = {
-  errors: {},
+  errors: {
+    unauthorized: "",
+    createPerson: "",
+  },
+  client: {},
 };
 
 export default function CreateClientPage() {
@@ -15,6 +19,23 @@ export default function CreateClientPage() {
   return (
     <Form action={action}>
       <FormContentCreateClient errors={state.errors} />
+
+      {state.errors.unauthorized && (
+        <p className="text-red-500">{state.errors.unauthorized}</p>
+      )}
+
+      {state.errors.createPerson && (
+        <p className="text-red-500">{state.errors.createPerson}</p>
+      )}
+      {Object.entries(state.errors).map(([key, error]) => {
+        if (!error) return null;
+
+        return (
+          <p key={key} className="text-red-500">
+            {key}: {error}
+          </p>
+        );
+      })}
     </Form>
   );
 }

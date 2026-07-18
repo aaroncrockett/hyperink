@@ -1,4 +1,4 @@
-import { CreateClientColsOptions } from "@/app/admin/(data)";
+import { CreateClientColsOptions } from "@/utils/db/clientPersons";
 
 export default function FormContentCreateClient({
   errors,

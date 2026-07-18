@@ -1,15 +1,16 @@
 "use server";
 // Next.js
 import { redirect } from "next/navigation";
-
 // local outter
-import { CreateClientCols } from "@/app/admin/(data)";
+import { CreateClientCols } from "@/utils/db/clientPersons";
+import type { ClientTable } from "@/utils/db/types";
 import { createServerClientAndAuth, getAuthedUser } from "@/utils/db/server";
-import { createClientPerson } from "@inktree/db";
+import { createClientPerson } from "@/utils/db/clientPersons";
 import { handleStringFormValues } from "@inktree/utils";
 
 export type ClientFormState = {
   errors: Record<string, string>;
+  client?: ClientTable;
 };
 
 export async function createClient(
@@ -17,7 +18,9 @@ export async function createClient(
   formData: FormData,
 ): Promise<ClientFormState> {
   // create Errors object for each action function
-  let errors = { unauthorized: "", createPerson: "" };
+
+  console.log("prev state");
+  console.log(_prevState);
 
   const {
     hasError: hasClientError,
@@ -26,28 +29,17 @@ export async function createClient(
   } = handleStringFormValues(formData, CreateClientCols);
 
   if (hasClientError) {
-    errors = {
-      ...errors,
-      ...clientErrors,
+    return {
+      ..._prevState,
+      errors: {
+        ..._prevState.errors,
+        ...clientErrors,
+      },
     };
-
-    return { errors };
   }
 
-  const {
-    hasError,
-    values: createTattooValue,
-    errors: createTattooError,
-  } = handleStringFormValues(formData, ["create_tattoo"]);
+  const createTattooValue = formData.get("create_tattoo");
 
-  if (hasError) {
-    errors = {
-      ...errors,
-      ...createTattooError,
-    };
-
-    return { errors };
-  }
   const authedClient = await createServerClientAndAuth();
 
   const {
@@ -58,11 +50,13 @@ export async function createClient(
     const unauthorizedError = {
       unauthorized: "the person is unauthorized",
     };
-    errors = {
-      ...errors,
-      ...unauthorizedError,
+    return {
+      ..._prevState,
+      errors: {
+        ..._prevState.errors,
+        ...unauthorizedError,
+      },
     };
-    return { errors };
   }
 
   const { data: client, error } = await createClientPerson(authedClient, {
@@ -71,15 +65,16 @@ export async function createClient(
   });
 
   if (error) {
-    console.log(error);
     const createpersonError = {
       createPerson: "error creating a perseon with supabase",
     };
-    errors = {
-      ...errors,
-      ...createpersonError,
+    return {
+      ..._prevState,
+      errors: {
+        ..._prevState.errors,
+        ...createpersonError,
+      },
     };
-    return { errors };
   }
 
   if (createTattooValue) {

@@ -11,15 +11,7 @@ import {
   uploadTattooImage,
 } from "@inktree/db";
 
-import type {
-  SupabaseConfig,
-  Client,
-  TattooImage,
-  ClientTattoo,
-  Profile,
-} from "@inktree/db";
-
-export type { Client, TattooImage, ClientTattoo, Profile };
+import type { SupabaseConfig, Client } from "@inktree/db";
 
 export {
   exchangeCodeForSession,

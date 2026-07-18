@@ -1,4 +1,8 @@
-import type { ClientTable } from "@inktree/db";
+import type { ClientTable } from "../types";
+
+import { createClientPerson as dbCreateClientPerson } from "@inktree/db";
+
+export const createClientPerson = dbCreateClientPerson;
 
 export const LookupClientCols = [
   "email",
