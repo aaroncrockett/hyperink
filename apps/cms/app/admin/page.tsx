@@ -1,13 +1,11 @@
-import Link from "next/link";
 import {
   createServerClientAndAuth,
   getAuthedUser,
   getProfileId,
 } from "@/utils/db/server";
-import type { Client } from "@/utils/db/server";
 
 export default async function AdminPage() {
-  const authedClient: Client = await createServerClientAndAuth();
+  const authedClient = await createServerClientAndAuth();
 
   const {
     data: { user },
