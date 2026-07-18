@@ -7,6 +7,7 @@ import type { ClientTable } from "@/utils/db/types";
 import { createServerClientAndAuth, getAuthedUser } from "@/utils/db/server";
 import { createClientPerson } from "@/utils/db/clientPersons";
 import { handleStringFormValues } from "@inktree/utils";
+import { LINKS_ADMIN } from "@/app/consts";
 
 export type ClientFormState = {
   errors: Record<string, string>;
@@ -17,11 +18,6 @@ export async function createClient(
   _prevState: ClientFormState,
   formData: FormData,
 ): Promise<ClientFormState> {
-  // create Errors object for each action function
-
-  console.log("prev state");
-  console.log(_prevState);
-
   const {
     hasError: hasClientError,
     values: clientValues,
@@ -79,9 +75,9 @@ export async function createClient(
 
   if (createTattooValue) {
     redirect(
-      `/admin/create-tattoo-record?clientId=${client?.id}&preferredName=${client?.preferred_name}`,
+      `${LINKS_ADMIN.createTattooRecord}?clientId=${client?.id}&preferredName=${client?.preferred_name}`,
     );
   }
 
-  redirect(`/admin`);
+  redirect(`${LINKS_ADMIN.adminHome}`);
 }
