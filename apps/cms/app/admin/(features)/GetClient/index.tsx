@@ -1,4 +1,4 @@
-import { LookupColOptions } from "../../(data)";
+import { LookupColOptions } from "@/utils/db/clientPersons";
 import type { ClientTable } from "@inktree/db";
 
 export function FormContentGetClient({

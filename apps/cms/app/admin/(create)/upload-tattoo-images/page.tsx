@@ -9,8 +9,8 @@ import {
   SelectState,
 } from "@inktree/ui-react/components/client";
 // Local Parent
-import { LookupColOptions } from "../../(data)";
-import { FormContentGetClient } from "../../(features)/GetClient";
+import { LookupColOptions } from "@/utils/db/clientPersons/";
+import { FormContentGetClient } from "@/app/admin/(features)/GetClient";
 // Local
 import { getClient } from "./actions";
 
