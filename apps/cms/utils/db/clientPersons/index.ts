@@ -8,7 +8,7 @@ export const LookupClientCols = [
   "email",
   "phone",
   "preferred_name",
-] as const satisfies readonly (keyof ClientTable)[];
+] as const satisfies (keyof ClientTable)[];
 
 export const CreateClientCols = [
   ...LookupClientCols,
