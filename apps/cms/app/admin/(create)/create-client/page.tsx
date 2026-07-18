@@ -27,15 +27,6 @@ export default function CreateClientPage() {
       {state.errors.createPerson && (
         <p className="text-red-500">{state.errors.createPerson}</p>
       )}
-      {Object.entries(state.errors).map(([key, error]) => {
-        if (!error) return null;
-
-        return (
-          <p key={key} className="text-red-500">
-            {key}: {error}
-          </p>
-        );
-      })}
     </Form>
   );
 }

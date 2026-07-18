@@ -1,4 +1,5 @@
 import { CreateClientColsOptions } from "@/utils/db/clientPersons";
+import { Input, InputCheck } from "@inktree/ui-react/components/client/";
 
 export default function FormContentCreateClient({
   errors,
@@ -8,41 +9,24 @@ export default function FormContentCreateClient({
   return (
     <>
       {CreateClientColsOptions.map(({ value, label }) => (
-        <div key={value}>
-          <label htmlFor={value} className="label">
-            {label}
-          </label>
-
-          <input
-            id={value}
-            name={value}
-            type={
-              value === "email" ? "email" : value === "phone" ? "tel" : "text"
-            }
-            className="input"
-          />
-
-          {errors[value] && <p className="text-red-500">{errors[value]}</p>}
-        </div>
+        <Input
+          key={value}
+          id={value}
+          name={value}
+          label={label}
+          type={
+            value === "email" ? "email" : value === "phone" ? "tel" : "text"
+          }
+          errors={errors}
+        />
       ))}
 
-      <div className="flex flex-row gap-2 items-center">
-        <label htmlFor="create_tattoo" className="label">
-          Create Tattoo Record
-        </label>
-
-        <input
-          id="create_tattoo"
-          name="create_tattoo"
-          type="checkbox"
-          value="true"
-          className="checkbox"
-        />
-
-        {errors.create_tattoo && (
-          <p className="text-red-500">{errors.create_tattoo}</p>
-        )}
-      </div>
+      <InputCheck
+        id="create_tattoo"
+        name="create_tattoo"
+        label="Create Tattoo Record"
+        errors={errors}
+      />
     </>
   );
 }
