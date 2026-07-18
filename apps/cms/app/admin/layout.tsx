@@ -7,14 +7,13 @@ import {
   getAuthedUser,
   getProfileId,
 } from "@/utils/db/server";
-import type { Client } from "@/utils/db/server";
 
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: ReactNode;
 }>) {
-  const authedClient: Client = await createServerClientAndAuth();
+  const authedClient = await createServerClientAndAuth();
 
   const {
     data: { user },
@@ -23,7 +22,7 @@ export default async function RootLayout({
   let userId: string | undefined;
 
   if (user) {
-    const { data } = await getProfileId(authedClient, user.id);
+    const { data } = await getProfileId(authedClient, user.id);git a
     userId = data?.id?.toString();
   }
 
