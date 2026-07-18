@@ -10,8 +10,8 @@ import { Form, Heading, Page } from "@inktree/ui-react/components/client";
 // Local Root
 import { LINKS_ADMIN } from "@/app/consts";
 // Local Parent
-import { FormContentGetClient } from "../(features)/FormContentGetClient/";
-import type { LookupType } from "../(features)/FormContentGetClient/types";
+import { FormContentGetClient } from "../../(features)/FormContentGetClient";
+import type { LookupType } from "../../(features)/FormContentGetClient/types";
 // Local Curr Dir
 import { ClientTattooFormContent } from "./_components/ClientTattooFormContent";
 import { ClientResults } from "./_components/ClientResults";

@@ -2,46 +2,83 @@
 // next
 import { redirect } from "next/navigation";
 
-// import { EDITABLE_CLIENT_COL_KEYS } from "@inktree/db";
+import { CreateClientCols } from "../../(data)";
 
 // local outter
 import { createServerClientAndAuth, getAuthedUser } from "@/utils/db/server";
 import { createClientPerson } from "@inktree/db";
 import { handleStringFormValues } from "@inktree/utils";
 
-export async function createClient(formData: FormData) {
-  // const { hasError, values, errors } = handleStringFormValues(
-  //   formData,
-  //   EDITABLE_CLIENT_COL_KEYS,
-  // );
+export type ClientFormState = {
+  errors: Record<string, string>;
+};
 
-  // if (hasError) return { errors };
+export async function createClient(
+  _prevState: ClientFormState,
+  formData: FormData,
+): Promise<ClientFormState> {
+  let errors = { unauthorized: "", createperson: "" };
+  const {
+    hasError: hasClientError,
+    values: clientValues,
+    errors: clientErrors,
+  } = handleStringFormValues(formData, CreateClientCols);
 
-  // const createTattoo = formData.get("create_tattoo");
+  if (hasClientError) {
+    errors = {
+      ...errors,
+      ...clientErrors,
+    };
 
-  // const authedClient = await createServerClientAndAuth();
+    return { errors };
+  }
+  const {
+    hasError,
+    values: createTattooValue,
+    errors: createTattooError,
+  } = handleStringFormValues(formData, ["create_tattoo"]);
 
-  // const {
-  //   data: { user },
-  // } = await getAuthedUser(authedClient);
+  if (hasError) {
+    errors = {
+      ...errors,
+      ...createTattooError,
+    };
+
+    return { errors };
+  }
+  const authedClient = await createServerClientAndAuth();
+
+  const {
+    data: { user },
+  } = await getAuthedUser(authedClient);
 
   // if (!user) {
-  //   throw new Error("Unauthorized");
+  //   errors.unauthorized = "Unauthorized";
+  //   return errors;
   // }
 
-  // const { data: client, error } = await createClientPerson(authedClient, {
-  //   user_id: user.id,
-  //   ...values,
-  // });
+  const { data: client, error } = await createClientPerson(authedClient, {
+    user_id: user?.id,
+    ...clientValues,
+  });
 
-  // if (error) {
-  //   throw error;
-  // }
-  // if (createTattoo) {
-  //   redirect(
-  //     `/admin/create-tattoo-record?clientId=${client?.id}&preferredName=${client?.preferred_name}`,
-  //   );
-  // }
+  if (error) {
+    console.log(error);
+    const createpersonError = {
+      createpersonError: "error creating a perseon with supabase",
+    };
+    errors = {
+      ...errors,
+      ...createpersonError,
+    };
+  }
+
+  console.log("wetrZ");
+  if (createTattooValue) {
+    redirect(
+      `/admin/create-tattoo-record?clientId=${client?.id}&preferredName=${client?.preferred_name}`,
+    );
+  }
 
   redirect(`/admin`);
 }

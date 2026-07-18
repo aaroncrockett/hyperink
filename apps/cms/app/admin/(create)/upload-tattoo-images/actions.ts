@@ -1,16 +1,13 @@
 "use server";
-// node
+
 import { randomUUID } from "crypto";
 
-// inktree
 import {
   getClientPersonByEmail,
-  getClientPeopleByTattooYear,
   getClientPersonByPreferredName,
   getClientPersonByPhone,
 } from "@inktree/db";
 
-// local outter
 import {
   createServerClientAndAuth,
   getAuthedUser,
@@ -19,7 +16,6 @@ import {
 
 import type { ClientTable } from "@inktree/db";
 
-// local
 import { getImageFormInputs } from "./_helpers";
 
 export type ClientFormState = {
@@ -30,9 +26,8 @@ export async function getClient(
   _prevState: ClientFormState,
   formData: FormData,
 ): Promise<ClientFormState> {
-  const email = formData.get("email") as string;
-  const phone = formData.get("phone") as string;
-  const tattooYear = Number(formData.get("tattoo_year"));
+  const email = formData.get("email")?.toString();
+  const phone = formData.get("phone")?.toString();
   const preferredName = formData.get("preferred_name")?.toString();
 
   const authedClient = await createServerClientAndAuth();
@@ -45,38 +40,28 @@ export async function getClient(
     throw new Error("Unauthorized");
   }
 
-  let client;
+  let client: Partial<ClientTable> | null = null;
 
   if (email) {
-    const result = await getClientPersonByEmail(authedClient, email);
-    client = result.data;
+    const { data } = await getClientPersonByEmail(authedClient, email);
+    client = data;
   }
+
   if (phone) {
-    const result = await getClientPersonByPhone(authedClient, phone);
-    client = result.data;
+    const { data } = await getClientPersonByPhone(authedClient, phone);
+    client = data;
   }
-  // if (tattooYear) {
-  //   const clients = await getClientPeopleByTattooYear(authedClient, tattooYear);
-  //   client = clients?.data?.[0] || null;
-  // }
+
   if (preferredName) {
-    const result = await getClientPersonByPreferredName(
+    const { data } = await getClientPersonByPreferredName(
       authedClient,
       preferredName,
     );
-    client = result.data;
-  }
-
-  if (!client) {
-    return {
-      ..._prevState,
-      client: null,
-    };
+    client = data;
   }
 
   return {
-    ..._prevState,
-    client: client,
+    client,
   };
 }
 
@@ -98,7 +83,7 @@ export async function uploadImage(
       return {
         ...state,
         tattooImages: null,
-        error: "no client",
+        error: "Unauthorized",
       };
     }
 
@@ -122,7 +107,7 @@ export async function uploadImage(
     return {
       ...state,
       tattooImages: uploads,
-      error: "no client",
+      error: null,
     };
   } catch (err) {
     return {

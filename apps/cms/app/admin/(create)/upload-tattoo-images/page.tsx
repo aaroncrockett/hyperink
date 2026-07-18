@@ -9,8 +9,8 @@ import {
   SelectState,
 } from "@inktree/ui-react/components/client";
 // Local Parent
-import { LookupColOptions } from "../(features)/GetClient/data";
-import { FormContentGetClient } from "../(features)/GetClient";
+import { LookupColOptions } from "../../(data)";
+import { FormContentGetClient } from "../../(features)/GetClient";
 // Local
 import { getClient } from "./actions";
 
@@ -32,8 +32,7 @@ export default function UploadTattooImagePage() {
             >
               <FormContentGetClient lookupType={lookupType} />
             </Form>
-
-            {state.client}
+            {state?.client?.preferred_name}
           </>
         )}
       </SelectState>
