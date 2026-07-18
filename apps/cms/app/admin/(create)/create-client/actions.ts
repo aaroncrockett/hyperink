@@ -10,7 +10,7 @@ import { handleStringFormValues } from "@inktree/utils";
 
 export type ClientFormState = {
   errors: Record<string, string>;
-  client?: ClientTable;
+  client?: Partial<ClientTable>;
 };
 
 export async function createClient(

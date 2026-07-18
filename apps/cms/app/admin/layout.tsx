@@ -22,7 +22,7 @@ export default async function RootLayout({
   let userId: string | undefined;
 
   if (user) {
-    const { data } = await getProfileId(authedClient, user.id);git a
+    const { data } = await getProfileId(authedClient, user.id);
     userId = data?.id?.toString();
   }
 
