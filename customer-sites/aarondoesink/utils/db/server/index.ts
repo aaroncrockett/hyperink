@@ -2,7 +2,7 @@ import { cookies } from "next/headers";
 import {
   createServerClientAndAuth as createClientAndAuth,
   verifyOtp,
-} from "@inktree/db";
+} from "@hyperinkstudio/db";
 
 import type {
   SupabaseConfig,
@@ -10,7 +10,7 @@ import type {
   Tattoo,
   UserImage,
   Profile,
-} from "@inktree/db";
+} from "@hyperinkstudio/db";
 export type { Client, Tattoo, UserImage, Profile };
 
 export { verifyOtp };

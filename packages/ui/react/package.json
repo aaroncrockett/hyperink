@@ -1,5 +1,5 @@
 {
-  "name": "@inktree/ui-react",
+  "name": "@hyperinkstudio/ui-react",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,7 +9,7 @@
     "check": "tsc --noEmit"
   },
   "dependencies": {
-    "@inktree/utils": "workspace:*",
+    "@hyperinkstudio/utils": "workspace:*",
     "@skeletonlabs/skeleton": "^4.12.1",
     "@skeletonlabs/skeleton-react": "^4.12.1",
     "tailwindcss": "^4",

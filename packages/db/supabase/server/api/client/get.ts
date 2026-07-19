@@ -1,5 +1,5 @@
 import { TABLE_CLIENT_PERSON as TABLE } from "./consts";
-import { getYearDateRange } from "@inktree/utils";
+import { getYearDateRange } from "@hyperinkstudio/utils";
 
 import type { Client } from "../../../../index";
 

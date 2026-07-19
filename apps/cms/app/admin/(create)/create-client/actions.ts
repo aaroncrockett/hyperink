@@ -6,12 +6,12 @@ import { CreateClientCols } from "@/utils/db/clientPersons";
 import type { ClientTable } from "@/utils/db/types";
 import { createServerClientAndAuth, getAuthedUser } from "@/utils/db/server";
 import { createClientPerson } from "@/utils/db/clientPersons";
-import { handleStringFormValues } from "@inktree/utils";
+import { handleStringFormValues } from "@hyperinkstudio/utils";
 import { LINKS_ADMIN } from "@/app/consts";
 
 export type ClientFormState = {
-  errors: Record<string, string>;
-  client?: Partial<ClientTable>;
+  errors: Record<string, string> | null;
+  client?: Partial<ClientTable> | null;
 };
 
 export async function createClient(

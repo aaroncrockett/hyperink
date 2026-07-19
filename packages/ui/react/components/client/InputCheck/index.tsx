@@ -1,4 +1,4 @@
-import { cn } from "@inktree/utils/";
+import { cn } from "@hyperinkstudio/utils/";
 
 type CheckboxProps = {
   className?: string;

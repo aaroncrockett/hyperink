@@ -1,10 +1,10 @@
 import { CreateClientColsOptions } from "@/utils/db/clientPersons";
-import { Input, InputCheck } from "@inktree/ui-react/components/client/";
+import { Input, InputCheck } from "@hyperinkstudio/ui-react/components/client/";
 
 export default function FormContentCreateClient({
   errors,
 }: {
-  errors: Record<string, string>;
+  errors: Record<string, string> | null;
 }) {
   return (
     <>

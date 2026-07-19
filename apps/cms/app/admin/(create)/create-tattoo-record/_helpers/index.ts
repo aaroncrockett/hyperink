@@ -1,4 +1,4 @@
-import { EDITABLE_CLIENT_TATTOO_COLS } from "@inktree/db";
+import { EDITABLE_CLIENT_TATTOO_COLS } from "@hyperinkstudio/db";
 
 type TattooColKey = keyof typeof EDITABLE_CLIENT_TATTOO_COLS;
 

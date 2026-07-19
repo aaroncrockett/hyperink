@@ -1,4 +1,4 @@
-import type { ClientTable } from "@inktree/db";
+import type { ClientTable } from "@hyperinkstudio/db";
 
 export const TABLE_CLIENT_PERSON = "client";
 

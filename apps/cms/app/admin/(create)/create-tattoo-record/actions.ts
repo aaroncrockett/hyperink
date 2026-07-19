@@ -8,7 +8,7 @@ import {
   getClientPeopleByTattooYear,
   createClientTattoo,
   type ClientTable,
-} from "@inktree/db";
+} from "@hyperinkstudio/db";
 
 import { redirect } from "next/navigation";
 

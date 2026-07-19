@@ -1,6 +1,6 @@
 "use client";
 
-import { EDITABLE_COLS_ARRAY } from "@inktree/db";
+import { EDITABLE_COLS_ARRAY } from "@hyperinkstudio/db";
 
 type FormDataProps = {
   styles: string[];

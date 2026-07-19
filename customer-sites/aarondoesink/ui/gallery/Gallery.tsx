@@ -3,7 +3,7 @@ import { GalleryProvider } from "./GalleryProvider";
 import { Lightbox } from "./LightBox";
 import { GalleryGrid } from "./GalleryGrid";
 
-import type { UserImage } from "@inktree/db";
+import type { UserImage } from "@hyperinkstudio/db";
 
 type GalleryProps = {
   images: UserImage[];

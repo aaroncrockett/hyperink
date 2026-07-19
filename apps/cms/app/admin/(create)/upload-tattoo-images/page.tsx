@@ -1,13 +1,13 @@
 "use client";
 // React
 import { useActionState } from "react";
-// Inktree
+// hyperinkstudio
 import {
   Form,
   Heading,
   Page,
   SelectState,
-} from "@inktree/ui-react/components/client";
+} from "@hyperinkstudio/ui-react/components/client";
 // Local Parent
 import { LookupColOptions } from "@/utils/db/clientPersons/";
 import { FormContentGetClient } from "@/app/admin/(features)/GetClient";
@@ -15,6 +15,7 @@ import { FormContentGetClient } from "@/app/admin/(features)/GetClient";
 import { getClient } from "./actions";
 
 const initClientState = {
+  errors: null,
   client: null,
 };
 

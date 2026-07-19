@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef } from "react";
-import { cn } from "@inktree/utils/cn";
+import { cn } from "@hyperinkstudio/utils/cn";
 
 type CardProps = ComponentPropsWithoutRef<"div"> & {
   padding?: string;

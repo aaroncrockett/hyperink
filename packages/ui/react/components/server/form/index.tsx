@@ -1,5 +1,5 @@
 "use server";
-import { cn } from "@inktree/utils";
+import { cn } from "@hyperinkstudio/utils";
 
 import { ReactNode, ComponentPropsWithoutRef } from "react";
 

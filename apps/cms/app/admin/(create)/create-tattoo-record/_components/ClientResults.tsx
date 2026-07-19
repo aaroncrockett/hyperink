@@ -1,4 +1,4 @@
-import type { ClientTable } from "@inktree/db";
+import type { ClientTable } from "@hyperinkstudio/db";
 
 type Props = {
   clients: ClientTable[];

@@ -4,6 +4,6 @@ import type {
   TattooImage,
   ClientTattoo,
   Profile,
-} from "@inktree/db";
+} from "@hyperinkstudio/db";
 
 export type { ClientTable, TattooImage, ClientTattoo, Profile };

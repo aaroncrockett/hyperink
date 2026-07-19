@@ -1,4 +1,4 @@
-import { getTattooImages } from "@inktree/db";
+import { getTattooImages } from "@hyperinkstudio/db";
 import { createServerClientAndAuth } from "@/utils/db/server";
 export async function getImages() {
   // const authClient = await createServerClientAndAuth();

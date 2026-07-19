@@ -5,8 +5,12 @@ import { useActionState, useState } from "react";
 // Next
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-// inktree
-import { Form, Heading, Page } from "@inktree/ui-react/components/client";
+// hyperinkstudio
+import {
+  Form,
+  Heading,
+  Page,
+} from "@hyperinkstudio/ui-react/components/client";
 // Local Root
 import { LINKS_ADMIN } from "@/app/consts";
 // Local Parent

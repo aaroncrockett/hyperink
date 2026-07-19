@@ -1,4 +1,4 @@
-import { capitalize } from "@inktree/utils";
+import { capitalize } from "@hyperinkstudio/utils";
 
 const useStateCode = (variableName: string) => {
   return `const [${variableName}, set${capitalize(

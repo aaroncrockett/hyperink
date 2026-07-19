@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Outfit } from "next/font/google";
 
-import { Card } from "@inktree/ui-react/components";
+import { Card } from "@hyperinkstudio/ui-react/components";
 import { cn } from "@/utils/cn";
 
 import HeaderWrapper from "./(header)/HeaderWrapper";

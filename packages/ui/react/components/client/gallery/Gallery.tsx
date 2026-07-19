@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 
 import { createServerClientAndAuth } from "@/utils/db/server";
 
-import { getTattooImagesByGroup } from "@inktree/db";
+import { getTattooImagesByGroup } from "@hyperinkstudio/db";
 
 const authedClient = await createServerClientAndAuth();
 

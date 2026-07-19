@@ -1,7 +1,7 @@
 // FormContent.tsx
 
 import { TATTOO_FORM_COLS } from "../_helpers";
-import { EDITABLE_CLIENT_TATTOO_COLS } from "@inktree/db";
+import { EDITABLE_CLIENT_TATTOO_COLS } from "@hyperinkstudio/db";
 
 type Props = {
   clientId: string;

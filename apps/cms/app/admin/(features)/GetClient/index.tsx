@@ -1,5 +1,5 @@
 import { LookupColOptions } from "@/utils/db/clientPersons";
-import type { ClientTable } from "@inktree/db";
+import type { ClientTable } from "@hyperinkstudio/db";
 
 export function FormContentGetClient({
   lookupType,

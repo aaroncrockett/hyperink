@@ -1,11 +1,11 @@
-import { cn } from "@inktree/utils/";
+import { cn } from "@hyperinkstudio/utils/";
 
 type InputProps = {
   id: string;
   name: string;
   label: string;
   type?: React.HTMLInputTypeAttribute;
-  errors?: Record<string, string>;
+  errors?: Record<string, string> | null;
   className?: string;
   labelClassName?: string;
   errorClassName?: string;

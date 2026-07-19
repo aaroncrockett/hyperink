@@ -1,4 +1,4 @@
-import { Page, Heading } from "@inktree/ui-react/components";
+import { Page, Heading } from "@hyperinkstudio/ui-react/components";
 
 export default async function Flash() {
   return (

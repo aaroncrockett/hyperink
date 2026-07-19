@@ -1,11 +1,11 @@
-import { getPublicUrl } from "@inktree/db/supabase/server";
+import { getPublicUrl } from "@hyperinkstudio/db/supabase/server";
 import { TABLE_TATTOO_IMAGE as TABLE, BUCKET } from "./consts";
 
 type QueryOptions = {
   pinned?: boolean;
 };
 
-import type { Client, TattooImage } from "@inktree/db";
+import type { Client, TattooImage } from "@hyperinkstudio/db";
 
 export async function getTattooImages(authedClient: Client, number?: number) {
   let query = authedClient.from(TABLE).select("*");

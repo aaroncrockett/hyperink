@@ -2,7 +2,7 @@
 import {
   getProfileTaggingOptionsByStyles,
   getProfileTaggingOptionsByTags,
-} from "@inktree/db";
+} from "@hyperinkstudio/db";
 
 import { createServerClientAndAuth } from "@/utils/db/server";
 import { default as FormContent } from "./FormContent";

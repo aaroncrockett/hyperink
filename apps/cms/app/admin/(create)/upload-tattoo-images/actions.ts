@@ -6,12 +6,12 @@ import {
   getClientPersonByEmail,
   getClientPersonByPreferredName,
   getClientPersonByPhone,
-} from "@inktree/db";
+} from "@hyperinkstudio/db";
 
 import { LookupClientCols } from "@/utils/db/clientPersons";
 import type { ClientTable } from "@/utils/db/types";
 import { createServerClientAndAuth, getAuthedUser } from "@/utils/db/server";
-import { handleStringFormValues } from "@inktree/utils";
+import { handleStringFormValues } from "@hyperinkstudio/utils";
 
 import { uploadTattooImage } from "@/utils/db/server";
 
@@ -19,7 +19,7 @@ import { getImageFormInputs } from "./_helpers";
 
 export type ClientFormState = {
   client: Partial<ClientTable> | null;
-  errors: Record<string, string>;
+  errors: Record<string, string> | null;
 };
 
 export async function getClient(
@@ -49,7 +49,16 @@ export async function getClient(
   } = await getAuthedUser(authedClient);
 
   if (!user) {
-    throw new Error("Unauthorized");
+    const unauthorizedError = {
+      unauthorized: "the person is unauthorized",
+    };
+    return {
+      ..._prevState,
+      errors: {
+        ..._prevState.errors,
+        ...unauthorizedError,
+      },
+    };
   }
 
   let client: Partial<ClientTable> | null = null;

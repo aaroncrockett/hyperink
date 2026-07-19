@@ -1,7 +1,7 @@
 "use server";
 import Gallery from "./Gallery";
 
-import type { UserImage } from "@inktree/db";
+import type { UserImage } from "@hyperinkstudio/db";
 
 type GalleryServerProps = {
   getImages: () => Promise<UserImage[]>;

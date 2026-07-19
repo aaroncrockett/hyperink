@@ -9,9 +9,9 @@ import {
   signUp,
   signInWithOAuth,
   uploadTattooImage,
-} from "@inktree/db";
+} from "@hyperinkstudio/db";
 
-import type { SupabaseConfig, Client } from "@inktree/db";
+import type { SupabaseConfig, Client } from "@hyperinkstudio/db";
 
 export {
   exchangeCodeForSession,

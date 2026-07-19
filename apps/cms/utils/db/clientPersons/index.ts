@@ -1,6 +1,6 @@
 import type { ClientTable } from "../types";
 
-import { createClientPerson as dbCreateClientPerson } from "@inktree/db";
+import { createClientPerson as dbCreateClientPerson } from "@hyperinkstudio/db";
 
 export const createClientPerson = dbCreateClientPerson;
 
