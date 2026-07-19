@@ -18,6 +18,7 @@ export async function createClient(
   _prevState: ClientFormState,
   formData: FormData,
 ): Promise<ClientFormState> {
+  console.time("createClient");
   const {
     hasError: hasClientError,
     values: clientValues,

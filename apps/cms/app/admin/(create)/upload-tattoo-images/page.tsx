@@ -1,6 +1,6 @@
 "use client";
 // React
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 // hyperinkstudio
 import {
   Form,
@@ -20,24 +20,39 @@ const initClientState = {
 };
 
 export default function UploadTattooImagePage() {
-  const [state, actionState] = useActionState(getClient, initClientState);
+  const [clientState, clientActionState] = useActionState(
+    getClient,
+    initClientState,
+  );
+  const [showClientState, setShowClientState] = useState(false);
+
   return (
     <Page>
-      <Heading text="Upload Images" as="h2" />
-
-      <SelectState options={LookupColOptions}>
-        {({ lookupType }) => (
-          <>
-            <Form
-              action={async (formData: FormData) => await actionState(formData)}
-            >
-              <FormContentGetClient lookupType={lookupType} />
-            </Form>
-            {state?.client?.preferred_name}
-          </>
-        )}
-      </SelectState>
-
+      <Heading text="Upload Tattoo Images" as="h2" />
+      {!showClientState && (
+        <button
+          type="button"
+          className="btn preset-filled-secondary-500"
+          onClick={() => setShowClientState((prev) => !prev)}
+        >
+          Attach Image to a client
+        </button>
+      )}
+      {showClientState && (
+        <SelectState options={LookupColOptions}>
+          {({ lookupType }) => (
+            <>
+              <Form
+                action={async (formData: FormData) =>
+                  await clientActionState(formData)
+                }
+              >
+                <FormContentGetClient lookupType={lookupType} />
+              </Form>
+            </>
+          )}
+        </SelectState>
+      )}
       {/* {clientByPhoneState.data && (
         <Form action={uploadAction}>
           <FormContent

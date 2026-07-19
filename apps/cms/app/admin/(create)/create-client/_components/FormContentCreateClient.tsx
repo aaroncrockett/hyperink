@@ -24,7 +24,7 @@ export default function FormContentCreateClient({
       <InputCheck
         id="create_tattoo"
         name="create_tattoo"
-        label="Create Tattoo Record"
+        label="Create A Corresponding Tattoo Record"
         errors={errors}
       />
     </>

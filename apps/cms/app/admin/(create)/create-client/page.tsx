@@ -1,9 +1,16 @@
 "use client";
 
+// React
 import { useActionState } from "react";
+// Local Parents
+import {
+  Form,
+  Page,
+  Heading,
+} from "@hyperinkstudio/ui-react/components/client";
+// Local
 import { createClient } from "./actions";
-import { Form } from "@hyperinkstudio/ui-react/components/client";
-import FormContentCreateClient from "./_components/FormContentCrdeateClient";
+import FormContentCreateClient from "./_components/FormContentCreateClient";
 
 const initialState = {
   errors: {
@@ -17,16 +24,19 @@ export default function CreateClientPage() {
   const [state, action] = useActionState(createClient, initialState);
 
   return (
-    <Form action={action}>
-      <FormContentCreateClient errors={state.errors} />
+    <Page>
+      <Heading text="Create A Client Record" as="h2" />
+      <Form action={action}>
+        <FormContentCreateClient errors={state.errors} />
 
-      {state?.errors?.unauthorized && (
-        <p className="text-red-500">{state.errors.unauthorized}</p>
-      )}
+        {state?.errors?.unauthorized && (
+          <p className="text-red-500">{state.errors.unauthorized}</p>
+        )}
 
-      {state?.errors?.createPerson && (
-        <p className="text-red-500">{state.errors.createPerson}</p>
-      )}
-    </Form>
+        {state?.errors?.createPerson && (
+          <p className="text-red-500">{state.errors.createPerson}</p>
+        )}
+      </Form>
+    </Page>
   );
 }

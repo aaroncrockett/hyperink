@@ -1,21 +1,21 @@
 "use server";
-
+// node
 import { randomUUID } from "crypto";
-
+// hyperink
 import {
   getClientPersonByEmail,
   getClientPersonByPreferredName,
   getClientPersonByPhone,
 } from "@hyperinkstudio/db";
-
+// Local
+import { getImageFormInputs } from "./_helpers";
+// Local Parents
 import { LookupClientCols } from "@/utils/db/clientPersons";
 import type { ClientTable } from "@/utils/db/types";
 import { createServerClientAndAuth, getAuthedUser } from "@/utils/db/server";
 import { handleStringFormValues } from "@hyperinkstudio/utils";
 
 import { uploadTattooImage } from "@/utils/db/server";
-
-import { getImageFormInputs } from "./_helpers";
 
 export type ClientFormState = {
   client: Partial<ClientTable> | null;
@@ -31,6 +31,7 @@ export async function getClient(
     values: clientValues,
     errors: clientErrors,
   } = handleStringFormValues(formData, LookupClientCols);
+  console.time("getClient");
 
   if (hasClientError) {
     return {

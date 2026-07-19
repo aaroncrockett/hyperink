@@ -1,8 +1,10 @@
+// Local
 import {
   createServerClientAndAuth,
   getAuthedUser,
   getProfileId,
 } from "@/utils/db/server";
+import { Page, Heading } from "@hyperinkstudio/ui-react/components/client";
 
 export default async function AdminPage() {
   const authedClient = await createServerClientAndAuth();
@@ -19,8 +21,8 @@ export default async function AdminPage() {
   }
 
   return (
-    <div className="grid">
-      <h1 className="text-3xl">ADMIN</h1>
+    <Page>
+      <Heading text="Admin" as="h2" />
 
       {userId ? (
         <p>Hello {user?.user_metadata.full_name}</p>
@@ -30,6 +32,6 @@ export default async function AdminPage() {
           <button className="btn">Create Profile</button>
         </>
       )}
-    </div>
+    </Page>
   );
 }

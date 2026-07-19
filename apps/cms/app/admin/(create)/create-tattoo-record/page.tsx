@@ -11,11 +11,10 @@ import {
   Heading,
   Page,
 } from "@hyperinkstudio/ui-react/components/client";
-// Local Root
-import { LINKS_ADMIN } from "@/app/consts";
 // Local Parent
-import { FormContentGetClient } from "../../(features)/FormContentGetClient";
-import type { LookupType } from "../../(features)/FormContentGetClient/types";
+import { LINKS_ADMIN } from "@/app/consts";
+import { FormContentGetClient } from "@/app/admin/(features)/GetClient";
+
 // Local Curr Dir
 import { ClientTattooFormContent } from "./_components/ClientTattooFormContent";
 import { ClientResults } from "./_components/ClientResults";

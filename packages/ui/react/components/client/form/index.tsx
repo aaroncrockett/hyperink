@@ -21,7 +21,7 @@ export default function Form({
   return (
     <form action={action} className={cn(padding, space, className)} {...props}>
       {children}
-      <button type="submit" className="btn preset-filled-primary-500">
+      <button type="submit" className="btn preset-filled-secondary-500">
         Submit
       </button>
     </form>
