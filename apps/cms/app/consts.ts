@@ -19,6 +19,10 @@ export const LINKS_ADMIN = {
     href: "/admin/create-flash",
     label: "Create Flash",
   },
+  createProfileTaggingOptions: {
+    href: "/admin/create-tagging-opts",
+    label: "Tagging Options",
+  },
 } as const;
 
 export const LINKS_ADMIN_ARRAY = Object.values(LINKS_ADMIN);

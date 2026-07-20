@@ -1,4 +1,4 @@
-import { CreateClientColsOptions } from "@/utils/db/clientPersons";
+import { CREATE_CLIENT_COLS_OPTIONS } from "@/utils/db/clientPersons";
 import { Input, InputCheck } from "@hyperinkstudio/ui-react/components/client/";
 
 export default function FormContentCreateClient({
@@ -8,7 +8,7 @@ export default function FormContentCreateClient({
 }) {
   return (
     <>
-      {CreateClientColsOptions.map(({ value, label }) => (
+      {CREATE_CLIENT_COLS_OPTIONS.map(({ value, label }) => (
         <Input
           key={value}
           id={value}

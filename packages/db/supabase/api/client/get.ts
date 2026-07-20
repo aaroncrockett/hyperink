@@ -1,7 +1,8 @@
+// Local
+import type { Client } from "@hyperinkstudio/db";
 import { TABLE_CLIENT_PERSON as TABLE } from "./consts";
+// Utils
 import { getYearDateRange } from "@hyperinkstudio/utils";
-
-import type { Client } from "../../../../index";
 
 export async function getClientPersonByEmail(
   authedClient: Client,

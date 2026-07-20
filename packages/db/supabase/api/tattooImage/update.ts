@@ -1,4 +1,4 @@
-import type { Client, TattooImage } from "../../../types";
+import type { Client, TattooImage } from "@hyperinkstudio/db";
 import { TABLE_TATTOO_IMAGE as TABLE } from "./consts";
 
 export async function updateUserImage(

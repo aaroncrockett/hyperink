@@ -2,7 +2,7 @@
 // Next.js
 import { redirect } from "next/navigation";
 // local outter
-import { CreateClientCols } from "@/utils/db/clientPersons";
+import { CREATE_CLIENT_COLS } from "@/utils/db/clientPersons";
 import type { ClientTable } from "@/utils/db/types";
 import { createServerClientAndAuth, getAuthedUser } from "@/utils/db/server";
 import { createClientPerson } from "@/utils/db/clientPersons";
@@ -18,12 +18,11 @@ export async function createClient(
   _prevState: ClientFormState,
   formData: FormData,
 ): Promise<ClientFormState> {
-  console.time("createClient");
   const {
     hasError: hasClientError,
     values: clientValues,
     errors: clientErrors,
-  } = handleStringFormValues(formData, CreateClientCols);
+  } = handleStringFormValues(formData, CREATE_CLIENT_COLS);
 
   if (hasClientError) {
     return {
@@ -76,9 +75,9 @@ export async function createClient(
 
   if (createTattooValue) {
     redirect(
-      `${LINKS_ADMIN.createTattooRecord}?clientId=${client?.id}&preferredName=${client?.preferred_name}`,
+      `${LINKS_ADMIN.createTattooRecord.href}?clientId=${client?.id}&preferredName=${client?.preferred_name}`,
     );
   }
 
-  redirect(`${LINKS_ADMIN.adminHome}`);
+  redirect(`${LINKS_ADMIN.adminHome.href}`);
 }

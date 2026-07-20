@@ -1,5 +1,5 @@
-import { removeFile, uploadFile, getPublicUrl } from "../../../../index";
-import type { Client, TattooImage } from "../../../../index";
+import { removeFile, uploadFile, getPublicUrl } from "@hyperinkstudio/db";
+import type { Client, TattooImage } from "@hyperinkstudio/db";
 import { TABLE_TATTOO_IMAGE as TABLE, BUCKET } from "./consts";
 
 export async function storeTattooImageData(

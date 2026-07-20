@@ -10,7 +10,7 @@ import {
 // Local
 import { getImageFormInputs } from "./_helpers";
 // Local Parents
-import { LookupClientCols } from "@/utils/db/clientPersons";
+import { LOOKUP_CLIENT_COLS } from "@/utils/db/clientPersons";
 import type { ClientTable } from "@/utils/db/types";
 import { createServerClientAndAuth, getAuthedUser } from "@/utils/db/server";
 import { handleStringFormValues } from "@hyperinkstudio/utils";
@@ -30,7 +30,7 @@ export async function getClient(
     hasError: hasClientError,
     values: clientValues,
     errors: clientErrors,
-  } = handleStringFormValues(formData, LookupClientCols);
+  } = handleStringFormValues(formData, LOOKUP_CLIENT_COLS);
   console.time("getClient");
 
   if (hasClientError) {

@@ -21,20 +21,20 @@ const initialState = {
 };
 
 export default function CreateClientPage() {
-  const [state, action] = useActionState(createClient, initialState);
+  const [clientState, actionState] = useActionState(createClient, initialState);
 
   return (
     <Page>
       <Heading text="Create A Client Record" as="h2" />
-      <Form action={action}>
-        <FormContentCreateClient errors={state.errors} />
+      <Form action={actionState}>
+        <FormContentCreateClient errors={clientState.errors} />
 
-        {state?.errors?.unauthorized && (
-          <p className="text-red-500">{state.errors.unauthorized}</p>
+        {clientState?.errors?.unauthorized && (
+          <p className="text-red-500">{clientState.errors.unauthorized}</p>
         )}
 
-        {state?.errors?.createPerson && (
-          <p className="text-red-500">{state.errors.createPerson}</p>
+        {clientState?.errors?.createPerson && (
+          <p className="text-red-500">{clientState.errors.createPerson}</p>
         )}
       </Form>
     </Page>

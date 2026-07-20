@@ -1,4 +1,5 @@
 export * from "./server";
+export * from "./client";
 export type {
   SupabaseConfig,
   Client,
@@ -6,6 +7,7 @@ export type {
   ClientTattoo,
   TattooImage,
   ClientTable,
+  ProfileTaggingOptions,
 } from "./types";
 
 export type { Database } from "@hyperinkstudio/db/supabase/types/supabase";

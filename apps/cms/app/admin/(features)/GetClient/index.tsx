@@ -1,4 +1,4 @@
-import { LookupColOptions } from "@/utils/db/clientPersons";
+import { LOOKUP_COLS_OPTIONS } from "@/utils/db/clientPersons";
 import type { ClientTable } from "@hyperinkstudio/db";
 
 export function FormContentGetClient({
@@ -6,7 +6,9 @@ export function FormContentGetClient({
 }: {
   lookupType: keyof ClientTable;
 }) {
-  const option = LookupColOptions.find((option) => option.value === lookupType);
+  const option = LOOKUP_COLS_OPTIONS.find(
+    (option) => option.value === lookupType,
+  );
 
   if (!option) return null;
 

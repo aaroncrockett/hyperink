@@ -9,7 +9,7 @@ import {
   SelectState,
 } from "@hyperinkstudio/ui-react/components/client";
 // Local Parent
-import { LookupColOptions } from "@/utils/db/clientPersons/";
+import { LOOKUP_COLS_OPTIONS } from "@/utils/db/clientPersons/";
 import { FormContentGetClient } from "@/app/admin/(features)/GetClient";
 // Local
 import { getClient } from "./actions";
@@ -39,7 +39,7 @@ export default function UploadTattooImagePage() {
         </button>
       )}
       {showClientState && (
-        <SelectState options={LookupColOptions}>
+        <SelectState options={LOOKUP_COLS_OPTIONS}>
           {({ lookupType }) => (
             <>
               <Form

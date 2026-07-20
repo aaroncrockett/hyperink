@@ -4,14 +4,8 @@ import {
   verifyOtp,
 } from "@hyperinkstudio/db";
 
-import type {
-  SupabaseConfig,
-  Client,
-  Tattoo,
-  UserImage,
-  Profile,
-} from "@hyperinkstudio/db";
-export type { Client, Tattoo, UserImage, Profile };
+import type { SupabaseConfig, Client, Profile } from "@hyperinkstudio/db";
+export type { Client, Profile };
 
 export { verifyOtp };
 

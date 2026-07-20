@@ -421,7 +421,7 @@ export type Database = {
       }
       profile_tagging_options: {
         Row: {
-          categories: Json
+          collections: Json
           created_at: string
           id: string
           styles: Json
@@ -430,7 +430,7 @@ export type Database = {
           user_id: string
         }
         Insert: {
-          categories?: Json
+          collections?: Json
           created_at?: string
           id?: string
           styles?: Json
@@ -439,7 +439,7 @@ export type Database = {
           user_id: string
         }
         Update: {
-          categories?: Json
+          collections?: Json
           created_at?: string
           id?: string
           styles?: Json
