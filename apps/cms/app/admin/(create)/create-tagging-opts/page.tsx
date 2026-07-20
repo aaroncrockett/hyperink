@@ -12,21 +12,11 @@ const supabase = await createServerClientAndAuth();
 
 const { data } = await getProfileTaggingOpts(supabase);
 
-// ensure we pass an object (not `any[] | null`) to FormWrapper
-
-console.log("hjuihjhhh?");
-
-console.log(data);
-
 export default async function CreateTattooOptionsPage() {
-  // const [clientState, actionState] = useActionState(
-  //   upsertProfileTaggingOpts,
-  //   initialState,
-  // );
   return (
     <Page>
       <Heading text="Create Tagging Options" as="h2" />
-      <FormWrapper data={data} />
+      <FormWrapper data={data && data[0] ? data[0] : null} />
     </Page>
   );
 }

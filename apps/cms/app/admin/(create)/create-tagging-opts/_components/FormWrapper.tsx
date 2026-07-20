@@ -1,47 +1,87 @@
 "use client";
-//react
-import { useActionState } from "react";
-// hyperink
+
+import { useActionState, useState } from "react";
 import type { ProfileTaggingOptions } from "@hyperinkstudio/db";
-import { Form, Input } from "@hyperinkstudio/ui-react/components/client";
-// local
-import { EDITABLE_PROFILE_TAGGING_OPTS_OPTIONS } from "@/utils/db/profileTaggingOpts";
+import { Form } from "@hyperinkstudio/ui-react/components/client";
+
+import { EDITABLE_TAGGING_COLS_LIST_OF_OPTS } from "@/utils/db/profileTaggingOpts";
 import { upsertProfileTaggingOpts } from "../actions";
-import InputList from "./InputList";
+import FormContentAllTags from "./FormContentAllTags";
 
 type FormWrapperProps = {
-  data: Partial<ProfileTaggingOptions> | null | undefined;
+  data: Partial<ProfileTaggingOptions> | null;
+};
+
+function isStringArray(value: unknown): value is string[] {
+  return (
+    Array.isArray(value) && value.every((item) => typeof item === "string")
+  );
+}
+
+const initialState = {
+  opts: null,
+  errors: null,
 };
 
 export default function FormWrapper({ data }: FormWrapperProps) {
-  console.log(data);
-  console.log("dude");
-  const initState = {
-    opts: null,
-    errors: null,
-  };
-  const [state, action] = useActionState(upsertProfileTaggingOpts, initState);
-  console.log(state);
+  const [state, action] = useActionState(
+    upsertProfileTaggingOpts,
+    initialState,
+  );
+
+  const [values, setValues] = useState<Record<string, string[]>>({
+    tags: isStringArray(data?.tags) ? data.tags : [],
+    styles: isStringArray(data?.styles) ? data.styles : [],
+    collections: isStringArray(data?.collections) ? data.collections : [],
+  });
+
+  const [inputs, setInputs] = useState<Record<string, string>>({
+    tags: "",
+    styles: "",
+    collections: "",
+  });
+
+  function addItem(key: string) {
+    const value = inputs[key].trim();
+
+    if (!value) return;
+
+    setValues((prev) => ({
+      ...prev,
+      [key]: [...prev[key], value],
+    }));
+
+    setInputs((prev) => ({
+      ...prev,
+      [key]: "",
+    }));
+  }
+
+  function removeItem(key: string, item: string) {
+    setValues((prev) => ({
+      ...prev,
+      [key]: prev[key].filter((value) => value !== item),
+    }));
+  }
+
   return (
     <Form action={action}>
-      {EDITABLE_PROFILE_TAGGING_OPTS_OPTIONS.map(({ value, label }) => (
-        <>
-          {value}
-          {label}
-          <div key={value}>
-            {data && (
-              <Input
-                id={value}
-                name={value}
-                label={label}
-                defaultValue={(data[value] as string) ?? ""}
-              />
-            )}
-
-            <InputList value={value} label={label} />
-          </div>
-        </>
+      {EDITABLE_TAGGING_COLS_LIST_OF_OPTS.map(({ value, label }) => (
+        <FormContentAllTags
+          key={value}
+          value={value}
+          label={label}
+          items={values[value]}
+          input={inputs[value]}
+          setInput={setInputs}
+          addItem={addItem}
+          removeItem={removeItem}
+        />
       ))}
+
+      {state.errors && (
+        <p className="text-red-500">{JSON.stringify(state.errors)}</p>
+      )}
     </Form>
   );
 }

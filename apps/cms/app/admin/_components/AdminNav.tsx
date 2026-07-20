@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { LINKS_ADMIN_ARRAY } from "@/app/consts";
+import { LINKS_ADMIN_LIST } from "@/app/consts";
 import { usePathname } from "next/navigation";
 
 export default function AdminNav() {
@@ -9,7 +9,7 @@ export default function AdminNav() {
 
   return (
     <ul className="flex flex-col gap-2 p-4 bg-surface-100 h-full text-sm">
-      {LINKS_ADMIN_ARRAY.map(({ href, label }) => (
+      {LINKS_ADMIN_LIST.map(({ href, label }) => (
         <li key={href}>
           <Link
             href={href}

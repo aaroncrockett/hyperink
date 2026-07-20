@@ -25,4 +25,4 @@ export const LINKS_ADMIN = {
   },
 } as const;
 
-export const LINKS_ADMIN_ARRAY = Object.values(LINKS_ADMIN);
+export const LINKS_ADMIN_LIST = Object.values(LINKS_ADMIN);
