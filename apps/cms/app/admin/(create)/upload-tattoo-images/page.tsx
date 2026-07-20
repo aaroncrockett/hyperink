@@ -1,66 +1,31 @@
-"use client";
-// React
-import { useActionState, useState } from "react";
+"use server";
+
 // hyperinkstudio
-import {
-  Form,
-  Heading,
-  Page,
-  SelectState,
-} from "@hyperinkstudio/ui-react/components/client";
+import { Heading, Page } from "@hyperinkstudio/ui-react/components/client";
 // Local Parent
-import { LOOKUP_COLS_OPTIONS } from "@/utils/db/clientPersons/";
-import { FormContentGetClient } from "@/app/admin/(features)/GetClient";
+
+import { getProfileTaggingOpts } from "@/utils/db/profileTaggingOpts";
+import { createServerClientAndAuth } from "@/utils/db/server";
 // Local
 import { getClient } from "./actions";
 
-const initClientState = {
-  errors: null,
-  client: null,
-};
+// local parents
 
-export default function UploadTattooImagePage() {
-  const [clientState, clientActionState] = useActionState(
-    getClient,
-    initClientState,
-  );
-  const [showClientState, setShowClientState] = useState(false);
+// local
+import { default as FormWrapper } from "./_components/FormWrapper";
 
+const supabase = await createServerClientAndAuth();
+
+const { data: taggingOpts } = await getProfileTaggingOpts(supabase);
+
+export default async function UploadTattooImagePage() {
   return (
     <Page>
       <Heading text="Upload Tattoo Images" as="h2" />
-      {!showClientState && (
-        <button
-          type="button"
-          className="btn preset-filled-secondary-500"
-          onClick={() => setShowClientState((prev) => !prev)}
-        >
-          Attach Image to a client
-        </button>
-      )}
-      {showClientState && (
-        <SelectState options={LOOKUP_COLS_OPTIONS}>
-          {({ lookupType }) => (
-            <>
-              <Form
-                action={async (formData: FormData) =>
-                  await clientActionState(formData)
-                }
-              >
-                <FormContentGetClient lookupType={lookupType} />
-              </Form>
-            </>
-          )}
-        </SelectState>
-      )}
-      {/* {clientByPhoneState.data && (
-        <Form action={uploadAction}>
-          <FormContent
-            clientTattoos={clientState.data}
-            isPending={uploadPending}
-          />
-        </Form>
-      )} */}
+
+      <FormWrapper
+        taggingOpts={taggingOpts && taggingOpts[0] ? taggingOpts[0] : null}
+      />
     </Page>
   );
 }

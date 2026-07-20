@@ -1,22 +1,20 @@
 "use client";
 
 import { useActionState, useState } from "react";
-import type { ProfileTaggingOptions } from "@hyperinkstudio/db";
+// hyperink
 import { Form } from "@hyperinkstudio/ui-react/components/client";
-
-import { EDITABLE_TAGGING_COLS_LIST_OF_OPTS } from "@/utils/db/profileTaggingOpts";
+// local
+import {
+  EDITABLE_TAGGING_COLS_LIST_OF_OPTS,
+  createTaggingValues,
+} from "@/utils/db/profileTaggingOpts";
 import { upsertProfileTaggingOpts } from "../actions";
 import FormContentAllTags from "./FormContentAllTags";
+import type { ProfileTaggingOptions } from "@/utils/db/types";
 
 type FormWrapperProps = {
   data: Partial<ProfileTaggingOptions> | null;
 };
-
-function isStringArray(value: unknown): value is string[] {
-  return (
-    Array.isArray(value) && value.every((item) => typeof item === "string")
-  );
-}
 
 const initialState = {
   opts: null,
@@ -29,11 +27,9 @@ export default function FormWrapper({ data }: FormWrapperProps) {
     initialState,
   );
 
-  const [values, setValues] = useState<Record<string, string[]>>({
-    tags: isStringArray(data?.tags) ? data.tags : [],
-    styles: isStringArray(data?.styles) ? data.styles : [],
-    collections: isStringArray(data?.collections) ? data.collections : [],
-  });
+  const [values, setValues] = useState<Record<string, string[]>>(
+    createTaggingValues(data),
+  );
 
   const [inputs, setInputs] = useState<Record<string, string>>({
     tags: "",
