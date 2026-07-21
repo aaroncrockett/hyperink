@@ -1,7 +1,7 @@
 import { TABLE_CLIENT_TATTOO as TABLE } from "./consts";
 import { getYearDateRange } from "@hyperinkstudio/utils";
 
-import type { Client } from "../../../../index";
+import type { Client } from "@hyperinkstudio/db";
 
 export async function getClientTattoosByClientId(
   authedClient: Client,

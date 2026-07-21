@@ -3,15 +3,15 @@
 import { randomUUID } from "crypto";
 // hyperink
 import {
-  getClientPersonByEmail,
-  getClientPersonByPreferredName,
-  getClientPersonByPhone,
+  getClientsPersonByEmail,
+  getClientsPersonByPreferredName,
+  getClientsPersonByPhone,
 } from "@hyperinkstudio/db";
 // Local
 import { getImageFormInputs } from "./_helpers";
 // Local Parents
 import { LOOKUP_CLIENT_COLS } from "@/utils/db/clientPersons";
-import type { ClientTable } from "@/utils/db/types";
+import type { ClientTable, TattooImage } from "@/utils/db/types";
 import { createServerClientAndAuth, getAuthedUser } from "@/utils/db/server";
 import { handleStringFormValues } from "@hyperinkstudio/utils";
 
@@ -19,6 +19,11 @@ import { uploadTattooImage } from "@/utils/db/server";
 
 export type ClientFormState = {
   client: Partial<ClientTable> | null;
+  errors: Record<string, string> | null;
+};
+
+export type ImageFormState = {
+  tattooImages: Partial<TattooImage>[] | null;
   errors: Record<string, string> | null;
 };
 
@@ -31,7 +36,6 @@ export async function getClient(
     values: clientValues,
     errors: clientErrors,
   } = handleStringFormValues(formData, LOOKUP_CLIENT_COLS);
-  console.time("getClient");
 
   if (hasClientError) {
     return {
@@ -65,7 +69,7 @@ export async function getClient(
   let client: Partial<ClientTable> | null = null;
 
   if (clientValues.email) {
-    const { data } = await getClientPersonByEmail(
+    const { data } = await getClientsPersonByEmail(
       authedClient,
       clientValues.email,
     );
@@ -73,7 +77,7 @@ export async function getClient(
   }
 
   if (clientValues.phone) {
-    const { data } = await getClientPersonByPhone(
+    const { data } = await getClientsPersonByPhone(
       authedClient,
       clientValues.phone,
     );
@@ -81,7 +85,7 @@ export async function getClient(
   }
 
   if (clientValues.preferredName) {
-    const { data } = await getClientPersonByPreferredName(
+    const { data } = await getClientsPersonByPreferredName(
       authedClient,
       clientValues.preferredName,
     );
@@ -96,54 +100,50 @@ export async function getClient(
 }
 
 export async function uploadImage(
-  state: FormState,
+  _prevState: ImageFormState,
   formData: FormData,
-): Promise<FormState> {
-  try {
-    const { files, styles, tags, setOrder, readableNames } =
-      getImageFormInputs(formData);
+): Promise<ImageFormState> {
+  const { files, styles, tags, collections, setOrder, readableNames } =
+    getImageFormInputs(formData);
 
-    const authedClient = await createServerClientAndAuth();
+  const authedClient = await createServerClientAndAuth();
 
-    const {
-      data: { user },
-    } = await getAuthedUser(authedClient);
+  const {
+    data: { user },
+  } = await getAuthedUser(authedClient);
 
-    if (!user) {
-      return {
-        ...state,
-        tattooImages: null,
-        error: "Unauthorized",
-      };
-    }
-
-    const isImgSet = files.length > 1;
-    const setId = isImgSet ? randomUUID() : null;
-
-    const uploads = await Promise.all(
-      files.map((file, index) =>
-        uploadTattooImage(authedClient, file, {
-          styles,
-          tags,
-          readable_name: readableNames[index],
-          name: file.name,
-          user_id: user.id,
-          set_order: isImgSet ? setOrder[index] : null,
-          set_id: setId,
-        }),
-      ),
-    );
-
+  if (!user) {
     return {
-      ...state,
-      tattooImages: uploads,
-      error: null,
-    };
-  } catch (err) {
-    return {
-      ...state,
+      ..._prevState,
       tattooImages: null,
-      error: err instanceof Error ? err.message : "Something went wrong",
+      errors: { Unauthorized: "unauthorized" },
     };
   }
+
+  const isImgSet = files.length > 1;
+  const setId = isImgSet ? randomUUID() : null;
+
+  const uploads = await Promise.all(
+    files.map((file, index) => {
+      const rawOrder = isImgSet ? setOrder[index] : null;
+      const parsedOrder =
+        rawOrder == null ? null : parseInt(String(rawOrder), 10);
+      return uploadTattooImage(authedClient, file, {
+        styles: styles,
+        tags,
+        readable_name: readableNames[index],
+        collections,
+        name: file.name,
+        user_id: user.id,
+        set_order: Number.isNaN(parsedOrder) ? null : parsedOrder,
+        set_id: setId,
+      });
+    }),
+  );
+
+  return {
+    ..._prevState,
+    tattooImages: null,
+    errors: null,
+  };
 }

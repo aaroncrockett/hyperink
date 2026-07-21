@@ -1,6 +1,5 @@
 "use client";
 import {
-  FilesData,
   FileDisplay,
   SetOrder,
   FileReadableName,
@@ -10,7 +9,7 @@ import {
 import { type ImageFile } from "@/partials/UploadImages/types";
 
 import { useState } from "react";
-import { Heading } from "@hyperinkstudio/ui-react/components";
+import { Heading } from "@hyperinkstudio/ui-react/components/client";
 
 export type FormContentProps = {
   styles: string[];
@@ -69,12 +68,6 @@ export function ImagesFormContent({
           </div>
         </>
       )}
-      <FilesData
-        styles={styles}
-        categories={categories}
-        groups={groups}
-        tags={tags}
-      />
     </div>
   );
 }

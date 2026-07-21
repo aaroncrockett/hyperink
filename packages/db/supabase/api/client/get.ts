@@ -4,7 +4,7 @@ import { TABLE_CLIENT_PERSON as TABLE } from "./consts";
 // Utils
 import { getYearDateRange } from "@hyperinkstudio/utils";
 
-export async function getClientPersonByEmail(
+export async function getClientsPersonByEmail(
   authedClient: Client,
   email: string,
 ) {
@@ -16,7 +16,7 @@ export async function getClientPersonByEmail(
   return { data, error };
 }
 
-export async function getClientPersonByPhone(
+export async function getClientsPersonByPhone(
   authedClient: Client,
   phone: string,
 ) {
@@ -28,7 +28,7 @@ export async function getClientPersonByPhone(
   return { data, error };
 }
 
-export async function getClientPersonByPreferredName(
+export async function getClientsPersonByPreferredName(
   authedClient: Client,
   preferredName: string,
 ) {
@@ -40,7 +40,7 @@ export async function getClientPersonByPreferredName(
   return { data, error };
 }
 
-export async function getClientPersonByLastdName(
+export async function getClientsPersonByLastdName(
   authedClient: Client,
   lastName: string,
 ) {
@@ -52,7 +52,7 @@ export async function getClientPersonByLastdName(
   return { data, error };
 }
 
-export async function getClientPeopleByTattooYear(
+export async function getClientsPeopleByTattooYear(
   authedClient: Client,
   year: number,
 ) {

@@ -5,7 +5,7 @@ import { EDITABLE_CLIENT_TATTOO_COLS } from "@hyperinkstudio/db";
 
 type Props = {
   clientId: string;
-  preferredName: string;
+  preferredName: string | null;
 };
 
 export function ClientTattooFormContent({ clientId, preferredName }: Props) {
@@ -26,13 +26,6 @@ export function ClientTattooFormContent({ clientId, preferredName }: Props) {
               <input type="text" className="input" name={key} />
             </>
           )}
-
-          {/* {inputType === "number" && (
-            <>
-              <label>{EDITABLE_CLIENT_TATTOO_COLS[key].name}</label>
-              <input type="number" className="input" name={key} />
-            </>
-          )} */}
 
           {inputType === "checkbox" && (
             <>

@@ -12,6 +12,13 @@ export const getProfileTaggingOpts = getProfileTaggingOptsDb;
 
 export type ProfileTaggingOptions = ProfileTaggingOptionsDb;
 
+export function createTaggingKeys() {
+  return {
+    [EDITABLE_TAGGING_COLS_OPTS.tags.value]: [],
+    [EDITABLE_TAGGING_COLS_OPTS.styles.value]: [],
+    [EDITABLE_TAGGING_COLS_OPTS.collections.value]: [],
+  };
+}
 export function createTaggingValues(
   data: Partial<ProfileTaggingOptions> | null | undefined,
 ) {

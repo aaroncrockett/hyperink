@@ -65,13 +65,9 @@ export function handleStringFormValues(
       continue;
     }
 
-    if (typeof value !== "string" || !value.trim()) {
-      data.hasError = true;
-      data.errors[key] = "This field is required";
-      continue;
+    if (value !== null) {
+      data.values[key] = value.trim();
     }
-
-    data.values[key] = value.trim();
   }
 
   return data;

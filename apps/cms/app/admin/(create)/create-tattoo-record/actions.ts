@@ -2,10 +2,9 @@
 
 import { createServerClientAndAuth, getAuthedUser } from "@/utils/db/server";
 import {
-  getClientPersonByEmail,
-  getClientPersonByPhone,
-  getClientPersonByPreferredName,
-  getClientPeopleByTattooYear,
+  getClientsPersonByEmail,
+  getClientsPersonByPhone,
+  getClientsPersonByPreferredName,
   createClientTattoo,
   type ClientTable,
 } from "@hyperinkstudio/db";
@@ -13,14 +12,15 @@ import {
 import { redirect } from "next/navigation";
 
 import { getClientTattooInputs } from "./_helpers";
-type GetClient = {
+type GetClients = {
   clients: ClientTable | null;
+  errors: Record<string, string> | null;
 };
 
-export async function getClient(
-  _prevState: GetClient,
+export async function getClients(
+  _prevState: GetClients,
   formData: FormData,
-): Promise<GetClient> {
+): Promise<GetClients> {
   const authedClient = await createServerClientAndAuth();
 
   const {
@@ -34,24 +34,19 @@ export async function getClient(
   const email = formData.get("email")?.toString();
   const phone = formData.get("phone")?.toString();
   const preferredName = formData.get("preferredName")?.toString();
-  const tattooYear = Number(formData.get("tattooYear"));
 
   let result;
 
   if (email) {
-    result = await getClientPersonByEmail(authedClient, email);
+    result = await getClientsPersonByEmail(authedClient, email);
   }
 
   if (phone) {
-    result = await getClientPersonByPhone(authedClient, Number(phone));
+    result = await getClientsPersonByPhone(authedClient, phone);
   }
 
   if (preferredName) {
-    result = await getClientPersonByPreferredName(authedClient, preferredName);
-  }
-
-  if (tattooYear) {
-    result = await getClientPeopleByTattooYear(authedClient, tattooYear);
+    result = await getClientsPersonByPreferredName(authedClient, preferredName);
   }
 
   if (result?.error) {

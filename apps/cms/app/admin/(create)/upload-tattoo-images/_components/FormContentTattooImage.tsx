@@ -1,6 +1,5 @@
 "use client";
 import {
-  FilesData,
   FileDisplay,
   SetOrder,
   FileReadableName,
@@ -10,24 +9,25 @@ import {
 import { type ImageFile } from "@/partials/UploadImages/types";
 
 import { useState } from "react";
-import { Heading } from "@hyperinkstudio/ui-react/components";
+import { Heading } from "@hyperinkstudio/ui-react/components/client";
 
 export type FormContentProps = {
   styles: string[];
   tags: string[];
+  collections: string[];
 };
 
-export default function FormContent({ styles, tags }: FormContentProps) {
+export default function FormContent({}: FormContentProps) {
   const [files, setFiles] = useState<ImageFile[]>([]);
 
   return (
     <div className="grid p-4 border ">
-      <Heading text="Upload Files" as="h2" />
+      <Heading text="Upload Files" as="h3" />
       <p>Upload an image or set of images related.</p>
       <ImagesUpload setFiles={setFiles} />
       {files.length > 1 && (
         <>
-          <Heading text="File Order" as="h3" />
+          <Heading text="File Order" as="h4" />
 
           <div className="flex flex-row gap-1">
             {files.map((file, index) => (
@@ -44,10 +44,9 @@ export default function FormContent({ styles, tags }: FormContentProps) {
           </div>
         </>
       )}
-
       {files.length > 0 && (
         <>
-          <Heading text="File Readable Name" as="h3" />
+          <Heading text="File Readable Name" as="h4" />
           <div className="flex flex-row gap-1">
             {files.map((file, index) => (
               <div key={index} className="flex flex-col items-center gap-2">
@@ -62,7 +61,6 @@ export default function FormContent({ styles, tags }: FormContentProps) {
           </div>
         </>
       )}
-      <FilesData styles={styles} tags={tags} />
     </div>
   );
 }

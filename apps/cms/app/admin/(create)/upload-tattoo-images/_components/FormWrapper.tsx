@@ -4,32 +4,50 @@ import { useActionState, useState } from "react";
 //hyper ink
 import { Form, SelectState } from "@hyperinkstudio/ui-react/components/client";
 // Local Parent
-import type { ProfileTaggingOptions } from "@/utils/db/types";
 import { LOOKUP_COLS_OPTIONS } from "@/utils/db/clientPersons/";
+import {
+  createTaggingKeys,
+  createTaggingValues,
+  EDITABLE_TAGGING_COLS_LIST_OF_OPTS,
+  EDITABLE_TAGGING_COLS_OPTS,
+} from "@/utils/db/profileTaggingOpts";
 import { FormContentGetClient } from "@/app/admin/(features)/GetClient";
 //local
-import { getClient } from "../actions";
+import { getClient, uploadImage } from "../actions";
+import FormContentTaggingPhotos from "./FormContentTaggingPhotos";
+import FormContentTattoImage from "./FormContentTattooImage";
 
 type FormWrapperProps = {
-  taggingOpts: Partial<ProfileTaggingOptions> | null;
+  taggingOpts: Record<string, string[]> | null;
 };
 
 export default function FormWrapper({ taggingOpts }: FormWrapperProps) {
-  // const tags = isStringArray(taggingOpts?.tags) ? taggingOpts.tags : [];
-  // const styles = isStringArray(taggingOpts?.styles) ? taggingOpts.styles : [];
-  // const collections = isStringArray(taggingOpts?.collections)
-  //   ? taggingOpts.collections
-  //   : [];
+  const [tagOpts, setTagOpts] = useState(
+    createTaggingValues(createTaggingValues(taggingOpts)),
+  );
+
+  const [chosenTagOpts, setChosenTagOpts] = useState(createTaggingKeys());
 
   const initClientState = {
     errors: null,
-    client: null,
+    client: {},
+  };
+
+  const initImageState = {
+    errors: null,
+    tattooImages: { tattooId: null },
   };
 
   const [clientState, clientActionState] = useActionState(
     getClient,
     initClientState,
   );
+  const [imageState, imageActionState] = useActionState(
+    uploadImage,
+    initImageState,
+  );
+
+  console.log(imageState);
   const [showClientState, setShowClientState] = useState(false);
 
   return (
@@ -40,7 +58,7 @@ export default function FormWrapper({ taggingOpts }: FormWrapperProps) {
           className="btn preset-filled-secondary-500"
           onClick={() => setShowClientState((prev) => !prev)}
         >
-          Attach Image to a client
+          Link a tattoo to the image
         </button>
       )}
       {showClientState && (
@@ -58,14 +76,34 @@ export default function FormWrapper({ taggingOpts }: FormWrapperProps) {
           )}
         </SelectState>
       )}
-      {/* {clientByPhoneState.data && (
-        <Form action={uploadAction}>
-          <FormContent
-            clientTattoos={clientState.data}
-            isPending={uploadPending}
+      {clientState?.client?.id}
+      {clientState?.client?.first_name}
+
+      {clientState?.client?.id && <button>get all tattoos by person</button>}
+
+      {clientState.errors && (
+        <p className="text-red-500">{JSON.stringify(clientState.errors)}</p>
+      )}
+      <Form action={uploadImage}>
+        <FormContentTattoImage
+          styles={chosenTagOpts[EDITABLE_TAGGING_COLS_OPTS.styles.value]}
+          collections={
+            chosenTagOpts[EDITABLE_TAGGING_COLS_OPTS.collections.value]
+          }
+          tags={chosenTagOpts[EDITABLE_TAGGING_COLS_OPTS.tags.value]}
+        />
+        {EDITABLE_TAGGING_COLS_LIST_OF_OPTS.map(({ value, label }) => (
+          <FormContentTaggingPhotos
+            key={value}
+            value={value}
+            label={label}
+            tagOpts={tagOpts[value]}
+            setTagOpts={setTagOpts}
+            setChosenTagOpts={setChosenTagOpts}
+            chosenTagOpts={chosenTagOpts[value]}
           />
-        </Form>
-      )} */}
+        ))}
+      </Form>
     </>
   );
 }
