@@ -4,7 +4,7 @@ import { useActionState, useState } from "react";
 //hyper ink
 import { Form, SelectState } from "@hyperinkstudio/ui-react/components/client";
 // Local Parent
-import { LOOKUP_COLS_OPTIONS } from "@/utils/db/clientPersons/";
+import { LOOKUP_COLS_KEY_VAL_LIST } from "@/utils/db/clientPersons/";
 import {
   createTaggingKeys,
   createTaggingValues,
@@ -61,7 +61,7 @@ export default function FormWrapper({ taggingOpts }: FormWrapperProps) {
 
   return (
     <>
-      <SelectState options={LOOKUP_COLS_OPTIONS}>
+      <SelectState options={LOOKUP_COLS_KEY_VAL_LIST}>
         {({ lookupType }) => (
           <>
             <Form

@@ -4,6 +4,19 @@ import { TABLE_CLIENT_PERSON as TABLE } from "./consts";
 // Utils
 import { getYearDateRange } from "@hyperinkstudio/utils";
 
+export async function getRecentlyUpdatedClients(
+  authedClient: Client,
+  limit = 10,
+) {
+  const { data, error } = await authedClient
+    .from(TABLE)
+    .select("*")
+    .order("updated_at", { ascending: false })
+    .limit(limit);
+
+  return { data, error };
+}
+
 export async function getClientsPersonByEmail(
   authedClient: Client,
   email: string,

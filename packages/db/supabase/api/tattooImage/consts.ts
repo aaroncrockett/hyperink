@@ -19,27 +19,3 @@ export const TATTOO_IMAGE_COLS = [
   "styles",
   "tags",
 ] as const satisfies (keyof TattooImage)[];
-
-export const TATTOO_IMAGE_COLS_KEY_VAL = TATTOO_IMAGE_COLS.reduce(
-  (acc, key) => {
-    acc[key] = {
-      key,
-      name: key
-        .replaceAll("_", " ")
-        .replace(/\b\w/g, (char) => char.toUpperCase()),
-    };
-
-    return acc;
-  },
-  {} as Record<
-    keyof TattooImage,
-    {
-      key: keyof TattooImage;
-      name: string;
-    }
-  >,
-);
-
-export const TATTOO_IMAGE_COLS_KEY_VAL_LIST = Object.values(
-  TATTOO_IMAGE_COLS_KEY_VAL,
-);

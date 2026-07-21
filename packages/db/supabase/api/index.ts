@@ -2,4 +2,4 @@ export * from "./profileTaggingOptions";
 export * from "./tattooImage";
 export * from "./users";
 export * from "./clientTattoo";
-export * from "./client";
+export * from "./clientPersson";

@@ -1,10 +1,14 @@
 export const LINKS_ADMIN = {
-  adminHome: {
+  home: {
     href: "/admin",
     label: "Admin Home",
   },
+  client: {
+    href: "/admin/client",
+    label: "Client Records",
+  },
   createClient: {
-    href: "/admin/create-client",
+    href: "/admin/client/create-client",
     label: "Create A Client",
   },
   createTattooRecord: {

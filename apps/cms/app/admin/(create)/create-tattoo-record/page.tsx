@@ -15,7 +15,7 @@ import {
 // Local Parent
 import { LINKS_ADMIN } from "@/app/consts";
 import { FormContentGetClient } from "@/app/admin/(features)/GetClient";
-import { LOOKUP_COLS_OPTIONS } from "@/utils/db/clientPersons/";
+import { LOOKUP_COLS_KEY_VAL_LIST } from "@/utils/db/clientPersons/";
 
 // Local Curr Dir
 import { FormContentClientTattoo } from "./_components/FormContentClientTattoo";
@@ -58,7 +58,7 @@ export default function CreateClientTattooPage() {
           <div className="flex flex-col  gap-2">
             <Heading as="h5" text="Lookup A client" />
 
-            <SelectState options={LOOKUP_COLS_OPTIONS}>
+            <SelectState options={LOOKUP_COLS_KEY_VAL_LIST}>
               {({ lookupType }) => (
                 <>
                   <Form
