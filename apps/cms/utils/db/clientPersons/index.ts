@@ -15,6 +15,7 @@ export const LOOKUP_CLIENT_COLS = [
   "phone",
   "preferred_name",
 ] as const satisfies (keyof ClientTable)[];
+
 // used when createing a client
 export const CREATE_CLIENT_COLS = [
   ...LOOKUP_CLIENT_COLS,
@@ -36,6 +37,11 @@ export const CLIENT_COLS_ADDITIONAL = [
   "created_at",
   "updated_at",
 ] as const satisfies (keyof ClientTable)[];
+
+export const ALL_CLIENT_COLS = [
+  ...CLIENT_COLS_ADDITIONAL,
+  ...EDITABLE_CLIENT_COLS,
+];
 
 export const LOOKUP_COLS_KEY_VAL = Object.fromEntries(
   LOOKUP_CLIENT_COLS.map((value) => [
@@ -88,6 +94,23 @@ export const EDITABLE_CLIENT_COLS_KEY_VAL = Object.fromEntries(
   };
 };
 
+export const ALL_CLIENT_COLS_KEY_VAL = Object.fromEntries(
+  ALL_CLIENT_COLS.map((value) => [
+    value,
+    {
+      value,
+      label: value
+        .replaceAll("_", " ")
+        .replace(/\b\w/g, (c) => c.toUpperCase()),
+    },
+  ]),
+) as {
+  [K in (typeof ALL_CLIENT_COLS)[number]]: {
+    value: K;
+    label: string;
+  };
+};
+
 export const LOOKUP_COLS_KEY_VAL_LIST = Object.values(LOOKUP_COLS_KEY_VAL);
 
 export const CREATE_CLIENT_COLS_KEY_VAL_LIST = Object.values(
@@ -96,4 +119,8 @@ export const CREATE_CLIENT_COLS_KEY_VAL_LIST = Object.values(
 
 export const EDITABLE_CLIENT_COLS_KEY_VAL_LIST = Object.values(
   EDITABLE_CLIENT_COLS_KEY_VAL,
+);
+
+export const ALL_CLIENT_COLS_KEY_VAL_LIST = Object.values(
+  ALL_CLIENT_COLS_KEY_VAL,
 );

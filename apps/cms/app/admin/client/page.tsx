@@ -4,14 +4,21 @@
 import Link from "next/link";
 
 // Hyperink
-import { Heading, Page } from "@hyperinkstudio/ui-react/components/client";
+import {
+  Heading,
+  Page,
+  TableLayout,
+} from "@hyperinkstudio/ui-react/components/client";
+import { cn } from "@hyperinkstudio/utils/cn";
 
 // Local Outter
 import { createServerClientAndAuth } from "@/utils/db/server";
-import { getLastTenClients } from "@/utils/db";
+import { getLastTenClients, ALL_CLIENT_COLS_KEY_VAL } from "@/utils/db";
 
 // Local
 import { LINKS_ADMIN } from "@/app/consts";
+
+const gridCls = "grid grid-cols-[12rem_10rem_10rem_20rem_12rem_12rem_12rem]";
 
 export default async function ClientPage() {
   const authedClient = await createServerClientAndAuth();
@@ -28,23 +35,58 @@ export default async function ClientPage() {
         {LINKS_ADMIN.createClient.label}
       </Link>
 
-      <ul className="mt-6 flex flex-col gap-2">
+      <TableLayout
+        gridCls={gridCls}
+        headerCols={
+          <>
+            <span>{ALL_CLIENT_COLS_KEY_VAL.preferred_name.label}</span>
+            <span>{ALL_CLIENT_COLS_KEY_VAL.first_name.label}</span>
+            <span>{ALL_CLIENT_COLS_KEY_VAL.last_name.label}</span>
+            <span>{ALL_CLIENT_COLS_KEY_VAL.email.label}</span>
+            <span>{ALL_CLIENT_COLS_KEY_VAL.phone.label}</span>
+            <span>{ALL_CLIENT_COLS_KEY_VAL.created_at.label}</span>
+            <span>{ALL_CLIENT_COLS_KEY_VAL.updated_at.label}</span>
+          </>
+        }
+      >
         {lastTenClients?.map((client) => (
-          <li
+          <div
+            className={cn(
+              gridCls,
+              "odd:bg-surface-100/80 even:bg-surface-200/60 p-2",
+            )}
             key={client.id}
-            className="rounded border p-3 odd:bg-surface-100 even:bg-surface-200"
           >
-            <p className="font-semibold">
-              {client.preferred_name || "Unnamed Client"}
-            </p>
+            <span className="truncate font-semibold">
+              {client[ALL_CLIENT_COLS_KEY_VAL.preferred_name.value]}
+            </span>
 
-            {client.first_name && <p>First Name: {client.first_name}</p>}
-            {client.last_name && <p>Last Name: {client.last_name}</p>}
-            {client.email && <p>Email: {client.email}</p>}
-            {client.phone && <p>Phone: {client.phone}</p>}
-          </li>
+            <span className="truncate">
+              {client[ALL_CLIENT_COLS_KEY_VAL.first_name.value]}
+            </span>
+
+            <span className="truncate">
+              {client[ALL_CLIENT_COLS_KEY_VAL.last_name.value]}
+            </span>
+
+            <span className="truncate">
+              {client[ALL_CLIENT_COLS_KEY_VAL.email.value]}
+            </span>
+
+            <span className="truncate">
+              {client[ALL_CLIENT_COLS_KEY_VAL.phone.value]}
+            </span>
+
+            <span className="truncate">
+              {client[ALL_CLIENT_COLS_KEY_VAL.created_at.value]}
+            </span>
+
+            <span className="truncate">
+              {client[ALL_CLIENT_COLS_KEY_VAL.updated_at.value]}
+            </span>
+          </div>
         ))}
-      </ul>
+      </TableLayout>
     </Page>
   );
 }
