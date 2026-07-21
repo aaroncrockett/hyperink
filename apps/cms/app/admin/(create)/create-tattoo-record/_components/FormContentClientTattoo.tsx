@@ -8,7 +8,7 @@ type Props = {
   preferredName: string | null;
 };
 
-export function ClientTattooFormContent({ clientId, preferredName }: Props) {
+export function FormContentClientTattoo({ clientId, preferredName }: Props) {
   return (
     <>
       <h4>Create a tattoo record for: {preferredName}</h4>

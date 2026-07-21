@@ -1,10 +1,15 @@
 import type {
-\
   ClientTable,
   TattooImage,
   ClientTattoo,
   Profile,
-  ProfileTaggingOptions
+  ProfileTaggingOptions,
 } from "@hyperinkstudio/db";
 
-export type { ClientTable, TattooImage, ClientTattoo, Profile, ProfileTaggingOptions };
+export type {
+  ClientTable,
+  TattooImage,
+  ClientTattoo,
+  Profile,
+  ProfileTaggingOptions,
+};

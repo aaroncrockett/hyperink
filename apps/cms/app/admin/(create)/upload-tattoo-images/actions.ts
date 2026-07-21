@@ -6,6 +6,7 @@ import {
   getClientsPersonByEmail,
   getClientsPersonByPreferredName,
   getClientsPersonByPhone,
+  getClientTattoosByClientId,
 } from "@hyperinkstudio/db";
 // Local
 import { getImageFormInputs } from "./_helpers";
@@ -22,12 +23,17 @@ export type ClientFormState = {
   errors: Record<string, string> | null;
 };
 
+export type TattooFormState = {
+  tattoos: Partial<ClientTable> | null;
+  errors: Record<string, string> | null;
+};
+
 export type ImageFormState = {
   tattooImages: Partial<TattooImage>[] | null;
   errors: Record<string, string> | null;
 };
 
-export async function getClient(
+export async function getClients(
   _prevState: ClientFormState,
   formData: FormData,
 ): Promise<ClientFormState> {
@@ -145,5 +151,49 @@ export async function uploadImage(
     ..._prevState,
     tattooImages: null,
     errors: null,
+  };
+}
+
+export async function getTattoos(
+  _prevState: TattooFormState,
+  formData: FormData,
+): Promise<TattooFormState> {
+  const clientId = formData.get("clientId")?.toString();
+
+  if (!clientId) {
+    return {
+      ..._prevState,
+      tattoos: null,
+      errors: {
+        clientId: "Client id is required",
+      },
+    };
+  }
+
+  const authedClient = await createServerClientAndAuth();
+
+  const {
+    data: { user },
+  } = await getAuthedUser(authedClient);
+
+  if (!user) {
+    return {
+      ..._prevState,
+      tattoos: null,
+      errors: {
+        unauthorized: "The person is unauthorized",
+      },
+    };
+  }
+
+  const { data: tattoos, error } = await getClientTattoosByClientId(
+    authedClient,
+    clientId,
+  );
+
+  return {
+    ..._prevState,
+    tattoos: tattoos ?? null,
+    errors: error ? { tattoos: error.message } : null,
   };
 }

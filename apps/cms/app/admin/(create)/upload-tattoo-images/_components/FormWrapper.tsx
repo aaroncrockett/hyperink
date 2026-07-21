@@ -13,7 +13,7 @@ import {
 } from "@/utils/db/profileTaggingOpts";
 import { FormContentGetClient } from "@/app/admin/(features)/GetClient";
 //local
-import { getClient, uploadImage } from "../actions";
+import { getClients, uploadImage, getTattoos } from "../actions";
 import FormContentTaggingPhotos from "./FormContentTaggingPhotos";
 import FormContentTattoImage from "./FormContentTattooImage";
 
@@ -39,8 +39,18 @@ export default function FormWrapper({ taggingOpts }: FormWrapperProps) {
   };
 
   const [clientState, clientActionState] = useActionState(
-    getClient,
+    getClients,
     initClientState,
+  );
+
+  const initTattooState = {
+    errors: null,
+    tattoos: null,
+  };
+
+  const [tattooState, tattooActionState] = useActionState(
+    getTattoos,
+    initTattooState,
   );
   const [imageState, imageActionState] = useActionState(
     uploadImage,
@@ -48,36 +58,31 @@ export default function FormWrapper({ taggingOpts }: FormWrapperProps) {
   );
 
   console.log(imageState);
-  const [showClientState, setShowClientState] = useState(false);
 
   return (
     <>
-      {!showClientState && (
-        <button
-          type="button"
-          className="btn preset-filled-secondary-500"
-          onClick={() => setShowClientState((prev) => !prev)}
-        >
-          Link a tattoo to the image
-        </button>
+      <SelectState options={LOOKUP_COLS_OPTIONS}>
+        {({ lookupType }) => (
+          <>
+            <Form
+              action={async (formData: FormData) =>
+                await clientActionState(formData)
+              }
+            >
+              <FormContentGetClient lookupType={lookupType} />
+            </Form>
+          </>
+        )}
+      </SelectState>
+
+      {clientState?.client?.id && (
+        <Form action={tattooActionState}>
+          <input type="hidden" name="clientId" value={clientState.client.id} />
+        </Form>
       )}
-      {showClientState && (
-        <SelectState options={LOOKUP_COLS_OPTIONS}>
-          {({ lookupType }) => (
-            <>
-              <Form
-                action={async (formData: FormData) =>
-                  await clientActionState(formData)
-                }
-              >
-                <FormContentGetClient lookupType={lookupType} />
-              </Form>
-            </>
-          )}
-        </SelectState>
-      )}
-      {clientState?.client?.id}
-      {clientState?.client?.first_name}
+      {tattooState.tattoos?.map((tattoo) => (
+        <div key={tattoo.id}>{tattoo.title}</div>
+      ))}
 
       {clientState?.client?.id && <button>get all tattoos by person</button>}
 

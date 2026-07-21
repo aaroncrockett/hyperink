@@ -18,7 +18,7 @@ import { FormContentGetClient } from "@/app/admin/(features)/GetClient";
 import { LOOKUP_COLS_OPTIONS } from "@/utils/db/clientPersons/";
 
 // Local Curr Dir
-import { ClientTattooFormContent } from "./_components/FormContentClientTattoo";
+import { FormContentClientTattoo } from "./_components/FormContentClientTattoo";
 import { ClientResults } from "./_components/ClientResults";
 import { createTattoo, getClients } from "./actions";
 
@@ -46,7 +46,7 @@ export default function CreateClientTattooPage() {
 
       {selectedClient.clientId && (
         <Form action={createTattoo}>
-          <ClientTattooFormContent
+          <FormContentClientTattoo
             clientId={selectedClient.clientId}
             preferredName={selectedClient.preferredName}
           />

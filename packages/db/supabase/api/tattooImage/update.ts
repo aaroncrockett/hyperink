@@ -1,7 +1,7 @@
 import type { Client, TattooImage } from "@hyperinkstudio/db";
 import { TABLE_TATTOO_IMAGE as TABLE } from "./consts";
 
-export async function updateUserImage(
+export async function updateTattooImage(
   authedClient: Client,
   id: string,
   updates: Partial<TattooImage>,

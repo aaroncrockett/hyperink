@@ -478,6 +478,7 @@ export type Database = {
       }
       tattoo_image: {
         Row: {
+          client_tattoo_id: string
           collections: Json | null
           created_at: string | null
           flash_id: string | null
@@ -492,9 +493,9 @@ export type Database = {
           set_order: number | null
           styles: Json | null
           tags: Json | null
-          user_id: string
         }
         Insert: {
+          client_tattoo_id: string
           collections?: Json | null
           created_at?: string | null
           flash_id?: string | null
@@ -509,9 +510,9 @@ export type Database = {
           set_order?: number | null
           styles?: Json | null
           tags?: Json | null
-          user_id: string
         }
         Update: {
+          client_tattoo_id?: string
           collections?: Json | null
           created_at?: string | null
           flash_id?: string | null
@@ -526,9 +527,16 @@ export type Database = {
           set_order?: number | null
           styles?: Json | null
           tags?: Json | null
-          user_id?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "tattoo_image_client_tattoo_id_fkey"
+            columns: ["client_tattoo_id"]
+            isOneToOne: false
+            referencedRelation: "client_tattoo"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       tattoo_request: {
         Row: {
