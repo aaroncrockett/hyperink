@@ -1,4 +1,4 @@
-import { Page, Heading } from "@hyperinkstudio/ui-react/components";
+import { Page, Heading } from "@hyperinkstudio/ui-react/components/client";
 
 export default async function Flash() {
   return (
