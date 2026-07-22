@@ -1,4 +1,4 @@
-import type { ServerClient } from "@/utils/db/types";
+import type { ServerClient } from "@/db/types";
 
 const table = "profile";
 

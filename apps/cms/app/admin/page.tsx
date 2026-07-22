@@ -3,7 +3,7 @@ import {
   createServerClientAndAuth,
   getAuthedUser,
   getProfileId,
-} from "@/utils/db/server";
+} from "@/db/server";
 
 // hyperink
 import { Page, Heading } from "@hyperinkstudio/ui-react/components/client";

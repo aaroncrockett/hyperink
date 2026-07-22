@@ -15,7 +15,7 @@ import {
 // Local Parent
 import { LINKS_ADMIN } from "@/app/consts";
 import { FormContentGetClient } from "@/app/admin/(features)/GetClient";
-import { LOOKUP_COLS_KEY_VAL_LIST } from "@/utils/db/clientPersons/";
+import { LOOKUP_COLS_KEY_VAL_LIST } from "@/db/clientPersons";
 
 // Local Curr Dir
 import { FormContentClientTattoo } from "./_components/FormContentClientTattoo";

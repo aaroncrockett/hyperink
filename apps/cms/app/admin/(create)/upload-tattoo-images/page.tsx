@@ -3,8 +3,8 @@
 import { Heading, Page } from "@hyperinkstudio/ui-react/components/client";
 // Local Parent
 
-import { getProfileTaggingOpts } from "@/utils/db/profileTaggingOpts";
-import { createServerClientAndAuth } from "@/utils/db/server";
+import { getProfileTaggingOpts } from "@/db/profileTaggingOpts";
+import { createServerClientAndAuth } from "@/db/server";
 // Local
 
 // local parents

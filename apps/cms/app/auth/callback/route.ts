@@ -3,9 +3,9 @@ import {
   createServerClientAndAuth,
   exchangeCodeForSession,
   getAuthedUser,
-} from "@/utils/db/server";
+} from "@/db/server";
 
-import type { Client } from "@/utils/db/server";
+import type { Client } from "@/db/server";
 
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url);

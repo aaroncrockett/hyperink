@@ -1,6 +1,6 @@
 "use server";
 
-import { createServerClientAndAuth, getAuthedUser } from "@/utils/db/server";
+import { createServerClientAndAuth, getAuthedUser } from "@/db/server";
 import {
   getClientsPersonByEmail,
   getClientsPersonByPhone,

@@ -7,10 +7,10 @@ import { Form } from "@hyperinkstudio/ui-react/components/client";
 import {
   EDITABLE_TAGGING_COLS_LIST_OF_OPTS,
   createTaggingValues,
-} from "@/utils/db/profileTaggingOpts";
+} from "@/db/profileTaggingOpts";
 import { upsertProfileTaggingOpts } from "../actions";
 import FormContentAllTags from "./FormContentAllTags";
-import type { ProfileTaggingOptions } from "@/utils/db/types";
+import type { ProfileTaggingOptions } from "@/db/types";
 
 type FormWrapperProps = {
   data: Partial<ProfileTaggingOptions> | null;

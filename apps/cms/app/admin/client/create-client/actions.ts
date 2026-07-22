@@ -2,10 +2,10 @@
 // Next.js
 import { redirect } from "next/navigation";
 // local outter
-import { CREATE_CLIENT_COLS } from "@/utils/db/clientPersons";
-import type { ClientTable } from "@/utils/db/types";
-import { createServerClientAndAuth, getAuthedUser } from "@/utils/db/server";
-import { createClientPerson } from "@/utils/db/clientPersons";
+import { CREATE_CLIENT_COLS } from "@/db/clientPersons";
+import type { ClientTable } from "@/db/types";
+import { createServerClientAndAuth, getAuthedUser } from "@/db/server";
+import { createClientPerson } from "@/db/clientPersons";
 import { handleStringFormValues } from "@hyperinkstudio/utils";
 import { LINKS_ADMIN } from "@/app/consts";
 

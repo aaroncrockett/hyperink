@@ -4,13 +4,13 @@ import { useActionState, useState } from "react";
 //hyper ink
 import { Form, SelectState } from "@hyperinkstudio/ui-react/components/client";
 // Local Parent
-import { LOOKUP_COLS_KEY_VAL_LIST } from "@/utils/db/clientPersons/";
+import { LOOKUP_COLS_KEY_VAL_LIST } from "@/db/clientPersons";
 import {
   createTaggingKeys,
   createTaggingValues,
   EDITABLE_TAGGING_COLS_LIST_OF_OPTS,
   EDITABLE_TAGGING_COLS_OPTS,
-} from "@/utils/db/profileTaggingOpts";
+} from "@/db/profileTaggingOpts";
 import { FormContentGetClient } from "@/app/admin/(features)/GetClient";
 //local
 import { getClients, uploadImage, getTattoos } from "../actions";

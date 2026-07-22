@@ -3,8 +3,8 @@
 //hyperink
 import { Page, Heading } from "@hyperinkstudio/ui-react/components/client";
 // local parents
-import { getProfileTaggingOpts } from "@/utils/db/profileTaggingOpts";
-import { createServerClientAndAuth } from "@/utils/db/server";
+import { getProfileTaggingOpts } from "@/db/profileTaggingOpts";
+import { createServerClientAndAuth } from "@/db/server";
 // local
 import { default as FormWrapper } from "./_components/FormWrapper";
 

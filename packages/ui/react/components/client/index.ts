@@ -1,8 +1,8 @@
-export { default as Card } from "./Card";
-export { default as Form } from "./Form";
-export { default as TableLayout } from "./TableLayout";
-export { default as Heading } from "./Heading";
-export { default as Page } from "./Page";
-export { default as SelectState } from "./SelectState";
-export { default as Input } from "./Input";
-export { default as InputCheck } from "./InputCheck";
+export { Card } from "./Card";
+export { Form } from "./Form";
+export { TableLayout } from "./TableLayout";
+export { Heading } from "./Heading";
+export { Page } from "./Page";
+export { SelectState } from "./SelectState";
+export { Input } from "./Input";
+export { InputCheck } from "./InputCheck";

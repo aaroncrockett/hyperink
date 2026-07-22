@@ -11,12 +11,12 @@ import {
 // Local
 import { getImageFormInputs } from "./_helpers";
 // Local Parents
-import { LOOKUP_CLIENT_COLS } from "@/utils/db/clientPersons";
-import type { ClientTable, TattooImage } from "@/utils/db/types";
-import { createServerClientAndAuth, getAuthedUser } from "@/utils/db/server";
+import { LOOKUP_CLIENT_COLS } from "@/db/clientPersons";
+import type { ClientTable, TattooImage } from "@/db/types";
+import { createServerClientAndAuth, getAuthedUser } from "@/db/server";
 import { handleStringFormValues } from "@hyperinkstudio/utils";
 
-import { uploadTattooImage } from "@/utils/db/server";
+import { uploadTattooImage } from "@/db/server";
 
 export type ClientFormState = {
   client: Partial<ClientTable> | null;

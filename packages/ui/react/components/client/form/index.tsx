@@ -10,7 +10,7 @@ type FormProps = ComponentPropsWithoutRef<"form"> & {
   space?: string;
 };
 
-export default function Form({
+export function Form({
   action,
   children,
   className,

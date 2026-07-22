@@ -6,7 +6,7 @@ import {
   createServerClientAndAuth,
   getAuthedUser,
   getProfileId,
-} from "@/utils/db/server";
+} from "@/db/server";
 
 export default async function RootLayout({
   children,

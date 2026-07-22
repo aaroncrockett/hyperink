@@ -10,8 +10,8 @@ import { cn } from "@hyperinkstudio/utils/cn";
 import { formatDate } from "@hyperinkstudio/utils/dates";
 
 // Local Outter
-import { createServerClientAndAuth } from "@/utils/db/server";
-import { getLastTenClients, ALL_CLIENT_COLS_KEY_VAL } from "@/utils/db";
+import { createServerClientAndAuth } from "@/db/server";
+import { getLastTenClients, ALL_CLIENT_COLS_KEY_VAL } from "@/db";
 
 // Local
 import { NAV_ADMIN_CLIENT_LIST } from "@/app/consts";

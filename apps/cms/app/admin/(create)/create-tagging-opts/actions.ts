@@ -2,10 +2,10 @@
 // Next.js
 import { redirect } from "next/navigation";
 // local outter
-import { EDITABLE_TAGGING_COLS } from "@/utils/db/profileTaggingOpts";
-import type { ProfileTaggingOptions } from "@/utils/db/types";
-import { createServerClientAndAuth, getAuthedUser } from "@/utils/db/server";
-import { upsertProfileTaggingOpts as upsertProfileTaggingOptsUtil } from "@/utils/db/profileTaggingOpts";
+import { EDITABLE_TAGGING_COLS } from "@/db/profileTaggingOpts";
+import type { ProfileTaggingOptions } from "@/db/types";
+import { createServerClientAndAuth, getAuthedUser } from "@/db/server";
+import { upsertProfileTaggingOpts as upsertProfileTaggingOptsUtil } from "@/db/profileTaggingOpts";
 import { handleStringListFormValues } from "@hyperinkstudio/utils";
 import { LINKS_ADMIN } from "@/app/consts";
 

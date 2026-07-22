@@ -6,7 +6,7 @@ type CardProps = ComponentPropsWithoutRef<"div"> & {
   space?: string;
 };
 
-export default function Card({
+export function Card({
   children,
   className,
   padding = "p-4",

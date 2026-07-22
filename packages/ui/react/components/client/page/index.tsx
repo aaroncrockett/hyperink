@@ -10,7 +10,7 @@ type PageProps = ComponentPropsWithoutRef<"div"> & {
   width?: string;
 };
 
-export default function Page({
+export function Page({
   children,
   className,
   display = "flex flex-col",
