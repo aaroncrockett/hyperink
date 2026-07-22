@@ -11,7 +11,7 @@ import {
 
 // Local
 import { createClient } from "./actions";
-import FormContentCreateClient from "./_components/FormContentCreateClient";
+import { FormContentCreateClient } from "./_components/FormContentCreateClient";
 import { NAV_ADMIN_CLIENT_LIST } from "@/app/consts";
 import { PageAdminNavs } from "../../_components/PageAdminNavs";
 
@@ -34,7 +34,7 @@ export default function CreateClientPage() {
           return <PageAdminNavs key={link.href} link={link} />;
         })}
       </div>
-      <Form action={actionState}>
+      <Form className="max-w-md" action={actionState}>
         <FormContentCreateClient errors={clientState.errors} />
 
         {clientState?.errors?.unauthorized && (

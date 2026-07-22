@@ -1,7 +1,7 @@
 import { CREATE_CLIENT_COLS_KEY_VAL_LIST } from "@/utils/db/clientPersons";
 import { Input, InputCheck } from "@hyperinkstudio/ui-react/components/client/";
 
-export default function FormContentCreateClient({
+export function FormContentCreateClient({
   errors,
 }: {
   errors: Record<string, string> | null;
