@@ -12,7 +12,7 @@ type CheckboxProps = {
   value?: string;
 };
 
-export default function Checkbox({
+export function InputCheck({
   className = "",
   errorClassName = "",
   errors = {},

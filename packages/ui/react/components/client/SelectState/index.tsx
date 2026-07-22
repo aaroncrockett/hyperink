@@ -13,7 +13,7 @@ type SelectStateProps<T extends string> = {
   children: (props: { lookupType: T }) => ReactNode;
 };
 
-export default function SelectState<T extends string, TState>({
+export function SelectState<T extends string, TState>({
   options,
 
   children,

@@ -11,7 +11,7 @@ type RowsProps = {
   headerCols: React.ReactNode;
 };
 
-export default function Rows({
+export function TableLayout({
   children,
 
   gridCls,

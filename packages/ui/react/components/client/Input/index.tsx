@@ -11,7 +11,7 @@ type InputProps = {
   errorClassName?: string;
 };
 
-export default function Input({
+export function Input({
   id,
   name,
   label,

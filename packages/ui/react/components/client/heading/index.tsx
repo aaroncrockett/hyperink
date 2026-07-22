@@ -20,7 +20,7 @@ type HeadingProps = {
   weight?: string;
 };
 
-export default function Heading({
+export function Heading({
   alignment = "",
   as = "h1",
   className = "",
