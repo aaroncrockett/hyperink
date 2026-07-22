@@ -31,13 +31,13 @@ export default function MenuMobile({
           {triggerIcon}
           <Portal>
             <Dialog.Backdrop
-              className={`fixed inset-0 z-50 bg-surface-50-950/50 ${animBackdrop}`}
+              className={`fixed inset-0 z-50 bg-surface-700-300/50 ${animBackdrop}`}
             />
             <Dialog.Positioner className="fixed inset-0 z-50 flex justify-start">
               <Dialog.Content
                 className={`h-screen  w-sm shadow-sm relative ${animModal}`}
               >
-                <Card className="bg-surface-100/900/50 noise-bg-opac-0pt8 h-full">
+                <Card className=" noise-bg-opac-0pt8 h-full">
                   <div className="flex justify-between items-center">
                     <Dialog.Title className="text-2xl font-bold">
                       {title}

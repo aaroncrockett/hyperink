@@ -63,7 +63,7 @@ export default function Home() {
                 className="w-8 h-8 text-secondary-800 d"
                 strokeWidth={2}
               />
-              <span className="text-lg font-bold text-secondary-500">
+              <span className="text-lg font-bold text-primary-400-600">
                 Instagram
               </span>
             </Link>
@@ -76,7 +76,7 @@ export default function Home() {
               className="mr-0.5 flex brand-font items-center justify-center text-xs md:text-base gap-1 text-surface-950"
             >
               <span className="ml-2.5 text-4xl">🏳️‍🌈</span>
-              <span className="text-lg font-bold text-secondary-500">
+              <span className="text-lg font-bold text-primary-400-600">
                 About Me
               </span>
             </Link>
@@ -142,7 +142,7 @@ export default function Home() {
       <section>
         <Heading
           as="h2"
-          className="text-center text-primary-700 font-bold"
+          className="text-center text-secondary-300-700 font-bold"
           leading="[@media(min-width:26rem)]:leading-6! [@media(min-width:36rem)]:leading-10! [@media(min-width:60rem)]:leading-14! [@media(min-width:80rem)]:leading-20!"
           size="[@media(min-width:20rem)]:text-2xl [@media(min-width:26rem)]:text-3xl [@media(min-width:36rem)]:text-4xl [@media(min-width:60rem)]:text-5xl [@media(min-width:80rem)]:text-6xl"
           text="Custom & Flash Tatts"

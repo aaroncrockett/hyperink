@@ -12,14 +12,13 @@ import Nav from "./(nav)/Nav";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Aaron Does Ink",
+  title: "Shade To Shade Tattoo",
   description: "Tattoo Artists in Portland Oregon",
   openGraph: {
-    title: "Aaron Does Ink - Tattoo Artist in Portland, OR",
-    description:
-      "Queer / Gay Tattoo Artist in Portland, OR. Best tattoo artist for gay tattoos in Portland Oregon.",
-    url: "https://aarondoeseink.com",
-    siteName: "Aaron Does Ink",
+    title: "Shade To Shade Tattoo - Tattoo Artist in Portland, OR",
+    description: "Queer / Gay Tattoo Artist in Portland, OR.",
+    url: "https://shadetoshadetattoo.com",
+    siteName: "Shade To Shade Tattoo",
     locale: "en_US",
     type: "website",
     images: [
@@ -27,7 +26,7 @@ export const metadata: Metadata = {
         url: "https://aarondoesink.com/images/hp-flash-intro",
         width: 1200,
         height: 630,
-        alt: "Aaron Does Ink — Queer Portland artist. Gay AF Tattoos. Fuck Fascism",
+        alt: "Shade To Shade Tattoo — Queer Portland artist. Gay AF Tattoos. Standing up for democracy and human rights.",
       },
     ],
   },
@@ -62,7 +61,7 @@ export default function RootLayout({
           )}
         >
           {/* hidden: default - shown:lg*/}
-          <Card className="h-full row-span-3 noise-bg-opac-0pt8 hidden lg:block">
+          <Card className="h-full row-span-3 bg-surface-800-200 text-primary-500 hidden  p-5! pt-6! lg:block">
             <Nav className="hidden lg:block" />
           </Card>
           <HeaderWrapper />
@@ -71,14 +70,14 @@ export default function RootLayout({
             {children}
           </main>
 
-          <Footer className="bg-primary-500 lg:col-start-2 lg:row-start-3 p-2 sm:p-4">
+          <Footer className="bg-primary-500 lg:col-start-2 lg:row-start-3 p-2 sm:p-4 ">
             {/* shown: default - hidden:lg*/}
             <FooterNav className="flex lg:hidden w-full" />
 
             {/* hidden: default - shown:lg*/}
             <div className="hidden lg:block text-sm">
               Deved By Aaron Does Everything (Tattoos, Web Apps, Web Sites, Web
-              Design, Graphic Design, Illustration, Painting)
+              Design, Illustration.)
             </div>
           </Footer>
         </div>

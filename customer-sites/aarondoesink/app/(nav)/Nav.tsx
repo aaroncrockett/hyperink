@@ -17,7 +17,7 @@ export default function Nav({
 }: NavProps) {
   return (
     <nav
-      className={cn("col-start-1 row-start-1 row-span-3 bg-gray-10", className)}
+      className={cn("col-start-1 row-start-1 row-span-3 0", className)}
       {...props}
     >
       <ul className={cn("flex flex-col gap-2", ulCls)}>
@@ -28,7 +28,7 @@ export default function Nav({
             <li key={link.href} className={cn(liCls)}>
               <Link
                 href={link.href}
-                className={cn(linkCls, "flex flex-row gap-2")}
+                className={cn(linkCls, "flex flex-row gap-2 font-bold")}
               >
                 {Icon && <Icon className="w-5 h-5" />}
                 {link.name.toUpperCase()}

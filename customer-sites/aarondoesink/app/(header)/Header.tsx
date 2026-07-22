@@ -23,14 +23,14 @@ export default function Header({
     <header
       className={cn(
         styles.header,
-        "adi-header shadow-lg sticky top-0 z-10",
+        "adi-header shadow-lg sticky top-0 z-10 bg-white",
         className,
       )}
       {...props}
     >
       <div
         className={cn(
-          "flex items-center justify-between max-w-6xl mx-auto w-full p-5 px-4 shadow-2xs bg-white",
+          "flex items-center justify-between max-w-6xl mx-auto w-full p-5 px-4 shadow-2xs ",
           wrapperCls,
         )}
       >
