@@ -25,13 +25,10 @@ export default async function ClientPage() {
   const { data: lastTenClients } = await getLastTenClients(authedClient);
 
   return (
-    <Page>
+    <Page className="">
       <Heading as="h1" text="Client Records" />
 
-      <Link
-        className="btn bg-primary-200-800"
-        href={LINKS_ADMIN.createClient.href}
-      >
+      <Link className="bg-primary-500" href={LINKS_ADMIN.createClient.href}>
         {LINKS_ADMIN.createClient.label}
       </Link>
 
@@ -53,7 +50,7 @@ export default async function ClientPage() {
           <div
             className={cn(
               gridCls,
-              "odd:bg-surface-100/80 even:bg-surface-200/60 p-2",
+              "odd:bg-surface-300-700 even:bg-surface-200-800 p-2",
             )}
             key={client.id}
           >

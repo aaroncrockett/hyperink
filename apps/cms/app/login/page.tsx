@@ -25,10 +25,16 @@ export default function LoginPage() {
           />
         </label>
 
-        <button className="btn preset-filled-secondary-500" formAction={login}>
+        <button
+          className="btn btn preset-filled-primary-400-600"
+          formAction={login}
+        >
           Log in
         </button>
-        <button className="btn preset-filled-secondary-500" formAction={signup}>
+        <button
+          className="btn btn preset-filled-primary-400-600"
+          formAction={signup}
+        >
           Sign up
         </button>
       </form>

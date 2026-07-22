@@ -17,7 +17,7 @@ export default function Rows({
   gridCls,
   gridGapCls = "gap-2",
   gridItemsCls = "items-center",
-  headerCls = "bg-surface-300 font-bold p-1",
+  headerCls = "bg-surface-300-700 font-bold p-1",
   headerCols,
 }: RowsProps) {
   return (

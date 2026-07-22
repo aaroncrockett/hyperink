@@ -48,7 +48,7 @@ h6 {
   letter-spacing: 0.04em;
 }
 @layer components {
-  .preset-filled-secondary-500 {
+  .preset-filled-secondary-400-600 {
     @apply !text-white shadow-xs font-bold;
   }
 }

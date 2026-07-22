@@ -28,7 +28,7 @@ export default async function RootLayout({
 
   return (
     <div lang="en" className="h-screen">
-      <div className="grid grid-cols-[220px_1fr] bg-surface-50 h-full">
+      <div className="grid grid-cols-[220px_1fr] bg-surface-50-950 h-full">
         {userId ? <AdminNav /> : <>fill out yo profile</>}
 
         <div className="p-4 w-full">{children}</div>

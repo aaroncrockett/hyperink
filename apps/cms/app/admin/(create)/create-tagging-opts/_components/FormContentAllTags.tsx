@@ -22,7 +22,7 @@ export default function FormContentAllTags({
   removeItem,
 }: FormContentProps) {
   return (
-    <div className="p-4 rounded bg-surface-100/60 flex flex-col gap-2">
+    <div className="p-4 rounded bg-surface-100-900/60 flex flex-col gap-2">
       <p className="text-xl">{label}</p>
 
       {items.map((item) => (
@@ -47,7 +47,7 @@ export default function FormContentAllTags({
 
       <button
         type="button"
-        className="btn preset-filled-tertiary-500"
+        className="btn preset-filled-primary-400-600"
         onClick={() => addItem(value)}
       >
         Add

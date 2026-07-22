@@ -9,9 +9,12 @@ export function ClientResults({ clients, onSelectClient }: Props) {
   return (
     <ul className="">
       {clients.map((client) => (
-        <li className=" odd:bg-surface-100 even:bg-surface-200" key={client.id}>
+        <li
+          className=" odd:bg-surface-100/900 even:bg-surface-200/800"
+          key={client.id}
+        >
           <button
-            className="btn preset-filled-primary-500"
+            className="btn btn preset-filled-primary-400-600"
             type="button"
             onClick={() => onSelectClient(client)}
           >

@@ -15,7 +15,7 @@ export default function FormContentTagItem({
   return (
     <div className="p-1 rounded inline" key={item}>
       <button
-        className="chip btn preset-filled-primary-500 inline"
+        className="chip btn btn preset-filled-primary-400-600 inline"
         type="button"
         onClick={() => removeItem(value, item)}
       >
