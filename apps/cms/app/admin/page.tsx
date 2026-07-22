@@ -19,18 +19,17 @@ export default async function AdminPage() {
 
   if (user) {
     const { data } = await getProfileId(authedClient, user.id);
-    userId = data?.id?.toString() ?? undefined;
+    userId = data?.id;
   }
 
   return (
     <Page>
       <Heading text="Admin" as="h2" />
 
-      {userId ? (
-        <p>Hello {user?.user_metadata.full_name}</p>
-      ) : (
+      {userId && <p>Hello {user?.user_metadata.full_name}</p>}
+      {!userId && (
         <>
-          Looks like you haven&apos;t created your profile yet, bro.
+          <p>Looks like you haven&apos;t created your profile yet.</p>
           <button className="btn">Create Profile</button>
         </>
       )}

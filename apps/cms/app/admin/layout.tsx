@@ -23,7 +23,7 @@ export default async function RootLayout({
 
   if (user) {
     const { data } = await getProfileId(authedClient, user.id);
-    userId = data?.id?.toString();
+    userId = data?.id;
   }
 
   return (

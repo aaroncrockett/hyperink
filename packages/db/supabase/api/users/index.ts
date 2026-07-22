@@ -1,11 +1,8 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-// @ts-nocheck
-
-import type { Client } from "../../../../index";
+import type { ServerClient } from "@/utils/db/types";
 
 const table = "profile";
 
-export async function getProfileId(client: Client, userId: string) {
+export async function getProfileId(client: ServerClient, userId: string) {
   const { data, error } = await client
     .from(table)
     .select("id")
