@@ -370,6 +370,7 @@ export type Database = {
       }
       profile: {
         Row: {
+          artist_id: string | null
           created_at: string | null
           email: string
           first_name: string | null
@@ -377,6 +378,7 @@ export type Database = {
           last_name: string | null
         }
         Insert: {
+          artist_id?: string | null
           created_at?: string | null
           email: string
           first_name?: string | null
@@ -384,6 +386,7 @@ export type Database = {
           last_name?: string | null
         }
         Update: {
+          artist_id?: string | null
           created_at?: string | null
           email?: string
           first_name?: string | null
@@ -544,6 +547,7 @@ export type Database = {
       tattoo_request: {
         Row: {
           bluesky_id: string | null
+          client_tattoo_id: string | null
           created_at: string
           email: string | null
           first_name: string | null
@@ -556,11 +560,14 @@ export type Database = {
           phone: string | null
           preferred_name: string | null
           returning_client: boolean | null
+          seen_at: string | null
           type: string | null
+          updated_at: string
           user_id: string
         }
         Insert: {
           bluesky_id?: string | null
+          client_tattoo_id?: string | null
           created_at?: string
           email?: string | null
           first_name?: string | null
@@ -573,11 +580,14 @@ export type Database = {
           phone?: string | null
           preferred_name?: string | null
           returning_client?: boolean | null
+          seen_at?: string | null
           type?: string | null
+          updated_at?: string
           user_id: string
         }
         Update: {
           bluesky_id?: string | null
+          client_tattoo_id?: string | null
           created_at?: string
           email?: string | null
           first_name?: string | null
@@ -590,10 +600,20 @@ export type Database = {
           phone?: string | null
           preferred_name?: string | null
           returning_client?: boolean | null
+          seen_at?: string | null
           type?: string | null
+          updated_at?: string
           user_id?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "tattoo_request_client_tattoo_id_fkey"
+            columns: ["client_tattoo_id"]
+            isOneToOne: false
+            referencedRelation: "client_tattoo"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {

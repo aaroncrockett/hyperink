@@ -36,7 +36,7 @@ export async function createClient(
 
   const createTattooValue = formData.get("create_tattoo");
 
-  const authedClient = await createServerClientAndAuth();
+  const authedClient = await createServe`rClientAndAuth();
 
   const {
     data: { user },

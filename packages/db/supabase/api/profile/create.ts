@@ -1,7 +1,7 @@
 import type { Client, ClientTable } from "@hyperinkstudio/db";
-import { TABLE_CLIENT_TATTOO as TABLE } from "./consts";
+import { TABLE_PROFILE as TABLE } from "./consts";
 
-export async function createClientTattoo(
+export async function createProfile(
   authedClient: Client,
   params: Partial<ClientTable>,
 ) {

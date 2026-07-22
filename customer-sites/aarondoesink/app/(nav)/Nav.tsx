@@ -17,7 +17,7 @@ export default function Nav({
 }: NavProps) {
   return (
     <nav
-      className={cn("col-start-1 row-start-1 row-span-3 0", className)}
+      className={cn("col-start-1 row-start-1 row-span-3", className)}
       {...props}
     >
       <ul className={cn("flex flex-col gap-2", ulCls)}>

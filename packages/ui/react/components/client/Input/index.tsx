@@ -9,6 +9,7 @@ type InputProps = {
   className?: string;
   labelClassName?: string;
   errorClassName?: string;
+  errorTxtColor?: string;
 };
 
 export function Input({
@@ -20,6 +21,7 @@ export function Input({
   className = "",
   labelClassName = "",
   errorClassName = "",
+  errorTxtColor = "text-red-500",
 }: InputProps) {
   return (
     <div>
@@ -34,8 +36,8 @@ export function Input({
         className={cn("input", className)}
       />
 
-      {errors[name] && (
-        <span className={cn("text-red-500", errorClassName)}>
+      {errors && errors[name] && (
+        <span className={cn(errorTxtColor, errorClassName)}>
           {errors[name]}
         </span>
       )}

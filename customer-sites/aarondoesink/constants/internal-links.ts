@@ -1,4 +1,4 @@
-import { Home, Info, Zap, PenTool, User } from "lucide-react";
+import { Home, Info, Zap, PenTool, User, Book } from "lucide-react";
 
 export const INTERNAL_LINKS = {
   home: {
@@ -26,12 +26,18 @@ export const INTERNAL_LINKS = {
     name: "about me",
     icon: User,
   },
+  book: {
+    href: "/book",
+    name: "book",
+    icon: Book,
+  },
 };
 
 export const MOBILE_FOOTER_LINKS = [
   INTERNAL_LINKS.flash,
   INTERNAL_LINKS.tattoos,
   INTERNAL_LINKS.faq,
+  INTERNAL_LINKS.book,
 ];
 
 export const MENU_LINKS = [

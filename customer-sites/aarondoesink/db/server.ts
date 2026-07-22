@@ -1,13 +1,28 @@
 import { cookies } from "next/headers";
 import {
   createServerClientAndAuth as createClientAndAuth,
+  exchangeCodeForSession,
+  getUser,
+  getProfileId,
   verifyOtp,
+  signInWithPassword,
+  signUp,
+  signInWithOAuth,
+  uploadTattooImage,
 } from "@hyperinkstudio/db";
 
-import type { SupabaseConfig, Client, Profile } from "@hyperinkstudio/db";
-export type { Client, Profile };
+import type { SupabaseConfig, Client } from "@hyperinkstudio/db";
 
-export { verifyOtp };
+export {
+  exchangeCodeForSession,
+  getProfileId,
+  getUser as getAuthedUser,
+  signInWithOAuth,
+  signInWithPassword,
+  signUp,
+  uploadTattooImage,
+  verifyOtp,
+};
 
 export async function createServerClientAndAuth(): Promise<Client> {
   type CookieItem = {

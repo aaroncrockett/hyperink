@@ -1,23 +1,18 @@
-import type { ClientTable } from "../types";
+import type { TattooRequest } from "../types";
 
-import {
-  createClientPerson as dbCreateClientPerson,
-  getRecentlyUpdatedClients,
-} from "@hyperinkstudio/db";
+import { createTattooRequest as createTattooRequestDb } from "@hyperinkstudio/db";
 
-export const createClientPerson = dbCreateClientPerson;
-
-export const getLastTenClients = getRecentlyUpdatedClients;
+export const createTattooRequest = createTattooRequestDb;
 
 // USED TO LOOK UP A CLIENT
-export const LOOKUP_CLIENT_COLS = [
+export const EDITABLE_TATTOO_REQUEST_COLS = [
   "email",
   "phone",
   "preferred_name",
-] as const satisfies (keyof ClientTable)[];
+] as const satisfies (keyof TattooRequest)[];
 
-export const LOOKUP_COLS_KEY_VAL = Object.fromEntries(
-  LOOKUP_CLIENT_COLS.map((value) => [
+export const EDITABLE_TATTOO_REQUEST_COLS_KEY_VAL = Object.fromEntries(
+  EDITABLE_TATTOO_REQUEST_COLS.map((value) => [
     value,
     {
       value,
@@ -27,10 +22,12 @@ export const LOOKUP_COLS_KEY_VAL = Object.fromEntries(
     },
   ]),
 ) as {
-  [K in (typeof LOOKUP_CLIENT_COLS)[number]]: {
+  [K in (typeof EDITABLE_TATTOO_REQUEST_COLS)[number]]: {
     value: K;
     label: string;
   };
 };
 
-export const LOOKUP_COLS_KEY_VAL_LIST = Object.values(LOOKUP_COLS_KEY_VAL);
+export const EDITABLE_TATTOO_REQUEST_COLS_KEY_VAL_LIST = Object.values(
+  EDITABLE_TATTOO_REQUEST_COLS_KEY_VAL,
+);

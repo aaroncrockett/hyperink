@@ -19,7 +19,6 @@ export const TABLE_TATTOO_REQUEST_COLS = [
   "returning_client",
   "type",
   "client_tattoo_id",
-  "processed_at",
   "seen_at",
   "updated_at",
 ] as const satisfies (keyof TattooRequest)[];
