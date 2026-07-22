@@ -1,8 +1,5 @@
 "use server";
 
-// Next
-import Link from "next/link";
-
 // Hyperink
 import {
   Heading,
@@ -10,13 +7,15 @@ import {
   TableLayout,
 } from "@hyperinkstudio/ui-react/components/client";
 import { cn } from "@hyperinkstudio/utils/cn";
+import { formatDate } from "@hyperinkstudio/utils/dates";
 
 // Local Outter
 import { createServerClientAndAuth } from "@/utils/db/server";
 import { getLastTenClients, ALL_CLIENT_COLS_KEY_VAL } from "@/utils/db";
 
 // Local
-import { LINKS_ADMIN } from "@/app/consts";
+import { NAV_ADMIN_CLIENT_LIST } from "@/app/consts";
+import { PageAdminNavs } from "../_components/PageAdminNavs";
 
 const gridCls = "grid grid-cols-[6rem_6rem_10rem_10rem_10rem_8rem_8rem]";
 
@@ -25,15 +24,12 @@ export default async function ClientPage() {
   const { data: lastTenClients } = await getLastTenClients(authedClient);
 
   return (
-    <Page className="">
+    <Page>
       <Heading as="h1" text="Client Records" />
       <div className="flex gap-3">
-        <Link
-          className="text-primary-500  underline p-2 pt-3"
-          href={LINKS_ADMIN.createClient.href}
-        >
-          {LINKS_ADMIN.createClient.label}
-        </Link>
+        {NAV_ADMIN_CLIENT_LIST.map((link) => {
+          return <PageAdminNavs key={link.href} link={link} />;
+        })}
       </div>
 
       <TableLayout
@@ -52,14 +48,15 @@ export default async function ClientPage() {
       >
         {lastTenClients?.map((client) => (
           <div
-            className={cn(
-              gridCls,
-              "odd:bg-surface-300-700 even:bg-surface-200-800 p-2",
-            )}
+            className={cn(gridCls, " odd:bg-surface-100-900/70 p-2")}
             key={client.id}
           >
-            <span className="bg-primary-400-600 truncate">update </span>
-            <span className="bg-primary-400-600 truncate">create</span>
+            <span className="text-primary-400-600 underline truncate">
+              update{" "}
+            </span>
+            <span className="text-primary-400-600 underline  truncate">
+              create
+            </span>
             <span className="truncate font-semibold">
               {client[ALL_CLIENT_COLS_KEY_VAL.preferred_name.value]}
             </span>
@@ -73,11 +70,15 @@ export default async function ClientPage() {
             </span>
 
             <span className="truncate">
-              {client[ALL_CLIENT_COLS_KEY_VAL.created_at.value]}
+              {formatDate(
+                client?.[ALL_CLIENT_COLS_KEY_VAL.created_at.value] ?? "",
+              )}
             </span>
 
             <span className="truncate">
-              {client[ALL_CLIENT_COLS_KEY_VAL.updated_at.value]}
+              {formatDate(
+                client?.[ALL_CLIENT_COLS_KEY_VAL.updated_at.value] ?? "",
+              )}
             </span>
           </div>
         ))}

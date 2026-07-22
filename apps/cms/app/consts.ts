@@ -9,7 +9,7 @@ export const LINKS_ADMIN = {
   },
   createClient: {
     href: "/admin/client/create-client",
-    label: "Create A Client",
+    label: "Create a Client",
   },
   createTattooRecord: {
     href: "/admin/create-tattoo-record",
@@ -29,4 +29,23 @@ export const LINKS_ADMIN = {
   },
 } as const;
 
+export const NAV_ADMIN = {
+  home: {
+    ...LINKS_ADMIN.home,
+  },
+  client: {
+    ...LINKS_ADMIN.client,
+  },
+};
+export const NAV_ADMIN_CLIENT = {
+  client: {
+    ...LINKS_ADMIN.client,
+  },
+  createClient: {
+    href: "/admin/client/create-client",
+    label: "Create a Client",
+  },
+};
 export const LINKS_ADMIN_LIST = Object.values(LINKS_ADMIN);
+export const NAV_ADMIN_LIST = Object.values(NAV_ADMIN);
+export const NAV_ADMIN_CLIENT_LIST = Object.values(NAV_ADMIN_CLIENT);

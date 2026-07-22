@@ -11,6 +11,9 @@ import {
 // Local
 import { createClient } from "./actions";
 import FormContentCreateClient from "./_components/FormContentCreateClient";
+// Local
+import { NAV_ADMIN_CLIENT_LIST } from "@/app/consts";
+import { PageAdminNavs } from "../../_components/PageAdminNavs";
 
 const initialState = {
   errors: {
@@ -25,7 +28,12 @@ export default function CreateClientPage() {
 
   return (
     <Page>
-      <Heading text="Create A Client Record" as="h2" />
+      <Heading text="Create A Client Record" as="h1" />
+      <div className="flex gap-3">
+        {NAV_ADMIN_CLIENT_LIST.map((link) => {
+          return <PageAdminNavs key={link.href} link={link} />;
+        })}
+      </div>
       <Form action={actionState}>
         <FormContentCreateClient errors={clientState.errors} />
 
