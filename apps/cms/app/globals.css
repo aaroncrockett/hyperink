@@ -3,5 +3,3 @@
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-react";
 @import "@skeletonlabs/skeleton/themes/fennec";
-
-@custom-variant dark (&:where(.dark, .dark *));
