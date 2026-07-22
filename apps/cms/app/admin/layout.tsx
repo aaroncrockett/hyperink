@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 
-import AdminNav from "./_components/AdminNav";
+import { Nav } from "./_components/Nav";
+import { NAV_ADMIN_LIST } from "@/app/consts";
 
 import {
   createServerClientAndAuth,
@@ -29,7 +30,18 @@ export default async function RootLayout({
   return (
     <div lang="en" className="h-screen">
       <div className="grid grid-cols-[220px_1fr] bg-surface-50-950 h-full">
-        {userId ? <AdminNav /> : <>You have no profile yet!</>}
+        <div className="bg-surface-100-900 pt-3 p-2">
+          {userId && (
+            <Nav
+              linkCurrentCls="text-surface-500 bg-surface-50-950"
+              linkClsHover="hover:bg-surface-50-950 rounded"
+              layout="col"
+              linkCls="transition-colors block"
+              gap="gap-0"
+              links={NAV_ADMIN_LIST}
+            />
+          )}
+        </div>
 
         <div className="p-4 w-full">{children}</div>
       </div>

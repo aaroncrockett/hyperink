@@ -15,7 +15,7 @@ import { getLastTenClients, ALL_CLIENT_COLS_KEY_VAL } from "@/db";
 
 // Local
 import { NAV_ADMIN_CLIENT_LIST } from "@/app/consts";
-import { PageAdminNavs } from "../_components/PageAdminNavs";
+import { Nav } from "../_components/Nav";
 
 const gridCls = "grid grid-cols-[6rem_6rem_10rem_10rem_10rem_8rem_8rem]";
 
@@ -27,9 +27,7 @@ export default async function ClientPage() {
     <Page>
       <Heading as="h1" text="Client Records" />
       <div className="flex gap-3">
-        {NAV_ADMIN_CLIENT_LIST.map((link) => {
-          return <PageAdminNavs key={link.href} link={link} />;
-        })}
+        <Nav links={NAV_ADMIN_CLIENT_LIST} />
       </div>
 
       <TableLayout
