@@ -8,7 +8,7 @@ type InputProps = {
   errors?: Record<string, string> | null;
   className?: string;
   labelClassName?: string;
-  errorClassName?: string;
+  errorCls?: string;
   errorTxtColor?: string;
 };
 
@@ -20,7 +20,7 @@ export function Input({
   errors = {},
   className = "",
   labelClassName = "",
-  errorClassName = "",
+  errorCls = "",
   errorTxtColor = "text-red-500",
 }: InputProps) {
   return (
@@ -37,9 +37,7 @@ export function Input({
       />
 
       {errors && errors[name] && (
-        <span className={cn(errorTxtColor, errorClassName)}>
-          {errors[name]}
-        </span>
+        <p className={cn(errorTxtColor, errorCls)}>{errors[name]}</p>
       )}
     </div>
   );

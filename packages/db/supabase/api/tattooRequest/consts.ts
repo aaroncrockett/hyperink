@@ -1,6 +1,6 @@
 import type { TattooRequest } from "@hyperinkstudio/db";
 
-export const TABLE_TATTOO_REQUEST = "client";
+export const TABLE_TATTOO_REQUEST = "tattoo_request";
 
 export const TABLE_TATTOO_REQUEST_COLS = [
   "id",

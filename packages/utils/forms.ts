@@ -48,7 +48,7 @@ export function handleStringListFormValues(
 
 export function handleStringFormValues(
   formData: FormData,
-  keys: string[],
+  items: string[],
 ): Data {
   const data: Data = {
     hasError: false,
@@ -56,7 +56,7 @@ export function handleStringFormValues(
     errors: {},
   };
 
-  for (const key of keys) {
+  for (const item of items) {
     const value = formData.get(key);
 
     if (value instanceof File) {
@@ -67,6 +67,43 @@ export function handleStringFormValues(
 
     if (value !== null) {
       data.values[key] = value.trim();
+    }
+  }
+
+  return data;
+}
+
+type FormField = {
+  type: string;
+  value: string;
+  [key: string]: unknown;
+};
+
+export function handleStringFormValuesTESTING(
+  formData: FormData,
+  fields: FormField[],
+): Data {
+  const data: Data = {
+    hasError: false,
+    values: {},
+    errors: {},
+  };
+
+  for (const field of fields) {
+    const value = formData.get(field.value);
+
+    if (value instanceof File) {
+      data.hasError = true;
+      data.errors[field.value] = "Expected a string value";
+      continue;
+    }
+
+    if (field.type === "email") {
+      // handle email
+    }
+
+    if (value !== null) {
+      data.values[field.value] = value?.trim();
     }
   }
 

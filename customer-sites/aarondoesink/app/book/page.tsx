@@ -1,11 +1,20 @@
 "use client";
 
 import { useActionState } from "react";
-import { Form, Input } from "@hyperinkstudio/ui-react/components/client";
+import {
+  Form,
+  FormError,
+  Input,
+  Page,
+  Heading,
+} from "@hyperinkstudio/ui-react/components/client";
 
-import { createTattooRequestAction, type TattRequestFormState } from "./action";
+import {
+  createTattooRequestAction,
+  type TattRequestFormState,
+} from "./actions";
 
-import { EDITABLE_TATTOO_REQUEST_COLS_KEY_VAL_LIST } from "@/db/tattooRequest";
+import { TATTOO_REQUEST_DATA_LIST } from "@/db/tattooRequest";
 
 const initialState: TattRequestFormState = {
   errors: null,
@@ -20,21 +29,24 @@ export default function FormContentBook() {
   );
 
   return (
-    <Form action={formAction}>
-      <input type="hidden" name="artist_id" value="shadetoshadetattoo" />
+    <Page>
+      <Heading as="h1" text="Tattoo Request Form" />
+      <Form action={formAction}>
+        <input type="hidden" name="artist_id" id="shadetoshadetattoo" />
 
-      {EDITABLE_TATTOO_REQUEST_COLS_KEY_VAL_LIST.map(
-        ({ value, label, type }) => (
+        {TATTOO_REQUEST_DATA_LIST.map(({ id, label, type }) => (
           <Input
-            key={value}
-            id={value}
-            name={value}
+            key={id}
+            id={id}
+            name={id}
             label={label}
             type={type}
             errors={state.errors}
           />
-        ),
-      )}
-    </Form>
+        ))}
+        <FormError error={state.errors?.noArttist} />
+        <FormError error={state.errors?.database} />
+      </Form>
+    </Page>
   );
 }

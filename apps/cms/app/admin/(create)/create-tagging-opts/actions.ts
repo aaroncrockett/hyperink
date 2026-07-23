@@ -76,5 +76,5 @@ export async function upsertProfileTaggingOpts(
     };
   }
 
-  redirect(`${LINKS_ADMIN.adminHome.href}`);
+  redirect(`${LINKS_ADMIN.home.href}`);
 }

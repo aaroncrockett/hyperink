@@ -1,4 +1,6 @@
-import type { TattooRequest } from "../types";
+import { z } from "zod";
+
+import type { TattooRequest, Profile } from "../types";
 
 import {
   createTattooRequest as createTattooRequestDb,
@@ -6,43 +8,62 @@ import {
 } from "@hyperinkstudio/db";
 
 export const getProfileIdByArtistId = getProfileIdByArtistIdDb;
-
 export const createTattooRequest = createTattooRequestDb;
 
-// USED TO LOOK UP A CLIENT
-type TattooRequestCol = {
+type TattooRequestExtension = "artist_id";
+
+type TattooRequestFormKey = keyof TattooRequest | TattooRequestExtension;
+
+type TattooRequestFormField = {
   label: string;
-  value: keyof TattooRequest;
+  id: TattooRequestFormKey;
   type: React.HTMLInputTypeAttribute;
+  schema: z.ZodType;
 };
 
-export const EDITABLE_TATTOO_REQUEST_COLS_KEY_VAL = {
+export const TATTOO_REQUEST_FORM = {
+  artist_id: {
+    label: "Artist Id",
+    id: "artist_id",
+    type: "hidden",
+    schema: z.string(),
+  },
   email: {
     label: "Email",
-    value: "email",
+    id: "email",
     type: "email",
+    schema: z.email("Please enter a valid email address"),
   },
   preferred_name: {
     label: "Preferred Name",
-    value: "preferred_name",
+    id: "preferred_name",
     type: "text",
+    schema: z.string().trim().min(1, "Preferred name is required"),
   },
   phone: {
     label: "Phone",
-    value: "phone",
+    id: "phone",
     type: "tel",
+    schema: z.string().trim().min(1, "Phone is required"),
   },
   gender: {
     label: "Gender",
-    value: "gender",
+    id: "gender",
     type: "text",
+    schema: z.string().trim().optional(),
   },
-} as const satisfies Partial<Record<keyof TattooRequest, TattooRequestCol>>;
+} as const satisfies Partial<
+  Record<TattooRequestFormKey, TattooRequestFormField>
+>;
 
-export const EDITABLE_TATTOO_REQUEST_COLS_KEY_VAL_LIST = Object.values(
-  EDITABLE_TATTOO_REQUEST_COLS_KEY_VAL,
+export const TATTOO_REQUEST_FORM_LIST = Object.values(TATTOO_REQUEST_FORM);
+
+export const TATTOO_REQUEST_FORM_KEYS = Object.keys(
+  TATTOO_REQUEST_FORM,
+) as (keyof typeof TATTOO_REQUEST_FORM)[];
+
+export const EDITABLE_TATTOO_REQUEST_SCHEMA = z.object(
+  Object.fromEntries(
+    TATTOO_REQUEST_FORM_LIST.map((field) => [field.id, field.schema]),
+  ),
 );
-
-export const EDITABLE_TATTOO_REQUEST_COLS = Object.keys(
-  EDITABLE_TATTOO_REQUEST_COLS_KEY_VAL,
-) as (keyof typeof EDITABLE_TATTOO_REQUEST_COLS_KEY_VAL)[];

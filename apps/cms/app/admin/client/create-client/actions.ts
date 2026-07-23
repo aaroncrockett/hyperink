@@ -1,7 +1,7 @@
 "use server";
-// Next.js
+
 import { redirect } from "next/navigation";
-// local outter
+
 import { CREATE_CLIENT_COLS } from "@/db/clientPersons";
 import type { ClientTable } from "@/db/types";
 import { createServerClientAndAuth, getAuthedUser } from "@/db/server";
@@ -36,39 +36,33 @@ export async function createClient(
 
   const createTattooValue = formData.get("create_tattoo");
 
-  const authedClient = await createServe`rClientAndAuth();
+  const authedClient = await createServerClientAndAuth();
 
   const {
     data: { user },
   } = await getAuthedUser(authedClient);
 
   if (!user) {
-    const unauthorizedError = {
-      unauthorized: "the person is unauthorized",
-    };
     return {
       ..._prevState,
       errors: {
         ..._prevState.errors,
-        ...unauthorizedError,
+        unauthorized: "The person is unauthorized",
       },
     };
   }
 
   const { data: client, error } = await createClientPerson(authedClient, {
-    user_id: user?.id,
+    user_id: user.id,
     ...clientValues,
   });
 
   if (error) {
-    const createpersonError = {
-      createPerson: "error creating a perseon with supabase",
-    };
     return {
       ..._prevState,
       errors: {
         ..._prevState.errors,
-        ...createpersonError,
+        createPerson: "Error creating a person with Supabase",
       },
     };
   }
@@ -79,5 +73,5 @@ export async function createClient(
     );
   }
 
-  redirect(`${LINKS_ADMIN.home.href}`);
+  redirect(LINKS_ADMIN.home.href);
 }

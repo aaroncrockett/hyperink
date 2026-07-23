@@ -1,3 +1,4 @@
+"use server";
 import {
   EDITABLE_TATTOO_REQUEST_COLS,
   getProfileIdByArtistId,
@@ -23,6 +24,8 @@ export async function createTattooRequestAction(
     errors: tattReqFormErrors,
   } = handleStringFormValues(formData, EDITABLE_TATTOO_REQUEST_COLS);
 
+  const artistId = formData.get("artist_id")?.toString() ?? "";
+
   if (hasTattReqFormError) {
     return {
       ..._prevState,
@@ -40,19 +43,18 @@ export async function createTattooRequestAction(
 
   const { data: userId } = await getProfileIdByArtistId(
     serviceClient,
-    tattFormValues.artist_id,
+    artistId,
   );
 
   if (!userId) {
     return {
       ..._prevState,
       errors: {
-        asdf: "Artist not found",
+        noArtist: "Artist not found",
       },
-      artist_id: tattFormValues.artist_id,
+      artist_id: artistId,
     };
   }
-
   const { data, error } = await createTattooRequest(serviceClient, {
     ...tattFormValues,
     user_id: userId,
