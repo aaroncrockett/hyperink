@@ -14,7 +14,10 @@ import {
   type TattRequestFormState,
 } from "./actions";
 
-import { TATTOO_REQUEST_FORM_LIST } from "@/db/tattooRequest";
+import {
+  TATTOO_REQUEST_FORM_LIST,
+  TATTOO_REQUEST_FORM_KEYS,
+} from "@/db/tattooRequest";
 
 const initialState: TattRequestFormState = {
   errors: null,
@@ -47,12 +50,18 @@ export default function FormContentBook() {
         )}
 
         {state.errors &&
-          Object.entries(state.errors).map(([key, error]) => (
-            <div key={key}>
-              <div>{key}</div>
-              <FormError error={error} />
-            </div>
-          ))}
+          Object.entries(state.errors)
+            .filter(
+              ([key]) =>
+                !TATTOO_REQUEST_FORM_KEYS.includes(
+                  key as (typeof TATTOO_REQUEST_FORM_KEYS)[number],
+                ),
+            )
+            .map(([key, error]) => (
+              <div key={key}>
+                <FormError error={error} />
+              </div>
+            ))}
       </Form>
     </Page>
   );
