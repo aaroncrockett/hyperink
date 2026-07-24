@@ -7,7 +7,7 @@ import {
   Input,
   Page,
   Heading,
-} from "@hyperinkstudio/ui-react/components/client";
+} from "@hyperinkstudio/ui-react/components";
 
 import {
   createTattooRequestAction,

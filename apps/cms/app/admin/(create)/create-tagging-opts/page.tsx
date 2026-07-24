@@ -1,7 +1,7 @@
 "use server";
 
 //hyperink
-import { Page, Heading } from "@hyperinkstudio/ui-react/components/client";
+import { Page, Heading } from "@hyperinkstudio/ui-react/components";
 // local parents
 import { getProfileTaggingOpts } from "@/db/profileTaggingOpts";
 import { createServerClientAndAuth } from "@/db/server";

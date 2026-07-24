@@ -2,7 +2,7 @@
 
 import { useActionState, useState } from "react";
 // hyperink
-import { Form } from "@hyperinkstudio/ui-react/components/client";
+import { Form } from "@hyperinkstudio/ui-react/components";
 // local
 import {
   EDITABLE_TAGGING_COLS_LIST_OF_OPTS,

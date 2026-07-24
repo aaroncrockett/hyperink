@@ -5,7 +5,7 @@ import {
   Heading,
   Page,
   TableLayout,
-} from "@hyperinkstudio/ui-react/components/client";
+} from "@hyperinkstudio/ui-react/components";
 import { cn } from "@hyperinkstudio/utils/cn";
 import { formatDate } from "@hyperinkstudio/utils/dates";
 
@@ -19,7 +19,7 @@ import { Nav } from "../_components/Nav";
 
 const gridCls = "grid grid-cols-[6rem_6rem_10rem_10rem_10rem_8rem_8rem]";
 
-export default async function ClientPage() {
+export default async function ClientsPage() {
   const authedClient = await createServerClientAndAuth();
   const { data: lastTenClients } = await getLastTenClients(authedClient);
 

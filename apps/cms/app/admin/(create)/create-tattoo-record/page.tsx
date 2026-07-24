@@ -11,7 +11,7 @@ import {
   Heading,
   Page,
   SelectState,
-} from "@hyperinkstudio/ui-react/components/client";
+} from "@hyperinkstudio/ui-react/components";
 // Local Parent
 import { LINKS_ADMIN } from "@/app/consts";
 import { FormContentGetClient } from "@/app/admin/(features)/GetClient";

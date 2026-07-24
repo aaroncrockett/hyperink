@@ -65,6 +65,17 @@ export async function getClientsPersonByLastdName(
   return { data, error };
 }
 
+export async function getClientPersonByEmailOrPhone(
+  client: Client,
+  email: string,
+  phone: string,
+) {
+  return client
+    .from(TABLE)
+    .select("*")
+    .or(`email.eq.${email},phone.eq.${phone}`);
+}
+
 export async function getClientsPeopleByTattooYear(
   authedClient: Client,
   year: number,

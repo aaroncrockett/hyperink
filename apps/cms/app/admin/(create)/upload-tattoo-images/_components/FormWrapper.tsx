@@ -2,7 +2,7 @@
 // React
 import { useActionState, useState } from "react";
 //hyper ink
-import { Form, SelectState } from "@hyperinkstudio/ui-react/components/client";
+import { Form, SelectState } from "@hyperinkstudio/ui-react/components";
 // Local Parent
 import { LOOKUP_COLS_KEY_VAL_LIST } from "@/db/clientPersons";
 import {
