@@ -14,12 +14,11 @@ import {
   type TattRequestFormState,
 } from "./actions";
 
-import { TATTOO_REQUEST_DATA_LIST } from "@/db/tattooRequest";
+import { TATTOO_REQUEST_FORM_LIST } from "@/db/tattooRequest";
 
 const initialState: TattRequestFormState = {
   errors: null,
-  request: null,
-  artist_id: "",
+  tattooRequest: null,
 };
 
 export default function FormContentBook() {
@@ -32,20 +31,28 @@ export default function FormContentBook() {
     <Page>
       <Heading as="h1" text="Tattoo Request Form" />
       <Form action={formAction}>
-        <input type="hidden" name="artist_id" id="shadetoshadetattoo" />
+        {TATTOO_REQUEST_FORM_LIST.map(
+          ({ id, label, type, required, value }) => (
+            <Input
+              key={id}
+              id={id}
+              name={id}
+              label={label}
+              type={type}
+              required={required}
+              errors={state.errors}
+              value={value}
+            />
+          ),
+        )}
 
-        {TATTOO_REQUEST_DATA_LIST.map(({ id, label, type }) => (
-          <Input
-            key={id}
-            id={id}
-            name={id}
-            label={label}
-            type={type}
-            errors={state.errors}
-          />
-        ))}
-        <FormError error={state.errors?.noArttist} />
-        <FormError error={state.errors?.database} />
+        {state.errors &&
+          Object.entries(state.errors).map(([key, error]) => (
+            <div key={key}>
+              <div>{key}</div>
+              <FormError error={error} />
+            </div>
+          ))}
       </Form>
     </Page>
   );
