@@ -1,6 +1,7 @@
 "use client";
+// ** The header wrapper exists because the mobile menu is dynamically imported. ** //
+// ** The menu is dynamically imported because it depends on Portal which depends on document.body, which doesn't exist in SSR.* //
 import dynamic from "next/dynamic";
-
 import Link from "next/link";
 
 const MenuMobile = dynamic(() => import("./MenuMobile"), {
