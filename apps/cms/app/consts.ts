@@ -57,7 +57,7 @@ export const NAV_ADMIN_CLIENT = {
     showIcon: false,
   },
   createClient: {
-    href: "/admin/clients/create-clients",
+    href: "/admin/clients/create-client",
     label: "Create a Client",
     icon: "User",
     showIcon: false,
