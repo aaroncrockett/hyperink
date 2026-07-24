@@ -3,9 +3,12 @@ import type { ClientTable } from "../types";
 import {
   createClientPerson as dbCreateClientPerson,
   getRecentlyUpdatedClients,
+  getClientPersonByEmailOrPhone as getClientPersonByEmailOrPhoneDb,
 } from "@hyperinkstudio/db";
 
 export const createClientPerson = dbCreateClientPerson;
+
+export const getClientPersonByEmailOrPhone = getClientPersonByEmailOrPhoneDb;
 
 export const getLastTenClients = getRecentlyUpdatedClients;
 

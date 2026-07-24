@@ -3,11 +3,11 @@
 import { useActionState } from "react";
 import {
   Form,
-  FormError,
+  FormMetaErrors,
   Input,
   Page,
   Heading,
-} from "@hyperinkstudio/ui-react/components/client";
+} from "@hyperinkstudio/ui-react/components";
 
 import {
   createTattooRequestAction,
@@ -33,7 +33,7 @@ export default function FormContentBook() {
   return (
     <Page>
       <Heading as="h1" text="Tattoo Request Form" />
-      <Form action={formAction}>
+      <Form className=" max-w-md" action={formAction}>
         {TATTOO_REQUEST_FORM_LIST.map(
           ({ id, label, type, required, value }) => (
             <Input
@@ -49,19 +49,12 @@ export default function FormContentBook() {
           ),
         )}
 
-        {state.errors &&
-          Object.entries(state.errors)
-            .filter(
-              ([key]) =>
-                !TATTOO_REQUEST_FORM_KEYS.includes(
-                  key as (typeof TATTOO_REQUEST_FORM_KEYS)[number],
-                ),
-            )
-            .map(([key, error]) => (
-              <div key={key}>
-                <FormError error={error} />
-              </div>
-            ))}
+        {state.errors && (
+          <FormMetaErrors
+            errors={state.errors}
+            excludeKeys={TATTOO_REQUEST_FORM_KEYS}
+          />
+        )}
       </Form>
     </Page>
   );

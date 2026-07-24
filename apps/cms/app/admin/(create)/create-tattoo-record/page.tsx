@@ -11,10 +11,10 @@ import {
   Heading,
   Page,
   SelectState,
-} from "@hyperinkstudio/ui-react/components/client";
+} from "@hyperinkstudio/ui-react/components";
 // Local Parent
 import { LINKS_ADMIN } from "@/app/consts";
-import { FormContentGetClient } from "@/app/admin/(features)/GetClient";
+import { ClientInputLookup } from "@/app/admin/(features)/ClientInputLookup";
 import { LOOKUP_COLS_KEY_VAL_LIST } from "@/db/clientPersons";
 
 // Local Curr Dir
@@ -66,7 +66,7 @@ export default function CreateClientTattooPage() {
                       await clientActionState(formData)
                     }
                   >
-                    <FormContentGetClient lookupType={lookupType} />
+                    <ClientInputLookup lookupType={lookupType} />
                   </Form>
                 </>
               )}

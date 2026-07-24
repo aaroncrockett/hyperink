@@ -9,7 +9,7 @@ import {
 import { type ImageFile } from "@/partials/UploadImages/types";
 
 import { useState } from "react";
-import { Heading } from "@hyperinkstudio/ui-react/components/client";
+import { Heading } from "@hyperinkstudio/ui-react/components";
 
 export type FormContentProps = {
   styles: string[];

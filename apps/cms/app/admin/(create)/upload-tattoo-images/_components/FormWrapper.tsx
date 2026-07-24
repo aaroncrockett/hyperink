@@ -2,7 +2,7 @@
 // React
 import { useActionState, useState } from "react";
 //hyper ink
-import { Form, SelectState } from "@hyperinkstudio/ui-react/components/client";
+import { Form, SelectState } from "@hyperinkstudio/ui-react/components";
 // Local Parent
 import { LOOKUP_COLS_KEY_VAL_LIST } from "@/db/clientPersons";
 import {
@@ -11,7 +11,7 @@ import {
   EDITABLE_TAGGING_COLS_LIST_OF_OPTS,
   EDITABLE_TAGGING_COLS_OPTS,
 } from "@/db/profileTaggingOpts";
-import { FormContentGetClient } from "@/app/admin/(features)/GetClient";
+import { ClientInputLookup } from "@/app/admin/(features)/ClientInputLookup";
 //local
 import { getClients, uploadImage, getTattoos } from "../actions";
 import FormContentTaggingPhotos from "./FormContentTaggingPhotos";
@@ -69,7 +69,7 @@ export default function FormWrapper({ taggingOpts }: FormWrapperProps) {
                 await clientActionState(formData)
               }
             >
-              <FormContentGetClient lookupType={lookupType} />
+              <ClientInputLookup lookupType={lookupType} />
             </Form>
           </>
         )}

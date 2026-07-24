@@ -3,11 +3,7 @@
 // React
 import { useActionState } from "react";
 // Local Outter
-import {
-  Form,
-  Page,
-  Heading,
-} from "@hyperinkstudio/ui-react/components/client";
+import { Form, Page, Heading } from "@hyperinkstudio/ui-react/components";
 
 // Local
 import { createClient } from "./actions";

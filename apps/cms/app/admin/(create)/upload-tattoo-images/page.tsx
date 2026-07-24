@@ -1,6 +1,6 @@
 "use server";
 // hyperinkstudio
-import { Heading, Page } from "@hyperinkstudio/ui-react/components/client";
+import { Heading, Page } from "@hyperinkstudio/ui-react/components";
 // Local Parent
 
 import { getProfileTaggingOpts } from "@/db/profileTaggingOpts";

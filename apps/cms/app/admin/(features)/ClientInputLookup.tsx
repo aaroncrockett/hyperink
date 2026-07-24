@@ -1,7 +1,7 @@
 import { LOOKUP_COLS_KEY_VAL_LIST } from "@/db/clientPersons";
 import type { ClientTable } from "@hyperinkstudio/db";
 
-export function FormContentGetClient({
+export function ClientInputLookup({
   lookupType,
 }: {
   lookupType: keyof ClientTable;

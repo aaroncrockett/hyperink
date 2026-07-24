@@ -6,7 +6,7 @@ import {
 } from "@/db/server";
 
 // hyperink
-import { Page, Heading } from "@hyperinkstudio/ui-react/components/client";
+import { Page, Heading } from "@hyperinkstudio/ui-react/components";
 
 export default async function AdminPage() {
   const authedClient = await createServerClientAndAuth();
