@@ -5,14 +5,14 @@ export const LINKS_ADMIN = {
     icon: "Home",
     showIcon: true,
   },
-  client: {
-    href: "/admin/client",
+  clients: {
+    href: "/admin/clients",
     label: "Client Records",
     icon: "User",
     showIcon: true,
   },
   createClient: {
-    href: "/admin/client/create-client",
+    href: "/admin/clients/create-client",
     label: "Create a Client",
     icon: "User",
     showIcon: true,
@@ -47,17 +47,17 @@ export const NAV_ADMIN = {
   home: {
     ...LINKS_ADMIN.home,
   },
-  client: {
-    ...LINKS_ADMIN.client,
+  clients: {
+    ...LINKS_ADMIN.clients,
   },
 };
 export const NAV_ADMIN_CLIENT = {
   client: {
-    ...LINKS_ADMIN.client,
+    ...LINKS_ADMIN.clients,
     showIcon: false,
   },
   createClient: {
-    href: "/admin/client/create-client",
+    href: "/admin/clients/create-clients",
     label: "Create a Client",
     icon: "User",
     showIcon: false,
