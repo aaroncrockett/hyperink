@@ -3,7 +3,6 @@
 import { useActionState } from "react";
 import {
   Form,
-  FormError,
   FormMetaErrors,
   Input,
   Page,
@@ -34,7 +33,7 @@ export default function FormContentBook() {
   return (
     <Page>
       <Heading as="h1" text="Tattoo Request Form" />
-      <Form action={formAction}>
+      <Form className=" max-w-md" action={formAction}>
         {TATTOO_REQUEST_FORM_LIST.map(
           ({ id, label, type, required, value }) => (
             <Input
