@@ -1,4 +1,3 @@
-"use server";
 import type { Metadata } from "next";
 import { Bebas_Neue, Outfit } from "next/font/google";
 
@@ -66,7 +65,7 @@ export default function RootLayout({
             <Nav className="hidden lg:block" />
           </Card>
           {/* // ** The header wrapper exists because the mobile menu is dynamically
-          imported. Its so, because it depends on Portal->doc.body ** // */}
+          imported. Its so, because it depends on a Portal->doc.body ** // */}
           <HeaderWrapper />
           <main
             className={`noise-bg lg:col-start-2 lg:row-start-2 md:pt-2 lg:pt-4`}

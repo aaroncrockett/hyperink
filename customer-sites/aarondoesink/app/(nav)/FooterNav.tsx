@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef } from "react";
 import { cn } from "@/utils/cn";
 import Link from "next/link";
-import { MOBILE_FOOTER_LINKS } from "../../constants/internal-links";
+import { MOBILE_FOOTER_LINKS } from "../../constants/";
 
 type NavProps = ComponentPropsWithoutRef<"nav"> & {
   ulCls?: string;
