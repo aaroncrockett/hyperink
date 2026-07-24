@@ -1,5 +1,6 @@
 export * from "./server";
 export * from "./client";
+export * from "./serviceClient";
 export type {
   SupabaseConfig,
   Client,
