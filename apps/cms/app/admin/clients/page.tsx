@@ -10,7 +10,7 @@ import { cn } from "@hyperinkstudio/utils/cn";
 import { formatDate } from "@hyperinkstudio/utils/dates";
 
 // Local Outter
-import { createServerClientAndAuth } from "@/db/server";
+import { createSSClient } from "@/db/server";
 import { getLastTenClients, ALL_CLIENT_COLS_KEY_VAL } from "@/db";
 
 // Local
@@ -20,7 +20,7 @@ import { Nav } from "../_components/Nav";
 const gridCls = "grid grid-cols-[6rem_6rem_10rem_10rem_10rem_8rem_8rem]";
 
 export default async function ClientsPage() {
-  const authedClient = await createServerClientAndAuth();
+  const authedClient = await createSSClient();
   const { data: lastTenClients } = await getLastTenClients(authedClient);
 
   return (

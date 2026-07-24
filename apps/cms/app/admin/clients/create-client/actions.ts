@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 
 import { CREATE_CLIENT_COLS } from "@/db/clientPersons";
 import type { ClientTable } from "@/db/types";
-import { createServerClientAndAuth, getAuthedUser } from "@/db/server";
+import { createSSClient, getAuthedUser } from "@/db/server";
 import { createClientPerson } from "@/db/clientPersons";
 import { handleStringFormValues } from "@hyperinkstudio/utils";
 import { LINKS_ADMIN } from "@/app/consts";
@@ -36,7 +36,7 @@ export async function createClient(
 
   const createTattooValue = formData.get("create_tattoo");
 
-  const authedClient = await createServerClientAndAuth();
+  const authedClient = await createSSClient();
 
   const {
     data: { user },

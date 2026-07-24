@@ -13,3 +13,13 @@ export async function getRecentlyCreatedRequests(
 
   return { data, error };
 }
+
+export async function getTattooRequestById(authedClient: Client, id: string) {
+  const { data, error } = await authedClient
+    .from(TABLE)
+    .select("*")
+    .eq("id", id)
+    .single();
+
+  return { data, error };
+}

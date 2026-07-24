@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import {
-  createServerClientAndAuth,
+  createSSClient,
   exchangeCodeForSession,
   getAuthedUser,
 } from "@/db/server";
@@ -15,7 +15,7 @@ export async function GET(request: Request) {
   if (!next.startsWith("/admin")) next = "/admin";
 
   if (code) {
-    const authedClient: Client = await createServerClientAndAuth();
+    const authedClient: Client = await createSSClient();
 
     const { error } = await exchangeCodeForSession(authedClient, code);
 

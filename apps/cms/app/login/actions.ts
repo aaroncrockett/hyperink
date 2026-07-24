@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import {
-  createServerClientAndAuth,
+  createSSClient,
   signInWithPassword,
   signUp,
   signInWithOAuth,
@@ -11,7 +11,7 @@ import {
 import type { Client } from "@/db/server";
 
 export async function login(formData: FormData) {
-  const client: Client = await createServerClientAndAuth();
+  const client: Client = await createSSClient();
 
   const data = {
     email: formData.get("email") as string,
@@ -28,7 +28,7 @@ export async function login(formData: FormData) {
 }
 
 export async function signup(formData: FormData) {
-  const client: Client = await createServerClientAndAuth();
+  const client: Client = await createSSClient();
 
   const data = {
     email: formData.get("email") as string,
@@ -44,7 +44,7 @@ export async function signup(formData: FormData) {
 }
 
 export async function signInWithGoogle() {
-  const client: Client = await createServerClientAndAuth();
+  const client: Client = await createSSClient();
 
   const { data, error } = await signInWithOAuth(client, {
     provider: "google",

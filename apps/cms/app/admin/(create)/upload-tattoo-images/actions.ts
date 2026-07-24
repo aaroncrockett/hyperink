@@ -13,7 +13,7 @@ import { getImageFormInputs } from "./_helpers";
 // Local Parents
 import { LOOKUP_CLIENT_COLS } from "@/db/clientPersons";
 import type { ClientTable, TattooImage } from "@/db/types";
-import { createServerClientAndAuth, getAuthedUser } from "@/db/server";
+import { createSSClient, getAuthedUser } from "@/db/server";
 import { handleStringFormValues } from "@hyperinkstudio/utils";
 
 import { uploadTattooImage } from "@/db/server";
@@ -53,7 +53,7 @@ export async function getClients(
     };
   }
 
-  const authedClient = await createServerClientAndAuth();
+  const authedClient = await createSSClient();
 
   const {
     data: { user },
@@ -112,7 +112,7 @@ export async function uploadImage(
   const { files, styles, tags, collections, setOrder, readableNames } =
     getImageFormInputs(formData);
 
-  const authedClient = await createServerClientAndAuth();
+  const authedClient = await createSSClient();
 
   const {
     data: { user },
@@ -170,7 +170,7 @@ export async function getTattoos(
     };
   }
 
-  const authedClient = await createServerClientAndAuth();
+  const authedClient = await createSSClient();
 
   const {
     data: { user },

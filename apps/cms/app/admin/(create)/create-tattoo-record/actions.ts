@@ -1,6 +1,6 @@
 "use server";
 
-import { createServerClientAndAuth, getAuthedUser } from "@/db/server";
+import { createSSClient, getAuthedUser } from "@/db/server";
 import {
   getClientsPersonByEmail,
   getClientsPersonByPhone,
@@ -21,7 +21,7 @@ export async function getClients(
   _prevState: GetClients,
   formData: FormData,
 ): Promise<GetClients> {
-  const authedClient = await createServerClientAndAuth();
+  const authedClient = await createSSClient();
 
   const {
     data: { user },
@@ -60,7 +60,7 @@ export async function getClients(
 }
 
 export async function createTattoo(formData: FormData) {
-  const authedClient = await createServerClientAndAuth();
+  const authedClient = await createSSClient();
 
   const {
     data: { user },

@@ -1,6 +1,14 @@
 "use client";
 
-import { Home, TagIcon, Zap, PenTool, User, Image } from "lucide-react";
+import {
+  Home,
+  TagIcon,
+  Zap,
+  PenTool,
+  User,
+  Image,
+  ClipboardList,
+} from "lucide-react";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -62,6 +70,7 @@ export function Nav({
     PenTool: PenTool,
     User: User,
     Image: Image,
+    ClipboardList: ClipboardList,
   };
 
   return (

@@ -1,15 +1,11 @@
 // Local
-import {
-  createServerClientAndAuth,
-  getAuthedUser,
-  getProfileId,
-} from "@/db/server";
+import { createSSClient, getAuthedUser, getProfileId } from "@/db/server";
 
 // hyperink
 import { Page, Heading } from "@hyperinkstudio/ui-react/components";
 
 export default async function AdminPage() {
-  const authedClient = await createServerClientAndAuth();
+  const authedClient = await createSSClient();
 
   const {
     data: { user },

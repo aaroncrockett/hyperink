@@ -4,11 +4,11 @@ import { GalleryGrid } from "./GalleryGrid";
 
 export const dynamic = "force-dynamic";
 
-import { createServerClientAndAuth } from "@/utils/db/server";
+import { createSSClient } from "@/utils/db/server";
 
 import { getTattooImagesByGroup } from "@hyperinkstudio/db";
 
-const authedClient = await createServerClientAndAuth();
+const authedClient = await createSSClient();
 
 const images = await getTattooImagesByGroup(
   authedClient,

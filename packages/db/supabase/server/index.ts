@@ -6,9 +6,7 @@ import type { CreateClient, SupabaseConfig } from "../types";
 
 import { createServerClient } from "@supabase/ssr";
 
-export const createServerClientAndAuth: CreateClient = async (
-  config: SupabaseConfig,
-) => {
+export const createSSClient: CreateClient = async (config: SupabaseConfig) => {
   return createServerClient(config.publicUrl, config.publicKey, {
     cookies: config.cookieMethods.cookies,
   });

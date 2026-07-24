@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import {
-  createServerClientAndAuth as createClientAndAuth,
+  createSSClient as createClientAndAuth,
   exchangeCodeForSession,
   getUser,
   getProfileId,
@@ -24,7 +24,7 @@ export {
   verifyOtp,
 };
 
-export async function createServerClientAndAuth(): Promise<Client> {
+export async function createSSClient(): Promise<Client> {
   type CookieItem = {
     name: string;
     value: string;

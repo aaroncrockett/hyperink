@@ -1,7 +1,7 @@
 import { getTattooImages } from "@hyperinkstudio/db";
-import { createServerClientAndAuth } from "@/db/server";
+import { createSSClient } from "@/db/server";
 export async function getImages() {
-  // const authClient = await createServerClientAndAuth();
+  // const authClient = await createSSClient();
   // const images = await getTattooImagesContaining(
   //   authClient,
   //   "portfolio-tattoo",

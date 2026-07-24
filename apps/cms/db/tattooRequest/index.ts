@@ -13,9 +13,18 @@ export type TattooRequestFormField = {
   value?: string;
 };
 
-import { getRecentlyCreatedRequests as getRecentlyCreatedRequestsDb } from "@hyperinkstudio/db";
+import {
+  getRecentlyCreatedRequests as getRecentlyCreatedRequestsDb,
+  getTattooRequestById as getTattooRequestByIdDb,
+} from "@hyperinkstudio/db";
 
-const getRecentlyCreatedRequests = getRecentlyCreatedRequestsDb;
+export const getTattooRequestById = getTattooRequestByIdDb;
+
+export const getLastTenTattooRequests = getRecentlyCreatedRequestsDb;
+
+export const getLastFiveTattooRequests = (client: ServerClient) => {
+  return getRecentlyCreatedRequestsDb(client);
+};
 
 export const TATTOO_REQUEST_FORM = {
   email: {

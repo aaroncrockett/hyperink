@@ -17,18 +17,6 @@ export const LINKS_ADMIN = {
     icon: "User",
     showIcon: true,
   },
-  createTattooRecord: {
-    href: "/admin/create-tattoo-record",
-    label: "Create a tattoo record",
-    icon: "PenTool",
-    showIcon: true,
-  },
-  uploadTattooImages: {
-    href: "/admin/upload-tattoo-images",
-    label: "Upload tattoo images",
-    icon: "Image",
-    showIcon: true,
-  },
   createFlash: {
     href: "/admin/create-flash",
     label: "Create Flash",
@@ -41,6 +29,24 @@ export const LINKS_ADMIN = {
     icon: "TagIcon",
     showIcon: true,
   },
+  createTattooRecord: {
+    href: "/admin/create-tattoo-record",
+    label: "Create a tattoo record",
+    icon: "PenTool",
+    showIcon: true,
+  },
+  tattooRequests: {
+    href: "/admin/tattoo-requests",
+    label: "Tattoo Requests",
+    icon: "ClipboardList",
+    showIcon: true,
+  },
+  uploadTattooImages: {
+    href: "/admin/upload-tattoo-images",
+    label: "Upload tattoo images",
+    icon: "Image",
+    showIcon: true,
+  },
 } as const;
 
 export const NAV_ADMIN = {
@@ -49,6 +55,9 @@ export const NAV_ADMIN = {
   },
   clients: {
     ...LINKS_ADMIN.clients,
+  },
+  tattooRequest: {
+    ...LINKS_ADMIN.tattooRequests,
   },
 };
 export const NAV_ADMIN_CLIENT = {

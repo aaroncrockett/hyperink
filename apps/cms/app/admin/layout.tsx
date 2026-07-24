@@ -3,18 +3,14 @@ import type { ReactNode } from "react";
 import { Nav } from "./_components/Nav";
 import { NAV_ADMIN_LIST } from "@/app/consts";
 
-import {
-  createServerClientAndAuth,
-  getAuthedUser,
-  getProfileId,
-} from "@/db/server";
+import { createSSClient, getAuthedUser, getProfileId } from "@/db/server";
 
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: ReactNode;
 }>) {
-  const authedClient = await createServerClientAndAuth();
+  const authedClient = await createSSClient();
 
   const {
     data: { user },

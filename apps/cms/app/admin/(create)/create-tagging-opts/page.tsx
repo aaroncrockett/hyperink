@@ -4,11 +4,11 @@
 import { Page, Heading } from "@hyperinkstudio/ui-react/components";
 // local parents
 import { getProfileTaggingOpts } from "@/db/profileTaggingOpts";
-import { createServerClientAndAuth } from "@/db/server";
+import { createSSClient } from "@/db/server";
 // local
 import { default as FormWrapper } from "./_components/FormWrapper";
 
-const supabase = await createServerClientAndAuth();
+const supabase = await createSSClient();
 
 const { data } = await getProfileTaggingOpts(supabase);
 
