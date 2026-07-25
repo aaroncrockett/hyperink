@@ -24,7 +24,7 @@ export default function HeaderWrapper({}) {
       }
       tail={
         <Link href={INTERNAL_LINKS.book.href}>
-          <button className="btn-sm  sm:btn preset-filled-primary-400-600 font-bold whitespace-nowrap drop-shadow-xs">
+          <button className="btn-sm  sm:btn preset-filled-primary-400-600 font-bold whitespace-nowrap shadow-xs rounded-xs">
             Book Now
           </button>
         </Link>
