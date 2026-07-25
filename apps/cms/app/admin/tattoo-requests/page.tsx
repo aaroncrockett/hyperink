@@ -13,7 +13,6 @@ export default async function TattooRequestsPage() {
     <Page>
       <Heading as="h1" text="Tattoo Requests" />
       <div>
-        <p>get the client on teh server</p>
         <TattooRequests requests={tattooRequests ?? []} />
       </div>
     </Page>

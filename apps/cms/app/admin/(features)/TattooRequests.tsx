@@ -15,6 +15,9 @@ export function TattooRequests({
       headerCols={
         <>
           <span>Process</span>
+          <span>Preferred Name</span>
+          <span>Email</span>
+          <span>Phone</span>
         </>
       }
     >

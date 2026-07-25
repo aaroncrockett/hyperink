@@ -3,7 +3,12 @@
 // React
 import { useActionState } from "react";
 // Local Outter
-import { Form, Page, Heading } from "@hyperinkstudio/ui-react/components";
+import {
+  Form,
+  Page,
+  Heading,
+  FormError,
+} from "@hyperinkstudio/ui-react/components";
 
 // Local
 import { createClient } from "./actions";
@@ -32,11 +37,11 @@ export default function CreateClientPage() {
         <FormContentCreateClient errors={clientState.errors} />
 
         {clientState?.errors?.unauthorized && (
-          <p className="text-red-500">{clientState.errors.unauthorized}</p>
+          <FormError error={clientState?.errors.unauthorized} />
         )}
 
         {clientState?.errors?.createPerson && (
-          <p className="text-red-500">{clientState.errors.createPerson}</p>
+          <FormError error={clientState.errors.createPerson} />
         )}
       </Form>
     </Page>
