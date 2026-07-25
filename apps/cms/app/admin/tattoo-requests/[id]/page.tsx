@@ -1,5 +1,6 @@
 import { Heading, Page } from "@hyperinkstudio/ui-react/components";
 import { getTattooRequestById } from "@/db/tattooRequest";
+import { createSSClient } from "@/db/server";
 
 type TattooRequestPageProps = {
   params: Promise<{
@@ -11,8 +12,8 @@ export default async function TattooRequestPage({
   params,
 }: TattooRequestPageProps) {
   const { id } = await params;
-
-  getTattooRequestById;
+  const ssrClient = await createSSClient();
+  const tattRequest = getTattooRequestById(ssrClient, id);
 
   // fetch request by id
   // const request = await getTattooRequest(id);

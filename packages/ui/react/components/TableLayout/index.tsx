@@ -1,6 +1,7 @@
 // Rows.tsx
 
 import { cn } from "@hyperinkstudio/utils/cn";
+import React from "react";
 
 type RowsProps = {
   children: React.ReactNode;
@@ -9,11 +10,11 @@ type RowsProps = {
   gridItemsCls?: string;
   headerCls?: string;
   headerCols: React.ReactNode;
+
 };
 
 export function TableLayout({
   children,
-
   gridCls,
   gridGapCls = "gap-2",
   gridItemsCls = "items-center",
@@ -22,6 +23,7 @@ export function TableLayout({
 }: RowsProps) {
   return (
     <>
+
       <div className={cn(gridCls, gridItemsCls, gridGapCls, headerCls)}>
         {headerCols}
       </div>

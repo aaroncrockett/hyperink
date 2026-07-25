@@ -2,6 +2,7 @@ import Link from "next/link";
 // Local @
 import { createSSClient, getAuthedUser, getProfileId } from "@/db/server";
 import { getLastThreeTattooRequests } from "@/db/tattooRequest";
+import type { TattooRequest } from "@hyperinkstudio/db";
 // Local
 import { IsLoggedIn } from "./_components/IsLoggedIn";
 import { IsLoggedOut } from "./_components/IsLoggedOut";
@@ -11,9 +12,6 @@ import { LINKS_ADMIN } from "../consts";
 // hyperink
 import { Page, Heading } from "@hyperinkstudio/ui-react/components";
 
-const serverClient = await createSSClient();
-const { data: tattooRequests } = await getLastThreeTattooRequests(serverClient);
-
 export default async function AdminPage() {
   const authedClient = await createSSClient();
 
@@ -22,17 +20,21 @@ export default async function AdminPage() {
   } = await getAuthedUser(authedClient);
 
   let userId: string | undefined = undefined;
+  let tattooRequests: Partial<TattooRequest>[] | null = null;
 
   if (user) {
-    const { data } = await getProfileId(authedClient, user.id);
-    userId = data?.id;
+    const { data: userIdData } = await getProfileId(authedClient, user.id);
+    userId = userIdData?.id;
+    const { data: tattReqData } =
+      await getLastThreeTattooRequests(authedClient);
+    tattooRequests = tattReqData;
   }
 
   return (
     <Page>
       <Heading text="Admin" as="h2" />
 
-      {userId && user && (
+      {userId && user && tattooRequests && (
         <IsLoggedIn user={user}>
           <TattooRequests
             lead={<Heading text="Tattoo Requests" as="h4" />}

@@ -17,7 +17,7 @@ export function TattooRequests({
   lead,
   trail,
 }: {
-  requests: Partial<TattooRequest>[];
+  requests: Partial<TattooRequest>[] | null;
   lead?: ReactNode;
   trail?: ReactNode;
 }) {
