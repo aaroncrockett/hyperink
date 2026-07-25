@@ -5,6 +5,7 @@ import {
   Heading,
   Page,
   TableLayout,
+  RowOfTableLayout
 } from "@hyperinkstudio/ui-react/components";
 import { cn } from "@hyperinkstudio/utils/cn";
 import { formatDate } from "@hyperinkstudio/utils/dates";

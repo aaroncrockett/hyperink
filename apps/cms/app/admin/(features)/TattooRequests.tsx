@@ -1,8 +1,15 @@
+// next
+import Link from "next/link";
+// hyper ink
+import {
+  TableLayout,
+  RowOfTableLayout,
+} from "@hyperinkstudio/ui-react/components";
+// local
 import type { TattooRequest } from "@/db/types";
-import { TableLayout } from "@hyperinkstudio/ui-react/components";
-import { cn } from "@hyperinkstudio/utils/cn";
+import { LINKS_ADMIN } from "@/app/consts";
 
-const gridCls = "grid grid-cols-[6rem_6rem_10rem_10rem_10rem_8rem_8rem]";
+const gridCls = "grid grid-cols-[4rem_10rem_12rem_10rem]";
 
 export function TattooRequests({
   requests,
@@ -21,12 +28,25 @@ export function TattooRequests({
         </>
       }
     >
-      {requests.map(({ email, id }, index) => (
-        <div className={cn(gridCls, " odd:bg-surface-100-900/70 p-2")} key={id}>
+      {requests.map(({ preferred_name, email, phone, id }) => (
+        <RowOfTableLayout
+          gridCls={gridCls}
+          className="odd:bg-surface-100-900/70 p-2"
+          key={id}
+        >
           <span className="text-primary-400-600 underline truncate">
-            update{" "}
+            <Link
+              className="text-primary-400-600"
+              href={`${LINKS_ADMIN.tattooRequests.href}/${id}`}
+            >
+              PROCESS
+            </Link>
           </span>
-        </div>
+
+          <span className="truncate">{preferred_name}</span>
+          <span className="truncate">{email}</span>
+          <span className="truncate">{phone}</span>
+        </RowOfTableLayout>
       ))}
     </TableLayout>
   );

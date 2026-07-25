@@ -7,4 +7,5 @@ export { InputCheck } from "./InputCheck";
 export { Page } from "./Page";
 export { SelectState } from "./SelectState";
 export { TableLayout } from "./TableLayout";
+export { Row as RowOfTableLayout } from "./TableLayout/Row";
 export * from "./(partials)";

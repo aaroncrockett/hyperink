@@ -6,6 +6,7 @@ import type {
   ProfileTaggingOptions,
   TattooImage,
   TattooRequest,
+  User,
 } from "@hyperinkstudio/db";
 
 export type {
@@ -16,4 +17,5 @@ export type {
   ServerClient,
   TattooImage,
   TattooRequest,
+  User,
 };

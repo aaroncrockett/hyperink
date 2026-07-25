@@ -1,8 +1,13 @@
 // Local
 import { createSSClient, getAuthedUser, getProfileId } from "@/db/server";
+import { getLastTenTattooRequests } from "@/db/tattooRequest";
+import { TattooRequests } from "./(features)/TattooRequests";
 
 // hyperink
 import { Page, Heading } from "@hyperinkstudio/ui-react/components";
+
+const serverClient = await createSSClient();
+const { data: tattooRequests } = await getLastTenTattooRequests(serverClient);
 
 export default async function AdminPage() {
   const authedClient = await createSSClient();
@@ -21,6 +26,7 @@ export default async function AdminPage() {
   return (
     <Page>
       <Heading text="Admin" as="h2" />
+      <TattooRequests requests={tattooRequests ?? []} />
 
       {userId && <p>Hello {user?.user_metadata.full_name}</p>}
       {!userId && (

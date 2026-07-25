@@ -5,16 +5,14 @@ import { createSSClient } from "@/db/server";
 import { getLastTenTattooRequests } from "@/db/tattooRequest";
 import { TattooRequests } from "../(features)/TattooRequests";
 
-export default async function TattooRequestsPage() {
-  const serverClient = await createSSClient();
-  const { data: tattooRequests } = await getLastTenTattooRequests(serverClient);
+const serverClient = await createSSClient();
+const { data: tattooRequests } = await getLastTenTattooRequests(serverClient);
 
+export default async function TattooRequestsPage() {
   return (
     <Page>
       <Heading as="h1" text="Tattoo Requests" />
-      <div>
-        <TattooRequests requests={tattooRequests ?? []} />
-      </div>
+      <TattooRequests requests={tattooRequests ?? []} />
     </Page>
   );
 }
