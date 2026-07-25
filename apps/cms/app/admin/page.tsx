@@ -1,13 +1,18 @@
-// Local
+import Link from "next/link";
+// Local @
 import { createSSClient, getAuthedUser, getProfileId } from "@/db/server";
-import { getLastTenTattooRequests } from "@/db/tattooRequest";
+import { getLastThreeTattooRequests } from "@/db/tattooRequest";
+// Local
+import { IsLoggedIn } from "./_components/IsLoggedIn";
+import { IsLoggedOut } from "./_components/IsLoggedOut";
 import { TattooRequests } from "./(features)/TattooRequests";
+import { LINKS_ADMIN } from "../consts";
 
 // hyperink
 import { Page, Heading } from "@hyperinkstudio/ui-react/components";
 
 const serverClient = await createSSClient();
-const { data: tattooRequests } = await getLastTenTattooRequests(serverClient);
+const { data: tattooRequests } = await getLastThreeTattooRequests(serverClient);
 
 export default async function AdminPage() {
   const authedClient = await createSSClient();
@@ -26,15 +31,24 @@ export default async function AdminPage() {
   return (
     <Page>
       <Heading text="Admin" as="h2" />
-      <TattooRequests requests={tattooRequests ?? []} />
 
-      {userId && <p>Hello {user?.user_metadata.full_name}</p>}
-      {!userId && (
-        <>
-          <p>Looks like you haven&apos;t created your profile yet.</p>
-          <button className="btn">Create Profile</button>
-        </>
+      {userId && user && (
+        <IsLoggedIn user={user}>
+          <TattooRequests
+            lead={<Heading text="Tattoo Requests" as="h4" />}
+            requests={tattooRequests ?? []}
+            trail={
+              <Link
+                href={LINKS_ADMIN.tattooRequests.href}
+                className="underline text-primary-400-600"
+              >
+                See More requests
+              </Link>
+            }
+          />
+        </IsLoggedIn>
       )}
+      {!userId && <IsLoggedOut />}
     </Page>
   );
 }

@@ -9,7 +9,7 @@ export type {
   TattooImage,
   ClientTable,
   ProfileTaggingOptions,
-  User,
+  AuthUser,
 } from "./types";
 
 export type { Database } from "@hyperinkstudio/db/supabase/types/supabase";

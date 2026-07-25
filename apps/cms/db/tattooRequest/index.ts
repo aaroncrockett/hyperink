@@ -22,8 +22,8 @@ export const getTattooRequestById = getTattooRequestByIdDb;
 
 export const getLastTenTattooRequests = getRecentlyCreatedRequestsDb;
 
-export const getLastFiveTattooRequests = (client: ServerClient) => {
-  return getRecentlyCreatedRequestsDb(client);
+export const getLastThreeTattooRequests = (client: ServerClient) => {
+  return getRecentlyCreatedRequestsDb(client, 3);
 };
 
 export const TATTOO_REQUEST_FORM = {
