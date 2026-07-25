@@ -13,23 +13,23 @@ export const getClientPersonByEmailOrPhone = getClientPersonByEmailOrPhoneDb;
 export const getLastTenClients = getRecentlyUpdatedClients;
 
 // USED TO LOOK UP A CLIENT
-export const LOOKUP_CLIENT_COLS = [
+export const LOOKUP_CLIENT_KEYS = [
   "email",
   "phone",
   "preferred_name",
 ] as const satisfies (keyof ClientTable)[];
 
 // used when createing a client
-export const CREATE_CLIENT_COLS = [
-  ...LOOKUP_CLIENT_COLS,
+export const CREATE_CLIENT_KEYS = [
+  ...LOOKUP_CLIENT_KEYS,
   "bluesky_id",
   "gender",
   "instagram_id",
 ] as const satisfies (keyof ClientTable)[];
 
 // used when updating a client
-export const EDITABLE_CLIENT_COLS = [
-  ...CREATE_CLIENT_COLS,
+export const EDITABLE_CLIENT_KEYS = [
+  ...CREATE_CLIENT_KEYS,
   "last_name",
   "first_name",
 ] as const satisfies (keyof ClientTable)[];
@@ -41,13 +41,13 @@ export const CLIENT_COLS_ADDITIONAL = [
   "updated_at",
 ] as const satisfies (keyof ClientTable)[];
 
-export const ALL_CLIENT_COLS = [
+export const ALL_CLIENT_COLS_KEYS = [
   ...CLIENT_COLS_ADDITIONAL,
-  ...EDITABLE_CLIENT_COLS,
+  ...EDITABLE_CLIENT_KEYS,
 ];
 
-export const LOOKUP_COLS_KEY_VAL = Object.fromEntries(
-  LOOKUP_CLIENT_COLS.map((value) => [
+export const LZOOKUP_COLS_KEY_VAL = Object.fromEntries(
+  LOOKUP_CLIENT_KEYS.map((value) => [
     value,
     {
       value,
@@ -57,14 +57,14 @@ export const LOOKUP_COLS_KEY_VAL = Object.fromEntries(
     },
   ]),
 ) as {
-  [K in (typeof LOOKUP_CLIENT_COLS)[number]]: {
+  [K in (typeof LOOKUP_CLIENT_KEYS)[number]]: {
     value: K;
     label: string;
   };
 };
 
 export const CREATE_CLIENT_COLS_KEY_VAL = Object.fromEntries(
-  CREATE_CLIENT_COLS.map((value) => [
+  CREATE_CLIENT_KEYS.map((value) => [
     value,
     {
       value,
@@ -74,14 +74,14 @@ export const CREATE_CLIENT_COLS_KEY_VAL = Object.fromEntries(
     },
   ]),
 ) as {
-  [K in (typeof CREATE_CLIENT_COLS)[number]]: {
+  [K in (typeof CREATE_CLIENT_KEYS)[number]]: {
     value: K;
     label: string;
   };
 };
 
-export const EDITABLE_CLIENT_COLS_KEY_VAL = Object.fromEntries(
-  EDITABLE_CLIENT_COLS.map((value) => [
+export const EDITABLE_CLIENT_COLS = Object.fromEntries(
+  EDITABLE_CLIENT_KEYS.map((value) => [
     value,
     {
       value,
@@ -91,14 +91,14 @@ export const EDITABLE_CLIENT_COLS_KEY_VAL = Object.fromEntries(
     },
   ]),
 ) as {
-  [K in (typeof EDITABLE_CLIENT_COLS)[number]]: {
+  [K in (typeof EDITABLE_CLIENT_KEYS)[number]]: {
     value: K;
     label: string;
   };
 };
 
-export const ALL_CLIENT_COLS_KEY_VAL = Object.fromEntries(
-  ALL_CLIENT_COLS.map((value) => [
+export const ALL_CLIENT_COLS = Object.fromEntries(
+  ALL_CLIENT_COLS_KEYS.map((value) => [
     value,
     {
       value,
@@ -108,22 +108,22 @@ export const ALL_CLIENT_COLS_KEY_VAL = Object.fromEntries(
     },
   ]),
 ) as {
-  [K in (typeof ALL_CLIENT_COLS)[number]]: {
+  [K in (typeof ALL_CLIENT_COLS_KEYS)[number]]: {
     value: K;
     label: string;
   };
 };
 
-export const LOOKUP_COLS_KEY_VAL_LIST = Object.values(LOOKUP_COLS_KEY_VAL);
+export const getClientColLabel = (key: keyof typeof ALL_CLIENT_COLS) => {
+  return ALL_CLIENT_COLS[key].label;
+};
+
+export const LOOKUP_COLS_LIST = Object.values(LZOOKUP_COLS_KEY_VAL);
 
 export const CREATE_CLIENT_COLS_KEY_VAL_LIST = Object.values(
   CREATE_CLIENT_COLS_KEY_VAL,
 );
 
-export const EDITABLE_CLIENT_COLS_KEY_VAL_LIST = Object.values(
-  EDITABLE_CLIENT_COLS_KEY_VAL,
-);
+export const EDITABLE_CLIENT_COLS_LIST = Object.values(EDITABLE_CLIENT_COLS);
 
-export const ALL_CLIENT_COLS_KEY_VAL_LIST = Object.values(
-  ALL_CLIENT_COLS_KEY_VAL,
-);
+export const ALL_CLIENT_COLS_LIST = Object.values(ALL_CLIENT_COLS);

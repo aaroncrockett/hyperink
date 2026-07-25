@@ -1,4 +1,4 @@
-import { LOOKUP_COLS_KEY_VAL_LIST } from "@/db/clientPersons";
+import { LOOKUP_COLS_LIST } from "@/db/clientPersons";
 import type { ClientTable } from "@hyperinkstudio/db";
 
 export function ClientInputLookup({
@@ -6,9 +6,7 @@ export function ClientInputLookup({
 }: {
   lookupType: keyof ClientTable;
 }) {
-  const option = LOOKUP_COLS_KEY_VAL_LIST.find(
-    (option) => option.value === lookupType,
-  );
+  const option = LOOKUP_COLS_LIST.find((option) => option.value === lookupType);
 
   if (!option) return null;
 

@@ -74,6 +74,12 @@ export const TATTOO_REQUEST_FORM_SCHEMA = z.object(
   ),
 );
 
+export const getTattoRequestColLabel = (
+  key: keyof typeof ALL_CLIENT_COLS_KEY_VAL,
+) => {
+  return ALL_CLIENT_COLS_KEY_VAL[key].label;
+};
+
 // page
 // component that gets the tattoo request which is inside a page. this can be a template for how to page my pages also reusable in other parts of the app
 // when I get the tattoo request, it then uses the email and phone to look up the client

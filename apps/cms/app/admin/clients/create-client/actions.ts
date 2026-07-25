@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 
-import { CREATE_CLIENT_COLS } from "@/db/clientPersons";
+import { CREATE_CLIENT_KEYS } from "@/db/clientPersons";
 import type { ClientTable } from "@/db/types";
 import { createSSClient, getAuthedUser } from "@/db/server";
 import { createClientPerson } from "@/db/clientPersons";
@@ -22,7 +22,7 @@ export async function createClient(
     hasError: hasClientError,
     values: clientValues,
     errors: clientErrors,
-  } = handleStringFormValues(formData, CREATE_CLIENT_COLS);
+  } = handleStringFormValues(formData, CREATE_CLIENT_KEYS);
 
   if (hasClientError) {
     return {

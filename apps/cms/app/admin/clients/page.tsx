@@ -11,7 +11,7 @@ import { formatDate } from "@hyperinkstudio/utils/dates";
 
 // Local Outter
 import { createSSClient } from "@/db/server";
-import { getLastTenClients, ALL_CLIENT_COLS_KEY_VAL } from "@/db";
+import { getLastTenClients, getClientColLabel } from "@/db";
 
 // Local
 import { NAV_ADMIN_CLIENT_LIST } from "@/app/consts";
@@ -36,11 +36,11 @@ export default async function ClientsPage() {
           <>
             <span>Update Client</span>
             <span>Create Tatt Record</span>
-            <span>{ALL_CLIENT_COLS_KEY_VAL.preferred_name.label}</span>
-            <span>{ALL_CLIENT_COLS_KEY_VAL.first_name.label}</span>
-            <span>{ALL_CLIENT_COLS_KEY_VAL.last_name.label}</span>
-            <span>{ALL_CLIENT_COLS_KEY_VAL.created_at.label}</span>
-            <span>{ALL_CLIENT_COLS_KEY_VAL.updated_at.label}</span>
+            <span>{getClientColLabel("preferred_name")}</span>
+            <span>{getClientColLabel("first_name")}</span>
+            <span>{getClientColLabel("last_name")}</span>
+            <span>{getClientColLabel("created_at")}</span>
+            <span>{getClientColLabel("updated_at")}</span>
           </>
         }
       >
@@ -56,27 +56,19 @@ export default async function ClientsPage() {
               create
             </span>
             <span className="truncate font-semibold">
-              {client[ALL_CLIENT_COLS_KEY_VAL.preferred_name.value]}
+              {client.preferred_name}
+            </span>
+
+            <span className="truncate">{client.first_name}</span>
+
+            <span className="truncate">{client.last_name}</span>
+
+            <span className="truncate">
+              {formatDate(client?.created_at ?? "")}
             </span>
 
             <span className="truncate">
-              {client[ALL_CLIENT_COLS_KEY_VAL.first_name.value]}
-            </span>
-
-            <span className="truncate">
-              {client[ALL_CLIENT_COLS_KEY_VAL.last_name.value]}
-            </span>
-
-            <span className="truncate">
-              {formatDate(
-                client?.[ALL_CLIENT_COLS_KEY_VAL.created_at.value] ?? "",
-              )}
-            </span>
-
-            <span className="truncate">
-              {formatDate(
-                client?.[ALL_CLIENT_COLS_KEY_VAL.updated_at.value] ?? "",
-              )}
+              {formatDate(client?.updated_at ?? "")}
             </span>
           </div>
         ))}
