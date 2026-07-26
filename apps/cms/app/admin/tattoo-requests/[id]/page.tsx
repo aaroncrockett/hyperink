@@ -13,14 +13,19 @@ export default async function TattooRequestPage({
 }: TattooRequestPageProps) {
   const { id } = await params;
   const ssrClient = await createSSClient();
-  const tattRequest = getTattooRequestById(ssrClient, id);
 
-  // fetch request by id
-  // const request = await getTattooRequest(id);
+  const { data: tattRequest } = await getTattooRequestById(ssrClient, id);
 
   return (
     <Page>
-      <Heading as="h1" text="tattoo request" />
+      <Heading as="h1" text="Tattoo Request" />
+
+      {tattRequest && (
+        <>
+          <p>{tattRequest.email}</p>
+          <p>asdf so much more</p>
+        </>
+      )}
     </Page>
   );
 }

@@ -13,7 +13,7 @@ import { redirect } from "next/navigation";
 
 import { getClientTattooInputs } from "./_helpers";
 type GetClients = {
-  clients: ClientTable | null;
+  clients: ClientTable[] | null;
   errors: Record<string, string> | null;
 };
 
@@ -55,7 +55,7 @@ export async function getClients(
 
   return {
     ..._prevState,
-    clients: result?.data,
+    clients: result?.data ?? [],
   };
 }
 

@@ -46,7 +46,7 @@ export const ALL_CLIENT_COLS_KEYS = [
   ...EDITABLE_CLIENT_KEYS,
 ];
 
-export const LZOOKUP_COLS_KEY_VAL = Object.fromEntries(
+export const LOOKUP_CLIENT_COLS = Object.fromEntries(
   LOOKUP_CLIENT_KEYS.map((value) => [
     value,
     {
@@ -118,7 +118,7 @@ export const getClientColLabel = (key: keyof typeof ALL_CLIENT_COLS) => {
   return ALL_CLIENT_COLS[key].label;
 };
 
-export const LOOKUP_COLS_LIST = Object.values(LZOOKUP_COLS_KEY_VAL);
+export const LOOKUP_CLIENT_COLS_LIST = Object.values(LOOKUP_CLIENT_COLS);
 
 export const CREATE_CLIENT_COLS_KEY_VAL_LIST = Object.values(
   CREATE_CLIENT_COLS_KEY_VAL,
