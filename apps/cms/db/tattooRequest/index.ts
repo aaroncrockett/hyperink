@@ -75,15 +75,7 @@ export const TATTOO_REQUEST_FORM_SCHEMA = z.object(
 );
 
 export const getTattoRequestColLabel = (
-  key: keyof typeof ALL_CLIENT_COLS_KEY_VAL,
+  key: keyof typeof TATTOO_REQUEST_FORM,
 ) => {
-  return ALL_CLIENT_COLS_KEY_VAL[key].label;
+  return TATTOO_REQUEST_FORM[key].label;
 };
-
-// page
-// component that gets the tattoo request which is inside a page. this can be a template for how to page my pages also reusable in other parts of the app
-// when I get the tattoo request, it then uses the email and phone to look up the client
-// if there is no client, create one based on the data we have
-// otherwise use the client ID we got when looking up to create a new tattoo
-// use the rest of the  returned quest data to will out a form. this form data is now client_tattoo! even though it was made from other the request.
-// the artist can update parts of the for if they wish, give them a button to do that. Otherwise the form should be "locked" with a button to edit it, or, to submit as a tattoo.

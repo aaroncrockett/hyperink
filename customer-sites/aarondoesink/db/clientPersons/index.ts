@@ -1,126 +1,123 @@
-import type { ClientTable } from "../types";
+import { z } from "zod";
 
 import {
   createClientPerson as dbCreateClientPerson,
   getRecentlyUpdatedClients,
+  getClientPersonByEmailOrPhone as getClientPersonByEmailOrPhoneDb,
 } from "@hyperinkstudio/db";
+
+import { ClientTable } from "@hyperinkstudio/db";
 
 export const createClientPerson = dbCreateClientPerson;
 
+export const getClientPersonByEmailOrPhone = getClientPersonByEmailOrPhoneDb;
+
 export const getLastTenClients = getRecentlyUpdatedClients;
 
-// USED TO LOOK UP A CLIENT
-export const LOOKUP_CLIENT_COLS = [
-  "email",
-  "phone",
-  "preferred_name",
-] as const satisfies (keyof ClientTable)[];
+export type ClientData = {
+  id: keyof ClientTable;
+  label: string;
+  type?: React.HTMLInputTypeAttribute;
+  schema: z.ZodType;
+  required?: boolean;
+  value?: string;
+};
 
-// used when createing a client
-export const CREATE_CLIENT_COLS = [
+// Used to lookup a client
+export const LOOKUP_CLIENT_COLS = {
+  email: {
+    label: "Email",
+    id: "email",
+    type: "email",
+    schema: z.email("Please enter a valid email address."),
+    required: true,
+  },
+  preferred_name: {
+    label: "Preferred Name",
+    id: "preferred_name",
+    type: "text",
+    schema: z.string().trim().min(1, "Please enter your preferred name."),
+    required: true,
+  },
+  phone: {
+    label: "Phone",
+    id: "phone",
+    type: "tel",
+    schema: z
+      .string()
+      .trim()
+      .min(10, "Phone number must be at least 10 digits."),
+    required: true,
+  },
+};
+// used when creating a client
+export const CREATE_CLIENT_COLS = {
   ...LOOKUP_CLIENT_COLS,
-  "bluesky_id",
-  "gender",
-  "instagram_id",
-] as const satisfies (keyof ClientTable)[];
+  gender: {
+    label: "Gender",
+    id: "gender",
+    type: "text",
+    schema: z.string().trim().optional(),
+    required: false,
+  },
+  blue_sky: {
+    label: "Blue Sky",
+    id: "blue_sky",
+    type: "text",
+    schema: z.string().trim().optional(),
+    required: false,
+  },
+  instagram: {
+    label: "Instagram",
+    id: "instagram",
+    type: "text",
+    schema: z.string().trim().optional(),
+    required: false,
+  },
+};
 
 // used when updating a client
-export const EDITABLE_CLIENT_COLS = [
+export const EDITABLE_CLIENT_COLS = {
   ...CREATE_CLIENT_COLS,
-  "last_name",
-  "first_name",
-] as const satisfies (keyof ClientTable)[];
-
-// USED TO HELP LINK OTHER COLS
-export const CLIENT_COLS_ADDITIONAL = [
-  "user_id",
-  "created_at",
-  "updated_at",
-] as const satisfies (keyof ClientTable)[];
-
-export const ALL_CLIENT_COLS = [
-  ...CLIENT_COLS_ADDITIONAL,
+  last_name: {
+    label: "Last Name",
+    id: "last_name",
+    type: "text",
+    schema: z.string().trim(),
+    required: true,
+  },
+  first_name: {
+    label: "First Name",
+    id: "first_name",
+    type: "text",
+    schema: z.string().trim(),
+    required: true,
+  },
+};
+export const ALL_CLIENT_COLS = {
   ...EDITABLE_CLIENT_COLS,
-];
-
-export const LOOKUP_COLS_KEY_VAL = Object.fromEntries(
-  LOOKUP_CLIENT_COLS.map((value) => [
-    value,
-    {
-      value,
-      label: value
-        .replaceAll("_", " ")
-        .replace(/\b\w/g, (c) => c.toUpperCase()),
-    },
-  ]),
-) as {
-  [K in (typeof LOOKUP_CLIENT_COLS)[number]]: {
-    value: K;
-    label: string;
-  };
+  created_at: {
+    id: "created_at",
+    label: "Created At",
+  },
+  updated_at: {
+    id: "updated_at",
+    label: "Updated At",
+  },
 };
 
-export const CREATE_CLIENT_COLS_KEY_VAL = Object.fromEntries(
-  CREATE_CLIENT_COLS.map((value) => [
-    value,
-    {
-      value,
-      label: value
-        .replaceAll("_", " ")
-        .replace(/\b\w/g, (c) => c.toUpperCase()),
-    },
-  ]),
-) as {
-  [K in (typeof CREATE_CLIENT_COLS)[number]]: {
-    value: K;
-    label: string;
-  };
+export const LOOKUP_CLIENT_KEYS = Object.values(LOOKUP_CLIENT_COLS);
+
+export const CREATE_CLIENT_KEYS = Object.values(CREATE_CLIENT_COLS);
+
+export const EDITABLE_CLIENT_KEYS = Object.values(EDITABLE_CLIENT_COLS);
+
+export const getClientColLabel = (key: keyof typeof ALL_CLIENT_COLS) => {
+  return ALL_CLIENT_COLS[key].label;
 };
 
-export const EDITABLE_CLIENT_COLS_KEY_VAL = Object.fromEntries(
-  EDITABLE_CLIENT_COLS.map((value) => [
-    value,
-    {
-      value,
-      label: value
-        .replaceAll("_", " ")
-        .replace(/\b\w/g, (c) => c.toUpperCase()),
-    },
-  ]),
-) as {
-  [K in (typeof EDITABLE_CLIENT_COLS)[number]]: {
-    value: K;
-    label: string;
-  };
-};
+export const LOOKUP_CLIENT_COLS_LIST = Object.values(LOOKUP_CLIENT_COLS);
 
-export const ALL_CLIENT_COLS_KEY_VAL = Object.fromEntries(
-  ALL_CLIENT_COLS.map((value) => [
-    value,
-    {
-      value,
-      label: value
-        .replaceAll("_", " ")
-        .replace(/\b\w/g, (c) => c.toUpperCase()),
-    },
-  ]),
-) as {
-  [K in (typeof ALL_CLIENT_COLS)[number]]: {
-    value: K;
-    label: string;
-  };
-};
+export const CREATE_CLIENT_COLS_LIST = Object.values(CREATE_CLIENT_COLS);
 
-export const LOOKUP_COLS_KEY_VAL_LIST = Object.values(LOOKUP_COLS_KEY_VAL);
-
-export const CREATE_CLIENT_COLS_KEY_VAL_LIST = Object.values(
-  CREATE_CLIENT_COLS_KEY_VAL,
-);
-
-export const EDITABLE_CLIENT_COLS_KEY_VAL_LIST = Object.values(
-  EDITABLE_CLIENT_COLS_KEY_VAL,
-);
-
-export const ALL_CLIENT_COLS_KEY_VAL_LIST = Object.values(
-  ALL_CLIENT_COLS_KEY_VAL,
-);
+export const EDITABLE_CLIENT_COLS_LIST = Object.values(EDITABLE_CLIENT_COLS);

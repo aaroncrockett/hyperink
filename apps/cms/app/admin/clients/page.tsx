@@ -7,7 +7,6 @@ import {
   TableLayout,
   RowOfTableLayout,
 } from "@hyperinkstudio/ui-react/components";
-
 import { formatDate } from "@hyperinkstudio/utils/dates";
 
 // Local Outter

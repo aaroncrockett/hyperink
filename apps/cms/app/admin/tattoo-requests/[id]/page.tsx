@@ -16,6 +16,10 @@ export default async function TattooRequestPage({
 
   const { data: tattRequest } = await getTattooRequestById(ssrClient, id);
 
+  if (!tattRequest) return null;
+
+  // const tattoo: Tattoo = tattRequest;
+
   return (
     <Page>
       <Heading as="h1" text="Tattoo Request" />
@@ -23,7 +27,6 @@ export default async function TattooRequestPage({
       {tattRequest && (
         <>
           <p>{tattRequest.email}</p>
-          <p>asdf so much more</p>
         </>
       )}
     </Page>

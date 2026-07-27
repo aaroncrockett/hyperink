@@ -1,4 +1,4 @@
-import { CREATE_CLIENT_COLS_KEY_VAL_LIST } from "@/db/clientPersons";
+import { CREATE_CLIENT_COLS_LIST } from "@/db/clientPersons";
 import { Input, InputCheck } from "@hyperinkstudio/ui-react/components/";
 
 export function FormContentCreateClient({
@@ -8,15 +8,13 @@ export function FormContentCreateClient({
 }) {
   return (
     <>
-      {CREATE_CLIENT_COLS_KEY_VAL_LIST.map(({ value, label }) => (
+      {CREATE_CLIENT_COLS_LIST.map(({ id, label, type }) => (
         <Input
-          key={value}
-          id={value}
-          name={value}
+          key={id}
+          id={id}
+          name={id}
           label={label}
-          type={
-            value === "email" ? "email" : value === "phone" ? "tel" : "text"
-          }
+          type={type}
           errors={errors}
         />
       ))}
