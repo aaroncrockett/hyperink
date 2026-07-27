@@ -30,9 +30,9 @@ export default function CreateClientPage() {
   return (
     <Page>
       <Heading text="Create A Client Record" as="h1" />
-      <div className="flex gap-3">
-        <Nav links={NAV_ADMIN_CLIENT_LIST} />
-      </div>
+
+      <Nav links={NAV_ADMIN_CLIENT_LIST} />
+
       <Form className="max-w-md" action={actionState}>
         <FormContentCreateClient errors={clientState.errors} />
 

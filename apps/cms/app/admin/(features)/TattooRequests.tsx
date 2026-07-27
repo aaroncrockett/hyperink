@@ -36,26 +36,28 @@ export function TattooRequests({
           </>
         }
       >
-        {requests.map(({ preferred_name, email, phone, id }) => (
-          <RowOfTableLayout
-            gridCls={gridCls}
-            className="odd:bg-surface-100-900/70 p-2"
-            key={id}
-          >
-            <span className="text-primary-400-600 underline truncate">
-              <Link
-                className="text-primary-400-600"
-                href={`${LINKS_ADMIN.tattooRequests.href}/${id}`}
-              >
-                EDIT
-              </Link>
-            </span>
+        {requests &&
+          requests.map(({ preferred_name, email, phone, id }) => (
+            <RowOfTableLayout
+              gridCls={gridCls}
+              className="odd:bg-surface-100-900/70 p-2"
+              key={id}
+            >
+              <span className="text-primary-400-600 underline truncate">
+                <Link
+                  className="text-primary-400-600"
+                  href={`${LINKS_ADMIN.tattooRequests.href}/${id}`}
+                >
+                  EDIT
+                </Link>
+              </span>
 
-            <span className="truncate">{preferred_name}</span>
-            <span className="truncate">{email}</span>
-            <span className="truncate">{phone}</span>
-          </RowOfTableLayout>
-        ))}
+              <span className="truncate">{preferred_name}</span>
+              <span className="truncate">{email}</span>
+              <span className="truncate">{phone}</span>
+            </RowOfTableLayout>
+          ))}
+
         <div className="">{trail}</div>
       </TableLayout>
     </div>
