@@ -1,6 +1,11 @@
+// React
+
+// Hyper Ink
 import { Heading, Page } from "@hyperinkstudio/ui-react/components";
+// Local
 import { getTattooRequestById } from "@/db/tattooRequest";
 import { createSSClient } from "@/db/server";
+import { TattooForm } from "./_components/TattooForm";
 
 type TattooRequestPageProps = {
   params: Promise<{
@@ -18,17 +23,12 @@ export default async function TattooRequestPage({
 
   if (!tattRequest) return null;
 
-  // const tattoo: Tattoo = tattRequest;
-
   return (
     <Page>
       <Heading as="h1" text="Tattoo Request" />
+      {/* Look up the client by the email and phone */}
 
-      {tattRequest && (
-        <>
-          <p>{tattRequest.email}</p>
-        </>
-      )}
+      <TattooForm tattRequest={tattRequest} />
     </Page>
   );
 }
