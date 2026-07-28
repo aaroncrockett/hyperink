@@ -25,43 +25,61 @@ export default async function TattooRequestPage({
 
   if (!tattRequest) return null;
 
-  const reqEmail = tattRequest?.email;
-  const reqPhone = tattRequest?.phone;
-
-  if (!reqEmail || !reqPhone) {
+  if (!tattRequest?.email || !tattRequest?.phone) {
     console.error("no email or phone");
     return null;
   }
 
   const { data: clientPersons } = await getClientPersonsByEmailOrPhone(
     ssrClient,
-    reqEmail,
-    reqPhone,
+    tattRequest?.email,
+    tattRequest?.phone,
   );
-
-  console.log("client persons");
-  console.log(clientPersons);
-  if (!clientPersons) return null;
-
-  if (clientPersons.length > 2)
-    console.log("how is there more than one person");
-
-  if (clientPersons.length === 2)
-    console.log("wooooooo two ppl? what are the odds");
-
-  // const email = clientPersons[0].email;
-  // const phone = clientPersons[0].phone;
 
   return (
     <Page>
       <Heading as="h1" text="Tattoo Request" />
-      {/* Look up the client by the email and phone */}
-      {/* 
-      {email}
-      {phone}
-      {!email ? "nope" : "yup"} */}
 
-      <TattooForm tattRequest={tattRequest} />
+      {!clientPersons && (
+        <>
+          <p>
+            No client was found. We will create a Tattoo Record alongside a new
+            client profile.
+          </p>
+          <TattooForm clientFound={false} tattRequest={tattRequest} />
+        </>
+      )}
+      {/* // more than two clients found. something is wrong..*/}
+      {clientPersons && clientPersons.length > 2 && (
+        <>
+          Is this even possible? There were more than 2 clients found. Contact
+          support:D HyperInk is a small business run by humans, not robots. We
+          can help you out.
+        </>
+      )}
+      {/* // two clients found. ask client to delete one.*/}
+      {clientPersons && clientPersons.length === 2 && (
+        <>
+          <p>
+            There is more than one client found. Contact client the to verify
+            the info, and contact support to update the client records. HyperInk
+            is a small business run by humans, not robots. We can help you out.
+          </p>
+        </>
+      )}
+
+      {/* // one person found. we can add the request to them */}
+      {clientPersons && clientPersons.length === 1 && (
+        <>
+          <p>
+            {clientPersons[0].preferred_name} was found {clientPersons[0].email}
+          </p>
+          <p>Email: {clientPersons[0].email}</p>
+          <p>{clientPersons[0].phone}</p>
+          <p>We can create a new tattoo and add it to their records</p>
+          <TattooForm clientFound={true} tattRequest={tattRequest} />
+        </>
+      )}
     </Page>
   );
 }

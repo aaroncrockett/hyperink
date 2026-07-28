@@ -10,7 +10,13 @@ import { Form } from "@hyperinkstudio/ui-react/components";
 import { type TattooRequest } from "@/db/types";
 import { TATTOO_REQUEST_FORM_LIST } from "@/db/tattooRequest";
 
-export function TattooForm({ tattRequest }: { tattRequest: TattooRequest }) {
+export function TattooForm({
+  tattRequest,
+  clientFound,
+}: {
+  tattRequest: TattooRequest;
+  clientFound: boolean;
+}) {
   const [isEditing, setIsEditing] = useState(false);
 
   if (!tattRequest) return null;
@@ -25,7 +31,7 @@ export function TattooForm({ tattRequest }: { tattRequest: TattooRequest }) {
       </button>
 
       {isEditing ? (
-        <Form>
+        <Form submitText={clientFound ? "create tatt" : "create tatt & client"}>
           {TATTOO_REQUEST_FORM_LIST.map(({ id }) => (
             <div key={id}>
               <span>{id}</span>
@@ -34,8 +40,6 @@ export function TattooForm({ tattRequest }: { tattRequest: TattooRequest }) {
         </Form>
       ) : (
         <>
-          <p>not editing</p>
-
           {TATTOO_REQUEST_FORM_LIST.map(({ id }) => (
             <div key={id}>
               <span>{id}</span>
