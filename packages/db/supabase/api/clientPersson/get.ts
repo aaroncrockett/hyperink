@@ -4,7 +4,66 @@ import { TABLE_CLIENT_PERSON as TABLE } from "./consts";
 // Utils
 import { getYearDateRange } from "@hyperinkstudio/utils";
 
-export async function getRecentlyUpdatedClients(
+export async function getClientsPersonsByEmail(
+  authedClient: Client,
+  email: string,
+) {
+  const { data, error } = await authedClient
+    .from(TABLE)
+    .select("*")
+    .eq("email", email);
+
+  return { data, error };
+}
+
+export async function getClientPersonsByEmailOrPhone(
+  client: Client,
+  email: string,
+  phone: string,
+) {
+  return client
+    .from(TABLE)
+    .select("*")
+    .or(`email.eq.${email},phone.eq.${phone}`);
+}
+
+export async function getClientsPersonsByPhone(
+  authedClient: Client,
+  phone: string,
+) {
+  const { data, error } = await authedClient
+    .from(TABLE)
+    .select("*")
+    .eq("phone", phone);
+
+  return { data, error };
+}
+
+export async function getClientsPersonsByPreferredName(
+  authedClient: Client,
+  preferredName: string,
+) {
+  const { data, error } = await authedClient
+    .from(TABLE)
+    .select("*")
+    .eq("preferred_name", preferredName);
+
+  return { data, error };
+}
+
+export async function getClientsPersonsByLastdName(
+  authedClient: Client,
+  lastName: string,
+) {
+  const { data, error } = await authedClient
+    .from(TABLE)
+    .select("*")
+    .eq("last_name", lastName);
+
+  return { data, error };
+}
+
+export async function getClientPersonsRecentlyUpdated(
   authedClient: Client,
   limit = 10,
 ) {
@@ -17,66 +76,7 @@ export async function getRecentlyUpdatedClients(
   return { data, error };
 }
 
-export async function getClientsPersonByEmail(
-  authedClient: Client,
-  email: string,
-) {
-  const { data, error } = await authedClient
-    .from(TABLE)
-    .select("*")
-    .eq("email", email);
-
-  return { data, error };
-}
-
-export async function getClientsPersonByPhone(
-  authedClient: Client,
-  phone: string,
-) {
-  const { data, error } = await authedClient
-    .from(TABLE)
-    .select("*")
-    .eq("phone", phone);
-
-  return { data, error };
-}
-
-export async function getClientsPersonByPreferredName(
-  authedClient: Client,
-  preferredName: string,
-) {
-  const { data, error } = await authedClient
-    .from(TABLE)
-    .select("*")
-    .eq("preferred_name", preferredName);
-
-  return { data, error };
-}
-
-export async function getClientsPersonByLastdName(
-  authedClient: Client,
-  lastName: string,
-) {
-  const { data, error } = await authedClient
-    .from(TABLE)
-    .select("*")
-    .eq("last_name", lastName);
-
-  return { data, error };
-}
-
-export async function getClientPersonByEmailOrPhone(
-  client: Client,
-  email: string,
-  phone: string,
-) {
-  return client
-    .from(TABLE)
-    .select("*")
-    .or(`email.eq.${email},phone.eq.${phone}`);
-}
-
-export async function getClientsPeopleByTattooYear(
+export async function getClientsPersonsByTattooYear(
   authedClient: Client,
   year: number,
 ) {

@@ -3,9 +3,9 @@
 import { randomUUID } from "crypto";
 // hyperink
 import {
-  getClientsPersonByEmail,
-  getClientsPersonByPreferredName,
-  getClientsPersonByPhone,
+  getClientsPersonsByEmail,
+  getClientsPersonsByPreferredName,
+  getClientsPersonsByPhone,
   getClientTattoosByClientId,
 } from "@hyperinkstudio/db";
 // Local
@@ -75,7 +75,7 @@ export async function getClients(
   let client: Partial<ClientTable> | null = null;
 
   if (clientValues.email) {
-    const { data } = await getClientsPersonByEmail(
+    const { data } = await getClientsPersonsByEmail(
       authedClient,
       clientValues.email,
     );
@@ -83,7 +83,7 @@ export async function getClients(
   }
 
   if (clientValues.phone) {
-    const { data } = await getClientsPersonByPhone(
+    const { data } = await getClientsPersonsByPhone(
       authedClient,
       clientValues.phone,
     );
@@ -91,7 +91,7 @@ export async function getClients(
   }
 
   if (clientValues.preferredName) {
-    const { data } = await getClientsPersonByPreferredName(
+    const { data } = await getClientsPersonsByPreferredName(
       authedClient,
       clientValues.preferredName,
     );

@@ -2,9 +2,9 @@
 
 import { createSSClient, getAuthedUser } from "@/db/server";
 import {
-  getClientsPersonByEmail,
-  getClientsPersonByPhone,
-  getClientsPersonByPreferredName,
+  getClientsPersonsByEmail,
+  getClientsPersonsByPhone,
+  getClientsPersonsByPreferredName,
   createClientTattoo,
   type ClientTable,
 } from "@hyperinkstudio/db";
@@ -38,15 +38,18 @@ export async function getClients(
   let result;
 
   if (email) {
-    result = await getClientsPersonByEmail(authedClient, email);
+    result = await getClientsPersonsByEmail(authedClient, email);
   }
 
   if (phone) {
-    result = await getClientsPersonByPhone(authedClient, phone);
+    result = await getClientsPersonsByPhone(authedClient, phone);
   }
 
   if (preferredName) {
-    result = await getClientsPersonByPreferredName(authedClient, preferredName);
+    result = await getClientsPersonsByPreferredName(
+      authedClient,
+      preferredName,
+    );
   }
 
   if (result?.error) {
