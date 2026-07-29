@@ -1,6 +1,5 @@
 import { z } from "zod";
 
-import { isStringArray } from "@hyperinkstudio/utils";
 import {
   upsertProfileTaggingOpts as upsertProfileTaggingOptsDb,
   getProfileTaggingOpts as getProfileTaggingOptsDb,
@@ -22,23 +21,52 @@ export type EditableTaggingOpts = {
   schema: z.ZodType;
   required?: boolean;
   value?: string;
+  defaultValues?: string[];
 };
+
+const defaultStyles = ["traditional", "realism", "neo-traditional"];
+const defaultTags = ["color", "black and gray", "stippling"];
 
 // Object keyed by column name
 export const EDITABLE_TAGGING_COLS = {
   tags: {
     label: "Tags",
     id: "tags",
-    type: "",
+    type: "list",
     schema: z
       .string()
       .transform((value) => JSON.parse(value))
       .pipe(z.array(z.string())),
     required: false,
+    defaultValues: defaultStyles,
+  },
+  styles: {
+    label: "Styles",
+    id: "styles",
+    type: "list",
+    schema: z
+      .string()
+      .transform((value) => JSON.parse(value))
+      .pipe(z.array(z.string())),
+    required: false,
+    defaultValues: defaultTags,
+  },
+  collections: {
+    label: "Collections",
+    id: "collections",
+    type: "list",
+    schema: z
+      .string()
+      .transform((value) => JSON.parse(value))
+      .pipe(z.array(z.string())),
+    required: false,
+    defaultValues: defaultTags,
   },
 } as const satisfies Partial<
   Record<ProfileTaggingOptsKey, EditableTaggingOpts>
 >;
 
-// Array of option objects
+// Array of cols
 export const EDITABLE_TAGGING_COL_LIST = Object.values(EDITABLE_TAGGING_COLS);
+
+export const EDITABLE_TAGGING_KEYS = Object.keys(EDITABLE_TAGGING_COLS);
