@@ -2,7 +2,7 @@
 // Next.js
 import { redirect } from "next/navigation";
 // local outter
-import { EDITABLE_TAGGING_COLS } from "@/db/profileTaggingOpts";
+import { EDITABLE_TAGGING_COL_KEYS } from "@/db/profileTaggingOpts";
 import type { ProfileTaggingOptions } from "@/db/types";
 import { createSSClient, getAuthedUser } from "@/db/server";
 import { upsertProfileTaggingOpts as upsertProfileTaggingOptsUtil } from "@/db/profileTaggingOpts";
@@ -22,7 +22,7 @@ export async function upsertProfileTaggingOpts(
     hasError: hasClientError,
     values: optionValues,
     errors: optionErrors,
-  } = handleStringListFormValues(formData, EDITABLE_TAGGING_COLS);
+  } = handleStringListFormValues(formData, EDITABLE_TAGGING_COL_KEYS);
 
   if (hasClientError) {
     return {

@@ -1,70 +1,44 @@
-import type { ProfileTaggingOptions as ProfileTaggingOptionsDb } from "../types";
+import { z } from "zod";
 
 import { isStringArray } from "@hyperinkstudio/utils";
-
 import {
   upsertProfileTaggingOpts as upsertProfileTaggingOptsDb,
   getProfileTaggingOpts as getProfileTaggingOptsDb,
 } from "@hyperinkstudio/db";
+
+import type { ProfileTaggingOptions as ProfileTaggingOptionsDb } from "../types";
 
 export const upsertProfileTaggingOpts = upsertProfileTaggingOptsDb;
 export const getProfileTaggingOpts = getProfileTaggingOptsDb;
 
 export type ProfileTaggingOptions = ProfileTaggingOptionsDb;
 
-export function createTaggingKeys() {
-  return {
-    [EDITABLE_TAGGING_COLS_OPTS.tags.value]: [],
-    [EDITABLE_TAGGING_COLS_OPTS.styles.value]: [],
-    [EDITABLE_TAGGING_COLS_OPTS.collections.value]: [],
-  };
-}
-export function createTaggingValues(
-  data: Partial<ProfileTaggingOptions> | null | undefined,
-) {
-  return {
-    tags: isStringArray(data?.[EDITABLE_TAGGING_COLS_OPTS.tags.value])
-      ? (data[EDITABLE_TAGGING_COLS_OPTS.tags.value] as string[])
-      : [],
+export type ProfileTaggingOptsKey = keyof ProfileTaggingOptions;
 
-    styles: isStringArray(data?.[EDITABLE_TAGGING_COLS_OPTS.styles.value])
-      ? (data[EDITABLE_TAGGING_COLS_OPTS.styles.value] as string[])
-      : [],
-
-    collections: isStringArray(
-      data?.[EDITABLE_TAGGING_COLS_OPTS.collections.value],
-    )
-      ? (data[EDITABLE_TAGGING_COLS_OPTS.collections.value] as string[])
-      : [],
-  };
-}
-
-// Array of editable column names
-export const EDITABLE_TAGGING_COLS = [
-  "tags",
-  "styles",
-  "collections",
-] as const satisfies (keyof ProfileTaggingOptions)[];
-
-// Object keyed by column name
-export const EDITABLE_TAGGING_COLS_OPTS = Object.fromEntries(
-  EDITABLE_TAGGING_COLS.map((value) => [
-    value,
-    {
-      value,
-      label: value
-        .replaceAll("_", " ")
-        .replace(/\b\w/g, (c) => c.toUpperCase()),
-    },
-  ]),
-) as {
-  [K in (typeof EDITABLE_TAGGING_COLS)[number]]: {
-    value: K;
-    label: string;
-  };
+export type EditableTaggingOpts = {
+  label: string;
+  id: ProfileTaggingOptsKey;
+  type: React.HTMLInputTypeAttribute;
+  schema: z.ZodType;
+  required?: boolean;
+  value?: string;
 };
 
+// Object keyed by column name
+export const EDITABLE_TAGGING_COLS = {
+  tags: {
+    label: "Tags",
+    id: "tags",
+    type: "",
+    schema: z
+      .string()
+      .transform((value) => JSON.parse(value))
+      .pipe(z.array(z.string())),
+    required: false,
+  },
+} as const satisfies Partial<
+  Record<ProfileTaggingOptsKey, EditableTaggingOpts>
+>;
+
 // Array of option objects
-export const EDITABLE_TAGGING_COLS_LIST_OF_OPTS = Object.values(
-  EDITABLE_TAGGING_COLS_OPTS,
-);
+export const EDITABLE_TAGGING_COL_LIST = Object.values(EDITABLE_TAGGING_COLS);

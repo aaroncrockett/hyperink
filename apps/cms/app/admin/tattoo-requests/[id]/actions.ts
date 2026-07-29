@@ -41,9 +41,13 @@ export async function createAClientTattooAndHandleClient(
 
   const ssClient = await createSSClient();
 
-  const clientId = formDataObject.clientId as string;
+  let clientId = formDataObject.clientId as string;
+
+  console.log("formDataObject");
+  console.log(formDataObject);
 
   if (formDataObject.existingClient === "true") {
+    console.log("existing client");
     // const { error, data } = await updateClientPerson(ssClient, clientId, {
     //   bluesky_id: parsedFormValues.bluesky_id,
     //   instagram_id: parsedFormValues.instagram_id,
@@ -58,12 +62,15 @@ export async function createAClientTattooAndHandleClient(
     // }
   }
 
-  if (parsedFormValues.existingClient === "false") {
+  if (formDataObject.existingClient === "false" && clientId === "") {
+    console.log("NOT existing client");
     const { error, data } = await createClientPerson(ssClient, {
       email: parsedFormValues.email,
       phone: parsedFormValues.phone,
       preferred_name: parsedFormValues.perferred_name,
     });
+
+    clientId = data?.id ?? "";
 
     if (error) {
       console.error("not existing client function");

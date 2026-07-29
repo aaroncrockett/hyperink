@@ -48,7 +48,6 @@ export function TattooForm({
       >
         Edit Request
       </button>
-      {existingClient.toString()}
       <Form
         action={formAction}
         submitText={existingClient ? "create tatt" : "create tatt & client"}

@@ -8,8 +8,8 @@ import { LOOKUP_COLS_KEY_VAL_LIST } from "@/db/clientPersons";
 import {
   createTaggingKeys,
   createTaggingValues,
-  EDITABLE_TAGGING_COLS_LIST_OF_OPTS,
-  EDITABLE_TAGGING_COLS_OPTS,
+  EDITABLE_TAGGING_COL_LIST,
+  EDITABLE_TAGGING_COLS,
 } from "@/db/profileTaggingOpts";
 import { ClientInputLookup } from "@/app/admin/(features)/ClientInputLookup";
 //local
@@ -91,13 +91,11 @@ export default function FormWrapper({ taggingOpts }: FormWrapperProps) {
       )}
       <Form action={uploadImage}>
         <FormContentTattoImage
-          styles={chosenTagOpts[EDITABLE_TAGGING_COLS_OPTS.styles.value]}
-          collections={
-            chosenTagOpts[EDITABLE_TAGGING_COLS_OPTS.collections.value]
-          }
-          tags={chosenTagOpts[EDITABLE_TAGGING_COLS_OPTS.tags.value]}
+          styles={chosenTagOpts[EDITABLE_TAGGING_COLS.styles.value]}
+          collections={chosenTagOpts[EDITABLE_TAGGING_COLS.collections.value]}
+          tags={chosenTagOpts[EDITABLE_TAGGING_COLS.tags.value]}
         />
-        {EDITABLE_TAGGING_COLS_LIST_OF_OPTS.map(({ value, label }) => (
+        {EDITABLE_TAGGING_COL_LIST.map(({ value, label }) => (
           <FormContentTaggingPhotos
             key={value}
             value={value}

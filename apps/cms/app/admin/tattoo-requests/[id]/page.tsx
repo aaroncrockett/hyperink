@@ -69,13 +69,14 @@ export default async function TattooRequestPage({
       {/* // one person found. we can add the request to them */}
       {clientPersons && clientPersons.length === 1 && (
         <>
-          <p>
+          <p className="font-bold bg-secondary-300-700">
             {clientPersons[0].preferred_name} was found {clientPersons[0].email}
           </p>
-          <p>Email: {clientPersons[0].email}</p>
-          <p>{clientPersons[0].phone}</p>
-          {clientPersons[0].id} <p>asdf is the id</p>
-          <p>We can create a new tattoo and add it to their records</p>
+          <span>Email: {clientPersons[0].email}</span>
+          <span>{clientPersons[0].phone}</span>
+          <p className="italic">
+            We can create a new tattoo and add it to their records
+          </p>
           <TattooForm
             clientId={clientPersons[0].id}
             existingClient={true}

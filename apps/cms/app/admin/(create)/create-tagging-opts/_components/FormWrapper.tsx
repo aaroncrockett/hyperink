@@ -5,7 +5,7 @@ import { useActionState, useState } from "react";
 import { Form } from "@hyperinkstudio/ui-react/components";
 // local
 import {
-  EDITABLE_TAGGING_COLS_LIST_OF_OPTS,
+  EDITABLE_TAGGING_COL_LIST,
   createTaggingValues,
 } from "@/db/profileTaggingOpts";
 import { upsertProfileTaggingOpts } from "../actions";
@@ -62,7 +62,7 @@ export default function FormWrapper({ data }: FormWrapperProps) {
 
   return (
     <Form action={action}>
-      {EDITABLE_TAGGING_COLS_LIST_OF_OPTS.map(({ value, label }) => (
+      {EDITABLE_TAGGING_COL_LIST.map(({ value, label }) => (
         <FormContentAllTags
           key={value}
           value={value}
