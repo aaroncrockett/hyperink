@@ -75,7 +75,7 @@ export default async function TattooRequestPage({
           <p>Email: {clientPersons[0].email}</p>
           <p>{clientPersons[0].phone}</p>
           {clientPersons[0].id} <p>asdf is the id</p>
-          <p>We can create a new tattoo and add it to asdf asdftheir records</p>
+          <p>We can create a new tattoo and add it to their records</p>
           <TattooForm
             clientId={clientPersons[0].id}
             existingClient={true}
