@@ -1,6 +1,6 @@
-import { EDITABLE_CLIENT_TATTOO_COLS } from "@hyperinkstudio/db";
+import { EDITABLE_CLIENT_TATT_COLS } from "@hyperinkstudio/db";
 
-type TattooColKey = keyof typeof EDITABLE_CLIENT_TATTOO_COLS;
+type TattooColKey = keyof typeof EDITABLE_CLIENT_TATT_COLS;
 
 export const TATTOO_FORM_COLS = [
   { key: "title", inputType: "text" },

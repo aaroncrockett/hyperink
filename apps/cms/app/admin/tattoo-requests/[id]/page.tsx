@@ -40,13 +40,13 @@ export default async function TattooRequestPage({
     <Page>
       <Heading as="h1" text="Tattoo Request" />
 
-      {!clientPersons && (
+      {clientPersons && clientPersons.length === 0 && (
         <>
           <p>
             No client was found. We will create a Tattoo Record alongside a new
             client profile.
           </p>
-          <TattooForm clientFound={false} tattRequest={tattRequest} />
+          <TattooForm existingClient={false} tattRequest={tattRequest} />
         </>
       )}
       {/* // more than two clients found. something is wrong..*/}
@@ -77,7 +77,7 @@ export default async function TattooRequestPage({
           <p>Email: {clientPersons[0].email}</p>
           <p>{clientPersons[0].phone}</p>
           <p>We can create a new tattoo and add it to their records</p>
-          <TattooForm clientFound={true} tattRequest={tattRequest} />
+          <TattooForm existingClient={true} tattRequest={tattRequest} />
         </>
       )}
     </Page>

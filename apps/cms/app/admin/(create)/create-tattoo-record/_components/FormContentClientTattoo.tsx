@@ -1,7 +1,7 @@
 // FormContent.tsx
 
 import { TATTOO_FORM_COLS } from "../_helpers";
-import { EDITABLE_CLIENT_TATTOO_COLS } from "@hyperinkstudio/db";
+import { EDITABLE_CLIENT_TATT_COLS } from "@hyperinkstudio/db";
 
 type Props = {
   clientId: string;
@@ -22,7 +22,7 @@ export function FormContentClientTattoo({ clientId, preferredName }: Props) {
         >
           {inputType === "text" && (
             <>
-              <label>{EDITABLE_CLIENT_TATTOO_COLS[key].name}</label>
+              <label>{EDITABLE_CLIENT_TATT_COLS[key].name}</label>
               <input type="text" className="input" name={key} />
             </>
           )}
@@ -30,20 +30,20 @@ export function FormContentClientTattoo({ clientId, preferredName }: Props) {
           {inputType === "checkbox" && (
             <>
               <input type="checkbox" className="checkbox" name={key} />
-              <label>{EDITABLE_CLIENT_TATTOO_COLS[key].name}</label>
+              <label>{EDITABLE_CLIENT_TATT_COLS[key].name}</label>
             </>
           )}
 
           {inputType === "textarea" && (
             <>
-              <label>{EDITABLE_CLIENT_TATTOO_COLS[key].name}</label>
+              <label>{EDITABLE_CLIENT_TATT_COLS[key].name}</label>
               <textarea className="textarea" name={key} />
             </>
           )}
 
           {inputType === "select" && (
             <>
-              <label>{EDITABLE_CLIENT_TATTOO_COLS[key].name}</label>
+              <label>{EDITABLE_CLIENT_TATT_COLS[key].name}</label>
               <select className="select" name={key}>
                 <option value="">Select...</option>
               </select>

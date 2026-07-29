@@ -1,6 +1,6 @@
 export const TABLE_CLIENT_TATTOO = "client_tattoo";
 
-export const EDITABLE_CLIENT_TATTOO_COLS = {
+export const EDITABLE_CLIENT_TATT_COLS = {
   title: {
     key: "title",
     name: "Title",
@@ -39,6 +39,6 @@ export const EDITABLE_CLIENT_TATTOO_COLS = {
   },
 } as const;
 
-export const EDITABLE_CLIENT_TATTOO_COLS_ARRAY = Object.values(
-  EDITABLE_CLIENT_TATTOO_COLS,
+export const EDITABLE_CLIENT_TATT_COLS_LIST = Object.values(
+  EDITABLE_CLIENT_TATT_COLS,
 );
