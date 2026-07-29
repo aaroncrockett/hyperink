@@ -88,6 +88,20 @@ export const TATTOO_REQUEST_FORM_SCHEMA = z.object(
   ),
 );
 
+export const TATTOO_REQUEST_SHORT_DISPLAY = {
+  email: TATTOO_REQUEST_FORM.email,
+  preferred_name: TATTOO_REQUEST_FORM.preferred_name,
+  phone: TATTOO_REQUEST_FORM.phone,
+};
+
+export const TATTOO_REQUEST_SHORT_DISPLAY_LIST = Object.values(
+  TATTOO_REQUEST_SHORT_DISPLAY,
+);
+
+export const TATTOO_REQUEST_SHORT_DISPLAY_KEYS = Object.keys(
+  TATTOO_REQUEST_SHORT_DISPLAY,
+) as (keyof typeof TATTOO_REQUEST_SHORT_DISPLAY)[];
+
 export const getTattoRequestColLabel = (
   key: keyof typeof TATTOO_REQUEST_FORM,
 ) => {
