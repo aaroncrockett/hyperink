@@ -1,4 +1,5 @@
-// next
+// next, react
+import { ReactNode } from "react";
 import Link from "next/link";
 // hyper ink
 import {
@@ -7,10 +8,13 @@ import {
 } from "@hyperinkstudio/ui-react/components";
 // local
 import type { TattooRequest } from "@/db/types";
+import {
+  TATTOO_REQUEST_FORM_LIST,
+  TATTOO_REQUEST_FORM_KEYS,
+} from "@/db/tattooRequest";
 import { LINKS_ADMIN } from "@/app/consts";
-import React, { ReactNode } from "react";
 
-const gridCls = "grid grid-cols-[5rem_8rem_12rem_10rem]";
+const gridCls = "grid grid-cols-[5rem_8rem_8rem_8rem_8rem_12rem_10rem]";
 
 export function TattooRequests({
   requests,
@@ -30,14 +34,14 @@ export function TattooRequests({
           headerCols={
             <>
               <span>Process</span>
-              <span>Preferred Name</span>
-              <span>Email</span>
-              <span>Phone</span>
+              {TATTOO_REQUEST_FORM_LIST.map(({ label }, id) => {
+                return <span key={id}>{label}</span>;
+              })}
             </>
           }
         >
           {requests &&
-            requests.map(({ preferred_name, email, phone, id }) => (
+            requests.map(({ id, ...requests }) => (
               <RowOfTableLayout
                 gridCls={gridCls}
                 className="odd:bg-surface-100-900/70 p-2"
@@ -52,9 +56,13 @@ export function TattooRequests({
                   </Link>
                 </span>
 
-                <span className="truncate">{preferred_name}</span>
-                <span className="truncate">{email}</span>
-                <span className="truncate">{phone}</span>
+                {TATTOO_REQUEST_FORM_KEYS.map((formKey, id) => {
+                  return (
+                    <span className="truncate" key={id}>
+                      {requests[formKey]}
+                    </span>
+                  );
+                })}
               </RowOfTableLayout>
             ))}
 

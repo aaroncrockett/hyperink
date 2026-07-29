@@ -4,6 +4,7 @@ import {
   createClientPerson as dbCreateClientPerson,
   getClientPersonsRecentlyUpdated,
   getClientPersonsByEmailOrPhone as getClientPersonsByEmailOrPhoneDb,
+  updateClientPerson as updateClientPersonDb,
 } from "@hyperinkstudio/db";
 
 import { ClientTable } from "@hyperinkstudio/db";
@@ -13,6 +14,8 @@ export const createClientPerson = dbCreateClientPerson;
 export const getClientPersonsByEmailOrPhone = getClientPersonsByEmailOrPhoneDb;
 
 export const getLastTenClients = getClientPersonsRecentlyUpdated;
+
+export const updateClientPerson = updateClientPersonDb;
 
 export type ClientData = {
   id: keyof ClientTable;

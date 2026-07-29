@@ -58,6 +58,20 @@ export const TATTOO_REQUEST_FORM = {
     schema: z.string().trim().optional(),
     required: false,
   },
+  bluesky_id: {
+    label: "Bluesky ID",
+    id: "bluesky_id",
+    type: "text",
+    schema: z.string().trim().optional(),
+    required: false,
+  },
+  instagram_id: {
+    label: "Instamgram ID",
+    id: "instagram_id",
+    type: "text",
+    schema: z.string().trim().optional(),
+    required: false,
+  },
 } as const satisfies Partial<
   Record<TattooRequestFormKey, TattooRequestFormField>
 >;

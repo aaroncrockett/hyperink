@@ -4,19 +4,27 @@
 import { useActionState, useState } from "react";
 
 // Hyper Ink
-import { Form, Input } from "@hyperinkstudio/ui-react/components";
 
-// Local
+import {
+  Form,
+  Input,
+  FormMetaErrors,
+} from "@hyperinkstudio/ui-react/components";
+
+// Local @/db
 import { type TattooRequest } from "@/db/types";
 import { TATTOO_REQUEST_FORM_LIST } from "@/db/tattooRequest";
+// Local
 import { createAClientTattooAndHandleClient } from "../actions";
 
 export function TattooForm({
   tattRequest,
   existingClient,
+  clientId,
 }: {
   tattRequest: TattooRequest;
   existingClient: boolean;
+  clientId?: string;
 }) {
   const [isEditing, setIsEditing] = useState(false);
 
@@ -40,8 +48,7 @@ export function TattooForm({
       >
         Edit Request
       </button>
-
-      {/* {isEditing && ( */}
+      {existingClient.toString()}
       <Form
         action={formAction}
         submitText={existingClient ? "create tatt" : "create tatt & client"}
@@ -49,11 +56,20 @@ export function TattooForm({
         <Input
           key="existingClient"
           id="existingClient"
-          name="Existing Client"
+          name="existingClient"
           label="Existing Client"
           type="hidden"
           required={true}
           value={existingClient.toString()}
+        />
+        <Input
+          key="clientId"
+          id="clientId"
+          name="clientId"
+          label="Client Id"
+          type="hidden"
+          required={true}
+          value={clientId}
         />
         {TATTOO_REQUEST_FORM_LIST.map(({ id, label, type, required }) => (
           <div key={id}>
@@ -66,21 +82,12 @@ export function TattooForm({
               required={required}
               inputClass={isEditing ? "input" : ""}
               defaultValue={tattRequest[id] ?? ""}
-              disabled={isEditing ? false : true}
+              readOnly={!isEditing}
             />
           </div>
         ))}
+        {state.errors && <FormMetaErrors errors={state.errors} />}
       </Form>
-      {/* )} */}
-      {/* {!isEditing && (
-        <>
-          {TATTOO_REQUEST_FORM_LIST.map(({ id }) => (
-            <div key={id}>
-              <span>{id}</span>
-            </div>
-          ))}
-        </>
-      )} */}
     </>
   );
 }

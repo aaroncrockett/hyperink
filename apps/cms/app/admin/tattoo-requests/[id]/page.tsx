@@ -1,5 +1,3 @@
-// React
-
 // Hyper Ink
 import { Heading, Page } from "@hyperinkstudio/ui-react/components";
 // Local DB
@@ -76,8 +74,13 @@ export default async function TattooRequestPage({
           </p>
           <p>Email: {clientPersons[0].email}</p>
           <p>{clientPersons[0].phone}</p>
-          <p>We can create a new tattoo and add it to their records</p>
-          <TattooForm existingClient={true} tattRequest={tattRequest} />
+          {clientPersons[0].id} <p>asdf is the id</p>
+          <p>We can create a new tattoo and add it to asdf asdftheir records</p>
+          <TattooForm
+            clientId={clientPersons[0].id}
+            existingClient={true}
+            tattRequest={tattRequest}
+          />
         </>
       )}
     </Page>

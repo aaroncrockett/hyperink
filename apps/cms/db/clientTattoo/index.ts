@@ -4,6 +4,10 @@ import { EDITABLE_CLIENT_TATT_COLS_LIST as EDITABLE_CLIENT_TATT_COLS_LIST_DB } f
 export type ClientTattoo = ClientTattooDb;
 export const EDITABLE_CLIENT_TATT_COLS_LIST = EDITABLE_CLIENT_TATT_COLS_LIST_DB;
 
-import { getClientTattoosByClientId as getClientTattooByClientIdDb } from "@hyperinkstudio/db";
+import {
+  getClientTattoosByClientId as getClientTattooByClientIdDb,
+  createClientTattoo as createClientTattooDb,
+} from "@hyperinkstudio/db";
 
 export const getClientTattoosByClientId = getClientTattooByClientIdDb;
+export const createClientTattoo = createClientTattooDb;

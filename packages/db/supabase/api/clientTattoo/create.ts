@@ -1,9 +1,9 @@
-import type { Client, ClientTable } from "@hyperinkstudio/db";
+import type { Client, ClientTattoo } from "@hyperinkstudio/db";
 import { TABLE_CLIENT_TATTOO as TABLE } from "./consts";
 
 export async function createClientTattoo(
   authedClient: Client,
-  params: Partial<ClientTable>,
+  params: Partial<ClientTattoo>,
 ) {
   const { data, error } = await authedClient
     .from(TABLE)

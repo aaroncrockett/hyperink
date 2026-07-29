@@ -11,6 +11,7 @@ type InputProps = {
   label: string;
   labelClassName?: string;
   name: string;
+  readOnly?: boolean;
   required?: boolean;
   type?: React.HTMLInputTypeAttribute;
   value?: string;
@@ -28,6 +29,7 @@ export function Input({
   label,
   labelClassName = "",
   name,
+  readOnly,
   required = false,
   type = "text",
   value,
@@ -49,6 +51,7 @@ export function Input({
         className={cn(inputClass, className)}
         disabled={disabled}
         defaultValue={defaultValue}
+        readOnly={readOnly}
       />
 
       {errors && errors[name] && (
