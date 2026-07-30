@@ -48,7 +48,7 @@ export default function Home() {
         ></Heading>
         <Heading
           as="h2"
-          text="🔥 Flash & custom tattoos 🔥"
+          text="Flash & custom tattoos "
           className="text-center font-bold "
         ></Heading>
 
@@ -101,7 +101,7 @@ export default function Home() {
         <div className="w-full h-full relative drop-shadow-sm">
           <video
             ref={videoRef}
-            src="/videos/hp-vid-logan-tatt.mp4"
+            src="/videos/hp-vid.mp4"
             autoPlay
             muted
             playsInline

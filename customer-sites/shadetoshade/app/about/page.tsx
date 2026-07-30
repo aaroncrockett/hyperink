@@ -3,7 +3,7 @@ import { Page, Heading } from "@hyperinkstudio/ui-react/components";
 export default async function About() {
   return (
     <Page>
-      <Heading as="h2" text="About Aaron"></Heading>
+      <Heading as="h2" text="About The Artist -- Aaron" />
     </Page>
   );
 }

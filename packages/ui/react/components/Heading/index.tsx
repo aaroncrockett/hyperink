@@ -36,23 +36,23 @@ export function Heading({
   if (!size) {
     switch (as) {
       case "h1":
-        sizeCalc =
-          "text-4xl md:text-5xl lg:text-6xl !leading-[2rem] md:!leading-[3rem] lg:!leading-[4rem]";
+        sizeCalc = "text-4xl md:text-5xl !leading-[2rem] md:!leading-[3.5rem] ";
         break;
       case "h2":
-        sizeCalc = "text-3xl md:text-4xl lg:text-5xl";
+        sizeCalc =
+          "text-3xl md:text-4xl  !leading-[1.5rem] md:!leading-[2.5rem]";
         break;
       case "h3":
-        sizeCalc = "text-2xl md:text-3xl lg:text-4xl";
+        sizeCalc = "text-2xl md:text-3xl";
         break;
       case "h4":
-        sizeCalc = "text-xl md:text-2xl lg:text-3xl";
+        sizeCalc = "text-xl md:text-2xl ";
         break;
       case "h5":
-        sizeCalc = "text-lg md:text-xl lg:text-2xl";
+        sizeCalc = "text-lg md:text-xl ";
         break;
       case "h6":
-        sizeCalc = "text-base md:text-lg lg:text-xl";
+        sizeCalc = "text-base md:text-lg";
         break;
     }
   }

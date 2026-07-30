@@ -35,7 +35,7 @@ export default function HeaderWrapper({}) {
         href={INTERNAL_LINKS.home.href}
       >
         <Image
-          src="/images/logo-text.svg"
+          src="/images/s2statt-logo.svg"
           alt="Aaron Does Ink - Logo"
           width={201}
           height={40}
