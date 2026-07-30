@@ -10,10 +10,7 @@
   },
   "dependencies": {
     "@hyperinkstudio/utils": "workspace:*",
-    "@hyperinkstudio/ui-react": "workspace:*",
     "@skeletonlabs/skeleton": "^4.12.1",
-    "@skeletonlabs/skeleton-react": "^4.12.1",
-    "tailwindcss": "^4",
-    "@tailwindcss/postcss": "^4"
+    "@skeletonlabs/skeleton-react": "^4.12.1"
   }
 }

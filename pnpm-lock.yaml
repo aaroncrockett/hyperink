@@ -235,9 +235,6 @@ importers:
 
   packages/ui/react:
     dependencies:
-      '@hyperinkstudio/ui-react':
-        specifier: workspace:*
-        version: 'link:'
       '@hyperinkstudio/utils':
         specifier: workspace:*
         version: link:../../utils
@@ -247,12 +244,6 @@ importers:
       '@skeletonlabs/skeleton-react':
         specifier: ^4.12.1
         version: 4.12.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      '@tailwindcss/postcss':
-        specifier: ^4
-        version: 4.2.1
-      tailwindcss:
-        specifier: ^4
-        version: 4.2.1
 
   packages/utils:
     dependencies:

@@ -1,6 +1,6 @@
 "use server";
 import { type TattooRequest, type ClientTattoo } from "@/db/types";
-import { TATT_REQFOLLOW_UP_FORM_SCHEMA } from "@/db/tattooRequest";
+import { TATT_REQ_FOLLOW_UP_FORM_SCHEMA } from "@/db/tattooRequest";
 import { updateClientPerson, createClientPerson } from "@/db/clientPersons";
 import { createClientTattoo } from "@/db/clientTattoo";
 import { zodIssuesToErrors } from "@/db/_helpers";
@@ -23,7 +23,7 @@ export async function createAClientTattooAndHandleClient(
 ): Promise<TattooFormState> {
   const formDataObject = Object.fromEntries(formValues.entries());
 
-  const parsed = TATT_REQFOLLOW_UP_FORM_SCHEMA.safeParse(formDataObject);
+  const parsed = TATT_REQ_FOLLOW_UP_FORM_SCHEMA.safeParse(formDataObject);
 
   const actionResults: TattooFormState = {
     tattooRequest: null,
