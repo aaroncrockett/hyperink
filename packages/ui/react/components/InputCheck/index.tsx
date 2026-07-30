@@ -19,7 +19,7 @@ export function InputCheck({
   id,
   label,
   labelClassName = "",
-  className = "flex flex-row gap-2 items-center ",
+  className = "flex flex-row gap-4 items-center justify-center",
   name,
   inputClass = "checkbox",
   value = "",

@@ -73,7 +73,7 @@ export default function RootLayout({
           imported. Its so, because it depends on a Portal->doc.body ** // */}
           <HeaderWrapper />
           <main
-            className={`noise-bg lg:col-start-2 lg:row-start-2 md:pt-2 lg:pt-4`}
+            className={`noise-bg lg:col-start-2 lg:row-start-2 pt-2AGE md:pt-3`}
           >
             {children}
           </main>

@@ -36,11 +36,11 @@ export function Heading({
   if (!size) {
     switch (as) {
       case "h1":
-        sizeCalc = "text-4xl md:text-5xl !leading-[2rem] md:!leading-[3.5rem] ";
+        sizeCalc = "text-4xl md:text-5xl !leading-[2.5rem] md:!leading-[4rem] ";
         break;
       case "h2":
         sizeCalc =
-          "text-3xl md:text-4xl  !leading-[1.5rem] md:!leading-[2.5rem]";
+          "text-3xl md:text-4xl  !leading-[1.5rem] md:!leading-[2.5gitrem]";
         break;
       case "h3":
         sizeCalc = "text-2xl md:text-3xl";

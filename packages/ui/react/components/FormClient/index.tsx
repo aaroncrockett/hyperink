@@ -9,6 +9,8 @@ type FormProps = ComponentPropsWithoutRef<"form"> & {
   padding?: string;
   space?: string;
   submitText?: string;
+  submitBtnColor?: string;
+  submitBtnCls?: string;
 };
 
 export function Form({
@@ -18,12 +20,14 @@ export function Form({
   padding = "",
   space = "space-y-4",
   submitText = "Submit",
+  submitBtnColor = "preset-filled-secondary-400-600",
+  submitBtnCls = "btn",
   ...props
 }: FormProps) {
   return (
     <form action={action} className={cn(padding, space, className)} {...props}>
       {children}
-      <button type="submit" className="btn preset-filled-secondary-400-600">
+      <button type="submit" className={cn(submitBtnCls, submitBtnColor)}>
         {submitText}
       </button>
     </form>

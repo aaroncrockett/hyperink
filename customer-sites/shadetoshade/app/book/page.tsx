@@ -1,8 +1,8 @@
 "use client";
-
-import { cn } from "@hyperinkstudio/utils/";
-
+// react and next
 import { useActionState } from "react";
+import Link from "next/link";
+// hyperink
 import {
   Form,
   FormMetaErrors,
@@ -14,16 +14,19 @@ import {
   Select,
 } from "@hyperinkstudio/ui-react/components";
 
-import {
-  createTattooRequestAction,
-  type TattRequestFormState,
-} from "./actions";
+import { cn } from "@hyperinkstudio/utils/";
+//Local
 
 import {
   TATTOO_REQUEST_FORM_LIST,
   TATTOO_REQUEST_FORM_KEYS,
   TYPES_MAP,
 } from "@/db/tattooRequest";
+import { INTERNAL_LINKS } from "@/constants";
+import {
+  createTattooRequestAction,
+  type TattRequestFormState,
+} from "./actions";
 
 const initialState: TattRequestFormState = {
   errors: null,
@@ -46,9 +49,9 @@ export default function FormContentBook() {
     options,
   }: (typeof TATTOO_REQUEST_FORM_LIST)[number]) => {
     const className = cn(
-      inputSize === "lg" && "lg:col-span-4 col-span-2",
-      inputSize === "md" && "lg:col-span-2 col-span-1",
-      inputSize === "sm" && "lg:col-span-1 col-span-1",
+      inputSize === "lg" && "lg:col-span-4 col-span-2 items-center ",
+      inputSize === "md" && "lg:col-span-2 col-span-1 items-denter ",
+      inputSize === "sm" && "lg:col-span-2 col-span-1 items-center ",
       "lg:grid lg:grid-cols-[140px_1fr] w-full",
     );
 
@@ -60,6 +63,7 @@ export default function FormContentBook() {
             id={id}
             name={id}
             label={label}
+            labelClassName="text-sm"
             required={required}
             errors={state.errors}
             value={value}
@@ -129,9 +133,17 @@ export default function FormContentBook() {
   return (
     <Page>
       <Heading as="h1" text="Tattoo Request Form" />
+      <p>
+        Getting flash?{" "}
+        <Link href={INTERNAL_LINKS.flash.href} className="text-tertiary-500">
+          Choose your flash
+        </Link>{" "}
+        first.
+      </p>
       <Form
-        className="grid grid-cols-2 lg:grid-cols-4 lg:gap-8 lg:gap-y-5 gap-6 gap-y-3 max-w-6xl items-start"
+        className="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-4 lg:gap-8 lg:gap-y-5 gap-6 gap-y-3 max-w-6xl items-start"
         action={formAction}
+        submitBtnCls="btn lg:w-2/3 lg:ml-[140px]"
       >
         {TATTOO_REQUEST_FORM_LIST.map(renderField)}
         {state.errors && (
@@ -141,6 +153,11 @@ export default function FormContentBook() {
           />
         )}
       </Form>
+
+      {state.errors &&
+        Object.entries(state.errors).map(([key, error]) => (
+          <FormMetaErrors key={key} errors={{ [key]: error }} />
+        ))}
     </Page>
   );
 }

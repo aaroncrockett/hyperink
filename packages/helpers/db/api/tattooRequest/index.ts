@@ -73,6 +73,17 @@ const SizeOptions: SelectOption[] = [
   },
 ];
 
+const TattooTypeOptions: SelectOption[] = [
+  {
+    label: "Flash",
+    value: "flash",
+  },
+  {
+    label: "Custom",
+    value: "custom",
+  },
+];
+
 import {
   getRecentlyCreatedRequests as getRecentlyCreatedRequestsDb,
   getTattooRequestById as getTattooRequestByIdDb,
@@ -172,6 +183,7 @@ export const TATTOO_REQUEST_FORM = {
     schema: z.string().trim().optional(),
     required: false,
     inputSize: "md",
+    options: TattooTypeOptions,
   },
   description: {
     label: "Description",
@@ -188,14 +200,6 @@ export const TATTOO_REQUEST_FORM = {
     schema: z.coerce.number().int().optional(),
     required: false,
     inputSize: "sm",
-  },
-  of_age: {
-    label: "Do you certify you are 18 or older?",
-    id: "of_age",
-    type: "checkbox",
-    schema: z.boolean().optional(),
-    required: false,
-    inputSize: "md",
   },
 
   // ref_images: {
