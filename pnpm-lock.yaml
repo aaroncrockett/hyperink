@@ -26,6 +26,9 @@ importers:
       '@hyperinkstudio/db':
         specifier: workspace:*
         version: link:../../packages/db
+      '@hyperinkstudio/helpers':
+        specifier: workspace:*
+        version: link:../../packages/helpers
       '@hyperinkstudio/ui-react':
         specifier: workspace:*
         version: link:../../packages/ui/react
@@ -122,11 +125,14 @@ importers:
         specifier: ^5
         version: 5.9.3
 
-  customer-sites/aarondoesink:
+  customer-sites/shadetoshade:
     dependencies:
       '@hyperinkstudio/db':
         specifier: workspace:*
         version: link:../../packages/db
+      '@hyperinkstudio/helpers':
+        specifier: workspace:*
+        version: link:../../packages/helpers
       '@hyperinkstudio/hooks':
         specifier: workspace:*
         version: link:../../packages/hooks
@@ -212,6 +218,18 @@ importers:
       '@supabase/supabase-js':
         specifier: ^2.99.3
         version: 2.99.3
+
+  packages/helpers:
+    dependencies:
+      '@hyperinkstudio/db':
+        specifier: workspace:*
+        version: link:../db
+      '@hyperinkstudio/utils':
+        specifier: workspace:*
+        version: link:../utils
+      zod:
+        specifier: ^4.4.3
+        version: 4.4.3
 
   packages/hooks: {}
 

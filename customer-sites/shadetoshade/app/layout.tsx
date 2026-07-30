@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://aarondoesink.com/images/hp-flash-intro",
+        url: "https://shadetoshadetattoo.com/images/hp-flash-intro",
         width: 1200,
         height: 630,
         alt: "Shade To Shade Tattoo — Queer Portland artist. Gay AF Tattoos. Standing up for democracy and human rights.",
@@ -56,7 +56,7 @@ export default function RootLayout({
   return (
     <html
       className={`h-full ${outfit.variable} ${bebas.variable}`}
-      data-theme="adi"
+      data-theme="shadetoshade"
       lang="en"
     >
       <body className={`antialiased h-full`}>

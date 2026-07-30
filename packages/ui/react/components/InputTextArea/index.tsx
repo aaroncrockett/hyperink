@@ -1,6 +1,6 @@
 import { cn } from "@hyperinkstudio/utils/";
 
-type InputProps = {
+type TextAreaProps = {
   className?: string;
   disabled?: boolean;
   errorCls?: string;
@@ -13,45 +13,44 @@ type InputProps = {
   name: string;
   readOnly?: boolean;
   required?: boolean;
-  type?: React.HTMLInputTypeAttribute;
+  rows?: number;
   value?: string;
   defaultValue?: string;
 };
 
-export function Input({
+export function InputTextArea({
   className = "",
   disabled = false,
   errorCls = "",
   errors = {},
   errorTxtColor = "text-red-500",
   id,
-  inputClass = "input",
+  inputClass = "textarea h-20",
   label,
   labelClassName = "label font-bold",
   name,
-  readOnly,
+  readOnly = false,
   required = false,
-  type = "text",
+  rows = 5,
   value,
   defaultValue,
-}: InputProps) {
+}: TextAreaProps) {
   return (
     <div className={cn("m-0", className)}>
-      {type !== "hidden" && (
-        <label htmlFor={id} className={cn(labelClassName)}>
-          {required && "*"} {label}
-        </label>
-      )}
-      <input
+      <label htmlFor={id} className={cn(labelClassName)}>
+        {required && "*"} {label}
+      </label>
+
+      <textarea
         id={id}
         name={name}
-        type={type}
         required={required}
-        {...(value !== undefined ? { value } : {})}
+        rows={rows}
         className={cn(inputClass)}
         disabled={disabled}
-        defaultValue={defaultValue}
         readOnly={readOnly}
+        {...(value !== undefined ? { value } : {})}
+        {...(defaultValue !== undefined ? { defaultValue } : {})}
       />
 
       {errors && errors[name] && (

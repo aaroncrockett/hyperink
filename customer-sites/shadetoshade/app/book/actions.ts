@@ -6,9 +6,11 @@ import {
 import { zodIssuesToErrors } from "@/db/_helpers";
 import { createServiceClient } from "@/db/serviceClient";
 
+import type { TattooRequest } from "@/db/types";
+
 export type TattRequestFormState = {
   errors: Record<string, string> | null;
-  tattooRequest?: Record<string, FormDataEntryValue | undefined> | null;
+  tattooRequest?: TattooRequest | null;
 };
 
 export async function createTattooRequestAction(
@@ -35,33 +37,30 @@ export async function createTattooRequestAction(
   const serviceClient = createServiceClient();
 
   const tattRequestValues = parsed.data;
-  const artistId = tattRequestValues?.artist_id;
 
-  if (!artistId) {
-    actionResults.errors = { artistIdError: "no artist id was found" };
-    return actionResults;
-  }
-  const result = await createTattooRequest(serviceClient, tattRequestValues);
+  const tattRequestData = {
+    user_id: process.env.ARTIST_ID!,
+    ...tattRequestValues,
+  };
+
+  const result = await createTattooRequest(serviceClient, tattRequestData);
 
   if (result.error) {
     actionResults.errors = {
       ...actionResults.errors,
-      ...result.error,
+      root: result.error.message,
     };
 
     return actionResults;
   }
 
-  if (result.results === undefined || result.results === null) {
+  if (result.data === undefined || result.data === null) {
     actionResults.errors = {
       tattooRequest: "tattoo request results were undefined or null",
     };
   }
 
-  actionResults.tattooRequest = result.results as Record<
-    string,
-    FormDataEntryValue
-  >;
+  actionResults.tattooRequest = result.data;
 
   return actionResults;
 }

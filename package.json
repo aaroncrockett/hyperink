@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev:cms": "PORT=3000 pnpm --filter cms dev",
-    "dev:adi": "PORT=3001 pnpm --filter aarondoesink dev",
+    "dev:s2s": "PORT=3001 pnpm --filter shadetoshade dev",
     "dev:tools": "pnpm --filter tools dev",
     "build": "pnpm --recursive --aggregate-output build",
     "lint": "pnpm --recursive --aggregate-output lint",

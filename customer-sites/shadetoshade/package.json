@@ -1,5 +1,5 @@
 {
-  "name": "@hyperinkstudio/aarondoesink",
+  "name": "@hyperinkstudio/shadetoshade",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@hyperinkstudio/db": "workspace:*",
+    "@hyperinkstudio/helpers": "workspace:*",
     "@hyperinkstudio/hooks": "workspace:*",
     "@hyperinkstudio/ui-react": "workspace:*",
     "@hyperinkstudio/utils": "workspace:*",

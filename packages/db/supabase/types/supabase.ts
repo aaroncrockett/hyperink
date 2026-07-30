@@ -427,29 +427,47 @@ export type Database = {
       }
       profile_tagging_options: {
         Row: {
+          avail_tattoo_sizes: Json | null
+          budget: Json | null
           collections: Json
           created_at: string
           id: string
+          inks: Json | null
+          needles: Json | null
+          studio_locations: Json | null
           styles: Json
           tags: Json
+          tattoo_placement_bodily_locations: Json | null
           updated_at: string
           user_id: string
         }
         Insert: {
+          avail_tattoo_sizes?: Json | null
+          budget?: Json | null
           collections?: Json
           created_at?: string
           id?: string
+          inks?: Json | null
+          needles?: Json | null
+          studio_locations?: Json | null
           styles?: Json
           tags?: Json
+          tattoo_placement_bodily_locations?: Json | null
           updated_at?: string
           user_id: string
         }
         Update: {
+          avail_tattoo_sizes?: Json | null
+          budget?: Json | null
           collections?: Json
           created_at?: string
           id?: string
+          inks?: Json | null
+          needles?: Json | null
+          studio_locations?: Json | null
           styles?: Json
           tags?: Json
+          tattoo_placement_bodily_locations?: Json | null
           updated_at?: string
           user_id?: string
         }
@@ -549,61 +567,76 @@ export type Database = {
           bluesky_id: string | null
           client_tattoo_id: string | null
           created_at: string
-          email: string | null
+          description: string | null
+          email: string
           first_name: string | null
           gender: string | null
           id: string
           instagram_id: string | null
           last_name: string | null
           notes: string | null
+          of_age: boolean | null
           paid_amount: boolean | null
-          phone: string | null
-          preferred_name: string | null
-          returning_client: boolean | null
+          phone: string
+          placement: string | null
+          preferred_name: string
+          ref_images: Json | null
           seen_at: string | null
+          size: string | null
           type: string | null
           updated_at: string
           user_id: string
+          year_born: number | null
         }
         Insert: {
           bluesky_id?: string | null
           client_tattoo_id?: string | null
           created_at?: string
-          email?: string | null
+          description?: string | null
+          email: string
           first_name?: string | null
           gender?: string | null
           id?: string
           instagram_id?: string | null
           last_name?: string | null
           notes?: string | null
+          of_age?: boolean | null
           paid_amount?: boolean | null
-          phone?: string | null
-          preferred_name?: string | null
-          returning_client?: boolean | null
+          phone: string
+          placement?: string | null
+          preferred_name: string
+          ref_images?: Json | null
           seen_at?: string | null
+          size?: string | null
           type?: string | null
           updated_at?: string
           user_id: string
+          year_born?: number | null
         }
         Update: {
           bluesky_id?: string | null
           client_tattoo_id?: string | null
           created_at?: string
-          email?: string | null
+          description?: string | null
+          email?: string
           first_name?: string | null
           gender?: string | null
           id?: string
           instagram_id?: string | null
           last_name?: string | null
           notes?: string | null
+          of_age?: boolean | null
           paid_amount?: boolean | null
-          phone?: string | null
-          preferred_name?: string | null
-          returning_client?: boolean | null
+          phone?: string
+          placement?: string | null
+          preferred_name?: string
+          ref_images?: Json | null
           seen_at?: string | null
+          size?: string | null
           type?: string | null
           updated_at?: string
           user_id?: string
+          year_born?: number | null
         }
         Relationships: [
           {

@@ -7,26 +7,28 @@ type CheckboxProps = {
   id: string;
   label: string;
   labelClassName?: string;
-  layoutClassName?: string;
-  name: string;
+  inputClass?: string;
   value?: string;
+  name: string;
+  required?: boolean;
 };
 
 export function InputCheck({
-  className = "",
   errorClassName = "",
   errors = {},
   id,
   label,
   labelClassName = "",
-  layoutClassName = "flex flex-row gap-2 items-center ",
+  className = "flex flex-row gap-2 items-center ",
   name,
+  inputClass = "checkbox",
   value = "",
+  required = false,
 }: CheckboxProps) {
   return (
-    <div className={cn(layoutClassName)}>
+    <div className={cn(className)}>
       <label htmlFor={id} className={cn("", labelClassName)}>
-        {label}
+        {required && "*"} {label}
       </label>
 
       <input
@@ -34,10 +36,11 @@ export function InputCheck({
         name={name}
         type="checkbox"
         value={value}
-        className={cn("checkbox", className)}
+        className={cn(inputClass)}
+        required={required}
       />
 
-      {errors[name] && (
+      {errors?.[name] && (
         <span className={cn("text-red-500", errorClassName)}>
           {errors[name]}
         </span>
