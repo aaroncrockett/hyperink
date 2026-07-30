@@ -11,6 +11,7 @@ type FormProps = ComponentPropsWithoutRef<"form"> & {
   submitText?: string;
   submitBtnColor?: string;
   submitBtnCls?: string;
+  submitDisabled?: boolean;
 };
 
 export function Form({
@@ -22,12 +23,17 @@ export function Form({
   submitText = "Submit",
   submitBtnColor = "preset-filled-secondary-400-600",
   submitBtnCls = "btn",
+  submitDisabled = false,
   ...props
 }: FormProps) {
   return (
     <form action={action} className={cn(padding, space, className)} {...props}>
       {children}
-      <button type="submit" className={cn(submitBtnCls, submitBtnColor)}>
+      <button
+        disabled={submitDisabled}
+        type="submit"
+        className={cn(submitBtnCls, submitBtnColor)}
+      >
         {submitText}
       </button>
     </form>

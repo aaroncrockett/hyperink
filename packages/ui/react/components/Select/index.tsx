@@ -53,11 +53,12 @@ export function Select({
         required={required}
         disabled={disabled}
         className={cn(inputClass)}
+        onChange={onChange}
         {...(value !== undefined ? { value } : {})}
         {...(defaultValue !== undefined ? { defaultValue } : {})}
       >
         {!required && <option value="">Select...</option>}
-  onChange={onChange}
+
         {options &&
           options.map((option) => (
             <option key={option.value} value={option.value}>

@@ -10,32 +10,23 @@ import {
 } from "@hyperinkstudio/ui-react/components";
 import { cn } from "@hyperinkstudio/utils";
 
-import {
-  type TattooRequestFormField,
-  TYPES_MAP,
-} from "@/db/tattooRequest";
+import { type TattooRequestFormField, TYPES_MAP } from "@/db/tattooRequest";
 import type { TattRequestFormState } from "../actions";
 
 type RenderFieldProps = {
   field: TattooRequestFormField;
   errors: TattRequestFormState["errors"];
-  setIsFlashState: Dispatch<SetStateAction<boolean>>;
+  setTattTypeState: Dispatch<SetStateAction<string>>;
+  tattTypeState: string;
 };
 
-export  function RenderField({
+export function RenderField({
   field,
   errors,
-  setIsFlashState,
+  setTattTypeState,
+  tattTypeState,
 }: RenderFieldProps) {
-  const {
-    id,
-    label,
-    type,
-    required,
-    value,
-    inputSize,
-    options,
-  } = field;
+  const { id, label, type, required, value, inputSize, options } = field;
 
   const className = cn(
     inputSize === "lg" && "lg:col-span-4 col-span-2 items-center",
@@ -76,25 +67,19 @@ export  function RenderField({
       if (!options?.length) return null;
 
       return (
-        <div>
-          {id}
-          <Select
-            id={id}
-            name={id}
-            label={label}
-            required={required}
-            errors={errors}
-            value={value}
-            options={options}
-            className={className}
-            onChange={
-              id === "type"
-                ? (e: ChangeEvent<HTMLSelectElement>) =>
-                    setIsFlashState(e.target.value === "flash")
-                : undefined
-            }
-          />
-        </div>
+        <Select
+          id={id}
+          name={id}
+          label={label}
+          required={required}
+          errors={errors}
+          value={tattTypeState}
+          options={options}
+          className={className}
+          onChange={(e: ChangeEvent<HTMLSelectElement>) =>
+            setTattTypeState(e.target.value)
+          }
+        />
       );
 
     case "input":
