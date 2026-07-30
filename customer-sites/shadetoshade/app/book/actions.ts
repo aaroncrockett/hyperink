@@ -1,6 +1,6 @@
 "use server";
 import {
-  TATTOO_REQUEST_FORM_SCHEMA,
+  TATT_REQFOLLOW_UP_FORM_SCHEMA,
   createTattooRequest,
 } from "@/db/tattooRequest";
 import { zodIssuesToErrors } from "@/db/_helpers";
@@ -19,7 +19,7 @@ export async function createTattooRequestAction(
 ): Promise<TattRequestFormState> {
   const formValues = Object.fromEntries(formData.entries());
 
-  const parsed = TATTOO_REQUEST_FORM_SCHEMA.safeParse(formValues);
+  const parsed = TATT_REQFOLLOW_UP_FORM_SCHEMA.safeParse(formValues);
 
   const actionResults: TattRequestFormState = {
     tattooRequest: null,

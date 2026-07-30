@@ -9,8 +9,8 @@ import {
 // local
 import type { TattooRequest } from "@/db/types";
 import {
-  TATTOO_REQUEST_FORM_LIST,
-  TATTOO_REQUEST_FORM_KEYS,
+  TATT_REQFOLLOW_UP_FORM_LIST,
+  TATT_REQFOLLOW_UP_FORM_KEYS,
 } from "@/db/tattooRequest";
 import { LINKS_ADMIN } from "@/app/consts";
 
@@ -34,7 +34,7 @@ export function TattooRequests({
           headerCols={
             <>
               <span>Process</span>
-              {TATTOO_REQUEST_FORM_LIST.map(({ label }, id) => {
+              {TATT_REQFOLLOW_UP_FORM_LIST.map(({ label }, id) => {
                 return <span key={id}>{label}</span>;
               })}
             </>
@@ -56,7 +56,7 @@ export function TattooRequests({
                   </Link>
                 </span>
 
-                {TATTOO_REQUEST_FORM_KEYS.map((formKey, id) => {
+                {TATT_REQFOLLOW_UP_FORM_KEYS.map((formKey, id) => {
                   return (
                     <span className="truncate" key={id}>
                       {requests[formKey]}

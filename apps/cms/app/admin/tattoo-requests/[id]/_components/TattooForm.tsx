@@ -13,7 +13,7 @@ import {
 
 // Local @/db
 import { type TattooRequest } from "@/db/types";
-import { TATTOO_REQUEST_FORM_LIST } from "@/db/tattooRequest";
+import { TATT_REQFOLLOW_UP_FORM_LIST } from "@/db/tattooRequest";
 // Local
 import { createAClientTattooAndHandleClient } from "../actions";
 
@@ -70,7 +70,7 @@ export function TattooForm({
           required={true}
           value={clientId}
         />
-        {TATTOO_REQUEST_FORM_LIST.map(({ id, label, type, required }) => (
+        {TATT_REQFOLLOW_UP_FORM_LIST.map(({ id, label, type, required }) => (
           <div key={id}>
             <Input
               key={id}

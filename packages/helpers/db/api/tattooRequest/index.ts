@@ -107,7 +107,7 @@ export const TYPES_MAP = {
   tel: "input",
 } as const;
 
-export const TATTOO_REQUEST_ENTRY_FORM = {
+export const TATT_REQENTRY_FORM = {
   preferred_name: {
     label: "Preferred Name",
     id: "preferred_name",
@@ -148,7 +148,7 @@ export const TATTOO_REQUEST_ENTRY_FORM = {
   Record<TattooRequestFormKey, TattooRequestFormField>
 >;
 
-export const TATTOO_REQUEST_FORM = {
+export const TATT_REQFOLLOW_UP_FORM = {
   first_name: {
     label: "First Name",
     id: "first_name",
@@ -251,18 +251,18 @@ export const TATTOO_REQUEST_FORM = {
   Record<TattooRequestFormKey, TattooRequestFormField>
 >;
 
-export const TATTOO_REQUEST_FORM_LIST: TattooRequestFormField[] =
-  Object.values(TATTOO_REQUEST_FORM);
+export const TATT_REQFOLLOW_UP_FORM_LIST: TattooRequestFormField[] =
+  Object.values(TATT_REQFOLLOW_UP_FORM);
 
-export const TATTOO_REQUEST_ENTRY_FORM_LIS: TattooRequestFormField[] =
-  Object.values(TATTOO_REQUEST_ENTRY_FORM);
+export const TATT_REQENTRY_FORM_LIS: TattooRequestFormField[] =
+  Object.values(TATT_REQENTRY_FORM);
 
-export const TATTOO_REQUEST_FORM_KEYS = Object.keys(
-  TATTOO_REQUEST_FORM,
-) as (keyof typeof TATTOO_REQUEST_FORM)[];
+export const TATT_REQFOLLOW_UP_FORM_KEYS = Object.keys(
+  TATT_REQFOLLOW_UP_FORM,
+) as (keyof typeof TATT_REQFOLLOW_UP_FORM)[];
 
-export const TATTOO_REQUEST_FORM_SCHEMA = z.object(
+export const TATT_REQFOLLOW_UP_FORM_SCHEMA = z.object(
   Object.fromEntries(
-    TATTOO_REQUEST_FORM_LIST.map((field) => [field.id, field.schema]),
+    TATT_REQFOLLOW_UP_FORM_LIST.map((field) => [field.id, field.schema]),
   ),
 );

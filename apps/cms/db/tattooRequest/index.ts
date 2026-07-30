@@ -1,8 +1,8 @@
 export {
-  TATTOO_REQUEST_FORM_LIST,
-  TATTOO_REQUEST_FORM_KEYS,
+  TATT_REQFOLLOW_UP_FORM_LIST,
+  TATT_REQFOLLOW_UP_FORM_KEYS,
   getLastTenTattooRequests,
   getTattooRequestById,
-  TATTOO_REQUEST_FORM_SCHEMA,
+  TATT_REQFOLLOW_UP_FORM_SCHEMA,
   getLastThreeTattooRequests,
 } from "@hyperinkstudio/helpers";
