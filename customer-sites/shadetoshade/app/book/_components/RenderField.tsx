@@ -1,6 +1,7 @@
 "use client";
 
 import type { ChangeEvent, Dispatch, SetStateAction } from "react";
+import type { TattooFormState } from "../page";
 
 import {
   Input,
@@ -16,15 +17,17 @@ import type { TattRequestFormState } from "../actions";
 type RenderFieldProps = {
   field: TattooRequestFormField;
   errors: TattRequestFormState["errors"];
-  setTattTypeState: Dispatch<SetStateAction<string>>;
-  tattTypeState: string;
+  formState: TattooFormState;
+  setFormState: Dispatch<SetStateAction<TattooFormState>>;
+  key: string;
 };
 
 export function RenderField({
   field,
   errors,
-  setTattTypeState,
-  tattTypeState,
+  formState,
+  setFormState,
+  key
 }: RenderFieldProps) {
   const { id, label, type, required, value, inputSize, options } = field;
 
@@ -40,6 +43,7 @@ export function RenderField({
       return (
         <InputCheck
           id={id}
+           key={key}
           name={id}
           label={label}
           labelClassName="text-sm"
@@ -54,6 +58,7 @@ export function RenderField({
       return (
         <InputTextArea
           id={id}
+           key={key}
           name={id}
           label={label}
           required={required}
@@ -69,16 +74,40 @@ export function RenderField({
       return (
         <Select
           id={id}
+          key={key}
           name={id}
           label={label}
           required={required}
           errors={errors}
-          value={tattTypeState}
+          value={
+            formState.type === null
+              ? undefined
+              : formState.type === "pre-flash"
+                ? "flash"
+                : formState.type
+          }
           options={options}
           className={className}
-          onChange={(e: ChangeEvent<HTMLSelectElement>) =>
-            setTattTypeState(e.target.value)
-          }
+          onChange={(e: ChangeEvent<HTMLSelectElement>) => {
+            let state: TattooFormState;
+            if (e.target.value === "flash") {
+              state = {
+                type: "pre-flash",
+                disabled: true,
+                flashId: null,
+              };
+              setFormState(state);
+            }
+
+            if (e.target.value === "custom") {
+              state = {
+                type: "custom",
+                disabled: false,
+                flashId: null,
+              };
+              setFormState(state);
+            }
+          }}
         />
       );
 
@@ -87,6 +116,7 @@ export function RenderField({
       return (
         <Input
           id={id}
+          key={key}
           name={id}
           label={label}
           type={type}
