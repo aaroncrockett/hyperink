@@ -17,11 +17,7 @@ import {
 import { cn } from "@hyperinkstudio/utils/";
 //Local
 
-import {
-  TATTOO_REQUEST_FORM_LIST,
-  TATTOO_REQUEST_FORM_KEYS,
-  TYPES_MAP,
-} from "@/db/tattooRequest";
+import { TATTOO_REQUEST_FORM_LIST, TYPES_MAP } from "@/db/tattooRequest";
 import { INTERNAL_LINKS } from "@/constants";
 import {
   createTattooRequestAction,
@@ -146,12 +142,6 @@ export default function FormContentBook() {
         submitBtnCls="btn lg:w-2/3 lg:ml-[140px]"
       >
         {TATTOO_REQUEST_FORM_LIST.map(renderField)}
-        {state.errors && (
-          <FormMetaErrors
-            errors={state.errors}
-            excludeKeys={TATTOO_REQUEST_FORM_KEYS}
-          />
-        )}
       </Form>
 
       {state.errors &&

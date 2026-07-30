@@ -19,7 +19,7 @@ export type SelectOption = {
 export type TattooRequestFormField = {
   label: string;
   id: TattooRequestFormKey;
-  type: string;
+  type: keyof typeof TYPES_MAP;
   schema: z.ZodType;
   required?: boolean;
   value?: string;
@@ -105,9 +105,9 @@ export const TYPES_MAP = {
   number: "input",
   email: "input",
   tel: "input",
-};
+} as const;
 
-export const TATTOO_REQUEST_FORM = {
+export const TATTOO_REQUEST_ENTRY_FORM = {
   preferred_name: {
     label: "Preferred Name",
     id: "preferred_name",
@@ -116,6 +116,39 @@ export const TATTOO_REQUEST_FORM = {
     required: true,
     inputSize: "md",
   },
+  email: {
+    label: "Email",
+    id: "email",
+    type: "email",
+    schema: z.email("Please enter a valid email address."),
+    required: true,
+    inputSize: "md",
+  },
+  phone: {
+    label: "Phone",
+    id: "phone",
+    type: "tel",
+    schema: z
+      .string()
+      .trim()
+      .min(10, "Phone number must be at least 10 digits."),
+    required: true,
+    inputSize: "md",
+  },
+  type: {
+    label: "Tattoo Type",
+    id: "type",
+    type: "select",
+    schema: z.string().trim().optional(),
+    required: false,
+    inputSize: "md",
+    options: TattooTypeOptions,
+  },
+} as const satisfies Partial<
+  Record<TattooRequestFormKey, TattooRequestFormField>
+>;
+
+export const TATTOO_REQUEST_FORM = {
   first_name: {
     label: "First Name",
     id: "first_name",
@@ -132,26 +165,7 @@ export const TATTOO_REQUEST_FORM = {
     required: false,
     inputSize: "md",
   },
-  email: {
-    label: "Email",
-    id: "email",
-    type: "email",
-    schema: z.email("Please enter a valid email address."),
-    required: true,
-    inputSize: "md",
-  },
 
-  phone: {
-    label: "Phone",
-    id: "phone",
-    type: "tel",
-    schema: z
-      .string()
-      .trim()
-      .min(10, "Phone number must be at least 10 digits."),
-    required: true,
-    inputSize: "md",
-  },
   gender: {
     label: "Gender",
     id: "gender",
@@ -176,15 +190,7 @@ export const TATTOO_REQUEST_FORM = {
     required: false,
     inputSize: "md",
   },
-  type: {
-    label: "Tattoo Type",
-    id: "type",
-    type: "select",
-    schema: z.string().trim().optional(),
-    required: false,
-    inputSize: "md",
-    options: TattooTypeOptions,
-  },
+
   description: {
     label: "Description",
     id: "description",
@@ -245,7 +251,11 @@ export const TATTOO_REQUEST_FORM = {
   Record<TattooRequestFormKey, TattooRequestFormField>
 >;
 
-export const TATTOO_REQUEST_FORM_LIST = Object.values(TATTOO_REQUEST_FORM);
+export const TATTOO_REQUEST_FORM_LIST: TattooRequestFormField[] =
+  Object.values(TATTOO_REQUEST_FORM);
+
+export const TATTOO_REQUEST_ENTRY_FORM_LIS: TattooRequestFormField[] =
+  Object.values(TATTOO_REQUEST_ENTRY_FORM);
 
 export const TATTOO_REQUEST_FORM_KEYS = Object.keys(
   TATTOO_REQUEST_FORM,
