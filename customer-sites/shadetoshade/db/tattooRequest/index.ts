@@ -6,4 +6,5 @@ export {
   TATT_REQ_FOLLOW_UP_FORM_KEYS,
   TYPES_MAP,
   TATT_REQ_FOLLOW_UP_FORM_SCHEMA,
+  type TattooRequestFormField,
 } from "@hyperinkstudio/helpers";

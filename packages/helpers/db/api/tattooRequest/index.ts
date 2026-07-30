@@ -116,7 +116,7 @@ export const TATT_REQ_ENTRY_FORM = {
     required: true,
     inputSize: "md",
   },
-  email: {
+  email: { 
     label: "Email",
     id: "email",
     type: "email",

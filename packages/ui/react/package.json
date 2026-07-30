@@ -8,9 +8,20 @@
   "scripts": {
     "check": "tsc --noEmit"
   },
+
+  "peerDependencies": {
+    "react": "^19",
+    "react-dom": "^19"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "typescript": "^5"
+  },
   "dependencies": {
     "@hyperinkstudio/utils": "workspace:*",
     "@skeletonlabs/skeleton": "^4.12.1",
     "@skeletonlabs/skeleton-react": "^4.12.1"
   }
+
 }

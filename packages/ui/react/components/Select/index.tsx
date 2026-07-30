@@ -1,4 +1,5 @@
 import { cn } from "@hyperinkstudio/utils/";
+import React from "react";
 
 type SelectOption = {
   label: string;
@@ -20,6 +21,7 @@ type SelectProps = {
   options: SelectOption[];
   required?: boolean;
   value?: string;
+  onChange?: React.ChangeEventHandler<HTMLSelectElement>;
 };
 
 export function Select({
@@ -37,6 +39,7 @@ export function Select({
   options,
   required = false,
   value,
+  onChange,
 }: SelectProps) {
   return (
     <div className={cn("m-0", className)}>
@@ -54,7 +57,7 @@ export function Select({
         {...(defaultValue !== undefined ? { defaultValue } : {})}
       >
         {!required && <option value="">Select...</option>}
-
+  onChange={onChange}
         {options &&
           options.map((option) => (
             <option key={option.value} value={option.value}>
