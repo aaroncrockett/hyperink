@@ -2,11 +2,9 @@
 
 import { redirect } from "next/navigation";
 
-import { CREATE_CLIENT_KEYS } from "@/db/clientPersons";
 import type { ClientTable } from "@/db/types";
 import { createSSClient, getAuthedUser } from "@/db/server";
 import { createClientPerson } from "@/db/clientPersons";
-import { handleStringFormValues } from "@hyperinkstudio/utils";
 import { LINKS_ADMIN } from "@/app/consts";
 
 export type ClientFormState = {
@@ -18,23 +16,10 @@ export async function createClient(
   _prevState: ClientFormState,
   formData: FormData,
 ): Promise<ClientFormState> {
-  const {
-    hasError: hasClientError,
-    values: clientValues,
-    errors: clientErrors,
-  } = handleStringFormValues(formData, CREATE_CLIENT_KEYS);
 
-  if (hasClientError) {
-    return {
-      ..._prevState,
-      errors: {
-        ..._prevState.errors,
-        ...clientErrors,
-      },
-    };
-  }
 
-  const createTattooValue = formData.get("create_tattoo");
+
+
 
   const authedClient = await createSSClient();
 
@@ -52,26 +37,18 @@ export async function createClient(
     };
   }
 
-  const { data: client, error } = await createClientPerson(authedClient, {
-    user_id: user.id,
-    ...clientValues,
-  });
+  // const { data: client, error } = await createClientPerson(authedClient, {
+  //   user_id: user.id,
+  //   ...clientValues,
+  // });
 
-  if (error) {
-    return {
-      ..._prevState,
-      errors: {
-        ..._prevState.errors,
-        createPerson: "Error creating a person with Supabase",
-      },
-    };
-  }
 
-  if (createTattooValue) {
-    redirect(
-      `${LINKS_ADMIN.createTattooRecord.href}?clientId=${client?.id}&preferredName=${client?.preferred_name}`,
-    );
-  }
 
-  redirect(LINKS_ADMIN.home.href);
+  // if (createTattooValue) {
+  //   redirect(
+  //     `${LINKS_ADMIN.createTattooRecord.href}?clientId=${client?.id}&preferredName=${client?.preferred_name}`,
+  //   );
+  // }
+
+  // redirect(LINKS_ADMIN.home.href);
 }

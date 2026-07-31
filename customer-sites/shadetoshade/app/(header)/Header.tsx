@@ -30,7 +30,7 @@ export default function Header({
     >
       <div
         className={cn(
-          "flex items-center justify-between max-w-6xl mx-auto w-full p-5 px-4 shadow-2xs ",
+          "sm:flex sm:items-center sm:justify-between items-center grid grid-cols-[1fr_4fr_1fr] max-w-6xl mx-auto w-full p-4 pl-2 pr-4! md:p-5 md:px-4 shadow-2xs ",
           wrapperCls,
         )}
       >

@@ -25,7 +25,7 @@ export default function HeaderWrapper({}) {
   return (
     <Header
       lead={
-        <MenuMobile className="block lg:hidden" title="ALL LINKS">
+        <MenuMobile className="block mx-auto lg:hidden" title="ALL LINKS">
           <Nav className="block lg:hidden" />
         </MenuMobile>
       }
@@ -34,14 +34,14 @@ export default function HeaderWrapper({}) {
           href={
             getHrefWithSearchParams(INTERNAL_LINKS.book.href, searchParams)}
         >
-          <button className="btn-sm  sm:btn preset-filled-primary-400-600 font-bold whitespace-nowrap shadow-xs rounded-xs">
+          <button className="btn-sm sm:btn preset-tonal-primary font-bold whitespace-nowrap shadow-xs rounded-xs">
             Book Now
           </button>
         </Link>
       }
     >
       <Link
-        className="h-10 px-4 sm:px-0 w-auto mx-auto"
+        className="h-10 px-2 sm:px-0 w-auto mx-auto"
           href={
           getHrefWithSearchParams(INTERNAL_LINKS.book.href, searchParams)
           }

@@ -80,21 +80,21 @@ export default function FormContentBook() {
 
   const router = useRouter();
 
-const handleFlashLink = (e: React.MouseEvent<HTMLAnchorElement>) => {
-  e.preventDefault();
+  const handleFlashLink = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
 
-  const params = new URLSearchParams();
+    const params = new URLSearchParams();
 
-  new FormData(formRef.current!).forEach((value, key) => {
-    if (!key.startsWith("$ACTION_")) {
-      params.append(key, String(value));
-    }
-  });
+    new FormData(formRef.current!).forEach((value, key) => {
+      if (!key.startsWith("$ACTION_")) {
+        params.append(key, String(value));
+      }
+    });
 
-  params.set("type", "flash");
+    params.set("type", "flash");
 
-  router.push(`${INTERNAL_LINKS.flash.href}?${params.toString()}`);
-};
+    router.push(`${INTERNAL_LINKS.flash.href}?${params.toString()}`);
+  };
   return (
     <Page>
       <Heading as="h1" text="Tattoo Request Form" />
