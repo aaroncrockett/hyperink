@@ -1,6 +1,13 @@
+"use client";
+// React/Next
 import { ComponentPropsWithoutRef } from "react";
-import { cn } from "@/utils/cn";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+// Hyperink
+import { getHrefWithSearchParams } from "@hyperinkstudio/helpers";
+// @'s
+import { cn } from "@/utils/cn";
+// Local
 import { MENU_LINKS } from "../../constants/";
 
 type NavProps = ComponentPropsWithoutRef<"nav"> & {
@@ -8,6 +15,7 @@ type NavProps = ComponentPropsWithoutRef<"nav"> & {
   liCls?: string;
   linkCls?: string;
 };
+
 export default function Nav({
   className,
   ulCls,
@@ -15,6 +23,8 @@ export default function Nav({
   linkCls,
   ...props
 }: NavProps) {
+  const searchParams = useSearchParams();
+
   return (
     <nav
       className={cn("col-start-1 row-start-1 row-span-3", className)}
@@ -27,7 +37,7 @@ export default function Nav({
           return (
             <li key={link.href} className={cn(liCls)}>
               <Link
-                href={link.href}
+                href={getHrefWithSearchParams(link.href, searchParams)}
                 className={cn(linkCls, "flex flex-row gap-2 font-bold")}
               >
                 {Icon && <Icon className="w-5 h-5" />}

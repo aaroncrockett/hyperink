@@ -1,8 +1,12 @@
 "use client";
 // ** The header wrapper exists because the mobile menu is dynamically imported. ** //
 // ** The menu is dynamically imported because it depends on Portal which depends on document.body, which doesn't exist in SSR.* //
+
+import { useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+// hyperink
+import {getHrefWithSearchParams} from "@hyperinkstudio/helpers"
 // local
 import { INTERNAL_LINKS } from "@/constants";
 
@@ -15,6 +19,9 @@ import Image from "next/image";
 import Nav from "../(nav)/Nav";
 
 export default function HeaderWrapper({}) {
+  const searchParams = useSearchParams();
+
+
   return (
     <Header
       lead={
@@ -23,7 +30,10 @@ export default function HeaderWrapper({}) {
         </MenuMobile>
       }
       tail={
-        <Link href={INTERNAL_LINKS.book.href}>
+        <Link
+          href={
+            getHrefWithSearchParams(INTERNAL_LINKS.book.href, searchParams)}
+        >
           <button className="btn-sm  sm:btn preset-filled-primary-400-600 font-bold whitespace-nowrap shadow-xs rounded-xs">
             Book Now
           </button>
@@ -32,7 +42,9 @@ export default function HeaderWrapper({}) {
     >
       <Link
         className="h-10 px-4 sm:px-0 w-auto mx-auto"
-        href={INTERNAL_LINKS.home.href}
+          href={
+          getHrefWithSearchParams(INTERNAL_LINKS.book.href, searchParams)
+          }
       >
         <Image
           src="/images/s2statt-logo.svg"

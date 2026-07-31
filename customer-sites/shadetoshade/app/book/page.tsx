@@ -125,8 +125,8 @@ const handleFlashLink = (e: React.MouseEvent<HTMLAnchorElement>) => {
               onClick={handleFlashLink}
               className="text-tertiary-500"
             >
-              {INTERNAL_LINKS.flash.name}{" "}
-            </Link>{" "}
+              {INTERNAL_LINKS.flash.name}
+            </Link>
             before continuing. We will save your info for when you checkout.
           </p>
           <Link

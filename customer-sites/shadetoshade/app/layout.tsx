@@ -1,7 +1,6 @@
 // Next
 import type { Metadata } from "next";
 import { Bebas_Neue, Outfit } from "next/font/google";
-import Link from "next/link";
 
 // hyperink
 import { Card } from "@hyperinkstudio/ui-react/components";
@@ -12,7 +11,6 @@ import HeaderWrapper from "./(header)/HeaderWrapper";
 import Footer from "./(footer)/Footer";
 import FooterNav from "./(nav)/FooterNav";
 import Nav from "./(nav)/Nav";
-import { INTERNAL_LINKS } from "../constants";
 
 import "./globals.css";
 
@@ -80,19 +78,6 @@ export default function RootLayout({
           <Footer className="bg-primary-500 lg:col-start-2 lg:row-start-3 p-2 sm:p-4 ">
             {/* shown: default - hidden:lg*/}
             <FooterNav className="flex lg:hidden w-full" />
-
-            {/* hidden: default - shown:lg*/}
-            <div className="hidden lg:flex flex-row items-center justify-between w-full text-sm">
-              <p>
-                Deved By Aaron Does Everything (Tattoos, Web Apps, Web Sites,
-                Web Design, Illustration.)
-              </p>
-              <Link href={INTERNAL_LINKS.book.href}>
-                <span className="btn btn-sm  font-bold preset-filled-surface-50-950 rounded-xs shadow-xs">
-                  Book Now
-                </span>
-              </Link>
-            </div>
           </Footer>
         </div>
       </body>
