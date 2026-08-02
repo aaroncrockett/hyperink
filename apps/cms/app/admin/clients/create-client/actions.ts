@@ -7,17 +7,26 @@ import { createSSClient, getAuthedUser } from "@/db/server";
 import { createClientPerson } from "@/db/clientPersons";
 import { LINKS_ADMIN } from "@/app/consts";
 
+import {EDITABLE_CLIENT_FORM_SCHEMA} from "@/db/clientPersons"
+
 export type ClientFormState = {
   errors: Record<string, string> | null;
-  client?: Partial<ClientTable> | null;
+  client: Partial<ClientTable> | null;
 };
 
 export async function createClient(
   _prevState: ClientFormState,
   formData: FormData,
-): Promise<ClientFormState> {
+): Promise<void> {
 
+  const formDataObject = Object.fromEntries(formData.entries());
 
+const parsedForm = EDITABLE_CLIENT_FORM_SCHEMA.safeParse(formDataObject)
+
+  const actionResults: ClientFormState = {
+    client: null,
+    errors: null,
+  };
 
 
 
@@ -37,18 +46,18 @@ export async function createClient(
     };
   }
 
-  // const { data: client, error } = await createClientPerson(authedClient, {
-  //   user_id: user.id,
-  //   ...clientValues,
-  // });
+  const { data: client, error } = await createClientPerson(authedClient, {
+    user_id: user.id,
+    ...parsedForm,
+  });
 
 
 
-  // if (createTattooValue) {
-  //   redirect(
-  //     `${LINKS_ADMIN.createTattooRecord.href}?clientId=${client?.id}&preferredName=${client?.preferred_name}`,
-  //   );
-  // }
+  if (client) {
+    redirect(
+      `${LINKS_ADMIN.createTattooRecord.href}?clientId=${client?.id}&preferredName=${client?.preferred_name}`,
+    );
+  }
 
-  // redirect(LINKS_ADMIN.home.href);
+  redirect(LINKS_ADMIN.home.href);
 }

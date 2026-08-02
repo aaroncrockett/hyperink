@@ -17,10 +17,7 @@ import { NAV_ADMIN_CLIENT_LIST } from "@/app/consts";
 import { Nav } from "../../_components/Nav";
 
 const initialState = {
-  errors: {
-    unauthorized: "",
-    createPerson: "",
-  },
+  errors: null,
   client: null,
 };
 

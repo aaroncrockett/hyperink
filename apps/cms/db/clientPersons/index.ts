@@ -109,18 +109,23 @@ export const ALL_CLIENT_COLS = {
   },
 };
 
+// Objects as array items
+export const LOOKUP_CLIENT_COLS_LIST = Object.values(LOOKUP_CLIENT_COLS);
+export const CREATE_CLIENT_COLS_LIST = Object.values(CREATE_CLIENT_COLS);
+export const EDITABLE_CLIENT_COLS_LIST = Object.values(EDITABLE_CLIENT_COLS);
+
+// Keys as arrays
 export const LOOKUP_CLIENT_KEYS = Object.values(LOOKUP_CLIENT_COLS);
-
 export const CREATE_CLIENT_KEYS = Object.values(CREATE_CLIENT_COLS);
-
 export const EDITABLE_CLIENT_KEYS = Object.values(EDITABLE_CLIENT_COLS);
-
+// Helpers
 export const getClientColLabel = (key: keyof typeof ALL_CLIENT_COLS) => {
   return ALL_CLIENT_COLS[key].label;
 };
+// Schema
+export const EDITABLE_CLIENT_FORM_SCHEMA = z.object(
+  Object.fromEntries(
+    EDITABLE_CLIENT_COLS_LIST.map((field) => [field.id, field.schema]),
+  ),
+);
 
-export const LOOKUP_CLIENT_COLS_LIST = Object.values(LOOKUP_CLIENT_COLS);
-
-export const CREATE_CLIENT_COLS_LIST = Object.values(CREATE_CLIENT_COLS);
-
-export const EDITABLE_CLIENT_COLS_LIST = Object.values(EDITABLE_CLIENT_COLS);

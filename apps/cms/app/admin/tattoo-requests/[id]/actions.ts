@@ -10,7 +10,7 @@ type TattooRequestForm = TattooRequest &
   Partial<ClientTattoo> & {
     existingClient: string;
     clientId?: string;
-  };
+  }; 
 
 type TattooFormState = {
   tattooRequest: TattooRequestForm | ClientTattoo | null;
@@ -19,9 +19,9 @@ type TattooFormState = {
 
 export async function createAClientTattooAndHandleClient(
   prevState: TattooFormState,
-  FormData: FormData,
+  formData: FormData,
 ): Promise<TattooFormState> {
-  const formDataObject = Object.fromEntries(FormData.entries());
+  const formDataObject = Object.fromEntries(formData.entries());
 
   const parsedForm = TATT_REQ_FOLLOW_UP_FORM_SCHEMA.safeParse(formDataObject);
 
@@ -42,9 +42,6 @@ export async function createAClientTattooAndHandleClient(
   const ssClient = await createSSClient();
 
   let clientId = formDataObject.clientId as string;
-
-  console.log("formDataObject");
-  console.log(formDataObject);
 
   if (formDataObject.existingClient === "true") {
     console.log("existing client");
