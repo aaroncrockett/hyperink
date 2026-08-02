@@ -1,7 +1,7 @@
 "use server";
 import { type TattooRequest, type ClientTattoo } from "@/db/types";
 import { TATT_REQ_FOLLOW_UP_FORM_SCHEMA } from "@/db/tattooRequest";
-import { updateClientPerson, createClientPerson } from "@/db/clientPersons";
+import { createClientPerson } from "@/db/clientPersons";
 import { createClientTattoo } from "@/db/clientTattoo";
 import { zodIssuesToErrors } from "@/db/_helpers";
 import { createSSClient } from "@/db/server";
@@ -37,7 +37,7 @@ export async function createAClientTattooAndHandleClient(
 
     return actionResults;
   }
-  const parsedFormValues = parsed.data;
+  const parsedFormValues = parsed.data as   Partial<TattooRequest>;
 
   const ssClient = await createSSClient();
 
@@ -48,18 +48,6 @@ export async function createAClientTattooAndHandleClient(
 
   if (formDataObject.existingClient === "true") {
     console.log("existing client");
-    // const { error, data } = await updateClientPerson(ssClient, clientId, {
-    //   bluesky_id: parsedFormValues.bluesky_id,
-    //   instagram_id: parsedFormValues.instagram_id,
-    // });
-    // if (error) {
-    //   console.error("existing client function");
-    //   console.error(error);
-    //   actionResults.errors = {
-    //     preferred_name: "Failed to update client.",
-    //   };
-    //   return actionResults;
-    // }
   }
 
   if (formDataObject.existingClient === "false" && clientId === "") {
@@ -67,7 +55,6 @@ export async function createAClientTattooAndHandleClient(
     const { error, data } = await createClientPerson(ssClient, {
       email: parsedFormValues.email,
       phone: parsedFormValues.phone,
-      preferred_name: parsedFormValues.perferred_name,
     });
 
     clientId = data?.id ?? "";
@@ -76,7 +63,7 @@ export async function createAClientTattooAndHandleClient(
       console.error("not existing client function");
       console.error(error);
       actionResults.errors = {
-        preferred_name: "Failed to update client.",
+        client_id: "Failed to update client.",
       };
 
       return actionResults;
