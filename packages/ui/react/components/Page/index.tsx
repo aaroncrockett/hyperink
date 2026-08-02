@@ -8,6 +8,7 @@ type PageProps = ComponentPropsWithoutRef<"div"> & {
   padding?: string;
   space?: string;
   width?: string;
+  height?: string;
 };
 
 export function Page({
@@ -19,6 +20,7 @@ export function Page({
   padding = "px-4 !py-6 lg:py-6!",
   space = "space-y-4",
   width = "w-full",
+  height = "h-full",
   ...props
 }: PageProps) {
   return (
@@ -26,6 +28,7 @@ export function Page({
       className={cn(
         className,
         display,
+        height,
         margin,
         maxWidth,
         padding,

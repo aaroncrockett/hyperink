@@ -7,6 +7,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 // hyperink
 import { Form, FormMetaErrors } from "@hyperinkstudio/ui-react/components";
+import { cn }from "@hyperinkstudio/utils"
 //Local @
 import { TATT_REQ_ENTRY_FORM_LIST } from "@/db/tattooRequest";
 import { INTERNAL_LINKS } from "@/constants";
@@ -44,57 +45,59 @@ const initialState: TattRequestFormState = {
   tattooRequest: null,
 };
 
+type FormContentProps = {
+  className: string;
+};
 
-
-export function FormContentTmp2() {
+export function FormContentTmp2({className}: FormContentProps) {
   const [state, formAction] = useActionState(
-  createTattooRequestAction,
-  initialState,
-);
+    createTattooRequestAction,
+    initialState,
+  );
 
-const searchParams = useSearchParams();
+  const searchParams = useSearchParams();
 
-const [formState, setFormState] = useState<TattooFormState>(() => {
-  const flashId = searchParams.get("flashId");
+  const [formState, setFormState] = useState<TattooFormState>(() => {
+    const flashId = searchParams.get("flashId");
 
-  if (flashId) {
-    return {
-      type: "flash",
-      flashId,
-      disabled: false,
-    };
-  }
-
-  return {
-    type: null,
-    flashId: null,
-    disabled: true,
-  };
-});
-
-const formRef = useRef<HTMLFormElement>(null);
-
-const router = useRouter();
-
-const handleFlashLink = (e: React.MouseEvent<HTMLAnchorElement>) => {
-  e.preventDefault();
-
-  const params = new URLSearchParams();
-
-  new FormData(formRef.current!).forEach((value, key) => {
-    if (!key.startsWith("$ACTION_")) {
-      params.append(key, String(value));
+    if (flashId) {
+      return {
+        type: "flash",
+        flashId,
+        disabled: false,
+      };
     }
+
+    return {
+      type: null,
+      flashId: null,
+      disabled: true,
+    };
   });
 
-  params.set("type", "flash");
+  const formRef = useRef<HTMLFormElement>(null);
 
-  router.push(`${INTERNAL_LINKS.flash.href}?${params.toString()}`);
-};
+  const router = useRouter();
+
+  const handleFlashLink = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+
+    const params = new URLSearchParams();
+
+    new FormData(formRef.current!).forEach((value, key) => {
+      if (!key.startsWith("$ACTION_")) {
+        params.append(key, String(value));
+      }
+    });
+
+    params.set("type", "flash");
+
+    router.push(`${INTERNAL_LINKS.flash.href}?${params.toString()}`);
+  };
   return (
     <Form
       ref={formRef}
-      className="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-4 lg:gap-8 lg:gap-y-5 gap-6 gap-y-3 max-w-6xl items-start"
+      className=""
       action={formAction}
       submitBtnCls="btn lg:w-2/3 lg:ml-[140px]"
       submitDisabled={formState.disabled}

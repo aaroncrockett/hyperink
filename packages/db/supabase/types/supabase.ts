@@ -1,4 +1,6 @@
-export type Json =
+Need to install the following packages:
+supabase@2.111.0
+Ok to proceed? (y) export type Json =
   | string
   | number
   | boolean
@@ -570,6 +572,7 @@ export type Database = {
           description: string | null
           email: string
           first_name: string | null
+          flash_id: string | null
           gender: string | null
           id: string
           instagram_id: string | null
@@ -595,6 +598,7 @@ export type Database = {
           description?: string | null
           email: string
           first_name?: string | null
+          flash_id?: string | null
           gender?: string | null
           id?: string
           instagram_id?: string | null
@@ -620,6 +624,7 @@ export type Database = {
           description?: string | null
           email?: string
           first_name?: string | null
+          flash_id?: string | null
           gender?: string | null
           id?: string
           instagram_id?: string | null
@@ -644,6 +649,13 @@ export type Database = {
             columns: ["client_tattoo_id"]
             isOneToOne: false
             referencedRelation: "client_tattoo"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tattoo_request_flash_id_fkey"
+            columns: ["flash_id"]
+            isOneToOne: false
+            referencedRelation: "flash"
             referencedColumns: ["id"]
           },
         ]

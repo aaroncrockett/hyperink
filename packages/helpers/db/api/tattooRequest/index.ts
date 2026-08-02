@@ -71,9 +71,9 @@ const SizeOptions: SelectOption[] = [
     label: '13+"',
     value: "13+in",
   },
-];
+]; 
 
-const TattooTypeOptions: SelectOption[] = [
+export const TattooTypeOptions: SelectOption[] = [
   {
     label: "Flash",
     value: "flash",
@@ -105,6 +105,7 @@ export const TYPES_MAP = {
   number: "input",
   email: "input",
   tel: "input",
+  hidden: "input"
 } as const;
 
 export const TATT_REQ_TYPE_OF_FORM = {
@@ -220,17 +221,7 @@ export const TATT_REQ_FOLLOW_UP_FORM = {
     inputSize: "sm",
   },
 
-  // ref_images: {
-  //   label: "Reference Images",
-  //   id: "ref_images",
-  //   type: "hidden",
-  //   schema: z
-  //     .string()
-  //     .transform((value) => JSON.parse(value))
-  //     .pipe(z.array(z.string()))
-  //     .optional(),
-  //   required: false,
-  // },
+
   placement: {
     label: "Placement",
     id: "placement",
@@ -262,9 +253,42 @@ export const TATT_REQ_FOLLOW_UP_FORM = {
 } as const satisfies Partial<
   Record<TattooRequestFormKey, TattooRequestFormField>
 >;
+// Used in the follow-up if the custom tattoo is choosen
+export const TATT_REQ_CUSTOM_FOLLOW_UP_FORM  = {
+  // ref_images: {
+  //   label: "Reference Images",
+  //   id: "ref_images",
+  //   type: "hidden",
+  //   schema: z
+  //     .string()
+  //     .transform((value) => JSON.parse(value))
+  //     .pipe(z.array(z.string()))
+  //     .optional(),
+  //   required: false,
+  // },
+}as const satisfies Partial<
+  Record<TattooRequestFormKey, TattooRequestFormField>
+>;
+
+// Used in the follow-up if the custom tattoo is choosen
+export const TATT_REQ_FLASH_FOLLOW_UP_FORM  = {
+  ref_images: {
+    label: "Flassh Id",
+    id: "flash_id",
+    type: "hidden",
+    schema: z
+      .string()
+      .transform((value) => JSON.parse(value))
+      .pipe(z.array(z.string()))
+      .optional(),
+    required: false,
+  },
+}as const satisfies Partial<
+  Record<TattooRequestFormKey, TattooRequestFormField>
+>;
 
 //
-// Lists are Forms in an Array.
+// Lists -- Forms in an Array.
 //
 
 export const TATT_REQ_ENTRY_FORM_LIST: TattooRequestFormField[] =
