@@ -19,25 +19,25 @@ type TattooFormState = {
 
 export async function createAClientTattooAndHandleClient(
   prevState: TattooFormState,
-  formValues: FormData,
+  FormData: FormData,
 ): Promise<TattooFormState> {
-  const formDataObject = Object.fromEntries(formValues.entries());
+  const formDataObject = Object.fromEntries(FormData.entries());
 
-  const parsed = TATT_REQ_FOLLOW_UP_FORM_SCHEMA.safeParse(formDataObject);
+  const parsedForm = TATT_REQ_FOLLOW_UP_FORM_SCHEMA.safeParse(formDataObject);
 
   const actionResults: TattooFormState = {
     tattooRequest: null,
     errors: null,
   };
 
-  if (!parsed.success) {
-    const { issues } = parsed.error;
+  if (!parsedForm.success) {
+    const { issues } = parsedForm.error;
 
     actionResults.errors = zodIssuesToErrors(issues);
 
     return actionResults;
   }
-  const parsedFormValues = parsed.data as   Partial<TattooRequest>;
+  const parsedFormData = parsedForm.data as   Partial<TattooRequest>;
 
   const ssClient = await createSSClient();
 
@@ -53,8 +53,8 @@ export async function createAClientTattooAndHandleClient(
   if (formDataObject.existingClient === "false" && clientId === "") {
     console.log("NOT existing client");
     const { error, data } = await createClientPerson(ssClient, {
-      email: parsedFormValues.email,
-      phone: parsedFormValues.phone,
+      email: parsedFormData.email,
+      phone: parsedFormData.phone,
     });
 
     clientId = data?.id ?? "";
