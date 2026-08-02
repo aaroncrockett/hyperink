@@ -1,10 +1,13 @@
 "use client";
-
+// React
 import { useState } from "react";
+// Next
+import { useRouter } from "next/navigation";
 
+// Hyperink
 import { cn } from "@hyperinkstudio/utils";
 import { Form } from "@hyperinkstudio/ui-react/components";
-
+// @
 import { TattooTypeOptions } from "@/db/tattooRequest";
 
 type FormContentProps = {
@@ -12,18 +15,17 @@ type FormContentProps = {
   flashId?: string | null;
 };
 
-export function FormContentTmp1({
-  className,
-  flashId,
-}: FormContentProps) {
+export function FormContentTmp1({ className, flashId }: FormContentProps) {
   const [showForm, setShowForm] = useState(Boolean(flashId));
+
+  const router = useRouter();
 
   function handleCustom() {
     setShowForm(true);
   }
 
   function handleFlash() {
-    // router.push("/flash");
+    router.push("/flash");
   }
 
   if (!showForm) {
@@ -51,5 +53,7 @@ export function FormContentTmp1({
     );
   }
 
-  return <Form className={cn(className)} />;
+  if (showForm) {
+    return <Form className={cn(className)} />;
+  }
 }

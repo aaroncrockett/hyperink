@@ -34,7 +34,7 @@ export default function HeaderWrapper({}) {
           href={
             getHrefWithSearchParams(INTERNAL_LINKS.book.href, searchParams)}
         >
-          <button className="btn-sm sm:btn preset-tonal-primary font-bold whitespace-nowrap shadow-xs rounded-xs">
+          <button className="btn-sm sm:btn preset-filled-primary-400-600 font-bold whitespace-nowrap shadow-xs rounded-xs">
             Book Now
           </button>
         </Link>

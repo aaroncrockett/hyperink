@@ -7,6 +7,7 @@ import { getHrefWithSearchParams } from "@hyperinkstudio/helpers";
 // @'s
 import { cn } from "@/utils/cn";
 // Local
+import { HyperInkSignature } from "../_partials/HyperInkSignature";
 import { MOBILE_FOOTER_LINKS, INTERNAL_LINKS } from "../../constants/";
 
 type NavProps = ComponentPropsWithoutRef<"nav"> & {
@@ -49,10 +50,7 @@ export default function NavController({
       </nav>
       {/* hidden: default - shown:lg*/}
       <div className="hidden lg:flex flex-row items-center justify-between w-full text-sm">
-        <p>
-          Deved By Aaron Does Everything (Tattoos, Web Apps, Web Sites, Web
-          Design, Illustration.)
-        </p>
+        <HyperInkSignature layoutCls="flex flex-row gap-2 items-center" />
         <Link
           href={getHrefWithSearchParams(INTERNAL_LINKS.book.href, searchParams)}
         >
