@@ -107,8 +107,22 @@ export const TYPES_MAP = {
   tel: "input",
 } as const;
 
-export const TATT_REQ_ENTRY_FORM = {
-  preferred_name: {
+export const TATT_REQ_TYPE_OF_FORM = {
+  type: {
+    label: "Tattoo Type",
+    id: "type",
+    type: "select",
+    schema: z.string().trim().optional(),
+    required: false,
+    inputSize: "md",
+    options: TattooTypeOptions,
+  },
+} as const satisfies Partial<
+  Record<TattooRequestFormKey, TattooRequestFormField>
+>;
+// Base of the form. Used to look up Clients. Also used to concat with Follow-up form for Template 1
+export const TATT_REQ_BASE_FORM = {
+    preferred_name: {
     label: "Preferred Name",
     id: "preferred_name",
     type: "text",
@@ -135,19 +149,17 @@ export const TATT_REQ_ENTRY_FORM = {
     required: true,
     inputSize: "md",
   },
-  type: {
-    label: "Tattoo Type",
-    id: "type",
-    type: "select",
-    schema: z.string().trim().optional(),
-    required: false,
-    inputSize: "md",
-    options: TattooTypeOptions,
-  },
 } as const satisfies Partial<
   Record<TattooRequestFormKey, TattooRequestFormField>
 >;
-
+// Base plus Type of Form contacted for Template 2
+export const TATT_REQ_ENTRY_FORM = {
+ ...TATT_REQ_BASE_FORM,
+  ...TATT_REQ_TYPE_OF_FORM,
+} as const satisfies Partial<
+  Record<TattooRequestFormKey, TattooRequestFormField>
+>;
+// Remainder of form. Used by Template 1, Template 2
 export const TATT_REQ_FOLLOW_UP_FORM = {
   first_name: {
     label: "First Name",
@@ -251,15 +263,42 @@ export const TATT_REQ_FOLLOW_UP_FORM = {
   Record<TattooRequestFormKey, TattooRequestFormField>
 >;
 
-export const TATT_REQ_FOLLOW_UP_FORM_LIST: TattooRequestFormField[] =
-  Object.values(TATT_REQ_FOLLOW_UP_FORM);
+//
+// Lists are Forms in an Array.
+//
 
 export const TATT_REQ_ENTRY_FORM_LIST: TattooRequestFormField[] =
   Object.values(TATT_REQ_ENTRY_FORM);
 
+  export const TATT_REQ_BASE_FORM_LIST: TattooRequestFormField[] =
+Object.values(TATT_REQ_BASE_FORM)
+
+export const TATT_REQ_FOLLOW_UP_FORM_LIST: TattooRequestFormField[] =
+  Object.values(TATT_REQ_FOLLOW_UP_FORM);
+
+  //
+  // Keys of a particular form
+  // 
+
 export const TATT_REQ_FOLLOW_UP_FORM_KEYS = Object.keys(
   TATT_REQ_FOLLOW_UP_FORM,
 ) as (keyof typeof TATT_REQ_FOLLOW_UP_FORM)[];
+
+  //
+  // Schemas of forms
+  // 
+
+export const TATT_REQ_BASE_FORM_SCHEMA = z.object(
+  Object.fromEntries(
+    TATT_REQ_BASE_FORM_LIST.map((field) => [field.id, field.schema]),
+  ),
+);
+
+export const TATT_REQ_ENTRY_FORM_SCHEMA = z.object(
+  Object.fromEntries(
+    TATT_REQ_ENTRY_FORM_LIST.map((field) => [field.id, field.schema]),
+  ),
+);
 
 export const TATT_REQ_FOLLOW_UP_FORM_SCHEMA = z.object(
   Object.fromEntries(
