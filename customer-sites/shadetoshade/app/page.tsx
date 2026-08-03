@@ -37,15 +37,19 @@ export default function Home() {
     <Page>
       <section className="flex flex-col space-y-1 sm:space-y-2 md:space-y-3 xl:space-y-4">
         <Heading
-          image={{
-            src: "/images/pdx-tatt-artist.webp",
-            width: 1540,
-            height: 275,
-            className: "w-[94%] sm:w-2/3 h-auto mx-auto drop-shadow-sm",
-          }}
-          text="PDX Tattoo Artist"
           className="w-auto h-full"
-        ></Heading>
+        >
+         <span className="hidden">PDX Tattoo Artist</span>
+         <Image
+           src="/images/pdx-tatt-artist.webp"
+           width="1540"
+           height="275"
+           className="w-[94%] sm:w-2/3 h-auto"
+           alt=""
+           priority
+         />
+
+        </Heading>
         <Heading
           as="h2"
           text="Flash & custom tattoos "
