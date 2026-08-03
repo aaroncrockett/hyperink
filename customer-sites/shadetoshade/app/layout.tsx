@@ -17,8 +17,11 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Shade To Shade Tattoo",
   description: "Tattoo Artists in Portland Oregon",
+  icons: {
+    icon: "/favicon.svg",
+  },
   openGraph: {
-    title: "Shade To Shade Tattoo - Tattoo Artist in Portland, OR",
+    title: "Shade To Shade Tattoo - Tattoo Artist in Portland, OR.  I stand with democracy and human rights.",
     description: "Queer / Gay Tattoo Artist in Portland, OR.",
     url: "https://shadetoshadetattoo.com",
     siteName: "Shade To Shade Tattoo",
@@ -29,7 +32,7 @@ export const metadata: Metadata = {
         url: "https://shadetoshadetattoo.com/images/hp-flash-intro",
         width: 1200,
         height: 630,
-        alt: "Shade To Shade Tattoo — Queer Portland artist. Gay AF Tattoos. Standing up for democracy and human rights.",
+        alt: "Shade To Shade Tattoo — Queer Portland artist. Tattoo Artist in Portland, OR.  I stand with democracy and human rights.",
       },
     ],
   },
