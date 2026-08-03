@@ -17,6 +17,13 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="hyperink" className={`h-full antialiased`}>
       <body className="min-h-full flex flex-col mx-auto w-full ">
+              <Image
+                src="/images/hyperink-logo-lt-text.svg"
+                alt="Aaron Does Ink - Logo"
+                width={201}
+                height={40}
+                className="h-16 w-auto mx-auto"
+              />
         {children}
       </body>
     </html>

@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     icon: "/favicon.svg",
   },
   openGraph: {
-    title: "Shade To Shade Tattoo - Tattoo Artist in Portland, OR.  I stand with democracy and human rights.",
+    title: "Shade To Shade Tattoo - Tattoo Artist in Portland, OR.",
     description: "Queer / Gay Tattoo Artist in Portland, OR.",
     url: "https://shadetoshadetattoo.com",
     siteName: "Shade To Shade Tattoo",
@@ -29,10 +29,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://shadetoshadetattoo.com/images/hp-flash-intro",
-        width: 1200,
-        height: 630,
-        alt: "Shade To Shade Tattoo — Queer Portland artist. Tattoo Artist in Portland, OR.  I stand with democracy and human rights.",
+        url: "https://shadetoshadetattoo.com/images/pdx-tatt-artist.webp",
+        width: 1540,
+        height: 275,
+        alt: "Shade To Shade Tattoo — Queer Portland artist. Tattoo Artist in Portland, OR. ",
       },
     ],
   },
