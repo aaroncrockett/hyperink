@@ -56,7 +56,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      className={`h-full ${outfit.variable} ${bebas.variable}`}
+      className={`h-full ${outfit.variable} ${bebas.variable} antialiased`}
       data-theme="shadetoshade"
       lang="en"
     >

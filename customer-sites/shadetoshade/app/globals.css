@@ -49,6 +49,6 @@ h6 {
 }
 @layer components {
   .preset-filled-secondary-400-600 {
-    @apply !text-white shadow-xs font-bold;
+    @apply !text-white;
   }
 }
