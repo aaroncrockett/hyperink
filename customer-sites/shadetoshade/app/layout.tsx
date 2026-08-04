@@ -2,8 +2,6 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Outfit } from "next/font/google";
 
-// hyperink
-import { Card } from "@hyperinkstudio/ui-react-next/components";
 // @
 import { cn } from "@/utils/cn";
 // local
@@ -67,9 +65,9 @@ export default function RootLayout({
           )}
         >
           {/* hidden: default - shown:lg*/}
-          <Card className="h-full row-span-3 bg-surface-800-200 text-primary-500 hidden  p-5! pt-6! lg:block">
+          <div className="h-full row-span-3 bg-surface-800-200 text-primary-500 hidden p-5 pt-6 lg:block">
             <Nav className="hidden lg:block" />
-          </Card>
+          </div>
           {/* // ** The header wrapper exists because the mobile menu is dynamically
           imported. Its so, because it depends on a Portal->doc.body ** // */}
           <HeaderWrapper />

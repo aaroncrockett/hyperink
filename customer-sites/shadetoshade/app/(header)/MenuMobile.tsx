@@ -2,7 +2,6 @@
 import { ReactNode } from "react";
 import { Dialog, Portal } from "@skeletonlabs/skeleton-react";
 import { Menu, XIcon } from "lucide-react";
-import { Card } from "@hyperinkstudio/ui-react-next/components";
 
 type MenuMobileProps = {
   children: ReactNode;
@@ -36,7 +35,7 @@ export default function MenuMobile({
             <Dialog.Content
               className={`h-screen  w-sm shadow-sm relative ${animModal}`}
             >
-              <Card className="noise-bg-opac-0pt8 h-full">
+              <div className="noise-bg-opac-0pt8 h-full p-4">
                 <div className="flex  justify-between items-center">
                   <Dialog.Title className="text-2xl font-bold">
                     {title}
@@ -47,7 +46,7 @@ export default function MenuMobile({
                 </div>
 
                 {children}
-              </Card>
+              </div>
             </Dialog.Content>
           </Dialog.Positioner>
         </Portal>

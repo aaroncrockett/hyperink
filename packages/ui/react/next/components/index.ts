@@ -1,4 +1,3 @@
-export { Card } from "./Card";
 export { Form } from "./FormClient";
 export { FormError } from "./FormError";
 export { Heading } from "./Heading";
