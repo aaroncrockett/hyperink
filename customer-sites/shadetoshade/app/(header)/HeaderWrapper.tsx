@@ -32,22 +32,22 @@ export default function HeaderWrapper({}) {
         <Link
           href={getHrefWithSearchParams(INTERNAL_LINKS.book.href, searchParams)}
         >
-          <button className="btn sm:btn preset-tonal-surface  w-full mx-auto font-bold whitespace-nowrap shadow-xs rounded-sm">
+          <button className="btn preset-tonal-surface lg:preset-filled-primary-500 shadow-sm  w-full lg:w-auto mx-auto lg:m-0 font-bold whitespace-nowrap rounded-sm lg:text-white">
             Book Now
           </button>
         </Link>
       }
     >
       <Link
-        className="h-10 px-2 sm:px-0 w-auto "
-        href={getHrefWithSearchParams(INTERNAL_LINKS.book.href, searchParams)}
+        className="h-10 px-2 sm:px-0 w-auto"
+        href={getHrefWithSearchParams(INTERNAL_LINKS.home.href, searchParams)}
       >
         <Image
           src="/images/s2statt-logo.svg"
           alt="Aaron Does Ink - Logo"
           width={201}
           height={40}
-          className="h-10 w-auto "
+          className="h-10 w-auto"
         />
       </Link>
     </Header>

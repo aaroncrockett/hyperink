@@ -47,8 +47,4 @@ h6 {
   font-family: var(--font-bebas);
   letter-spacing: 0.04em;
 }
-@layer components {
-  .preset-filled-secondary-400-600 {
-    @apply !text-white;
-  }
-}
+
