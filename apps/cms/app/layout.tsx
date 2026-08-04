@@ -32,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="hyperink" className={`h-full ${outfit.variable} ${bebas.variable}  antialiased`}>
       <body className="min-h-full flex flex-col mx-auto w-full ">
-        <div className="flex justify-between p-4 bg-surface-950-50">
+        <div className="flex justify-between p-4 bg-surface-900-100">
       
           <Image
             src="/images/hyperink-logo-lt-text.svg"

@@ -44,7 +44,7 @@ export default function Home() {
            src="/images/pdx-tatt-artist.webp"
            width="1540"
            height="275"
-           className="w-[94%] sm:w-2/3 h-auto"
+           className="w-[94%] sm:w-2/3 h-auto mx-auto"
            alt=""
            priority
          />

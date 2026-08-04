@@ -5,12 +5,13 @@ import { Page, Heading } from "@hyperinkstudio/ui-react/components";
 export default function Home() {
   return (
     <div>
-      <div className=" bg-surface-500">
-        <div className="flex flex-col items-center justify-center p-10  text-lg max-w-275 mx-auto space-y-5">
+      <div className="bg-primary-500 pt-1 pb-1.5">
+        <div className="flex flex-col items-center justify-center p-10 lg:p-14 md:p-12 text-lg max-w-275 mx-auto space-y-5 bg-surface-500/90 rounded-xl">
           <Heading
             as="h1"
-            text="Tattoo Booking - Coming soon."
-            h1Size="text-4xl md:text-5xl lg:text-6xl"
+            text="Artist Owned, Artist Made: Tattoo Booking"
+            h1Size="text-5xl md:text-6xl lg:text-7xl"
+            h1TextAtrs="leading-[3rem] md:leading-[4rem] lg:leading-[4.5rem]"
             alignment="text-center"
             color="text-primary-500"
           />
@@ -25,19 +26,23 @@ export default function Home() {
           />
           <Heading
             as="h4"
-            text="Looking for artists who want to use the app during testing, and you
-            will get the extra special hook-up for life."
             alignment="text-center"
             weight="font-normal"
-            fontCls="serif"
             color="text-surface-950-50"
-          />
+            className="pt-1"
+          >
+            <span className="font-bold text-xl md:text-2xl">
+              Looking for artists
+            </span>{" "}
+            who want to use the app during testing, and you will get the extra
+            special hook-up for life.
+          </Heading>
         </div>
       </div>
 
       <Page>
-        <div className="text-center flex flex-col space-y-4ß∑">
-          <div className="flex flex-col justify-center text-center text-lg space-y-2 card bg-surface-100-900 p-4 rounded-sm">
+        <div className="text-center flex flex-col space-y-4">
+          <div className="flex flex-col justify-center text-center text-lg space-y-3 card bg-surface-100-900 p-4 pb-5 md:p-5 md:pb-6 lg:p-6 lg:pb-8 rounded-xl">
             <span className="text-2xl serif font-normal">
               Owned and built by an artist.
             </span>
@@ -49,7 +54,7 @@ export default function Home() {
               questions.
             </span>
           </div>
-          <div className="flex flex-col justify-center text-center text-lg space-y-2 card bg-surface-100-900 p-4 rounded-sm">
+          <div className="flex flex-col justify-center text-center text-lg space-y-3 card bg-surface-100-900 p-4 pb-5 md:p-5 md:pb-6 lg:p-6 lg:pb-8 rounded-xl">
             <span className="text-2xl serif font-normal">
               Free for artists. Affordable for clients.
             </span>
@@ -60,11 +65,11 @@ export default function Home() {
             <span className="font-bold">
               Other apps charge your clients 10%+ per transaction while spending
               a ton on marketing. We keep our costs low and charge only 6%
-              percent on transations above $60, and up to 7% on transations
+              percent on transations above $60, and 8% on transactions bellow.
               under.
             </span>
           </div>
-          <div className="flex flex-col justify-center text-center text-lg space-y-2 card bg-surface-100-900 p-4 rounded-sm">
+          <div className="flex flex-col justify-center text-center text-lg space-y-3 card bg-surface-100-900 p-4 pb-5 md:p-5 md:pb-6 lg:p-6 lg:pb-8 rounded-xl">
             <span className="text-2xl serif font-normal">
               More tools. Less bullshit.
             </span>
