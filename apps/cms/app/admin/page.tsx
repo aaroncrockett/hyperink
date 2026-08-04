@@ -32,12 +32,12 @@ export default async function AdminPage() {
 
   return (
     <Page>
-      <Heading text="Admin" as="h2" />
+      <Heading text="Admin" as="h1" />
 
       {userId && user && tattooRequests && (
         <IsLoggedIn user={user}>
           <TattooRequests
-            lead={<Heading text="Tattoo Requests" as="h4" />}
+            lead={<Heading text="Tattoo Requests" as="h2" />}
             requests={tattooRequests ?? []}
             trail={
               <Link
