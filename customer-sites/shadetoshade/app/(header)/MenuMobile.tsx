@@ -22,38 +22,35 @@ export default function MenuMobile({
   children,
   title = "",
   closeIcon = <XIcon />,
-  triggerIcon = 
-    <Menu className="drop-shadow-xs" />
-,
+  triggerIcon = <Menu className="drop-shadow-xs" />,
 }: MenuMobileProps) {
   return (
     <div className={className}>
       <Dialog>
-        <Dialog.Trigger>
-          {triggerIcon}
-          <Portal>
-            <Dialog.Backdrop
-              className={`fixed inset-0 z-50 bg-surface-700-300/50 ${animBackdrop}`}
-            />
-            <Dialog.Positioner className="fixed inset-0 z-50 flex justify-start">
-              <Dialog.Content
-                className={`h-screen  w-sm shadow-sm relative ${animModal}`}
-              >
-                <Card className=" noise-bg-opac-0pt8 h-full">
-                  <div className="flex justify-between items-center">
-                    <Dialog.Title className="text-2xl font-bold">
-                      {title}
-                    </Dialog.Title>
-                    <Dialog.CloseTrigger className="btn-icon preset-tonal">
-                      {closeIcon}
-                    </Dialog.CloseTrigger>
-                  </div>
-                  {children}
-                </Card>
-              </Dialog.Content>
-            </Dialog.Positioner>
-          </Portal>
-        </Dialog.Trigger>
+        <Dialog.Trigger>{triggerIcon}</Dialog.Trigger>
+        <Portal>
+          <Dialog.Backdrop
+            className={`fixed inset-0 z-50 bg-surface-700-300/50 ${animBackdrop}`}
+          />
+          <Dialog.Positioner className="fixed inset-0 z-50 flex justify-start">
+            <Dialog.Content
+              className={`h-screen  w-sm shadow-sm relative ${animModal}`}
+            >
+              <Card className="noise-bg-opac-0pt8 h-full">
+                <div className="flex  justify-between items-center">
+                  <Dialog.Title className="text-2xl font-bold">
+                    {title}
+                  </Dialog.Title>
+                  <Dialog.CloseTrigger className="btn-icon">
+                    {closeIcon}
+                  </Dialog.CloseTrigger>
+                </div>
+
+                {children}
+              </Card>
+            </Dialog.Content>
+          </Dialog.Positioner>
+        </Portal>
       </Dialog>
     </div>
   );

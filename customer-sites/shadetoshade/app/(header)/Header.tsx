@@ -29,11 +29,10 @@ export default function Header({
     >
       <div
         className={cn(
-          "lg:max-w-6xl flex justify-between items-center p-2",
+          "max-w-6xl flex justify-between  lg:flex items-center p-2",
           wrapperCls,
         )}
       >
-  
         {children}
         {tail}
         <span className="pb-2 pt-4 lg:block hidden">{subNav}</span>

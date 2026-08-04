@@ -1,6 +1,5 @@
 import Image from "next/image";
 import type { Metadata } from "next";
-import { Bebas_Neue, Outfit } from "next/font/google";
 
 // Local
 import "./globals.css";
@@ -13,27 +12,15 @@ export const metadata: Metadata = {
   },
 };
 
-const outfit = Outfit({
-  subsets: ["latin"],
-  variable: "--font-outfit",
-});
-
-const bebas = Bebas_Neue({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-bebas",
-});
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="hyperink" className={`h-full ${outfit.variable} ${bebas.variable}  antialiased`}>
+    <html lang="en" data-theme="hyperink" className={`h-full  antialiased`}>
       <body className="min-h-full flex flex-col mx-auto w-full ">
         <div className="flex justify-between p-4 bg-surface-900-100">
-      
           <Image
             src="/images/hyperink-logo-lt-text.svg"
             alt="Aaron Does Ink - Logo"

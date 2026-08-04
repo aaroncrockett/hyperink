@@ -25,7 +25,7 @@ export default function HeaderWrapper({}) {
     <Header
       tail={
         <MenuMobile className="block lg:hidden" title="ALL LINKS">
-          <Nav className="flex items-center justify-center lg:hidden h-5 w-5" />
+          <Nav className="flex  lg:hidden w-auto h-full" />
         </MenuMobile>
       }
       subNav={
@@ -47,7 +47,7 @@ export default function HeaderWrapper({}) {
           alt="Aaron Does Ink - Logo"
           width={201}
           height={40}
-          className="h-10 w-auto"
+          className="h-10 w-auto mx-auto"
         />
       </Link>
     </Header>
