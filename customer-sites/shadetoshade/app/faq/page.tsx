@@ -1,5 +1,5 @@
 "use client";
-import { Page, Heading } from "@hyperinkstudio/ui-react/components";
+import { Page, Heading } from "@hyperinkstudio/ui-react-next/components";
 
 import dynamic from "next/dynamic";
 import { Accordion } from "@skeletonlabs/skeleton-react";

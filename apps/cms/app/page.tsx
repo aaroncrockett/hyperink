@@ -1,5 +1,5 @@
 // Hyperink UI
-import { Page, Heading } from "@hyperinkstudio/ui-react/components";
+import { Page, Heading } from "@hyperinkstudio/ui-react-next/components";
 export default function Home() {
   return (
     <div>

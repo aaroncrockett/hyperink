@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Bebas_Neue, Outfit } from "next/font/google";
 
 // hyperink
-import { Card } from "@hyperinkstudio/ui-react/components";
+import { Card } from "@hyperinkstudio/ui-react-next/components";
 // @
 import { cn } from "@/utils/cn";
 // local

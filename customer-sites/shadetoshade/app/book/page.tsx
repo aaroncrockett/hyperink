@@ -2,7 +2,7 @@
 // Next
 import { useSearchParams } from "next/navigation";
 // Hyperink
-import { Heading, Page } from "@hyperinkstudio/ui-react/components";
+import { Heading, Page } from "@hyperinkstudio/ui-react-next/components";
 // Local
 import { FormContentTmp1 } from "./_components/FormContentTmp1";
 import { HyperInkSignature } from "../_partials/HyperInkSignature";

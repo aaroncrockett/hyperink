@@ -14,7 +14,7 @@
     "@fontsource/outfit": "^5.3.0",
     "@hyperinkstudio/db": "workspace:*",
     "@hyperinkstudio/helpers": "workspace:*",
-    "@hyperinkstudio/ui-react": "workspace:*",
+    "@hyperinkstudio/ui-react-next": "workspace:*",
     "@hyperinkstudio/utils": "workspace:*",
     "@supabase/ssr": "^0.9.0",
     "@supabase/supabase-js": "^2.99.3",

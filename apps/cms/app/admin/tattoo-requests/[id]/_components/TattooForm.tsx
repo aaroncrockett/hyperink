@@ -9,7 +9,7 @@ import {
   Form,
   Input,
   FormMetaErrors,
-} from "@hyperinkstudio/ui-react/components";
+} from "@hyperinkstudio/ui-react-next/components";
 
 // Local @/db
 import { type TattooRequest } from "@/db/types";

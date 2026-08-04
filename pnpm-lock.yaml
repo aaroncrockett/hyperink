@@ -38,7 +38,7 @@ importers:
       '@hyperinkstudio/helpers':
         specifier: workspace:*
         version: link:../../packages/helpers
-      '@hyperinkstudio/ui-react':
+      '@hyperinkstudio/ui-react-next':
         specifier: workspace:*
         version: link:../../packages/ui/react/next
       '@hyperinkstudio/utils':
@@ -99,7 +99,7 @@ importers:
 
   apps/tools:
     dependencies:
-      '@hyperinkstudio/ui-react':
+      '@hyperinkstudio/ui-react-next':
         specifier: workspace:*
         version: link:../../packages/ui/react/next
       '@hyperinkstudio/utils':
@@ -145,7 +145,7 @@ importers:
       '@hyperinkstudio/hooks':
         specifier: workspace:*
         version: link:../../packages/hooks
-      '@hyperinkstudio/ui-react':
+      '@hyperinkstudio/ui-react-next':
         specifier: workspace:*
         version: link:../../packages/ui/react/next
       '@hyperinkstudio/utils':

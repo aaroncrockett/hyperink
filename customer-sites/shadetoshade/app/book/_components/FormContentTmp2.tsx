@@ -6,7 +6,7 @@ import { useActionState, useState, useRef } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 // hyperink
-import { Form, FormMetaErrors } from "@hyperinkstudio/ui-react/components";
+import { Form, FormMetaErrors } from "@hyperinkstudio/ui-react-next/components";
 import { cn }from "@hyperinkstudio/utils"
 //Local @
 import { TATT_REQ_ENTRY_FORM_LIST } from "@/db/tattooRequest";

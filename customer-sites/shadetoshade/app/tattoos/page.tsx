@@ -1,4 +1,4 @@
-import { Page, Heading } from "@hyperinkstudio/ui-react/components/";
+import { Page, Heading } from "@hyperinkstudio/ui-react-next/components/";
 import Gallery from "@/ui/gallery/";
 import { getImages } from "./index";
 

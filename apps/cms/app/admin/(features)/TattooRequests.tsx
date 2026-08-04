@@ -5,7 +5,7 @@ import Link from "next/link";
 import {
   TableLayout,
   RowOfTableLayout,
-} from "@hyperinkstudio/ui-react/components";
+} from "@hyperinkstudio/ui-react-next/components";
 // local
 import type { TattooRequest } from "@/db/types";
 import {

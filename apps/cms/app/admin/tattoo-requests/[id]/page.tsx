@@ -1,5 +1,5 @@
 // Hyper Ink
-import { Heading, Page } from "@hyperinkstudio/ui-react/components";
+import { Heading, Page } from "@hyperinkstudio/ui-react-next/components";
 // Local DB
 import { getTattooRequestById } from "@/db/tattooRequest";
 import { createSSClient } from "@/db/server";

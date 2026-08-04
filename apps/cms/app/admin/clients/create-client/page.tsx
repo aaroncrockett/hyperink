@@ -8,7 +8,7 @@ import {
   Page,
   Heading,
   FormError,
-} from "@hyperinkstudio/ui-react/components";
+} from "@hyperinkstudio/ui-react-next/components";
 
 // Local
 import { createClient } from "./actions";

@@ -1,4 +1,4 @@
-import { Page, Heading } from "@hyperinkstudio/ui-react/components";
+import { Page, Heading } from "@hyperinkstudio/ui-react-next/components";
 
 export default async function About() {
   return (

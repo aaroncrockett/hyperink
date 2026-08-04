@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 // Hyperink
 import { cn } from "@hyperinkstudio/utils";
-import { Form } from "@hyperinkstudio/ui-react/components";
+import { Form } from "@hyperinkstudio/ui-react-next/components";
 // @
 import { TattooTypeOptions } from "@/db/tattooRequest";
 

@@ -8,7 +8,7 @@ import {
   InputCheck,
   InputTextArea,
   Select,
-} from "@hyperinkstudio/ui-react/components";
+} from "@hyperinkstudio/ui-react-next/components";
 import { cn } from "@hyperinkstudio/utils";
 
 import { type TattooRequestFormField, TYPES_MAP } from "@/db/tattooRequest";

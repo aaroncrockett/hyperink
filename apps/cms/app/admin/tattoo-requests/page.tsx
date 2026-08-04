@@ -1,5 +1,5 @@
 // React
-import { Page, Heading } from "@hyperinkstudio/ui-react/components";
+import { Page, Heading } from "@hyperinkstudio/ui-react-next/components";
 // Local
 import { createSSClient } from "@/db/server";
 import { getLastTenTattooRequests } from "@/db/tattooRequest";
