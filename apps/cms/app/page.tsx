@@ -5,8 +5,9 @@ import { Page, Heading } from "@hyperinkstudio/ui-react/components";
 export default function Home() {
   return (
     <div>
-      <div className="bg-primary-500 pt-1 pb-1.5">
-        <div className="flex flex-col items-center justify-center p-10 lg:p-14 md:p-12 text-lg max-w-275 mx-auto space-y-5 bg-surface-500/90 rounded-xl">
+      <div className="bg-tertiary-500 pt-1 pb-1">
+        <div className="flex flex-col items-center justify-center p-10 lg:p-14 md:p-12 text-lg space-y-5 bg-surface-500/90">
+        <div className="max-w-275 mx-auto">
           <Heading
             as="h1"
             text="Artist Owned, Artist Made: Tattoo Booking"
@@ -22,7 +23,7 @@ export default function Home() {
             alignment="text-center"
             weight="font-normal"
             fontCls="serif"
-            color="text-tertiary-500"
+            color="text-tertiary-200"
           />
           <Heading
             as="h4"
@@ -37,6 +38,8 @@ export default function Home() {
             who want to use the app during testing, and you will get the extra
             special hook-up for life.
           </Heading>
+        </div>
+
         </div>
       </div>
 

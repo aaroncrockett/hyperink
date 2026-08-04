@@ -15,7 +15,7 @@ import { getLastTenClients, getClientColLabel } from "@/db";
 
 // Local
 import { NAV_ADMIN_CLIENT_LIST } from "@/app/consts";
-import { Nav } from "../_components/Nav";
+import { PageAdminNav } from "../_components/PageAdminNav";
 
 const gridCls = "grid grid-cols-[6rem_6rem_10rem_10rem_10rem_8rem_8rem]";
 
@@ -27,7 +27,7 @@ export default async function ClientsPage() {
     <Page>
       <Heading as="h1" text="Client Records" />
 
-      <Nav links={NAV_ADMIN_CLIENT_LIST} />
+      <PageAdminNav links={NAV_ADMIN_CLIENT_LIST} />
 
       {lastTenClients && (
         <TableLayout
@@ -46,10 +46,10 @@ export default async function ClientsPage() {
         >
           {lastTenClients?.map((client, index) => (
             <RowOfTableLayout key={client.id} gridCls={gridCls}>
-              <span className="text-primary-400-600 underline truncate">
+              <span className="text-secondary-500 font-bold underline truncate">
                 update
               </span>
-              <span className="text-primary-400-600 underline  truncate">
+              <span className="text-secondary-500 font-bold underline  truncate">
                 create
               </span>
               <span className="truncate font-semibold">

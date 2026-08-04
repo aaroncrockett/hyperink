@@ -47,9 +47,9 @@ export function TattooRequests({
                 className="odd:bg-surface-100-900/70 p-2"
                 key={id}
               >
-                <span className="text-primary-400-600 underline truncate">
+                <span className="truncate">
                   <Link
-                    className="text-primary-400-600"
+                    className="text-secondary-500 font-bold underline"
                     href={`${LINKS_ADMIN.tattooRequests.href}/${id}`}
                   >
                     EDIT

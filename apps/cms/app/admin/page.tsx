@@ -42,7 +42,7 @@ export default async function AdminPage() {
             trail={
               <Link
                 href={LINKS_ADMIN.tattooRequests.href}
-                className="underline text-primary-400-600"
+                className="underline text-secondary-500"
               >
                 See More requests
               </Link>

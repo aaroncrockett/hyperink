@@ -5,39 +5,38 @@ import styles from "./Header.module.css";
 import { cn } from "@/utils/cn";
 
 type HeaderProps = ComponentPropsWithoutRef<"header"> & {
-  lead?: ReactNode;
+  subNav?: ReactNode;
   tail?: ReactNode;
-  closeIcon?: ReactNode;
   wrapperCls?: string;
 };
 
 export default function Header({
   children,
   className,
-  wrapperCls,
-  lead,
+  subNav,
   tail,
+  wrapperCls,
   ...props
 }: HeaderProps) {
   return (
     <header
       className={cn(
         styles.header,
-        "adi-header shadow-lg sticky top-0 z-10 bg-white",
+        "shadow-lg sticky top-0 z-10 bg-white p-2",
         className,
       )}
       {...props}
     >
       <div
         className={cn(
-          "sm:flex sm:items-center sm:justify-between items-center grid grid-cols-[1fr_4fr_1fr] max-w-6xl mx-auto w-full p-4 pl-2 pr-4! md:p-5 md:px-4 shadow-2xs ",
+          "max-w-6xl shadow-2xs flex justify-between items-center p-2",
           wrapperCls,
         )}
       >
-        {lead}
         {children}
         {tail}
       </div>
+      <div className="pb-2">{subNav}</div>
     </header>
   );
 }

@@ -17,7 +17,8 @@ type PageAdminNavsProps = {
   linkClsColor?: string;
   linkClsPadding?: string;
   linkClsHover?: string;
-  linkCurrentCls?: string;
+  linkClsCurrent?: string;
+  linkClsWeight?: string;
 };
 
 export function PageAdminNav({
@@ -27,10 +28,11 @@ export function PageAdminNav({
   gap = "gap-2",
   textSize = "",
   linkCls = "",
-  linkClsColor = "text-primary-500",
+  linkClsColor = "text-tertiary-500",
   linkClsPadding = "px-3 py-2",
-  linkClsHover = " hover:bg-surface-400-600",
-  linkCurrentCls = "underline text-surface-500!",
+  linkClsHover = " hover:bg-primary-100-900",
+  linkClsCurrent = "underline text-surface-500!",
+  linkClsWeight = "font-bold"
 }: PageAdminNavsProps) {
   const pathname = usePathname();
 
@@ -47,7 +49,8 @@ export function PageAdminNav({
                 linkClsColor,
                 linkClsPadding,
                 linkClsHover,
-                pathname === link.href && linkCurrentCls,
+                pathname === link.href && linkClsCurrent,
+                linkClsWeight
               )}
               href={link.href}
             >

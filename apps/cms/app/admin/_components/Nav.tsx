@@ -46,7 +46,7 @@ export function Nav({
   layoutGap = "gap-2",
   liCls,
   linkCls = "",
-  linkClsColor = "text-primary-400-600",
+  linkClsColor = "text-primary-500",
   linkClsGap = "gap-2",
   linkClsHover = " hover:underline",
   linkClsLayout = "flex flex-row items-center",

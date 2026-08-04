@@ -53,7 +53,10 @@ export default function Home() {
         <Heading
           as="h2"
           text="Flash & custom tattoos "
-          className="text-center font-bold "
+          h2Size="text-4xl md:text-5xl"
+          h2TextAtrs="!leading-[2.75rem] md:!leading-[2.5rem]"
+          weight="font-bold"
+          alignment="text-center"
         ></Heading>
 
         <ul className="flex justify-center items-center py-3 mb-0">

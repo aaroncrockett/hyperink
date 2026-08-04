@@ -6,7 +6,7 @@ import { useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 // hyperink
-import {getHrefWithSearchParams} from "@hyperinkstudio/helpers"
+import { getHrefWithSearchParams } from "@hyperinkstudio/helpers";
 // local
 import { INTERNAL_LINKS } from "@/constants";
 
@@ -21,37 +21,33 @@ import Nav from "../(nav)/Nav";
 export default function HeaderWrapper({}) {
   const searchParams = useSearchParams();
 
-
   return (
     <Header
-      lead={
-        <MenuMobile className="block mx-auto lg:hidden" title="ALL LINKS">
-          <Nav className="block lg:hidden" />
+      tail={
+        <MenuMobile className="block lg:hidden" title="ALL LINKS">
+          <Nav className="flex items-center justify-center lg:hidden h-5 w-5" />
         </MenuMobile>
       }
-      tail={
+      subNav={
         <Link
-          href={
-            getHrefWithSearchParams(INTERNAL_LINKS.book.href, searchParams)}
+          href={getHrefWithSearchParams(INTERNAL_LINKS.book.href, searchParams)}
         >
-          <button className="btn-sm sm:btn preset-filled-primary-400-600 font-bold whitespace-nowrap shadow-xs rounded-xs">
+          <button className="btn sm:btn preset-tonal-surface  w-full mx-auto font-bold whitespace-nowrap shadow-xs rounded-sm">
             Book Now
           </button>
         </Link>
       }
     >
       <Link
-        className="h-10 px-2 sm:px-0 w-auto mx-auto"
-          href={
-          getHrefWithSearchParams(INTERNAL_LINKS.book.href, searchParams)
-          }
+        className="h-10 px-2 sm:px-0 w-auto "
+        href={getHrefWithSearchParams(INTERNAL_LINKS.book.href, searchParams)}
       >
         <Image
           src="/images/s2statt-logo.svg"
           alt="Aaron Does Ink - Logo"
           width={201}
           height={40}
-          className="h-10 w-auto mx-auto"
+          className="h-10 w-auto "
         />
       </Link>
     </Header>
