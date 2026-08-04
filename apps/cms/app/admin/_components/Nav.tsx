@@ -23,28 +23,29 @@ type NavsProps = {
     icon: string;
     showIcon: boolean;
   }[];
-  cls?: string;
-  gap?: string;
-  iconSizeCls?: string;
   iconCls?: string;
-  textSize?: string;
+  iconSizeCls?: string;
   layout?: "col" | "row";
+  layoutGap?: string;
+  liCls?: string;
   linkCls?: string;
-  linkClsGap?: string;
-  linkClsLayout?: string;
   linkClsColor?: string;
-  linkClsPadding?: string;
+  linkClsGap?: string;
   linkClsHover?: string;
+  linkClsLayout?: string;
+  linkClsPadding?: string;
   linkCurrentCls?: string;
+  textSizeCls?: string;
+  ulCls?: string;
 };
 
 export function Nav({
-  cls = "",
-  gap = "gap-2",
-  iconSizeCls = "w-5 h-5",
   iconCls = "",
+  iconSizeCls = "w-5 h-5",
   layout = "row",
-  linkCls = "flex flex-row",
+  layoutGap = "gap-2",
+  liCls,
+  linkCls = "",
   linkClsColor = "text-primary-400-600",
   linkClsGap = "gap-2",
   linkClsHover = " hover:underline",
@@ -52,7 +53,8 @@ export function Nav({
   linkClsPadding = "px-3 py-2",
   linkCurrentCls = "text-surface-400-600! underline",
   links,
-  textSize = "",
+  textSizeCls = "",
+  ulCls = "",
 }: NavsProps) {
   const pathname = usePathname();
 
@@ -74,14 +76,14 @@ export function Nav({
   };
 
   return (
-    <ul className={cn(flexLayout, gap, textSize, cls)}>
+    <ul className={cn(flexLayout, layoutGap, textSizeCls, ulCls)}>
       {links.map((link) => {
         const Icon = link.icon && link.showIcon ? ICONS[link.icon] : null;
 
         return (
-          <li key={link.href}>
+          <li className={liCls} key={link.href}>
             <Link
-              className={cn(
+                className={cn(
                 linkCls,
                 linkClsColor,
                 linkClsGap,

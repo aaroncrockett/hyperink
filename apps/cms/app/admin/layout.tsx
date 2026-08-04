@@ -26,14 +26,14 @@ export default async function RootLayout({
   return (
     <div lang="en" className="h-screen">
       <div className="grid grid-cols-[220px_1fr] bg-surface-50-950 h-full">
-        <div className="bg-surface-100-900 pt-3 p-2">
+        <div className="bg-surface-700-300 pt-3 p-2">
           {userId && (
             <Nav
               linkCurrentCls="text-surface-500 bg-surface-50-950"
               linkClsHover="hover:bg-surface-50-950 rounded"
               layout="col"
               linkCls="transition-colors block"
-              gap="gap-0"
+              layoutGap="gap-0"
               links={NAV_ADMIN_LIST}
             />
           )}
