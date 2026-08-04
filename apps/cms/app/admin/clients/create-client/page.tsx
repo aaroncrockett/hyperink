@@ -14,7 +14,7 @@ import {
 import { createClient } from "./actions";
 import { FormContentCreateClient } from "./_components/FormContentCreateClient";
 import { NAV_ADMIN_CLIENT_LIST } from "@/app/consts";
-import { Nav } from "../../_components/Nav";
+import { PageAdminNav } from "../../_components/PageAdminNav";
 
 const initialState = {
   errors: null,
@@ -28,7 +28,7 @@ export default function CreateClientPage() {
     <Page>
       <Heading text="Create A Client Record" as="h1" />
 
-      <Nav links={NAV_ADMIN_CLIENT_LIST} />
+      <PageAdminNav links={NAV_ADMIN_CLIENT_LIST} />
 
       <Form className="max-w-md" action={actionState}>
         <FormContentCreateClient errors={clientState.errors} />
