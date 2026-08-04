@@ -3,7 +3,7 @@ import type { Config } from "tailwindcss";
 const config: Config = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "../../packages/ui/react/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "../../packages/ui/react/next/components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {

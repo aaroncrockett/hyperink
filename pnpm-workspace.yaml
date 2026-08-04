@@ -2,6 +2,7 @@ packages:
   - "apps/*"
   - "customer-sites/*"
   - "packages/ui/*"
+  - "packages/ui/*/*"
   - "packages/utils"
   - "packages/helpers"
   - "packages/hooks"

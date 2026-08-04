@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import '@fontsource/caprasimo';
 @import "@fontsource/outfit";
-@source "../../../packages/ui/react/components/**/*.{js,ts,jsx,tsx}";
+@source "../../../packages/ui/react/next/components/**/*.{js,ts,jsx,tsx}";
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-react";
 @import "./hyperink.css";
