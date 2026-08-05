@@ -30,7 +30,7 @@ export default function CreateClientPage() {
 
       <PageAdminNav links={NAV_ADMIN_CLIENT_LIST} />
 
-      <Form className="max-w-md" action={actionState}>
+      <Form className="max-w-md flex flex-col gap-4" action={actionState}>
         <FormContentCreateClient errors={clientState.errors} />
 
         {clientState?.errors?.unauthorized && (

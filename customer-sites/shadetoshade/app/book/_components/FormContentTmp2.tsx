@@ -97,7 +97,7 @@ export function FormContentTmp2({className}: FormContentProps) {
   return (
     <Form
       ref={formRef}
-      className=""
+      className="flex flex-col gap-4"
       action={formAction}
       submitBtnCls="btn lg:w-2/3 lg:ml-[140px]"
       submitDisabled={formState.disabled}

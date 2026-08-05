@@ -11,23 +11,23 @@ export default function Home() {
             text="Artist Owned, Artist Made: Tattoo Booking"
             h1Size="text-5xl md:text-6xl lg:text-7xl"
             h1TextAtrs="leading-[3.5rem] md:leading-[4.25rem] lg:leading-[4.75rem]"
-            alignment="text-center"
-            color="text-primary-500"
+            alignmentCls="text-center"
+            colorCls="text-primary-500"
           />
 
           <Heading
             as="h2"
             text="Helps tattoo artists manage their booking requests, clients, client details, deposits, and payments."
-            alignment="text-center"
-            weight="font-normal"
+            alignmentCls="text-center"
+            weightCls="font-normal"
             fontCls="serif"
-            color="text-tertiary-200"
+            colorCls="text-tertiary-200"
           />
           <Heading
             as="h4"
-            alignment="text-center"
-            weight="font-normal"
-            color="text-surface-950-50"
+            alignmentCls="text-center"
+            weightCls="font-normal"
+            colorCls="text-surface-950-50"
             className="pt-3 w-2/3"
           >
             <span className="font-bold text-2xl md:text-2xl text-primary-500">

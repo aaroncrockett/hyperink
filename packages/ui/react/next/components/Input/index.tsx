@@ -1,44 +1,74 @@
+import type { ComponentPropsWithoutRef } from "react";
+// hyperink
 import { cn } from "@hyperinkstudio/utils/";
 
-type InputProps = {
-  className?: string;
+type InputProps = Omit<ComponentPropsWithoutRef<"div">, "className"> & {
+  defaultValue?: string;
+  dir?: "row" | "col";
   disabled?: boolean;
   errorCls?: string;
   errors?: Record<string, string> | null;
-  errorTxtColor?: string;
+  errorTxtColorCls?: string;
   id: string;
-  inputClass?: string;
+  inputUtilCls?: string;
+  inputCls?: string;
   label: string;
-  labelClassName?: string;
+  labelCls?: string;
+  labelWeightCls?: string;
+  labelUtilCls?: string;
   name: string;
   readOnly?: boolean;
   required?: boolean;
   type?: React.HTMLInputTypeAttribute;
   value?: string;
-  defaultValue?: string;
+  wrapperCls?: string;
+  wrapperMarginCls?: string;
+  wrapperGap?: string;
+  wrapperLayoutOpts?: string;
 };
 
 export function Input({
-  className = "",
+  defaultValue,
+  dir = "col",
   disabled = false,
-  errorCls = "",
+  errorCls,
   errors = {},
-  errorTxtColor = "text-red-500",
+  errorTxtColorCls = "text-red-500",
   id,
-  inputClass = "input",
+  inputCls,
+  inputUtilCls = "input",
   label,
-  labelClassName = "label font-bold",
+  labelCls = "label font-bold",
+  labelWeightCls = "font-bold",
+  labelUtilCls = "label",
   name,
   readOnly,
   required = false,
   type = "text",
   value,
-  defaultValue,
+  wrapperCls,
+  wrapperMarginCls = "m-0",
+  wrapperGap = "gap-1",
+  wrapperLayoutOpts = "justify-start",
+  ...props
 }: InputProps) {
+  const computedLayout = dir === "row" ? "flex flex-row" : "flex flex-col";
   return (
-    <div className={cn("m-0", className)}>
+    <div
+      className={cn(
+        computedLayout,
+        wrapperMarginCls,
+        wrapperCls,
+        wrapperGap,
+        wrapperLayoutOpts,
+      )}
+      {...props}
+    >
       {type !== "hidden" && (
-        <label htmlFor={id} className={cn(labelClassName)}>
+        <label
+          htmlFor={id}
+          className={cn(labelCls, labelWeightCls, labelUtilCls)}
+        >
           {required && "*"} {label}
         </label>
       )}
@@ -48,14 +78,14 @@ export function Input({
         type={type}
         required={required}
         {...(value !== undefined ? { value } : {})}
-        className={cn(inputClass)}
+        className={cn(inputUtilCls, inputCls)}
         disabled={disabled}
         defaultValue={defaultValue}
         readOnly={readOnly}
       />
 
       {errors && errors[name] && (
-        <p className={cn(errorTxtColor, errorCls)}>{errors[name]}</p>
+        <p className={cn(errorTxtColorCls, errorCls)}>{errors[name]}</p>
       )}
     </div>
   );

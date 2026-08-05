@@ -14,7 +14,7 @@ import {
 } from "@/db/tattooRequest";
 import { LINKS_ADMIN } from "@/app/consts";
 
-const gridCls = "grid grid-cols-[5rem_8rem_8rem_8rem_8rem_12rem_10rem]";
+const gridColCls = "grid-cols-[5rem_8rem_8rem_8rem_8rem_12rem_10rem]";
 
 export function TattooRequests({
   requests,
@@ -30,7 +30,7 @@ export function TattooRequests({
       <div className="">{lead}</div>
       {requests && (
         <TableLayout
-          gridCls={gridCls}
+          gridColCls={gridColCls}
           headerCols={
             <>
               <span>Process</span>
@@ -43,8 +43,8 @@ export function TattooRequests({
           {requests &&
             requests.map(({ id, ...requests }) => (
               <RowOfTableLayout
-                gridCls={gridCls}
-                className="odd:bg-surface-100-900/70 p-2"
+                gridColCls={gridColCls}
+                bgCls="odd:bg-surface-100-900/70"
                 key={id}
               >
                 <span className="truncate">

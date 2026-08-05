@@ -1,48 +1,56 @@
 import { cn } from "@hyperinkstudio/utils/";
 import React from "react";
+import type { ComponentPropsWithoutRef } from "react";
 
 type SelectOption = {
   label: string;
   value: string;
 };
 
-type SelectProps = {
-  className?: string;
+type SelectProps = Omit<ComponentPropsWithoutRef<"div">, "className"> & {
   defaultValue?: string;
   disabled?: boolean;
   errorCls?: string;
   errors?: Record<string, string> | null;
-  errorTxtColor?: string;
+  errorTxtColorCls?: string;
   id: string;
-  inputClass?: string;
+  inputUtilCls?: string;
+  inputCls?: string;
   label: string;
   labelClassName?: string;
   name: string;
   options: SelectOption[];
+  optCls?: string;
   required?: boolean;
   value?: string;
+  wrapperCls?: string;
+  wrapperMarginCls?: string;
   onChange?: React.ChangeEventHandler<HTMLSelectElement>;
 };
 
 export function Select({
-  className = "",
   defaultValue,
   disabled = false,
   errorCls = "",
   errors = {},
-  errorTxtColor = "text-red-500",
+  errorTxtColorCls = "text-error-500",
   id,
-  inputClass = "select",
+  inputUtilCls = "select",
+  inputCls,
   label,
   labelClassName = "label font-bold",
   name,
   options,
+  optCls,
   required = false,
   value,
+  wrapperCls,
+  wrapperMarginCls = "m-0",
   onChange,
+  ...props
 }: SelectProps) {
   return (
-    <div className={cn("m-0", className)}>
+    <div className={cn(wrapperMarginCls, wrapperCls)} {...props}>
       <label htmlFor={id} className={labelClassName}>
         {required && "*"} {label}
       </label>
@@ -52,7 +60,7 @@ export function Select({
         name={name}
         required={required}
         disabled={disabled}
-        className={cn(inputClass)}
+        className={cn(inputUtilCls, inputCls)}
         onChange={onChange}
         {...(value !== undefined ? { value } : {})}
         {...(defaultValue !== undefined ? { defaultValue } : {})}
@@ -61,14 +69,14 @@ export function Select({
 
         {options &&
           options.map((option) => (
-            <option key={option.value} value={option.value}>
+            <option className="optCls" key={option.value} value={option.value}>
               {option.label}
             </option>
           ))}
       </select>
 
       {errors?.[name] && (
-        <p className={cn(errorTxtColor, errorCls)}>{errors[name]}</p>
+        <p className={cn(errorTxtColorCls, errorCls)}>{errors[name]}</p>
       )}
     </div>
   );

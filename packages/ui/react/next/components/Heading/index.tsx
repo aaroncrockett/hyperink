@@ -1,51 +1,58 @@
+
 import React from "react";
+import type { ComponentPropsWithoutRef } from "react";
+// hyperink
 import { cn } from "@hyperinkstudio/utils/";
 
-type HeadingProps = {
-  text?: string;
-  alignment?: string;
+type HeadingProps = Omit<
+  ComponentPropsWithoutRef<"h1">,
+  "children" | "className"
+> & {
+  alignmentCls?: string;
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   children?: React.ReactNode;
-  className?: string;
-  color?: string;
-  h1TextAtrs?: string;
-  h1Size?: string;
-  h2TextAtrs?: string;
-  h2Size?: string;
-  h3TextAtrs?: string;
-  h3Size?: string;
-  h4TextAtrs?: string;
-  h4Size?: string;
-  h5TextAtrs?: string;
-  h5Size?: string;
-  h6TextAtrs?: string;
-  h6Size?: string;
-  leading?: string;
+  cls?: string;
+  colorCls?: string;
   fontCls?: string;
-  weight?: string;
+  h1Size?: string;
+  h1TextAtrs?: string;
+  h2Size?: string;
+  h2TextAtrs?: string;
+  h3Size?: string;
+  h3TextAtrs?: string;
+  h4Size?: string;
+  h4TextAtrs?: string;
+  h5Size?: string;
+  h5TextAtrs?: string;
+  h6Size?: string;
+  h6TextAtrs?: string;
+  leading?: string;
+  text?: string;
+  weightCls?: string;
 };
 
 export function Heading({
-  alignment = "",
+  alignmentCls,
   as = "h1",
   children,
-  className = "",
-  color = "",
-  fontCls = "",
-  h1TextAtrs = "!leading-[2.75rem] md:!leading-[2.5rem]",
+  cls,
+  colorCls = "text-surface-950-50",
+  fontCls,
   h1Size = "text-3xl md:text-4xl",
-  h2TextAtrs = "!leading-[2.25rem] md:!leading-[2.75rem]",
+  h1TextAtrs = "!leading-[2.75rem] md:!leading-[2.5rem]",
   h2Size = "text-2xl md:text-3xl",
-  h3TextAtrs = "",
+  h2TextAtrs = "!leading-[2.25rem] md:!leading-[2.75rem]",
   h3Size = "text-xl md:text-2xl",
-  h4TextAtrs = "",
+  h3TextAtrs = "",
   h4Size = "text-lg md:text-xl",
-  h5TextAtrs = "",
+  h4TextAtrs = "",
   h5Size = "text-lg md:text-xl",
-  h6TextAtrs = "",
+  h5TextAtrs = "",
   h6Size = "text-lg md:text-xl",
+  h6TextAtrs = "",
   text,
-  weight = "",
+  weightCls = "",
+  ...props
 }: HeadingProps) {
   let textAttrs;
 
@@ -75,12 +82,11 @@ export function Heading({
       break;
   }
 
-  const textCls = cn(className, alignment, color, textAttrs, weight);
+  const textCls = cn(cls, alignmentCls, colorCls, textAttrs, weightCls);
   let content;
 
   content = text ? text : children;
 
   const Tag = as;
-
-  return <Tag className={textCls}>{content}</Tag>;
+  return <Tag className={textCls} {...props}>{content}</Tag>;
 }

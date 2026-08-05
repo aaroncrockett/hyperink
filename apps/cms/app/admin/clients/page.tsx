@@ -17,7 +17,7 @@ import { getLastTenClients, getClientColLabel } from "@/db";
 import { NAV_ADMIN_CLIENT_LIST } from "@/app/consts";
 import { PageAdminNav } from "../_components/PageAdminNav";
 
-const gridCls = "grid grid-cols-[6rem_6rem_10rem_10rem_10rem_8rem_8rem]";
+const gridColCls = "grid-cols-[6rem_6rem_10rem_10rem_10rem_8rem_8rem]";
 
 export default async function ClientsPage() {
   const authedClient = await createSSClient();
@@ -31,7 +31,7 @@ export default async function ClientsPage() {
 
       {lastTenClients && (
         <TableLayout
-          gridCls={gridCls}
+          gridColCls={gridColCls}
           headerCols={
             <>
               <span>Update Client</span>
@@ -45,7 +45,7 @@ export default async function ClientsPage() {
           }
         >
           {lastTenClients?.map((client, index) => (
-            <RowOfTableLayout key={client.id} gridCls={gridCls}>
+            <RowOfTableLayout key={client.id} gridColCls={gridColCls}>
               <span className="text-secondary-500 font-bold underline truncate">
                 update
               </span>

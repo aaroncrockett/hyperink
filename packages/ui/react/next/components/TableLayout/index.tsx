@@ -1,30 +1,42 @@
-// Rows.tsx
-
-import { cn } from "@hyperinkstudio/utils/cn";
+import { ComponentPropsWithoutRef } from "react";
 import React from "react";
+// hyperink
+import { cn } from "@hyperinkstudio/utils/cn";
 
-type RowsProps = {
+type RowsProps = Omit<ComponentPropsWithoutRef<"div">, "className"> & {
   children: React.ReactNode;
-  gridCls: string;
-  gridGapCls?: string;
-  gridItemsCls?: string;
+  cls?: string;
+  gridColCls: string;
+  gridOptsCls?: string;
+  headerBgCls?: string;
   headerCls?: string;
   headerCols: React.ReactNode;
-
+  paddingCls?: string;
 };
 
 export function TableLayout({
   children,
-  gridCls,
-  gridGapCls = "gap-2",
-  gridItemsCls = "items-center",
-  headerCls = "bg-surface-300-700 font-bold p-1",
+  cls,
+  gridColCls,
+  gridOptsCls,
+  headerBgCls = "bg-surface-300-700",
+  headerCls,
   headerCols,
+  paddingCls = "p-2",
 }: RowsProps) {
   return (
     <>
-
-      <div className={cn(gridCls, gridItemsCls, gridGapCls, headerCls)}>
+      <div
+        className={cn(
+          "grid",
+          cls,
+          gridColCls,
+          gridOptsCls,
+          headerCls,
+          headerBgCls,
+          paddingCls,
+        )}
+      >
         {headerCols}
       </div>
 

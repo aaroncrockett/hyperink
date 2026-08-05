@@ -17,7 +17,7 @@ export default function BookPage() {
   return (
     <Page>
       <div className="flex flex-col  gap-6 justify-between h-full">
-        <Heading alignment="text-center" as="h2" text="Tattoo Request Form" />
+        <Heading alignmentCls="text-center" as="h2" text="Tattoo Request Form" />
         <FormContentTmp1 flashId={flashId} className={formCls} />
         <HyperInkSignature />
       </div>

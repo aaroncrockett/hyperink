@@ -51,6 +51,7 @@ export function TattooForm({
       <Form
         action={formAction}
         submitText={existingClient ? "create tatt" : "create tatt & client"}
+        className="flex flex-col gap-4"
       >
         <Input
           key="existingClient"

@@ -1,17 +1,18 @@
 "use client";
+import { ReactNode, ComponentPropsWithoutRef, forwardRef } from "react";
+//hyperink
 import { cn } from "@hyperinkstudio/utils";
 
-import { ReactNode, ComponentPropsWithoutRef,   forwardRef } from "react";
-
-type FormProps = ComponentPropsWithoutRef<"form"> & {
-  action: ComponentPropsWithoutRef<"form">["action"];
+type FormProps = Omit<
+  ComponentPropsWithoutRef<"form">,
+   "children"
+> & {
   children: ReactNode;
-  padding?: string;
-  space?: string;
-  submitText?: string;
-  submitBtnColor?: string;
   submitBtnCls?: string;
+  submitBtnColorCls?: string;
+  submitBtnSizeCls?: string;
   submitDisabled?: boolean;
+  submitText?: string;
 };
 
 export const Form = forwardRef<HTMLFormElement, FormProps>(
@@ -20,12 +21,11 @@ export const Form = forwardRef<HTMLFormElement, FormProps>(
       action,
       children,
       className,
-      padding = "",
-      space = "space-y-4",
-      submitText = "Submit",
-      submitBtnColor = "preset-filled-secondary-400-600",
       submitBtnCls = "btn",
+      submitBtnSizeCls,
+      submitBtnColorCls = "preset-filled-secondary-500",
       submitDisabled = false,
+      submitText = "Submit",
       ...props
     },
     ref,
@@ -34,14 +34,14 @@ export const Form = forwardRef<HTMLFormElement, FormProps>(
       <form
         ref={ref}
         action={action}
-        className={cn(padding, space, className)}
+        className={className}
         {...props}
       >
         {children}
         <button
           type="submit"
           disabled={submitDisabled}
-          className={cn(submitBtnCls, submitBtnColor)}
+          className={cn(submitBtnCls, submitBtnColorCls, submitBtnSizeCls)}
         >
           {submitText}
         </button>

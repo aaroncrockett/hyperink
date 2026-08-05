@@ -37,7 +37,7 @@ export default function Home() {
     <Page>
       <section className="flex flex-col space-y-1 sm:space-y-2 md:space-y-3 xl:space-y-4">
         <Heading
-          className="w-auto h-full"
+          cls="w-auto h-full"
         >
          <span className="hidden">PDX Tattoo Artist</span>
          <Image
@@ -55,8 +55,8 @@ export default function Home() {
           text="Flash & custom tattoos "
           h2Size="text-4xl md:text-5xl"
           h2TextAtrs="!leading-[2.75rem] md:!leading-[2.5rem]"
-          weight="font-bold"
-          alignment="text-center"
+          weightCls="font-bold"
+          alignmentCls="text-center"
         ></Heading>
 
         <ul className="flex justify-center items-center py-3 mb-0">
@@ -149,9 +149,11 @@ export default function Home() {
       <section>
         <Heading
           as="h2"
-          className="text-center text-secondary-300-700 font-bold"
+          colorCls="text-secondary-300-700 "
+          weightCls="font-bold"
+          alignmentCls="text-center"
           leading="[@media(min-width:26rem)]:leading-6! [@media(min-width:36rem)]:leading-10! [@media(min-width:60rem)]:leading-14! [@media(min-width:80rem)]:leading-20!"
-          size="[@media(min-width:20rem)]:text-2xl [@media(min-width:26rem)]:text-3xl [@media(min-width:36rem)]:text-4xl [@media(min-width:60rem)]:text-5xl [@media(min-width:80rem)]:text-6xl"
+          cls="[@media(min-width:20rem)]:!text-2xl [@media(min-width:26rem)]:!text-3xl [@media(min-width:36rem)]:!text-4xl [@media(min-width:60rem)]:!text-5xl [@media(min-width:80rem)]:!text-6xl"
           text="Custom & Flash Tatts"
         ></Heading>
       </section>

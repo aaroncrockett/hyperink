@@ -1,33 +1,63 @@
+import type { ComponentPropsWithoutRef } from "react";
+// hyperink
 import { cn } from "@hyperinkstudio/utils/";
 
-type CheckboxProps = {
-  className?: string;
-  errorClassName?: string;
+type CheckboxProps = Omit<ComponentPropsWithoutRef<"div">, "className"> & {
+  dir?: "row" | "col";
+  errorCls?: string;
+  errorTxtColorCls?: string;
   errors?: Record<string, string> | null;
   id: string;
-  label: string;
-  labelClassName?: string;
   inputClass?: string;
-  value?: string;
+  label: string;
+  labelCls?: string;
+  labelSizeCls?: string;
+  labelColorCls?: string;
+  labelWeightCls?: string;
   name: string;
+  readOnly?: boolean;
   required?: boolean;
+  value?: string;
+  wrapperCls?: string;
+  wrapperGap?: string;
+  wrapperLayoutOpts?: string;
 };
 
 export function InputCheck({
-  errorClassName = "",
+  dir = "row",
+  errorCls,
+  errorTxtColorCls = "text-error-500",
   errors = {},
   id,
-  label,
-  labelClassName = "",
-  className = "flex flex-row gap-4 items-center justify-center",
-  name,
   inputClass = "checkbox",
-  value = "",
+  label,
+  labelCls,
+  labelSizeCls,
+  labelColorCls,
+  labelWeightCls = "font-bold",
+  name,
+  readOnly,
   required = false,
+  value = "",
+  wrapperCls,
+  wrapperGap = "gap-4",
+  wrapperLayoutOpts = "items-center justify-center",
 }: CheckboxProps) {
+  const computedLayout = dir === "row" ? "flex flex-row" : "flex flex-col";
   return (
-    <div className={cn(className)}>
-      <label htmlFor={id} className={cn("", labelClassName)}>
+    <div
+      className={cn(
+        wrapperCls,
+        computedLayout,
+        wrapperGap,
+        labelWeightCls,
+        wrapperLayoutOpts,
+      )}
+    >
+      <label
+        htmlFor={id}
+        className={cn("", labelCls, labelColorCls, labelSizeCls)}
+      >
         {required && "*"} {label}
       </label>
 
@@ -40,10 +70,8 @@ export function InputCheck({
         required={required}
       />
 
-      {errors?.[name] && (
-        <span className={cn("text-red-500", errorClassName)}>
-          {errors[name]}
-        </span>
+      {errors && errors[name] && (
+        <p className={cn(errorTxtColorCls, errorCls)}>{errors[name]}</p>
       )}
     </div>
   );

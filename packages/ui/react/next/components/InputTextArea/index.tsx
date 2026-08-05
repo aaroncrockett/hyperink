@@ -1,15 +1,21 @@
+import type { ComponentPropsWithoutRef } from "react";
+// hyperink
 import { cn } from "@hyperinkstudio/utils/";
 
-type TextAreaProps = {
-  className?: string;
+
+type TextAreaProps = Omit<ComponentPropsWithoutRef<"div">, "className"> & {
+  wrapperCls?: string;
+  wrapperMarginCls?: string;
   disabled?: boolean;
   errorCls?: string;
   errors?: Record<string, string> | null;
-  errorTxtColor?: string;
+  errorTxtColorCls?: string;
   id: string;
-  inputClass?: string;
+  inputCls?: string;
+  inputHeightCls?: string;
+  inputUtilCls?: string;
   label: string;
-  labelClassName?: string;
+  labelCls?: string;
   name: string;
   readOnly?: boolean;
   required?: boolean;
@@ -19,15 +25,18 @@ type TextAreaProps = {
 };
 
 export function InputTextArea({
-  className = "",
+  wrapperCls,
+  wrapperMarginCls = "m-0",
   disabled = false,
   errorCls = "",
   errors = {},
-  errorTxtColor = "text-red-500",
+  errorTxtColorCls = "text-error-500",
   id,
-  inputClass = "textarea h-20",
+  inputCls = "h-20",
+  inputHeightCls = "h-20",
+  inputUtilCls = "input textarea ",
   label,
-  labelClassName = "label font-bold",
+  labelCls = "label font-bold",
   name,
   readOnly = false,
   required = false,
@@ -36,8 +45,8 @@ export function InputTextArea({
   defaultValue,
 }: TextAreaProps) {
   return (
-    <div className={cn("m-0", className)}>
-      <label htmlFor={id} className={cn(labelClassName)}>
+    <div className={cn(wrapperMarginCls, wrapperCls)}>
+      <label htmlFor={id} className={cn(labelCls)}>
         {required && "*"} {label}
       </label>
 
@@ -46,7 +55,7 @@ export function InputTextArea({
         name={name}
         required={required}
         rows={rows}
-        className={cn(inputClass)}
+        className={cn(inputCls, inputHeightCls, inputUtilCls)}
         disabled={disabled}
         readOnly={readOnly}
         {...(value !== undefined ? { value } : {})}
@@ -54,7 +63,7 @@ export function InputTextArea({
       />
 
       {errors && errors[name] && (
-        <p className={cn(errorTxtColor, errorCls)}>{errors[name]}</p>
+        <p className={cn(errorTxtColorCls, errorCls)}>{errors[name]}</p>
       )}
     </div>
   );

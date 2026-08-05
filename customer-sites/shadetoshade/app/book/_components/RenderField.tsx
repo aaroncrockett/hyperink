@@ -27,7 +27,7 @@ export function RenderField({
   errors,
   formState,
   setFormState,
-  key
+  key,
 }: RenderFieldProps) {
   const { id, label, type, required, value, inputSize, options } = field;
 
@@ -43,14 +43,14 @@ export function RenderField({
       return (
         <InputCheck
           id={id}
-           key={key}
+          key={key}
           name={id}
           label={label}
-          labelClassName="text-sm"
+          labelSizeCls="text-sm"
           required={required}
           errors={errors}
           value={value}
-          className={className}
+          wrapperCls={className}
         />
       );
 
@@ -58,13 +58,13 @@ export function RenderField({
       return (
         <InputTextArea
           id={id}
-           key={key}
+          key={key}
           name={id}
           label={label}
           required={required}
           errors={errors}
           value={value}
-          className={className}
+          wrapperCls={className}
         />
       );
 
@@ -87,7 +87,7 @@ export function RenderField({
                 : formState.type
           }
           options={options}
-          className={className}
+          wrapperCls={className}
           onChange={(e: ChangeEvent<HTMLSelectElement>) => {
             let state: TattooFormState;
             if (e.target.value === "flash") {
@@ -123,7 +123,7 @@ export function RenderField({
           required={required}
           errors={errors}
           value={value}
-          className={className}
+          wrapperCls={className}
         />
       );
   }

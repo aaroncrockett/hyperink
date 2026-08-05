@@ -54,6 +54,6 @@ export function FormContentTmp1({ className, flashId }: FormContentProps) {
   }
 
   if (showForm) {
-    return <Form className={cn(className)} />;
+    return <Form className={cn(className)}><p>children later</p></Form>;
   }
 }
