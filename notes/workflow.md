@@ -1,32 +1,44 @@
 # Git workflow
 
+Workflow will remain flexible for simple bug fixes, refactors, chores, and documentation changes since I am currently the only developer.
+
+However, even simple commits made directly to dev should still follow the commit prefix convention. These commits will not be attached to a github issue (thus no issue # prefix). If I anticipate more than 2 or 3 small commits, a Git Hub Issue will be created and the full workflow will be followed.
+
+These guidelines will continue to evolve over time as the project grows and in preparation for future contributors.
+
+Features and more complex issues should follow the full workflow outlined below.
+
 ## Prefixes
 
 feat → new feature
-fix → bug fix
+bug → bug fix
 refactor → code change without behavior change
 chore → tooling/config
-docs → documentation <--- currently I am using notes directory and don't have full docs. Work in here should be docs.
+docs → documentation
 test → tests
+
+Docs are currenltly simplified as notes in the root directory.
 
 ## Workflow - Start In Git Hub Issues
 
-1. *Make an issue on github*
+1. _Make an issue on github_
 
-2. *Title the issue* -  starting with one of the above prefixes
+2. _Title the issue_ - starting with one of the above prefixes
 
-- Then ":", followed by a short description
-- IE: feat: create a client
+- Then "-", followed by a short description
+- IE: feat - create a client
 
-3. *Assign the issue* to yourself
+3. _Assign the issue_ to yourself
 
-4. *Hit Create* or put in a short filler description.  Regardless you will have to come back and edit the issue shortly after creation by putting the branch name as the first line. You will need the issue number created for you before you can create this branch. So hit create first. 
+4. _Hit Create_ After creating the issue, you will need to return and edit it shortly afterward to add the branch name as the first line of the description.
+
+The issue number is required to create the branch name, so create the issue first, then use the generated issue number when creating the branch.
 
 ## Workflow - Create a branch on Git
 
-1. *Create a branch* -- as-> githubissue#-prefix-name (the name can be up to three words)
+1. _Create a branch_ -- as-> githubissue#-prefix-name (the name can be up to three words)
 
-- IE: 1-feat-create-person-record
+- IE: 111-feat-create-person-record
 
 ## Workflow - Back to Github interface
 
@@ -34,23 +46,25 @@ test → tests
 
 - git branch --show-current
 
-2. Put the git branch being used as the first line. If multiple branches, put them as they come. (unsure if I will allow this).
+2. Put the git branch being used as the first line. If multiple branches, put them as they are created.
 
 3. Write details about the issue. Write a checklist if applicable to break up tasks.
 
 ## Workflow - Git commits
 
-1. *Commit messages* -- When committing: attempt related tasks per commit. For instance, one commit might contain form state. Create a title, and try to reduce it to 1 to 3 words
+1. _Commit messages_
 
-- Then begin your commit with the title, followed by ":". Followed by a short description for the main commit message
-- No need for descriptions
-- IE: Git commit -m "form-state:  handle complicated state based on url param
-- If your commit is composed of unrelated tasks, or tasks related to a previous commit, put "wip" as the commit message. 
-- If it is related to a previous task, put "wip(prev-task)" or "wip(prev-trask): short message"
-- IE: Git commit -m "wip(form-state): loose ends missed from pervious commit"
-- The reasoning behind this is that we will squash merge. Commit messages that are wip should not be in the final commit description. I want the description to be meaningful and descrdiptive.
-- WIP commits are definatetly OK and expected when, refactoring, tweaking designs, bugs, QA before finishing -- etc (within a feature branch - they may be less necessary in other branch types).
-- This process also helps to order thoughts and tasks. It doesn't need to be perfect. But try! :D 
+Avoid combining unrelated tasks into a single commit. If a commit contains multiple unrelated changes, prefix it with wip: followed by a brief summary. Use WIP commits sparingly.
+
+Commit smaller groups of related files and changes frequently. This makes it easier to review changes, identify issues, and debug problems.
+
+It is not necessary to push to the remote repository with every local commit. Push changes periodically. However, commit small, discrete changes locally and often to create clear checkpoints during development.
+
+During the final stages of a feature, especially while performing QA, making small layout adjustments, or polishing details before merging, WIP commits are more acceptable. However, continue to keep commits focused on related changes whenever possible.
+
+A structured commit process helps organize thoughts, track progress, and make development easier to reason about. It also makes it easier to write the final commit details when merge --squashing.
+
+It does not need to be perfect—the squash merge is where the final commit history for main will be created. However, maintaining these practices during development still provides value in maintaining clarity for the developer and reviewers. It does not need to be perfect—the squash merge is where the final commit history for main will be created.
 
 ## Workflow: Squashing
 
@@ -84,12 +98,12 @@ You want to merge it into dev
 
 Your editor opens.
 
-The first line is the commit message. 
+The first line is the commit message.
 follow this convention (same as the branch name) feat(#142): create client admin page
 
-Leave a space.  Everything following the space is your description.
+Leave a space. Everything following the space is your description.
 
-Review the commits from the branch and copy the meaningful parts into the final commit description.
+Review the commits from the branch and copy the meaningful parts into the final commit description as items in the summary.
 
 In theory, all commits besides WIP commits, should make a good summary for the description. Review this, and make edits if necessary.
 
@@ -103,28 +117,30 @@ Save and close.
 
 Follow this format and order. See the example bellow for more clairity.
 
-- commit message properly formated
-- space
-- created:
-- space
-- modified
-- space
-- summary
+- Commit message (properly formatted)
+- Summary of changes
+- Rationale (optional; include when it provides useful context or improves clarity)
+- changed files (copy from the text git provides and un-comment out.)
 
-Example of final commit:
+Example of a final commit:
 
 feat(#2): add Git workflow documentation
 
-Created:
-- notes/workflow.md
-
-Modified:
-- README.md
-
 Summary:
-- document issue workflow
-- document branching strategy
-- document squash merge process
+
+- Rename classes to improve consistency
+- Add and remove component props -- to improve consistency -- to complete the compoenents unique API.
+- Ensure ComponentPropsWithoutRef is used where native element props should be supported.
+
+Rationale:
+
+- These components were built incrementally as the project developed, allowing their APIs and patterns to be shaped by real usage. Now that their purpose and usage are clearer, they are being standardized before the project grows further and moves toward launch.
+
+Changes to be committed:
+
+modified: apps/cms/app/admin/(features)/TattooRequests.tsx
+modified: apps/cms/app/admin/clients/create-client/page.tsx
+created: apps/cms/app/admin/client
 
 6. Push dev
 
