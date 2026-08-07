@@ -3,14 +3,14 @@ import { type TattooRequest, type ClientTattoo } from "@/db/types";
 import { TATT_REQ_FOLLOW_UP_FORM_SCHEMA } from "@/db/tattooRequest";
 import { createClientPerson } from "@/db/clientPersons";
 import { createClientTattoo } from "@/db/clientTattoo";
-import { zodIssuesToErrors } from "@/db/_helpers";
-import { createSSClient } from "@/db/server";
+import { zodIssuesToErrors } from "@/db/helpers";
+import { createSSClient } from "@/auth/server";
 
 type TattooRequestForm = TattooRequest &
   Partial<ClientTattoo> & {
     existingClient: string;
     clientId?: string;
-  }; 
+  };
 
 type TattooFormState = {
   tattooRequest: TattooRequestForm | ClientTattoo | null;
@@ -23,7 +23,7 @@ export async function createAClientTattooAndHandleClient(
 ): Promise<TattooFormState> {
   const formDataObject = Object.fromEntries(formData.entries());
 
-  const parsedForm = TATT_REQ_FOLLOW_UP_FORM_SCHEMA.safeParse(formDataObject); 
+  const parsedForm = TATT_REQ_FOLLOW_UP_FORM_SCHEMA.safeParse(formDataObject);
 
   const actionResults: TattooFormState = {
     tattooRequest: null,
@@ -37,7 +37,7 @@ export async function createAClientTattooAndHandleClient(
 
     return actionResults;
   }
-  const parsedFormData = parsedForm.data as   Partial<TattooRequest>;
+  const parsedFormData = parsedForm.data as Partial<TattooRequest>;
 
   const ssClient = await createSSClient();
 

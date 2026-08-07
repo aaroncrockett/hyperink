@@ -1,12 +1,10 @@
 import type {
-  Client as ServerClient,
   ClientTable,
   ClientTattoo,
   Profile,
   ProfileTaggingOptions,
   TattooImage,
   TattooRequest,
-  AuthUser,
 } from "@hyperinkstudio/db";
 
 export type {
@@ -14,8 +12,6 @@ export type {
   ClientTattoo,
   Profile,
   ProfileTaggingOptions,
-  ServerClient,
   TattooImage,
   TattooRequest,
-  AuthUser,
 };

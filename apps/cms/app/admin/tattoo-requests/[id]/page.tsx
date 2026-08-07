@@ -2,7 +2,7 @@
 import { Heading, Page } from "@hyperinkstudio/ui-react-next/components";
 // Local DB
 import { getTattooRequestById } from "@/db/tattooRequest";
-import { createSSClient } from "@/db/server";
+import { createSSClient } from "@/auth/server";
 import { getClientPersonsByEmailOrPhone } from "@/db/clientPersons";
 // Local
 import { TattooForm } from "./_components/TattooForm";

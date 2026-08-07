@@ -7,8 +7,8 @@ import {
   signInWithPassword,
   signUp,
   signInWithOAuth,
-} from "@/db/server";
-import type { Client } from "@/db/server";
+} from "@/auth/server";
+import type { Client } from "@/auth/server";
 
 export async function login(formData: FormData) {
   const client: Client = await createSSClient();

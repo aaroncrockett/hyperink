@@ -5,7 +5,11 @@ import { NAV_ADMIN_LIST } from "@/app/consts";
 // Locals
 import { Nav } from "./_components/Nav";
 
-import { createSSClient, getAuthedUser, getProfileByUserId } from "@/db/server";
+import {
+  createSSClient,
+  getAuthedUser,
+  getProfileByUserId,
+} from "@/auth/server";
 
 export default async function RootLayout({
   children,
