@@ -1,56 +1,49 @@
 import Link from "next/link";
 // Local @
-import { createSSClient, getAuthedUser, getProfileId } from "@/db/server";
+import { type TattooRequest } from "@/db/types";
 import { getLastThreeTattooRequests } from "@/db/tattooRequest";
-import type { TattooRequest } from "@hyperinkstudio/db";
-// Local
-import { IsLoggedIn } from "./_components/IsLoggedIn";
-import { IsLoggedOut } from "./_components/IsLoggedOut";
+// Local For Admin Pages
+import { AdminPageComponent as AdminPage } from "./_components/AdminPageComponent";
+import type { AdminPageProps } from "./types";
+// Local Other
 import { TattooRequests } from "./(features)/TattooRequests";
 import { LINKS_ADMIN } from "../consts";
 
 // hyperink
-import { Page, Heading } from "@hyperinkstudio/ui-react-next/components";
+import { Heading } from "@hyperinkstudio/ui-react-next/components";
 
-export default async function AdminPage() {
-  const authedClient = await createSSClient();
-
-  const {
-    data: { user },
-  } = await getAuthedUser(authedClient);
-
-  let userId: string | undefined = undefined;
+export default async function AdminHomePage({
+  user,
+  dbClient,
+  pvtProfileId,
+}: AdminPageProps) {
   let tattooRequests: Partial<TattooRequest>[] | null = null;
 
-  if (user) {
-    const { data: userIdData } = await getProfileId(authedClient, user.id);
-    userId = userIdData?.id;
-    const { data: tattReqData } =
-      await getLastThreeTattooRequests(authedClient);
+  if (user && dbClient) {
+    const { data: tattReqData } = await getLastThreeTattooRequests(dbClient);
     tattooRequests = tattReqData;
   }
 
   return (
-    <Page>
-      <Heading text="Admin" as="h1" />
-
-      {userId && user && tattooRequests && (
-        <IsLoggedIn user={user}>
-          <TattooRequests
-            lead={<Heading text="Tattoo Requests" as="h2" />}
-            requests={tattooRequests ?? []}
-            trail={
-              <Link
-                href={LINKS_ADMIN.tattooRequests.href}
-                className="underline text-secondary-500"
-              >
-                See More requests
-              </Link>
-            }
-          />
-        </IsLoggedIn>
+    <AdminPage
+      user={user}
+      pvtProfileId={pvtProfileId ?? null}
+      title="Admin Home"
+    >
+      {tattooRequests && (
+        <TattooRequests
+          lead={<Heading text="Tattoo Requests" as="h2" />}
+          requests={tattooRequests ?? []}
+          trail={
+            <Link
+              href={LINKS_ADMIN.tattooRequests.href}
+              className="underline text-secondary-500"
+            >
+              See More requests
+            </Link>
+          }
+        />
       )}
-      {!userId && <IsLoggedOut />}
-    </Page>
+    </AdminPage>
   );
 }
