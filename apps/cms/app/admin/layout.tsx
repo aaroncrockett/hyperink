@@ -5,7 +5,7 @@ import { NAV_ADMIN_LIST } from "@/app/consts";
 // Locals
 import { Nav } from "./_components/Nav";
 
-import { createSSClient, getAuthedUser, getProfileId } from "@/db/server";
+import { createSSClient, getAuthedUser, getProfileByUserId } from "@/db/server";
 
 export default async function RootLayout({
   children,
@@ -21,7 +21,7 @@ export default async function RootLayout({
   let userId: string | undefined;
 
   if (user) {
-    const { data } = await getProfileId(authedClient, user.id);
+    const { data } = await getProfileByUserId(authedClient, user.id);
     userId = data?.id;
   }
 
