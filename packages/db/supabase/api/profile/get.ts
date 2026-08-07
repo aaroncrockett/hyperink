@@ -13,3 +13,23 @@ export async function getProfileByArtistId(client: Client, artistId: string) {
     error,
   };
 }
+
+export async function getProfileByUserId(client: Client, userId: string) {
+  const { data, error } = await client
+    .from(TABLE)
+    .select()
+    .eq("id", userId)
+    .single();
+
+  return { data, error };
+}
+
+export async function getProfileIdByUserId(client: Client, userId: string) {
+  const { data, error } = await client
+    .from(TABLE)
+    .select("id")
+    .eq("id", userId)
+    .single();
+
+  return { data, error };
+}
