@@ -5,39 +5,38 @@ export default function Home() {
     <div>
       <div className="bg-tertiary-500 pt-1 pb-1">
         <div className=" bg-surface-500/95">
-        <div className="max-w-275 mx-auto flex flex-col items-center justify-center  py-8 p-4 lg:py-12 md:p7-10 text-lg space-y-5">
-          <Heading
-            as="h1"
-            text="Artist Owned, Artist Made: Tattoo Booking"
-            h1Size="text-5xl md:text-6xl lg:text-7xl"
-            h1TextAtrs="leading-[3.5rem] md:leading-[4.25rem] lg:leading-[4.75rem]"
-            alignmentCls="text-center"
-            colorCls="text-primary-500"
-          />
+          <div className="max-w-275 mx-auto flex flex-col items-center justify-center  py-8 p-4 lg:py-12 md:p7-10 text-lg space-y-5">
+            <Heading
+              as="h1"
+              text="Artist Owned, Artist Made: Tattoo Booking"
+              h1Size="text-5xl md:text-6xl lg:text-7xl"
+              h1TextAtrs="leading-[3.5rem] md:leading-[4.25rem] lg:leading-[4.75rem]"
+              alignmentCls="text-center"
+              colorCls="text-primary-500"
+            />
 
-          <Heading
-            as="h2"
-            text="Helps tattoo artists manage their booking requests, clients, client details, deposits, and payments."
-            alignmentCls="text-center"
-            weightCls="font-normal"
-            fontCls="serif"
-            colorCls="text-tertiary-200"
-          />
-          <Heading
-            as="h4"
-            alignmentCls="text-center"
-            weightCls="font-normal"
-            colorCls="text-surface-950-50"
-            className="pt-3 w-2/3"
-          >
-            <span className="font-bold text-2xl md:text-2xl text-primary-500">
-              Looking for artists
-            </span>{" "}
-            who want to use the app during testing, and you will get the extra
-            special hook-up for life.
-          </Heading>
-        </div>
-
+            <Heading
+              as="h2"
+              text="Helps tattoo artists manage their booking requests, clients, client details, deposits, and payments."
+              alignmentCls="text-center"
+              weightCls="font-normal"
+              fontCls="serif"
+              colorCls="text-tertiary-200"
+            />
+            <Heading
+              as="h4"
+              alignmentCls="text-center"
+              weightCls="font-normal"
+              colorCls="text-surface-950-50"
+              cls="pt-3 w-2/3"
+            >
+              <span className="font-bold text-2xl md:text-2xl text-primary-500">
+                Looking for artists
+              </span>{" "}
+              who want to use the app during testing, and you will get the extra
+              special hook-up for life.
+            </Heading>
+          </div>
         </div>
       </div>
 
