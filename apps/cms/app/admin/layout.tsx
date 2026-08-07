@@ -4,36 +4,19 @@ import type { ReactNode } from "react";
 import { NAV_ADMIN_LIST } from "@/app/consts";
 // Locals
 import { Nav } from "./_components/Nav";
-
-import {
-  createSSClient,
-  getAuthedUser,
-  getProfileByUserId,
-} from "@/auth/server";
+import { getUserData } from "./getUserData";
 
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: ReactNode;
 }>) {
-  const dbClient = await createSSClient();
-
-  const {
-    data: { user },
-  } = await getAuthedUser(dbClient);
-
-  let userId: string | undefined;
-
-  if (user) {
-    const { data } = await getProfileByUserId(dbClient, user.id);
-    userId = data?.id;
-  }
-
+  const userData = await getUserData();
   return (
     <div lang="en" className="h-screen">
       <div className="grid grid-cols-[220px_1fr] bg-surface-50-950 h-full">
         <div className="bg-surface-700-300 pt-3 p-2">
-          {userId && (
+          {userData && userData.pvtProfileId && (
             <Nav
               linkCurrentCls="text-surface-500 bg-surface-50-950"
               linkClsHover="hover:bg-surface-50-950 rounded"
@@ -45,7 +28,11 @@ export default async function RootLayout({
           )}
         </div>
 
-        <div className="p-4 w-full">{children}</div>
+        {userData && userData.pvtProfileId && (
+          <div className="p-4 w-full">{children}</div>
+        )}
+
+        {!userData && <div>No User -- create one</div>}
       </div>
     </div>
   );

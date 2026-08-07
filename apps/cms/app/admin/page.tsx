@@ -2,34 +2,37 @@ import Link from "next/link";
 // Local @
 import { type TattooRequest } from "@/db/types";
 import { getLastThreeTattooRequests } from "@/db/tattooRequest";
-// Local For Admin Pages
-import { AdminPageComponent as AdminPage } from "./_components/AdminPageComponent";
-import type { AdminPageProps } from "./types";
-// Local Other
+import { createSSClient } from "@/auth/server";
+
+// hyperink UI
+import { Heading, Page } from "@hyperinkstudio/ui-react-next/components";
+
 import { TattooRequests } from "./(features)/TattooRequests";
+
+// Local Per Page
+import { getUserData } from "./getUserData";
+
+// Local Other
 import { LINKS_ADMIN } from "../consts";
 
-// hyperink
-import { Heading } from "@hyperinkstudio/ui-react-next/components";
-
-export default async function AdminHomePage({
-  user,
-  dbClient,
-  pvtProfileId,
-}: AdminPageProps) {
+export default async function AdminHomePage() {
   let tattooRequests: Partial<TattooRequest>[] | null = null;
 
-  if (user && dbClient) {
+  const { pvtProfileId, user } = await getUserData();
+
+  if (pvtProfileId) {
+    const dbClient = await createSSClient();
     const { data: tattReqData } = await getLastThreeTattooRequests(dbClient);
     tattooRequests = tattReqData;
   }
 
   return (
-    <AdminPage
-      user={user}
-      pvtProfileId={pvtProfileId ?? null}
-      title="Admin Home"
-    >
+    <Page>
+      {pvtProfileId && (
+        <div className="flex flex-col gap-4">
+          <p>Hello {user?.user_metadata.full_name}</p>
+        </div>
+      )}
       {tattooRequests && (
         <TattooRequests
           lead={<Heading text="Tattoo Requests" as="h2" />}
@@ -44,6 +47,6 @@ export default async function AdminHomePage({
           }
         />
       )}
-    </AdminPage>
+    </Page>
   );
 }
