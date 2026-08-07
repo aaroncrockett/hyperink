@@ -2,7 +2,7 @@ import type { ServerClient } from "@/db/types";
 
 const table = "profile";
 
-export async function getProfileId(client: ServerClient, userId: string) {
+export async function getProfileByUserId(client: ServerClient, userId: string) {
   const { data, error } = await client
     .from(table)
     .select("id")

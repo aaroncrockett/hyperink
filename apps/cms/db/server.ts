@@ -3,7 +3,7 @@ import {
   createSSClient as createClientAndAuth,
   exchangeCodeForSession,
   getUser,
-  getProfileId,
+  getProfileByUserId,
   verifyOtp,
   signInWithPassword,
   signUp,
@@ -15,7 +15,7 @@ import type { SupabaseConfig, Client } from "@hyperinkstudio/db";
 
 export {
   exchangeCodeForSession,
-  getProfileId,
+  getProfileByUserId,
   getUser as getAuthedUser,
   signInWithOAuth,
   signInWithPassword,
