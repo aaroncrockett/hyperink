@@ -1,6 +1,4 @@
-Need to install the following packages:
-supabase@2.111.0
-Ok to proceed? (y) export type Json =
+export type Json =
   | string
   | number
   | boolean
@@ -326,10 +324,10 @@ export type Database = {
           id: string
           meta_data: Json | null
           name: string | null
-          number_sold: number | null
           path: string
           pinned_order: number | null
           readable_name: string | null
+          remainingAvailability: number | null
           sold_at: string | null
           styles: Json | null
           tags: Json | null
@@ -342,10 +340,10 @@ export type Database = {
           id?: string
           meta_data?: Json | null
           name?: string | null
-          number_sold?: number | null
           path: string
           pinned_order?: number | null
           readable_name?: string | null
+          remainingAvailability?: number | null
           sold_at?: string | null
           styles?: Json | null
           tags?: Json | null
@@ -358,10 +356,10 @@ export type Database = {
           id?: string
           meta_data?: Json | null
           name?: string | null
-          number_sold?: number | null
           path?: string
           pinned_order?: number | null
           readable_name?: string | null
+          remainingAvailability?: number | null
           sold_at?: string | null
           styles?: Json | null
           tags?: Json | null
