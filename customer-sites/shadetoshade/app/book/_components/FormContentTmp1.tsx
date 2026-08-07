@@ -7,8 +7,7 @@ import { useRouter } from "next/navigation";
 // Hyperink
 import { cn } from "@hyperinkstudio/utils";
 import { Form } from "@hyperinkstudio/ui-react-next/components";
-// @
-import { TattooTypeOptions } from "@/db/tattooRequest";
+import { TattooTypeOptions } from "@hyperinkstudio/helpers";
 
 type FormContentProps = {
   className?: string;
@@ -54,6 +53,10 @@ export function FormContentTmp1({ className, flashId }: FormContentProps) {
   }
 
   if (showForm) {
-    return <Form className={cn(className)}><p>children later</p></Form>;
+    return (
+      <Form className={cn(className)}>
+        <p>children later</p>
+      </Form>
+    );
   }
 }

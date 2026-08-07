@@ -7,7 +7,6 @@ import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 // hyperink
 import { Form, FormMetaErrors } from "@hyperinkstudio/ui-react-next/components";
-import { cn }from "@hyperinkstudio/utils"
 //Local @
 import { TATT_REQ_ENTRY_FORM_LIST } from "@/db/tattooRequest";
 import { INTERNAL_LINKS } from "@/constants";
@@ -49,7 +48,7 @@ type FormContentProps = {
   className: string;
 };
 
-export function FormContentTmp2({className}: FormContentProps) {
+export function FormContentTmp2({ className }: FormContentProps) {
   const [state, formAction] = useActionState(
     createTattooRequestAction,
     initialState,
