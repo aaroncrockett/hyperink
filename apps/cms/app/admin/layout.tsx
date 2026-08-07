@@ -12,16 +12,16 @@ export default async function RootLayout({
 }: Readonly<{
   children: ReactNode;
 }>) {
-  const authedClient = await createSSClient();
+  const dbClient = await createSSClient();
 
   const {
     data: { user },
-  } = await getAuthedUser(authedClient);
+  } = await getAuthedUser(dbClient);
 
   let userId: string | undefined;
 
   if (user) {
-    const { data } = await getProfileByUserId(authedClient, user.id);
+    const { data } = await getProfileByUserId(dbClient, user.id);
     userId = data?.id;
   }
 
