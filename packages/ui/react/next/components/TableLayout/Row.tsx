@@ -12,6 +12,7 @@ type RowType = Omit<ComponentPropsWithoutRef<"div">, "className"> & {
 
 export function Row({
   children,
+  bgCls,
   bgRowCls = "odd:bg-surface-100-900/70 p-2",
   cls,
   gridColCls,
@@ -20,7 +21,7 @@ export function Row({
 }: RowType) {
   return (
     <div
-      className={cn("grid", bgRowCls, cls, gridColCls, paddingCls)}
+      className={cn("grid", bgRowCls, bgCls, cls, gridColCls, paddingCls)}
       {...props}
     >
       {children}
