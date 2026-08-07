@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import {
-  createSSClient as createClientAndAuth,
+  createSSClient as createClient,
   exchangeCodeForSession,
   getUser,
   getProfileByUserId,
@@ -58,5 +58,5 @@ export async function createSSClient(): Promise<Client> {
     cookieMethods: cookieMethods,
   };
 
-  return createClientAndAuth(config);
+  return createClient(config);
 }
