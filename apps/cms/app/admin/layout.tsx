@@ -1,7 +1,9 @@
+// React
 import type { ReactNode } from "react";
-
-import { Nav } from "./_components/Nav";
+// @ locals
 import { NAV_ADMIN_LIST } from "@/app/consts";
+// Locals
+import { Nav } from "./_components/Nav";
 
 import { createSSClient, getAuthedUser, getProfileId } from "@/db/server";
 
