@@ -16,7 +16,6 @@ export const TABLE_TATT_REQCOLS = [
   "paid_amount",
   "phone",
   "preferred_name",
-  "returning_client",
   "type",
   "client_tattoo_id",
   "seen_at",
