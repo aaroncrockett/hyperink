@@ -1,28 +1,23 @@
 "use client";
 
-import {
-  Home,
-  TagIcon,
-  Zap,
-  PenTool,
-  User,
-  Image,
-  ClipboardList,
-} from "lucide-react";
+// Lucide React
+import type { LucideIcon } from "lucide-react";
 
+// Next
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+// hyper ink
 import { cn } from "@hyperinkstudio/utils/cn";
-import { ForwardRefExoticComponent, RefAttributes } from "react";
-import { LucideProps } from "lucide-react";
+
+type NavLink = {
+  href: string;
+  name: string;
+  icon?: LucideIcon;
+};
 
 type NavsProps = {
-  links: {
-    href: string;
-    label: string;
-    icon: string;
-    showIcon: boolean;
-  }[];
+  links: NavLink[];
+  showIcon: boolean;
   iconCls?: string;
   iconSizeCls?: string;
   layout?: "col" | "row";
@@ -40,8 +35,7 @@ type NavsProps = {
 };
 
 export function Nav({
-  iconCls = "",
-  iconSizeCls = "w-5 h-5",
+  showIcon,
   layout = "row",
   layoutGap = "gap-2",
   liCls,
@@ -52,6 +46,8 @@ export function Nav({
   linkClsLayout = "flex flex-row items-center",
   linkClsPadding = "px-3 py-2",
   linkCurrentCls = "text-surface-400-600! underline",
+  iconCls,
+  iconSizeCls,
   links,
   textSizeCls = "",
   ulCls = "",
@@ -60,30 +56,13 @@ export function Nav({
 
   const flexLayout = layout === "row" ? "flex flex-row" : "flex flex-col";
 
-  const ICONS: Record<
-    string,
-    ForwardRefExoticComponent<
-      Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>
-    >
-  > = {
-    Home: Home,
-    TagIcon: TagIcon,
-    Zap: Zap,
-    PenTool: PenTool,
-    User: User,
-    Image: Image,
-    ClipboardList: ClipboardList,
-  };
-
   return (
     <ul className={cn(flexLayout, layoutGap, textSizeCls, ulCls)}>
       {links.map((link) => {
-        const Icon = link.icon && link.showIcon ? ICONS[link.icon] : null;
-
         return (
           <li className={liCls} key={link.href}>
             <Link
-                className={cn(
+              className={cn(
                 linkCls,
                 linkClsColor,
                 linkClsGap,
@@ -94,8 +73,10 @@ export function Nav({
               )}
               href={link.href}
             >
-              {Icon && <Icon className={cn(iconCls, iconSizeCls)} />}
-              {link.label}
+              {showIcon && link.icon && (
+                <link.icon className={cn(iconCls, iconSizeCls)} />
+              )}
+              {link.name}
             </Link>
           </li>
         );

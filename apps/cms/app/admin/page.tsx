@@ -13,7 +13,7 @@ import { TattooRequests } from "./(features)/TattooRequests";
 import { getUserData } from "./getUserData";
 
 // Local Other
-import { LINKS_ADMIN } from "../consts";
+import { ADMIN_TATT_REQ } from "@/consts";
 
 export default async function AdminHomePage() {
   let tattooRequests: Partial<TattooRequest>[] | null = null;
@@ -39,7 +39,7 @@ export default async function AdminHomePage() {
           requests={tattooRequests ?? []}
           trail={
             <Link
-              href={LINKS_ADMIN.tattooRequests.href}
+              href={ADMIN_TATT_REQ.href}
               className="underline text-secondary-500"
             >
               See More requests

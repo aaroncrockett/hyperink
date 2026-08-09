@@ -7,5 +7,5 @@ export {
   TYPES_MAP,
   TATT_REQ_FOLLOW_UP_FORM_SCHEMA,
   TattooTypeOptions,
-  type TattooRequestFormField,
+  type TattooRequestData,
 } from "@hyperinkstudio/shared-business";

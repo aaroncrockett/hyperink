@@ -1,5 +1,4 @@
 import * as Types from "./types";
-import { PlacementOptions, SizeOptions, TattooTypeOptions } from "./options";
 import * as BASE from "./base";
 
 export const TATT_REQ_BASE_FORM = {
@@ -7,7 +6,7 @@ export const TATT_REQ_BASE_FORM = {
   email: BASE.EMAIL,
   phone: BASE.PHONE,
 } as const satisfies Partial<
-  Record<Types.TattooRequestFormKey, Types.TattooRequestFormField>
+  Record<Types.TattooRequestFormKey, Types.TattooRequestData<"type">>
 >;
 
 // Base plus Type of Form contacted for Template 2
@@ -15,7 +14,7 @@ export const TATT_REQ_ENTRY_FORM = {
   ...TATT_REQ_BASE_FORM,
   type: BASE.TYPE,
 } as const satisfies Partial<
-  Record<Types.TattooRequestFormKey, Types.TattooRequestFormField>
+  Record<Types.TattooRequestFormKey, Types.TattooRequestData<"type">>
 >;
 
 // READ / DISPLAY ONLY
@@ -25,7 +24,7 @@ export const TATT_REQ_ENTRY_FORM_SHORT_DISPLAY = {
   type: BASE.TYPE,
   created_at: BASE.CREATED_AT,
 } as const satisfies Partial<
-  Record<Types.TattooRequestFormKey, Types.TattooRequestFormField>
+  Record<Types.TattooRequestFormKey, Types.TattooRequestData<"type">>
 >;
 
 // Remainder of form. Used by Template 1, Template 2
@@ -39,5 +38,5 @@ export const TATT_REQ_FOLLOW_UP_FORM = {
   year_born: BASE.YEAR_BORN,
   placement: BASE.PLACEMENT,
 } as const satisfies Partial<
-  Record<Types.TattooRequestFormKey, Types.TattooRequestFormField>
+  Record<Types.TattooRequestFormKey, Types.TattooRequestData<"type">>
 >;

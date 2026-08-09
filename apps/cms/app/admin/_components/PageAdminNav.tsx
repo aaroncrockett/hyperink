@@ -7,7 +7,8 @@ import { cn } from "@hyperinkstudio/utils/cn";
 type PageAdminNavsProps = {
   links: {
     href: string;
-    label: string;
+    name: string;
+    [key: string]: unknown;
   }[];
   layout?: "col" | "row";
   cls?: string;
@@ -32,7 +33,7 @@ export function PageAdminNav({
   linkClsPadding = "px-3 py-2",
   linkClsHover = " hover:bg-primary-100-900",
   linkClsCurrent = "underline text-surface-500!",
-  linkClsWeight = "font-bold"
+  linkClsWeight = "font-bold",
 }: PageAdminNavsProps) {
   const pathname = usePathname();
 
@@ -50,11 +51,11 @@ export function PageAdminNav({
                 linkClsPadding,
                 linkClsHover,
                 pathname === link.href && linkClsCurrent,
-                linkClsWeight
+                linkClsWeight,
               )}
               href={link.href}
             >
-              {link.label}
+              {link.name}
             </Link>
           </li>
         );

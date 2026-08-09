@@ -428,46 +428,43 @@ export type Database = {
       profile_tagging_options: {
         Row: {
           avail_tattoo_sizes: Json | null
-          budget: Json | null
           collections: Json
           created_at: string
           id: string
           inks: Json | null
           needles: Json | null
+          placement_locations: Json | null
           studio_locations: Json | null
           styles: Json
           tags: Json
-          tattoo_placement_bodily_locations: Json | null
           updated_at: string
           user_id: string
         }
         Insert: {
           avail_tattoo_sizes?: Json | null
-          budget?: Json | null
           collections?: Json
           created_at?: string
           id?: string
           inks?: Json | null
           needles?: Json | null
+          placement_locations?: Json | null
           studio_locations?: Json | null
           styles?: Json
           tags?: Json
-          tattoo_placement_bodily_locations?: Json | null
           updated_at?: string
           user_id: string
         }
         Update: {
           avail_tattoo_sizes?: Json | null
-          budget?: Json | null
           collections?: Json
           created_at?: string
           id?: string
           inks?: Json | null
           needles?: Json | null
+          placement_locations?: Json | null
           studio_locations?: Json | null
           styles?: Json
           tags?: Json
-          tattoo_placement_bodily_locations?: Json | null
           updated_at?: string
           user_id?: string
         }

@@ -15,7 +15,7 @@ import {
   TATT_REQ_ENTRY_FORM_SHORT_DISPLAY_LIST,
   TATT_REQ_ENTRY_FORM_SHORT_DISPLAY_KEYS,
 } from "@/db/tattooRequest";
-import { LINKS_ADMIN } from "@/app/consts";
+import { ADMIN_TATT_REQ } from "@/consts";
 
 const gridColCls =
   "grid-cols-[5rem_8rem_8rem_8rem] md:grid-cols-[5rem_8rem_8rem_8rem_8rem_12rem_10rem]";
@@ -58,7 +58,7 @@ export function TattooRequests({
                     <span className="truncate">
                       <Link
                         className="text-secondary-500 font-bold underline"
-                        href={`${LINKS_ADMIN.tattooRequests.href}/${id}`}
+                        href={`${ADMIN_TATT_REQ.href}/${id}`}
                       >
                         EDIT
                       </Link>
@@ -109,7 +109,7 @@ export function TattooRequests({
                     <span className="truncate">
                       <Link
                         className="text-secondary-500 font-bold underline"
-                        href={`${LINKS_ADMIN.tattooRequests.href}/${id}`}
+                        href={`${ADMIN_TATT_REQ.href}/${id}`}
                       >
                         EDIT
                       </Link>

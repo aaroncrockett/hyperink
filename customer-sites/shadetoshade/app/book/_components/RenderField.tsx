@@ -11,11 +11,11 @@ import {
 } from "@hyperinkstudio/ui-react-next/components";
 import { cn } from "@hyperinkstudio/utils";
 
-import { type TattooRequestFormField, TYPES_MAP } from "@/db/tattooRequest";
+import { type TattooRequestData, TYPES_MAP } from "@/db/tattooRequest";
 import type { TattRequestFormState } from "../actions";
 
 type RenderFieldProps = {
-  field: TattooRequestFormField;
+  field: TattooRequestData;
   errors: TattRequestFormState["errors"];
   formState: TattooFormState;
   setFormState: Dispatch<SetStateAction<TattooFormState>>;

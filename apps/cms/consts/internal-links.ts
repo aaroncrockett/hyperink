@@ -1,9 +1,10 @@
 import {
+  BrainIcon,
   Home,
   Info,
   LayoutDashboard,
   PartyPopperIcon,
-  BrainIcon,
+  TagIcon,
 } from "lucide-react";
 
 const ADMIN_ROOT = "/admin";
@@ -40,6 +41,12 @@ export const ADMIN_TATT_REQ = {
   name: "Tatt Requests",
   icon: PartyPopperIcon,
 };
+// ADMIN LINKS
+export const ADMIN_TAGGING_OPTS = {
+  href: `${ADMIN_ROOT}/tagging-opts`,
+  name: "Tagging Options",
+  icon: TagIcon,
+};
 // ALL PUBLIC LINKS
 export const INTERNAL_PUBLIC_LINKS = {
   faq: FAQ,
@@ -50,6 +57,7 @@ export const INTERNAL_PUBLIC_LINKS = {
 export const INTERNAL_ADMIN_LINKS = {
   admin: ADMIN,
   tattReq: ADMIN_TATT_REQ,
+  taggingOpts: ADMIN_TAGGING_OPTS,
 };
 
 // LISTS

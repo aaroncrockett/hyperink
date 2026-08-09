@@ -1,9 +1,7 @@
 // React
 import type { ReactNode } from "react";
-// @ locals
-import { NAV_ADMIN_LIST } from "@/app/consts";
 // Locals
-import { Nav } from "./_components/Nav";
+import { NavClientWrapper } from "./_components/NavClientWrapper";
 import { getUserData } from "./getUserData";
 
 export default async function RootLayout({
@@ -17,7 +15,7 @@ export default async function RootLayout({
       {userData && userData.pvtProfileId && (
         <div className="flex flex-col lg:grid lg:grid-cols-[200px_1fr]  ">
           <div className="hidden lg:block bg-surface-800-200">
-            <Nav ulCls="h-full w-auto" layout="col" links={NAV_ADMIN_LIST} />
+            <NavClientWrapper />
           </div>
           <main className="w-full">{children}</main>
         </div>

@@ -1,7 +1,6 @@
 import { z } from "zod";
 
 import * as Types from "./types";
-import { TattooTypeOptions, PlacementOptions, SizeOptions } from "./options";
 
 export const TYPE = {
   label: "Tattoo Type",
@@ -10,8 +9,8 @@ export const TYPE = {
   schema: z.string().trim().optional(),
   required: false,
   inputSize: "md",
-  options: TattooTypeOptions,
-} as const satisfies Types.TattooRequestFormField;
+  options: [],
+} as const satisfies Types.TattooRequestData<"type">;
 
 export const PREFERRED_NAME = {
   label: "Preferred Name",
@@ -20,7 +19,7 @@ export const PREFERRED_NAME = {
   schema: z.string().trim().min(1, "Please enter your preferred name."),
   required: true,
   inputSize: "md",
-} as const satisfies Types.TattooRequestFormField;
+} as const satisfies Types.TattooRequestData<"type">;
 
 export const PHONE = {
   label: "Phone",
@@ -29,7 +28,7 @@ export const PHONE = {
   schema: z.string().trim().min(10, "Phone number must be at least 10 digits."),
   required: true,
   inputSize: "md",
-} as const satisfies Types.TattooRequestFormField;
+} as const satisfies Types.TattooRequestData<"type">;
 
 export const EMAIL = {
   label: "Email",
@@ -38,7 +37,7 @@ export const EMAIL = {
   schema: z.email("Please enter a valid email address."),
   required: true,
   inputSize: "md",
-} as const satisfies Types.TattooRequestFormField;
+} as const satisfies Types.TattooRequestData<"type">;
 
 //
 export const FIRST_NAME = {
@@ -48,7 +47,7 @@ export const FIRST_NAME = {
   schema: z.string().trim().optional(),
   required: false,
   inputSize: "md",
-} as const satisfies Types.TattooRequestFormField;
+} as const satisfies Types.TattooRequestData<"type">;
 
 export const LAST_NAME = {
   label: "Last Name",
@@ -57,7 +56,7 @@ export const LAST_NAME = {
   schema: z.string().trim().optional(),
   required: false,
   inputSize: "md",
-} as const satisfies Types.TattooRequestFormField;
+} as const satisfies Types.TattooRequestData<"type">;
 
 export const GENDER = {
   label: "Gender",
@@ -66,7 +65,7 @@ export const GENDER = {
   schema: z.string().trim().optional(),
   required: false,
   inputSize: "md",
-} as const satisfies Types.TattooRequestFormField;
+} as const satisfies Types.TattooRequestData<"type">;
 
 export const BLUESKY_ID = {
   label: "Bluesky ID",
@@ -75,7 +74,7 @@ export const BLUESKY_ID = {
   schema: z.string().trim().optional(),
   required: false,
   inputSize: "md",
-} as const satisfies Types.TattooRequestFormField;
+} as const satisfies Types.TattooRequestData<"type">;
 
 export const INSTAGRAM_ID = {
   label: "Instagram ID",
@@ -84,7 +83,7 @@ export const INSTAGRAM_ID = {
   schema: z.string().trim().optional(),
   required: false,
   inputSize: "md",
-} as const satisfies Types.TattooRequestFormField;
+} as const satisfies Types.TattooRequestData<"type">;
 
 export const DESCRIPTION = {
   label: "Description",
@@ -93,7 +92,7 @@ export const DESCRIPTION = {
   schema: z.string().trim().optional(),
   required: false,
   inputSize: "lg",
-} as const satisfies Types.TattooRequestFormField;
+} as const satisfies Types.TattooRequestData<"type">;
 
 export const YEAR_BORN = {
   label: "Birth Year",
@@ -102,7 +101,7 @@ export const YEAR_BORN = {
   schema: z.coerce.number().int().optional(),
   required: false,
   inputSize: "sm",
-} as const satisfies Types.TattooRequestFormField;
+} as const satisfies Types.TattooRequestData<"type">;
 
 export const PLACEMENT = {
   label: "Placement",
@@ -111,8 +110,8 @@ export const PLACEMENT = {
   schema: z.string().trim().optional(),
   required: false,
   inputSize: "md",
-  options: PlacementOptions,
-} as const satisfies Types.TattooRequestFormField;
+  options: [],
+} as const satisfies Types.TattooRequestData<"type">;
 
 export const SIZE = {
   label: "Size",
@@ -121,8 +120,8 @@ export const SIZE = {
   schema: z.string().trim().optional(),
   required: false,
   inputSize: "md",
-  options: SizeOptions,
-} as const satisfies Types.TattooRequestFormField;
+  options: [],
+} as const satisfies Types.TattooRequestData<"type">;
 
 export const NOTES = {
   label: "Notes",
@@ -131,10 +130,10 @@ export const NOTES = {
   schema: z.string().trim().optional(),
   required: false,
   inputSize: "lg",
-} as const satisfies Types.TattooRequestFormField;
+} as const satisfies Types.TattooRequestData<"type">;
 
 // READ ONLY
 export const CREATED_AT = {
   label: "Request Date",
   id: "created_at",
-} as const satisfies Types.TattooRequestFormField;
+} as const satisfies Types.TattooRequestData<"type">;
