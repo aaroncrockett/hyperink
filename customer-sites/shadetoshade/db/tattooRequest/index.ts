@@ -8,4 +8,4 @@ export {
   TATT_REQ_FOLLOW_UP_FORM_SCHEMA,
   TattooTypeOptions,
   type TattooRequestFormField,
-} from "@hyperinkstudio/helpers";
+} from "@hyperinkstudio/shared-business";

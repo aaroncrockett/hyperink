@@ -6,7 +6,7 @@ import { useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 // hyperink
-import { getHrefWithSearchParams } from "@hyperinkstudio/helpers";
+import { getHrefWithSearchParams } from "@hyperinkstudio/utils";
 // local
 import { INTERNAL_LINKS } from "@/consts";
 

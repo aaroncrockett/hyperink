@@ -4,7 +4,7 @@ import { ComponentPropsWithoutRef } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 // Hyperink
-import { getHrefWithSearchParams } from "@hyperinkstudio/helpers";
+import { getHrefWithSearchParams } from "@hyperinkstudio/utils";
 // @'s
 import { cn } from "@/utils/cn";
 // Local

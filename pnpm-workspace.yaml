@@ -4,6 +4,6 @@ packages:
   - "packages/ui/*"
   - "packages/ui/*/*"
   - "packages/utils"
-  - "packages/helpers"
+  - "packages/shared-business"
   - "packages/hooks"
   - "packages/db"

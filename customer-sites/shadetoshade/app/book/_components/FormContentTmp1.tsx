@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 // Hyperink
 import { cn } from "@hyperinkstudio/utils";
 import { Form } from "@hyperinkstudio/ui-react-next/components";
-import { TattooTypeOptions } from "@hyperinkstudio/helpers";
+import { TattooTypeOptions } from "@hyperinkstudio/shared-business";
 
 type FormContentProps = {
   className?: string;

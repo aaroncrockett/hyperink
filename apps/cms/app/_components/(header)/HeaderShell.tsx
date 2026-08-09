@@ -8,7 +8,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 // hyperink
-import { getHrefWithSearchParams } from "@hyperinkstudio/helpers";
+import { getHrefWithSearchParams } from "@hyperinkstudio/utils";
 // local
 import { HOME } from "@/consts";
 
