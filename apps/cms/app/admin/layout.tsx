@@ -13,27 +13,17 @@ export default async function RootLayout({
 }>) {
   const userData = await getUserData();
   return (
-    <div lang="en" className="h-screen">
-      <div className="grid grid-cols-[220px_1fr] bg-surface-50-950 h-full">
-        <div className="bg-surface-700-300 pt-3 p-2">
-          {userData && userData.pvtProfileId && (
-            <Nav
-              linkCurrentCls="text-surface-500 bg-surface-50-950"
-              linkClsHover="hover:bg-surface-50-950 rounded"
-              layout="col"
-              linkCls="transition-colors block"
-              layoutGap="gap-0"
-              links={NAV_ADMIN_LIST}
-            />
-          )}
+    <>
+      {userData && userData.pvtProfileId && (
+        <div className="flex flex-col lg:grid lg:grid-cols-[200px_1fr]  ">
+          <div className="hidden lg:block bg-surface-800-200">
+            <Nav ulCls="h-full w-auto" layout="col" links={NAV_ADMIN_LIST} />
+          </div>
+          <main className="w-full">{children}</main>
         </div>
+      )}
 
-        {userData && userData.pvtProfileId && (
-          <div className="p-4 w-full">{children}</div>
-        )}
-
-        {!userData && <div>No User -- create one</div>}
-      </div>
-    </div>
+      {!userData && <div>No User -- create one</div>}
+    </>
   );
 }

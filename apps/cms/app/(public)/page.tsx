@@ -10,27 +10,27 @@ export default function Home() {
               as="h1"
               text="Artist Owned, Artist Made: Tattoo Booking"
               h1Size="text-5xl md:text-6xl lg:text-7xl"
-              h1TextAtrs="leading-[3.5rem] md:leading-[4.25rem] lg:leading-[4.75rem]"
+              h1TextAtrs="leading-[3rem] text-4xl md:text-5xl lg:textd-6xl md:leading-[3.5rem] lg:leading-[4.25rem] lg:leading-[4.75rem]"
               alignmentCls="text-center"
               colorCls="text-primary-500"
             />
 
             <Heading
-              as="h2"
+              as="h3"
               text="Helps tattoo artists manage their booking requests, clients, client details, deposits, and payments."
               alignmentCls="text-center"
               weightCls="font-normal"
               fontCls="serif"
-              colorCls="text-tertiary-200"
+              colorCls="text-tertiary-100-900"
             />
             <Heading
-              as="h4"
+              as="h5"
               alignmentCls="text-center"
               weightCls="font-normal"
               colorCls="text-surface-950-50"
               cls="pt-3 w-2/3"
             >
-              <span className="font-bold text-2xl md:text-2xl text-primary-500">
+              <span className="font-bold text-2xl md:text-2xl text-secondary-800-200">
                 Looking for artists
               </span>{" "}
               who want to use the app during testing, and you will get the extra
@@ -64,9 +64,10 @@ export default function Home() {
             </span>
             <span className="font-bold">
               Other apps charge your clients 10%+ per transaction while spending
-              a ton on marketing. We keep our costs low and charge only 6%
-              percent on transations above $60, and 8% on transactions bellow.
-              under.
+              a ton on marketing. We keep our costs low. While pricing details
+              are still being finalized, we will be charging{" "}
+              <span className="font-bold">*at least*</span> 2% less for
+              equivalent or better functionality.
             </span>
           </div>
           <div className="flex flex-col justify-center text-center text-lg space-y-3 card bg-surface-100-900 p-4 pb-5 md:p-5 md:pb-6 lg:p-6 lg:pb-8 rounded-xl">

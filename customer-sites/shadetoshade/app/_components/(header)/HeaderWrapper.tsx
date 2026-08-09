@@ -8,7 +8,7 @@ import Link from "next/link";
 // hyperink
 import { getHrefWithSearchParams } from "@hyperinkstudio/helpers";
 // local
-import { INTERNAL_LINKS } from "@/constants";
+import { INTERNAL_LINKS } from "@/consts";
 
 const MenuMobile = dynamic(() => import("./MenuMobile"), {
   ssr: false,
@@ -24,13 +24,28 @@ export default function HeaderWrapper({}) {
   return (
     <Header
       tail={
-        <MenuMobile className="block lg:hidden" title="ALL LINKS">
-          <Nav className="flex  lg:hidden w-auto h-full" />
-        </MenuMobile>
+        <>
+          <MenuMobile className="block lg:hidden" title="ALL LINKS">
+            <Nav className="flex lg:hidden w-auto h-full" />
+          </MenuMobile>
+          <Link
+            className="hidden lg:block"
+            href={getHrefWithSearchParams(
+              INTERNAL_LINKS.book.href,
+              searchParams,
+            )}
+          >
+            <button className="btn preset-tonal-surface lg:preset-filled-primary-500 shadow-sm  w-full lg:w-auto mx-auto lg:m-0 font-bold whitespace-nowrap rounded-sm lg:text-white">
+              Book Now
+            </button>
+          </Link>
+        </>
       }
+
       subNav={
         <Link
           href={getHrefWithSearchParams(INTERNAL_LINKS.book.href, searchParams)}
+          className="lg:hidden"
         >
           <button className="btn preset-tonal-surface lg:preset-filled-primary-500 shadow-sm  w-full lg:w-auto mx-auto lg:m-0 font-bold whitespace-nowrap rounded-sm lg:text-white">
             Book Now
@@ -39,15 +54,15 @@ export default function HeaderWrapper({}) {
       }
     >
       <Link
-        className="h-10 px-2 sm:px-0 w-auto"
+        className="h-12 px-2 sm:px-0 w-full"
         href={getHrefWithSearchParams(INTERNAL_LINKS.home.href, searchParams)}
       >
         <Image
           src="/images/s2statt-logo.svg"
-          alt="Aaron Does Ink - Logo"
+          alt="Shade To Shade - Logo"
           width={201}
           height={40}
-          className="h-10 w-auto mx-auto"
+          className="h-12 w-auto mx-auto"
         />
       </Link>
     </Header>

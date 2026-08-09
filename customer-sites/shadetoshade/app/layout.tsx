@@ -1,14 +1,12 @@
 // Next
 import type { Metadata } from "next";
-import { Bebas_Neue, Outfit } from "next/font/google";
 
 // @
 import { cn } from "@/utils/cn";
 // local
-import HeaderWrapper from "./(header)/HeaderWrapper";
-import Footer from "./(footer)/Footer";
-import FooterNav from "./(nav)/FooterNav";
-import Nav from "./(nav)/Nav";
+import { ShellUpper } from "./_components/ShellUpper";
+import Footer from "./_components/(footer)/Footer";
+import FooterNav from "./_components/(nav)/FooterNav";
 
 import "./globals.css";
 
@@ -36,43 +34,22 @@ export const metadata: Metadata = {
   },
 };
 
-const outfit = Outfit({
-  subsets: ["latin"],
-  variable: "--font-outfit",
-});
-
-const bebas = Bebas_Neue({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-bebas",
-});
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      className={`h-full ${outfit.variable} ${bebas.variable} antialiased`}
-      data-theme="shadetoshade"
-      lang="en"
-    >
+    <html className={`h-full  antialiased`} data-theme="shadetoshade" lang="en">
       <body className={`antialiased h-full`}>
         <div
           className={cn(
-            "h-screen grid grid-rows-[auto_1fr_auto] lg:grid-cols-[200px_1fr]",
+            "h-screen flex flex-col lg:grid lg:grid-cols-[200px_1fr] lg:items-start",
           )}
         >
-          {/* hidden: default - shown:lg*/}
-          <div className="h-full row-span-3 bg-surface-800-200 text-primary-500 hidden p-5 pt-6 lg:block">
-            <Nav className="hidden lg:block" />
-          </div>
-          {/* // ** The header wrapper exists because the mobile menu is dynamically
-          imported. Its so, because it depends on a Portal->doc.body ** // */}
-          <HeaderWrapper />
+          <ShellUpper />
           <main
-            className={`noise-bg lg:col-start-2 lg:row-start-2 pt-2AGE md:pt-3`}
+            className={`noise-bg lg:col-start-2 lg:row-start-2 pt-2 md:pt-3`}
           >
             {children}
           </main>

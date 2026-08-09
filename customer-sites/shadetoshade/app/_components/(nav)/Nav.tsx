@@ -8,7 +8,7 @@ import { getHrefWithSearchParams } from "@hyperinkstudio/helpers";
 // @'s
 import { cn } from "@/utils/cn";
 // Local
-import { MENU_LINKS } from "../../constants/";
+import { MENU_LINKS } from "@/consts";
 
 type NavProps = ComponentPropsWithoutRef<"nav"> & {
   ulCls?: string;

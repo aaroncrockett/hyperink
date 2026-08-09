@@ -7,9 +7,9 @@ import { ChevronDownIcon } from "lucide-react";
 import { Fragment } from "react";
 
 const COMPONENTS = {
-  Pricing: dynamic(() => import("./Pricing")),
-  Booking: dynamic(() => import("./Booking")),
-  Aftercare: dynamic(() => import("./Aftercare")),
+  Pricing: dynamic(() => import("./_components/Pricing")),
+  Booking: dynamic(() => import("./_components/Booking")),
+  Aftercare: dynamic(() => import("./_components/Aftercare")),
 } as const;
 
 type ComponentKey = keyof typeof COMPONENTS;

@@ -20,7 +20,7 @@
     ],
     "paths": {
       "@/*": ["./*"],
-      "@_features/*": ["app/_partials/*"]
+      "@_features/*": ["app/_components/*"]
     }
   },
   "include": [

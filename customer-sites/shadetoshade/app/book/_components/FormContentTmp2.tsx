@@ -9,7 +9,7 @@ import Link from "next/link";
 import { Form, FormMetaErrors } from "@hyperinkstudio/ui-react-next/components";
 //Local @
 import { TATT_REQ_ENTRY_FORM_LIST } from "@/db/tattooRequest";
-import { INTERNAL_LINKS } from "@/constants";
+import { INTERNAL_LINKS } from "@/consts";
 //Local
 import { RenderField } from "./RenderField";
 import {

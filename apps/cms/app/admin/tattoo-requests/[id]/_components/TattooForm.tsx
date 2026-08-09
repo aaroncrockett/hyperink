@@ -80,8 +80,8 @@ export function TattooForm({
               label={label}
               type={type}
               required={required}
-              inputClass={isEditing ? "input" : ""}
-              defaultValue={tattRequest[id] ?? ""}
+              inputCls={isEditing ? "input" : ""}
+              defaultValue={(tattRequest[id] as string) ?? ""}
               readOnly={!isEditing}
             />
           </div>

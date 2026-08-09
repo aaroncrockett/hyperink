@@ -1,11 +1,10 @@
 @import "tailwindcss";
-@import '@fontsource/caprasimo';
+@import "@fontsource/caprasimo";
 @import "@fontsource/outfit";
 @source "../../../packages/ui/react/next/components/**/*.{js,ts,jsx,tsx}";
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-react";
 @import "./hyperink.css";
-
 
 body {
   font-family: var(--font-outfit);
@@ -22,7 +21,13 @@ h5,
 h6 {
   font-family: "Outfit", sans-serif;
 }
-p, span {
+p,
+span {
+  font-family: "Outfit", sans-serif;
+}
+
+p,
+span {
   font-family: "Outfit", sans-serif;
 }
 a {
@@ -32,5 +37,12 @@ a {
   font-family: "Caprasimo", sans-serif;
 }
 .sans-serif {
-    font-family: "Outfit", sans-serif;
+  font-family: "Outfit", sans-serif;
+}
+
+@layer base {
+  p,
+  span {
+    @apply text-sm md:text-base;
+  }
 }

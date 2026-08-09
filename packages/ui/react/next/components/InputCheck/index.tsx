@@ -8,7 +8,7 @@ type CheckboxProps = Omit<ComponentPropsWithoutRef<"div">, "className"> & {
   errorTxtColorCls?: string;
   errors?: Record<string, string> | null;
   id: string;
-  inputClass?: string;
+  inputCls?: string;
   label: string;
   labelCls?: string;
   labelSizeCls?: string;
@@ -29,7 +29,7 @@ export function InputCheck({
   errorTxtColorCls = "text-error-500",
   errors = {},
   id,
-  inputClass = "checkbox",
+  inputCls = "checkbox",
   label,
   labelCls,
   labelSizeCls,
@@ -66,7 +66,7 @@ export function InputCheck({
         name={name}
         type="checkbox"
         value={value}
-        className={cn(inputClass)}
+        className={cn(inputCls)}
         required={required}
       />
 

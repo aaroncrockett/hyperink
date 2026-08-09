@@ -7,8 +7,8 @@ import { getHrefWithSearchParams } from "@hyperinkstudio/helpers";
 // @'s
 import { cn } from "@/utils/cn";
 // Local
-import { HyperInkSignature } from "../_partials/HyperInkSignature";
-import { MOBILE_FOOTER_LINKS, INTERNAL_LINKS } from "../../constants/";
+import { HyperInkSignature } from "../HyperInkSignature";
+import { MOBILE_FOOTER_LINKS, INTERNAL_LINKS } from "@/consts";
 
 type NavProps = ComponentPropsWithoutRef<"nav"> & {
   ulCls?: string;
