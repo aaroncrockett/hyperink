@@ -9,9 +9,30 @@ export type SelectOption = {
 export type Data<T> = {
   label: string;
   id: T;
-  type?: keyof typeof INPUT_TYPES_MAP;
-  schema?: z.ZodType;
-  required?: boolean;
-  value?: string;
+  defaultValue?: string;
+  disabled?: string;
   inputSize?: "sm" | "md" | "lg";
+  placeholder?: string;
+  readonly?: boolean;
+  required?: boolean;
+  schema?: z.ZodType;
+  type?: keyof typeof INPUT_TYPES_MAP;
+  value?: string;
 };
+
+// ** possible other options ** //
+
+// placeholder?: string;
+// description?: string;
+// helpText?: string;
+
+// autoComplete?: string;
+// autoFocus?: boolean;
+
+// min?: number;
+// max?: number;
+// step?: number;
+// minLength?: number;
+// maxLength?: number;
+
+// ************************ //

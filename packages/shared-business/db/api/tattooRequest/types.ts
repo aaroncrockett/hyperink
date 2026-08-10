@@ -8,4 +8,5 @@ export type TattooRequestFormKey = keyof TattooRequest;
 
 export type TattooRequestData<T> = Data<TattooRequestFormKey> & {
   options?: T[];
+  createdAt?: string | null;
 };

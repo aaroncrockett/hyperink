@@ -1,45 +1,31 @@
 import { z } from "zod";
-
+// Types
 import * as Types from "./types";
-// import { TattooTypeOptions, PlacementOptions, SizeOptions } from "./options";
+
+import {
+  SIZE_DEFAULT_VALUES,
+  STYLE_DEFAULT_VALUES,
+  PLACEMENT_DEFAULT_VALUES,
+} from "./options";
 
 export const AVAIL_SIZES = {
   label: "Available Sizes",
   id: "avail_tattoo_sizes",
-  type: "select",
+  type: "chip",
   schema: z.string().trim().optional(),
   required: false,
   inputSize: "md",
+  defaultValues: [...SIZE_DEFAULT_VALUES],
 } as const satisfies Types.ProfileTaggingOptionsData;
 
 export const COLLECTIONS = {
   label: "Collections",
   id: "collections",
-  type: "select",
+  type: "chip",
   schema: z.string().trim().optional(),
   required: false,
   inputSize: "md",
 } as const satisfies Types.ProfileTaggingOptionsData;
-
-// Wat on Inks and Needles
-
-// export const INKS = {
-//   label: "Inks",
-//   id: "inks",
-//   type: "select",
-//   schema: z.string().trim().optional(),
-//   required: false,
-//   inputSize: "md",
-// } as const satisfies Types.ProfileTaggingOptionsData;
-
-// export const NEEDLES = {
-//   label: "Needles",
-//   id: "needles",
-//   type: "select",
-//   schema: z.string().trim().optional(),
-//   required: false,
-//   inputSize: "md",
-// } as const satisfies Types.ProfileTaggingOptionsData;
 
 export const STUDIO_LOCATIONS = {
   label: "Studio Locations",
@@ -57,6 +43,7 @@ export const STYLES = {
   schema: z.string().trim().optional(),
   required: false,
   inputSize: "md",
+  defaultValues: [...STYLE_DEFAULT_VALUES],
 } as const satisfies Types.ProfileTaggingOptionsData;
 
 export const TAGS = {
@@ -75,4 +62,25 @@ export const PLACEMENT_LOCATIONS = {
   schema: z.string().trim().optional(),
   required: false,
   inputSize: "md",
+  defaultValues: [...PLACEMENT_DEFAULT_VALUES],
 } as const satisfies Types.ProfileTaggingOptionsData;
+
+// Wait on Inks and Needles
+
+// export const INKS = {
+//   label: "Inks",
+//   id: "inks",
+//   type: "select",
+//   schema: z.string().trim().optional(),
+//   required: false,
+//   inputSize: "md",
+// } as const satisfies Types.ProfileTaggingOptionsData;
+
+// export const NEEDLES = {
+//   label: "Needles",
+//   id: "needles",
+//   type: "select",
+//   schema: z.string().trim().optional(),
+//   required: false,
+//   inputSize: "md",
+// } as const satisfies Types.ProfileTaggingOptionsData;

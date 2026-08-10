@@ -1,7 +1,7 @@
 import Link from "next/link";
 // Local @
 import { type TattooRequest } from "@/db/types";
-import { getLastThreeTattooRequests } from "@/db/tattooRequest";
+import { getLastThreeTattooRequests } from "@/db/api/tattooRequest";
 import { createSSClient } from "@/auth/server";
 
 // hyperink UI

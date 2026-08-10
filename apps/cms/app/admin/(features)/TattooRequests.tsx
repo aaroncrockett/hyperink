@@ -14,7 +14,7 @@ import {
   TATT_REQ_BASE_FORM_KEYS,
   TATT_REQ_ENTRY_FORM_SHORT_DISPLAY_LIST,
   TATT_REQ_ENTRY_FORM_SHORT_DISPLAY_KEYS,
-} from "@/db/tattooRequest";
+} from "@/db/api/tattooRequest";
 import { ADMIN_TATT_REQ } from "@/consts";
 
 const gridColCls =
@@ -68,14 +68,11 @@ export function TattooRequests({
                       (formKey, id) => {
                         return (
                           <span className="truncate" key={id}>
-                            {/* {formKey === "created_at" && requests.created_at
-                              ?
-                              : requests[formKey]} */}
-                            {formKey === "created_at" &&
-                              requests.created_at &&
-                              formatDate(requests.created_at, {
-                                dateStyle: "short",
-                              })}
+                            {formKey === "created_at" && requests.created_at
+                              ? formatDate(requests.created_at, {
+                                  dateStyle: "short",
+                                })
+                              : requests[formKey]}
                           </span>
                         );
                       },
@@ -119,13 +116,12 @@ export function TattooRequests({
                       return (
                         <span className="truncate" key={id}>
                           <span className="truncate" key={id}>
-                            {/* {formKey === "created_at" && requests.created_at
+                            {formKey === "created_at" && requests.created_at
                               ? formatDate(requests.created_at, {
                                   dateStyle: "short",
                                 })
-                              : ""} */}
+                              : requests[formKey]}
                           </span>
-                          {requests[formKey]}
                         </span>
                       );
                     })}

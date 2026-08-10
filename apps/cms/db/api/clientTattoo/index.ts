@@ -1,4 +1,4 @@
-import type { ClientTattoo as ClientTattooDb } from "../types";
+import type { ClientTattoo as ClientTattooDb } from "../../types";
 import { EDITABLE_CLIENT_TATT_COLS_LIST as EDITABLE_CLIENT_TATT_COLS_LIST_DB } from "@hyperinkstudio/db";
 
 export type ClientTattoo = ClientTattooDb;

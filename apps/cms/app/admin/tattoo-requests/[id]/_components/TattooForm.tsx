@@ -13,7 +13,7 @@ import {
 
 // Local @/db
 import { type TattooRequest } from "@/db/types";
-import { TATT_REQ_FOLLOW_UP_FORM_LIST } from "@/db/tattooRequest";
+import { TATT_REQ_FOLLOW_UP_FORM_LIST } from "@/db/api/tattooRequest";
 // Local
 import { createAClientTattooAndHandleClient } from "../actions";
 

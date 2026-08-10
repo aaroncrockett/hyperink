@@ -18,12 +18,12 @@ export function Page({
   children,
   cls,
   displayCls = "flex flex-col",
-  gapCls = "gap-y-4",
+  gapCls = "gap-4",
   heightCls = "h-full",
   layoutOptCls,
   marginCls = "mx-auto",
   maxWidthCls = "max-w-275",
-  paddingCls = "px-4 !py-6 lg:py-6!",
+  paddingCls = "px-4 py-5",
   widthCls = "w-full",
   ...props
 }: PageProps) {

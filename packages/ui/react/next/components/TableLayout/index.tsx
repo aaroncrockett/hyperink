@@ -25,10 +25,10 @@ export function TableLayout({
   paddingCls = "p-2",
 }: RowsProps) {
   return (
-    <>
+    <div className="w-full overflow-x-auto">
       <div
         className={cn(
-          "grid",
+          "grid min-w-max",
           cls,
           gridColCls,
           gridOptsCls,
@@ -41,6 +41,6 @@ export function TableLayout({
       </div>
 
       {children}
-    </>
+    </div>
   );
 }

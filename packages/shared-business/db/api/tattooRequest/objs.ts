@@ -5,6 +5,7 @@ export const TATT_REQ_BASE_FORM = {
   preferred_name: BASE.PREFERRED_NAME,
   email: BASE.EMAIL,
   phone: BASE.PHONE,
+  created_at: BASE.CREATED_AT,
 } as const satisfies Partial<
   Record<Types.TattooRequestFormKey, Types.TattooRequestData<"type">>
 >;

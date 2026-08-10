@@ -6,4 +6,6 @@ import { Data } from "@hyperinkstudio/shared-business/types";
 
 export type ProfileTaggingOptionsKey = keyof ProfileTaggingOptions;
 
-export type ProfileTaggingOptionsData = Data<ProfileTaggingOptionsKey> & {};
+export type ProfileTaggingOptionsData = Data<ProfileTaggingOptionsKey> & {
+  defaultValues?: string[];
+};

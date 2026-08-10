@@ -1,4 +1,4 @@
-import { LOOKUP_COLS_LIST } from "@/db/clientPersons";
+import { LOOKUP_COLS_LIST } from "@/db/api/clientPersons";
 import type { ClientTable } from "@hyperinkstudio/db";
 
 export function ClientInputLookup({
