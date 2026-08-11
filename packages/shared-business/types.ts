@@ -6,10 +6,13 @@ export type SelectOption = {
   value: string;
 };
 
+// ** ************************ ** //
+
 export type Data<T> = {
   label: string;
   id: T;
   defaultValue?: string;
+  display: boolean;
   disabled?: string;
   inputSize?: "sm" | "md" | "lg";
   placeholder?: string;
@@ -35,4 +38,20 @@ export type Data<T> = {
 // minLength?: number;
 // maxLength?: number;
 
-// ************************ //
+// ** ************************ ** //
+
+export type Json =
+  | string
+  | number
+  | boolean
+  | null
+  | { [key: string]: Json | undefined }
+  | Json[];
+
+export type JsonToStringArray<T> = {
+  [K in keyof T]: Json extends T[K] ? string[] : T[K];
+};
+
+export type SelectStringArrays<T> = {
+  [K in keyof T as T[K] extends string[] ? K : never]: T[K];
+};

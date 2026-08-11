@@ -2,16 +2,16 @@
 import Link from "next/link";
 
 // @/db
-import { type TaggingOptionsValues } from "@/db/api/profileTaggingOpts";
 
-// local
-// import type { ProfileTaggingOptions } from "@/db/types";
+import { type ProfileTaggingOptionsDisplay } from "@/db/api/profileTaggingOpts";
+
+// @/consts
 import { ADMIN_TAGGING_OPTS } from "@/consts";
 
 export function TaggingOptsDisplay({
   opts,
 }: {
-  opts: TaggingOptionsValues | null;
+  opts: ProfileTaggingOptionsDisplay | null;
 }) {
   return (
     <>

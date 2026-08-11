@@ -5,14 +5,13 @@ import { createSSClient } from "@/auth/server";
 // @/db
 import {
   getDisplayProfileTaggingOpts,
-  TAGGING_OPTS_BASE_FORM,
-  type TaggingOptionsValues,
+  type ProfileTaggingOptionsDisplay,
 } from "@/db/api/profileTaggingOpts";
 
 // Local
 import { OptionsForm } from "./_components/OptionsForm";
 
-type TaggingOptsFormKey = keyof typeof TAGGING_OPTS_BASE_FORM;
+type TaggingOptsFormKey = keyof ProfileTaggingOptionsDisplay;
 
 type TattooRequestPageProps = {
   params: Promise<{
@@ -30,7 +29,7 @@ export default async function TaggingOptsPage({
     await getDisplayProfileTaggingOpts(serverClient);
 
   const singleTaggingOpts = taggingOpts?.[0]
-    ? ({ ...taggingOpts[0] } as TaggingOptionsValues)
+    ? ({ ...taggingOpts[0] } as ProfileTaggingOptionsDisplay)
     : null;
 
   if (singleTaggingOpts === null) return;

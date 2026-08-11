@@ -11,16 +11,16 @@ import {
 } from "@hyperinkstudio/ui-react-next/components";
 
 // Local @/db
-import { TAGGING_OPTS_BASE_FORM } from "@/db/api/profileTaggingOpts";
+import { TAGGING_OPTS_DISPLAY_COLLECTION } from "@/db/api/profileTaggingOpts";
 
-type TaggingOptsFormKey = keyof typeof TAGGING_OPTS_BASE_FORM;
+type TaggingOptsFormKey = keyof ProfileTaggingOptionsDisplay;
 
-import { type TaggingOptionsValues } from "@/db/api/profileTaggingOpts";
+import { type ProfileTaggingOptionsDisplay } from "@/db/api/profileTaggingOpts";
 // Local
 import { OptionsChips } from "./OptionsChips";
 
 type Props = {
-  option: TaggingOptionsValues;
+  option: ProfileTaggingOptionsDisplay;
   paramId: TaggingOptsFormKey;
 };
 
@@ -32,7 +32,7 @@ type Option = {
 
 type OptionState = {
   option: Option;
-  errors: null | Error;
+  errors: null | Record<string, string>;
 };
 
 export function OptionsForm({ option, paramId }: Props) {
@@ -125,10 +125,11 @@ export function OptionsForm({ option, paramId }: Props) {
           +
         </button>
       </div>
+
       <Input
         id={paramId}
         name={paramId}
-        label={TAGGING_OPTS_BASE_FORM[paramId].label}
+        label={TAGGING_OPTS_DISPLAY_COLLECTION?.[paramId]?.label ?? ""}
         type="hidden"
       />
       <OptionsChips

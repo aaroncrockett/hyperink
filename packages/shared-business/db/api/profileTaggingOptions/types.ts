@@ -1,11 +1,19 @@
-import { z } from "zod";
-//local
-import type { ProfileTaggingOptions } from "@hyperinkstudio/db/supabase/types";
+import type { ProfileTaggingOptions as ProfileTaggingOptionsDb } from "@hyperinkstudio/db/supabase/types";
 
 import { Data } from "@hyperinkstudio/shared-business/types";
 
-export type ProfileTaggingOptionsKey = keyof ProfileTaggingOptions;
+// example on what we do when we need to replace a key
+// export type ProfileTaggingOptions = Omit<
+//   ProfileTaggingOptionsDb,
+//   "collections"
+// > & {
+//   dictionary: ProfileTaggingOptionsDb["collections"];
+// };
 
-export type ProfileTaggingOptionsData = Data<ProfileTaggingOptionsKey> & {
+export type ProfileTaggingOptions = ProfileTaggingOptionsDb;
+
+export type ProfileTaggingOptionsKeys = keyof ProfileTaggingOptions;
+
+export type ProfileTaggingOptionsData = Data<ProfileTaggingOptionsKeys> & {
   defaultValues?: string[];
 };

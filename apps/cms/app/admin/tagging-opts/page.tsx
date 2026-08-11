@@ -5,10 +5,9 @@ import { createSSClient } from "@/auth/server";
 // @/db
 import {
   getDisplayProfileTaggingOpts,
-  type TaggingOptionsValues,
+  type ProfileTaggingOptionsDisplay,
 } from "@/db/api/profileTaggingOpts";
-// @/app
-import { getUserData } from "@/app/admin/getUserData";
+
 // Local
 import { TaggingOptsDisplay } from "./_components/TaggingOptsDisplay";
 
@@ -16,10 +15,8 @@ const serverClient = await createSSClient();
 const { data: taggingOpts } = await getDisplayProfileTaggingOpts(serverClient);
 
 const singleTaggingOpts = taggingOpts?.[0]
-  ? ({ ...taggingOpts[0] } as TaggingOptionsValues)
+  ? ({ ...taggingOpts[0] } as ProfileTaggingOptionsDisplay)
   : null;
-
-// const { pvtProfileId } = await getUserData();
 
 export default function TaggingOptsPage() {
   return (

@@ -1,41 +1,73 @@
-import { z } from "zod";
-
 import {
-  upsertProfileTaggingOpts as upsertProfileTaggingOptsSrc,
+  // upsertProfileTaggingOpts as upsertProfileTaggingOptsSrc,
   getProfileTaggingOpts as getProfileTaggingOptsSrc,
   Client,
 } from "@hyperinkstudio/db";
 
-import type { ProfileTaggingOptions as ProfileTaggingOptionsSrc } from "../../types";
+import {
+  createDataCollection,
+  getKeysFromCollection,
+  getValuesFromCollection,
+} from "@hyperinkstudio/utils";
 
 import {
-  TAGGING_OPTS_BASE_FORM_KEYS as TAGGING_OPTS_BASE_FORM_KEYS_SRC,
-  // PLACEMENT_DEFAULT_VALUES as PLACEMENT_DEFAULT_VALUES_SRC,
-  // STYLE_DEFAULT_VALUES as STYLE_DEFAULT_VALUES_SRC,
-  // SIZE_DEFAULT_VALUES as SIZE_DEFAULT_VALUES_SRC,
-  TAGGING_OPTS_BASE_FORM as TAGGING_OPTS_BASE_FORM_SRC,
+  PLACEMENT_DEFAULT_VALUES as PLACEMENT_DEFAULT_VALUES_SRC,
+  STYLE_DEFAULT_VALUES as STYLE_DEFAULT_VALUES_SRC,
+  SIZE_DEFAULT_VALUES as SIZE_DEFAULT_VALUES_SRC,
+  type ProfileTaggingOptions as ProfileTaggingOptions_Src,
+  type ProfileTaggingOptionsKeys as ProfileTaggingOptionsKeys_Src,
+  type ProfileTaggingOptionsData as ProfileTaggingOptionsData_Src,
 } from "@hyperinkstudio/shared-business/profileTaggingOptions";
 
-// export const PLACEMENT_DEFAULT_VALUES = PLACEMENT_DEFAULT_VALUES_SRC;
-// export const STYLE_DEFAULT_VALUES = STYLE_DEFAULT_VALUES_SRC;
-// export const SIZE_DEFAULT_VALUES = SIZE_DEFAULT_VALUES_SRC;
-export const TAGGING_OPTS_BASE_FORM = TAGGING_OPTS_BASE_FORM_SRC;
+import type {
+  JsonToStringArray,
+  SelectStringArrays,
+} from "@hyperinkstudio/shared-business/types";
 
-export type TaggingOptionsValues = {
-  [K in (typeof TAGGING_OPTS_BASE_FORM_KEYS)[number]]: string[];
-};
+// Supabase/database representation
+export type ProfileTaggingOptions_Db = ProfileTaggingOptions_Src;
+export type ProfileTaggingOptionsKeys = ProfileTaggingOptionsKeys_Src;
+export type ProfileTaggingOptionsData = ProfileTaggingOptionsData_Src;
 
-export const upsertProfileTaggingOpts = upsertProfileTaggingOptsSrc;
+// Front-end representation ALL -- easier to work with as string[]
+export type ProfileTaggingOptions = JsonToStringArray<ProfileTaggingOptions_Db>;
+// Front-end representation  DISPLAYS -- easier to work with as string[]
+export type ProfileTaggingOptionsDisplay =
+  SelectStringArrays<ProfileTaggingOptions>;
+
+export const PLACEMENT_DEFAULT_VALUES = PLACEMENT_DEFAULT_VALUES_SRC;
+export const STYLE_DEFAULT_VALUES = STYLE_DEFAULT_VALUES_SRC;
+export const SIZE_DEFAULT_VALUES = SIZE_DEFAULT_VALUES_SRC;
+
+import * as BASE from "@hyperinkstudio/shared-business/profileTaggingOptions/base";
+
+export const TAGGING_OPTS_DISPLAY_COLLECTION = createDataCollection<
+  ProfileTaggingOptionsKeys,
+  ProfileTaggingOptionsData
+>({
+  avail_tattoo_sizes: BASE.AVAIL_SIZES,
+  collections: BASE.COLLECTIONS,
+  inks: BASE.INKS,
+  needles: BASE.NEEDLES,
+  placement_locations: BASE.PLACEMENT_LOCATIONS,
+  studio_locations: BASE.STUDIO_LOCATIONS,
+  styles: BASE.STYLES,
+  tags: BASE.TAGS,
+});
+
+export const USE_DEFAULTS = BASE.USE_DEFAULTS;
+
+export const TAGGING_OPTS_DISPLAY_KEYS = getKeysFromCollection(
+  TAGGING_OPTS_DISPLAY_COLLECTION,
+);
+
+export const TAGGING_OPTS_DISPLAY_VALUES = getValuesFromCollection(
+  TAGGING_OPTS_DISPLAY_COLLECTION,
+);
 
 export const getDisplayProfileTaggingOpts = async (client: Client) => {
   const { error, data } = await getProfileTaggingOptsSrc(client, [
-    ...TAGGING_OPTS_BASE_FORM_KEYS_SRC,
+    ...TAGGING_OPTS_DISPLAY_KEYS,
   ]);
   return { error, data };
 };
-
-export const TAGGING_OPTS_BASE_FORM_KEYS = TAGGING_OPTS_BASE_FORM_KEYS_SRC;
-
-export type ProfileTaggingOptions = ProfileTaggingOptionsSrc;
-
-export type ProfileTaggingOptsKey = keyof ProfileTaggingOptions;

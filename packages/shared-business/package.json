@@ -9,8 +9,11 @@
     ".": "./src/index.ts",
     "./types": "./types.ts",
     "./options": "./options.ts",
-    "./tattooRequest": "./db/api/tattooRequest/index.ts",
-    "./profileTaggingOptions": "./db/api/profileTaggingOptions/index.ts"
+    "./profileTaggingOptions": "./db/api/profileTaggingOptions/index.ts",
+    "./profileTaggingOptions/base": "./db/api/profileTaggingOptions/base.ts",
+    "./profileTaggingOptions/types": "./db/api/profileTaggingOptions/types.ts",
+    "./profileTaggingOptions/options": "./db/api/profileTaggingOptions/options.ts",
+    "./tattooRequest": "./db/api/tattooRequest/index.ts"
   },
   "scripts": {
     "check": "tsc --noEmit"
