@@ -14,6 +14,6 @@ export type ProfileTaggingOptions = ProfileTaggingOptionsDb;
 
 export type ProfileTaggingOptionsKeys = keyof ProfileTaggingOptions;
 
-export type ProfileTaggingOptionsData = Data<ProfileTaggingOptionsKeys> & {
+export type ProfileTaggingOptionsBase = Data<ProfileTaggingOptionsKeys> & {
   defaultValues?: string[];
 };

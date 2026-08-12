@@ -1,90 +1,92 @@
 "use server";
-import { type TattooRequest, type ClientTattoo } from "@/db/types";
-import { TATT_REQ_FOLLOW_UP_FORM_SCHEMA } from "@/db/api/tattooRequest";
-import { createClientPerson } from "@/db/api/clientPersons";
-import { createClientTattoo } from "@/db/api/clientTattoo";
-import { zodIssuesToErrors } from "@/db/helpers";
+import z from "zod";
+// @/app
+import { getUserData } from "@/app/admin/getUserData";
+
+// @/db
+import {
+  ProfileTaggingOptions,
+  taggingOptsSchema,
+  upsertProfileTaggingOpts,
+} from "@/db/api/profileTaggingOpts";
+// Hyperink
+import { zUTILS_odIssuesToErrors_REPLACEMENT } from "@hyperinkstudio/utils";
 import { createSSClient } from "@/auth/server";
 
-type TattooRequestForm = TattooRequest &
-  Partial<ClientTattoo> & {
-    existingClient: string;
-    clientId?: string;
-  };
+type TaggingOptionKey = keyof z.infer<typeof taggingOptsSchema>;
 
-type TattooFormState = {
-  tattooRequest: TattooRequestForm | ClientTattoo | null;
-  errors: Partial<Record<keyof TattooRequestForm, string>> | null;
+type OptionsFormState = {
+  options: string;
+  name: TaggingOptionKey | string;
+  errors: Record<string, string> | null;
 };
 
-export async function createAClientTattooAndHandleClient(
-  prevState: TattooFormState,
+export async function upsertOptionRecord(
+  prevState: OptionsFormState,
   formData: FormData,
-): Promise<TattooFormState> {
+): Promise<OptionsFormState> {
+  const { pvtProfileId } = await getUserData();
   const formDataObject = Object.fromEntries(formData.entries());
 
-  const parsedForm = TATT_REQ_FOLLOW_UP_FORM_SCHEMA.safeParse(formDataObject);
+  const parsedForm = taggingOptsSchema.safeParse(formDataObject.options);
 
-  const actionResults: TattooFormState = {
-    tattooRequest: null,
+  const actionResults: OptionsFormState = {
+    name: "",
+    options: "",
     errors: null,
   };
 
   if (!parsedForm.success) {
     const { issues } = parsedForm.error;
 
-    actionResults.errors = zodIssuesToErrors(issues);
+    const zodErrors = zUTILS_odIssuesToErrors_REPLACEMENT(issues);
+
+    actionResults.errors = {
+      ...actionResults.errors,
+      ...zodErrors,
+    };
 
     return actionResults;
   }
-  const parsedFormData = parsedForm.data as Partial<TattooRequest>;
+
+  const name = formData.get("name") as keyof ProfileTaggingOptions;
+
+  if (parsedForm.data === undefined) {
+    actionResults.errors = { data: "undefined" };
+    return actionResults;
+  }
+
+  const optionsStr = parsedForm?.data;
+
+  const optionsArray = optionsStr.split(",").filter(Boolean);
 
   const ssClient = await createSSClient();
 
-  let clientId = formDataObject.clientId as string;
-
-  if (formDataObject.existingClient === "true") {
-    console.log("existing client");
-  }
-
-  if (formDataObject.existingClient === "false" && clientId === "") {
-    console.log("NOT existing client");
-    const { error, data } = await createClientPerson(ssClient, {
-      email: parsedFormData.email,
-      phone: parsedFormData.phone,
-    });
-
-    clientId = data?.id ?? "";
-
-    if (error) {
-      console.error("not existing client function");
-      console.error(error);
-      actionResults.errors = {
-        client_id: "Failed to update client.",
-      };
-
-      return actionResults;
-    }
-  }
-
-  const { data, error } = await createClientTattoo(ssClient, {
-    client_id: clientId,
-    type: "cool tattoo TYPE",
-    title: "Im going to name this something!",
-  });
+  const { data, error } = await upsertProfileTaggingOpts(
+    ssClient,
+    pvtProfileId,
+    {
+      [name]: optionsArray,
+    },
+  );
 
   if (error) {
-    console.error("create client tattoo");
-    console.error(error);
-
     actionResults.errors = {
-      root: "Failed to create tattoo request.",
-    } as TattooFormState["errors"];
-
+      ...actionResults.errors,
+      dbError: "Failed to create Tattoo Options.",
+    };
     return actionResults;
   }
 
-  actionResults.tattooRequest = data;
+  actionResults.name = name;
+
+  const resultsData = data?.[name];
+
+  const resultsDataString = Array.isArray(resultsData)
+    ? resultsData.filter(Boolean).join(",")
+    : String(resultsData ?? "");
+
+  actionResults.options = resultsDataString;
 
   return actionResults;
 }

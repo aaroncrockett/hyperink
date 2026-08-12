@@ -3,10 +3,7 @@ import { ReactNode, ComponentPropsWithoutRef, forwardRef } from "react";
 //hyperink
 import { cn } from "@hyperinkstudio/utils";
 
-type FormProps = Omit<
-  ComponentPropsWithoutRef<"form">,
-   "children"
-> & {
+type FormProps = Omit<ComponentPropsWithoutRef<"form">, "children"> & {
   children: ReactNode;
   submitBtnCls?: string;
   submitBtnColorCls?: string;
@@ -31,12 +28,7 @@ export const Form = forwardRef<HTMLFormElement, FormProps>(
     ref,
   ) => {
     return (
-      <form
-        ref={ref}
-        action={action}
-        className={className}
-        {...props}
-      >
+      <form ref={ref} action={action} className={className} {...props}>
         {children}
         <button
           type="submit"

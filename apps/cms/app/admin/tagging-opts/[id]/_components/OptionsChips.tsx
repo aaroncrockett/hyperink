@@ -18,7 +18,7 @@ export function OptionsChips({
             {options.map((option) => (
               <span
                 key={option}
-                className="chip bg-secondary-100-900 font-bold text-lg text-surface-950-50 cursor-pointer"
+                className="chip bg-primary-50-950/40 hover:bg-surface-400-600 font-bold text-lg text-surface-950-50 cursor-pointer"
                 onClick={() => onSelect(option, "remove")}
               >
                 {option}
@@ -34,7 +34,7 @@ export function OptionsChips({
             {unselectedOptions.map((option) => (
               <span
                 key={option}
-                className="chip bg-surface-500 font-bold text-lg border-2 border-surface-500 cursor-pointer"
+                className="chip bg-surface-500 hover:bg-primary-400-600 font-bold text-lg border-2 border-surface-500 cursor-pointer"
                 onClick={() => onSelect(option, "add")}
               >
                 {option}

@@ -3,13 +3,20 @@ import { TABLE_PROFILE_TAGGING_OPTS as TABLE } from "./consts";
 
 export async function upsertProfileTaggingOpts(
   authedClient: Client,
+  userId: string,
   params: Partial<ProfileTaggingOptions>,
 ) {
   const { data, error } = await authedClient
     .from(TABLE)
-    .upsert(params as ProfileTaggingOptions, {
-      onConflict: "user_id",
-    })
+    .upsert(
+      {
+        ...params,
+        user_id: userId,
+      } as ProfileTaggingOptions,
+      {
+        onConflict: "user_id",
+      },
+    )
     .select()
     .single();
 

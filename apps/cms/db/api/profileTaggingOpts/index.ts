@@ -1,24 +1,22 @@
+import z from "zod";
+// hyperink db
 import {
-  // upsertProfileTaggingOpts as upsertProfileTaggingOptsSrc,
+  upsertProfileTaggingOpts as upsertProfileTaggingOptsSrc,
   getProfileTaggingOpts as getProfileTaggingOptsSrc,
   Client,
 } from "@hyperinkstudio/db";
-
+// hyperink utils
 import {
   createDataCollection,
   getKeysFromCollection,
   getValuesFromCollection,
 } from "@hyperinkstudio/utils";
-
+// hyperink shared business
 import {
-  PLACEMENT_DEFAULT_VALUES as PLACEMENT_DEFAULT_VALUES_SRC,
-  STYLE_DEFAULT_VALUES as STYLE_DEFAULT_VALUES_SRC,
-  SIZE_DEFAULT_VALUES as SIZE_DEFAULT_VALUES_SRC,
   type ProfileTaggingOptions as ProfileTaggingOptions_Src,
   type ProfileTaggingOptionsKeys as ProfileTaggingOptionsKeys_Src,
-  type ProfileTaggingOptionsData as ProfileTaggingOptionsData_Src,
+  type ProfileTaggingOptionsBase as ProfileTaggingOptionsBase_Src,
 } from "@hyperinkstudio/shared-business/profileTaggingOptions";
-
 import type {
   JsonToStringArray,
   SelectStringArrays,
@@ -27,7 +25,7 @@ import type {
 // Supabase/database representation
 export type ProfileTaggingOptions_Db = ProfileTaggingOptions_Src;
 export type ProfileTaggingOptionsKeys = ProfileTaggingOptionsKeys_Src;
-export type ProfileTaggingOptionsData = ProfileTaggingOptionsData_Src;
+export type ProfileTaggingOptionsBase = ProfileTaggingOptionsBase_Src;
 
 // Front-end representation ALL -- easier to work with as string[]
 export type ProfileTaggingOptions = JsonToStringArray<ProfileTaggingOptions_Db>;
@@ -35,15 +33,11 @@ export type ProfileTaggingOptions = JsonToStringArray<ProfileTaggingOptions_Db>;
 export type ProfileTaggingOptionsDisplay =
   SelectStringArrays<ProfileTaggingOptions>;
 
-export const PLACEMENT_DEFAULT_VALUES = PLACEMENT_DEFAULT_VALUES_SRC;
-export const STYLE_DEFAULT_VALUES = STYLE_DEFAULT_VALUES_SRC;
-export const SIZE_DEFAULT_VALUES = SIZE_DEFAULT_VALUES_SRC;
-
 import * as BASE from "@hyperinkstudio/shared-business/profileTaggingOptions/base";
 
 export const TAGGING_OPTS_DISPLAY_COLLECTION = createDataCollection<
   ProfileTaggingOptionsKeys,
-  ProfileTaggingOptionsData
+  ProfileTaggingOptionsBase
 >({
   avail_tattoo_sizes: BASE.AVAIL_SIZES,
   collections: BASE.COLLECTIONS,
@@ -55,7 +49,7 @@ export const TAGGING_OPTS_DISPLAY_COLLECTION = createDataCollection<
   tags: BASE.TAGS,
 });
 
-export const USE_DEFAULTS = BASE.USE_DEFAULTS;
+export const taggingOptsSchema = z.string().optional();
 
 export const TAGGING_OPTS_DISPLAY_KEYS = getKeysFromCollection(
   TAGGING_OPTS_DISPLAY_COLLECTION,
@@ -64,6 +58,8 @@ export const TAGGING_OPTS_DISPLAY_KEYS = getKeysFromCollection(
 export const TAGGING_OPTS_DISPLAY_VALUES = getValuesFromCollection(
   TAGGING_OPTS_DISPLAY_COLLECTION,
 );
+
+export const upsertProfileTaggingOpts = upsertProfileTaggingOptsSrc;
 
 export const getDisplayProfileTaggingOpts = async (client: Client) => {
   const { error, data } = await getProfileTaggingOptsSrc(client, [

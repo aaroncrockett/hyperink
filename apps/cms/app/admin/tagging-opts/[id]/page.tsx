@@ -13,14 +13,12 @@ import { OptionsForm } from "./_components/OptionsForm";
 
 type TaggingOptsFormKey = keyof ProfileTaggingOptionsDisplay;
 
-type TattooRequestPageProps = {
+type PageProps = {
   params: Promise<{
     id: TaggingOptsFormKey;
   }>;
 };
-export default async function TaggingOptsPage({
-  params,
-}: TattooRequestPageProps) {
+export default async function TaggingOptsPage({ params }: PageProps) {
   const paramId = await params;
 
   const serverClient = await createSSClient();

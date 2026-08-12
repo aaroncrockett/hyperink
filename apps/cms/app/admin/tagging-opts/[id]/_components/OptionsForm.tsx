@@ -1,7 +1,7 @@
 "use client";
 
 // React
-import { useState } from "react";
+import { useState, useActionState } from "react";
 
 // Hyper Ink
 import {
@@ -12,39 +12,55 @@ import {
 
 // Local @/db
 import { TAGGING_OPTS_DISPLAY_COLLECTION } from "@/db/api/profileTaggingOpts";
+import { type ProfileTaggingOptionsDisplay } from "@/db/api/profileTaggingOpts";
+
+// Local
+import { OptionsChips } from "./OptionsChips";
+import { upsertOptionRecord } from "../actions";
 
 type TaggingOptsFormKey = keyof ProfileTaggingOptionsDisplay;
 
-import { type ProfileTaggingOptionsDisplay } from "@/db/api/profileTaggingOpts";
-// Local
-import { OptionsChips } from "./OptionsChips";
-
-type Props = {
+type PageProps = {
   option: ProfileTaggingOptionsDisplay;
   paramId: TaggingOptsFormKey;
 };
 
-type Option = {
+type OptionParts = {
   name: TaggingOptsFormKey;
   selected: string;
   unselected: string[];
 };
 
 type OptionState = {
-  option: Option;
+  option: OptionParts;
+};
+
+type OptionActionState = {
+  name: TaggingOptsFormKey;
+  options: string;
   errors: null | Record<string, string>;
 };
 
-export function OptionsForm({ option, paramId }: Props) {
+export function OptionsForm({ option, paramId }: PageProps) {
   const initialState: OptionState = {
     option: {
       name: paramId,
       selected: option[paramId].join(","),
       unselected: [],
     },
-    errors: null,
   };
   const [optionState, setOption] = useState(initialState);
+
+  const initActionState: OptionActionState = {
+    name: optionState.option.name,
+    options: optionState.option.selected,
+    errors: null,
+  };
+
+  const [actionState, formAction] = useActionState(
+    upsertOptionRecord,
+    initActionState,
+  );
 
   function handleSelect(option: string, action: string) {
     const selected = optionState.option.selected.split(",");
@@ -107,10 +123,20 @@ export function OptionsForm({ option, paramId }: Props) {
 
   return (
     <Form
-      className="flex flex-col gap-4"
-      submitBtnColorCls="bg-secondary-100-900"
+      className="flex flex-col gap-4 "
+      submitBtnColorCls="preset-tonal-secondary btn"
+      submitBtnCls="md:w-1/4 sm:w-1/2 h-full"
+      action={formAction}
     >
-      <div className="flex gap-2">
+      <div className="flex gap-2 ">
+        <input type="hidden" name="name" value={paramId} />
+        <input
+          value={optionState.option.selected}
+          readOnly
+          name="options"
+          className="input"
+          type="hidden"
+        />
         <input
           value={newOption}
           onChange={(e) => setNewOption(e.target.value)}
@@ -126,18 +152,12 @@ export function OptionsForm({ option, paramId }: Props) {
         </button>
       </div>
 
-      <Input
-        id={paramId}
-        name={paramId}
-        label={TAGGING_OPTS_DISPLAY_COLLECTION?.[paramId]?.label ?? ""}
-        type="hidden"
-      />
       <OptionsChips
         optionStr={optionState.option.selected}
         unselectedOptions={optionState.option.unselected}
         onSelect={(option, action) => handleSelect(option, action)}
       />
-      {optionState.errors && <FormMetaErrors errors={optionState.errors} />}
+      {actionState.errors && <FormMetaErrors errors={actionState.errors} />}
     </Form>
   );
 }

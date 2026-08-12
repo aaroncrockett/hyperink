@@ -13,7 +13,7 @@ export default async function RootLayout({
   return (
     <>
       {userData && userData.pvtProfileId && (
-        <div className="flex flex-col lg:grid lg:grid-cols-[200px_1fr]  ">
+        <div className="flex flex-col lg:grid lg:grid-cols-[200px_1fr] w-full ">
           <div className="hidden lg:block bg-surface-800-200">
             <NavClientWrapper />
           </div>
