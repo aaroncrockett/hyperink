@@ -3,7 +3,7 @@ import { type TattooRequest, type ClientTattoo } from "@/db/types";
 import { TATT_REQ_FOLLOW_UP_FORM_SCHEMA } from "@/db/api/tattooRequest";
 import { createClientPerson } from "@/db/api/clientPersons";
 import { createClientTattoo } from "@/db/api/clientTattoo";
-import { zodIssuesToErrors } from "@/db/helpers";
+import { zodIssuesToErrors } from "@hyperinkstudio/utils";
 import { createSSClient } from "@/auth/server";
 
 type TattooRequestForm = TattooRequest &

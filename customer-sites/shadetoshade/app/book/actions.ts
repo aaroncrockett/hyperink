@@ -3,7 +3,7 @@ import {
   TATT_REQ_FOLLOW_UP_FORM_SCHEMA,
   createTattooRequest,
 } from "@/db/tattooRequest";
-import { zodIssuesToErrors } from "@/db/helpers";
+import { zodIssuesToErrors } from "@hyperinkstudio/utils";
 import { createServiceClient } from "@/db/serviceClient";
 
 import type { TattooRequest } from "@/db/types";

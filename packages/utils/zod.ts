@@ -1,4 +1,4 @@
-export function zUTILS_odIssuesToErrors_REPLACEMENT(
+export function zodIssuesToErrors(
   issues: z.ZodIssue[],
 ): Record<string, string> {
   return Object.fromEntries(

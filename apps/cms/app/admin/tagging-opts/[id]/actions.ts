@@ -10,7 +10,7 @@ import {
   upsertProfileTaggingOpts,
 } from "@/db/api/profileTaggingOpts";
 // Hyperink
-import { zUTILS_odIssuesToErrors_REPLACEMENT } from "@hyperinkstudio/utils";
+import { zodIssuesToErrors } from "@hyperinkstudio/utils";
 import { createSSClient } from "@/auth/server";
 
 type TaggingOptionKey = keyof z.infer<typeof taggingOptsSchema>;
@@ -39,7 +39,7 @@ export async function upsertOptionRecord(
   if (!parsedForm.success) {
     const { issues } = parsedForm.error;
 
-    const zodErrors = zUTILS_odIssuesToErrors_REPLACEMENT(issues);
+    const zodErrors = zodIssuesToErrors(issues);
 
     actionResults.errors = {
       ...actionResults.errors,
