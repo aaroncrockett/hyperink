@@ -25,14 +25,7 @@ Docs are currenltly simplified as notes in the root directory.
 
 2. _Title the issue_ - starting with one of the above prefixes
 
-- Then "-", followed by a short description
-- IE: feat - create a client
-
 3. _Assign the issue_ to yourself
-
-4. _Hit Create_ After creating the issue, you will need to return and edit it shortly afterward to add the branch name as the first line of the description.
-
-The issue number is required to create the branch name, so create the issue first, then use the generated issue number when creating the branch.
 
 ## Workflow - Create a branch on Git
 
@@ -42,29 +35,19 @@ The issue number is required to create the branch name, so create the issue firs
 
 ## Workflow - Back to Github interface
 
-1. make sure you tag the issue with the appropriate tag from the tag list above.
+1. Put the git branch being used as the first line. If multiple branches, put them as they are created.
 
-- git branch --show-current
-
-2. Put the git branch being used as the first line. If multiple branches, put them as they are created.
-
-3. Write details about the issue. Write a checklist if applicable to break up tasks.
+2. Write details about the issue. Write a checklist if applicable to break up tasks.
 
 ## Workflow - Git commits
 
 1. _Commit messages_
 
-Avoid combining unrelated tasks into a single commit. If a commit contains multiple unrelated changes, prefix it with wip: followed by a brief summary. Use WIP commits sparingly.
+Avoid combining unrelated tasks into a single commit. On large issues it is OK to up WIP as a solo dev, just ensure the final squash merge clearly describes changes. Avoid wip commits on when in teams. Never use wip commits when working dev. Never work directly on dev if there is more than one developer. Never work on main.
 
-Commit smaller groups of related files and changes frequently. This makes it easier to review changes, identify issues, and debug problems.
-
-It is not necessary to push to the remote repository with every local commit. Push changes periodically. However, commit small, discrete changes locally and often to create clear checkpoints during development.
-
-During the final stages of a feature, especially while performing QA, making small layout adjustments, or polishing details before merging, WIP commits are more acceptable. However, continue to keep commits focused on related changes whenever possible.
+Commit smaller groups of related files and changes frequently.
 
 A structured commit process helps organize thoughts, track progress, and make development easier to reason about. It also makes it easier to write the final commit details when merge --squashing.
-
-It does not need to be perfect—the squash merge is where the final commit history for main will be created. However, maintaining these practices during development still provides value in maintaining clarity for the developer and reviewers. It does not need to be perfect—the squash merge is where the final commit history for main will be created.
 
 ## Workflow: Squashing
 
@@ -105,12 +88,6 @@ Leave a space. Everything following the space is your description.
 
 Review the commits from the branch and copy the meaningful parts into the final commit description as items in the summary.
 
-In theory, all commits besides WIP commits, should make a good summary for the description. Review this, and make edits if necessary.
-
-Include the created and changed files in the commit description.
-
-Its ok to make the description more human readble. We often shorten commits to keep them short. But adjust grammer if necessary to be more clear.
-
 Ensure to not include WIP commits in the final description.
 
 Save and close.
@@ -120,7 +97,6 @@ Follow this format and order. See the example bellow for more clairity.
 - Commit message (properly formatted)
 - Summary of changes
 - Rationale (optional; include when it provides useful context or improves clarity)
-- changed files (copy from the text git provides and un-comment out.)
 
 Example of a final commit:
 
@@ -135,12 +111,6 @@ Summary:
 Rationale:
 
 - These components were built incrementally as the project developed, allowing their APIs and patterns to be shaped by real usage. Now that their purpose and usage are clearer, they are being standardized before the project grows further and moves toward launch.
-
-Changes to be committed:
-
-modified: apps/cms/app/admin/(features)/TattooRequests.tsx
-modified: apps/cms/app/admin/clients/create-client/page.tsx
-created: apps/cms/app/admin/client
 
 6. Push dev
 
