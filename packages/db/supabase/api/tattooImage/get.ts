@@ -1,5 +1,5 @@
 import { getPublicUrl } from "@hyperinkstudio/db/supabase/server";
-import { TABLE_TATTOO_IMAGE as TABLE, BUCKET } from "./consts";
+import { TABLE_TATTOO_IMAGE as TABLE, BUCKET_TATTOO as BUCKET } from "./consts";
 
 type QueryOptions = {
   pinned?: boolean;

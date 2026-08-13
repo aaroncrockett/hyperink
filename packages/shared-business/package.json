@@ -13,6 +13,9 @@
     "./profileTaggingOptions/base": "./db/api/profileTaggingOptions/base.ts",
     "./profileTaggingOptions/types": "./db/api/profileTaggingOptions/types.ts",
     "./profileTaggingOptions/options": "./db/api/profileTaggingOptions/options.ts",
+    "./flash": "./db/api/flash/index.ts",
+    "./flash/base": "./db/api/flash/base.ts",
+    "./flash/types": "./db/api/flash/types.ts",
     "./tattooRequest": "./db/api/tattooRequest/index.ts"
   },
   "scripts": {

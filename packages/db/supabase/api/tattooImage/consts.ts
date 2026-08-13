@@ -1,6 +1,6 @@
 import type { TattooImage } from "@hyperinkstudio/db";
 export const TABLE_TATTOO_IMAGE = "tattoo_image";
-export const BUCKET = "user-images";
+export const BUCKET_TATTOO = "user-images";
 
 export const TATTOO_IMAGE_COLS = [
   "id",

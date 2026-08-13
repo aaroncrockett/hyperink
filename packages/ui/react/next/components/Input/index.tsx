@@ -1,22 +1,23 @@
-import type { ComponentPropsWithoutRef } from "react";
+import type { ComponentPropsWithoutRef, ChangeEvent } from "react";
 // hyperink
 import { cn } from "@hyperinkstudio/utils/";
 
 type InputProps = Omit<ComponentPropsWithoutRef<"div">, "className"> & {
+  id: string;
+  label: string;
   defaultValue?: string;
   dir?: "row" | "col";
   disabled?: boolean;
   errorCls?: string;
   errors?: Record<string, string> | null;
   errorTxtColorCls?: string;
-  id: string;
   inputUtilCls?: string;
   inputCls?: string;
-  label: string;
   labelCls?: string;
   labelWeightCls?: string;
   labelUtilCls?: string;
-  name: string;
+  name?: string;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   readOnly?: boolean;
   required?: boolean;
   type?: React.HTMLInputTypeAttribute;
@@ -28,20 +29,21 @@ type InputProps = Omit<ComponentPropsWithoutRef<"div">, "className"> & {
 };
 
 export function Input({
+  id,
+  label,
+  name,
   defaultValue,
   dir = "col",
   disabled = false,
   errorCls,
   errors = {},
   errorTxtColorCls = "text-red-500",
-  id,
   inputCls,
   inputUtilCls = "input",
-  label,
   labelCls = "label font-bold",
   labelWeightCls = "font-bold",
   labelUtilCls = "label",
-  name,
+  onChange,
   readOnly,
   required = false,
   type = "text",
@@ -53,6 +55,7 @@ export function Input({
   ...props
 }: InputProps) {
   const computedLayout = dir === "row" ? "flex flex-row" : "flex flex-col";
+  const inputName = name ? name : id;
   return (
     <div
       className={cn(
@@ -74,13 +77,14 @@ export function Input({
       )}
       <input
         id={id}
-        name={name}
+        name={inputName}
         type={type}
         required={required}
         {...(value !== undefined ? { value } : {})}
         className={cn(inputUtilCls, inputCls)}
         disabled={disabled}
         defaultValue={defaultValue}
+        onChange={onChange}
         readOnly={readOnly}
       />
 

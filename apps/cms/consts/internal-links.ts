@@ -4,7 +4,9 @@ import {
   Info,
   LayoutDashboard,
   PartyPopperIcon,
+  PlugZap,
   TagIcon,
+  ZapIcon,
 } from "lucide-react";
 
 const ADMIN_ROOT = "/admin";
@@ -34,19 +36,27 @@ export const ADMIN = {
   name: "Admin",
   icon: LayoutDashboard,
 };
-
-// ADMIN LINKS
 export const ADMIN_TATT_REQ = {
   href: `${ADMIN_ROOT}/tattoo-requests`,
   name: "Tatt Requests",
   icon: PartyPopperIcon,
 };
-// ADMIN LINKS
 export const ADMIN_TAGGING_OPTS = {
   href: `${ADMIN_ROOT}/tagging-opts`,
   name: "Tagging Options",
   icon: TagIcon,
 };
+export const ADMIN_FLASH = {
+  href: `${ADMIN_ROOT}/flash`,
+  name: "Flash",
+  icon: ZapIcon,
+};
+export const ADMIN_FLASH_UPLOAD = {
+  href: `${ADMIN_ROOT}/flash/upload`,
+  name: "Upload Flash",
+  icon: PlugZap,
+};
+
 // ALL PUBLIC LINKS
 export const INTERNAL_PUBLIC_LINKS = {
   faq: FAQ,
@@ -58,6 +68,8 @@ export const INTERNAL_ADMIN_LINKS = {
   admin: ADMIN,
   tattReq: ADMIN_TATT_REQ,
   taggingOpts: ADMIN_TAGGING_OPTS,
+  flash: ADMIN_FLASH,
+  flashUpload: ADMIN_FLASH_UPLOAD,
 };
 
 // LISTS
