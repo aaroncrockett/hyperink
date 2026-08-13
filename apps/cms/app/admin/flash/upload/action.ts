@@ -10,7 +10,7 @@ import {
   FLASH_UPLOAD_FORM_SCHEMA,
 } from "@/db/api/flash";
 // Hyperink"
-import { zUTILS_odIssuesToErrors_REPLACEMENT } from "@hyperinkstudio/utils";
+import { zodIssuesToErrors } from "@hyperinkstudio/utils";
 import { createSSClient } from "@/auth/server";
 
 // type TaggingOptionKey = keyof z.infer<typeof taggingOptsSchema>;
@@ -69,7 +69,7 @@ export async function uploadFlashImgAndRecord(
   if (!parsedFile.success) {
     const { issues } = parsedFile.error;
 
-    const zodErrors = zUTILS_odIssuesToErrors_REPLACEMENT(issues);
+    const zodErrors = zodIssuesToErrors(issues);
 
     actionResults.errors = {
       ...actionResults.errors,
@@ -82,7 +82,7 @@ export async function uploadFlashImgAndRecord(
   if (!parsedForm.success) {
     const { issues } = parsedForm.error;
 
-    const zodErrors = zUTILS_odIssuesToErrors_REPLACEMENT(issues);
+    const zodErrors = zodIssuesToErrors(issues);
 
     actionResults.errors = {
       ...actionResults.errors,
