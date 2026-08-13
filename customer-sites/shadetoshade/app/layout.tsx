@@ -1,6 +1,20 @@
 // Next
 import type { Metadata } from "next";
 
+import { Bebas_Neue, Outfit } from "next/font/google";
+
+const outfit = Outfit({
+  variable: "--font-outfit",
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
+
+const bebasNeue = Bebas_Neue({
+  variable: "--font-bebas-neue",
+  weight: "400",
+  subsets: ["latin"],
+});
+
 // @
 import { cn } from "@/utils/cn";
 // local
@@ -40,7 +54,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html className={`h-full  antialiased`} data-theme="shadetoshade" lang="en">
+    <html
+      className={`h-full  antialiased  ${outfit.variable} ${bebasNeue.variable} `}
+      data-theme="shadetoshade"
+      lang="en"
+    >
       <body className={`antialiased h-full`}>
         <div
           className={cn(

@@ -1,9 +1,24 @@
+// Next
 import type { Metadata } from "next";
-// @
+import { Caprasimo, Outfit } from "next/font/google";
+
+// @ Locals
 import { cn } from "@/utils/cn";
-// Local
+// Local UI
 import "./globals.css";
 import { HeaderShell } from "./_components/(header)/HeaderShell";
+
+const caprasimo = Caprasimo({
+  variable: "--font-caprasimo",
+  weight: "400",
+  subsets: ["latin"],
+});
+
+const outfit = Outfit({
+  variable: "--font-outfit",
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
 
 export const metadata: Metadata = {
   title: "HyperInk:  Tattoo Booking & Client Records",
@@ -36,7 +51,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="hyperink" className={`h-full  antialiased`}>
+    <html
+      lang="en"
+      data-theme="hyperink"
+      className={`h-full  antialiased  ${outfit.variable} ${caprasimo.variable}`}
+    >
       <body className={`antialiased h-full`}>
         <div className={cn("h-screen flex flex-col lg:items-start")}>
           <HeaderShell />

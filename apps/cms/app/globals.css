@@ -1,6 +1,4 @@
 @import "tailwindcss";
-@import "@fontsource/caprasimo";
-@import "@fontsource/outfit";
 @source "../../../packages/ui/react/next/components/**/*.{js,ts,jsx,tsx}";
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-react";
@@ -11,25 +9,22 @@ body {
 }
 
 h1,
-h2 {
-  font-family: "Caprasimo", sans-serif;
+h2,
+h3 {
+  font-family: var(--font-caprasimo);
 }
 
-h3,
 h4,
 h5,
 h6 {
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-outfit);
 }
 p,
 span {
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-outfit);
+  @apply text-sm md:text-base;
 }
 
-p,
-span {
-  font-family: "Outfit", sans-serif;
-}
 a {
   font-family: "Outfit", sans-serif;
 }
@@ -38,11 +33,4 @@ a {
 }
 .sans-serif {
   font-family: "Outfit", sans-serif;
-}
-
-@layer base {
-  p,
-  span {
-    @apply text-sm md:text-base;
-  }
 }
