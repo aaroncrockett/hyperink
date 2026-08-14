@@ -53,7 +53,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-theme="hyperink"
+      data-theme="hyperinknue"
       className={`h-full  antialiased  ${outfit.variable} ${caprasimo.variable}`}
     >
       <body className={`antialiased h-full`}>

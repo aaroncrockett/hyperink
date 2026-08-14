@@ -2,7 +2,7 @@
 @source "../../../packages/ui/react/next/components/**/*.{js,ts,jsx,tsx}";
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-react";
-@import "./hyperink.css";
+@import "./hyperinknue.css";
 
 body {
   font-family: var(--font-outfit);
