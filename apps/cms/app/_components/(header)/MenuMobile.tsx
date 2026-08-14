@@ -23,7 +23,7 @@ export default function MenuMobile({
   children,
   title = "",
   closeIcon = <XIcon />,
-  triggerIcon = <Menu className="drop-shadow-xs" />,
+  triggerIcon = <Menu className="shadow-sm" />,
 }: MenuMobileProps) {
   return (
     <div className={className}>

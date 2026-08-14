@@ -23,7 +23,7 @@ export default function Header({
   return (
     <header
       className={cn(
-        "shadow-lg sticky top-0 z-10 bg-white p-2 w-full",
+        "shadow-xs sticky top-0 z-10 bg-white p-2 w-full",
         className,
       )}
       {...props}
