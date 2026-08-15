@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 // Hyperink
 import { cn } from "@hyperinkstudio/utils";
 import { Form } from "@hyperinkstudio/ui-react-next/components";
-import { TattooTypeOptions } from "@hyperinkstudio/shared-business";
 
 type FormContentProps = {
   className?: string;
@@ -30,23 +29,20 @@ export function FormContentTmp1({ className, flashId }: FormContentProps) {
   if (!showForm) {
     return (
       <div className="flex flex-col items-center space-y-4">
-        <p>
-          Are you looking for {TattooTypeOptions[0].label} or{" "}
-          {TattooTypeOptions[1].label}?
-        </p>
+        <p>Are you looking for Flash or Custom?</p>
 
         <button
           className="btn preset-filled-secondary-500 w-1/2"
           onClick={handleFlash}
         >
-          {TattooTypeOptions[0].label}
+          Flash
         </button>
 
         <button
           className="btn preset-filled-secondary-500 w-1/2"
           onClick={handleCustom}
         >
-          {TattooTypeOptions[1].label}
+          Custom
         </button>
       </div>
     );
