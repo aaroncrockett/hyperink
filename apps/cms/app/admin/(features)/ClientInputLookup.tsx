@@ -1,5 +1,7 @@
-import { LOOKUP_COLS_LIST } from "@/db/api/clientPersons";
+// @hyperink
 import type { ClientTable } from "@hyperinkstudio/db";
+// @db
+import { LOOKUP_COLS_LIST } from "@/db/api/clientPersons";
 
 export function ClientInputLookup({
   lookupType,

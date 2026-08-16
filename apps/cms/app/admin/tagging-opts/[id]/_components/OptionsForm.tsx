@@ -4,15 +4,13 @@
 import { useState, useActionState } from "react";
 
 // Hyper Ink
-import {
-  Form,
-  Input,
-  FormMetaErrors,
-} from "@hyperinkstudio/ui-react-next/components";
+import { Form, FormMetaErrors } from "@hyperinkstudio/ui-react-next/components";
 
 // Local @/db
 import { TAGGING_OPTS_DISPLAY_COLLECTION } from "@/db/api/profileTaggingOpts";
 import { type ProfileTaggingOptionsDisplay } from "@/db/api/profileTaggingOpts";
+// Local @/ui
+import { Button, Input } from "@/ui";
 
 // Local
 import { OptionsChips } from "./OptionsChips";
@@ -124,8 +122,8 @@ export function OptionsForm({ option, paramId }: PageProps) {
   return (
     <Form
       className="flex flex-col gap-4 "
-      submitBtnColorCls="preset-tonal-secondary btn"
-      submitBtnCls="md:w-1/4 sm:w-1/2 h-full"
+      submitBtnWrapperCls="w-1/3"
+      submitBtnCls="w-full flex"
       action={formAction}
     >
       <div className="flex gap-2 ">
@@ -137,21 +135,24 @@ export function OptionsForm({ option, paramId }: PageProps) {
           className="input"
           type="hidden"
         />
-        <input
-          value={newOption}
-          onChange={(e) => setNewOption(e.target.value)}
-          className="input"
-        />
-
-        <button
-          type="button"
-          className="btn bg-secondary-100-900 btn-sm"
-          onClick={handleAddNewOption}
-        >
-          +
-        </button>
+        <div className="w-full flex flex-row gap-2">
+          <div className="flex-1 sm:flex-none sm:w-2/3 md:w-1/2">
+            <Input
+              value={newOption}
+              onChange={(e) => setNewOption(e.target.value)}
+              inputCls="bg-surface-100-900/70 border border-2 border-surface-200-800 p-2"
+            />
+          </div>
+          <Button
+            type="button"
+            className="font-bold btn btn-sm text-lg!"
+            onClick={handleAddNewOption}
+          >
+            +
+          </Button>
+        </div>
       </div>
-
+      <p>Tap or Click to add and remove items.</p>
       <OptionsChips
         optionStr={optionState.option.selected}
         unselectedOptions={optionState.option.unselected}

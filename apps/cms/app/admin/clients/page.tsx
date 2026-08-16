@@ -2,8 +2,6 @@
 
 // Hyperink
 import {
-  Heading,
-  Page,
   TableLayout,
   RowOfTableLayout,
 } from "@hyperinkstudio/ui-react-next/components";
@@ -12,7 +10,8 @@ import { formatDate } from "@hyperinkstudio/utils/dates";
 // Local Outter
 import { createSSClient } from "@/auth/server";
 import { getLastTenClients, getClientColLabel } from "@/db/api/clientPersons";
-
+// Local UI
+import { Page, Heading } from "@/ui";
 // Local
 import { NAV_ADMIN_CLIENT_LIST } from "@/app/consts";
 import { PageAdminNav } from "../_components/PageAdminNav";

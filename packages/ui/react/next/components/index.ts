@@ -4,7 +4,7 @@ export { Heading } from "./Heading";
 export { Input } from "./Input";
 export { InputCheck } from "./InputCheck";
 export { InputTextArea } from "./InputTextArea";
-export { Page } from "./Page";
+export { Page, PageSection } from "./Page";
 export { Select } from "./Select";
 export { SelectState } from "./SelectState";
 export { TableLayout } from "./TableLayout";

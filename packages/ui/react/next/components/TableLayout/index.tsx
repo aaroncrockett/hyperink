@@ -19,10 +19,10 @@ export function TableLayout({
   cls,
   gridColCls,
   gridOptsCls,
-  headerBgCls = "bg-surface-300-700",
+  headerBgCls = "bg-surface-200-800/70",
   headerCls,
   headerCols,
-  paddingCls = "p-2",
+  paddingCls = "p-2 md:p-3",
 }: RowsProps) {
   return (
     <div className="w-full overflow-x-auto">

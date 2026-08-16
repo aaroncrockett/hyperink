@@ -1,23 +1,21 @@
 // Next
 import type { Metadata } from "next";
-import { Caprasimo, Outfit } from "next/font/google";
-
+import { League_Gothic, Outfit } from "next/font/google";
 // @ Locals
 import { cn } from "@/utils/cn";
 // Local UI
 import "./globals.css";
 import { HeaderShell } from "./_components/(header)/HeaderShell";
 
-const caprasimo = Caprasimo({
-  variable: "--font-caprasimo",
-  weight: "400",
-  subsets: ["latin"],
-});
-
 const outfit = Outfit({
   variable: "--font-outfit",
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
+const leagueGothic = League_Gothic({
+  variable: "--font-league-gothic",
+  weight: "400",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -54,12 +52,14 @@ export default function RootLayout({
     <html
       lang="en"
       data-theme="hyperinknue"
-      className={`h-full  antialiased  ${outfit.variable} ${caprasimo.variable}`}
+      className={`h-full  antialiased  ${outfit.variable} ${leagueGothic.variable}`}
     >
       <body className={`antialiased h-full`}>
-        <div className={cn("h-screen flex flex-col lg:items-start")}>
+        <div
+          className={cn("h-screen flex flex-col lg:items-start w-full mx-auto")}
+        >
           <HeaderShell />
-          <>{children}</>
+          {children}
         </div>
       </body>
     </html>

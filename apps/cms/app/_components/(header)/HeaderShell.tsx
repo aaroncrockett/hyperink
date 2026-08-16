@@ -4,8 +4,8 @@
 
 import { useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { NextLinkWrapper } from "@/ui";
 
 // hyperink
 import { getHrefWithSearchParams } from "@hyperinkstudio/utils";
@@ -30,11 +30,12 @@ export function HeaderShell({}) {
       isAdmin={isAdmin}
       tail={
         <>
-          <MenuMobile className="block lg:hidden" title="HYPERINK">
+          <MenuMobile className="block lg:hidden 0" title="HYPERINK">
             <Nav
-              className="flex lg:hidden w-auto h-full"
+              className="flex w-auto h-full lg:hidden "
               isAdmin={isAdmin}
               pathname={pathname}
+              linkCls="text-surface-50!"
             />
           </MenuMobile>
 
@@ -52,19 +53,19 @@ export function HeaderShell({}) {
         </>
       }
     >
-      <Link
-        className="h-12 px-2 sm:px-0 w-full"
+      <NextLinkWrapper
+        className="w-full h-12 px-2 sm:px-0"
         href={getHrefWithSearchParams(HOME.href, searchParams)}
       >
         <Image
-          src="/images/hyperink-logo-lt-text.svg"
+          src="/images/hyperink-blue-green-logo.svg"
           alt="Hyperink - Logo"
           width={201}
           height={40}
-          className="h-12 w-auto mx-auto"
+          className="w-auto h-12 mx-auto"
           loading="eager"
         />
-      </Link>
+      </NextLinkWrapper>
     </Header>
   );
 }

@@ -1,13 +1,11 @@
-// next, react
-import Link from "next/link";
-
 // @/db
 
 import { type ProfileTaggingOptionsDisplay } from "@/db/api/profileTaggingOpts";
 
 // @/consts
 import { ADMIN_TAGGING_OPTS } from "@/consts";
-import { Span } from "next/dist/trace";
+//
+import { NextLinkWrapper } from "@/ui";
 
 export function TaggingOptsDisplay({
   opts,
@@ -25,12 +23,12 @@ export function TaggingOptsDisplay({
                   <span className="font-bold text-2xl h-full basis-1/3 shrink min-w-0">
                     {key.toUpperCase()}
                   </span>
-                  <Link
+                  <NextLinkWrapper
                     className="text-secondary-500 font-bold underline h-full"
                     href={`${ADMIN_TAGGING_OPTS.href}/${key}`}
                   >
                     EDIT
-                  </Link>
+                  </NextLinkWrapper>
                 </div>
 
                 <ul className="w-full flex flex-row gap-2 p-2">

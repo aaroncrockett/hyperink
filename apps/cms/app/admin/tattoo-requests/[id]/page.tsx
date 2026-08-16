@@ -1,11 +1,11 @@
-// Hyper Ink
-import { Heading, Page } from "@hyperinkstudio/ui-react-next/components";
 // Local DB
 import { getTattooRequestById } from "@/db/api/tattooRequest";
 import { createSSClient } from "@/auth/server";
 import { getClientPersonsByEmailOrPhone } from "@/db/api/clientPersons";
 // Local
 import { TattooForm } from "./_components/TattooForm";
+// Local UI
+import { Page, Heading } from "@/ui";
 
 type TattooRequestPageProps = {
   params: Promise<{

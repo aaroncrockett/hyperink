@@ -98,8 +98,9 @@ export function FormContentTmp2({ className }: FormContentProps) {
       ref={formRef}
       className="flex flex-col gap-4"
       action={formAction}
-      submitBtnCls="btn lg:w-2/3 lg:ml-[140px]"
+      submitBtnCls="btn "
       submitDisabled={formState.disabled}
+      submitBtnWrapperCls="lg:w-2/3 lg:ml-[140px]
     >
       {TATT_REQ_ENTRY_FORM_LIST.map((field, id) => {
         return RenderField({
@@ -111,7 +112,7 @@ export function FormContentTmp2({ className }: FormContentProps) {
         });
       })}
       {formState.type === "pre-flash" && (
-        <div className="p-4 bg-surface-50-950/40 rounded-sm text-surface-950-50 shadow flex justify-center flex-col gap-4">
+        <div className="flex flex-col justify-center gap-4 p-4 rounded-sm shadow bg-surface-50-950/40 text-surface-950-50">
           <p className="text-xl text-center ">
             Select your{" "}
             <Link
@@ -126,7 +127,7 @@ export function FormContentTmp2({ className }: FormContentProps) {
           <Link
             href={INTERNAL_LINKS.flash.href}
             onClick={handleFlashLink}
-            className="w-1/2 lg:w-1/3 mx-auto btn preset-filled-secondary-400-600"
+            className="w-1/2 mx-auto lg:w-1/3 btn preset-filled-secondary-400-600"
           >
             Browse Flash
           </Link>

@@ -8,6 +8,8 @@ type FormProps = Omit<ComponentPropsWithoutRef<"form">, "children"> & {
   submitBtnCls?: string;
   submitBtnColorCls?: string;
   submitBtnSizeCls?: string;
+  submitBtnWrapperCls?: string;
+  submitBtnUtilCls?: string;
   submitDisabled?: boolean;
   submitText?: string;
 };
@@ -18,9 +20,11 @@ export const Form = forwardRef<HTMLFormElement, FormProps>(
       action,
       children,
       className,
-      submitBtnCls = "btn",
+      submitBtnCls,
+      submitBtnUtilCls = "btn",
       submitBtnSizeCls,
       submitBtnColorCls = "preset-filled-secondary-500",
+      submitBtnWrapperCls,
       submitDisabled = false,
       submitText = "Submit",
       ...props
@@ -30,13 +34,21 @@ export const Form = forwardRef<HTMLFormElement, FormProps>(
     return (
       <form ref={ref} action={action} className={className} {...props}>
         {children}
-        <button
-          type="submit"
-          disabled={submitDisabled}
-          className={cn(submitBtnCls, submitBtnColorCls, submitBtnSizeCls)}
-        >
-          {submitText}
-        </button>
+
+        <div className={cn(submitBtnWrapperCls)}>
+          <button
+            type="submit"
+            disabled={submitDisabled}
+            className={cn(
+              submitBtnCls,
+              submitBtnColorCls,
+              submitBtnSizeCls,
+              submitBtnUtilCls,
+            )}
+          >
+            {submitText}
+          </button>
+        </div>
       </form>
     );
   },

@@ -4,7 +4,7 @@
 import { useActionState, useState } from "react";
 
 // Hyperink UI
-import { Form, Heading, Input } from "@hyperinkstudio/ui-react-next/components";
+import { Form } from "@hyperinkstudio/ui-react-next/components";
 import { FileUpload } from "@skeletonlabs/skeleton-react";
 import { FileIcon } from "lucide-react";
 // @
@@ -12,6 +12,7 @@ import { FLASH_UPLOAD_FORM_LIST } from "@/db/api/flash";
 
 // Local
 import { uploadFlashImgAndRecord } from "../action";
+import { Heading, Input } from "@/ui";
 
 type UploadOption = "collection" | "single";
 
@@ -82,9 +83,9 @@ export function FlashForm() {
               const hasFile = fileUpload.acceptedFiles.length > 0;
 
               return (
-                <div className="flex flex-col gap-4 pt-2 bg-surface-100-900/60 p-2 mb-4">
+                <div className="flex flex-col gap-4 p-2 pt-2 mb-4 bg-surface-100-900/60">
                   <FileUpload.Label>
-                    <Heading as="h2" text="Upload Flash" />
+                    <Heading as="h4" text="Upload Flash" />
                   </FileUpload.Label>
 
                   {!hasFile && (

@@ -1,19 +1,15 @@
-import Link from "next/link";
 // Local @
 import { type TattooRequest } from "@/db/types";
 import { getLastThreeTattooRequests } from "@/db/api/tattooRequest";
 import { createSSClient } from "@/auth/server";
-
-// hyperink UI
-import { Heading, Page } from "@hyperinkstudio/ui-react-next/components";
-
-import { TattooRequests } from "./(features)/TattooRequests";
-
-// Local Per Page
-import { getUserData } from "./getUserData";
-
-// Local Other
+// Local Cosnts
 import { ADMIN_TATT_REQ } from "@/consts";
+// Local UI
+import { Page, Heading } from "@/ui";
+// Local Other
+import { TattooRequests } from "./(features)/TattooRequests";
+import { getUserData } from "./getUserData";
+import { NextLinkWrapper } from "@/ui";
 
 export default async function AdminHomePage() {
   let tattooRequests: Partial<TattooRequest>[] | null = null;
@@ -38,12 +34,12 @@ export default async function AdminHomePage() {
           lead={<Heading text="Tattoo Requests" as="h2" />}
           requests={tattooRequests ?? []}
           trail={
-            <Link
+            <NextLinkWrapper
               href={ADMIN_TATT_REQ.href}
               className="underline text-secondary-500"
             >
               See More requests
-            </Link>
+            </NextLinkWrapper>
           }
         />
       )}

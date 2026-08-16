@@ -2,7 +2,7 @@
   --text-scaling: 1;
   --typo-base--font-family: system-ui, sans-serif;
   --typo-base--font-size: inherit;
-  --typo-base--color-light: var(--color-surface-950);
+  --typo-base--color-light: var(--color-surface-50);
   --typo-base--color-dark: var(--color-surface-50);
   --typo-base--line-height: inherit;
   --typo-base--font-weight: normal;

@@ -1,5 +1,3 @@
-// Hyper Ink
-import { Heading, Page } from "@hyperinkstudio/ui-react-next/components";
 // @/auth
 import { createSSClient } from "@/auth/server";
 // @/db
@@ -7,7 +5,8 @@ import {
   getDisplayProfileTaggingOpts,
   type ProfileTaggingOptionsDisplay,
 } from "@/db/api/profileTaggingOpts";
-
+// Local UI
+import { Page, Heading } from "@/ui";
 // Local
 import { OptionsForm } from "./_components/OptionsForm";
 
@@ -36,6 +35,10 @@ export default async function TaggingOptsPage({ params }: PageProps) {
     <Page>
       <Heading as="h1" text="Edit Tagging Options" />
 
+      <Heading as="h4">
+        <span className="italic!">Editing</span>{" "}
+        <span className="text-xl! uppercase"> {paramId.id}</span>
+      </Heading>
       <OptionsForm paramId={paramId.id} option={singleTaggingOpts} />
     </Page>
   );

@@ -3,8 +3,8 @@ import type { ComponentPropsWithoutRef, ChangeEvent } from "react";
 import { cn } from "@hyperinkstudio/utils/";
 
 type InputProps = Omit<ComponentPropsWithoutRef<"div">, "className"> & {
-  id: string;
-  label: string;
+  id?: string;
+  label?: string;
   defaultValue?: string;
   dir?: "row" | "col";
   disabled?: boolean;
@@ -13,6 +13,7 @@ type InputProps = Omit<ComponentPropsWithoutRef<"div">, "className"> & {
   errorTxtColorCls?: string;
   inputUtilCls?: string;
   inputCls?: string;
+  inputPaddingCls?: string;
   labelCls?: string;
   labelWeightCls?: string;
   labelUtilCls?: string;
@@ -39,6 +40,7 @@ export function Input({
   errors = {},
   errorTxtColorCls = "text-red-500",
   inputCls,
+  inputPaddingCls = "p-2",
   inputUtilCls = "input",
   labelCls = "label font-bold",
   labelWeightCls = "font-bold",
@@ -81,7 +83,7 @@ export function Input({
         type={type}
         required={required}
         {...(value !== undefined ? { value } : {})}
-        className={cn(inputUtilCls, inputCls)}
+        className={cn(inputUtilCls, inputCls, inputPaddingCls)}
         disabled={disabled}
         defaultValue={defaultValue}
         onChange={onChange}

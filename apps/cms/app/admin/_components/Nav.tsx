@@ -4,10 +4,11 @@
 import type { LucideIcon } from "lucide-react";
 
 // Next
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 // Hyper ink
 import { cn } from "@hyperinkstudio/utils/cn";
+// @ui
+import { NextLinkWrapper } from "@/ui";
 
 type NavLink = {
   href: string;
@@ -16,39 +17,41 @@ type NavLink = {
 };
 
 type NavsProps = {
-  links: NavLink[];
-  showIcon: boolean;
   iconCls?: string;
+  iconLeftPadding?: string;
   iconSizeCls?: string;
   layout?: "col" | "row";
   layoutGap?: string;
   liCls?: string;
   linkCls?: string;
-  linkClsColor?: string;
-  linkClsGap?: string;
-  linkClsHover?: string;
-  linkClsLayout?: string;
-  linkClsPadding?: string;
+  linkColorCls?: string;
+  linkGapCls?: string;
+  linkHoverCls?: string;
+  linkLayoutCls?: string;
+  linkPaddingCls?: string;
   linkCurrentCls?: string;
+  links: NavLink[];
+  showIcon: boolean;
   textSizeCls?: string;
   ulCls?: string;
 };
 
 export function Nav({
-  showIcon,
+  iconCls,
+  iconLeftPadding = "pl-2",
+  iconSizeCls,
   layout = "row",
-  layoutGap = "gap-2",
+  layoutGap = "gap-1",
   liCls,
   linkCls = "",
-  linkClsColor = "text-primary-500",
-  linkClsGap = "gap-2",
-  linkClsHover = " hover:underline",
-  linkClsLayout = "flex flex-row items-center",
-  linkClsPadding = "px-3 py-2",
-  linkCurrentCls = "text-surface-400-600! underline",
-  iconCls,
-  iconSizeCls,
+  linkColorCls = "text-primary-500",
+  linkGapCls = "gap-2",
+  linkHoverCls = " hover:text-primary-100",
+  linkLayoutCls = "flex flex-row items-center",
+  linkPaddingCls = "px-3 py-2",
+  linkCurrentCls = "!text-surface-950 bg-primary-600",
   links,
+  showIcon,
   textSizeCls = "",
   ulCls = "",
 }: NavsProps) {
@@ -61,23 +64,25 @@ export function Nav({
       {links.map((link) => {
         return (
           <li className={liCls} key={link.href}>
-            <Link
+            <NextLinkWrapper
               className={cn(
                 linkCls,
-                linkClsColor,
-                linkClsGap,
-                linkClsHover,
-                linkClsLayout,
-                linkClsPadding,
+                linkColorCls,
+                linkGapCls,
+                linkHoverCls,
+                linkLayoutCls,
+                linkPaddingCls,
                 pathname === link.href && linkCurrentCls,
               )}
               href={link.href}
             >
               {showIcon && link.icon && (
-                <link.icon className={cn(iconCls, iconSizeCls)} />
+                <link.icon
+                  className={cn(iconCls, iconSizeCls, iconLeftPadding)}
+                />
               )}
               {link.name}
-            </Link>
+            </NextLinkWrapper>
           </li>
         );
       })}

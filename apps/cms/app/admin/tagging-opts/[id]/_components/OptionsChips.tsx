@@ -10,15 +10,15 @@ export function OptionsChips({
   const options = optionStr.split(",").filter(Boolean);
 
   return (
-    <div className="flex flex-col gap-8 bg-surface-100-900/50 pt-6 p-4 rounded">
+    <div className="flex flex-col gap-8 p-4 pt-6 rounded bg-surface-200-800/30">
       <div className="space-y-2">
         <p className="text-lg font-bold">Selected:</p>
         {options.length > 0 && (
-          <div className="flex flex-row gap-4">
+          <div className="flex flex-row flex-wrap gap-4">
             {options.map((option) => (
               <span
                 key={option}
-                className="chip bg-primary-50-950/40 hover:bg-surface-400-600 font-bold text-lg text-surface-950-50 cursor-pointer"
+                className="font-bold cursor-pointer chip bg-primary-500 hover:bg-secondary-300 text-surface-950!"
                 onClick={() => onSelect(option, "remove")}
               >
                 {option}
@@ -30,11 +30,11 @@ export function OptionsChips({
       <div className="space-y-2">
         <p className="text-lg font-bold">Unselected:</p>
         {unselectedOptions.length > 0 && (
-          <div className="flex flex-row gap-4">
+          <div className="flex flex-row flex-wrap gap-4">
             {unselectedOptions.map((option) => (
               <span
                 key={option}
-                className="chip bg-surface-500 hover:bg-primary-400-600 font-bold text-lg border-2 border-surface-500 cursor-pointer"
+                className="font-bold cursor-pointer chip bg-surface-900-100 hover:bg-primary-600-400 text-surface-50!"
                 onClick={() => onSelect(option, "add")}
               >
                 {option}

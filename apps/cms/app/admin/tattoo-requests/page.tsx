@@ -1,9 +1,9 @@
-// React
-import { Page, Heading } from "@hyperinkstudio/ui-react-next/components";
 // Local
 import { createSSClient } from "@/auth/server";
 import { getLastTenTattooRequests } from "@/db/api/tattooRequest";
 import { TattooRequests } from "../(features)/TattooRequests";
+// Local UI
+import { Page, Heading } from "@/ui";
 
 const serverClient = await createSSClient();
 const { data: tattooRequests } = await getLastTenTattooRequests(serverClient);

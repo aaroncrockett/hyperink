@@ -4,33 +4,12 @@
 @import "@skeletonlabs/skeleton-react";
 @import "./hyperinknue.css";
 
-body {
-  font-family: var(--font-outfit);
-}
-
-h1,
-h2,
-h3 {
-  font-family: var(--font-caprasimo);
-}
-
-h4,
-h5,
-h6 {
-  font-family: var(--font-outfit);
-}
-p,
 span {
-  font-family: var(--font-outfit);
-  @apply text-sm md:text-base;
+  font-family: var(--font-outfit), Arial, sans-serif;
+  @apply text-sm md:text-base text-surface-950-50;
 }
 
-a {
-  font-family: "Outfit", sans-serif;
-}
-.serif {
-  font-family: "Caprasimo", sans-serif;
-}
-.sans-serif {
-  font-family: "Outfit", sans-serif;
+@theme {
+  --font-display: var(--font-league-gothic), "Arial Narrow", Arial, sans-serif;
+  --font-sans-serif: var(--font-outfit), Arial, sans-serif;
 }

@@ -62,7 +62,7 @@ export default function RootLayout({
       <body className={`antialiased h-full`}>
         <div
           className={cn(
-            "h-screen flex flex-col lg:grid lg:grid-cols-[200px_1fr] lg:items-start",
+            "h-screen flex flex-col lg:grid lg:grid-cols-[220px_1fr] lg:items-start",
           )}
         >
           <ShellUpper />
@@ -71,9 +71,9 @@ export default function RootLayout({
           >
             {children}
           </main>
-          <Footer className="bg-primary-500 lg:col-start-2 lg:row-start-3 p-2 sm:p-4 ">
+          <Footer className="p-2 bg-primary-500 lg:col-start-2 lg:row-start-3 sm:p-4 ">
             {/* shown: default - hidden:lg*/}
-            <FooterNav className="flex lg:hidden w-full" />
+            <FooterNav className="flex w-full lg:hidden" />
           </Footer>
         </div>
       </body>

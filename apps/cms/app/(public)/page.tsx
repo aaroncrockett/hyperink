@@ -1,92 +1,51 @@
 // Hyperink UI
-import { Page, Heading } from "@hyperinkstudio/ui-react-next/components";
+import { PageSection } from "@hyperinkstudio/ui-react-next/components";
+// Local UI
+import { Page, Heading, Button } from "@/ui";
 export default function Home() {
   return (
-    <div>
-      <div className="bg-tertiary-500 pt-1 pb-1">
-        <div className=" bg-surface-500/95">
-          <div className="max-w-275 mx-auto flex flex-col items-center justify-center  py-8 p-4 lg:py-12 md:p7-10 text-lg space-y-5">
-            <Heading
-              as="h1"
-              text="Artist Owned, Artist Made: Tattoo Booking"
-              h1Size="text-5xl md:text-6xl lg:text-7xl"
-              h1TextAtrs="leading-[3rem] text-4xl md:text-5xl lg:textd-6xl md:leading-[3.5rem] lg:leading-[4.25rem] lg:leading-[4.75rem]"
-              alignmentCls="text-center"
-              colorCls="text-primary-500"
-            />
-
-            <Heading
-              as="h3"
-              text="Helps tattoo artists manage their booking requests, clients, client details, deposits, and payments."
-              alignmentCls="text-center"
-              weightCls="font-normal"
-              fontCls="serif"
-              colorCls="text-tertiary-100-900"
-            />
-            <Heading
-              as="h5"
-              alignmentCls="text-center"
-              weightCls="font-normal"
-              colorCls="text-surface-950-50"
-              cls="pt-3 w-2/3"
-            >
-              <span className="font-bold text-2xl md:text-2xl text-secondary-800-200">
-                Looking for artists
-              </span>{" "}
-              who want to use the app during testing, and you will get the extra
-              special hook-up for life.
-            </Heading>
-          </div>
-        </div>
-      </div>
-
-      <Page>
-        <div className="text-center flex flex-col space-y-4">
-          <div className="flex flex-col justify-center text-center text-lg space-y-3 card bg-surface-100-900 p-4 pb-5 md:p-5 md:pb-6 lg:p-6 lg:pb-8 rounded-xl">
-            <span className="text-2xl serif font-normal">
-              Owned and built by an artist.
-            </span>
-            <span className="font-bold">
-              A small business supporting small businesses.
-            </span>
-            <span className="font-bold">
-              No AI. Fuck AI. Just real people available to answer your
-              questions.
-            </span>
-          </div>
-          <div className="flex flex-col justify-center text-center text-lg space-y-3 card bg-surface-100-900 p-4 pb-5 md:p-5 md:pb-6 lg:p-6 lg:pb-8 rounded-xl">
-            <span className="text-2xl serif font-normal">
-              Free for artists. Affordable for clients.
-            </span>
-
-            <span className="font-bold">
-              Upload and sell your flash at no cost to you.
-            </span>
-            <span className="font-bold">
-              Other apps charge your clients 10%+ per transaction while spending
-              a ton on marketing. We keep our costs low. While pricing details
-              are still being finalized, we will be charging{" "}
-              <span className="font-bold">*at least*</span> 2% less for
-              equivalent or better functionality.
-            </span>
-          </div>
-          <div className="flex flex-col justify-center text-center text-lg space-y-3 card bg-surface-100-900 p-4 pb-5 md:p-5 md:pb-6 lg:p-6 lg:pb-8 rounded-xl">
-            <span className="text-2xl serif font-normal">
-              More tools. Less bullshit.
-            </span>
-            <span className="font-bold">
-              Our paid version gives you an affordable way to manage your
-              clients, tattoos, and records without paying for overpriced
-              software.
-            </span>
-            <span className="font-bold">
-              You own your data and your forms. Download it, or print it anytime
-              for your records or your client. Your business information should
-              belong to you, not the app you use.
-            </span>
-          </div>
-        </div>
-      </Page>
-    </div>
+    <Page wrapperBgColorCls="bg-page-surface" sectional={true}>
+      <div className="h-4 bg-primary-500"></div>
+      <PageSection
+        marginCls="mx-auto"
+        paddingCls="md:py-28 py-20"
+        wrapperBgColorCls="bg-secondary-500"
+        useWrapper={true}
+      >
+        <Heading
+          as="h1"
+          h1Size=" text-6xl md:text-7xl"
+          h1TextAtrs="leading-18 md:leading-22"
+          textColorCls="!text-primary-500"
+          alignmentCls="text-center"
+          cls="px-2 py-1"
+        >
+          Artist Owned, Artist Made: Tattoo Booking
+        </Heading>
+        <p className="text-center xl:w-1/2 md:w-2/3 text-surface-50! text-2xl! font-bold leading-9 mx-auto px-2 py-1">
+          Created by an artist to solve real-world problems. Early volunteers
+          can have input into how the app develops and share their ideas.
+        </p>
+      </PageSection>
+      <div className="h-4 bg-primary-500"></div>
+      <PageSection
+        marginCls="mx-auto"
+        wrapperBgColorCls="bg-surface-600"
+        useWrapper={true}
+        paddingCls="py-12 md:py-16"
+      >
+        <Heading
+          as="h2"
+          h2Size="text-5xl lg:text-6xl "
+          h2TextAtrs="leading-14 md:leading-18"
+          alignmentCls="text-center"
+        >
+          No AI. And no future enshitification.
+        </Heading>
+        <p className="text-center xl:w-1/2 md:w-2/3  text-xl! font-bold leading-8 mx-auto">
+          Real people to answer your questions, not AI Bots.
+        </p>
+      </PageSection>
+    </Page>
   );
 }

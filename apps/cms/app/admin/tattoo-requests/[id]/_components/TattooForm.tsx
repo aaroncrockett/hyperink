@@ -5,17 +5,14 @@ import { useActionState, useState } from "react";
 
 // Hyper Ink
 
-import {
-  Form,
-  Input,
-  FormMetaErrors,
-} from "@hyperinkstudio/ui-react-next/components";
+import { Form, FormMetaErrors } from "@hyperinkstudio/ui-react-next/components";
 
 // Local @/db
 import { type TattooRequest } from "@/db/types";
 import { TATT_REQ_FOLLOW_UP_FORM_LIST } from "@/db/api/tattooRequest";
 // Local
 import { createAClientTattooAndHandleClient } from "../actions";
+import { Button, Input } from "@/ui";
 
 export function TattooForm({
   tattRequest,
@@ -42,12 +39,9 @@ export function TattooForm({
 
   return (
     <>
-      <button
-        onClick={() => setIsEditing((isPrev) => !isPrev)}
-        className="btn preset-filled-primary-400-600"
-      >
+      <Button onClick={() => setIsEditing((isPrev) => !isPrev)}>
         Edit Request
-      </button>
+      </Button>
       <Form
         action={formAction}
         submitText={existingClient ? "create tatt" : "create tatt & client"}

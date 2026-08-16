@@ -1,1 +1,2 @@
-export * from "./internal-links";
+export * from "./admin";
+export * from "./public";

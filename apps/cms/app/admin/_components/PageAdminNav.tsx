@@ -1,8 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
+// hyperink
 import { cn } from "@hyperinkstudio/utils/cn";
+// @/ui
+import { NextLinkWrapper } from "@/ui";
 
 type PageAdminNavsProps = {
   links: {
@@ -15,9 +17,9 @@ type PageAdminNavsProps = {
   gap?: string;
   textSize?: string;
   linkCls?: string;
-  linkClsColor?: string;
-  linkClsPadding?: string;
-  linkClsHover?: string;
+  linkColorCls?: string;
+  linkPaddingCls?: string;
+  linkHoverCls?: string;
   linkClsCurrent?: string;
   linkClsWeight?: string;
 };
@@ -29,9 +31,9 @@ export function PageAdminNav({
   gap = "gap-2",
   textSize = "",
   linkCls = "",
-  linkClsColor = "text-tertiary-500",
-  linkClsPadding = "px-3 py-2",
-  linkClsHover = " hover:bg-primary-100-900",
+  linkColorCls = "text-tertiary-500",
+  linkPaddingCls = "px-3 py-2",
+  linkHoverCls = " hover:bg-primary-100-900",
   linkClsCurrent = "underline text-surface-500!",
   linkClsWeight = "font-bold",
 }: PageAdminNavsProps) {
@@ -44,19 +46,19 @@ export function PageAdminNav({
       {links.map((link) => {
         return (
           <li key={link.href}>
-            <Link
+            <NextLinkWrapper
               className={cn(
                 linkCls,
-                linkClsColor,
-                linkClsPadding,
-                linkClsHover,
+                linkColorCls,
+                linkPaddingCls,
+                linkHoverCls,
                 pathname === link.href && linkClsCurrent,
                 linkClsWeight,
               )}
               href={link.href}
             >
               {link.name}
-            </Link>
+            </NextLinkWrapper>
           </li>
         );
       })}

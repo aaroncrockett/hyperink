@@ -1,4 +1,3 @@
-
 import React from "react";
 import type { ComponentPropsWithoutRef } from "react";
 // hyperink
@@ -12,8 +11,8 @@ type HeadingProps = Omit<
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   children?: React.ReactNode;
   cls?: string;
-  colorCls?: string;
-  fontCls?: string;
+  textColorCls?: string;
+  fontFaceCls?: string;
   h1Size?: string;
   h1TextAtrs?: string;
   h2Size?: string;
@@ -28,6 +27,7 @@ type HeadingProps = Omit<
   h6TextAtrs?: string;
   leading?: string;
   text?: string;
+  uppercaseCls?: string;
   weightCls?: string;
 };
 
@@ -36,57 +36,70 @@ export function Heading({
   as = "h1",
   children,
   cls,
-  colorCls = "text-surface-950-50",
-  fontCls,
-  h1Size = "text-3xl md:text-4xl",
-  h1TextAtrs = "!leading-[2.75rem] md:!leading-[2.5rem]",
-  h2Size = "text-2xl md:text-3xl",
-  h2TextAtrs = "!leading-[2.25rem] md:!leading-[2.75rem]",
-  h3Size = "text-xl md:text-2xl",
-  h3TextAtrs = "",
-  h4Size = "text-lg md:text-xl",
-  h4TextAtrs = "",
-  h5Size = "text-lg md:text-xl",
-  h5TextAtrs = "",
+  fontFaceCls,
+  h1Size = "text-4xl md:text-5xl",
+  h1TextAtrs = "!leading-[3rem] md:!leading-[2.75rem]",
+  h2Size = "text-3xl md:text-4xl",
+  h2TextAtrs = "!leading-[2.5rem] md:!leading-[2.75rem]",
+  h3Size = "text-2xl md:text-3xl",
+  h3TextAtrs = "!leading-[2.75rem] md:!leading-[2.5rem]",
+  h4Size = "text-2xl md:text-3xl",
+  h4TextAtrs = "!leading-[2.75rem] md:!leading-[2.5rem]",
+  h5Size = "text-xl md:text-2xl",
+  h5TextAtrs = "md:!leading-[2.75rem]",
   h6Size = "text-lg md:text-xl",
   h6TextAtrs = "",
   text,
+  textColorCls,
+  uppercaseCls,
   weightCls = "",
   ...props
 }: HeadingProps) {
-  let textAttrs;
+  let computedTextAttrs;
 
   switch (as) {
     case "h1":
-      textAttrs = h1Size + " " + h1TextAtrs + " " + fontCls;
+      computedTextAttrs = h1Size + " " + h1TextAtrs;
       break;
 
     case "h2":
-      textAttrs = h2Size + " " + h2TextAtrs + " " + fontCls;
+      computedTextAttrs = h2Size + " " + h2TextAtrs;
       break;
 
     case "h3":
-      textAttrs = h3Size + " " + h3TextAtrs + " " + fontCls;
+      computedTextAttrs = h3Size + " " + h3TextAtrs;
       break;
 
     case "h4":
-      textAttrs = h4Size + " " + h4TextAtrs + " " + fontCls;
+      computedTextAttrs = h4Size + " " + h4TextAtrs;
       break;
 
     case "h5":
-      textAttrs = h5Size + " " + h5TextAtrs + " " + fontCls;
+      computedTextAttrs = h5Size + " " + h5TextAtrs;
       break;
 
     case "h6":
-      textAttrs = h6Size + " " + h6TextAtrs + " " + fontCls;
+      computedTextAttrs = h6Size + " " + h6TextAtrs;
       break;
   }
 
-  const textCls = cn(cls, alignmentCls, colorCls, textAttrs, weightCls);
+  const textCls = cn(
+    cls,
+    alignmentCls,
+    fontFaceCls,
+    uppercaseCls,
+    textColorCls,
+    computedTextAttrs,
+    weightCls,
+  );
   let content;
 
   content = text ? text : children;
 
   const Tag = as;
-  return <Tag className={textCls} {...props}>{content}</Tag>;
+  return (
+    <Tag className={textCls} {...props}>
+      {content}
+    </Tag>
+  );
 }

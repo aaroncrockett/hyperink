@@ -1,9 +1,10 @@
-import { Page, Heading } from "@hyperinkstudio/ui-react-next/components";
+// Local UI
+import { Page, Heading } from "@/ui";
 
 export default async function FlashUploadPage() {
   return (
     <Page>
-      <Heading as="h2" text="Flash"></Heading>
+      <Heading as="h1" text="Flash"></Heading>
       {/* upload */}
       Flash
     </Page>

@@ -1,4 +1,4 @@
-import { Page } from "@hyperinkstudio/ui-react-next/components";
+import { Page } from "@/app/_components/Page";
 export default function FAQPage() {
   return (
     <Page>

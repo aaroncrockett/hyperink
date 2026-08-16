@@ -1,5 +1,3 @@
-// Hyperink UI
-import { Page, Heading } from "@hyperinkstudio/ui-react-next/components";
 // @ auth
 import { createSSClient } from "@/auth/server";
 // @/db
@@ -7,9 +5,10 @@ import {
   getDisplayProfileTaggingOpts,
   type ProfileTaggingOptionsDisplay,
 } from "@/db/api/profileTaggingOpts";
-
 // Local
 import { TaggingOptsDisplay } from "./_components/TaggingOptsDisplay";
+// Local UI
+import { Page, Heading } from "@/ui";
 
 const serverClient = await createSSClient();
 const { data: taggingOpts } = await getDisplayProfileTaggingOpts(serverClient);

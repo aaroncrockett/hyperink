@@ -2,20 +2,21 @@
 // React/Next
 import { ComponentPropsWithoutRef } from "react";
 import { useSearchParams } from "next/navigation";
-import Link from "next/link";
 // Hyperink
 import { getHrefWithSearchParams } from "@hyperinkstudio/utils";
 // @'s
 import { cn } from "@/utils/cn";
 // Local
 import { MENU_ADMIN_LINKS, MENU_PUBLIC_LINKS, ADMIN } from "@/consts";
-
+import { NextLinkWrapper } from "@/ui";
 type NavProps = ComponentPropsWithoutRef<"nav"> & {
   dir?: "col" | "row";
   gapCls?: string;
   isAdmin?: boolean | null;
   liCls?: string;
   linkCls?: string;
+  liCurrentCls?: string;
+  linkCurrentCls?: string;
   pathname: string;
   showIcon?: boolean;
   ulCls?: string;
@@ -27,6 +28,8 @@ export default function Nav({
   gapCls = "gap-2",
   isAdmin = null,
   liCls,
+  liCurrentCls,
+  linkCurrentCls,
   linkCls,
   pathname,
   showIcon = true,
@@ -46,23 +49,28 @@ export default function Nav({
       {...props}
     >
       <ul className={cn(flexLayout, gapCls, ulCls)}>
-        {links
-          .filter((link) => pathname !== link.href)
-          .map((link) => {
-            const Icon = link.icon;
+        {links.map((link) => {
+          const Icon = link.icon;
 
-            return (
-              <li key={link.href} className={cn(liCls)}>
-                <Link
-                  href={getHrefWithSearchParams(link.href, searchParams)}
-                  className={cn(linkCls, "flex flex-row gap-4 font-bold")}
-                >
-                  {Icon && showIcon && <Icon className="w-5 h-5" />}
-                  {link.name.toUpperCase()}
-                </Link>
-              </li>
-            );
-          })}
+          return (
+            <li
+              key={link.href}
+              className={cn(liCls, pathname !== link.href && liCurrentCls)}
+            >
+              <NextLinkWrapper
+                href={getHrefWithSearchParams(link.href, searchParams)}
+                className={cn(
+                  linkCls,
+                  "flex flex-row gap-4 font-bold",
+                  pathname !== link.href && linkCurrentCls,
+                )}
+              >
+                {Icon && showIcon && <Icon className="w-5 h-5" />}
+                {link.name.toUpperCase()}
+              </NextLinkWrapper>
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );

@@ -23,7 +23,7 @@ export default function MenuMobile({
   children,
   title = "",
   closeIcon = <XIcon />,
-  triggerIcon = <Menu className="shadow-sm" />,
+  triggerIcon = <Menu color="#abdd3a" className="shadow-sm" />,
 }: MenuMobileProps) {
   return (
     <div className={className}>
@@ -35,10 +35,10 @@ export default function MenuMobile({
           />
           <Dialog.Positioner className="fixed inset-0 z-50 flex justify-start">
             <Dialog.Content
-              className={`h-screen bg-primary-500/95 w-sm shadow-sm relative ${animModal}`}
+              className={`h-screen bg-secondary-500/95 w-sm shadow-sm relative ${animModal}`}
             >
               <div className="h-full p-4">
-                <div className="flex justify-between items-center">
+                <div className="flex items-center justify-between">
                   <Dialog.Title className="text-2xl font-bold">
                     {title}
                   </Dialog.Title>

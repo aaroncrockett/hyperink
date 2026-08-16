@@ -1,5 +1,8 @@
 import { CREATE_CLIENT_COLS_LIST } from "@/db/api/clientPersons";
-import { Input, InputCheck } from "@hyperinkstudio/ui-react-next/components/";
+import { InputCheck } from "@hyperinkstudio/ui-react-next/components/";
+
+// @/ui
+import { Input } from "@/ui";
 
 export function FormContentCreateClient({
   errors,

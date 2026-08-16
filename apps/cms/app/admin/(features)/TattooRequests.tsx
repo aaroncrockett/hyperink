@@ -1,6 +1,6 @@
 // next, react
 import { ReactNode } from "react";
-import Link from "next/link";
+
 // hyper ink
 import {
   TableLayout,
@@ -16,6 +16,7 @@ import {
   TATT_REQ_ENTRY_FORM_SHORT_DISPLAY_KEYS,
 } from "@/db/api/tattooRequest";
 import { ADMIN_TATT_REQ } from "@/consts";
+import { NextLinkWrapper } from "@/ui";
 
 const gridColCls =
   "grid-cols-[5rem_8rem_8rem_8rem] md:grid-cols-[5rem_8rem_8rem_8rem_8rem_12rem_10rem]";
@@ -50,18 +51,14 @@ export function TattooRequests({
             >
               {requests &&
                 requests.map(({ id, ...requests }) => (
-                  <RowOfTableLayout
-                    gridColCls={gridColCls}
-                    bgCls="odd:bg-surface-100-900/70"
-                    key={id}
-                  >
+                  <RowOfTableLayout gridColCls={gridColCls} key={id}>
                     <span className="truncate">
-                      <Link
+                      <NextLinkWrapper
                         className="text-secondary-500 font-bold underline"
                         href={`${ADMIN_TATT_REQ.href}/${id}`}
                       >
                         EDIT
-                      </Link>
+                      </NextLinkWrapper>
                     </span>
 
                     {TATT_REQ_ENTRY_FORM_SHORT_DISPLAY_KEYS.map(
@@ -98,18 +95,14 @@ export function TattooRequests({
             >
               {requests &&
                 requests.map(({ id, ...requests }) => (
-                  <RowOfTableLayout
-                    gridColCls={gridColCls}
-                    bgCls="odd:bg-surface-100-900/70"
-                    key={id}
-                  >
+                  <RowOfTableLayout gridColCls={gridColCls} key={id}>
                     <span className="truncate">
-                      <Link
+                      <NextLinkWrapper
                         className="text-secondary-500 font-bold underline"
                         href={`${ADMIN_TATT_REQ.href}/${id}`}
                       >
                         EDIT
-                      </Link>
+                      </NextLinkWrapper>
                     </span>
 
                     {TATT_REQ_BASE_FORM_KEYS.map((formKey, id) => {
