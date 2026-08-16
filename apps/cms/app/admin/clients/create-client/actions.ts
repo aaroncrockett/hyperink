@@ -2,12 +2,12 @@
 
 import { redirect } from "next/navigation";
 
-import type { ClientTable } from "@/db/types";
+import type { ClientTable } from "@/business/types";
 import { createSSClient, getAuthedUser } from "@/auth/server";
-import { createClientPerson } from "@/db/api/clientPersons";
+import { createClientPerson } from "@/business/clientPersons";
 import { LINKS_ADMIN } from "@/app/consts";
 
-import { EDITABLE_CLIENT_FORM_SCHEMA } from "@/db/api/clientPersons";
+import { EDITABLE_CLIENT_FORM_SCHEMA } from "@/business/clientPersons";
 
 export type ClientFormState = {
   errors: Record<string, string> | null;

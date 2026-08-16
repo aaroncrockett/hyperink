@@ -1,4 +1,4 @@
-import { createBrowserClient as createBrowserClientDb } from "@hyperinkstudio/db";
+import { createBrowserClient as createBrowserClientDb } from "@hyperinkstudio/backend-services";
 
 export function createBrowserClient() {
   return createBrowserClientDb(

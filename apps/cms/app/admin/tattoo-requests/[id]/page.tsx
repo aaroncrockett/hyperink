@@ -1,7 +1,7 @@
 // Local DB
-import { getTattooRequestById } from "@/db/api/tattooRequest";
+import { getTattooRequestById } from "@/business/tattooRequest";
 import { createSSClient } from "@/auth/server";
-import { getClientPersonsByEmailOrPhone } from "@/db/api/clientPersons";
+import { getClientPersonsByEmailOrPhone } from "@/business/clientPersons";
 // Local
 import { TattooForm } from "./_components/TattooForm";
 // Local UI

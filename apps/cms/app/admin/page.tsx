@@ -1,6 +1,6 @@
 // Local @
-import { type TattooRequest } from "@/db/types";
-import { getLastThreeTattooRequests } from "@/db/api/tattooRequest";
+import { type TattooRequest } from "@/business/types";
+import { getLastThreeTattooRequests } from "@/business/tattooRequest";
 import { createSSClient } from "@/auth/server";
 // Local Cosnts
 import { ADMIN_TATT_REQ } from "@/consts";

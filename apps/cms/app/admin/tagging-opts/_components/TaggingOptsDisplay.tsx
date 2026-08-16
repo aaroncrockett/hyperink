@@ -1,6 +1,6 @@
 // @/db
 
-import { type ProfileTaggingOptionsDisplay } from "@/db/api/profileTaggingOpts";
+import { type ProfileTaggingOptionsDisplay } from "@/business/profileTaggingOpts";
 
 // @/consts
 import { ADMIN_TAGGING_OPTS } from "@/consts";

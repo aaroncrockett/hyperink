@@ -4,7 +4,7 @@ import { createSSClient } from "@/auth/server";
 import {
   getDisplayProfileTaggingOpts,
   type ProfileTaggingOptionsDisplay,
-} from "@/db/api/profileTaggingOpts";
+} from "@/business/profileTaggingOpts";
 // Local UI
 import { Page, Heading } from "@/ui";
 // Local

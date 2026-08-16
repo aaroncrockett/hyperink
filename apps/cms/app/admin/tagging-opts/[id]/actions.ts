@@ -8,7 +8,7 @@ import {
   ProfileTaggingOptions,
   taggingOptsSchema,
   upsertProfileTaggingOpts,
-} from "@/db/api/profileTaggingOpts";
+} from "@/business/profileTaggingOpts";
 // Hyperink
 import { zodIssuesToErrors } from "@hyperinkstudio/utils";
 import { createSSClient } from "@/auth/server";

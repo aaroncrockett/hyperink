@@ -8,8 +8,8 @@ import { useActionState, useState } from "react";
 import { Form, FormMetaErrors } from "@hyperinkstudio/ui-react-next/components";
 
 // Local @/db
-import { type TattooRequest } from "@/db/types";
-import { TATT_REQ_FOLLOW_UP_FORM_LIST } from "@/db/api/tattooRequest";
+import { type TattooRequest } from "@/business/types";
+import { TATT_REQ_FOLLOW_UP_FORM_LIST } from "@/business/tattooRequest";
 // Local
 import { createAClientTattooAndHandleClient } from "../actions";
 import { Button, Input } from "@/ui";

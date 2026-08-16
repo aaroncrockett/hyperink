@@ -1,8 +1,9 @@
-import type { AuthUser, Profile, Client } from "@hyperinkstudio/db";
+import type { Profile } from "@hyperinkstudio/api";
+import type { Client, AuthUser } from "@hyperinkstudio/backend-services";
 
 import { createSSClient, getAuthedUser } from "@/auth/server";
 
-import { getProfileByUserId } from "@/db/api/profile";
+import { getProfileByUserId } from "@/business/profile";
 
 type Nullable<T> = T | null;
 

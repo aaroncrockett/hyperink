@@ -8,7 +8,7 @@ import { Form } from "@hyperinkstudio/ui-react-next/components";
 import { FileUpload } from "@skeletonlabs/skeleton-react";
 import { FileIcon } from "lucide-react";
 // @
-import { FLASH_UPLOAD_FORM_LIST } from "@/db/api/flash";
+import { FLASH_UPLOAD_FORM_LIST } from "@/business/flash";
 
 // Local
 import { uploadFlashImgAndRecord } from "../action";

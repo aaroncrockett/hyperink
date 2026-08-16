@@ -9,7 +9,7 @@ import { formatDate } from "@hyperinkstudio/utils/dates";
 
 // Local Outter
 import { createSSClient } from "@/auth/server";
-import { getLastTenClients, getClientColLabel } from "@/db/api/clientPersons";
+import { getLastTenClients, getClientColLabel } from "@/business/clientPersons";
 // Local UI
 import { Page, Heading } from "@/ui";
 // Local

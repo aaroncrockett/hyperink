@@ -1,4 +1,4 @@
-import { CREATE_CLIENT_COLS_LIST } from "@/db/api/clientPersons";
+import { CREATE_CLIENT_COLS_LIST } from "@/business/clientPersons";
 import { InputCheck } from "@hyperinkstudio/ui-react-next/components/";
 
 // @/ui

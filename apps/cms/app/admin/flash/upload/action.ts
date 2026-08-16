@@ -8,7 +8,7 @@ import {
   uploadFlash,
   FLASH_FILE_SCHEMA,
   FLASH_UPLOAD_FORM_SCHEMA,
-} from "@/db/api/flash";
+} from "@/business/flash";
 // Hyperink"
 import { zodIssuesToErrors } from "@hyperinkstudio/utils";
 import { createSSClient } from "@/auth/server";

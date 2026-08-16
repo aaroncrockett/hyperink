@@ -1,7 +1,7 @@
 // _initdata.ts
 import { cache } from "react";
 import { createSSClient, getAuthedUser } from "@/auth/server";
-import { getProfileByUserId } from "@/db/api/profile";
+import { getProfileByUserId } from "@/business/profile";
 
 export const getUserData = cache(async () => {
   const dbClient = await createSSClient();

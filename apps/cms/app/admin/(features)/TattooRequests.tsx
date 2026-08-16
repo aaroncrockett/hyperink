@@ -8,13 +8,13 @@ import {
 } from "@hyperinkstudio/ui-react-next/components";
 import { formatDate } from "@hyperinkstudio/utils";
 // local
-import type { TattooRequest } from "@/db/types";
+import type { TattooRequest } from "@/business/types";
 import {
   TATT_REQ_BASE_FORM_LIST,
   TATT_REQ_BASE_FORM_KEYS,
   TATT_REQ_ENTRY_FORM_SHORT_DISPLAY_LIST,
   TATT_REQ_ENTRY_FORM_SHORT_DISPLAY_KEYS,
-} from "@/db/api/tattooRequest";
+} from "@/business/tattooRequest";
 import { ADMIN_TATT_REQ } from "@/consts";
 import { NextLinkWrapper } from "@/ui";
 
