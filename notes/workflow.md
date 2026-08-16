@@ -13,7 +13,9 @@ Features and more complex issues should follow the full workflow outlined below.
 feat → new feature
 bug → bug fix
 refactor → code change without behavior change
+style - styling only: new or refinements
 chore → tooling/config
+copy - copy/text only
 docs → documentation
 test → tests
 
