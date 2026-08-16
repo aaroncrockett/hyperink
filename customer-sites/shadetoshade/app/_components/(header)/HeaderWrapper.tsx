@@ -26,7 +26,7 @@ export default function HeaderWrapper({}) {
       tail={
         <>
           <MenuMobile className="block lg:hidden" title="ALL LINKS">
-            <Nav className="flex lg:hidden w-auto h-full" />
+            <Nav className="flex w-auto h-full lg:hidden" />
           </MenuMobile>
           <Link
             className="hidden lg:block"
@@ -35,8 +35,8 @@ export default function HeaderWrapper({}) {
               searchParams,
             )}
           >
-            <button className="btn preset-tonal-surface lg:preset-filled-primary-500 shadow-sm  w-full lg:w-auto mx-auto lg:m-0 font-bold whitespace-nowrap rounded-sm lg:text-white">
-              Book Now
+            <button className="w-full mx-auto font-bold uppercase shadow-sm rounded-xl border-3 btn lg:bg-secondary-100 border-primary-500 lg:w-auto lg:m-0 whitespace-nowrap lg:text-primary-500">
+              Book
             </button>
           </Link>
         </>
@@ -47,14 +47,14 @@ export default function HeaderWrapper({}) {
           href={getHrefWithSearchParams(INTERNAL_LINKS.book.href, searchParams)}
           className="lg:hidden"
         >
-          <button className="btn preset-tonal-surface lg:preset-filled-primary-500 shadow-sm  w-full lg:w-auto mx-auto lg:m-0 font-bold whitespace-nowrap rounded-sm lg:text-white">
-            Book Now
+          <button className="w-full mx-auto font-bold uppercase shadow-sm border-3 rounded-xl btn bg-secondary-200 border-primary-500 text-primary-500 lg:preset-filled-primary-500 lg:w-auto lg:m-0 whitespace-nowrap lg:text-white">
+            Book
           </button>
         </Link>
       }
     >
       <Link
-        className="h-12 px-2 sm:px-0 w-full"
+        className="w-full h-12 px-2 sm:px-0"
         href={getHrefWithSearchParams(INTERNAL_LINKS.home.href, searchParams)}
       >
         <Image
@@ -62,7 +62,7 @@ export default function HeaderWrapper({}) {
           alt="Shade To Shade - Logo"
           width={201}
           height={40}
-          className="h-12 w-auto mx-auto"
+          className="w-auto h-12 mx-auto"
         />
       </Link>
     </Header>

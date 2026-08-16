@@ -49,13 +49,13 @@ export default function NavController({
         </ul>
       </nav>
       {/* hidden: default - shown:lg*/}
-      <div className="hidden lg:flex flex-row items-center justify-between w-full text-sm">
+      <div className="flex-row items-center justify-between hidden w-full text-sm lg:flex">
         <HyperInkSignature layoutCls="flex flex-row gap-2 items-center" />
         <Link
           href={getHrefWithSearchParams(INTERNAL_LINKS.book.href, searchParams)}
         >
-          <span className="btn btn-sm  font-bold preset-filled-surface-50-950 rounded-xs shadow-xs">
-            Book Now
+          <span className="font-bold uppercase shadow-sm btn border-3 bg-secondary-200 text-primary-500 border-primary-500 rounded-xl">
+            Book
           </span>
         </Link>
       </div>
