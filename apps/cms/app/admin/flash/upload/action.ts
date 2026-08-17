@@ -5,7 +5,7 @@ import { getUserData } from "@/app/admin/getUserData";
 
 // @/db
 import {
-  uploadFlash,
+  uploadFlashImage,
   FLASH_FILE_SCHEMA,
   FLASH_UPLOAD_FORM_SCHEMA,
 } from "@/business/flash";
@@ -99,14 +99,16 @@ export async function uploadFlashImgAndRecord(
 
   const ssClient = await createSSClient();
 
-  console.log(parsedForm.data[0].readable_name, "name");
-  console.log(parsedForm.data[0].total_availability, "total_availability");
-
-  const { error } = await uploadFlash(ssClient, parsedFile.data, pvtProfileId, {
-    readable_name: parsedForm.data[0].readable_name,
-    total_availability: parsedForm.data[0].total_availability,
-    // ...
-  });
+  const { error } = await uploadFlashImage(
+    ssClient,
+    parsedFile.data,
+    pvtProfileId,
+    {
+      readable_name: parsedForm.data[0].readable_name,
+      total_availability: parsedForm.data[0].total_availability,
+      // ...
+    },
+  );
 
   if (error) {
     console.error(error);

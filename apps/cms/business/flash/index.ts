@@ -1,7 +1,7 @@
 import { z } from "zod";
-// hyperink api
-import { uploadFlash as uploadFlashSrc } from "@hyperinkstudio/api";
-// hyperink utils
+export * from "./upload";
+
+// // hyperink utils
 import {
   createDataCollection,
   getValuesFromCollection,
@@ -33,7 +33,7 @@ export const FLASH_UPLOAD_FORM_SCHEMA = z.array(
 
 export const FLASH_FILE_SCHEMA = z
   .instanceof(File)
-  .refine((file) => file.size > 0, "File is empty.")
+  .refine((file: File) => file.size > 0, "File is empty.")
   .refine(
     (file) => file.size <= 10 * 1024 * 1024,
     "File must be 10 MB or smaller.",
@@ -45,10 +45,11 @@ export const FLASH_FILE_SCHEMA = z
       ),
     "Unsupported image type.",
   );
-// hyperink shared business
-// import {
-//   // type ProfileTaggingOptions as ProfileTaggingOptions_Src,
-//   // type ProfileTaggingOptionsKeys as ProfileTaggingOptionsKeys_Src,
-// } from "@hyperinkstudio/business/";
+// // hyperink shared business
+import {
+  type ProfileTaggingOptions as ProfileTaggingOptions_Src,
+  type ProfileTaggingOptionsKeys as ProfileTaggingOptionsKeys_Src,
+} from "@hyperinkstudio/business/";
 
-export const uploadFlash = uploadFlashSrc;
+export type ProfileTaggingOptions = ProfileTaggingOptions_Src;
+export type ProfileTaggingOptionsKeys = ProfileTaggingOptionsKeys_Src;

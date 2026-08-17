@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { INPUT_TYPES_MAP } from "@hyperinkstudio/business/options";
+import { INPUT_TYPES_MAP } from "./options";
 
 export type SelectOption = {
   label: string;

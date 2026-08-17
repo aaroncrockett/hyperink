@@ -5,9 +5,9 @@ import type {
   ProfileTaggingOptions,
   TattooImage,
   TattooRequest,
-} from "@hyperinkstudio/api";
+} from "@hyperinkstudio/backend-services";
 
-import type { Client as ServerClient } from "@hyperinkstudio/backend-service";
+import type { Client as ServerClient } from "@hyperinkstudio/backend-services";
 
 export type {
   ClientTable,

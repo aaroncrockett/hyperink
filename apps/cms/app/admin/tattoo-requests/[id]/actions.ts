@@ -12,7 +12,7 @@ type TattooRequestForm = TattooRequest &
     clientId?: string;
   };
 
-type TattooFormState = {
+export type TattooFormState = {
   tattooRequest: TattooRequestForm | ClientTattoo | null;
   errors: Partial<Record<keyof TattooRequestForm, string>> | null;
 };

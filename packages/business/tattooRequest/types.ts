@@ -2,7 +2,7 @@ import { z } from "zod";
 //local
 import type { TattooRequest } from "@hyperinkstudio/backend-services";
 
-import { Data } from "@hyperinkstudio/business/types";
+import { Data } from "../types";
 
 export type TattooRequestFormKey = keyof TattooRequest;
 

@@ -1,4 +1,4 @@
-import { getPublicUrl } from "@hyperinkstudio/backend-services/supabase/server";
+import { getPublicUrl } from "@hyperinkstudio/backend-services/";
 import { TABLE_TATTOO_IMAGE as TABLE, BUCKET_TATTOO as BUCKET } from "./consts";
 
 type QueryOptions = {

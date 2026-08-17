@@ -3,15 +3,18 @@ import {
   createSSClient as createClient,
   exchangeCodeForSession,
   getUser,
-  getProfileByUserId,
   verifyOtp,
   signInWithPassword,
   signUp,
   signInWithOAuth,
+  SupabaseConfig,
+  type Client,
+} from "@hyperinkstudio/backend-services";
+
+import type {
+  getProfileByUserId,
   uploadTattooImage,
 } from "@hyperinkstudio/api";
-
-import type { SupabaseConfig, Client } from "@hyperinkstudio/api";
 
 export {
   exchangeCodeForSession,

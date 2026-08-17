@@ -8,7 +8,6 @@
   "scripts": {
     "check": "tsc --noEmit"
   },
-
   "peerDependencies": {
     "react": "^19",
     "react-dom": "^19"
@@ -23,5 +22,4 @@
     "@skeletonlabs/skeleton": "^4.12.1",
     "@skeletonlabs/skeleton-react": "^4.12.1"
   }
-
 }

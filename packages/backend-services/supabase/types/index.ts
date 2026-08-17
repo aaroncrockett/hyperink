@@ -6,14 +6,15 @@ import type { User } from "@supabase/supabase-js";
 export type Client = SupabaseClient<Database>;
 export type AuthUser = User;
 
-import type { Database } from "./supabase";
+import type { Database as DatabaseSrc } from "./supabase";
+
+export type Database = DatabaseSrc;
 
 type PlainRows<T extends Record<string, any>> = {
   [K in keyof T]: T[K] extends { Row: infer R } ? R : never;
 };
 
 type AppTables = PlainRows<Database["public"]["Tables"]>;
-type PvtTables = PlainRows<Database["auth"]["Tables"]>;
 
 export type ClientTable = AppTables["client"];
 export type ClientTattoo = AppTables["client_tattoo"];

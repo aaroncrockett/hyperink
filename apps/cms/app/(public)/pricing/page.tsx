@@ -1,4 +1,4 @@
-import { Page } from "@/app/_components/Page";
+import { Page } from "@/ui/Page";
 export default function PricingPage() {
   return (
     <Page>
