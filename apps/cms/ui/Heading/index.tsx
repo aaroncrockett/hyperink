@@ -6,7 +6,7 @@ type HeadingProps = Omit<
   "as" | "fontFaceCls" | "textColorCls" | "weightCls"
 > & {
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-  fontFaceCls?: "font-display" | "font-sans-serif";
+  fontFaceCls?: string;
   textColorCls?: string;
   uppercaseCls?: string;
 };
@@ -34,6 +34,8 @@ export function Heading({
 
   if ((SMALL_HEADERS as readonly string[]).includes(as)) {
     textColor = textColorCls ? textColorCls : "text-secondary-950-50";
+    fontFace = fontFaceCls ? fontFaceCls : "";
+    uppercase = uppercaseCls ? uppercaseCls : "";
   }
 
   return (

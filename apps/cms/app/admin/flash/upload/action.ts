@@ -1,19 +1,22 @@
 "use server";
+// 3rd party
 import z from "zod";
-// @/app
+// Next
+import { redirect } from "next/navigation";
+// Hyperink"
+import { zodIssuesToErrors } from "@hyperinkstudio/utils";
+// @
 import { getUserData } from "@/app/admin/getUserData";
-
-// @/db
+//
 import {
   uploadFlashImage,
   FLASH_FILE_SCHEMA,
   FLASH_UPLOAD_FORM_SCHEMA,
 } from "@/business/flash";
-// Hyperink"
-import { zodIssuesToErrors } from "@hyperinkstudio/utils";
+//
 import { createSSClient } from "@/auth/server";
-
-// type TaggingOptionKey = keyof z.infer<typeof taggingOptsSchema>;
+//
+import { ADMIN_FLASH } from "@/consts";
 
 type OptionsFormState = {
   errors: Record<string, string> | null;
@@ -29,11 +32,29 @@ export async function uploadFlashImgAndRecord(
 
   const { pvtProfileId } = await getUserData();
 
-  const file = formData.get("file");
+  const files = formData
+    .getAll("file")
+    .filter((value): value is File => value instanceof File);
 
   const fileMetadata = formData.get("file_metadata");
 
-  if (!file) {
+  const singleCollection = formData.get("collection");
+
+  const parsedSingleCollection =
+    singleCollection !== null
+      ? z.string().min(1).safeParse(singleCollection)
+      : null;
+
+  if (parsedSingleCollection && !parsedSingleCollection.success) {
+    return {
+      errors: {
+        collection: "Invalid collection.",
+      },
+    };
+  }
+
+  if (!files) {
+    console.error("1: Flash upload  is required.");
     return {
       errors: {
         file_metadata: "Flash upload  is required.",
@@ -42,6 +63,7 @@ export async function uploadFlashImgAndRecord(
   }
 
   if (!fileMetadata) {
+    console.error("2: File metadata is required.");
     return {
       errors: {
         file_metadata: "File metadata is required.",
@@ -55,6 +77,7 @@ export async function uploadFlashImgAndRecord(
     .safeParse(fileMetadata);
 
   if (!parsedMetadata.success) {
+    console.error("3: Invalid file metadata.");
     return {
       errors: {
         file_metadata: "Invalid file metadata.",
@@ -62,14 +85,18 @@ export async function uploadFlashImgAndRecord(
     };
   }
 
-  const parsedFile = FLASH_FILE_SCHEMA.safeParse(file);
+  const parsedFiles = files.map((file) => FLASH_FILE_SCHEMA.safeParse(file));
 
   const parsedForm = FLASH_UPLOAD_FORM_SCHEMA.safeParse(parsedMetadata.data);
 
-  if (!parsedFile.success) {
-    const { issues } = parsedFile.error;
+  const invalidFile = parsedFiles.find((result) => !result.success);
+
+  if (invalidFile && !invalidFile.success) {
+    const { issues } = invalidFile.error;
 
     const zodErrors = zodIssuesToErrors(issues);
+
+    console.error("4: FLASH_FILE_SCHEMA");
 
     actionResults.errors = {
       ...actionResults.errors,
@@ -84,6 +111,8 @@ export async function uploadFlashImgAndRecord(
 
     const zodErrors = zodIssuesToErrors(issues);
 
+    console.error("5: Zod error from FLASH_UPLOAD_FORM_SCHEMA");
+
     actionResults.errors = {
       ...actionResults.errors,
       ...zodErrors,
@@ -92,43 +121,47 @@ export async function uploadFlashImgAndRecord(
     return actionResults;
   }
 
-  if (parsedFile.data === undefined || parsedForm.data === undefined) {
-    actionResults.errors = { data: "undefined data or file." };
+  if (
+    parsedFiles.some((result) => result.data === undefined) ||
+    parsedForm.data === undefined
+  ) {
+    console.error("6: Undefined data or file.");
+    actionResults.errors = { data: "Undefined data or file." };
     return actionResults;
   }
 
   const ssClient = await createSSClient();
 
-  const { error } = await uploadFlashImage(
-    ssClient,
-    parsedFile.data,
-    pvtProfileId,
-    {
-      readable_name: parsedForm.data[0].readable_name,
-      total_availability: parsedForm.data[0].total_availability,
-      // ...
-    },
-  );
+  for (let i = 0; i < parsedFiles.length; i++) {
+    const file = parsedFiles[i].data;
+    const metadata = parsedForm.data[i];
 
-  if (error) {
-    console.error(error);
-    actionResults.errors = {
-      ...actionResults.errors,
-      dbError: "Failed at uploading file.",
-    };
-    return actionResults;
+    if (parsedSingleCollection) {
+      metadata.collection = parsedSingleCollection.data;
+    }
+
+    if (!file || !metadata) {
+      console.error("7: Undefined file or metadata loopo.");
+      actionResults.errors = { data: "Undefined file or metadata loop." };
+      return actionResults;
+    }
+
+    const { error } = await uploadFlashImage(
+      ssClient,
+      file,
+      pvtProfileId,
+      metadata,
+    );
+
+    if (error) {
+      console.error(error);
+      actionResults.errors = {
+        ...actionResults.errors,
+        dbError: "Failed at uploading file.",
+      };
+      return actionResults;
+    }
   }
-  console.log("WE AARE AT THE END");
 
-  // actionResults.name = name;
-
-  // const resultsData = data?.[name];
-
-  // const resultsDataString = Array.isArray(resultsData)
-  //   ? resultsData.filter(Boolean).join(",")
-  //   : String(resultsData ?? "");
-
-  // actionResults.options = resultsDataString;
-
-  return actionResults;
+  redirect(ADMIN_FLASH.href);
 }

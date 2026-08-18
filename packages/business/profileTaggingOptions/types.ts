@@ -1,6 +1,6 @@
 import type { ProfileTaggingOptions as ProfileTaggingOptionsDb } from "@hyperinkstudio/backend-services";
 
-import { Data } from "@hyperinkstudio/business/types";
+import type { Data } from "../types";
 
 // example on what we do when we need to replace a key
 // export type ProfileTaggingOptions = Omit<

@@ -9,14 +9,26 @@ import {
 // hyperink shared business
 import * as BASE from "@hyperinkstudio/business/flash/base";
 
-export const FLASH_UPLOAD_FORM_DATA = createDataCollection({
+export * from "./taggingOpts";
+
+const BASE_FORM_DATA = {
   readable_name: {
     ...BASE.READABLE_NAME,
-    type: "text",
   },
   total_availability: {
     ...BASE.TOTAL_AVAILABILITY,
-    type: "number",
+  },
+  styles: {
+    ...BASE.FLASH_STYLES,
+  },
+};
+
+export const FLASH_UPLOAD_FORM_DATA = createDataCollection(BASE_FORM_DATA);
+
+export const FLASH_UPLOAD_FORM_BY_COLLECTION_DATA = createDataCollection({
+  ...BASE_FORM_DATA,
+  collection: {
+    ...BASE.FLASH_COLLECTION,
   },
 });
 
@@ -24,10 +36,16 @@ export const FLASH_UPLOAD_FORM_LIST = getValuesFromCollection(
   FLASH_UPLOAD_FORM_DATA,
 );
 
+export const FLASH_UPLOAD_FORM_BY_COLLECTION_LIST = getValuesFromCollection(
+  FLASH_UPLOAD_FORM_BY_COLLECTION_DATA,
+);
+
 export const FLASH_UPLOAD_FORM_SCHEMA = z.array(
   z.object({
     readable_name: z.string().min(1),
     total_availability: z.coerce.number().int().min(1).max(10),
+    collection: z.string().min(1).optional(),
+    styles: z.array(z.string()).optional(),
   }),
 );
 
@@ -45,6 +63,20 @@ export const FLASH_FILE_SCHEMA = z
       ),
     "Unsupported image type.",
   );
+
+export const UPLOAD_OPTIONS = {
+  collection: {
+    label: "Collection",
+    value: "collection",
+  },
+  general: {
+    label: "General",
+    value: "general",
+  },
+};
+
+export type UploadOption = keyof typeof uploadOptions;
+
 // // hyperink shared business
 import {
   type ProfileTaggingOptions as ProfileTaggingOptions_Src,

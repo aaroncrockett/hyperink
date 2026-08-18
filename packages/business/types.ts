@@ -48,10 +48,14 @@ export type Json =
   | { [key: string]: Json | undefined }
   | Json[];
 
+// Transform JSON fields into string[].
+// IMPORTANT: Ensure the value has the correct shape before transforming it.
+// TODO: Research adding type checks.
 export type JsonToStringArray<T> = {
   [K in keyof T]: Json extends T[K] ? string[] : T[K];
 };
 
+// Selects only properties whose values are arrays of strings.
 export type SelectStringArrays<T> = {
   [K in keyof T as T[K] extends string[] ? K : never]: T[K];
 };

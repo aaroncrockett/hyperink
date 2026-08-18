@@ -1,72 +1,66 @@
 "use client";
+// 3rd party
+import { FileUpload } from "@skeletonlabs/skeleton-react";
 
 // React
 import { useActionState, useState } from "react";
 
-// Hyperink UI
-import { Form } from "@hyperinkstudio/ui-react-next/components";
-import { FileUpload } from "@skeletonlabs/skeleton-react";
-import { FileIcon } from "lucide-react";
-// @
-import { FLASH_UPLOAD_FORM_LIST } from "@/business/flash";
+// Hyperink
+import { type ProfileTaggingOptionsDisplay } from "@/business/profileTaggingOpts";
+import { UPLOAD_OPTIONS, type UploadOption } from "@/business/flash";
+//
+import { Form, FormMetaErrors } from "@hyperinkstudio/ui-react-next/components";
+
+// Local @
+import { Heading, Select } from "@/ui";
+//
+import { toLabelValue } from "@hyperinkstudio/utils";
 
 // Local
 import { uploadFlashImgAndRecord } from "../action";
-import { Heading, Input } from "@/ui";
-
-type UploadOption = "collection" | "single";
-
-type FileMetadata = {
-  id: string;
-  readable_name: string;
-  total_availability: number | "";
-};
-
-type FlashActionState = {
-  errors: Record<string, string> | null;
-};
+import { getFileId } from "../helpers";
+import type { LabelPair, FlashActionState } from "../types";
+//
+import { FilePicker } from "./FilePicker";
+import { FileItemGroup } from "./FileItemGroup";
+//
+import { useFileMetadata } from "../hooks";
 
 const initialActionState: FlashActionState = {
   errors: null,
 };
 
-export function FlashForm() {
-  const [uploadOption, setUploadOption] = useState<UploadOption>("single");
+type FlashFormParams = {
+  taggingOpts: Partial<ProfileTaggingOptionsDisplay> | null;
+};
 
-  const [fileMetadata, setFileMetadata] = useState<FileMetadata[]>([]);
+export function FlashForm({ taggingOpts }: FlashFormParams) {
+  const { fileMetadata, setFileMetadata, updateFileMetadata } =
+    useFileMetadata();
+
+  const [uploadOption, setUploadOption] = useState<UploadOption>(
+    UPLOAD_OPTIONS.collection.value,
+  );
 
   const [actionState, formAction] = useActionState(
     uploadFlashImgAndRecord,
     initialActionState,
   );
-  function getFileId(file: File) {
-    return `${file.name}-${file.lastModified}`;
-  }
 
-  function updateFileMetadata(
-    id: string,
-    updates: Partial<Omit<FileMetadata, "id">>,
-  ) {
-    setFileMetadata((prev) =>
-      prev.map((file) =>
-        file.id === id
-          ? {
-              ...file,
-              ...updates,
-            }
-          : file,
-      ),
+  let collectionOptions: LabelPair[] = [];
+
+  if (taggingOpts?.collections) {
+    collectionOptions = taggingOpts.collections.map((value) =>
+      toLabelValue(value),
     );
   }
 
   return (
     <>
-      <span>Current upload option: {uploadOption}</span>
-
       <Form action={formAction}>
         <FileUpload
           accept="image/*"
-          maxFiles={1}
+          maxFiles={5}
           name="file"
           onFileAccept={({ files }) => {
             setFileMetadata(
@@ -83,68 +77,82 @@ export function FlashForm() {
               const hasFile = fileUpload.acceptedFiles.length > 0;
 
               return (
-                <div className="flex flex-col gap-4 p-2 pt-2 mb-4 bg-surface-100-900/60">
+                <div className="flex flex-col gap-2 sm:gap-3 md:gap-4 p-3 pt-4 mb-4 bg-surface-200-800/30 rounded-sm">
+                  <div className="flex flex-col gap-1.5 bg-surface-200-800 rounded-xl p-3">
+                    <Select
+                      label="Upload Type"
+                      options={[
+                        UPLOAD_OPTIONS.collection,
+                        UPLOAD_OPTIONS.general,
+                      ]}
+                      defaultValue={uploadOption as string}
+                      borderCls="border-3 border-surface-100"
+                      labelColorCls="text-surface-800"
+                      labelSizeCls="text-2xl md:text-3xl"
+                      labelCls="uppercase font-display"
+                      labelWeightCls="font-normal!"
+                      onChange={(e) =>
+                        setUploadOption(
+                          (e.target as HTMLSelectElement).value as UploadOption,
+                        )
+                      }
+                    />
+                    <span className="text-base! flex flex-col gap-1">
+                      <span className="inline-block">
+                        Collection:{" "}
+                        <span className="italic">
+                          {" "}
+                          images in a single collection.
+                        </span>
+                      </span>
+                      <span className="inline-block">
+                        General:{" "}
+                        <span className="italic">
+                          {" "}
+                          images in any or no collection.
+                        </span>
+                      </span>
+                    </span>
+                  </div>
+
+                  {uploadOption === "collection" && collectionOptions && (
+                    <Select
+                      id="collection"
+                      label="Collection"
+                      name="collection"
+                      options={collectionOptions}
+                      onChange={(e) =>
+                        updateFileMetadata(
+                          "",
+                          {},
+                          (e.target as HTMLSelectElement).value,
+                        )
+                      }
+                    />
+                  )}
+
                   <FileUpload.Label>
-                    <Heading as="h4" text="Upload Flash" />
+                    <Heading
+                      as="h4"
+                      fontFaceCls="font-display!"
+                      uppercaseCls="uppercase"
+                      text="Upload Flash"
+                    />
                   </FileUpload.Label>
 
-                  {!hasFile && (
-                    <FileUpload.Dropzone>
-                      <FileIcon className="size-10" />
-
-                      <span>Select file or drag here.</span>
-
-                      <FileUpload.Trigger>Browse Files</FileUpload.Trigger>
-
-                      <FileUpload.HiddenInput />
-                    </FileUpload.Dropzone>
-                  )}
+                  {!hasFile && <FilePicker FileUpload={FileUpload} />}
 
                   <FileUpload.HiddenInput />
 
-                  <FileUpload.ItemGroup>
-                    {fileUpload.acceptedFiles.map((file) => {
-                      const id = getFileId(file);
+                  <FileItemGroup
+                    fileMetadata={fileMetadata}
+                    FileUpload={FileUpload}
+                    fileUpload={fileUpload}
+                    taggingOpts={taggingOpts}
+                    updateFileMetadata={updateFileMetadata}
+                    uploadOption={uploadOption as string}
+                  />
 
-                      const metadata = fileMetadata.find(
-                        (item) => item.id === id,
-                      );
-
-                      return (
-                        <li className="flex flex-col gap-4" key={id}>
-                          <span className="text-xl font-bold">
-                            File: {file.name}
-                          </span>
-
-                          {/* <FilePreview file={file} /> */}
-
-                          {FLASH_UPLOAD_FORM_LIST.map((input, i) => {
-                            if (!input) return null;
-
-                            return (
-                              <Input
-                                key={input.id + i}
-                                type={input.type}
-                                id={`${input.id}`}
-                                label={input.label}
-                                value={metadata?.[input.id]?.toString() ?? ""}
-                                onChange={(e) => {
-                                  updateFileMetadata(id, {
-                                    [input.id]:
-                                      input.type === "number"
-                                        ? e.target.value === ""
-                                          ? ""
-                                          : Number(e.target.value)
-                                        : e.target.value,
-                                  });
-                                }}
-                              />
-                            );
-                          })}
-                        </li>
-                      );
-                    })}
-                  </FileUpload.ItemGroup>
                   <input
                     type="hidden"
                     name="file_metadata"
@@ -154,7 +162,7 @@ export function FlashForm() {
 
                   {hasFile && (
                     <FileUpload.ClearTrigger
-                      className="btn preset-tonal-tertiary"
+                      className="btn preset-filled-secondary-500 text-white! font-bold"
                       onClick={() => setFileMetadata([])}
                     >
                       Clear Files
@@ -166,7 +174,7 @@ export function FlashForm() {
           </FileUpload.Context>
         </FileUpload>
 
-        {/* {actionState.error && <p>{actionState.message}</p>} */}
+        {actionState.errors && <FormMetaErrors errors={actionState.errors} />}
       </Form>
     </>
   );
