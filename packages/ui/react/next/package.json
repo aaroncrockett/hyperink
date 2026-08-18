@@ -20,6 +20,7 @@
   "dependencies": {
     "@hyperinkstudio/utils": "workspace:*",
     "@skeletonlabs/skeleton": "^4.12.1",
-    "@skeletonlabs/skeleton-react": "^4.12.1"
+    "@skeletonlabs/skeleton-react": "^4.12.1",
+    "lucide-react": "^0.577.0"
   }
 }

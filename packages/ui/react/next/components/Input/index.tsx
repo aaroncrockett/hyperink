@@ -15,8 +15,10 @@ type InputProps = Omit<ComponentPropsWithoutRef<"div">, "className"> & {
   inputCls?: string;
   inputPaddingCls?: string;
   labelCls?: string;
+  labelSizeCls?: string;
+  labelColorCls?: string;
   labelWeightCls?: string;
-  labelUtilCls?: string;
+  labelUppercaseCls?: string;
   name?: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   readOnly?: boolean;
@@ -42,9 +44,11 @@ export function Input({
   inputCls,
   inputPaddingCls = "p-2",
   inputUtilCls = "input",
-  labelCls = "label font-bold",
+  labelCls,
+  labelSizeCls,
+  labelColorCls,
   labelWeightCls = "font-bold",
-  labelUtilCls = "label",
+  labelUppercaseCls,
   onChange,
   readOnly,
   required = false,
@@ -72,7 +76,13 @@ export function Input({
       {type !== "hidden" && (
         <label
           htmlFor={id}
-          className={cn(labelCls, labelWeightCls, labelUtilCls)}
+          className={cn(
+            labelCls,
+            labelWeightCls,
+            labelSizeCls,
+            labelColorCls,
+            labelUppercaseCls,
+          )}
         >
           {required && "*"} {label}
         </label>

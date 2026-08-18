@@ -13,6 +13,7 @@ type CheckboxProps = Omit<ComponentPropsWithoutRef<"div">, "className"> & {
   labelCls?: string;
   labelSizeCls?: string;
   labelColorCls?: string;
+  labelUppercaseCls?: string;
   labelWeightCls?: string;
   name: string;
   readOnly?: boolean;
@@ -34,6 +35,7 @@ export function InputCheck({
   labelCls,
   labelSizeCls,
   labelColorCls,
+  labelUppercaseCls,
   labelWeightCls = "font-bold",
   name,
   readOnly,
@@ -56,7 +58,13 @@ export function InputCheck({
     >
       <label
         htmlFor={id}
-        className={cn("", labelCls, labelColorCls, labelSizeCls)}
+        className={cn(
+          labelCls,
+          labelWeightCls,
+          labelSizeCls,
+          labelColorCls,
+          labelUppercaseCls,
+        )}
       >
         {required && "*"} {label}
       </label>
@@ -68,6 +76,7 @@ export function InputCheck({
         value={value}
         className={cn(inputCls)}
         required={required}
+        readOnly={readOnly}
       />
 
       {errors && errors[name] && (
