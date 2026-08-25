@@ -1,7 +1,7 @@
 "use client";
 
 // Lucide React
-import type { LucideIcon } from "lucide-react";
+import { Icon } from "@/ui";
 
 // Next
 import { usePathname } from "next/navigation";
@@ -13,13 +13,13 @@ import { NextLinkWrapper } from "@/ui";
 type NavLink = {
   href: string;
   name: string;
-  icon?: LucideIcon;
+  icon?: string;
 };
 
 type NavsProps = {
   iconCls?: string;
   iconLeftPadding?: string;
-  iconSizeCls?: string;
+  iconSizeCls?: "sm" | "md" | "lg";
   layout?: "col" | "row";
   layoutGap?: string;
   liCls?: string;
@@ -63,7 +63,7 @@ export function Nav({
     <ul className={cn(flexLayout, layoutGap, textSizeCls, ulCls)}>
       {links.map((link) => {
         return (
-          <li className={liCls} key={link.href}>
+          <li className={liCls} key={link.href + link.name + "adminnav"}>
             <NextLinkWrapper
               className={cn(
                 linkCls,
@@ -76,11 +76,14 @@ export function Nav({
               )}
               href={link.href}
             >
-              {showIcon && link.icon && (
-                <link.icon
-                  className={cn(iconCls, iconSizeCls, iconLeftPadding)}
+              {showIcon && Icon && (
+                <Icon
+                  size={iconSizeCls}
+                  name={link.name}
+                  cls={cn(iconCls, iconLeftPadding)}
                 />
               )}
+
               {link.name}
             </NextLinkWrapper>
           </li>

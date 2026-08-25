@@ -31,7 +31,7 @@ export default function Header({
       <div
         className={cn(
           "max-w-6xl flex justify-between items-center p-2 h-16",
-          isAdmin === false && "lg:justify-endr",
+          isAdmin === false && "lg:justify-end",
           wrapperCls,
         )}
       >

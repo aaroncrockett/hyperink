@@ -12,6 +12,7 @@ const outfit = Outfit({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
+
 const leagueGothic = League_Gothic({
   variable: "--font-league-gothic",
   weight: "400",
@@ -19,7 +20,7 @@ const leagueGothic = League_Gothic({
 });
 
 export const metadata: Metadata = {
-  title: "HyperInk:  Tattoo Booking & Client Records",
+  title: "HyperInk: Tattoo Booking & Client Records",
   description: "Tattoo Artists in Portland Oregon",
   icons: {
     icon: "/favicon.svg",
@@ -52,7 +53,7 @@ export default function RootLayout({
     <html
       lang="en"
       data-theme="hyperinknue"
-      className={`h-full  antialiased  ${outfit.variable} ${leagueGothic.variable}`}
+      className={`h-full antialiased ${outfit.variable} ${leagueGothic.variable}`}
     >
       <body className={`antialiased h-full`}>
         <div

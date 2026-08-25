@@ -2,10 +2,11 @@
 // React
 import { ComponentPropsWithoutRef } from "react";
 // Next
-import Link from "next/link";
+import NextLinkWrapper from "next/link";
 // @s
-import { INTERNAL_ADMIN_LINKS } from "@/consts";
+import { INTERNAL_ADMIN_LINKS, INTERNAL_FLASH_LINKS } from "@/consts";
 import { cn } from "@/utils/cn";
+import { Icon } from "@/ui";
 
 type NavFooterProps = ComponentPropsWithoutRef<"nav"> & {
   ulCls?: string;
@@ -13,38 +14,39 @@ type NavFooterProps = ComponentPropsWithoutRef<"nav"> & {
   linkCls?: string;
 };
 
-export function NavFooter({ className, ...props }: NavFooterProps) {
-  const AdminIcon = INTERNAL_ADMIN_LINKS.admin.icon;
-  const FlashUploadIcon = INTERNAL_ADMIN_LINKS.flashUpload.icon;
-  const TattReqIcon = INTERNAL_ADMIN_LINKS.tattReq.icon;
+export function LayoutNavFooter({ className, ...props }: NavFooterProps) {
+  const adminName = INTERNAL_ADMIN_LINKS.admin.icon;
+  const uploadName = INTERNAL_FLASH_LINKS.upload.icon;
+  const tattReqName = INTERNAL_ADMIN_LINKS.tattReq.icon;
   return (
     <nav className={cn(className)} {...props}>
       <ul className="flex flex-row items-center justify-between w-full gap-4">
         <li>
-          <Link
+          <NextLinkWrapper
             className="text-primary-500! flex flex-col items-center"
             href={INTERNAL_ADMIN_LINKS.admin.href}
           >
-            <AdminIcon className="w-5 h-5" /> {INTERNAL_ADMIN_LINKS.admin.name}
-          </Link>
+            <Icon name={adminName} size="md" />
+            {adminName}
+          </NextLinkWrapper>
         </li>
         <li>
-          <Link
+          <NextLinkWrapper
             className="text-primary-500! flex flex-col items-center"
             href={INTERNAL_ADMIN_LINKS.flash.href}
           >
-            <FlashUploadIcon className="w-5 h-5" />
-            {INTERNAL_ADMIN_LINKS.flash.name}
-          </Link>
+            <Icon name={uploadName} size="md" />
+            {uploadName}
+          </NextLinkWrapper>
         </li>
         <li>
-          <Link
+          <NextLinkWrapper
             className="text-primary-500! flex flex-col items-center"
             href={INTERNAL_ADMIN_LINKS.tattReq.href}
           >
-            <TattReqIcon className="w-5 h-5" />
+            <Icon name={tattReqName} size="md" />
             {INTERNAL_ADMIN_LINKS.tattReq.shortName}
-          </Link>
+          </NextLinkWrapper>
         </li>
       </ul>
     </nav>

@@ -1,21 +1,37 @@
-import { Brain, Home, Info } from "lucide-react";
 // PUBLIC LINKS
 export const HOME = {
   href: "/",
   name: "Home",
-  icon: Home,
+  icon: "home",
+  transition: "slide-up",
 };
 
 const FAQ = {
   href: "/faq",
-  name: "FAQ",
-  icon: Info,
+  name: "Faq",
+  icon: "info",
+  transition: "slide-up",
 };
 
 const PRICING = {
   href: "/pricing",
   name: "Pricing",
-  icon: Brain,
+  icon: "brain",
+  transition: "slide-up",
+};
+
+export const LOGIN = {
+  href: "/login",
+  name: "Login",
+  icon: "login",
+  transition: "slide-up",
+};
+
+export const SIGNUP = {
+  href: "/signup",
+  name: "Signup",
+  icon: "login",
+  transition: "slide-up",
 };
 
 // ALL PUBLIC LINKS

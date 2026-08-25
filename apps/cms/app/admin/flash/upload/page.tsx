@@ -4,7 +4,7 @@ import { createSSClient } from "@/auth/server";
 import { getDisplayProfileTaggingOpts } from "@/business/flash";
 import { type ProfileTaggingOptionsDisplay } from "@/business/profileTaggingOpts";
 //
-import { Page, Heading } from "@/ui";
+import { Page, Heading, ViewTransition } from "@/ui";
 // Local
 import { FlashForm } from "./_components/FlashForm";
 
@@ -17,9 +17,11 @@ const singleTaggingOpts = taggingOpts?.[0]
 
 export default async function FlashUploadPage() {
   return (
-    <Page>
-      <Heading as="h1" text="Flash"></Heading>
-      <FlashForm taggingOpts={singleTaggingOpts} />
-    </Page>
+    <ViewTransition transition="nav-forward">
+      <Page>
+        <Heading as="h1" text="Upload"></Heading>
+        <FlashForm taggingOpts={singleTaggingOpts} />
+      </Page>
+    </ViewTransition>
   );
 }

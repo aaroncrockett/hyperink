@@ -6,3 +6,11 @@ export function getHrefWithSearchParams(
 
   return query ? `${href}?${query}` : href;
 }
+
+export const getPathSegmentCount = (path: string) => {
+  return path.split("/").filter(Boolean).length;
+};
+
+export const getPathSegments = (path: string) => {
+  return path.split("/").filter(Boolean);
+};

@@ -1,15 +1,15 @@
 // Local @
-import { Heading, Page, ViewTransition } from "@/ui";
+import { Page, Heading, ViewTransition } from "@/ui";
 // Local
-
-export default async function FlashUploadPage() {
+//
+export default function PreferencesPage() {
   return (
     <ViewTransition transition="nav-forward">
       <Page>
         <Heading
           as="h2"
           h2TextAtrs="text-surface-800-200"
-          text="All Flash"
+          text="Preferences"
         ></Heading>
         <div>
           <p>

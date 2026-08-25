@@ -26,46 +26,51 @@ export function HeaderShell({}) {
   const isAdmin = pathname.startsWith("/admin");
 
   return (
-    <Header
-      isAdmin={isAdmin}
-      tail={
-        <>
-          <MenuMobile className="block lg:hidden 0" title="HYPERINK">
-            <Nav
-              className="flex w-auto h-full lg:hidden "
-              isAdmin={isAdmin}
-              pathname={pathname}
-              linkCls="text-surface-50!"
-            />
-          </MenuMobile>
-
-          {!isAdmin && (
-            <div className="hidden lg:block">
+    <>
+      <Header
+        isAdmin={isAdmin}
+        tail={
+          <>
+            <MenuMobile className="block lg:hidden 0" title="HyperInk">
               <Nav
-                gapCls="gap-4"
-                showIcon={false}
+                className="flex w-auto h-full lg:hidden "
+                isAdmin={isAdmin}
                 pathname={pathname}
-                dir="row"
-                ulCls="lg:justify-end"
+                linkCls="text-surface-50!"
+                linkCurrentCls="text-primary-300!"
               />
-            </div>
-          )}
-        </>
-      }
-    >
-      <NextLinkWrapper
-        className="w-full h-12 px-2 sm:px-0"
-        href={getHrefWithSearchParams(HOME.href, searchParams)}
+            </MenuMobile>
+
+            {!isAdmin && (
+              <div className="hidden lg:block">
+                <Nav
+                  showIcon={false}
+                  pathname={pathname}
+                  dir="row"
+                  ulCls="lg:justify-end"
+
+                  linkCurrentCls="text-surface-300-700! font-bold"
+                  linkCls="text-surface-50-950!"
+                />
+              </div>
+            )}
+          </>
+        }
       >
-        <Image
-          src="/images/hyperink-blue-green-logo.svg"
-          alt="Hyperink - Logo"
-          width={201}
-          height={40}
-          className="w-auto h-12 mx-auto"
-          loading="eager"
-        />
-      </NextLinkWrapper>
-    </Header>
+        <NextLinkWrapper
+          className="w-full h-12 px-2 sm:px-0"
+          href={getHrefWithSearchParams(HOME.href, searchParams)}
+        >
+          <Image
+            src="/images/hyperink-blue-green-logo.svg"
+            alt="Hyperink - Logo"
+            width={201}
+            height={40}
+            className="w-auto h-12 mx-auto"
+            loading="eager"
+          />
+        </NextLinkWrapper>
+      </Header>
+    </>
   );
 }

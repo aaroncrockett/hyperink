@@ -1,14 +1,20 @@
 "use client";
 // React/Next
 import { ComponentPropsWithoutRef } from "react";
-import { useSearchParams } from "next/navigation";
 // Hyperink
-import { getHrefWithSearchParams } from "@hyperinkstudio/utils";
 // @'s
 import { cn } from "@/utils/cn";
 // Local
-import { MENU_ADMIN_LINKS, MENU_PUBLIC_LINKS, ADMIN } from "@/consts";
+import {
+  MENU_ADMIN_LINKS,
+  MENU_PUBLIC_LINKS,
+  LOGIN,
+  SIGNUP,
+  ADMIN,
+} from "@/consts";
 import { NextLinkWrapper } from "@/ui";
+//
+import { Icon } from "@/ui/";
 type NavProps = ComponentPropsWithoutRef<"nav"> & {
   dir?: "col" | "row";
   gapCls?: string;
@@ -25,7 +31,7 @@ type NavProps = ComponentPropsWithoutRef<"nav"> & {
 export default function Nav({
   className,
   dir = "col",
-  gapCls = "gap-2",
+  gapCls = "gap-4",
   isAdmin = null,
   liCls,
   liCurrentCls,
@@ -36,12 +42,12 @@ export default function Nav({
   ulCls,
   ...props
 }: NavProps) {
-  const searchParams = useSearchParams();
-
   const links =
     isAdmin !== null && isAdmin ? MENU_ADMIN_LINKS : MENU_PUBLIC_LINKS;
 
   const flexLayout = dir === "col" ? "flex flex-col" : "flex flex-row";
+  // TEMP HARD CODED
+  const isAuthenticated = true;
 
   return (
     <nav
@@ -50,27 +56,44 @@ export default function Nav({
     >
       <ul className={cn(flexLayout, gapCls, ulCls)}>
         {links.map((link) => {
-          const Icon = link.icon;
-
           return (
             <li
-              key={link.href}
+              key={link.href + link.name + "rootnav"}
               className={cn(liCls, pathname !== link.href && liCurrentCls)}
             >
               <NextLinkWrapper
-                href={getHrefWithSearchParams(link.href, searchParams)}
+                href={link.href}
+                textColorCls="hover:text-primary-500!"
                 className={cn(
                   linkCls,
-                  "flex flex-row gap-4 font-bold",
-                  pathname !== link.href && linkCurrentCls,
+                  "flex flex-row gap-3 font-bold ",
+                  pathname === link.href && linkCurrentCls,
                 )}
               >
-                {Icon && showIcon && <Icon className="w-5 h-5" />}
+                {Icon && showIcon && <Icon name={link.icon} size="md" />}
                 {link.name.toUpperCase()}
               </NextLinkWrapper>
             </li>
           );
         })}
+        {!isAdmin && (
+          <li>
+            <NextLinkWrapper
+              href={isAuthenticated ? ADMIN.href : LOGIN.href}
+              textColorCls="hover:text-primary-500!"
+              className={cn(linkCls, "flex flex-row gap-3 font-bold uppercase")}
+            >
+              {showIcon &&
+                (isAuthenticated ? (
+                  <Icon name={ADMIN.icon} />
+                ) : (
+                  <Icon name={LOGIN.icon} />
+                ))}
+
+              {isAuthenticated ? ADMIN.name : LOGIN.name + " / " + SIGNUP.name}
+            </NextLinkWrapper>
+          </li>
+        )}
       </ul>
     </nav>
   );

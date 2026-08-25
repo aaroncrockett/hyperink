@@ -25,6 +25,7 @@ type HeadingProps = Omit<
   h5TextAtrs?: string;
   h6Size?: string;
   h6TextAtrs?: string;
+  isSiteSticky?: boolean;
   leading?: string;
   text?: string;
   uppercaseCls?: string;
@@ -49,6 +50,7 @@ export function Heading({
   h5TextAtrs = "md:!leading-8",
   h6Size = "text-lg md:text-xl",
   h6TextAtrs = "",
+  isSiteSticky = true,
   text,
   textColorCls,
   uppercaseCls,

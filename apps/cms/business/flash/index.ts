@@ -75,7 +75,7 @@ export const UPLOAD_OPTIONS = {
   },
 };
 
-export type UploadOption = keyof typeof uploadOptions;
+export type UploadOption = keyof typeof UPLOAD_OPTIONS;
 
 // // hyperink shared business
 import {

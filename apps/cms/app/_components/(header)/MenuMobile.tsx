@@ -1,9 +1,10 @@
 "use client";
 // React &* related
 import { ReactNode } from "react";
-import { Menu, XIcon } from "lucide-react";
 // Skeleton
 import { Dialog, Portal } from "@skeletonlabs/skeleton-react";
+//
+import { IconMenu } from "@/ui";
 
 type MenuMobileProps = {
   children: ReactNode;
@@ -22,27 +23,30 @@ export default function MenuMobile({
   className,
   children,
   title = "",
-  closeIcon = <XIcon />,
-  triggerIcon = <Menu color="#abdd3a" className="shadow-sm" />,
 }: MenuMobileProps) {
   return (
     <div className={className}>
       <Dialog>
-        <Dialog.Trigger>{triggerIcon}</Dialog.Trigger>
+        <Dialog.Context>
+          {(dialog) => (
+            <Dialog.Trigger>
+              <IconMenu open={dialog.open} />
+            </Dialog.Trigger>
+          )}
+        </Dialog.Context>
         <Portal>
           <Dialog.Backdrop
             className={`fixed inset-0 z-50 bg-surface-500-/50 ${animBackdrop}`}
           />
           <Dialog.Positioner className="fixed inset-0 z-50 flex justify-start">
             <Dialog.Content
-              className={`h-screen bg-secondary-500/95 w-sm shadow-sm relative ${animModal}`}
+              className={`h-screen bg-secondary-500/95 sm:w-2/3 md:w-1/2 w-[80%] lg:hidden shadow-sm relative ${animModal}`}
             >
               <div className="h-full p-4">
                 <div className="flex items-center justify-between">
-                  <Dialog.Title className="text-2xl font-bold">
+                  <Dialog.Title className="text-5xl  pb-5 text-primary-500 font-display ">
                     {title}
                   </Dialog.Title>
-                  <Dialog.CloseTrigger>{closeIcon}</Dialog.CloseTrigger>
                 </div>
                 <Dialog.Context>
                   {(dialog) => (

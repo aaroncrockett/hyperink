@@ -3,6 +3,6 @@ export const SHARED_DEFAULTS = {
   gapCls: "md:gap-4  gap-2",
   widthCls: "w-full",
   paddingCls: "lg:p-6 md:p-5 p-4",
-  maxWidthCls: "max-w-275",
+  maxWidthCls: "max-w-300",
   marginCls: "mx-auto",
 } as const;

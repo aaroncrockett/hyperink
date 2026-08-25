@@ -16,7 +16,7 @@ import {
 //
 import { createSSClient } from "@/auth/server";
 //
-import { ADMIN_FLASH } from "@/consts";
+import { INTERNAL_FLASH_LINKS } from "@/consts";
 
 type OptionsFormState = {
   errors: Record<string, string> | null;
@@ -163,5 +163,5 @@ export async function uploadFlashImgAndRecord(
     }
   }
 
-  redirect(ADMIN_FLASH.href);
+  redirect(INTERNAL_FLASH_LINKS.href);
 }
