@@ -26,16 +26,14 @@ export default function Footer({
   const searchParams = useSearchParams();
   return (
     <footer className={cn(styles.footer, className)} {...props}>
-      <div className="flex-row items-center justify-between hidden w-full text-sm md:flex">
-        <HyperInkSignature layoutCls="flex flex-row gap-2 items-center" />
-        <Link
-          href={getHrefWithSearchParams(INTERNAL_LINKS.book.href, searchParams)}
-        >
-          <span className="font-bold uppercase shadow-sm btn border-3 bg-secondary-200 text-primary-500 border-primary-500 rounded-xl">
-            Book
-          </span>
-        </Link>
-      </div>
+      <HyperInkSignature layoutCls="flex flex-row gap-2 items-center" />
+      <Link
+        href={getHrefWithSearchParams(INTERNAL_LINKS.book.href, searchParams)}
+      >
+        <span className="font-bold uppercase shadow-sm btn border-3 bg-secondary-200 text-primary-500 border-primary-500 rounded-xl">
+          Book
+        </span>
+      </Link>
     </footer>
   );
 }

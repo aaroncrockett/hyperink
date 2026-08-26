@@ -7,12 +7,12 @@ import { TattooDisplay } from "./_components/(hp)/TattooDisplay";
 
 export default function Home() {
   return (
-    <Page cls="p-2 sm:p-4" sectional={true}>
-      <section className="flex flex-col space-y-1 sm:space-y-2 md:space-y-3 xl:space-y-4">
+    <Page cls="main-padding flex flex-col gap-2 md:gap-4" sectional={true}>
+      <section className="flex flex-col gap-2 md:gap-4">
         <Header />
         <SubHeader />
       </section>
-      <section className="grid w-full gap-2 sm:grid-cols-2 grid-col-1">
+      <section className="grid w-full gap-2 md:gap-4 sm:grid-cols-2 grid-col-1">
         <TattooDisplay />
       </section>
     </Page>

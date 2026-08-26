@@ -22,7 +22,7 @@ const items: { id: string; title: string; component: ComponentKey }[] = [
 
 export default function FAQ() {
   return (
-    <Page>
+    <Page cls="main-padding">
       <Heading as="h2" text="FAQ" />
 
       <Accordion collapsible>
@@ -35,7 +35,7 @@ export default function FAQ() {
 
               <Accordion.Item value={item.id}>
                 <h3 className="text-2xl">
-                  <Accordion.ItemTrigger className="font-bold flex items-center justify-between gap-2">
+                  <Accordion.ItemTrigger className="flex items-center justify-between gap-2 font-bold">
                     {item.title}
                     <ChevronDownIcon className="h-5 w-5 transition group-data-[state=open]:rotate-180" />
                   </Accordion.ItemTrigger>

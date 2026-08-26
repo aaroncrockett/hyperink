@@ -16,17 +16,13 @@ const animBackdrop =
 const animModal =
   "transition transition-discrete opacity-0 -translate-x-full starting:data-[state=open]:opacity-0 starting:data-[state=open]:-translate-x-full data-[state=open]:opacity-100 data-[state=open]:translate-x-0";
 
-export default function MenuMobile({
-  className,
-  children,
-  title = "",
-  closeIcon = <XIcon />,
-  triggerIcon = <Menu className="drop-shadow-xs" />,
-}: MenuMobileProps) {
+export default function MenuMobile({ className, children }: MenuMobileProps) {
   return (
     <div className={className}>
       <Dialog>
-        <Dialog.Trigger>{triggerIcon}</Dialog.Trigger>
+        <Dialog.Trigger>
+          <Menu className="drop-shadow-xs" />
+        </Dialog.Trigger>
         <Portal>
           <Dialog.Backdrop
             className={`fixed inset-0 z-50 bg-surface-700-300/50 ${animBackdrop}`}
@@ -35,13 +31,13 @@ export default function MenuMobile({
             <Dialog.Content
               className={`h-screen  w-sm shadow-sm relative ${animModal}`}
             >
-              <div className="noise-bg-opac-0pt8 h-full p-4">
-                <div className="flex  justify-between items-center">
+              <div className="h-full p-4 noise-bg-opac-0pt8">
+                <div className="flex items-center justify-between">
                   <Dialog.Title className="text-2xl font-bold">
-                    {title}
+                    SHADE TO SHADE
                   </Dialog.Title>
                   <Dialog.CloseTrigger className="btn-icon">
-                    {closeIcon}
+                    <XIcon />
                   </Dialog.CloseTrigger>
                 </div>
                 <Dialog.Context>

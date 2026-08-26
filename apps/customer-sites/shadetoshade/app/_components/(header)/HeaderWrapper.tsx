@@ -18,11 +18,12 @@ import Header from "./Header";
 import Image from "next/image";
 import Nav from "../(sidebar)/SidebarNav";
 
-export default function HeaderWrapper({}) {
+export default function HeaderWrapper({ className }: { className?: string }) {
   const searchParams = useSearchParams();
 
   return (
     <Header
+      className={className}
       tail={
         <>
           <MenuMobile className="block md:hidden" title="ALL LINKS">

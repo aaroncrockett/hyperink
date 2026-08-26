@@ -60,18 +60,20 @@ export default function RootLayout({
     >
       <body className={`antialiased h-full`}>
         <div className={cn("grid min-h-screen mx-auto grid-rows-[auto_1fr]")}>
-          <HeaderWrapper />
+          <HeaderWrapper className="sticky top-0 z-10 bg-white shadow-lg main-padding" />
           <div className="grid h-full grid-cols-1 bg-surface-800-200 lg:grid-cols-[minmax(220px,auto)_1fr] md:grid-cols-[minmax(180px,auto)_1fr] ">
             <aside className="hidden w-full min-h-screen col-span-1 pr-2 bg-surface-800-200 md:block">
-              <Nav className="sticky col-span-1 top-25 min-h-[calc(100vh-12rem)] self-start" />
+              <Nav className="sticky col-span-1 top-32 min-h-[calc(100vh-12rem)] self-start" />
             </aside>
 
-            <div className="flex flex-col h-full col-span-1 ">
-              <main className={`noise-bg flex flex-col flex-1 pt-2 md:pt-3`}>
+            <div className="flex flex-col h-full col-span-1">
+              <main className={`noise-bg flex flex-col flex-1"`}>
                 {children}
-                <DTFooter className="hidden p-2 bg-primary-500 sm:p-4 md:block"></DTFooter>
+                {/* shown on md or above */}
+                <DTFooter className="flex-row items-center justify-between hidden w-full text-sm main-padding md:flex bg-primary-500"></DTFooter>
               </main>
-              <MobileFooterNav className="sticky bottom-0 flex items-center bg-primary-500! justify-between w-full h-auto p-5 px-4 mx-auto md:hidden " />
+              {/* shown bellow md */}
+              <MobileFooterNav className="main-padding sticky bottom-0 flex items-center bg-primary-500! justify-between w-full h-auto mx-auto md:hidden " />
             </div>
           </div>
         </div>

@@ -15,7 +15,7 @@ export default function BookPage() {
   const flashId = searchParams.get("flashId");
 
   return (
-    <Page>
+    <Page cls="main-padding">
       <div className="flex flex-col justify-between h-full gap-6">
         <Heading
           alignmentCls="text-center"
