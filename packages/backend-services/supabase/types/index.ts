@@ -23,6 +23,7 @@ export type ProfileTaggingOptions = AppTables["profile_tagging_options"];
 export type TattooImage = AppTables["tattoo_image"];
 export type TattooRequest = AppTables["tattoo_request"];
 export type FlashRecord = AppTables["flash"];
+export type FlashOptions = AppTables["flash_options"];
 
 // Create Client
 

@@ -1,14 +1,6 @@
 import type { FlashRecord as FlashRecordDb } from "@hyperinkstudio/backend-services";
 
-import { Data } from "@hyperinkstudio/business/types";
-
-// example on what we do when we need to replace a key
-// export type ProfileTaggingOptions = Omit<
-//   ProfileTaggingOptionsDb,
-//   "collections"
-// > & {
-//   dictionary: ProfileTaggingOptionsDb["collections"];
-// };
+import { Data } from "../types";
 
 export type FlashRecord = FlashRecordDb;
 

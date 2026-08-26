@@ -35,10 +35,7 @@ export type ProfileTaggingOptionsDisplay =
 
 import * as BASE from "@hyperinkstudio/business/profileTaggingOptions/base";
 
-export const TAGGING_OPTS_DISPLAY_COLLECTION = createDataCollection<
-  ProfileTaggingOptionsKeys,
-  ProfileTaggingOptionsBase
->({
+export const TAGGING_OPTS_DISPLAY_COLLECTION = createDataCollection({
   avail_tattoo_sizes: BASE.AVAIL_SIZES,
   collections: BASE.COLLECTIONS,
   inks: BASE.INKS,

@@ -1,5 +1,5 @@
-export const createDataCollection = <TKey extends PropertyKey, TData>(
-  obj: Partial<Record<TKey, TData>>,
+export const createDataCollection = <T extends Record<PropertyKey, unknown>>(
+  obj: T,
 ) => obj;
 
 export const getKeysFromCollection = <T extends Record<PropertyKey, unknown>>(

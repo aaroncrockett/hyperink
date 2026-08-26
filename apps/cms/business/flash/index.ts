@@ -1,13 +1,26 @@
 import { z } from "zod";
 export * from "./upload";
 
-// // hyperink utils
+//  hyperink utils
 import {
   createDataCollection,
   getValuesFromCollection,
 } from "@hyperinkstudio/utils";
-// hyperink shared business
+//
+import { Client } from "@hyperinkstudio/backend-services";
+//
+import { getFlash as getFlash_Db } from "@hyperinkstudio/api";
+//
 import * as BASE from "@hyperinkstudio/business/flash/base";
+//
+import {
+  type ProfileTaggingOptions as ProfileTaggingOptions_Src,
+  type ProfileTaggingOptionsKeys as ProfileTaggingOptionsKeys_Src,
+} from "@hyperinkstudio/business/";
+
+import type { FlashRecord as FlashRecord_Db } from "@hyperinkstudio/backend-services";
+
+export type FlashRecord = FlashRecord_Db;
 
 export * from "./taggingOpts";
 
@@ -77,11 +90,26 @@ export const UPLOAD_OPTIONS = {
 
 export type UploadOption = keyof typeof UPLOAD_OPTIONS;
 
-// // hyperink shared business
-import {
-  type ProfileTaggingOptions as ProfileTaggingOptions_Src,
-  type ProfileTaggingOptionsKeys as ProfileTaggingOptionsKeys_Src,
-} from "@hyperinkstudio/business/";
-
 export type ProfileTaggingOptions = ProfileTaggingOptions_Src;
 export type ProfileTaggingOptionsKeys = ProfileTaggingOptionsKeys_Src;
+
+export const getFlashDisplays = async (client: Client) => {
+  return await getFlash_Db(
+    client,
+    [
+      "collection",
+      "meta_data",
+      "name",
+      "notes",
+      "path",
+      "pinned_order",
+      "readable_name",
+      "remaining_availability",
+      "sold_at",
+      "styles",
+      "tags",
+      "total_availability",
+    ],
+    30,
+  );
+};

@@ -1,7 +1,5 @@
 import { FileUpload } from "@skeletonlabs/skeleton-react";
 
-import { uploadOptions } from "./options";
-
 export type FileUploadType = typeof FileUpload;
 
 export type FileUploadContext = Parameters<

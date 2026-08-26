@@ -4,7 +4,7 @@ import { SelectStringArrays } from "@hyperinkstudio/business";
 // Hyperink backend-services
 import type {
   Client,
-  ProfileTaggingOptions,
+  ProfileTaggingOptions as ProfileTaggingOptions_Src,
 } from "@hyperinkstudio/backend-services";
 // Hyperink utils
 import {
@@ -14,6 +14,7 @@ import {
 } from "@hyperinkstudio/utils";
 // Hyperink business
 import * as BASE_TAGGING from "@hyperinkstudio/business/profileTaggingOptions/base";
+import { COLLECTIONS } from "@hyperinkstudio/business/profileTaggingOptions/base";
 import {
   type ProfileTaggingOptionsKeys as ProfileTaggingOptionsKeys_Src,
   type ProfileTaggingOptionsBase as ProfileTaggingOptionsBase_Src,
@@ -29,10 +30,7 @@ export const TAGGING_OPTS_DISPLAY_BASE = {
   tags: BASE_TAGGING.TAGS,
 };
 
-export const TAGGING_OPTS_DISPLAY = createDataCollection<
-  ProfileTaggingOptionsKeys,
-  ProfileTaggingOptionsBase
->({
+export const TAGGING_OPTS_DISPLAY = createDataCollection({
   ...TAGGING_OPTS_DISPLAY_BASE,
 });
 
@@ -40,7 +38,7 @@ export const TAGGING_OPTS_DISPLAY_KEYS =
   getKeysFromCollection(TAGGING_OPTS_DISPLAY);
 
 export type ProfileTaggingOptionsDisplay =
-  SelectStringArrays<ProfileTaggingOptions>;
+  SelectStringArrays<ProfileTaggingOptions_Src>;
 
 export const getDisplayProfileTaggingOpts = async (client: Client) => {
   const { error, data } = await getProfileTaggingOptsSrc(client, [
@@ -48,3 +46,13 @@ export const getDisplayProfileTaggingOpts = async (client: Client) => {
   ]);
   return { error, data };
 };
+
+export const getCollProfileTaggingOpts = async (client: Client) => {
+  const { error, data } = await getProfileTaggingOptsSrc(client, [
+    COLLECTIONS.id,
+  ]);
+
+  return { error, data };
+};
+
+export type ProfileTaggingOptions = ProfileTaggingOptions_Src;

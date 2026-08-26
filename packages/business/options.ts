@@ -8,5 +8,6 @@ export const INPUT_TYPES_MAP = {
   tel: "input",
   hidden: "input",
   chip: "chip",
-  multiSelect: "selectmulti",
+  multiSelect: "multi-select",
+  toggle: "toggle",
 } as const;

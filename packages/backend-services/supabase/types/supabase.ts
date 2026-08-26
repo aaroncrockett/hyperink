@@ -1,3 +1,11 @@
+export type Json =
+  | string
+  | number
+  | boolean
+  | null
+  | { [key: string]: Json | undefined }
+  | Json[];
+
 export type Database = {
   // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
@@ -314,6 +322,7 @@ export type Database = {
           collection: string | null;
           created_at: string | null;
           id: string;
+          isPublic: boolean | null;
           meta_data: Json | null;
           name: string | null;
           notes: string | null;
@@ -331,6 +340,7 @@ export type Database = {
           collection?: string | null;
           created_at?: string | null;
           id?: string;
+          isPublic?: boolean | null;
           meta_data?: Json | null;
           name?: string | null;
           notes?: string | null;
@@ -348,6 +358,7 @@ export type Database = {
           collection?: string | null;
           created_at?: string | null;
           id?: string;
+          isPublic?: boolean | null;
           meta_data?: Json | null;
           name?: string | null;
           notes?: string | null;
@@ -359,6 +370,42 @@ export type Database = {
           styles?: Json;
           tags?: Json | null;
           total_availability?: number | null;
+          user_id?: string;
+        };
+        Relationships: [];
+      };
+      flash_options: {
+        Row: {
+          created_at: string;
+          default_collection: string | null;
+          filter_by_styles: boolean;
+          filter_by_tags: boolean;
+          id: string;
+          show_sold_out: boolean;
+          show_upon_upload: boolean;
+          updated_at: string;
+          user_id: string;
+        };
+        Insert: {
+          created_at?: string;
+          default_collection?: string | null;
+          filter_by_styles?: boolean;
+          filter_by_tags?: boolean;
+          id?: string;
+          show_sold_out?: boolean;
+          show_upon_upload?: boolean;
+          updated_at?: string;
+          user_id: string;
+        };
+        Update: {
+          created_at?: string;
+          default_collection?: string | null;
+          filter_by_styles?: boolean;
+          filter_by_tags?: boolean;
+          id?: string;
+          show_sold_out?: boolean;
+          show_upon_upload?: boolean;
+          updated_at?: string;
           user_id?: string;
         };
         Relationships: [];

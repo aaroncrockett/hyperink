@@ -2,7 +2,7 @@ import type { ComponentPropsWithoutRef } from "react";
 // hyperink
 import { cn } from "@hyperinkstudio/utils/";
 
-type CheckboxProps = Omit<ComponentPropsWithoutRef<"div">, "className"> & {
+type CheckboxProps = Omit<ComponentPropsWithoutRef<"input">, "className"> & {
   dir?: "row" | "col";
   errorCls?: string;
   errorTxtColorCls?: string;
@@ -18,7 +18,7 @@ type CheckboxProps = Omit<ComponentPropsWithoutRef<"div">, "className"> & {
   name: string;
   readOnly?: boolean;
   required?: boolean;
-  value?: string;
+  checked?: boolean;
   wrapperCls?: string;
   wrapperGap?: string;
   wrapperLayoutOpts?: string;
@@ -40,10 +40,11 @@ export function InputCheck({
   name,
   readOnly,
   required = false,
-  value = "",
+  checked,
   wrapperCls,
   wrapperGap = "gap-4",
-  wrapperLayoutOpts = "items-center justify-center",
+  wrapperLayoutOpts = "items-center",
+  ...props
 }: CheckboxProps) {
   const computedLayout = dir === "row" ? "flex flex-row" : "flex flex-col";
   return (
@@ -56,6 +57,16 @@ export function InputCheck({
         wrapperLayoutOpts,
       )}
     >
+      <input
+        {...props}
+        id={id}
+        name={name}
+        type="checkbox"
+        checked={checked}
+        className={cn(inputCls)}
+        required={required}
+        readOnly={readOnly}
+      />
       <label
         htmlFor={id}
         className={cn(
@@ -68,16 +79,6 @@ export function InputCheck({
       >
         {required && "*"} {label}
       </label>
-
-      <input
-        id={id}
-        name={name}
-        type="checkbox"
-        value={value}
-        className={cn(inputCls)}
-        required={required}
-        readOnly={readOnly}
-      />
 
       {errors && errors[name] && (
         <p className={cn(errorTxtColorCls, errorCls)}>{errors[name]}</p>

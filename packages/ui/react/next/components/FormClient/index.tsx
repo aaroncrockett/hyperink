@@ -32,7 +32,7 @@ export const Form = forwardRef<HTMLFormElement, FormProps>(
     ref,
   ) => {
     return (
-      <form ref={ref} action={action} className={className} {...props}>
+      <form ref={ref} action={action} className={cn(className)} {...props}>
         {children}
 
         <div className={cn(submitBtnWrapperCls)}>

@@ -7,7 +7,7 @@ import { useState, useActionState } from "react";
 import { Form, FormMetaErrors } from "@hyperinkstudio/ui-react-next/components";
 
 // Local @/db
-import { TAGGING_OPTS_DISPLAY_COLLECTION } from "@/business/profileTaggingOpts";
+
 import { type ProfileTaggingOptionsDisplay } from "@/business/profileTaggingOpts";
 // Local @/ui
 import { Button, Input } from "@/ui";

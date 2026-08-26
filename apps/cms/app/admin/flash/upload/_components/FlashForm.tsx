@@ -39,7 +39,7 @@ export function FlashForm({ taggingOpts }: FlashFormParams) {
     useFileMetadata();
 
   const [uploadOption, setUploadOption] = useState<UploadOption>(
-    UPLOAD_OPTIONS.collection.value,
+    UPLOAD_OPTIONS.collection.value as UploadOption,
   );
 
   const [actionState, formAction] = useActionState(

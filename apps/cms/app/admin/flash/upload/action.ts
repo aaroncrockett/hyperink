@@ -18,15 +18,15 @@ import { createSSClient } from "@/auth/server";
 //
 import { INTERNAL_FLASH_LINKS } from "@/consts";
 
-type OptionsFormState = {
+type UploadFormState = {
   errors: Record<string, string> | null;
 };
 
 export async function uploadFlashImgAndRecord(
-  prevState: OptionsFormState,
+  prevState: UploadFormState,
   formData: FormData,
-): Promise<OptionsFormState> {
-  const actionResults: OptionsFormState = {
+): Promise<UploadFormState> {
+  const actionResults: UploadFormState = {
     errors: null,
   };
 
