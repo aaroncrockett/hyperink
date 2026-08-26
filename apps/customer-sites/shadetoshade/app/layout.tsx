@@ -62,15 +62,14 @@ export default function RootLayout({
         <div className={cn("grid min-h-screen mx-auto")}>
           <HeaderWrapper />
           <div className="grid h-full grid-cols-1 bg-surface-800-200 md:grid-cols-[minmax(220px,auto)_1fr]">
-            <div className="hidden w-full min-h-screen col-span-1 bg-surface-800-200 lg:block ">
+            <aside className="hidden w-full min-h-screen col-span-1 bg-surface-800-200 lg:block ">
               <Nav className="sticky col-span-1 top-25 min-h-[calc(100vh-12rem)] self-start" />
-            </div>
+            </aside>
 
             <div className="col-span-1">
               <main className={`noise-bg pt-2 md:pt-3 h-full`}>
                 {children}
                 <DTFooter className="hidden p-2 bg-primary-500 sm:p-4 lg:block"></DTFooter>
-                {/* shown: default - hidden:lg*/}
               </main>
               <MobileFooterNav className="sticky bottom-0 flex items-center bg-primary-500! justify-between w-full h-auto p-5 px-4 mx-auto lg:hidden lg:relative" />
             </div>
