@@ -40,12 +40,10 @@ export function Page({
   return (
     <>
       {sectional && (
-        <div className={cn(wrapperBgColorCls, wrapperheightCls, cls)}>
-          {children}
-        </div>
+        <div className={cn(wrapperBgColorCls, "flex-1", cls)}>{children}</div>
       )}
       {!sectional && (
-        <div className={cn(wrapperBgColorCls, cls)}>
+        <div className={cn(wrapperBgColorCls, "flex-1", cls)}>
           <div
             className={cn(
               bgColorCls,

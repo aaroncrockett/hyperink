@@ -25,17 +25,17 @@ export default function HeaderWrapper({}) {
     <Header
       tail={
         <>
-          <MenuMobile className="block lg:hidden" title="ALL LINKS">
-            <Nav className="flex w-auto h-full lg:hidden" />
+          <MenuMobile className="block md:hidden" title="ALL LINKS">
+            <Nav className="flex w-auto h-full md:hidden" />
           </MenuMobile>
           <Link
-            className="hidden lg:block"
+            className="hidden md:block"
             href={getHrefWithSearchParams(
               INTERNAL_LINKS.book.href,
               searchParams,
             )}
           >
-            <button className="w-full mx-auto font-bold uppercase shadow-sm rounded-xl border-3 btn lg:bg-secondary-100 border-primary-500 lg:w-auto lg:m-0 whitespace-nowrap lg:text-primary-500">
+            <button className="w-full mx-auto font-bold uppercase shadow-sm rounded-xl border-3 btn md:bg-secondary-100 border-primary-500 md:w-auto md:m-0 whitespace-nowrap md:text-primary-500">
               Book
             </button>
           </Link>
@@ -45,9 +45,9 @@ export default function HeaderWrapper({}) {
       subNav={
         <Link
           href={getHrefWithSearchParams(INTERNAL_LINKS.book.href, searchParams)}
-          className="lg:hidden"
+          className="md:hidden"
         >
-          <button className="w-full mx-auto font-bold uppercase shadow-sm border-3 rounded-xl btn bg-secondary-200 border-primary-500 text-primary-500 lg:preset-filled-primary-500 lg:w-auto lg:m-0 whitespace-nowrap lg:text-white">
+          <button className="w-full mx-auto font-bold uppercase shadow-sm border-3 rounded-xl btn bg-secondary-200 border-primary-500 text-primary-500 md:preset-filled-primary-500 md:w-auto md:m-0 whitespace-nowrap md:text-white">
             Book
           </button>
         </Link>

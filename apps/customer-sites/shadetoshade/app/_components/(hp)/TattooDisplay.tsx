@@ -4,7 +4,7 @@ import Link from "next/link";
 export function TattooDisplay() {
   return (
     <>
-      <div className="relative aspect-square w-full h-full drop-shadow-sm">
+      <div className="relative w-full h-full aspect-square drop-shadow-sm">
         <Link href="/tattoos">
           <Image
             src="/images/hp/ff-mage-sq.webp"
@@ -15,7 +15,7 @@ export function TattooDisplay() {
         </Link>
       </div>
 
-      <div className="relative aspect-square w-full h-full drop-shadow-sm">
+      <div className="relative w-full h-full aspect-square drop-shadow-sm">
         <Link href="/tattoos">
           <Image
             src="/images/hp/v-gogh.webp"
@@ -26,7 +26,7 @@ export function TattooDisplay() {
         </Link>
       </div>
 
-      <div className="relative aspect-square w-full h-full drop-shadow-sm">
+      <div className="relative w-full h-full aspect-square drop-shadow-sm">
         <Link href="/tattoos">
           <Image
             src="/images/hp/bolt.webp"
@@ -37,7 +37,7 @@ export function TattooDisplay() {
         </Link>
       </div>
 
-      <div className="relative aspect-square w-full h-full drop-shadow-sm">
+      <div className="relative w-full h-full aspect-square drop-shadow-sm">
         <Link href="/tattoos">
           <Image
             src="/images/hp/squid.webp"

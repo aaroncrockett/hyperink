@@ -26,7 +26,7 @@ export default function Footer({
   const searchParams = useSearchParams();
   return (
     <footer className={cn(styles.footer, className)} {...props}>
-      <div className="flex-row items-center justify-between hidden w-full text-sm lg:flex">
+      <div className="flex-row items-center justify-between hidden w-full text-sm md:flex">
         <HyperInkSignature layoutCls="flex flex-row gap-2 items-center" />
         <Link
           href={getHrefWithSearchParams(INTERNAL_LINKS.book.href, searchParams)}

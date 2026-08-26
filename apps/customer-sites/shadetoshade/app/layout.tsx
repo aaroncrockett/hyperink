@@ -59,19 +59,19 @@ export default function RootLayout({
       lang="en"
     >
       <body className={`antialiased h-full`}>
-        <div className={cn("grid min-h-screen mx-auto")}>
+        <div className={cn("grid min-h-screen mx-auto grid-rows-[auto_1fr]")}>
           <HeaderWrapper />
-          <div className="grid h-full grid-cols-1 bg-surface-800-200 md:grid-cols-[minmax(220px,auto)_1fr]">
-            <aside className="hidden w-full min-h-screen col-span-1 bg-surface-800-200 lg:block ">
+          <div className="grid h-full grid-cols-1 bg-surface-800-200 lg:grid-cols-[minmax(220px,auto)_1fr] md:grid-cols-[minmax(180px,auto)_1fr] ">
+            <aside className="hidden w-full min-h-screen col-span-1 pr-2 bg-surface-800-200 md:block">
               <Nav className="sticky col-span-1 top-25 min-h-[calc(100vh-12rem)] self-start" />
             </aside>
 
-            <div className="col-span-1">
-              <main className={`noise-bg pt-2 md:pt-3 h-full`}>
+            <div className="flex flex-col h-full col-span-1 ">
+              <main className={`noise-bg flex flex-col flex-1 pt-2 md:pt-3`}>
                 {children}
-                <DTFooter className="hidden p-2 bg-primary-500 sm:p-4 lg:block"></DTFooter>
+                <DTFooter className="hidden p-2 bg-primary-500 sm:p-4 md:block"></DTFooter>
               </main>
-              <MobileFooterNav className="sticky bottom-0 flex items-center bg-primary-500! justify-between w-full h-auto p-5 px-4 mx-auto lg:hidden lg:relative" />
+              <MobileFooterNav className="sticky bottom-0 flex items-center bg-primary-500! justify-between w-full h-auto p-5 px-4 mx-auto md:hidden " />
             </div>
           </div>
         </div>

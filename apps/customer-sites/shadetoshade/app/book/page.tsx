@@ -8,7 +8,7 @@ import { FormContentTmp1 } from "./_components/FormContentTmp1";
 import { HyperInkSignature } from "../_components/HyperInkSignature";
 
 const formCls =
-  "flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-4 lg:gap-8 lg:gap-y-5 gap-6 gap-y-3 max-w-6xl items-start";
+  "flex flex-col sm:grid sm:grid-cols-2 md:grid-cols-4 md:gap-8 md:gap-y-5 gap-6 gap-y-3 max-w-6xl items-start";
 
 export default function BookPage() {
   const searchParams = useSearchParams();
@@ -16,7 +16,7 @@ export default function BookPage() {
 
   return (
     <Page>
-      <div className="flex flex-col  gap-6 justify-between h-full">
+      <div className="flex flex-col justify-between h-full gap-6">
         <Heading
           alignmentCls="text-center"
           as="h2"

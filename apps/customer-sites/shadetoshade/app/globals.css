@@ -4,6 +4,12 @@
 @import "@skeletonlabs/skeleton-react";
 @import "./shadetoshade.css";
 
+@theme {
+  --breakpoint-md: 920px;
+  --breakpoint-lg: 1080px;
+  --breakpoint-xl: 1300px;
+}
+
 .noise-bg {
   background-color: var(--color-surface-50);
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><filter id='noise'><feTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23noise)' opacity='0.4'/></svg>");
