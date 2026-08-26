@@ -17,7 +17,7 @@ export default async function AdminLayout({
   return (
     <>
       {userData && userData.pvtProfileId && (
-        <div className="flex flex-col lg:grid lg:grid-cols-[240px_1fr] xl:grid-cols-[300px_1fr] w-full h-full ">
+        <div className="grid grid-cols-1 md:grid-cols-[minmax(220px,auto)_1fr]">
           <div className="hidden lg:block bg-surface-800-200">
             <LayoutNavWrapper />
           </div>

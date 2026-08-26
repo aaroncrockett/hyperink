@@ -5,7 +5,7 @@ import { MENU_ADMIN_LINKS } from "@/consts";
 
 export function LayoutNavWrapper() {
   return (
-    <div className="pt-3 w-full h-full">
+    <div className="pt-3 w-full h-full whitespace-nowrap">
       <Nav
         ulCls="h-full w-auto"
         linkCls="font-bold uppercase"

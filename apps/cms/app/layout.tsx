@@ -55,10 +55,8 @@ export default function RootLayout({
       data-theme="hyperinknue"
       className={`h-full antialiased ${outfit.variable} ${leagueGothic.variable}`}
     >
-      <body className={`antialiased h-full`}>
-        <div
-          className={cn("h-screen flex flex-col lg:items-start w-full mx-auto")}
-        >
+      <body className={`h-full`}>
+        <div className={cn("grid h-screen mx-auto")}>
           <HeaderShell />
           {children}
         </div>
