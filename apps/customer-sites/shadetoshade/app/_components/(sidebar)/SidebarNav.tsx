@@ -10,35 +10,22 @@ import { cn } from "@/utils/cn";
 // Local
 import { MENU_LINKS } from "@/consts";
 
-type NavProps = ComponentPropsWithoutRef<"nav"> & {
-  ulCls?: string;
-  liCls?: string;
-  linkCls?: string;
-};
+type NavProps = ComponentPropsWithoutRef<"nav">;
 
-export default function Nav({
-  className,
-  ulCls,
-  liCls,
-  linkCls,
-  ...props
-}: NavProps) {
+export default function Nav({ ...props }: NavProps) {
   const searchParams = useSearchParams();
 
   return (
-    <nav
-      className={cn("col-start-1 row-start-1 row-span-3", className)}
-      {...props}
-    >
-      <ul className={cn("flex flex-col gap-2", ulCls)}>
+    <nav className={cn(props.className)} {...props}>
+      <ul className="flex flex-col gap-2 px-4">
         {MENU_LINKS.map((link) => {
           const Icon = link.icon;
 
           return (
-            <li key={link.href} className={cn(liCls)}>
+            <li key={link.href}>
               <Link
                 href={getHrefWithSearchParams(link.href, searchParams)}
-                className={cn(linkCls, "flex flex-row gap-2 font-bold")}
+                className="flex flex-row items-center gap-2 text-primary-500! text-lg! font-bold hover:text-secondary-300!"
               >
                 {Icon && <Icon className="w-5 h-5" />}
                 {link.name.toUpperCase()}

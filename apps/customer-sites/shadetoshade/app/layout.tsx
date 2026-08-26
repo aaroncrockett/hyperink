@@ -1,26 +1,13 @@
 // Next
 import type { Metadata } from "next";
-
 import { Bebas_Neue, Outfit } from "next/font/google";
-
-const outfit = Outfit({
-  variable: "--font-outfit",
-  subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-});
-
-const bebasNeue = Bebas_Neue({
-  variable: "--font-bebas-neue",
-  weight: "400",
-  subsets: ["latin"],
-});
-
 // @
 import { cn } from "@/utils/cn";
 // local
-import { ShellUpper } from "./_components/ShellUpper";
-import Footer from "./_components/(footer)/Footer";
-import FooterNav from "./_components/(nav)/FooterNav";
+import Nav from "./_components/(sidebar)/SidebarNav";
+import DTFooter from "./_components/(footer)/DTFooter";
+import MobileFooterNav from "./_components/(footer)/MobileFooterNav";
+import HeaderWrapper from "./_components/(header)/HeaderWrapper";
 
 import "./globals.css";
 
@@ -48,6 +35,18 @@ export const metadata: Metadata = {
   },
 };
 
+const outfit = Outfit({
+  variable: "--font-outfit",
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
+
+const bebasNeue = Bebas_Neue({
+  variable: "--font-bebas-neue",
+  weight: "400",
+  subsets: ["latin"],
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -55,26 +54,27 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      className={`h-full  antialiased  ${outfit.variable} ${bebasNeue.variable} `}
+      className={`h-full ${outfit.variable} ${bebasNeue.variable} `}
       data-theme="shadetoshade"
       lang="en"
     >
       <body className={`antialiased h-full`}>
-        <div
-          className={cn(
-            "h-screen flex flex-col lg:grid lg:grid-cols-[220px_1fr] lg:items-start",
-          )}
-        >
-          <ShellUpper />
-          <main
-            className={`noise-bg lg:col-start-2 lg:row-start-2 pt-2 md:pt-3`}
-          >
-            {children}
-          </main>
-          <Footer className="p-2 bg-primary-500 lg:col-start-2 lg:row-start-3 sm:p-4 ">
-            {/* shown: default - hidden:lg*/}
-            <FooterNav className="flex w-full lg:hidden" />
-          </Footer>
+        <div className={cn("grid min-h-screen mx-auto")}>
+          <HeaderWrapper />
+          <div className="grid h-full grid-cols-1 bg-surface-800-200 md:grid-cols-[minmax(220px,auto)_1fr]">
+            <div className="hidden w-full min-h-screen col-span-1 bg-surface-800-200 lg:block ">
+              <Nav className="sticky col-span-1 top-25 min-h-[calc(100vh-12rem)] self-start" />
+            </div>
+
+            <div className="col-span-1">
+              <main className={`noise-bg pt-2 md:pt-3 h-full`}>
+                {children}
+                <DTFooter className="hidden p-2 bg-primary-500 sm:p-4 lg:block"></DTFooter>
+                {/* shown: default - hidden:lg*/}
+              </main>
+              <MobileFooterNav className="sticky bottom-0 flex items-center bg-primary-500! justify-between w-full h-auto p-5 px-4 mx-auto lg:hidden lg:relative" />
+            </div>
+          </div>
         </div>
       </body>
     </html>

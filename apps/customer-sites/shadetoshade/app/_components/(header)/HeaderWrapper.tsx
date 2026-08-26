@@ -16,7 +16,7 @@ const MenuMobile = dynamic(() => import("./MenuMobile"), {
 
 import Header from "./Header";
 import Image from "next/image";
-import Nav from "../(nav)/Nav";
+import Nav from "../(sidebar)/SidebarNav";
 
 export default function HeaderWrapper({}) {
   const searchParams = useSearchParams();

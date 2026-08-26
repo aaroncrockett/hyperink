@@ -7,8 +7,9 @@ import { getHrefWithSearchParams } from "@hyperinkstudio/utils";
 // @'s
 import { cn } from "@/utils/cn";
 // Local
-import { HyperInkSignature } from "../HyperInkSignature";
 import { MOBILE_FOOTER_LINKS, INTERNAL_LINKS } from "@/consts";
+
+import styles from "../(footer)/Footer.module.css";
 
 type NavProps = ComponentPropsWithoutRef<"nav"> & {
   ulCls?: string;
@@ -27,7 +28,7 @@ export default function NavController({
 
   return (
     <>
-      <nav className={cn(className)} {...props}>
+      <nav className={cn(className, styles.footer)} {...props}>
         <ul className={cn("flex flex-row justify-around gap-4 w-full", ulCls)}>
           {MOBILE_FOOTER_LINKS.map((link) => {
             const Icon = link.icon;
@@ -48,17 +49,6 @@ export default function NavController({
           })}
         </ul>
       </nav>
-      {/* hidden: default - shown:lg*/}
-      <div className="flex-row items-center justify-between hidden w-full text-sm lg:flex">
-        <HyperInkSignature layoutCls="flex flex-row gap-2 items-center" />
-        <Link
-          href={getHrefWithSearchParams(INTERNAL_LINKS.book.href, searchParams)}
-        >
-          <span className="font-bold uppercase shadow-sm btn border-3 bg-secondary-200 text-primary-500 border-primary-500 rounded-xl">
-            Book
-          </span>
-        </Link>
-      </div>
     </>
   );
 }

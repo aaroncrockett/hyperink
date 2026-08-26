@@ -29,7 +29,7 @@ export function Header() {
         alignmentCls="text-center"
       ></Heading>
 
-      <ul className="flex justify-center items-center py-3 mb-0">
+      <ul className="flex items-center justify-center py-3 mb-0">
         <li>
           <Link
             href="https://www.instagram.com/aaron.does.ink"
