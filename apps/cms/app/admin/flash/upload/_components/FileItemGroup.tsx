@@ -73,7 +73,7 @@ export function FileItemGroup({
                       {styleOptions && input.id === "styles" && (
                         <SelectMulti
                           label="Styles"
-                          key={input.id + i + "stlyles"}
+                          key={input.id + i + "select-multi"}
                           options={styleOptions}
                           value={metadata?.styles ?? []}
                           onChange={(values) =>
@@ -98,12 +98,7 @@ export function FileItemGroup({
                           onChange={(e) => {
                             const value = (e.target as HTMLInputElement).value;
                             updateFileMetadata(id, {
-                              [input.id as keyof FileMetadata]:
-                                input.type === "number"
-                                  ? value === ""
-                                    ? ""
-                                    : Number(value)
-                                  : value,
+                              [input.id as keyof FileMetadata]: value,
                             });
                           }}
                         />
