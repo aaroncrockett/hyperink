@@ -28,9 +28,6 @@ const BASE_FORM_DATA = {
   readable_name: {
     ...BASE.READABLE_NAME,
   },
-  total_availability: {
-    ...BASE.TOTAL_AVAILABILITY,
-  },
   styles: {
     ...BASE.FLASH_STYLES,
   },
