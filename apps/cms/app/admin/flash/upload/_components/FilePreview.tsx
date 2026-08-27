@@ -7,12 +7,12 @@ type FileProps = {
 
 export function FilePreview({ file }: FileProps) {
   return (
-    <div className="relative rounded-xl h-20 w-20 md:h-22 md:w-22 lg:w-25 md:2-25 xl:w-28 xl:h-28">
+    <div className="relative w-28 h-28 rounded-xl md:h-32 md:w-32 lg:h-36 lg:w-36">
       <Image
         src={URL.createObjectURL(file)}
         alt="Preview"
         fill
-        className="object-cover rounded-xl"
+        className="object-cover rounded-xl border-3 border-surface-700-300"
       />
     </div>
   );
