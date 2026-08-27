@@ -56,7 +56,7 @@ export default function RootLayout({
       className={`h-full antialiased ${outfit.variable} ${leagueGothic.variable}`}
     >
       <body className={`h-full`}>
-        <div className={cn("grid h-screen mx-auto")}>
+        <div className={cn("grid min-h-screen mx-auto grid-rows-[auto_1fr]")}>
           <HeaderShell />
           {children}
         </div>
