@@ -10,6 +10,7 @@ type SelectOption = {
 };
 
 type SelectMultiProps = {
+  cls?: string;
   label?: string;
   options: SelectOption[];
   value?: string[];
@@ -17,6 +18,7 @@ type SelectMultiProps = {
 };
 
 export function SelectMulti({
+  cls,
   label,
   options,
   value = [],
@@ -36,14 +38,14 @@ export function SelectMulti({
   return (
     <div
       ref={wrapperRef}
-      className="relative"
+      className={cn("relative", cls)}
       onBlur={(e) => {
         if (!e.currentTarget.contains(e.relatedTarget)) {
           setOpen(false);
         }
       }}
     >
-      {label && <label className="label font-bold">{label}</label>}
+      {label && <label className="font-bold label">{label}</label>}
 
       <button
         type="button"
@@ -59,14 +61,14 @@ export function SelectMulti({
       </button>
 
       {open && (
-        <div className="absolute z-10 w-full bottom-0 rounded-sm bg-surface-100-900/95 border-surface-200-800 border-2 p-4 ">
+        <div className="absolute bottom-0 z-10 w-full p-4 border-2 rounded-sm bg-surface-100-900/95 border-surface-200-800 ">
           <button
             type="button"
             className="absolute right-2 top-2"
             onClick={() => setOpen(false)}
             aria-label="Close"
           >
-            <XIcon className="xl:w-7 xl:h-7 w-6 h-6" />
+            <XIcon className="w-6 h-6 xl:w-7 xl:h-7" />
           </button>
           <div className="flex flex-col gap-1">
             {options.map((option) => {
