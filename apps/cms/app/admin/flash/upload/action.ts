@@ -163,5 +163,5 @@ export async function uploadFlashImgAndRecord(
     }
   }
 
-  redirect(INTERNAL_FLASH_LINKS.href);
+  redirect(INTERNAL_FLASH_LINKS.flash.href);
 }
