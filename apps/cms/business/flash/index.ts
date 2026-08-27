@@ -53,7 +53,6 @@ export const FLASH_UPLOAD_FORM_BY_COLLECTION_LIST = getValuesFromCollection(
 export const FLASH_UPLOAD_FORM_SCHEMA = z.array(
   z.object({
     readable_name: z.string().min(1),
-    total_availability: z.coerce.number().int().min(1).max(10),
     collection: z.string().min(1).optional(),
     styles: z.array(z.string()).optional(),
   }),

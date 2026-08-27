@@ -9,7 +9,6 @@ export type FileUploadContext = Parameters<
 export type FileMetadata = {
   id: string;
   readable_name: string;
-  total_availability: number | "";
   collection?: string;
   tags?: string[];
   styles?: string[];

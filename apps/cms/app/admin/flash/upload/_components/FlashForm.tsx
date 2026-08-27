@@ -67,7 +67,6 @@ export function FlashForm({ taggingOpts }: FlashFormParams) {
               files.map((file) => ({
                 id: getFileId(file),
                 readable_name: "",
-                total_availability: "",
               })),
             );
           }}

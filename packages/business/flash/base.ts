@@ -6,12 +6,13 @@ export const READABLE_NAME = {
   type: "text",
 } as const satisfies Types.FlashBase;
 
-export const TOTAL_AVAILABILITY = {
-  label: "Total Available",
-  id: "total_availability",
-  display: true,
-  type: "text",
-} as const satisfies Types.FlashBase;
+// Temp removal for MVP -- not needed yet
+// export const TOTAL_AVAILABILITY = {
+//   label: "Total Available",
+//   id: "total_availability",
+//   display: true,
+//   type: "text",
+// } as const satisfies Types.FlashBase;
 
 export const FLASH_COLLECTION = {
   label: "Collection",
