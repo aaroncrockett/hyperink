@@ -58,8 +58,6 @@ export const upsertProfileTaggingOpts = async (
   userId: string,
   params: Partial<ProfileTaggingOptions>,
 ) => {
-  console.log("WERAZSDFAWSFEFEF");
-  console.log(params);
   const normalizedParams: Partial<ProfileTaggingOptionsDisplay> = {
     ...params,
     collections: params.collections
