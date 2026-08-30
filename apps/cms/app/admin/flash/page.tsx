@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
+
 import { FormError } from "@hyperinkstudio/ui-react-next/components";
 // Local @
 import { createSSClient } from "@/auth/server";
@@ -12,7 +15,10 @@ import {
 import { Flash } from "./_components/Flash";
 //
 
-const serverClient = await createSSClient();
+const serverClient = await createSSClient({
+  noCache: true,
+});
+
 const { data: defaultCollectionFlash, collection } =
   await getFlashByDefaultCollection(serverClient);
 
