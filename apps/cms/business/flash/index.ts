@@ -1,5 +1,5 @@
 import { z } from "zod";
-export * from "./upload";
+export * from "./storage";
 
 //  hyperink utils
 import {
@@ -9,7 +9,14 @@ import {
 //
 import { Client } from "@hyperinkstudio/backend-services";
 //
-import { getFlash as getFlash_Db } from "@hyperinkstudio/api";
+import {
+  getFlashOptions as getFlashOptions_Db,
+  getFlash as getFlash_Db,
+  getFlashOrderedByInColl as getFlashOrderedByInColl_Db,
+  getFlashByCollection as getFlashByCollection_Db,
+  updatePinnedFlash as updatePinnedFlash_Db,
+} from "@hyperinkstudio/api";
+
 //
 import * as BASE from "@hyperinkstudio/business/flash/base";
 //
@@ -89,23 +96,70 @@ export type UploadOption = keyof typeof UPLOAD_OPTIONS;
 export type ProfileTaggingOptions = ProfileTaggingOptions_Src;
 export type ProfileTaggingOptionsKeys = ProfileTaggingOptionsKeys_Src;
 
-export const getFlashDisplays = async (client: Client) => {
-  return await getFlash_Db(
+// limited displays for MVP
+const displayFlashKeys = [
+  "id",
+  "path",
+  "pinned_order",
+  "readable_name",
+  "collection",
+] as const satisfies (keyof FlashRecord)[];
+
+export type DisplayFlash = Pick<FlashRecord, (typeof displayFlashKeys)[number]>;
+
+export const getFlashByDefaultCollection = async (client: Client) => {
+  const { data: defaultCollectionArr, error } = await getFlashOptions_Db(
     client,
-    [
-      "collection",
-      "meta_data",
-      "name",
-      "notes",
-      "path",
-      "pinned_order",
-      "readable_name",
-      "remaining_availability",
-      "sold_at",
-      "styles",
-      "tags",
-      "total_availability",
-    ],
+    ["default_collection"],
+  );
+
+  const defaultCollection = defaultCollectionArr?.[0]
+    ?.default_collection as string;
+
+  if (error || !defaultCollection) {
+    console.error("there is a problem with the default collection");
+  }
+
+  const { data, error: dbError } = await getFlashByCollection_Db(
+    client,
+    defaultCollection,
+    displayFlashKeys,
     30,
   );
+
+  const flashData = data as DisplayFlash[];
+
+  if (dbError) {
+    console.error("error with getFlashByCollection_Db");
+    console.error(dbError);
+  }
+
+  return {
+    collection: defaultCollection,
+    data: flashData,
+    error: dbError,
+  };
 };
+
+export const getFlashByCollection = async (
+  client: Client,
+  collection: string,
+) => {
+  const { data, error } = await getFlashByCollection_Db(
+    client,
+    collection,
+    displayFlashKeys,
+    30,
+  );
+
+  const flashData = data as DisplayFlash[];
+  return { data: flashData, error };
+};
+
+export const getFlashDisplays = async (client: Client) => {
+  const { data, error } = await getFlash_Db(client, displayFlashKeys, 30);
+  const flashData = data as DisplayFlash[];
+  return { data: flashData, error };
+};
+
+export const updatePinnedFlash = updatePinnedFlash_Db;

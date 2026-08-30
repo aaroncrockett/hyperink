@@ -10,7 +10,7 @@ export type Database = {
   // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "13.0.5";
+    PostgrestVersion: "14.5";
   };
   public: {
     Tables: {
@@ -319,7 +319,7 @@ export type Database = {
       };
       flash: {
         Row: {
-          collection: string | null;
+          collection: string;
           created_at: string | null;
           id: string;
           isPublic: boolean | null;
@@ -328,7 +328,7 @@ export type Database = {
           notes: string | null;
           path: string;
           pinned_order: number | null;
-          readable_name: string | null;
+          readable_name: string;
           remaining_availability: number | null;
           sold_at: string | null;
           styles: Json;
@@ -337,7 +337,7 @@ export type Database = {
           user_id: string;
         };
         Insert: {
-          collection?: string | null;
+          collection: string;
           created_at?: string | null;
           id?: string;
           isPublic?: boolean | null;
@@ -346,7 +346,7 @@ export type Database = {
           notes?: string | null;
           path: string;
           pinned_order?: number | null;
-          readable_name?: string | null;
+          readable_name: string;
           remaining_availability?: number | null;
           sold_at?: string | null;
           styles?: Json;
@@ -355,7 +355,7 @@ export type Database = {
           user_id: string;
         };
         Update: {
-          collection?: string | null;
+          collection?: string;
           created_at?: string | null;
           id?: string;
           isPublic?: boolean | null;
@@ -364,7 +364,7 @@ export type Database = {
           notes?: string | null;
           path?: string;
           pinned_order?: number | null;
-          readable_name?: string | null;
+          readable_name?: string;
           remaining_availability?: number | null;
           sold_at?: string | null;
           styles?: Json;
