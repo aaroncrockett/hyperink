@@ -5,9 +5,8 @@ import { useState, useActionState } from "react";
 
 // Hyper Ink
 import { Form, FormMetaErrors } from "@hyperinkstudio/ui-react-next/components";
-
+import { capitalizeWords } from "@hyperinkstudio/utils";
 // Local @/db
-
 import { type ProfileTaggingOptionsDisplay } from "@/business/profileTaggingOpts";
 // Local @/ui
 import { Button, Input } from "@/ui";
@@ -106,13 +105,15 @@ export function OptionsForm({ option, paramId }: PageProps) {
 
     if (!value) return;
 
+    const formattedValue = capitalizeWords(value);
+
     setOption((prev) => ({
       ...prev,
       option: {
         ...prev.option,
         selected: prev.option.selected
-          ? `${prev.option.selected},${value}`
-          : value,
+          ? `${prev.option.selected},${formattedValue}`
+          : formattedValue,
       },
     }));
 

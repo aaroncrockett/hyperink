@@ -6,8 +6,4 @@ export type FlashOptions = FlashOptionsDb;
 
 export type FlashOptionsKeys = keyof FlashOptions;
 
-// export type FlashBase = Data<ProfileTaggingOptionsKeys> & {
-//   defaultValues?: string[];
-// };
-
 export type FlashOptionsBase = Data<FlashOptionsKeys>;

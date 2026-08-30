@@ -12,7 +12,6 @@ import { Client } from "@hyperinkstudio/backend-services";
 import {
   getFlashOptions as getFlashOptions_Db,
   getFlash as getFlash_Db,
-  getFlashOrderedByInColl as getFlashOrderedByInColl_Db,
   getFlashByCollection as getFlashByCollection_Db,
   updatePinnedFlash as updatePinnedFlash_Db,
 } from "@hyperinkstudio/api";
@@ -20,10 +19,7 @@ import {
 //
 import * as BASE from "@hyperinkstudio/business/flash/base";
 //
-import {
-  type ProfileTaggingOptions as ProfileTaggingOptions_Src,
-  type ProfileTaggingOptionsKeys as ProfileTaggingOptionsKeys_Src,
-} from "@hyperinkstudio/business/";
+import { type ProfileTaggingOptions as ProfileTaggingOptions_Src } from "@hyperinkstudio/business/";
 
 import type { FlashRecord as FlashRecord_Db } from "@hyperinkstudio/backend-services";
 
@@ -94,7 +90,6 @@ export const UPLOAD_OPTIONS = {
 export type UploadOption = keyof typeof UPLOAD_OPTIONS;
 
 export type ProfileTaggingOptions = ProfileTaggingOptions_Src;
-export type ProfileTaggingOptionsKeys = ProfileTaggingOptionsKeys_Src;
 
 // limited displays for MVP
 const displayFlashKeys = [

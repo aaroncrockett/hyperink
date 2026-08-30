@@ -15,14 +15,8 @@ import {
 // Hyperink business
 import * as BASE_TAGGING from "@hyperinkstudio/business/profileTaggingOptions/base";
 import { COLLECTIONS } from "@hyperinkstudio/business/profileTaggingOptions/base";
-import {
-  type ProfileTaggingOptionsKeys as ProfileTaggingOptionsKeys_Src,
-  type ProfileTaggingOptionsBase as ProfileTaggingOptionsBase_Src,
-} from "@hyperinkstudio/business/profileTaggingOptions";
 
 // Supabase/database representation
-export type ProfileTaggingOptionsKeys = ProfileTaggingOptionsKeys_Src;
-export type ProfileTaggingOptionsBase = ProfileTaggingOptionsBase_Src;
 
 export const TAGGING_OPTS_DISPLAY_BASE = {
   collections: BASE_TAGGING.COLLECTIONS,

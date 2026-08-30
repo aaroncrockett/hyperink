@@ -6,17 +6,16 @@ import {
 } from "@hyperinkstudio/api";
 import type { Client } from "@hyperinkstudio/backend-services";
 // hyperink utils
+
 import {
   createDataCollection,
   getKeysFromCollection,
   getValuesFromCollection,
+  normalizeToKabobCase,
+  denormalizeFromKabobCase,
 } from "@hyperinkstudio/utils";
 // hyperink shared business
-import {
-  type ProfileTaggingOptions as ProfileTaggingOptions_Src,
-  type ProfileTaggingOptionsKeys as ProfileTaggingOptionsKeys_Src,
-  type ProfileTaggingOptionsBase as ProfileTaggingOptionsBase_Src,
-} from "@hyperinkstudio/business/profileTaggingOptions";
+import { type ProfileTaggingOptions as ProfileTaggingOptions_Src } from "@hyperinkstudio/business/profileTaggingOptions";
 import type {
   JsonToStringArray,
   SelectStringArrays,
@@ -24,8 +23,6 @@ import type {
 
 // Supabase/database representation
 export type ProfileTaggingOptions_Db = ProfileTaggingOptions_Src;
-export type ProfileTaggingOptionsKeys = ProfileTaggingOptionsKeys_Src;
-export type ProfileTaggingOptionsBase = ProfileTaggingOptionsBase_Src;
 
 // Front-end representation ALL -- easier to work with as string[]
 export type ProfileTaggingOptions = JsonToStringArray<ProfileTaggingOptions_Db>;
@@ -56,11 +53,45 @@ export const TAGGING_OPTS_DISPLAY_VALUES = getValuesFromCollection(
   TAGGING_OPTS_DISPLAY_COLLECTION,
 );
 
-export const upsertProfileTaggingOpts = upsertProfileTaggingOptsSrc;
+export const upsertProfileTaggingOpts = async (
+  client: Client,
+  userId: string,
+  params: Partial<ProfileTaggingOptions>,
+) => {
+  console.log("WERAZSDFAWSFEFEF");
+  console.log(params);
+  const normalizedParams: Partial<ProfileTaggingOptionsDisplay> = {
+    ...params,
+    collections: params.collections
+      ? params.collections.map((tag) => normalizeToKabobCase(tag))
+      : [],
+    tags: params.tags
+      ? params.tags.map((tag) => normalizeToKabobCase(tag))
+      : [],
+    styles: params.styles
+      ? params.styles.map((tag) => normalizeToKabobCase(tag))
+      : [],
+  };
+
+  return await upsertProfileTaggingOptsSrc(client, userId, normalizedParams);
+};
+
+// export const upsertProfileTaggingOpts = upsertProfileTaggingOptsSrc;
 
 export const getDisplayProfileTaggingOpts = async (client: Client) => {
   const { error, data } = await getProfileTaggingOptsSrc(client, [
     ...TAGGING_OPTS_DISPLAY_KEYS,
   ]);
   return { error, data };
+};
+
+export const denormalizeTagging = (opts: ProfileTaggingOptionsDisplay) => {
+  return {
+    ...opts,
+    collections: opts.collections.map((tag: string) =>
+      denormalizeFromKabobCase(tag),
+    ),
+    tags: opts.tags.map((tag: string) => denormalizeFromKabobCase(tag)),
+    styles: opts.styles.map((tag: string) => denormalizeFromKabobCase(tag)),
+  };
 };

@@ -5,25 +5,16 @@ export const AVAIL_SIZES = {
   label: "Available Sizes",
   id: "avail_tattoo_sizes",
   display: true,
-  // type: "chip",
-  // schema: z.string().trim().optional(),
-  // required: false,
-  // inputSize: "md",
-  // defaultValues: [...SIZE_DEFAULT_VALUES],
 } as const satisfies Types.ProfileTaggingOptionsBase;
 
 export const COLLECTIONS = {
   label: "Collections",
   id: "collections",
   display: true,
-  // type: "chip",
-  // schema: z.string().trim().optional(),
-  // required: false,
-  // inputSize: "md",
 } as const satisfies Types.ProfileTaggingOptionsBase;
 
 export const CREATED_AT = {
-  label: "Crdeated At",
+  label: "Created At",
   id: "created_at",
   display: false,
 } as const satisfies Types.ProfileTaggingOptionsBase;
@@ -44,32 +35,18 @@ export const PLACEMENT_LOCATIONS = {
   label: "Placement",
   id: "placement_locations",
   display: true,
-  // type: "chip",
-  // schema: z.string().trim().optional(),
-  // required: false,
-  // inputSize: "md",
-  // defaultValues: [...PLACEMENT_DEFAULT_VALUES],
 } as const satisfies Types.ProfileTaggingOptionsBase;
 
 export const STUDIO_LOCATIONS = {
   label: "Studio Locations",
   id: "studio_locations",
   display: true,
-  // type: "chip",
-  // schema: z.string().trim().optional(),
-  // required: false,
-  // inputSize: "md",
 } as const satisfies Types.ProfileTaggingOptionsBase;
 
 export const STYLES = {
   label: "Styles",
   id: "styles",
   display: true,
-  // type: "chip",
-  // schema: z.string().trim().optional(),
-  // required: false,
-  // inputSize: "md",
-  // defaultValues: [...STYLE_DEFAULT_VALUES],
 } as const satisfies Types.ProfileTaggingOptionsBase;
 
 export const TAGS = {

@@ -3,10 +3,13 @@ import { createSSClient } from "@/auth/server";
 // @/db
 import {
   getDisplayProfileTaggingOpts,
+  denormalizeTagging,
   type ProfileTaggingOptionsDisplay,
 } from "@/business/profileTaggingOpts";
 // Local UI
 import { Page, Heading } from "@/ui";
+//
+
 // Local
 import { OptionsForm } from "./_components/OptionsForm";
 
@@ -31,6 +34,8 @@ export default async function TaggingOptsPage({ params }: PageProps) {
 
   if (singleTaggingOpts === null) return;
 
+  const options = denormalizeTagging(singleTaggingOpts);
+
   return (
     <Page>
       <Heading as="h1" text="Edit Tagging Options" />
@@ -39,7 +44,7 @@ export default async function TaggingOptsPage({ params }: PageProps) {
         <span className="italic!">Editing</span>{" "}
         <span className="text-xl! uppercase"> {paramId.id}</span>
       </Heading>
-      <OptionsForm paramId={paramId.id} option={singleTaggingOpts} />
+      <OptionsForm paramId={paramId.id} option={options} />
     </Page>
   );
 }

@@ -5,11 +5,7 @@ export async function createFlashRecord(
   authedClient: Client,
   params: Partial<FlashRecord>,
 ) {
-  const { data, error } = await authedClient
-    .from(TABLE)
-    .insert(params)
-    .select()
-    .single();
+  const { data, error } = await authedClient.from(TABLE).insert(params);
 
   return { data, error };
 }
