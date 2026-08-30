@@ -44,11 +44,11 @@ export async function createAClientTattooAndHandleClient(
   let clientId = formDataObject.clientId as string;
 
   if (formDataObject.existingClient === "true") {
-    console.log("existing client");
+    console.error("existing client");
   }
 
   if (formDataObject.existingClient === "false" && clientId === "") {
-    console.log("NOT existing client");
+    console.error("NOT existing client");
     const { error, data } = await createClientPerson(ssClient, {
       email: parsedFormData.email,
       phone: parsedFormData.phone,
