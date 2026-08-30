@@ -9,7 +9,7 @@ type FormErrorProps = {
 export function FormError({
   error,
   errorCls,
-  textColorCls = "text-red-500",
+  textColorCls = "text-error-500",
 }: FormErrorProps) {
   if (!error) return null;
 
