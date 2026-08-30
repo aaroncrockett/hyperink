@@ -41,6 +41,13 @@ export function PageAdminNav({ links }: PageAdminNavsProps) {
     const currentSegments = getPathSegments(pathname);
     const currentKey = currentSegments[currentSegments.length - 1];
 
+    if (destinationSegments[0] !== "admin") {
+      console.error(
+        "There is a problem with the page admin nav. We may not be in the admin!!",
+      );
+      return "none";
+    }
+
     if (destinationKey === currentKey) return "slide-up";
     //
     const destinationOrder = links.find(
@@ -50,9 +57,7 @@ export function PageAdminNav({ links }: PageAdminNavsProps) {
     const currentOrder = links.find((link) => link.id === currentKey)?.order;
 
     if (destinationOrder === undefined || currentOrder === undefined) {
-      console.error(
-        "There is a problem with the destination and current order of admin navigation",
-      );
+      // no need for page navigation.
       return "none";
     }
 
@@ -97,7 +102,7 @@ export function PageAdminNav({ links }: PageAdminNavsProps) {
                 {link.name}
                 <Icon size="md" name={link.icon} />
                 {isCurrent && (
-                  <motion.div
+                  <motion.span
                     layoutId="page-admin-nav-underline"
                     className="absolute left-0 right-0 bottom-0 h-0.5 bg-current"
                     transition={{
