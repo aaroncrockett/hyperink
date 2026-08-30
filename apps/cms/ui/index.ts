@@ -1,4 +1,5 @@
 export * from "./Button";
+export * from "./ComboBox";
 export * from "./Heading";
 export * from "./Icon";
 export * from "./IconMenu";
