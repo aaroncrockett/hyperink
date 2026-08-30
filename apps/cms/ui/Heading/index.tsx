@@ -3,7 +3,7 @@ import { Heading as HeadingUI } from "@hyperinkstudio/ui-react-next/components/H
 
 type HeadingProps = Omit<
   ComponentPropsWithoutRef<typeof HeadingUI>,
-  "as" | "fontFaceCls" | "textColorCls" | "weightCls"
+  "as" | "fontFaceCls" | "textColorCls"
 > & {
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   fontFaceCls?: string;
