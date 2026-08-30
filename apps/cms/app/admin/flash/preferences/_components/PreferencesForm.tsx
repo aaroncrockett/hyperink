@@ -127,6 +127,7 @@ export function PreferencesForm({
               id={option.id}
               label={option.label}
               name={option.id}
+              defaultChecked={flashOptions[option.id] === true}
             />
           ))}
         </div>
