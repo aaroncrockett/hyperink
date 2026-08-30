@@ -3,6 +3,8 @@ import type { ComponentPropsWithoutRef } from "react";
 // @ utils
 import { cn } from "@hyperinkstudio/utils";
 import { Input as InputUI } from "@hyperinkstudio/ui-react-next/components/Input";
+// Local
+import { INPUT_DEFAULTS } from "../consts";
 
 type InputProps = ComponentPropsWithoutRef<typeof InputUI> & {
   backgroundColorCls?: string;
@@ -13,10 +15,11 @@ type InputProps = ComponentPropsWithoutRef<typeof InputUI> & {
 
 export function Input({
   children,
-  backgroundColorCls = "bg-surface-100-900/70 ",
-  borderCls = "border-3 border-surface-200-800",
-  inputCls,
-  roundedCls = "rounded-sm",
+  backgroundColorCls = INPUT_DEFAULTS.backgroundColorCls,
+  borderCls = INPUT_DEFAULTS.borderCls,
+  inputCls = INPUT_DEFAULTS.inputCls,
+  roundedCls = INPUT_DEFAULTS.roundedCls,
+
   ...props
 }: InputProps) {
   const computedInputCls = cn(
