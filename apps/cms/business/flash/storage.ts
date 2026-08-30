@@ -5,6 +5,7 @@ import type { Client, FlashRecord } from "@hyperinkstudio/backend-services";
 import { TABLE_FLASH, BUCKET_FLASH } from "@hyperinkstudio/api";
 // business
 import { uploadImageAndCreateMetadata as handleUpload } from "@hyperinkstudio/business";
+import { normalizeToKabobCase } from "@hyperinkstudio/utils";
 
 export const uploadFlashImage = (
   client: Client,
@@ -12,7 +13,13 @@ export const uploadFlashImage = (
   userId: string,
   params: Partial<FlashRecord>,
 ) => {
-  return handleUpload(client, file, TABLE_FLASH, userId, params);
+  const normalizedCollection = normalizeToKabobCase(params.collection ?? "");
+  const alteredParams = {
+    ...params,
+    collection: normalizedCollection,
+  } as Partial<FlashRecord>;
+
+  return handleUpload(client, file, TABLE_FLASH, userId, alteredParams);
 };
 
 export const getFlashPublicUrl = async (client: Client, path: string) => {

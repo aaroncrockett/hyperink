@@ -37,6 +37,7 @@ export function FlashItem({
 }: FlashItemProps) {
   const { modalState, handleModalState } = usePinnedModal();
   const { menuState, handleFlashItemClick } = useFlashItemMenu();
+
   return (
     <li
       className={cn("group cursor-pointer", props.className)}

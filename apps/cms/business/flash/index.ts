@@ -5,6 +5,7 @@ export * from "./storage";
 import {
   createDataCollection,
   getValuesFromCollection,
+  normalizeToKabobCase,
 } from "@hyperinkstudio/utils";
 //
 import { Client } from "@hyperinkstudio/backend-services";
@@ -140,14 +141,20 @@ export const getFlashByCollection = async (
   client: Client,
   collection: string,
 ) => {
+  const normalizedCollection = normalizeToKabobCase(collection);
   const { data, error } = await getFlashByCollection_Db(
     client,
-    collection,
+    normalizedCollection,
     displayFlashKeys,
     30,
   );
 
+  if (error) {
+    console.error(error);
+  }
+
   const flashData = data as DisplayFlash[];
+
   return { data: flashData, error };
 };
 

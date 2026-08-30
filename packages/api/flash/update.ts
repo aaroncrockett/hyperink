@@ -1,5 +1,7 @@
 import { Client } from "@hyperinkstudio/backend-services";
 import { FlashRecord } from "@hyperinkstudio/backend-services";
+//
+import { normalizeToKabobCase } from "@hyperinkstudio/utils";
 
 import { TABLE_FLASH } from "./consts";
 
@@ -24,6 +26,13 @@ export async function updateFlash(
   item: Partial<FlashRecord> & { id: string },
 ) {
   const { id, ...updates } = item;
+
+  const normalizedCollection = normalizeToKabobCase(updates.collection ?? "");
+
+  const alteredUpdates = {
+    ...updates,
+    collection: normalizedCollection,
+  } as Partial<FlashRecord>;
 
   const { data, error } = await client
     .from(TABLE_FLASH)

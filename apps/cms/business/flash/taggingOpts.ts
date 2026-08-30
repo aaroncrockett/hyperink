@@ -46,7 +46,11 @@ export const getCollProfileTaggingOpts = async (client: Client) => {
     COLLECTIONS.id,
   ]);
 
-  return { error, data };
+  type Collection = string[];
+
+  const collectionsData = data && (data[0].collections as Collection);
+
+  return { error, data: collectionsData };
 };
 
 export type ProfileTaggingOptions = ProfileTaggingOptions_Src;
