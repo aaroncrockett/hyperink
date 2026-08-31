@@ -13,5 +13,5 @@ export const createSSClient: CreateClient = async (config: SupabaseConfig) => {
 };
 
 export type { SupabaseClient };
-export * from "./auth";
-export * from "./storage";
+export * from "../auth";
+export * from "../storage";

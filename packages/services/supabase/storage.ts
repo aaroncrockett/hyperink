@@ -1,5 +1,5 @@
 import { SupabaseClient } from "@supabase/supabase-js";
-import type { RemoveFile, UploadFile, GetPublicURL } from "./types";
+import type { RemoveFile, UploadFile, GetPublicURL } from "./server/types";
 
 export const uploadFile: UploadFile = async (
   authedClient: SupabaseClient,
