@@ -1,18 +1,35 @@
-import { DISPLAY_TATT_REQ } from "@/business/tattooRequest";
+"use client";
+import { TATT_REQ_BODY, TYPE_FIELD } from "@/business/tattooRequest";
+import { INPUT_TYPES_MAP } from "@hyperinkstudio/business";
+import { toLabelValue } from "@hyperinkstudio/utils";
 //
+import { Form, Input, Select } from "@hyperinkstudio/ui-react-next/components";
 type BookingFormProps = {
   flashId?: string;
 };
-
-console.log(DISPLAY_TATT_REQ);
 
 export function BookingForm({ flashId }: BookingFormProps) {
   return (
     <div>
       {flashId && flashId}
-      {DISPLAY_TATT_REQ.map((req) => (
-        <div key={req.id}>{req.id}</div>
-      ))}
+      <Form>
+        <Select
+          options={TYPE_FIELD.options.map((opt) => toLabelValue(opt))}
+          id={TYPE_FIELD.id}
+        />
+        {TATT_REQ_BODY.map(
+          (req) =>
+            req && (
+              <Input
+                id={req.id}
+                label={req.label}
+                required={req.required ?? false}
+                key={req.id}
+                type={INPUT_TYPES_MAP[req.type]}
+              />
+            ),
+        )}
+      </Form>
     </div>
   );
 }

@@ -9,7 +9,7 @@ export const TYPE = {
   schema: z.string().trim().optional(),
   required: false,
   inputSize: "sm",
-  options: [],
+  options: ["flash", "custom"],
 } as const satisfies Types.TattooRequestData<"type">;
 
 export const PREFERRED_NAME = {

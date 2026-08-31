@@ -21,7 +21,7 @@ export type Data<T> = {
   schema?: z.ZodType;
   type?: keyof typeof INPUT_TYPES_MAP;
   value?: string;
-  options?: T[];
+  options?: string[];
 };
 
 // ** possible other options ** //
