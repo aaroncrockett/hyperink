@@ -7,27 +7,40 @@ import {
   signInWithPassword,
   signUp,
   signInWithOAuth,
-  SupabaseConfig,
-  type Client,
 } from "@hyperinkstudio/backend-services";
 
-import type {
-  getProfileByUserId,
-  uploadTattooImage,
-} from "@hyperinkstudio/api";
+import type { SupabaseConfig, Client } from "@hyperinkstudio/backend-services";
 
 export {
   exchangeCodeForSession,
-  getProfileByUserId,
   getUser as getAuthedUser,
   signInWithOAuth,
   signInWithPassword,
   signUp,
-  uploadTattooImage,
   verifyOtp,
 };
 
-export async function createSSClient(): Promise<Client> {
+type CreateSSClientOptions = {
+  noCache?: boolean;
+};
+
+type FetchOptions = RequestInit & {
+  next?: {
+    revalidate?: number | false;
+    tags?: string[];
+  };
+};
+
+const fetchWithoutCache = (url: RequestInfo | URL, options?: FetchOptions) => {
+  return fetch(url, {
+    ...options,
+    cache: "no-store",
+  });
+};
+
+export async function createSSClient(
+  options?: CreateSSClientOptions,
+): Promise<Client> {
   type CookieItem = {
     name: string;
     value: string;
@@ -59,6 +72,11 @@ export async function createSSClient(): Promise<Client> {
     publicKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     publicUrl: process.env.NEXT_PUBLIC_SUPABASE_URL!,
     cookieMethods: cookieMethods,
+    ...(options?.noCache && {
+      global: {
+        fetch: fetchWithoutCache,
+      },
+    }),
   };
 
   return createClient(config);
