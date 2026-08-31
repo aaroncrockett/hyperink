@@ -67,7 +67,7 @@ export default function RootLayout({
             </aside>
 
             <div className="flex flex-col h-full col-span-1">
-              <main className={`noise-bg flex flex-col flex-1"`}>
+              <main className={`noise-bg flex flex-col flex-1 h-full"`}>
                 {children}
                 {/* shown on md or above */}
                 <DTFooter className="flex-row items-center justify-between hidden w-full text-sm main-padding md:flex bg-primary-500"></DTFooter>
