@@ -14,7 +14,7 @@ type PlainRows<T extends Record<string, any>> = {
   [K in keyof T]: T[K] extends { Row: infer R } ? R : never;
 };
 
-type AppTables = PlainRows<Database["public"]["Tables"]>;
+export type AppTables = PlainRows<Database["public"]["Tables"]>;
 
 export type ClientTable = AppTables["client"];
 export type ClientTattoo = AppTables["client_tattoo"];
