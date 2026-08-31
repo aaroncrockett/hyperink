@@ -1,6 +1,7 @@
+//
 import { Page, Heading } from "@hyperinkstudio/ui-react-next/components";
 
-export default async function About() {
+export default async function AboutPage() {
   return (
     <Page cls="main-padding">
       <Heading as="h1" text="About The Artist: Aaron" />

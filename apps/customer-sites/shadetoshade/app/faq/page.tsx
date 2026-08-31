@@ -20,7 +20,7 @@ const items: { id: string; title: string; component: ComponentKey }[] = [
   { id: "aftercare", title: "Aftercare", component: "Aftercare" },
 ];
 
-export default function FAQ() {
+export default function FAQPage() {
   return (
     <Page cls="main-padding">
       <Heading as="h2" text="FAQ" />
