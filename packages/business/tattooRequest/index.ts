@@ -1,26 +1,16 @@
-import { Client } from "@hyperinkstudio/services";
-//hyperink
-import {
-  createTattooRequest as createTattooRequestDb,
-  getRecentlyCreatedRequests as getRecentlyCreatedRequestsDb,
-  getTattooRequestById as getTattooRequestByIdDb,
-} from "@hyperinkstudio/api";
+import * as Types from "./types";
+import * as Base from "./base";
 
-// Local
+import { createTattooRequest as createTattooRequest_src } from "@hyperinkstudio/api";
+
+export const createTattooRequest = createTattooRequest_src;
+
 export * from "./types";
-export * from "./objs";
-export * from "./keys";
-export * from "./lists";
-export * from "./schemas";
 
-export { TYPE as BASE_TYPE } from "./base";
+export const DISPLAY_KEYS = Object.values(Base)
+  .filter((field) => "display" in field && field.display === true)
+  .map((field) => field.id);
 
-export const createTattooRequest = createTattooRequestDb;
+type DisplayTattReqKeys = (typeof DISPLAY_KEYS)[number];
 
-export const getTattooRequestById = getTattooRequestByIdDb;
-
-export const getLastTenTattooRequests = getRecentlyCreatedRequestsDb;
-
-export const getLastThreeTattooRequests = (client: Client) => {
-  return getRecentlyCreatedRequestsDb(client, 3);
-};
+export type DisplayTattRequest = Pick<Types.TattooRequest, DisplayTattReqKeys>;

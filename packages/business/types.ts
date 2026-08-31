@@ -10,9 +10,9 @@ export type SelectOption = {
 
 export type Data<T> = {
   label: string;
-  id: T;
+  id: string;
   defaultValue?: string;
-  display: boolean;
+  display?: boolean;
   disabled?: string;
   inputSize?: "sm" | "md" | "lg";
   placeholder?: string;
@@ -21,6 +21,7 @@ export type Data<T> = {
   schema?: z.ZodType;
   type?: keyof typeof INPUT_TYPES_MAP;
   value?: string;
+  options?: T[];
 };
 
 // ** possible other options ** //
