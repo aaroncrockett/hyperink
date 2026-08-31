@@ -3,7 +3,7 @@ import { useState } from "react";
 import { toLabelValue } from "@hyperinkstudio/utils";
 import { FormError } from "@hyperinkstudio/ui-react-next/components";
 // @ locals
-import { ComboBox } from "@/ui";
+import { ComboBoxComponent as ComboBox } from "@/ui";
 import { Heading } from "@/ui";
 //
 import { getFlashByCollection, getFlashPublicUrl } from "@/business/flash";

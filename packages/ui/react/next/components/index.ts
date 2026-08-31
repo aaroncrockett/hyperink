@@ -1,4 +1,4 @@
-export { ComboBox } from "../../../../../apps/cms/ui/ComboBox";
+export { ComboBox } from "./ComboBox";
 export { Form } from "./FormClient";
 export { FormError } from "./FormError";
 export { Heading } from "./Heading";
