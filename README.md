@@ -2,7 +2,7 @@
 
 HyperInkStudio is a monorepo for a tattoo-industry application built from the experience of running my own tattoo business.
 
-Prior to HyperInk, I ran my own tattoo business, where I built and ran my own website to book flash. I created a similar site for an artist client (another tattoo artists who hired me to create a custom site for them, similar to mine.)
+Prior to HyperInk, I ran my own tattoo business full-time, where I built and ran my own website to book flash. I created a similar site for an artist client who hired me for his site.
 
 I took these ideas and advanced them steps further, to create a MVP platform for tattoo artists.
 
@@ -20,6 +20,7 @@ The platform brings together the tools needed to manage the tattooing process, i
 ## Tech Stack
 
 - NextJs
+- Tailwind
 - Supabase
 - Skeleton UI
 - Motion
@@ -41,15 +42,14 @@ Here are some AI guidelines and transparency for this project:
 
 ### In Development
 
-- AI is used lightly and manually by copying and pasting. No LLM/AI has access to my project, or is used inside of my code editor.
+- AI is used lightly and manually by copying and pasting (and reviewing for accuracy) from google's ai, or chatgpt. No LLM/AI has access to my project, or is used inside of my code editor.
 
-Limited LLM use is used to:
+Limited LLM use for the following:
 
-- Aide in tasks like debugging and catching/fixing sytax mistakes by copy and pasting.
+- Aide in tasks like debugging and catching/fixing sytax mistakes.
 - As a brainstorming tool.
-- Aide in summarizing docs.
-- Aide in writing small, localized amounts of code, reviewed and edited by myself.
-  - Side note: I also hand-code frequently. My development workflow has always consisted of a mix of hand-coding and copying/pasting, reviewed and edited for quality and to fit the context.
+- Aide in summarizing docs or code bases for me.
+- Aide in writing small, localized amounts of code, reviewed and edited by myself. I still hand-code a lot. (it helps to remember or grasp the problem, and is still sometimes easier than fighting mistakes by LLMs)
 - Aide in some technical writing. Always edited and reviewed by myself.
 - For placeholder text and data.
 
