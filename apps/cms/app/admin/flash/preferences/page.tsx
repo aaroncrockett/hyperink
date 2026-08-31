@@ -11,7 +11,7 @@ import { PreferencesForm } from "./_components/PreferencesForm";
 const serverClient = await createSSClient();
 
 const { data: flashOptionsArr } = await getFlashDisplayOptions(serverClient);
-const { data: flashCollectionOptionsArr } =
+const { data: flashCollections } =
   await getCollProfileTaggingOpts(serverClient);
 
 export default async function PreferencesPage() {
@@ -25,7 +25,7 @@ export default async function PreferencesPage() {
         ></Heading>
         <PreferencesForm
           flashOptionsArr={flashOptionsArr ?? []}
-          flashCollectionOptionsArr={flashCollectionOptionsArr ?? []}
+          flashCollections={flashCollections}
         />
       </Page>
     </ViewTransition>

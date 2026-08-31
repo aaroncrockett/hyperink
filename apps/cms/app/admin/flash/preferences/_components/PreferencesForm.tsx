@@ -24,8 +24,7 @@ import { updateFlashPreferences } from "../actions";
 
 type PreferencesFormProps = {
   flashOptionsArr: Partial<FlashOptions>[];
-
-  flashCollectionOptionsArr: Partial<ProfileTaggingOptions>[];
+  flashCollections: string[];
 };
 
 export type FormActionState = {
@@ -35,12 +34,9 @@ export type FormActionState = {
 
 export function PreferencesForm({
   flashOptionsArr,
-  flashCollectionOptionsArr,
+  flashCollections,
 }: PreferencesFormProps) {
   const flashOptions = flashOptionsArr?.[0];
-
-  const flashCollections = flashCollectionOptionsArr?.[0]
-    ?.collections as string[];
 
   const flashCollectionOptions = flashCollections.map((coll) => {
     return toLabelValue(coll);
