@@ -1,10 +1,10 @@
-// hyperink backend-services
-import { uploadFile, removeFile } from "@hyperinkstudio/backend-services";
+// hyperink services
+import { uploadFile, removeFile } from "@hyperinkstudio/services";
 import type {
   FlashRecord,
   TattooImage,
   Client,
-} from "@hyperinkstudio/backend-services";
+} from "@hyperinkstudio/services";
 // local
 import { storeImageData } from "../imageData";
 

@@ -1,5 +1,5 @@
-import { Client } from "@hyperinkstudio/backend-services";
-import { FlashRecord } from "@hyperinkstudio/backend-services";
+import { Client } from "@hyperinkstudio/services";
+import { FlashRecord } from "@hyperinkstudio/services";
 //
 import { normalizeToKabobCase } from "@hyperinkstudio/utils";
 

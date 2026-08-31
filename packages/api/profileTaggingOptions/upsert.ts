@@ -1,7 +1,4 @@
-import type {
-  Client,
-  ProfileTaggingOptions,
-} from "@hyperinkstudio/backend-services";
+import type { Client, ProfileTaggingOptions } from "@hyperinkstudio/services";
 import { TABLE_PROFILE_TAGGING_OPTS as TABLE } from "./consts";
 
 export async function upsertProfileTaggingOpts(

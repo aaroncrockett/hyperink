@@ -7,7 +7,7 @@ import {
   updateClientPerson as updateClientPersonDb,
 } from "@hyperinkstudio/api";
 
-import { ClientTable } from "@hyperinkstudio/backend-services";
+import { ClientTable } from "@hyperinkstudio/services";
 
 export const createClientPerson = dbCreateClientPerson;
 

@@ -1,4 +1,4 @@
-import type { FlashRecord as FlashRecordDb } from "@hyperinkstudio/backend-services";
+import type { FlashRecord as FlashRecordDb } from "@hyperinkstudio/services";
 
 import { Data } from "../types";
 

@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@hyperinkstudio/api": "workspace:*",
-    "@hyperinkstudio/backend-services": "workspace:*",
+    "@hyperinkstudio/services": "workspace:*",
     "@hyperinkstudio/utils": "workspace:*",
     "zod": "^4.4.3"
   }

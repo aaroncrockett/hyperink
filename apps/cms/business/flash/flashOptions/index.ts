@@ -13,7 +13,7 @@ import {
 import {
   Client,
   type FlashOptions as FlashOptions_Src,
-} from "@hyperinkstudio/backend-services";
+} from "@hyperinkstudio/services";
 
 export type FlashOptions = FlashOptions_Src;
 

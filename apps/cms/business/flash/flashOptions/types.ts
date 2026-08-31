@@ -1,4 +1,4 @@
-import type { FlashOptions as FlashOptionsDb } from "@hyperinkstudio/backend-services";
+import type { FlashOptions as FlashOptionsDb } from "@hyperinkstudio/services";
 
 import { Data } from "@hyperinkstudio/business";
 

@@ -1,4 +1,4 @@
-import { createServiceClient as createServiceClientDb } from "@hyperinkstudio/backend-services";
+import { createServiceClient as createServiceClientDb } from "@hyperinkstudio/services";
 
 export const createServiceClient = () =>
   createServiceClientDb(

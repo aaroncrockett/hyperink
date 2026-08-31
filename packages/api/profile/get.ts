@@ -1,4 +1,4 @@
-import type { Client } from "@hyperinkstudio/backend-services";
+import type { Client } from "@hyperinkstudio/services";
 import { TABLE_PROFILE as TABLE } from "./consts";
 
 export async function getProfileByArtistId(client: Client, artistId: string) {

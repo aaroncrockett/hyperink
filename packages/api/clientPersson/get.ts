@@ -1,5 +1,5 @@
 // Local
-import type { Client } from "@hyperinkstudio/backend-services";
+import type { Client } from "@hyperinkstudio/services";
 import { TABLE_CLIENT_PERSON as TABLE } from "./consts";
 // Utils
 import { getYearDateRange } from "@hyperinkstudio/utils";

@@ -9,6 +9,6 @@
   },
   "dependencies": {
     "@hyperinkstudio/utils": "workspace:*",
-    "@hyperinkstudio/backend-services": "workspace:*"
+    "@hyperinkstudio/services": "workspace:*"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "@hyperinkstudio/backend-services",
+  "name": "@hyperinkstudio/services",
   "private": true,
   "version": "0.0.0",
   "type": "module",

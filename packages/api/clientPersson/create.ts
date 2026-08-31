@@ -1,4 +1,4 @@
-import type { Client, ClientTable } from "@hyperinkstudio/backend-services";
+import type { Client, ClientTable } from "@hyperinkstudio/services";
 
 import { TABLE_CLIENT_PERSON as TABLE } from "./consts";
 

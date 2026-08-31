@@ -7,9 +7,9 @@ import {
   signInWithPassword,
   signUp,
   signInWithOAuth,
-} from "@hyperinkstudio/backend-services";
+} from "@hyperinkstudio/services";
 
-import type { SupabaseConfig, Client } from "@hyperinkstudio/backend-services";
+import type { SupabaseConfig, Client } from "@hyperinkstudio/services";
 
 export {
   exchangeCodeForSession,

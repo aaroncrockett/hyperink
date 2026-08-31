@@ -1,6 +1,6 @@
 import { z } from "zod";
 //local
-import type { TattooRequest } from "@hyperinkstudio/backend-services";
+import type { TattooRequest } from "@hyperinkstudio/services";
 
 import { Data } from "../types";
 

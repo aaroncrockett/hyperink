@@ -1,4 +1,4 @@
-import type { Client, FlashRecord } from "@hyperinkstudio/backend-services";
+import type { Client, FlashRecord } from "@hyperinkstudio/services";
 import { TABLE_FLASH as TABLE } from "./consts";
 
 export async function getFlash(

@@ -4,7 +4,7 @@ import {
   upsertProfileTaggingOpts as upsertProfileTaggingOptsSrc,
   getProfileTaggingOpts as getProfileTaggingOptsSrc,
 } from "@hyperinkstudio/api";
-import type { Client } from "@hyperinkstudio/backend-services";
+import type { Client } from "@hyperinkstudio/services";
 // hyperink utils
 
 import {

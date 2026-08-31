@@ -1,11 +1,11 @@
 // Hyperink api
 import { getProfileTaggingOpts as getProfileTaggingOptsSrc } from "@hyperinkstudio/api";
 import { SelectStringArrays } from "@hyperinkstudio/business";
-// Hyperink backend-services
+// Hyperink services
 import type {
   Client,
   ProfileTaggingOptions as ProfileTaggingOptions_Src,
-} from "@hyperinkstudio/backend-services";
+} from "@hyperinkstudio/services";
 // Hyperink utils
 import {
   createDataCollection,

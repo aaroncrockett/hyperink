@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@hyperinkstudio/api": "workspace:*",
-    "@hyperinkstudio/backend-services": "workspace:*",
+    "@hyperinkstudio/services": "workspace:*",
     "@hyperinkstudio/business": "workspace:*",
     "@hyperinkstudio/hooks": "workspace:*",
     "@hyperinkstudio/ui-react-next": "workspace:*",

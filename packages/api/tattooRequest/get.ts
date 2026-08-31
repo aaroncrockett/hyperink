@@ -1,4 +1,4 @@
-import type { Client } from "@hyperinkstudio/backend-services";
+import type { Client } from "@hyperinkstudio/services";
 import { TABLE_TATTOO_REQUEST as TABLE } from "./consts";
 
 export async function getRecentlyCreatedRequests(

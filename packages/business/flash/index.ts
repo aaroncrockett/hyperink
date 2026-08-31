@@ -1,9 +1,9 @@
 export * from "./base";
 export * from "./types";
 // hyperink
-import { Client } from "@hyperinkstudio/backend-services";
-import type { FlashRecord as FlashRecord_Db } from "@hyperinkstudio/backend-services";
-import { getPublicUrl as getPublicUrl_Service } from "@hyperinkstudio/backend-services";
+import { Client } from "@hyperinkstudio/services";
+import type { FlashRecord as FlashRecord_Db } from "@hyperinkstudio/services";
+import { getPublicUrl as getPublicUrl_Service } from "@hyperinkstudio/services";
 //
 import { normalizeToKabobCase } from "@hyperinkstudio/utils";
 //

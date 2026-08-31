@@ -1,9 +1,5 @@
-import {
-  removeFile,
-  uploadFile,
-  getPublicUrl,
-} from "@hyperinkstudio/backend-services";
-import type { Client, TattooImage } from "@hyperinkstudio/backend-services";
+import { removeFile, uploadFile, getPublicUrl } from "@hyperinkstudio/services";
+import type { Client, TattooImage } from "@hyperinkstudio/services";
 import { TABLE_TATTOO_IMAGE as TABLE, BUCKET_TATTOO as BUCKET } from "./consts";
 
 export async function storeTattooImageData(

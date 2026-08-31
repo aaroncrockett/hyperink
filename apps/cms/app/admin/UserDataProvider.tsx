@@ -1,5 +1,5 @@
 import type { Profile } from "@hyperinkstudio/api";
-import type { Client, AuthUser } from "@hyperinkstudio/backend-services";
+import type { Client, AuthUser } from "@hyperinkstudio/services";
 
 import { createSSClient, getAuthedUser } from "@/auth/server";
 

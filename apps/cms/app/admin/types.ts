@@ -1,5 +1,5 @@
 import type { AuthUser, Profile } from "@hyperinkstudio/api";
-import type { Client } from "@hyperinkstudio/backend-services";
+import type { Client } from "@hyperinkstudio/services";
 
 export type AdminPageProps = {
   user: AuthUser;

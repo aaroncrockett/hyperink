@@ -1,4 +1,4 @@
-import type { Client, FlashOptions } from "@hyperinkstudio/backend-services";
+import type { Client, FlashOptions } from "@hyperinkstudio/services";
 import { TABLE_FLASH_OPTIONS as TABLE } from "./consts";
 
 export async function getFlashOptions(

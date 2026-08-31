@@ -3,7 +3,7 @@ packages:
   - "apps/customer-sites/*"
   - "packages/consts"
   - "packages/api"
-  - "packages/backend-services"
+  - "packages/services"
   - "packages/business"
   - "packages/db"
   - "packages/hooks"

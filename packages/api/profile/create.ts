@@ -1,4 +1,4 @@
-import type { Client, ClientTable } from "@hyperinkstudio/backend-services";
+import type { Client, ClientTable } from "@hyperinkstudio/services";
 import { TABLE_PROFILE as TABLE } from "./consts";
 
 export async function createProfile(

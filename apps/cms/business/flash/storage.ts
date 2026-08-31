@@ -1,6 +1,6 @@
 // services
 
-import type { Client, FlashRecord } from "@hyperinkstudio/backend-services";
+import type { Client, FlashRecord } from "@hyperinkstudio/services";
 // api
 import { TABLE_FLASH } from "@hyperinkstudio/api";
 // business

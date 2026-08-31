@@ -21,7 +21,7 @@ import {
   getFlashDisplays as getFlashDisplays_src,
 } from "@hyperinkstudio/business";
 
-import type { FlashRecord as FlashRecord_Db } from "@hyperinkstudio/backend-services";
+import type { FlashRecord as FlashRecord_Db } from "@hyperinkstudio/services";
 
 export type FlashRecord = FlashRecord_Db;
 

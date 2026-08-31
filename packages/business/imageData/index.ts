@@ -2,7 +2,7 @@ import type {
   FlashRecord,
   TattooImage,
   Client,
-} from "@hyperinkstudio/backend-services";
+} from "@hyperinkstudio/services";
 
 type ImageTable = {
   tattoo_image: TattooImage;

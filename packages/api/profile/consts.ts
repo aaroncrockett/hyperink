@@ -1,3 +1,3 @@
-import { Profile } from "../../backend-services/supabase/types";
+import { Profile } from "../../services/supabase/types";
 
 export const TABLE_PROFILE = "profile";

@@ -1,4 +1,4 @@
-import type { Client, ClientTattoo } from "@hyperinkstudio/backend-services";
+import type { Client, ClientTattoo } from "@hyperinkstudio/services";
 import { TABLE_CLIENT_TATTOO as TABLE } from "./consts";
 
 export async function createClientTattoo(

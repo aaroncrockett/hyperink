@@ -1,4 +1,4 @@
-import type { ProfileTaggingOptions as ProfileTaggingOptionsDb } from "@hyperinkstudio/backend-services";
+import type { ProfileTaggingOptions as ProfileTaggingOptionsDb } from "@hyperinkstudio/services";
 
 import type { Data } from "../types";
 

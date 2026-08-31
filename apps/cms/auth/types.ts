@@ -1,6 +1,6 @@
 import type {
   Client as ServerClient,
   AuthUser,
-} from "@hyperinkstudio/backend-services";
+} from "@hyperinkstudio/services";
 
 export type { ServerClient, AuthUser };

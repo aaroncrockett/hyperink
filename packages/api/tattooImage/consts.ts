@@ -1,4 +1,4 @@
-import type { TattooImage } from "@hyperinkstudio/backend-services";
+import type { TattooImage } from "@hyperinkstudio/services";
 export const TABLE_TATTOO_IMAGE = "tattoo_image";
 export const BUCKET_TATTOO = "user-images";
 

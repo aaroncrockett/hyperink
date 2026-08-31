@@ -1,11 +1,11 @@
-import { getPublicUrl } from "@hyperinkstudio/backend-services/";
+import { getPublicUrl } from "@hyperinkstudio/services/";
 import { TABLE_TATTOO_IMAGE as TABLE, BUCKET_TATTOO as BUCKET } from "./consts";
 
 type QueryOptions = {
   pinned?: boolean;
 };
 
-import type { Client, TattooImage } from "@hyperinkstudio/backend-services";
+import type { Client, TattooImage } from "@hyperinkstudio/services";
 
 export async function getTattooImages(authedClient: Client, number?: number) {
   let query = authedClient.from(TABLE).select("*");

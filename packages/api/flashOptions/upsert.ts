@@ -1,4 +1,4 @@
-import type { Client, FlashOptions } from "@hyperinkstudio/backend-services";
+import type { Client, FlashOptions } from "@hyperinkstudio/services";
 //
 import { normalizeToKabobCase } from "@hyperinkstudio/utils";
 // Local

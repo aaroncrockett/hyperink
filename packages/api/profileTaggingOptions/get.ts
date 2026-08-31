@@ -2,7 +2,7 @@
 import type {
   SupabaseClient,
   ProfileTaggingOptions,
-} from "@hyperinkstudio/backend-services";
+} from "@hyperinkstudio/services";
 import { TABLE_PROFILE_TAGGING_OPTS as TABLE } from "./consts";
 
 export async function getAllProfileTaggingOpts(authedClient: SupabaseClient) {

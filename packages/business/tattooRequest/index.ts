@@ -1,4 +1,4 @@
-import { Client } from "@hyperinkstudio/backend-services";
+import { Client } from "@hyperinkstudio/services";
 //hyperink
 import {
   createTattooRequest as createTattooRequestDb,

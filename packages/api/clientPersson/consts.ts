@@ -1,3 +1,3 @@
-import type { ClientTable } from "@hyperinkstudio/backend-services";
+import type { ClientTable } from "@hyperinkstudio/services";
 
 export const TABLE_CLIENT_PERSON = "client";
