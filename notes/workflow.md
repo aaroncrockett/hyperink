@@ -2,11 +2,18 @@
 
 Workflow will remain flexible for simple bug fixes, refactors, chores, and documentation changes since I am currently the only developer.
 
-However, even simple commits made directly to dev should still follow the commit prefix convention. These commits will not be attached to a github issue (thus no issue # prefix). If I anticipate more than 2 or 3 small commits, a Git Hub Issue will be created and the full workflow will be followed.
+However, even simple commits made directly to dev should still follow the commit prefix convention.
 
-These guidelines will continue to evolve over time as the project grows and in preparation for future contributors.
+Issues squash merged from a branch follow this convention:
 
-Features and more complex issues should follow the full workflow outlined below.
+(feat/bug/refine/*etc)((#00)): `commit message`
+`followed by description if the issue is complex enough`
+
+Small commits directly to dev will folow this convention:
+
+(feat/bug/*etc): `commit message`
+
+These small commits will not be attached to a github issue. If I anticipate more than 2 or 3 small commits, a Git Hub Issue will be created and the full workflow will be followed.
 
 ## Prefixes
 
@@ -45,7 +52,7 @@ Docs are currenltly simplified as notes in the root directory.
 
 1. _Commit messages_
 
-Avoid combining unrelated tasks into a single commit. On large issues it is OK to up WIP as a solo dev, just ensure the final squash merge clearly describes changes. Avoid wip commits on when in teams. Never use wip commits when working dev. Never work directly on dev if there is more than one developer. Never work on main.
+Avoid combining unrelated tasks into a single commit. On large issues it is OK to up WIP as a solo dev, just ensure the final squash merge clearly describes changes. Avoid wip commits when in teams. Never use wip commits when working dev. Never work directly on dev if there is more than one developer. Never work on main.
 
 Commit smaller groups of related files and changes frequently.
 
@@ -129,8 +136,6 @@ Remote:
 git push origin --delete 142-client-create
 
 8. Later: How to find it
-
-Because you put the issue number in the squash commit:
 
 feat(#142): create client creation flow
 

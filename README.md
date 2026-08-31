@@ -55,8 +55,10 @@ Limited LLM use for the following:
 
 ## Project Development & Growth
 
-I am the sole developer for HyperInk. The project began as a loosely structured idea based on a smaller web application and has evolved.
+I am the sole developer for HyperInk.
 
 This project has git hub Issues and a git workflow which I don't follow religiously. But is intenteded to establish structure as the project grows.
 
-I intend to develop HyperInk as an MVP and then continue developing it as a personal side project, playing its future growth by ear.
+I intend to develop HyperInk as an MVP and then continue developing it, playing its growth by ear.
+
+./notes has a gitworkflow doc and will contain other docs for the moment.
