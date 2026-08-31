@@ -7,10 +7,17 @@ export const createTattooRequest = createTattooRequest_src;
 
 export * from "./types";
 
-export const DISPLAY_KEYS = Object.values(Base)
-  .filter((field) => "display" in field && field.display === true)
-  .map((field) => field.id);
+export const DISPLAY_TATT_REQ_KEYS = new Set([
+  "type",
+  "preferred_name",
+  "email",
+  "phone",
+  "gender",
+  "bluesky_id",
+  "instagram_id",
+  "notes",
+] as const);
 
-type DisplayTattReqKeys = (typeof DISPLAY_KEYS)[number];
-
-export type DisplayTattRequest = Pick<Types.TattooRequest, DisplayTattReqKeys>;
+export const DISPLAY_TATT_REQ = [...DISPLAY_TATT_REQ_KEYS]
+  .map((key) => Object.values(Base).find((field) => field.id === key))
+  .filter(Boolean);

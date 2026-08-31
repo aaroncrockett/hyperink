@@ -4,7 +4,7 @@ import { useSearchParams } from "next/navigation";
 // Hyperink
 import { Heading, Page } from "@hyperinkstudio/ui-react-next/components";
 // Local
-import { FormContentTmp1 } from "./_components/FormContentTmp1";
+import { BookingForm } from "./_components/BookingForm";
 import { HyperInkSignature } from "../_components/HyperInkSignature";
 
 const formCls =
@@ -22,7 +22,7 @@ export default function BookPage() {
           as="h2"
           text="Tattoo Request Form"
         />
-        <FormContentTmp1 flashId={flashId} className={formCls} />
+        <BookingForm flashId={flashId ?? ""} />
         <HyperInkSignature />
       </div>
     </Page>
