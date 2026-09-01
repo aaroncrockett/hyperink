@@ -6,10 +6,10 @@ type AppInserts = {
   [K in AllowedTable]: Partial<AppTables[K]>;
 };
 
-export async function insert<T extends AllowedTable, K extends AppInserts[T]>(
+export async function insert<T extends AllowedTable>(
   client: Client,
   table: T,
-  values: K | K[],
+  values: (keyof AppInserts[T])[],
   returnType?: "select" | "single",
 ) {
   const query = client.from(table as any);
