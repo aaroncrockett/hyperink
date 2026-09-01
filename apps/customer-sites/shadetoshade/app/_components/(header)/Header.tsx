@@ -26,7 +26,7 @@ export default function Header({
         <span className="md:col-start-3 md:row-start-1">{tail}</span>
         <span className="hidden md:block md:col-span-3">{subNav}</span>
       </div>
-      <div className="pt-3 pb-2 md:hidden">{subNav}</div>
+      <div className="py-2 md:hidden">{subNav}</div>
     </header>
   );
 }

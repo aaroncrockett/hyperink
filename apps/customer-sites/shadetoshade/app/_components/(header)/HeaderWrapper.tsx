@@ -36,7 +36,7 @@ export default function HeaderWrapper({ className }: { className?: string }) {
               searchParams,
             )}
           >
-            <button className="w-full mx-auto font-bold uppercase shadow-sm rounded-xl border-3 btn md:bg-secondary-100 border-primary-500 md:w-auto md:m-0 whitespace-nowrap md:text-primary-500">
+            <button className="w-full mx-auto font-bold uppercase shadow-sm rounded-xl border-3 btn bg-tertiary-100 border-tertiary-700-300 m-0 whitespace-nowrap text-surface-900-100">
               Book
             </button>
           </Link>
@@ -48,14 +48,14 @@ export default function HeaderWrapper({ className }: { className?: string }) {
           href={getHrefWithSearchParams(INTERNAL_LINKS.book.href, searchParams)}
           className="md:hidden"
         >
-          <button className="w-full mx-auto font-bold uppercase shadow-sm border-3 rounded-xl btn bg-secondary-200 border-primary-500 text-primary-500 md:preset-filled-primary-500 md:w-auto md:m-0 whitespace-nowrap md:text-white">
+          <button className="w-full mx-auto font-bold uppercase shadow-sm rounded-xl btn btn-sm sm:btn-base bg-surface-800-200 text-tertiary-100-900 whitespace-nowrap ">
             Book
           </button>
         </Link>
       }
     >
       <Link
-        className="w-full h-12 px-2 sm:px-0"
+        className="w-full h-8 px-2 sm:px-0"
         href={getHrefWithSearchParams(INTERNAL_LINKS.home.href, searchParams)}
       >
         <Image
@@ -63,7 +63,7 @@ export default function HeaderWrapper({ className }: { className?: string }) {
           alt="Shade To Shade - Logo"
           width={201}
           height={40}
-          className="w-auto h-12 mx-auto"
+          className="w-auto h-8 sm:h-10 mx-auto"
         />
       </Link>
     </Header>

@@ -50,5 +50,8 @@ h6 {
 }
 
 .main-padding {
-  @apply px-2 py-3 md:py-5 md:px-4;
+  @apply px-2 py-5 md:py-7 md:px-4;
+}
+.header-padding {
+  @apply p-2 md:px-4;
 }
