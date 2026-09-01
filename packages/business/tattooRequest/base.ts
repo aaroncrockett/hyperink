@@ -9,8 +9,14 @@ export const TYPE = {
   schema: z.string().trim().optional(),
   required: false,
   inputSize: "sm",
-  options: [],
-  display: true,
+  options: ["flash", "custom"],
+} as const satisfies Types.TattooRequestData<"type">;
+
+export const FLASH_ID = {
+  label: "Flash ID",
+  id: "flash_id",
+  type: "hidden",
+  schema: z.string().min(1),
 } as const satisfies Types.TattooRequestData<"type">;
 
 export const PREFERRED_NAME = {
@@ -20,7 +26,6 @@ export const PREFERRED_NAME = {
   schema: z.string().trim().min(1, "Please enter your preferred name."),
   required: true,
   inputSize: "md",
-  display: true,
 } as const satisfies Types.TattooRequestData<"type">;
 
 export const PHONE = {
@@ -30,7 +35,6 @@ export const PHONE = {
   schema: z.string().trim().min(10, "Phone number must be at least 10 digits."),
   required: true,
   inputSize: "md",
-  display: true,
 } as const satisfies Types.TattooRequestData<"type">;
 
 export const EMAIL = {
@@ -40,28 +44,6 @@ export const EMAIL = {
   schema: z.email("Please enter a valid email address."),
   required: true,
   inputSize: "md",
-  display: true,
-} as const satisfies Types.TattooRequestData<"type">;
-
-//
-export const FIRST_NAME = {
-  label: "First Name",
-  id: "first_name",
-  type: "text",
-  schema: z.string().trim().optional(),
-  required: false,
-  inputSize: "md",
-  display: true,
-} as const satisfies Types.TattooRequestData<"type">;
-
-export const LAST_NAME = {
-  label: "Last Name",
-  id: "last_name",
-  type: "text",
-  schema: z.string().trim().optional(),
-  required: false,
-  inputSize: "md",
-  display: true,
 } as const satisfies Types.TattooRequestData<"type">;
 
 export const GENDER = {
@@ -71,7 +53,6 @@ export const GENDER = {
   schema: z.string().trim().optional(),
   required: false,
   inputSize: "md",
-  display: true,
 } as const satisfies Types.TattooRequestData<"type">;
 
 export const BLUESKY_ID = {
@@ -81,7 +62,6 @@ export const BLUESKY_ID = {
   schema: z.string().trim().optional(),
   required: false,
   inputSize: "md",
-  display: true,
 } as const satisfies Types.TattooRequestData<"type">;
 
 export const INSTAGRAM_ID = {
@@ -91,7 +71,6 @@ export const INSTAGRAM_ID = {
   schema: z.string().trim().optional(),
   required: false,
   inputSize: "md",
-  display: true,
 } as const satisfies Types.TattooRequestData<"type">;
 
 export const NOTES = {
@@ -101,12 +80,10 @@ export const NOTES = {
   schema: z.string().trim().optional(),
   required: false,
   inputSize: "lg",
-  display: true,
 } as const satisfies Types.TattooRequestData<"type">;
 
 // READ ONLY
 export const CREATED_AT = {
   label: "Request Date",
   id: "created_at",
-  display: false,
 } as const satisfies Types.TattooRequestData<"type">;

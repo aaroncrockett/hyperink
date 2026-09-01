@@ -1,3 +1,4 @@
+// hyperink
 import {
   Page,
   Heading,
@@ -25,14 +26,33 @@ const flashData = await Promise.all(
   }),
 );
 
-export default async function FlashPage() {
+export default async function FlashPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  const params = await searchParams;
+  const book = params.book;
+
   if (error) {
     return <FormError error="There was an error getting Flash" />;
   }
 
   return (
-    <Page cls="main-padding">
-      <Heading as="h1" text="Flash AF" />
+    <Page cls="main-padding ">
+      <div className="mb-2 md:mb-3 xl:mb-4">
+        <Heading as="h1" text="Flash AF" />
+        {book && (
+          <div className="flex flex-row gap-4 mt-6 items-center p-4 bg-surface-200-800/20">
+            <span className="display  text-2xl md:text-3xl text-primary-500">
+              Booking flash!
+            </span>
+            <span className="text-lg md:text-xl italic">
+              Tap/click flash to book
+            </span>
+          </div>
+        )}
+      </div>
       <Flash flash={flashData} />
     </Page>
   );
