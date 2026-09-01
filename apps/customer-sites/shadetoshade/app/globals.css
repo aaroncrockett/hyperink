@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@source "../../../packages/ui/react/next/components/**/*.{js,ts,jsx,tsx}";
+@source "../../../../packages/ui/react/next/components/**/*.{js,ts,jsx,tsx}";
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-react";
 @import "./shadetoshade.css";
@@ -25,7 +25,7 @@
   font-family: var(--font-outfit), Arial, sans-serif;
 }
 
-.displayi {
+.display {
   font-family: var(--font-bebas-neue), "Arial Narrow", Arial, sans-serif;
 }
 
