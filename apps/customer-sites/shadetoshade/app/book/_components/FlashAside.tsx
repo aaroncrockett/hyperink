@@ -1,6 +1,6 @@
 import { capitalizeWords } from "@hyperinkstudio/utils";
 
-import { Form, Input, Select } from "@hyperinkstudio/ui-react-next/components";
+import { Input } from "@hyperinkstudio/ui-react-next/components";
 
 type FlashAsideProps = {
   flashId?: string;

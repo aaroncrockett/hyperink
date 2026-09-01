@@ -28,6 +28,20 @@ export function BookingForm({
   clearFlashUrlParams,
 }: BookingFormProps) {
   const [showFormBody, setShowFormBody] = useState(false);
+
+  const handleTypeChange = (
+    e: React.ChangeEvent<HTMLDivElement | HTMLSelectElement>,
+  ) => {
+    const value = "value" in e.currentTarget ? e.currentTarget.value : "";
+
+    if (value === "flash") {
+      window.location.href = "/flash?book=true";
+    }
+
+    if (value === "custom") {
+      setShowFormBody(true);
+    }
+  };
   return (
     <div>
       <Form className="flex flex-col gap-2 md:gap-4" submitBtnCls="rounded-xl">
@@ -42,15 +56,7 @@ export function BookingForm({
           <Select
             options={TYPE_FIELD.options.map((opt) => toLabelValue(opt))}
             id={TYPE_FIELD.id}
-            onChange={(e) => {
-              const value =
-                "value" in e.currentTarget ? e.currentTarget.value : "";
-
-              if (value === "flash") {
-                window.location.href = "/flash";
-              }
-              if (value === "custom") setShowFormBody(true);
-            }}
+            onChange={handleTypeChange}
           />
         )}
 
