@@ -60,7 +60,7 @@ export default function RootLayout({
     >
       <body className={`antialiased h-full`}>
         <div className={cn("grid min-h-screen mx-auto grid-rows-[auto_1fr]")}>
-          <HeaderWrapper className="sticky top-0 z-10 bg-white shadow-lg main-padding" />
+          <HeaderWrapper className="sticky top-0 z bg-white shadow-lg main-padding  z-20" />
           <div className="grid h-full grid-cols-1 bg-surface-800-200 lg:grid-cols-[minmax(220px,auto)_1fr] md:grid-cols-[minmax(180px,auto)_1fr] ">
             <aside className="hidden w-full min-h-screen col-span-1 pr-2 bg-surface-800-200 md:block">
               <Nav className="sticky col-span-1 top-32 min-h-[calc(100vh-12rem)] self-start" />
@@ -73,7 +73,7 @@ export default function RootLayout({
                 <DTFooter className="flex-row items-center justify-between hidden w-full text-sm main-padding md:flex bg-primary-500"></DTFooter>
               </main>
               {/* shown bellow md */}
-              <MobileFooterNav className="main-padding sticky bottom-0 flex items-center bg-primary-500! justify-between w-full h-auto mx-auto md:hidden " />
+              <MobileFooterNav className="main-padding sticky bottom-0 flex items-center bg-primary-500! justify-between w-full h-auto mx-auto md:hidden z-20" />
             </div>
           </div>
         </div>
