@@ -25,8 +25,8 @@ type Options = {
 export async function get<T extends AllowedTable>(
   client: Client,
   table: T,
-  values: (keyof AppInserts[T])[],
-  opts: Options,
+  values: Partial<AppInserts[T]>[],
+  opts?: Options,
 ) {
   const selectFields = values.length ? values.join(", ") : "*";
 

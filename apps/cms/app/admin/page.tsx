@@ -1,6 +1,6 @@
 // Local @
 import { type TattooRequest } from "@/business/types";
-import { getLastThreeTattooRequests } from "@/business/tattooRequest";
+import { getLastThreeTatReqs } from "@/business/tattooRequest";
 import { createSSClient } from "@/auth/server";
 // Local Cosnts
 import { ADMIN_TATT_REQ } from "@/consts";
@@ -18,7 +18,7 @@ export default async function AdminHomePage() {
 
   if (pvtProfileId) {
     const dbClient = await createSSClient();
-    const { data: tattReqData } = await getLastThreeTattooRequests(dbClient);
+    const { data: tattReqData } = await getLastThreeTatReqs(dbClient);
     tattooRequests = tattReqData;
   }
 

@@ -1,14 +1,7 @@
-export {
-  TATT_REQ_FOLLOW_UP_FORM_LIST,
-  TATT_REQ_FOLLOW_UP_FORM_KEYS,
-  getLastTenTattooRequests,
-  getTattooRequestById,
-  TATT_REQ_FOLLOW_UP_FORM_SCHEMA,
-  getLastThreeTattooRequests,
-  TATT_REQ_ENTRY_FORM_LIST,
-  TATT_REQ_ENTRY_FORM_KEYS,
-  TATT_REQ_BASE_FORM_LIST,
-  TATT_REQ_BASE_FORM_KEYS,
-  TATT_REQ_ENTRY_FORM_SHORT_DISPLAY_LIST,
-  TATT_REQ_ENTRY_FORM_SHORT_DISPLAY_KEYS,
-} from "@hyperinkstudio/business/tattooRequest";
+import type { Client, TattooRequest } from "@hyperinkstudio/services"; //
+import * as TatReq_Src from "@hyperinkstudio/business/tattooRequest";
+
+export const getLastThreeTatReqs = (
+  client: Client,
+  select: Partial<TattooRequest>[] = [],
+) => TatReq_Src.getRecentlyCreatedRequests(client, select, 3);

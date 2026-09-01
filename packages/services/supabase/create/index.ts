@@ -9,7 +9,7 @@ type AppInserts = {
 export async function insert<T extends AllowedTable>(
   client: Client,
   table: T,
-  values: (keyof AppInserts[T])[],
+  values: AppInserts[T] | AppInserts[T][],
   returnType?: "select" | "single",
 ) {
   const query = client.from(table as any);
