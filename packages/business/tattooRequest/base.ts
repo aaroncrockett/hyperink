@@ -12,6 +12,13 @@ export const TYPE = {
   options: ["flash", "custom"],
 } as const satisfies Types.TattooRequestData<"type">;
 
+export const FLASH_ID = {
+  label: "Flash ID",
+  id: "flash_id",
+  type: "hidden",
+  schema: z.string().min(1),
+} as const satisfies Types.TattooRequestData<"type">;
+
 export const PREFERRED_NAME = {
   label: "Preferred Name",
   id: "preferred_name",

@@ -22,7 +22,7 @@ export function FlashAside({
           {capitalizeWords(flashName ?? "")}
         </span>
       </span>
-      <Input type="hidden" name="flashId" id="flash_id" value={flashId} />
+      <Input type="hidden" name="flash_id" id="flash_id" value={flashId} />
       <span>
         <button
           type="button"
