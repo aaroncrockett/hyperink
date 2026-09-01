@@ -30,24 +30,9 @@ export function FlashItem({ id, readable_name, publicUrl }: FlashItemProps) {
     <div onClick={() => setMenuState(true)}>
       <motion.div
         whileHover="hover"
-        className="flex flex-col gap-2 md:gap-4 justify-around p-2 sm:p-4 bg-surface-200-800/40 rounded-xl relative cursor-pointer"
+        className="flex flex-col gap-2 md:gap-4 justify-around p-2 sm:p-4 bg-surface-200-800/40 rounded-xl relative cursor-pointer group "
       >
         <AnimatePresence mode="wait" initial={false}>
-          <motion.span
-            initial={{ opacity: 0, color: "var(--color-secondary-500)" }}
-            variants={{
-              hover: {
-                opacity: 1,
-                y: -2,
-                scale: 1.025,
-                color: "var(--color-secondary-200)",
-              },
-            }}
-            className="absolute top-5 left-5 hidden md:inline-block"
-          >
-            <Icon color="var(--color-secondary-200)" size="xl" name="book" />
-          </motion.span>
-
           {menuState && (
             <motion.span
               key="flash-item"
@@ -120,7 +105,7 @@ export function FlashItem({ id, readable_name, publicUrl }: FlashItemProps) {
             </motion.span>
           )}
         </AnimatePresence>
-        <span className="absolute top-5 left-5 md:hidden">
+        <span className="absolute top-5 left-5 opacity-0 transition-opacity duration-400 group-hover:opacity-100 md:opacity-0 ">
           <Icon color="var(--color-secondary-200)" size="xl" name="book" />
         </span>
         <Image

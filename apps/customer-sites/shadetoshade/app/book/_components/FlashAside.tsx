@@ -14,14 +14,24 @@ export function FlashAside({
   clearFlashUrlParams,
 }: FlashAsideProps) {
   return (
-    <div>
-      <span className="md:text-2xl text-xl">
-        Chosen Flash: {capitalizeWords(flashName ?? "")}
+    <div className="flex gap-2 items-center justify-between w-full lg:w-2/3 xl:w-1/2 p-4 bg-surface-100-900/40 rounded-xl">
+      <span className="md:text-2xl text-xl display">
+        In cart:
+        <span className="text-primary-500">
+          <span className="mx-2 italic">Flash </span>
+          {capitalizeWords(flashName ?? "")}
+        </span>
       </span>
       <Input type="hidden" name="flashId" id="flash_id" value={flashId} />
-      <button type="button" onClick={clearFlashUrlParams}>
-        Clear Flash
-      </button>
+      <span>
+        <button
+          type="button"
+          className="btn btn-sm preset-filled-surface-200-800 font-bold rounded-xl"
+          onClick={clearFlashUrlParams}
+        >
+          Clear Flash
+        </button>
+      </span>
     </div>
   );
 }

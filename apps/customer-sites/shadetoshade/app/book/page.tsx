@@ -27,7 +27,7 @@ export default function BookPage() {
 
   return (
     <Page cls="main-padding">
-      <div className="flex flex-col justify-between h-full gap-6">
+      <div className="flex flex-col h-full gap-2">
         <Heading
           alignmentCls="text-center"
           as="h2"
