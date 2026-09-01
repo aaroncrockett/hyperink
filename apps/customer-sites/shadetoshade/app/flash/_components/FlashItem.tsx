@@ -1,14 +1,17 @@
-//3rd party
+// 3rd party
 import { AnimatePresence, motion } from "motion/react";
-//
+// react
 import { useState } from "react";
-//
+// next
 import Image from "next/image";
-// Local @'s
-import { Icon } from "@/ui";
+// hyperink
 import { capitalizeWords } from "@hyperinkstudio/utils";
-//
+// Local @'s
 import { INTERNAL_LINKS } from "@/consts";
+//
+import { Icon } from "@/ui";
+//
+import { FlashMenu } from "./FlashMenu";
 
 type FlashItemProps = {
   id: string;
@@ -18,6 +21,7 @@ type FlashItemProps = {
 
 export function FlashItem({ id, readable_name, publicUrl }: FlashItemProps) {
   const [menuState, setMenuState] = useState(false);
+
   const handleBookFlash = (id: string, name: string) => {
     const params = new URLSearchParams();
 
@@ -34,75 +38,12 @@ export function FlashItem({ id, readable_name, publicUrl }: FlashItemProps) {
       >
         <AnimatePresence mode="wait" initial={false}>
           {menuState && (
-            <motion.span
-              key="flash-item"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.15 }}
-              className="absolute inset-0 z-10 bg-surface-950-50/90 flex flex-col gap-4 justify-center items-center rounded-xl"
-            >
-              <motion.span
-                className="absolute top-5 right-5"
-                initial={{ color: "var(--color-surface-200)" }}
-
-                whileHover={{
-                  color: "var(--color-primary-100)",
-                  y: -1,
-                  scale: 1.015,
-                }}
-                whileTap={{
-                  color: "var(--color-primary-100)",
-                  scale: 1.02,
-                }}
-              >
-                <div
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setMenuState(false);
-                  }}
-                >
-                  <Icon size="xl" name="close" />
-                </div>
-              </motion.span>
-              <motion.button
-                onClick={() => handleBookFlash(id, readable_name)}
-                initial={{ background: "var(--color-primary-500)", scale: 1 }}
-                whileHover={{
-                  background: "var(--color-primary-400)",
-                  y: -1,
-                  scale: 1.015,
-                }}
-                whileTap={{
-                  background: "var(--color-primary-400)",
-                  scale: 1.02,
-                }}
-                transition={{ duration: 0.01 }}
-                className="btn rounded-xl text-white! font-bold pb-2"
-              >
-                <span>Book Flash</span>
-              </motion.button>
-              <motion.button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setMenuState(false);
-                }}
-                transition={{ duration: 0.01 }}
-                initial={{ background: "var(--color-surface-500)", scale: 1 }}
-                whileHover={{
-                  background: "var(--color-surface-400)",
-                  y: -1,
-                  scale: 1.015,
-                }}
-                whileTap={{
-                  background: "var(--color-surface-400)",
-                  scale: 1.02,
-                }}
-                className="btn rounded-xl text-white! font-bold pb-1.5"
-              >
-                Cancel
-              </motion.button>
-            </motion.span>
+            <FlashMenu
+              setMenuState={setMenuState}
+              readable_name={readable_name}
+              id={id}
+              handleBookFlash={handleBookFlash}
+            />
           )}
         </AnimatePresence>
         <span className="absolute top-5 left-5 opacity-0 transition-opacity duration-400 group-hover:opacity-100 md:opacity-0 ">
@@ -116,7 +57,6 @@ export function FlashItem({ id, readable_name, publicUrl }: FlashItemProps) {
           sizes="100vw"
           className="w-full h-auto shadow"
         />
-
         <p className="text-lg text-center font-display text-surface-800-200">
           {capitalizeWords(readable_name)}
         </p>

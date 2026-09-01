@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-//
+// hyperink
 import { INPUT_TYPES_MAP } from "@hyperinkstudio/business";
 //
 import { toLabelValue } from "@hyperinkstudio/utils";
@@ -11,11 +11,13 @@ import {
   Select,
   InputTextArea,
 } from "@hyperinkstudio/ui-react-next/components";
+
 // @'s
 import { TATT_REQ_BODY, TYPE_FIELD } from "@/business/tattooRequest";
 
-//
+// local
 import { FlashAside } from "./FlashAside";
+
 type BookingFormProps = {
   flashId?: string;
   flashName?: string;
@@ -38,9 +40,7 @@ export function BookingForm({
       window.location.href = "/flash?book=true";
     }
 
-    if (value === "custom") {
-      setShowFormBody(true);
-    }
+    if (value === "custom") setShowFormBody(true);
   };
   return (
     <div>
