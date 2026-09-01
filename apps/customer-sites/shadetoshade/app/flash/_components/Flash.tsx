@@ -16,7 +16,7 @@ type FlashProps = {
 export function Flash({ flash }: FlashProps) {
   const [flashState, setFlashState] = useState(flash);
   return (
-    <ul className="grid w-full grid-cols-1 gap-2 sm:grid-cols-2 md:gap-4 lg:grid-cols-3 xl:grid-cols-4">
+    <ul className="grid w-full grid-cols-2 gap-2 md:gap-3 lg:gap-4 lg:grid-cols-3 xl:grid-cols-4">
       {flashState.map((data) =>
         data?.publicUrl ? (
           <FlashItem

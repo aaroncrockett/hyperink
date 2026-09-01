@@ -28,24 +28,47 @@ export function FlashItem({ id, readable_name, publicUrl }: FlashItemProps) {
   };
   return (
     <div onClick={() => setMenuState(true)}>
-      <div className="flex flex-col gap-2 md:gap-4 justify-around p-2 sm:p-4 bg-surface-200-800/40 rounded-xl relative">
+      <motion.div
+        whileHover="hover"
+        className="flex flex-col gap-2 md:gap-4 justify-around p-2 sm:p-4 bg-surface-200-800/40 rounded-xl relative cursor-pointer"
+      >
         <AnimatePresence mode="wait" initial={false}>
+          <motion.span
+            initial={{ opacity: 0, color: "var(--color-secondary-500)" }}
+            variants={{
+              hover: {
+                opacity: 1,
+                y: -2,
+                scale: 1.025,
+                color: "var(--color-secondary-200)",
+              },
+            }}
+            className="absolute top-5 left-5 hidden md:inline-block"
+          >
+            <Icon color="var(--color-secondary-200)" size="xl" name="book" />
+          </motion.span>
+
           {menuState && (
             <motion.span
               key="flash-item"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              transition={{ duration: 0.15 }}
               className="absolute inset-0 z-10 bg-surface-950-50/90 flex flex-col gap-4 justify-center items-center rounded-xl"
             >
               <motion.span
                 className="absolute top-5 right-5"
                 initial={{ color: "var(--color-surface-200)" }}
+
                 whileHover={{
                   color: "var(--color-primary-100)",
+                  y: -1,
+                  scale: 1.015,
                 }}
                 whileTap={{
                   color: "var(--color-primary-100)",
+                  scale: 1.02,
                 }}
               >
                 <div
@@ -57,25 +80,49 @@ export function FlashItem({ id, readable_name, publicUrl }: FlashItemProps) {
                   <Icon size="xl" name="close" />
                 </div>
               </motion.span>
-              <button
+              <motion.button
                 onClick={() => handleBookFlash(id, readable_name)}
-                className="preset-filled-primary-500 btn "
+                initial={{ background: "var(--color-primary-500)", scale: 1 }}
+                whileHover={{
+                  background: "var(--color-primary-400)",
+                  y: -1,
+                  scale: 1.015,
+                }}
+                whileTap={{
+                  background: "var(--color-primary-400)",
+                  scale: 1.02,
+                }}
+                transition={{ duration: 0.01 }}
+                className="btn rounded-xl text-white! font-bold pb-2"
               >
-                Book Flash
-              </button>
-              <button
+                <span>Book Flash</span>
+              </motion.button>
+              <motion.button
                 onClick={(e) => {
                   e.stopPropagation();
                   setMenuState(false);
                 }}
-                className="preset-filled-surface-500 btn"
+                transition={{ duration: 0.01 }}
+                initial={{ background: "var(--color-surface-500)", scale: 1 }}
+                whileHover={{
+                  background: "var(--color-surface-400)",
+                  y: -1,
+                  scale: 1.015,
+                }}
+                whileTap={{
+                  background: "var(--color-surface-400)",
+                  scale: 1.02,
+                }}
+                className="btn rounded-xl text-white! font-bold pb-1.5"
               >
                 Cancel
-              </button>
+              </motion.button>
             </motion.span>
           )}
         </AnimatePresence>
-
+        <span className="absolute top-5 left-5 md:hidden">
+          <Icon color="var(--color-secondary-200)" size="xl" name="book" />
+        </span>
         <Image
           src={publicUrl}
           alt={`${readable_name} - flash image`}
@@ -88,7 +135,7 @@ export function FlashItem({ id, readable_name, publicUrl }: FlashItemProps) {
         <p className="text-lg text-center font-display text-surface-800-200">
           {capitalizeWords(readable_name)}
         </p>
-      </div>
+      </motion.div>
     </div>
   );
 }

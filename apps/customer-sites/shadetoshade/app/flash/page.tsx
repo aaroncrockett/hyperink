@@ -31,8 +31,10 @@ export default async function FlashPage() {
   }
 
   return (
-    <Page cls="main-padding">
-      <Heading as="h1" text="Flash AF" />
+    <Page cls="main-padding ">
+      <div className="mb-2 md:mb-3 xl:mb-4">
+        <Heading as="h1" text="Flash AF" />
+      </div>
       <Flash flash={flashData} />
     </Page>
   );
