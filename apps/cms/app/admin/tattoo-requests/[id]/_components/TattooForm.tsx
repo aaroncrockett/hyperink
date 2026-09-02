@@ -5,11 +5,15 @@ import { useActionState, useState } from "react";
 
 // Hyper Ink
 
-import { Form, FormMetaErrors } from "@hyperinkstudio/ui-react-next/components";
+import {
+  Form,
+  FormMetaErrors,
+  InputCheck,
+} from "@hyperinkstudio/ui-react-next/components";
 
 // Local @/db
 import { type TattooRequest } from "@/business/types";
-import { TATT_REQ_FOLLOW_UP_FORM_LIST } from "@/business/tattooRequest";
+import { TATT_REQ_ADMIN_EDITABLE_LIST } from "@/business/tattooRequest";
 // Local
 import { createAClientTattooAndHandleClient } from "../actions";
 import { Button, Input } from "@/ui";
@@ -65,21 +69,30 @@ export function TattooForm({
           required={true}
           value={clientId}
         />
-        {TATT_REQ_FOLLOW_UP_FORM_LIST.map(({ id, label, type, required }) => (
-          <div key={id}>
-            <Input
-              key={id}
-              id={id}
-              name={id}
-              label={label}
-              type={type}
-              required={required}
-              inputCls={isEditing ? "input" : ""}
-              defaultValue={(tattRequest[id] as string) ?? ""}
-              readOnly={!isEditing}
-            />
-          </div>
-        ))}
+        {TATT_REQ_ADMIN_EDITABLE_LIST.map(({ id, label, ...field }) => {
+          if (field.type === "checkbox") {
+            return (
+              <div key={id}>
+                <InputCheck id={id} name={id} label={label} />
+              </div>
+            );
+          }
+
+          return (
+            <div key={id}>
+              <Input
+                id={id}
+                name={id}
+                label={label}
+                type={field.type}
+                required={field.required}
+                inputCls={isEditing ? "input" : ""}
+                defaultValue={(tattRequest[id] as string) ?? ""}
+                readOnly={!isEditing}
+              />
+            </div>
+          );
+        })}
         {state.errors && <FormMetaErrors errors={state.errors} />}
       </Form>
     </>

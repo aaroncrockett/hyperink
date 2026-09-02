@@ -3,7 +3,7 @@ import { z } from "zod";
 import {
   createClientPerson as dbCreateClientPerson,
   getClientPersonsRecentlyUpdated,
-  getClientPersonsByEmailOrPhone as getClientPersonsByEmailOrPhoneDb,
+  getClientPersonsByEmail as getClientPersonsByEmailb,
   updateClientPerson as updateClientPersonDb,
 } from "@hyperinkstudio/api";
 
@@ -11,7 +11,7 @@ import { ClientTable } from "@hyperinkstudio/services";
 
 export const createClientPerson = dbCreateClientPerson;
 
-export const getClientPersonsByEmailOrPhone = getClientPersonsByEmailOrPhoneDb;
+export const getClientPersonsByEmail = getClientPersonsByEmailb;
 
 export const getLastTenClients = getClientPersonsRecentlyUpdated;
 

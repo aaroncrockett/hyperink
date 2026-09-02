@@ -1,20 +1,27 @@
 "use server";
+import { z } from "zod";
+//
+import { zodIssuesToErrors } from "@hyperinkstudio/utils";
+//
 import { type TattooRequest, type ClientTattoo } from "@/business/types";
-import { TATT_REQ_FOLLOW_UP_FORM_SCHEMA } from "@/business/tattooRequest";
+import {
+  TATT_REQ_ADMIN_EDITABLE_LIST,
+  TATT_REQ_ADMIN_EDITABLE,
+} from "@/business/tattooRequest";
 import { createClientPerson } from "@/business/clientPersons";
 import { createClientTattoo } from "@/business/clientTattoo";
-import { zodIssuesToErrors } from "@hyperinkstudio/utils";
+
 import { createSSClient } from "@/auth/server";
 
 type TattooRequestForm = TattooRequest &
-  Partial<ClientTattoo> & {
+  Partial<typeof TATT_REQ_ADMIN_EDITABLE> & {
     existingClient: string;
     clientId?: string;
   };
 
 export type TattooFormState = {
   tattooRequest: TattooRequestForm | ClientTattoo | null;
-  errors: Partial<Record<keyof TattooRequestForm, string>> | null;
+  errors: Record<string, string> | null;
 };
 
 export async function createAClientTattooAndHandleClient(
@@ -23,21 +30,27 @@ export async function createAClientTattooAndHandleClient(
 ): Promise<TattooFormState> {
   const formDataObject = Object.fromEntries(formData.entries());
 
-  const parsedForm = TATT_REQ_FOLLOW_UP_FORM_SCHEMA.safeParse(formDataObject);
+  const parsedReq = z
+    .object({
+      ...Object.fromEntries(
+        TATT_REQ_ADMIN_EDITABLE_LIST.map(({ id, schema }) => [id, schema]),
+      ),
+    })
+    .safeParse(formDataObject);
 
   const actionResults: TattooFormState = {
     tattooRequest: null,
     errors: null,
   };
 
-  if (!parsedForm.success) {
-    const { issues } = parsedForm.error;
+  if (!parsedReq.success) {
+    const { issues } = parsedReq.error;
 
     actionResults.errors = zodIssuesToErrors(issues);
 
     return actionResults;
   }
-  const parsedFormData = parsedForm.data as Partial<TattooRequest>;
+  const parsedFormData = parsedReq.data as Partial<TattooRequest>;
 
   const ssClient = await createSSClient();
 

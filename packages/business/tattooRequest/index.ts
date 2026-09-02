@@ -1,5 +1,9 @@
 export * as Base from "./base";
 
-export { createTattooRequest } from "@hyperinkstudio/api";
+export {
+  createTattooRequest,
+  getRecentlyCreatedRequests,
+  getTattooRequestById,
+} from "@hyperinkstudio/api";
 
 export * from "./types";
