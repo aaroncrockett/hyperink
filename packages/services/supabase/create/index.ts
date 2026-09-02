@@ -11,6 +11,7 @@ export async function insert<T extends AllowedTable>(
   table: T,
   values: AppInserts[T] | AppInserts[T][],
   returnType?: "select" | "single",
+  // opts? // may need this
 ) {
   const query = client.from(table as any);
 

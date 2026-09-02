@@ -16,7 +16,7 @@ type PlainRows<T extends Record<string, any>> = {
 
 export type AppTables = PlainRows<Database["public"]["Tables"]>;
 
-export type ClientTable = AppTables["client"];
+export type ClientAsClientPerson = AppTables["client"];
 export type ClientTattoo = AppTables["client_tattoo"];
 export type Profile = AppTables["profile"];
 export type ProfileTaggingOptions = AppTables["profile_tagging_options"];

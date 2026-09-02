@@ -38,69 +38,69 @@ export async function createAClientTattooFlow(
     })
     .safeParse(formDataObject);
 
-    console.log(parsedReq)
+  console.log(parsedReq);
 
   const actionResults: TattooFormState = {
     tattooRequest: null,
     errors: null,
   };
 
-  if (!parsedReq.success) {
-    console.log("success function")
-    const { issues } = parsedReq.error;
+  // if (!parsedReq.success) {
+  //   console.log("success function")
+  //   const { issues } = parsedReq.error;
 
-    actionResults.errors = zodIssuesToErrors(issues);
+  //   actionResults.errors = zodIssuesToErrors(issues);
 
-    return actionResults;
-  }
-  const parsedFormData = parsedReq.data as Partial<TattooRequest>;
+  //   return actionResults;
+  // }
+  // const parsedFormData = parsedReq.data as Partial<TattooRequest>;
 
-  const ssClient = await createSSClient();
+  // const ssClient = await createSSClient();
 
-  let clientId = formDataObject.clientId as string;
+  // let clientId = formDataObject.clientId as string;
 
-  if (formDataObject.existingClient === "true") {
-    console.log("existing client");
-  }
+  // if (formDataObject.existingClient === "true") {
+  //   console.log("existing client");
+  // }
 
-  if (formDataObject.existingClient === "false" && clientId === "") {
-    console.log("NOT existing client");
-    const { error, data } = await createClientPerson(ssClient, {
-      email: parsedFormData.email,
-      phone: parsedFormData.phone,
-    });
+  // if (formDataObject.existingClient === "false" && clientId === "") {
+  //   console.log("NOT existing client");
+  //   const { error, data } = await createClientPerson(ssClient, {
+  //     email: parsedFormData.email,
+  //     phone: parsedFormData.phone,
+  //   });
 
-    clientId = data?.id ?? "";
+  //   clientId = data?.id ?? "";
 
-    if (error) {
-      console.error("not existing client function");
-      console.error(error);
-      actionResults.errors = {
-        client_id: "Failed to update client.",
-      };
+  //   if (error) {
+  //     console.error("not existing client function");
+  //     console.error(error);
+  //     actionResults.errors = {
+  //       client_id: "Failed to update client.",
+  //     };
 
-      return actionResults;
-    }
-  }
+  //     return actionResults;
+  //   }
+  // }
 
-  const { data, error } = await createClientTattoo(ssClient, {
-    client_id: clientId,
-    type: "cool tattoo TYPE",
-    title: "Im going to name this something!",
-  });
+  // const { data, error } = await createClientTattoo(ssClient, {
+  //   client_id: clientId,
+  //   type: "cool tattoo TYPE",
+  //   title: "Im going to name this something!",
+  // });
 
-  if (error) {
-    console.error("create client tattoo");
-    console.error(error);
+  // if (error) {
+  //   console.error("create client tattoo");
+  //   console.error(error);
 
-    actionResults.errors = {
-      root: "Failed to create tattoo request.",
-    } as TattooFormState["errors"];
+  //   actionResults.errors = {
+  //     root: "Failed to create tattoo request.",
+  //   } as TattooFormState["errors"];
 
-    return actionResults;
-  }
+  //   return actionResults;
+  // }
 
-  actionResults.tattooRequest = data;
+  // actionResults.tattooRequest = data;
 
   return actionResults;
 }

@@ -1,6 +1,6 @@
 // Local
-import { type Client, getBy } from "@hyperinkstudio/services";
-import { TABLE_CLIENT_PERSON as TABLE } from "./consts";
+import { type Client, getBy, get } from "@hyperinkstudio/services";
+import { TABLE_CLIENT_PERSON } from "./consts";
 // Utils
 import { getYearDateRange } from "@hyperinkstudio/utils";
 
@@ -24,12 +24,6 @@ export async function getClientPersonBy(client: Client, email: string) {
   // return { data, error };
 }
 
-export async function getClientPersons(authedClient: Client, limit = 10) {
-  const { data, error } = await authedClient
-    .from(TABLE)
-    .select("*")
-    .order("updated_at", { ascending: false })
-    .limit(limit);
-
-  return { data, error };
+export async function getClientPersons(client: Client, limit = 10) {
+  const { data, error } = await get(client, TABLE_CLIENT_PERSON, []);
 }

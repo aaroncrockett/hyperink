@@ -1,9 +1,9 @@
-import type { Client, ClientTable } from "@hyperinkstudio/services";
+import type { Client, ClientAsClientPerson } from "@hyperinkstudio/services";
 import { TABLE_PROFILE as TABLE } from "./consts";
 
 export async function createProfile(
   authedClient: Client,
-  params: Partial<ClientTable>,
+  params: Partial<ClientAsClientPerson>,
 ) {
   const { data, error } = await authedClient
     .from(TABLE)

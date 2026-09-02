@@ -1,12 +1,12 @@
 // @hyperink
-import type { ClientTable } from "@hyperinkstudio/api";
+import type { ClientAsClientPerson } from "@hyperinkstudio/api";
 // @db
 import { LOOKUP_COLS_LIST } from "@/business/clientPersons";
 
 export function ClientInputLookup({
   lookupType,
 }: {
-  lookupType: keyof ClientTable;
+  lookupType: keyof ClientAsClientPerson;
 }) {
   const option = LOOKUP_COLS_LIST.find((option) => option.value === lookupType);
 

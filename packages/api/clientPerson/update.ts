@@ -1,11 +1,11 @@
-import type { Client, ClientTable } from "@hyperinkstudio/services";
+import type { Client, ClientAsClientPerson } from "@hyperinkstudio/services";
 
 import { TABLE_CLIENT_PERSON as TABLE } from "./consts";
 
 export async function updateClientPerson(
   authedClient: Client,
   id: string,
-  params: Partial<ClientTable>,
+  params: Partial<ClientAsClientPerson>,
 ) {
   const { data, error } = await authedClient
     .from(TABLE)
