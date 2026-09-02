@@ -7,7 +7,7 @@ import { useActionState, useState } from "react";
 
 import {
   Form,
-  FormMetaErrors, 
+  FormMetaErrors,
   InputCheck,
 } from "@hyperinkstudio/ui-react-next/components";
 
@@ -25,7 +25,7 @@ export function EditTattReqForm({
 }: {
   tattRequest: TattooRequest;
   existingClient: boolean;
-  clientId?: string;
+  clientId?: string | null;
 }) {
   const [isEditing, setIsEditing] = useState(false);
 
@@ -66,12 +66,12 @@ export function EditTattReqForm({
           name="clientId"
           label="Client Id"
           type="hidden"
-          value={clientId}
+          value={clientId ?? ""}
         />
         <Input
           key="flashId"
           id="flash_id"
-          name="clientId"
+          name="flash id"
           label="flash id"
           type="hidden"
           value={tattRequest.flash_id ?? ""}

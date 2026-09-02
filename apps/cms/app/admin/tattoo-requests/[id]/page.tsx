@@ -43,7 +43,11 @@ export default async function TattooRequestPage({
             No client was found. We will create a Tattoo Record alongside a new
             client profile.
           </p>
-          <EditTattReqForm existingClient={false} tattRequest={tattRequest} />
+          <EditTattReqForm
+            existingClient={false}
+            tattRequest={tattRequest}
+            clientId={null}
+          />
         </>
       )}
       {/* // more than two clients found. something is wrong..*/}

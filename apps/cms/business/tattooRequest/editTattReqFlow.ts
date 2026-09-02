@@ -26,6 +26,9 @@ export async function editTattReqFlow(
   phone: string,
 ): Promise<TattReqFormState> {
   let localClientId = clientId;
+  console.log("clientid");
+  console.log(clientId);
+  console.log("clientid");
   if (clientId === null) {
     const { error, data } = await createClientPerson(
       client,
@@ -57,6 +60,8 @@ export async function editTattReqFlow(
     };
   }
 
+  console.log(localClientId);
+
   const { data, error } = await createClientTattoo(client, {
     client_id: localClientId,
     type: tattData.type,
@@ -64,6 +69,7 @@ export async function editTattReqFlow(
   });
 
   if (error) {
+    console.error(error);
     return {
       errors: { clientTatt: "error creating client tattll" },
       tattooRequest: null,
