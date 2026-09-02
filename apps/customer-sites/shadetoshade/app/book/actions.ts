@@ -25,8 +25,6 @@ export async function createTattooRequestAction(
 
   const formValues = Object.fromEntries(formData.entries());
 
-  console.log(formValues);
-
   const parsedReq = z
     .object({
       [TYPE_FIELD.id]: TYPE_FIELD.schema,
@@ -36,10 +34,6 @@ export async function createTattooRequestAction(
       ),
     })
     .safeParse(formValues);
-
-  console.log("A**");
-  console.log(parsedReq);
-  console.log("A**");
 
   if (!parsedReq.success) {
     console.error("1....");
@@ -59,8 +53,6 @@ export async function createTattooRequestAction(
     ...tattRequestValues,
   };
 
-  console.log("A**");
-
   const result = await createTattooRequest(serviceClient, tattRequestData);
 
   if (result.error) {
@@ -73,8 +65,6 @@ export async function createTattooRequestAction(
     return actionResults;
   }
 
-  console.log("B**");
-
   if (result.data === undefined || result.data === null) {
     console.error("3....");
     actionResults.errors = {
@@ -82,11 +72,7 @@ export async function createTattooRequestAction(
     };
   }
 
-  console.log("C**");
-
   actionResults.tattooRequest = result.data;
-
-  console.log("D**");
 
   return actionResults;
 }

@@ -1,6 +1,6 @@
 import type { Client, TattooRequest } from "@hyperinkstudio/services";
 import { TABLE_TATTOO_REQUEST as TABLE } from "./consts";
-import { get } from "@hyperinkstudio/services";
+import { get, getBy } from "@hyperinkstudio/services";
 
 export async function getRecentlyCreatedRequests(
   client: Client,
@@ -19,12 +19,20 @@ export async function getRecentlyCreatedRequests(
   //   .limit(limit);
 }
 
-export async function getTattooRequestById(authedClient: Client, id: string) {
-  const { data, error } = await authedClient
-    .from(TABLE)
-    .select("*")
-    .eq("id", id)
-    .single();
+export async function getTattooRequestById(client: Client, id: string) {
+  const { data: dataArray, error } = await getBy(
+    client,
+    TABLE,
+    [],
+    [
+      {
+        field: "id",
+        value: id,
+      },
+    ],
+  );
+
+  const data = dataArray ? dataArray[0] : null;
 
   return { data, error };
 }

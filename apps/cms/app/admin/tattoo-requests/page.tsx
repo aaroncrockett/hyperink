@@ -1,12 +1,12 @@
 // Local
 import { createSSClient } from "@/auth/server";
-import { getLastTenTattooRequests } from "@/business/tattooRequest";
+import { getLastThreeTatReqs } from "@/business/tattooRequest";
 import { TattooRequests } from "../(features)/TattooRequests";
 // Local UI
 import { Page, Heading } from "@/ui";
 
 const serverClient = await createSSClient();
-const { data: tattooRequests } = await getLastTenTattooRequests(serverClient);
+const { data: tattooRequests } = await getLastThreeTatReqs(serverClient);
 
 export default async function TattooRequestsPage() {
   return (

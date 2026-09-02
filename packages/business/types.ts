@@ -19,7 +19,7 @@ export type Data<T> = {
   readonly?: boolean;
   required?: boolean;
   schema?: z.ZodType;
-  type?: keyof typeof INPUT_TYPES_MAP;
+  type?: keyof typeof INPUT_TYPES_MAP | "";
   value?: string;
   options?: string[];
 };

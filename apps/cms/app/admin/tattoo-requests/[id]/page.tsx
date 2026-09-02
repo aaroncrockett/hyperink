@@ -1,7 +1,7 @@
 // Local DB
 import { getTattooRequestById } from "@/business/tattooRequest";
 import { createSSClient } from "@/auth/server";
-import { getClientPersonsByEmailOrPhone } from "@/business/clientPersons";
+import { getClientsPersonsByEmail } from "@/business/clientPersons";
 // Local
 import { TattooForm } from "./_components/TattooForm";
 // Local UI
@@ -28,10 +28,9 @@ export default async function TattooRequestPage({
     return null;
   }
 
-  const { data: clientPersons } = await getClientPersonsByEmailOrPhone(
+  const { data: clientPersons } = await getClientsPersonsByEmail(
     ssrClient,
     tattRequest?.email,
-    tattRequest?.phone,
   );
 
   return (
