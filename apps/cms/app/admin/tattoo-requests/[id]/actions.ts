@@ -4,20 +4,19 @@ import { z } from "zod";
 import { zodIssuesToErrors } from "@hyperinkstudio/utils";
 //
 import { type ClientTattoo } from "@/business/types";
-import {
-  TATT_REQ_ADMIN_EDITABLE_LIST,
-  TATT_REQ_ADMIN_EDITABLE,
-} from "@/business/tattooRequest";
+import { TATT_REQ_ADMIN_EDITABLE_LIST } from "@/business/tattooRequest";
+
 import {
   editTattReqFlow,
-  type TattReqFormEditable,
+  type TattReqEditable,
 } from "@/business/tattooRequest";
-// import { createClientPerson } from "@/business/clientPersons";
-
+//
 import { createSSClient } from "@/auth/server";
+//
+import { getUserData } from "@/app/admin/getUserData";
 
-type TattReqForm = TattReqFormEditable &
-  Partial<typeof TATT_REQ_ADMIN_EDITABLE> & {
+type TattReqForm = TattReqEditable &
+  Partial<TattReqEditable> & {
     existingClient: string;
     clientId?: string;
   };
@@ -32,6 +31,8 @@ export async function createAClientTattooFlow(
   formData: FormData,
 ): Promise<TattReqFormState> {
   const formDataObject = Object.fromEntries(formData.entries());
+
+  const { pvtProfileId } = await getUserData();
 
   const parsedReq = z
     .object({
@@ -54,7 +55,9 @@ export async function createAClientTattooFlow(
 
     return actionResults;
   }
-  const parsedFormData = parsedReq.data as Partial<TattReqFormEditable>;
+  const parsedFormData = parsedReq.data as Partial<TattReqEditable>;
+
+  const { email, phone, ...tattooData } = parsedFormData;
 
   const client = await createSSClient();
 
@@ -65,9 +68,10 @@ export async function createAClientTattooFlow(
   const editTattReqResults = await editTattReqFlow(
     client,
     clientId,
-    parsedFormData.email ?? "",
-    parsedFormData.phone ?? "",
-    parsedFormData.type ?? "",
+    pvtProfileId,
+    tattooData as ClientTattoo,
+    phone ?? "",
+    email ?? "",
   );
 
   if (editTattReqResults.tattooRequest !== null)

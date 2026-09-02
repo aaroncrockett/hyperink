@@ -1,18 +1,16 @@
-import { type Client, TattooRequest } from "@hyperinkstudio/services";
+import { type Client } from "@hyperinkstudio/services";
 import { createClientPerson } from "@hyperinkstudio/api";
 //
 import { createClientTattoo } from "@/business/clientTattoo";
 import { type ClientTattoo } from "@/business/types";
-//
-import { getUserData } from "@/app/admin/getUserData";
-//
-import { type TattReqFormEditable } from "./index";
 
-type TattReqForm = TattooRequest &
-  Partial<TattReqFormEditable> & {
-    existingClient: string;
-    clientId?: string;
-  };
+//
+import { type TattReqEditable } from "./index";
+
+type TattReqForm = TattReqEditable & {
+  existingClient: string;
+  clientId?: string;
+};
 
 type TattReqFormState = {
   tattooRequest: TattReqForm | ClientTattoo | null;
@@ -22,12 +20,11 @@ type TattReqFormState = {
 export async function editTattReqFlow(
   client: Client,
   clientId: string | null,
+  userId: string,
+  tattData: ClientTattoo,
   email: string,
   phone: string,
-  type: string,
 ): Promise<TattReqFormState> {
-  const { pvtProfileId } = await getUserData();
-
   let localClientId = clientId;
   if (clientId === null) {
     const { error, data } = await createClientPerson(
@@ -36,7 +33,7 @@ export async function editTattReqFlow(
         email: email,
         phone: phone,
       },
-      pvtProfileId,
+      userId,
     );
 
     if (error) {
@@ -62,12 +59,21 @@ export async function editTattReqFlow(
 
   const { data, error } = await createClientTattoo(client, {
     client_id: localClientId,
-    type: type,
-    title: "Im going to name this something!",
+    type: tattData.type,
+    flash_id: tattData.flash_id ?? null,
   });
+
+  if (error) {
+    return {
+      errors: { clientTatt: "error creating client tattll" },
+      tattooRequest: null,
+    };
+  }
+
+  const clientTattooData = data as TattReqForm | ClientTattoo | null;
 
   return {
     errors: null,
-    tattooRequest: null,
+    tattooRequest: clientTattooData,
   };
 }

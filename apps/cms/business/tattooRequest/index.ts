@@ -40,6 +40,11 @@ export type TattReqFormDisplay = TatReq_Src.TattReqFormDisplay;
 
 export type TattReqFormEditable = typeof TATT_REQ_ADMIN_EDITABLE;
 
+export type TattReqEditable = Pick<
+  TattooRequest,
+  "preferred_name" | "email" | "phone" | "type" | "seen_at"
+>;
+
 export const getTattooRequestById = TatReq_Src.getTattooRequestById;
 
 export const getLastThreeTatReqs = (
