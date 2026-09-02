@@ -24,7 +24,7 @@ export type TattooFormState = {
   errors: Record<string, string> | null;
 };
 
-export async function createAClientTattooAndHandleClient(
+export async function createAClientTattooFlow(
   prevState: TattooFormState,
   formData: FormData,
 ): Promise<TattooFormState> {
@@ -38,12 +38,15 @@ export async function createAClientTattooAndHandleClient(
     })
     .safeParse(formDataObject);
 
+    console.log(parsedReq)
+
   const actionResults: TattooFormState = {
     tattooRequest: null,
     errors: null,
   };
 
   if (!parsedReq.success) {
+    console.log("success function")
     const { issues } = parsedReq.error;
 
     actionResults.errors = zodIssuesToErrors(issues);
@@ -57,11 +60,11 @@ export async function createAClientTattooAndHandleClient(
   let clientId = formDataObject.clientId as string;
 
   if (formDataObject.existingClient === "true") {
-    console.error("existing client");
+    console.log("existing client");
   }
 
   if (formDataObject.existingClient === "false" && clientId === "") {
-    console.error("NOT existing client");
+    console.log("NOT existing client");
     const { error, data } = await createClientPerson(ssClient, {
       email: parsedFormData.email,
       phone: parsedFormData.phone,

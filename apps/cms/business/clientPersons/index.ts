@@ -2,8 +2,8 @@ import { z } from "zod";
 
 import {
   createClientPerson as dbCreateClientPerson,
-  getClientPersonsRecentlyUpdated,
-  getClientPersonsByEmail as getClientPersonsByEmailb,
+  getClientPersonRecentlyUpdated,
+  getClientPersonByEmail as getClientPersonByEmailDb,
   updateClientPerson as updateClientPersonDb,
 } from "@hyperinkstudio/api";
 
@@ -11,9 +11,9 @@ import { ClientTable } from "@hyperinkstudio/services";
 
 export const createClientPerson = dbCreateClientPerson;
 
-export const getClientPersonsByEmail = getClientPersonsByEmailb;
+export const getClientPersonByEmail = getClientPersonByEmailDb;
 
-export const getLastTenClients = getClientPersonsRecentlyUpdated;
+export const getLastTenClients = getClientPersonRecentlyUpdated;
 
 export const updateClientPerson = updateClientPersonDb;
 

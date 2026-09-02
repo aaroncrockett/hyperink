@@ -1,9 +1,9 @@
 // Local DB
 import { getTattooRequestById } from "@/business/tattooRequest";
 import { createSSClient } from "@/auth/server";
-import { getClientPersonsByEmail } from "@/business/clientPersons";
+import { getClientPersonByEmail } from "@/business/clientPersons";
 // Local
-import { TattooForm } from "./_components/TattooForm";
+import { EditTattReqForm } from "./_components/EditTattReqForm";
 // Local UI
 import { Page, Heading } from "@/ui";
 
@@ -28,7 +28,7 @@ export default async function TattooRequestPage({
     return null;
   }
 
-  const { data: clientPersons } = await getClientPersonsByEmail(
+  const { data: clientPersons } = await getClientPersonByEmail(
     ssrClient,
     tattRequest?.email,
   );
@@ -43,7 +43,7 @@ export default async function TattooRequestPage({
             No client was found. We will create a Tattoo Record alongside a new
             client profile.
           </p>
-          <TattooForm existingClient={false} tattRequest={tattRequest} />
+          <EditTattReqForm existingClient={false} tattRequest={tattRequest} />
         </>
       )}
       {/* // more than two clients found. something is wrong..*/}

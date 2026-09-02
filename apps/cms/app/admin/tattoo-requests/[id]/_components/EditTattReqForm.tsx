@@ -15,10 +15,10 @@ import {
 import { type TattooRequest } from "@/business/types";
 import { TATT_REQ_ADMIN_EDITABLE_LIST } from "@/business/tattooRequest";
 // Local
-import { createAClientTattooAndHandleClient } from "../actions";
+import { createAClientTattooFlow } from "../actions";
 import { Button, Input } from "@/ui";
 
-export function TattooForm({
+export function EditTattReqForm({
   tattRequest,
   existingClient,
   clientId,
@@ -35,7 +35,7 @@ export function TattooForm({
   };
 
   const [state, formAction, isPending] = useActionState(
-    createAClientTattooAndHandleClient,
+    createAClientTattooFlow,
     initialState,
   );
 

@@ -1,4 +1,4 @@
-export * from "./clientPersson";
+export * from "./clientPerson";
 export * from "./clientTattoo";
 export * from "./flash";
 export * from "./flashOptions";
