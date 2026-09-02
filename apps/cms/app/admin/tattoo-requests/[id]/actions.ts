@@ -3,31 +3,34 @@ import { z } from "zod";
 //
 import { zodIssuesToErrors } from "@hyperinkstudio/utils";
 //
-import { type TattooRequest, type ClientTattoo } from "@/business/types";
+import { type ClientTattoo } from "@/business/types";
 import {
   TATT_REQ_ADMIN_EDITABLE_LIST,
   TATT_REQ_ADMIN_EDITABLE,
 } from "@/business/tattooRequest";
-import { createClientPerson } from "@/business/clientPersons";
-import { createClientTattoo } from "@/business/clientTattoo";
+import {
+  editTattReqFlow,
+  type TattReqFormEditable,
+} from "@/business/tattooRequest";
+// import { createClientPerson } from "@/business/clientPersons";
 
 import { createSSClient } from "@/auth/server";
 
-type TattooRequestForm = TattooRequest &
+type TattReqForm = TattReqFormEditable &
   Partial<typeof TATT_REQ_ADMIN_EDITABLE> & {
     existingClient: string;
     clientId?: string;
   };
 
-export type TattooFormState = {
-  tattooRequest: TattooRequestForm | ClientTattoo | null;
+export type TattReqFormState = {
+  tattooRequest: TattReqForm | ClientTattoo | null;
   errors: Record<string, string> | null;
 };
 
 export async function createAClientTattooFlow(
-  prevState: TattooFormState,
+  prevState: TattReqFormState,
   formData: FormData,
-): Promise<TattooFormState> {
+): Promise<TattReqFormState> {
   const formDataObject = Object.fromEntries(formData.entries());
 
   const parsedReq = z
@@ -38,56 +41,40 @@ export async function createAClientTattooFlow(
     })
     .safeParse(formDataObject);
 
-  console.log(parsedReq);
-
-  const actionResults: TattooFormState = {
+  const actionResults: TattReqFormState = {
     tattooRequest: null,
     errors: null,
   };
 
-  // if (!parsedReq.success) {
-  //   console.log("success function")
-  //   const { issues } = parsedReq.error;
+  if (!parsedReq.success) {
+    console.log("success function");
+    const { issues } = parsedReq.error;
 
-  //   actionResults.errors = zodIssuesToErrors(issues);
+    actionResults.errors = zodIssuesToErrors(issues);
 
-  //   return actionResults;
-  // }
-  // const parsedFormData = parsedReq.data as Partial<TattooRequest>;
+    return actionResults;
+  }
+  const parsedFormData = parsedReq.data as Partial<TattReqFormEditable>;
 
-  // const ssClient = await createSSClient();
+  const client = await createSSClient();
 
-  // let clientId = formDataObject.clientId as string;
+  const clientId = formDataObject.clientId
+    ? (formDataObject.clientId as string)
+    : null;
 
-  // if (formDataObject.existingClient === "true") {
-  //   console.log("existing client");
-  // }
+  const editTattReqResults = await editTattReqFlow(
+    client,
+    clientId,
+    parsedFormData.email ?? "",
+    parsedFormData.phone ?? "",
+    parsedFormData.type ?? "",
+  );
 
-  // if (formDataObject.existingClient === "false" && clientId === "") {
-  //   console.log("NOT existing client");
-  //   const { error, data } = await createClientPerson(ssClient, {
-  //     email: parsedFormData.email,
-  //     phone: parsedFormData.phone,
-  //   });
+  if (editTattReqResults.tattooRequest !== null)
+    actionResults.tattooRequest = editTattReqResults.tattooRequest;
 
-  //   clientId = data?.id ?? "";
-
-  //   if (error) {
-  //     console.error("not existing client function");
-  //     console.error(error);
-  //     actionResults.errors = {
-  //       client_id: "Failed to update client.",
-  //     };
-
-  //     return actionResults;
-  //   }
-  // }
-
-  // const { data, error } = await createClientTattoo(ssClient, {
-  //   client_id: clientId,
-  //   type: "cool tattoo TYPE",
-  //   title: "Im going to name this something!",
-  // });
+  if (editTattReqResults.errors !== null)
+    actionResults.errors = editTattReqResults.errors;
 
   // if (error) {
   //   console.error("create client tattoo");
@@ -95,7 +82,7 @@ export async function createAClientTattooFlow(
 
   //   actionResults.errors = {
   //     root: "Failed to create tattoo request.",
-  //   } as TattooFormState["errors"];
+  //   } as TattReqFormState["errors"];
 
   //   return actionResults;
   // }

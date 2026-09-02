@@ -66,8 +66,15 @@ export function EditTattReqForm({
           name="clientId"
           label="Client Id"
           type="hidden"
-          required={true}
           value={clientId}
+        />
+        <Input
+          key="flashId"
+          id="flash_id"
+          name="clientId"
+          label="flash id"
+          type="hidden"
+          value={tattRequest.flash_id ?? ""}
         />
         {TATT_REQ_ADMIN_EDITABLE_LIST.map(({ id, label, ...field }) => {
           if (field.type === "checkbox") {

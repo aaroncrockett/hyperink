@@ -5,10 +5,7 @@ import {
   getValuesFromCollection,
 } from "@hyperinkstudio/utils";
 
-export type TattReqAdminShort = Pick<
-  TatReq_Src.TattooRequest,
-  "preferred_name" | "email" | "phone" | "created_at"
->;
+export { editTattReqFlow } from "./editTattReqFlow";
 
 export const TATT_REQ_ADMIN_SHORT = {
   preferred_name: TatReq_Src.Base.PREFERRED_NAME,
@@ -21,6 +18,7 @@ export const TATT_REQ_ADMIN_EDITABLE = {
   preferred_name: TatReq_Src.Base.PREFERRED_NAME,
   email: TatReq_Src.Base.EMAIL,
   phone: TatReq_Src.Base.PHONE,
+  type: TatReq_Src.Base.TYPE,
   seen_at: TatReq_Src.Base.SEEN_AT,
 };
 
@@ -39,6 +37,8 @@ export const TATT_REQ_ADMIN_EDITABLE_KEYS =
   getKeysFromCollection(TATT_REQ_ADMIN_SHORT);
 
 export type TattReqFormDisplay = TatReq_Src.TattReqFormDisplay;
+
+export type TattReqFormEditable = typeof TATT_REQ_ADMIN_EDITABLE;
 
 export const getTattooRequestById = TatReq_Src.getTattooRequestById;
 
