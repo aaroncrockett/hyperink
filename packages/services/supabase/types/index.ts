@@ -60,3 +60,25 @@ export type VendorConfigMap = {
 export type CreateClient = <K extends Vendor>(
   config: VendorConfigMap[K],
 ) => Promise<Client>;
+
+export type AllowedTable = keyof AppTables;
+
+export type AppInserts = {
+  [K in AllowedTable]: Partial<AppTables[K]>;
+};
+
+export type SBOrder = {
+  name: string;
+  opts?: {
+    ascending?: boolean;
+    nullsFirst?: boolean;
+    foreignTable?: string;
+    [key: string]: unknown;
+  };
+};
+
+export type SBOptions = {
+  limit?: number;
+  order?: SBOrder;
+  [key: string]: unknown;
+};

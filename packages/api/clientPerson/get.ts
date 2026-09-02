@@ -5,9 +5,9 @@ import { TABLE_CLIENT_PERSON } from "./consts";
 import { getYearDateRange } from "@hyperinkstudio/utils";
 
 export async function getClientPersonBy(client: Client, email: string) {
-  const { data, error } = await getBy(
+  return await getBy(
     client,
-    TABLE,
+    TABLE_CLIENT_PERSON,
     [],
     [
       {
@@ -16,14 +16,8 @@ export async function getClientPersonBy(client: Client, email: string) {
       },
     ],
   );
-  // const { data, error } = await authedClient
-  //   .from(TABLE)
-  //   .select("*")
-  //   .eq("email", email);
-
-  // return { data, error };
 }
 
 export async function getClientPersons(client: Client, limit = 10) {
-  const { data, error } = await get(client, TABLE_CLIENT_PERSON, []);
+  return await get(client, TABLE_CLIENT_PERSON, []);
 }

@@ -1,56 +1,18 @@
-import type { Client, AppTables } from "../types";
+import type {
+  AllowedTable,
+  AppInserts,
+  AppTables,
+  Client,
+  SBOptions,
+} from "../types";
 
-type AllowedTable = keyof AppTables;
-
-type AppInserts = {
-  [K in AllowedTable]: Partial<AppTables[K]>;
-};
-
-type Order = {
-  name: string;
-  opts?: {
-    ascending?: boolean;
-    nullsFirst?: boolean;
-    foreignTable?: string;
-    [key: string]: unknown;
-  };
-};
-
-type Options = {
-  limit?: number;
-  order?: Order;
-  [key: string]: unknown;
-};
-
-const handleOrder = <T extends { order: Function }>(
-  query: T,
-  opts: Options,
-) => {
-  if (opts?.order) {
-    query = query.order(opts.order.name, opts.order.opts as any);
-  } else {
-    query = query.order("updated_at", { ascending: false });
-  }
-
-  return query;
-};
-
-const handleLimit = <T extends { limit: Function }>(
-  query: T,
-  opts: Options,
-) => {
-  if (opts?.limit) {
-    query = query.limit(opts.limit);
-  }
-
-  return query;
-};
+import { handleLimit, handleOrder } from "../helpers";
 
 export async function get<T extends AllowedTable>(
   client: Client,
   table: T,
   values: Partial<AppInserts[T]>[],
-  opts?: Options,
+  opts?: SBOptions,
 ) {
   const selectFields = values.length ? values.join(", ") : "*";
 
@@ -79,7 +41,7 @@ export async function getBy<T extends AllowedTable>(
   table: T,
   values: Partial<AppInserts[T]>[],
   by: By<T>[],
-  opts?: Options,
+  opts?: SBOptions,
 ) {
   const selectFields = values.length ? values.join(", ") : "*";
 

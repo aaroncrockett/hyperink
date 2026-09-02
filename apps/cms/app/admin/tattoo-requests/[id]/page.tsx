@@ -76,7 +76,7 @@ export default async function TattooRequestPage({
           <p className="italic">
             We can create a new tattoo and add it to their records
           </p>
-          <TattooForm
+          <EditTattReqForm
             clientId={clientPersons[0].id}
             existingClient={true}
             tattRequest={tattRequest}

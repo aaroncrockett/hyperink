@@ -10,9 +10,8 @@ import type { ClientAsClientPerson, Client } from "@hyperinkstudio/services";
 
 export { createClientPerson } from "@hyperinkstudio/api";
 
-export const getClientPersonByEmail = (client: Client, email: string) => {
+export const getClientPersonByEmail = async (client: Client, email: string) =>
   getClientPersonBy(client, email);
-};
 
 export const getLastTenClients = getClientPersons;
 
