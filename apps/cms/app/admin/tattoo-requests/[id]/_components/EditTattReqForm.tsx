@@ -13,7 +13,10 @@ import {
 
 // Local @/db
 import { type TattooRequest } from "@/business/types";
-import { TATT_REQ_ADMIN_EDITABLE_LIST } from "@/business/tattooRequest";
+import {
+  TATT_REQ_ADMIN_EDITABLE_LIST,
+  CLIENT_TATT_ADMIN_EDITABLE_LIST,
+} from "@/business/tattooRequest";
 // Local
 import { createAClientTattooFlow } from "../actions";
 import { Button, Input } from "@/ui";
@@ -52,7 +55,6 @@ export function EditTattReqForm({
         className="flex flex-col gap-4"
       >
         <Input
-          key="existingClient"
           id="existingClient"
           name="existingClient"
           label="Existing Client"
@@ -61,7 +63,6 @@ export function EditTattReqForm({
           value={existingClient.toString()}
         />
         <Input
-          key="client_id"
           id="client_id"
           name="client_id"
           label="Client Id"
@@ -69,13 +70,39 @@ export function EditTattReqForm({
           value={client_id ?? ""}
         />
         <Input
-          key="flashId"
           id="flash_id"
           name="flash id"
           label="flash id"
           type="hidden"
           value={tattRequest.flash_id ?? ""}
         />
+        <Input
+          id="flash_name"
+          name="flash name"
+          label="flash name"
+          type="hidden"
+          value={tattRequest.flash_name ?? ""}
+        />
+
+        {CLIENT_TATT_ADMIN_EDITABLE_LIST.map(({ id, label, ...field }) => {
+          return (
+            <div key={id}>
+              <Input
+                id={id}
+                name={id}
+                label={label}
+                type={field.type}
+                required={field.required}
+                inputCls="input"
+                defaultValue={
+                  tattRequest.flash_name
+                    ? "Flash:" + tattRequest.flash_name
+                    : ""
+                }
+              />
+            </div>
+          );
+        })}
         {TATT_REQ_ADMIN_EDITABLE_LIST.map(({ id, label, ...field }) => {
           if (field.type === "checkbox") {
             return (
@@ -100,6 +127,7 @@ export function EditTattReqForm({
             </div>
           );
         })}
+
         {isPending && <p>request pending</p>}
         {state.errors && <FormMetaErrors errors={state.errors} />}
       </Form>

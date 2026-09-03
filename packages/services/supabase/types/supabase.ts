@@ -73,6 +73,7 @@ export type Database = {
           estimated_hours: number | null
           estimated_price: number | null
           flash_id: string | null
+          flash_name: string | null
           id: string
           inks_used: Json | null
           my_total_farout_reschedules: number | null
@@ -109,6 +110,7 @@ export type Database = {
           estimated_hours?: number | null
           estimated_price?: number | null
           flash_id?: string | null
+          flash_name?: string | null
           id?: string
           inks_used?: Json | null
           my_total_farout_reschedules?: number | null
@@ -145,6 +147,7 @@ export type Database = {
           estimated_hours?: number | null
           estimated_price?: number | null
           flash_id?: string | null
+          flash_name?: string | null
           id?: string
           inks_used?: Json | null
           my_total_farout_reschedules?: number | null
@@ -585,6 +588,7 @@ export type Database = {
           email: string
           first_name: string | null
           flash_id: string | null
+          flash_name: string | null
           gender: string | null
           id: string
           instagram_id: string | null
@@ -609,6 +613,7 @@ export type Database = {
           email: string
           first_name?: string | null
           flash_id?: string | null
+          flash_name?: string | null
           gender?: string | null
           id?: string
           instagram_id?: string | null
@@ -633,6 +638,7 @@ export type Database = {
           email?: string
           first_name?: string | null
           flash_id?: string | null
+          flash_name?: string | null
           gender?: string | null
           id?: string
           instagram_id?: string | null

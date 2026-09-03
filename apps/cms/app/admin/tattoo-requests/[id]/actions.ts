@@ -20,12 +20,12 @@ import { getUserData } from "@/app/admin/getUserData";
 
 type TattReqEditableAction = TattReqEditable & {
   flash_id?: string;
+  flash_name?: string;
 };
 
 type TattReqForm = Partial<TattReqEditableAction> & {
   existingClient: string;
   client_id?: string;
-  flash_id?: string;
 };
 
 export type TattReqFormState = {
@@ -105,6 +105,7 @@ export async function createAClientTattooFlow(
     client_id: localClientId,
     type: tattooData.type,
     flash_id: tattooData.flash_id ?? null,
+    flash_name: tattooData.flash_name ?? null,
   });
 
   if (error) {
