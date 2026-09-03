@@ -81,6 +81,19 @@ export function EditTattReqForm({
           type="hidden"
           value={tattRequest.flash_name ?? ""}
         />
+        <Input
+          id="tatt_req_id"
+          name="tatt_req_id"
+          type="hidden"
+          value={tattRequest.id ?? ""}
+        />
+
+        <Input
+          id="client_tattoo_id"
+          name="client_tattoo_id"
+          type="hidden"
+          value={tattRequest.client_tattoo_id ?? ""}
+        />
         {CLIENT_TATT_ADMIN_EDITABLE_LIST.map(({ id, label, ...field }, i) => {
           return (
             <div key={id + i}>

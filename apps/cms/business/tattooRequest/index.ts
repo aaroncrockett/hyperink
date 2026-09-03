@@ -6,8 +6,12 @@ import type {
 
 import {
   TattReqBase,
-  getTattooRequestById as getTattooRequestById_src,
   getRecentlyCreatedRequests as getRecentlyCreatedRequests_src,
+} from "@hyperinkstudio/business/tattooRequest";
+
+export {
+  getTattooRequestById,
+  updateTattooRequest,
 } from "@hyperinkstudio/business/tattooRequest";
 
 import {
@@ -67,7 +71,6 @@ export type TattReqEditable = Pick<
 
 export type ClientTattEditable = Pick<ClientTattoo, "title">;
 
-export const getTattooRequestById = getTattooRequestById_src;
 export const getRecentlyCreatedRequests = getRecentlyCreatedRequests_src;
 
 export const getLastThreeTatReqs = (
