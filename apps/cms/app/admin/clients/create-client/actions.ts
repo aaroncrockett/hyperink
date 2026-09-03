@@ -2,7 +2,7 @@
 
 // import { redirect } from "next/navigation";
 
-// import type { ClientTable } from "@/business/types";
+// import type { ClientAsClientPerson } from "@/business/types";
 // import { createSSClient, getAuthedUser } from "@/auth/server";
 // import { createClientPerson } from "@/business/clientPersons";
 // import { LINKS_ADMIN } from "@/app/consts";
@@ -11,7 +11,7 @@
 
 // export type ClientFormState = {
 //   errors: Record<string, string> | null;
-//   client: Partial<ClientTable> | null;
+//   client: Partial<ClientAsClientPerson> | null;
 // };
 
 // export async function createClient(
