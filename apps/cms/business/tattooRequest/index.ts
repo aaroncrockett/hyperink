@@ -3,29 +3,35 @@ import type {
   ClientTattoo,
   TattooRequest,
 } from "@hyperinkstudio/services";
-import * as TattReq_Src from "@hyperinkstudio/business/tattooRequest";
+
+import {
+  TattReqBase,
+  getTattooRequestById as getTattooRequestById_src,
+  getRecentlyCreatedRequests as getRecentlyCreatedRequests_src,
+} from "@hyperinkstudio/business/tattooRequest";
+
 import {
   getKeysFromCollection,
   getValuesFromCollection,
 } from "@hyperinkstudio/utils";
 
 export const TATT_REQ_ADMIN_SHORT = {
-  preferred_name: TattReq_Src.Base.PREFERRED_NAME,
-  email: TattReq_Src.Base.EMAIL,
-  phone: TattReq_Src.Base.PHONE,
-  created_at: TattReq_Src.Base.CREATED_AT,
+  preferred_name: TattReqBase.PREFERRED_NAME,
+  email: TattReqBase.EMAIL,
+  phone: TattReqBase.PHONE,
+  created_at: TattReqBase.CREATED_AT,
 };
 
 export const TATT_REQ_ADMIN_EDITABLE = {
-  preferred_name: TattReq_Src.Base.PREFERRED_NAME,
-  email: TattReq_Src.Base.EMAIL,
-  phone: TattReq_Src.Base.PHONE,
-  type: TattReq_Src.Base.TYPE,
-  seen_at: TattReq_Src.Base.SEEN_AT,
+  preferred_name: TattReqBase.PREFERRED_NAME,
+  email: TattReqBase.EMAIL,
+  phone: TattReqBase.PHONE,
+  type: TattReqBase.TYPE,
+  seen_at: TattReqBase.SEEN_AT,
 };
 
 export const CLIENT_TATT_ADMIN_EDITABLE = {
-  title: TattReq_Src.Base.TITLE,
+  title: TattReqBase.TITLE,
 };
 
 export const TATT_REQ_ADMIN_SHORT_LIST =
@@ -61,9 +67,10 @@ export type TattReqEditable = Pick<
 
 export type ClientTattEditable = Pick<ClientTattoo, "title">;
 
-export const getTattooRequestById = TattReq_Src.getTattooRequestById;
+export const getTattooRequestById = getTattooRequestById_src;
+export const getRecentlyCreatedRequests = getRecentlyCreatedRequests_src;
 
 export const getLastThreeTatReqs = (
   client: Client,
   select: Partial<TattooRequest>[] = [],
-) => TattReq_Src.getRecentlyCreatedRequests(client, select, 3);
+) => getRecentlyCreatedRequests(client, select, 3);

@@ -1,10 +1,6 @@
 import { z } from "zod";
 import * as Types from "./types";
 
-import { clientTattooBase } from "../clientTattoo";
-
-import { clientPersonBase } from "../clientPerson";
-
 export const SEEN_AT = {
   label: "Seen",
   id: "seen_at",
@@ -24,10 +20,3 @@ export const CREATED_AT = {
   required: false,
   type: "",
 } as const satisfies Types.TattooRequestData<"type">;
-
-export const TattReqBase = {
-  ...SEEN_AT,
-  ...CREATED_AT,
-  ...clientTattooBase,
-  ...clientPersonBase,
-};
