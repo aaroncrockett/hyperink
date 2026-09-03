@@ -61,6 +61,7 @@ export type Database = {
       }
       client_tattoo: {
         Row: {
+          budget: number
           client_id: string
           completed_at: string | null
           created_at: string
@@ -98,6 +99,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          budget?: number
           client_id: string
           completed_at?: string | null
           created_at?: string
@@ -135,6 +137,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          budget?: number
           client_id?: string
           completed_at?: string | null
           created_at?: string
@@ -583,6 +586,7 @@ export type Database = {
       tattoo_request: {
         Row: {
           bluesky_id: string | null
+          budget: number
           client_tattoo_id: string | null
           created_at: string
           email: string
@@ -609,6 +613,7 @@ export type Database = {
         }
         Insert: {
           bluesky_id?: string | null
+          budget?: number
           client_tattoo_id?: string | null
           created_at?: string
           email: string
@@ -635,6 +640,7 @@ export type Database = {
         }
         Update: {
           bluesky_id?: string | null
+          budget?: number
           client_tattoo_id?: string | null
           created_at?: string
           email?: string
