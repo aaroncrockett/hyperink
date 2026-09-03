@@ -1,4 +1,4 @@
-import { Base } from "@hyperinkstudio/business/tattooRequest";
+import { TattReqBase } from "@hyperinkstudio/business/tattooRequest";
 import { Client } from "@hyperinkstudio/services";
 import type { TattooRequest as TattReq_src } from "@hyperinkstudio/business/tattooRequest";
 import { createTattooRequest as createTatReq_src } from "@hyperinkstudio/business";
@@ -18,17 +18,17 @@ export type TattReqFormDisplay = Pick<
 >;
 
 export const TATT_REQ_BODY = [
-  Base.PREFERRED_NAME,
-  Base.EMAIL,
-  Base.PHONE,
-  Base.GENDER,
-  Base.BLUESKY_ID,
-  Base.INSTAGRAM_ID,
-  Base.NOTES,
+  TattReqBase.PREFERRED_NAME,
+  TattReqBase.EMAIL,
+  TattReqBase.PHONE,
+  TattReqBase.GENDER,
+  TattReqBase.BLUESKY_ID,
+  TattReqBase.INSTAGRAM_ID,
+  TattReqBase.NOTES,
 ];
-export const TYPE_FIELD = Base.TYPE;
-export const FLASH_ID = Base.FLASH_ID;
-export const FLASH_NAME = Base.FLASH_NAME;
+export const TYPE_FIELD = TattReqBase.TYPE;
+export const FLASH_ID = TattReqBase.FLASH_ID;
+export const FLASH_NAME = TattReqBase.FLASH_NAME;
 
 export const createTattooRequest = async (
   client: Client,

@@ -1,4 +1,4 @@
-export * as Base from "./base";
+export * from "./base";
 
 export {
   createTattooRequest,
