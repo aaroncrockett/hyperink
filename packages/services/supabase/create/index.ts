@@ -1,16 +1,11 @@
-import type { Client, AppTables } from "../types";
-
-type AllowedTable = keyof AppTables;
-
-type AppInserts = {
-  [K in AllowedTable]: Partial<AppTables[K]>;
-};
+import type { AllowedTable, AppInserts, AppTables, Client } from "../types";
 
 export async function insert<T extends AllowedTable>(
   client: Client,
   table: T,
   values: AppInserts[T] | AppInserts[T][],
   returnType?: "select" | "single",
+  // opts? // may need this
 ) {
   const query = client.from(table as any);
 

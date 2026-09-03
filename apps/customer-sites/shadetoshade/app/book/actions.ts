@@ -1,7 +1,7 @@
 "use server";
 import { z } from "zod";
 //
-import { createTattooRequest } from "@/business/tattooRequest";
+import { createTattooRequest, FLASH_NAME } from "@/business/tattooRequest";
 import { zodIssuesToErrors } from "@hyperinkstudio/utils";
 import { createServiceClient } from "@/auth/serviceClient";
 //
@@ -29,6 +29,7 @@ export async function createTattooRequestAction(
     .object({
       [TYPE_FIELD.id]: TYPE_FIELD.schema,
       [FLASH_ID.id]: FLASH_ID.schema,
+      [FLASH_NAME.id]: FLASH_NAME.schema,
       ...Object.fromEntries(
         TATT_REQ_BODY.map(({ id, schema }) => [id, schema]),
       ),

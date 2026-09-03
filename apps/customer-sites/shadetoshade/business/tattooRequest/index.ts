@@ -21,6 +21,7 @@ export const TATT_REQ_BODY = [
 ];
 export const TYPE_FIELD = Base.TYPE;
 export const FLASH_ID = Base.FLASH_ID;
+export const FLASH_NAME = Base.FLASH_NAME;
 
 export const createTattooRequest = async (
   client: Client,

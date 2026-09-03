@@ -7,7 +7,7 @@ export type {
   Profile,
   ClientTattoo,
   TattooImage,
-  ClientTable,
+  ClientAsClientPerson,
   ProfileTaggingOptions,
   AuthUser,
 } from "./types";

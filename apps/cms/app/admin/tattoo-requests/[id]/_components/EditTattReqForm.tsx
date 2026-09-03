@@ -13,19 +13,22 @@ import {
 
 // Local @/db
 import { type TattooRequest } from "@/business/types";
-import { TATT_REQ_ADMIN_EDITABLE_LIST } from "@/business/tattooRequest";
+import {
+  TATT_REQ_ADMIN_EDITABLE_LIST,
+  CLIENT_TATT_ADMIN_EDITABLE_LIST,
+} from "@/business/tattooRequest";
 // Local
-import { createAClientTattooAndHandleClient } from "../actions";
+import { createAClientTattooFlow } from "../actions";
 import { Button, Input } from "@/ui";
 
-export function TattooForm({
+export function EditTattReqForm({
   tattRequest,
   existingClient,
-  clientId,
+  client_id,
 }: {
   tattRequest: TattooRequest;
   existingClient: boolean;
-  clientId?: string;
+  client_id?: string | null;
 }) {
   const [isEditing, setIsEditing] = useState(false);
 
@@ -35,7 +38,7 @@ export function TattooForm({
   };
 
   const [state, formAction, isPending] = useActionState(
-    createAClientTattooAndHandleClient,
+    createAClientTattooFlow,
     initialState,
   );
 
@@ -52,7 +55,6 @@ export function TattooForm({
         className="flex flex-col gap-4"
       >
         <Input
-          key="existingClient"
           id="existingClient"
           name="existingClient"
           label="Existing Client"
@@ -61,18 +63,44 @@ export function TattooForm({
           value={existingClient.toString()}
         />
         <Input
-          key="clientId"
-          id="clientId"
-          name="clientId"
+          id="client_id"
+          name="client_id"
           label="Client Id"
           type="hidden"
-          required={true}
-          value={clientId}
+          value={client_id ?? ""}
         />
-        {TATT_REQ_ADMIN_EDITABLE_LIST.map(({ id, label, ...field }) => {
+        <Input
+          id="flash_id"
+          name="flash_id"
+          type="hidden"
+          value={tattRequest.flash_id ?? ""}
+        />
+        <Input
+          id="flash_name"
+          name="flash_name"
+          type="hidden"
+          value={tattRequest.flash_name ?? ""}
+        />
+        {CLIENT_TATT_ADMIN_EDITABLE_LIST.map(({ id, label, ...field }, i) => {
+          return (
+            <div key={id + i}>
+              <Input
+                id={id}
+                name={id}
+                label={label}
+                type={field.type}
+                required={field.required}
+                inputCls="input"
+                defaultValue={tattRequest.flash_name ?? ""}
+              />
+              {id}
+            </div>
+          );
+        })}
+        {TATT_REQ_ADMIN_EDITABLE_LIST.map(({ id, label, ...field }, i) => {
           if (field.type === "checkbox") {
             return (
-              <div key={id}>
+              <div key={id + i}>
                 <InputCheck id={id} name={id} label={label} />
               </div>
             );
@@ -93,6 +121,8 @@ export function TattooForm({
             </div>
           );
         })}
+
+        {isPending && <p>request pending</p>}
         {state.errors && <FormMetaErrors errors={state.errors} />}
       </Form>
     </>
