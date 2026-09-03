@@ -22,7 +22,11 @@ export const PHONE = {
   label: "Phone",
   id: "phone",
   type: "tel",
-  schema: z.string().trim().min(10, "Phone number must be at least 10 digits."),
+  schema: z
+    .string()
+    .trim()
+    .min(10, "Phone number must be at least 10 digits.")
+    .transform((value) => value.replace(/\D/g, "")),
   required: true,
   inputSize: "md",
 } as const satisfies Types.ClientAsClientPersonData<"type">;
