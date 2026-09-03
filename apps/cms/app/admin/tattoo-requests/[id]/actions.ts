@@ -65,10 +65,7 @@ export async function createAClientTattooFlow(
     )
     .safeParse(formDataObject);
 
-  console.log(parsedForm);
-
   if (!parsedForm.success) {
-    console.log("success function");
     const { issues } = parsedForm.error;
 
     actionResults.errors = zodIssuesToErrors(issues);

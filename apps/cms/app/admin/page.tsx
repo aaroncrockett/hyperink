@@ -22,8 +22,6 @@ export default async function AdminHomePage() {
     tattooRequests = tattReqData;
   }
 
-  console.log(tattooRequests);
-
   return (
     <Page>
       {pvtProfileId && (
