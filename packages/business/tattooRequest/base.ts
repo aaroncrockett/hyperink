@@ -110,6 +110,15 @@ export const SEEN_AT = {
   inputSize: "lg",
 } as const satisfies Types.TattooRequestData<"type">;
 
+export const BUDGET = {
+  label: "Budget",
+  id: "budget",
+  type: "number",
+  schema: z.coerce.number().min(0).default(0),
+  required: false,
+  inputSize: "md",
+} as const satisfies Types.TattooRequestData<"budget">;
+
 // READ ONLY
 export const CREATED_AT = {
   label: "Request Date",
