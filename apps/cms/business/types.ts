@@ -1,5 +1,5 @@
 import type {
-  ClientTable,
+  ClientAsClientPerson,
   ClientTattoo,
   Profile,
   ProfileTaggingOptions,
@@ -8,7 +8,7 @@ import type {
 } from "@hyperinkstudio/services";
 
 export type {
-  ClientTable,
+  ClientAsClientPerson,
   ClientTattoo,
   Profile,
   ProfileTaggingOptions,

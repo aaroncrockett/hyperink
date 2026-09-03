@@ -1,24 +1,24 @@
 import { z } from "zod";
-
+//
 import {
-  createClientPerson as dbCreateClientPerson,
-  getClientPersonsRecentlyUpdated,
-  getClientPersonsByEmail as getClientPersonsByEmailb,
+  getClientPersons,
+  getClientPersonBy,
   updateClientPerson as updateClientPersonDb,
 } from "@hyperinkstudio/api";
+//
+import type { ClientAsClientPerson, Client } from "@hyperinkstudio/services";
 
-import { ClientTable } from "@hyperinkstudio/services";
+export { createClientPerson } from "@hyperinkstudio/api";
 
-export const createClientPerson = dbCreateClientPerson;
+export const getClientPersonByEmail = async (client: Client, email: string) =>
+  getClientPersonBy(client, email);
 
-export const getClientPersonsByEmail = getClientPersonsByEmailb;
+export const getLastTenClients = getClientPersons;
 
-export const getLastTenClients = getClientPersonsRecentlyUpdated;
-
-export const updateClientPerson = updateClientPersonDb;
+export const updateClientPersonById = updateClientPersonDb;
 
 export type ClientData = {
-  id: keyof ClientTable;
+  id: keyof ClientAsClientPerson;
   label: string;
   type?: React.HTMLInputTypeAttribute;
   schema: z.ZodType;

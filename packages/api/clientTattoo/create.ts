@@ -1,15 +1,10 @@
 import type { Client, ClientTattoo } from "@hyperinkstudio/services";
-import { TABLE_CLIENT_TATTOO as TABLE } from "./consts";
+import { insert } from "@hyperinkstudio/services";
+import { TABLE_CLIENT_TATTOO } from "./consts";
 
 export async function createClientTattoo(
-  authedClient: Client,
+  client: Client,
   params: Partial<ClientTattoo>,
 ) {
-  const { data, error } = await authedClient
-    .from(TABLE)
-    .insert(params)
-    .select()
-    .single();
-
-  return { data, error };
+  return insert(client, TABLE_CLIENT_TATTOO, params, "single");
 }
