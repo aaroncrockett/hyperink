@@ -21,11 +21,11 @@ import { Button, Input } from "@/ui";
 export function EditTattReqForm({
   tattRequest,
   existingClient,
-  clientId,
+  client_id,
 }: {
   tattRequest: TattooRequest;
   existingClient: boolean;
-  clientId?: string | null;
+  client_id?: string | null;
 }) {
   const [isEditing, setIsEditing] = useState(false);
 
@@ -61,12 +61,12 @@ export function EditTattReqForm({
           value={existingClient.toString()}
         />
         <Input
-          key="clientId"
-          id="clientId"
-          name="clientId"
+          key="client_id"
+          id="client_id"
+          name="client_id"
           label="Client Id"
           type="hidden"
-          value={clientId ?? ""}
+          value={client_id ?? ""}
         />
         <Input
           key="flashId"

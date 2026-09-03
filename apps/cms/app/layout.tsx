@@ -1,4 +1,5 @@
-// Next
+export const fetchCache = "force-no-store";
+
 import type { Metadata } from "next";
 import { League_Gothic, Outfit } from "next/font/google";
 // @ Locals

@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
+export const revalidate = 0;
 // Local DB
 import { getTattooRequestById } from "@/business/tattooRequest";
 import { createSSClient } from "@/auth/server";
@@ -46,7 +49,7 @@ export default async function TattooRequestPage({
           <EditTattReqForm
             existingClient={false}
             tattRequest={tattRequest}
-            clientId={null}
+            client_id={null}
           />
         </>
       )}
@@ -81,7 +84,7 @@ export default async function TattooRequestPage({
             We can create a new tattoo and add it to their records
           </p>
           <EditTattReqForm
-            clientId={clientPersons[0].id}
+            client_id={clientPersons[0].id}
             existingClient={true}
             tattRequest={tattRequest}
           />

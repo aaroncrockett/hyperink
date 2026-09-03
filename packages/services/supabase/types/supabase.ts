@@ -582,7 +582,6 @@ export type Database = {
           bluesky_id: string | null
           client_tattoo_id: string | null
           created_at: string
-          description: string | null
           email: string
           first_name: string | null
           flash_id: string | null
@@ -592,7 +591,7 @@ export type Database = {
           last_name: string | null
           notes: string | null
           of_age: boolean | null
-          paid_amount: boolean | null
+          paid_amount: number | null
           phone: string
           placement: string | null
           preferred_name: string
@@ -602,13 +601,11 @@ export type Database = {
           type: string | null
           updated_at: string
           user_id: string
-          year_born: number | null
         }
         Insert: {
           bluesky_id?: string | null
           client_tattoo_id?: string | null
           created_at?: string
-          description?: string | null
           email: string
           first_name?: string | null
           flash_id?: string | null
@@ -618,7 +615,7 @@ export type Database = {
           last_name?: string | null
           notes?: string | null
           of_age?: boolean | null
-          paid_amount?: boolean | null
+          paid_amount?: number | null
           phone: string
           placement?: string | null
           preferred_name: string
@@ -628,13 +625,11 @@ export type Database = {
           type?: string | null
           updated_at?: string
           user_id: string
-          year_born?: number | null
         }
         Update: {
           bluesky_id?: string | null
           client_tattoo_id?: string | null
           created_at?: string
-          description?: string | null
           email?: string
           first_name?: string | null
           flash_id?: string | null
@@ -644,7 +639,7 @@ export type Database = {
           last_name?: string | null
           notes?: string | null
           of_age?: boolean | null
-          paid_amount?: boolean | null
+          paid_amount?: number | null
           phone?: string
           placement?: string | null
           preferred_name?: string
@@ -654,7 +649,6 @@ export type Database = {
           type?: string | null
           updated_at?: string
           user_id?: string
-          year_born?: number | null
         }
         Relationships: [
           {
