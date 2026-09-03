@@ -104,16 +104,16 @@ export function BookingForm({
           })}
         <Input
           type="hidden"
-          name="flash name"
+          name="flash_name"
           id="flash_name"
           value={flashName}
         />
-        <Input type="hidden" name="flash id" id="flash_id" value={flashId} />
+        <Input type="hidden" name="flash_id" id="flash_id" value={flashId} />
         <Input
           type="hidden"
-          name="type"
-          id="flash_id"
-          value={flashId ? "flash" : "custom"}
+          name="title"
+          id="title"
+          value={flashId ? "Flash: " + flashName : "custom"}
         />
       </div>
       {tattReqPending && <p>pending tattoo request</p>}
