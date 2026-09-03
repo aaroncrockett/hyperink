@@ -72,6 +72,8 @@ export async function createAClientTattooFlow(
     ? (formDataObject.client_id as string)
     : null;
 
+  let localClientId = client_id;
+
   if (client_id === null) {
     const { error, data } = await createClientPerson(
       client,
@@ -85,43 +87,34 @@ export async function createAClientTattooFlow(
     if (error) {
       console.error("not existing client function");
       console.error(error);
-      const errors = {
+      actionResults.errors = {
         client_id: "Failed to update client.",
       };
-      return {
-        errors: errors,
-        tattooRequest: null,
-      };
+      return actionResults;
     }
+
+    localClientId = data.id;
   }
 
-  if (userId === null) {
-    return {
-      errors: { client_id: "client ID is null" },
-      tattooRequest: null,
-    };
+  if (localClientId === null) {
+    actionResults.errors = { client_id: "client_id is null!" };
+    return actionResults;
   }
 
   const { data, error } = await createClientTattoo(client, {
-    client_id: userId,
+    client_id: localClientId,
     type: tattooData.type,
     flash_id: tattooData.flash_id ?? null,
   });
 
   if (error) {
     console.error(error);
-    return {
-      errors: { clientTatt: "error creating client tattll" },
-      tattooRequest: null,
-    };
+    actionResults.errors = { clientTatt: "error creating client tattll" };
+    return actionResults;
   }
 
   const clientTattooData = data as TattReqForm | ClientTattoo | null;
-
-  return {
-    errors: null,
-    tattooRequest: clientTattooData,
-  };
+  actionResults.tattooRequest = clientTattooData;
 
   return actionResults;
 }

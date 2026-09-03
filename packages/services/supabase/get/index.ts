@@ -21,6 +21,14 @@ export async function get<T extends AllowedTable>(
   if (opts) {
     query = handleOrder(query, opts);
     query = handleLimit(query, opts);
+    // if (opts.cacheBust) {
+    query = query.setHeader(
+      "Cache-Control",
+      "no-cache, no-store, must-revalidate",
+    );
+    // Alternative or additional fallback for certain CDN layers:
+    query = query.setHeader("X-Cache-Bust", Date.now().toString());
+    // }
   }
 
   const { data, error } = await query;
