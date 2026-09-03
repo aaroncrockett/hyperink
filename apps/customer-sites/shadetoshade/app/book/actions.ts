@@ -27,6 +27,7 @@ export async function createTattooRequestAction(
 
   const parsedReq = z
     .object({
+      [TYPE_FIELD.id]: TYPE_FIELD.schema,
       [FLASH_ID.id]: FLASH_ID.schema,
       [FLASH_NAME.id]: FLASH_NAME.schema,
       ...Object.fromEntries(

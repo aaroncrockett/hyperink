@@ -71,22 +71,19 @@ export function EditTattReqForm({
         />
         <Input
           id="flash_id"
-          name="flash id"
-          label="flash id"
+          name="flash_id"
           type="hidden"
           value={tattRequest.flash_id ?? ""}
         />
         <Input
           id="flash_name"
-          name="flash name"
-          label="flash name"
+          name="flash_name"
           type="hidden"
           value={tattRequest.flash_name ?? ""}
         />
-
-        {CLIENT_TATT_ADMIN_EDITABLE_LIST.map(({ id, label, ...field }) => {
+        {CLIENT_TATT_ADMIN_EDITABLE_LIST.map(({ id, label, ...field }, i) => {
           return (
-            <div key={id}>
+            <div key={id + i}>
               <Input
                 id={id}
                 name={id}
@@ -94,19 +91,16 @@ export function EditTattReqForm({
                 type={field.type}
                 required={field.required}
                 inputCls="input"
-                defaultValue={
-                  tattRequest.flash_name
-                    ? "Flash:" + tattRequest.flash_name
-                    : ""
-                }
+                defaultValue={tattRequest.flash_name ?? ""}
               />
+              {id}
             </div>
           );
         })}
-        {TATT_REQ_ADMIN_EDITABLE_LIST.map(({ id, label, ...field }) => {
+        {TATT_REQ_ADMIN_EDITABLE_LIST.map(({ id, label, ...field }, i) => {
           if (field.type === "checkbox") {
             return (
-              <div key={id}>
+              <div key={id + i}>
                 <InputCheck id={id} name={id} label={label} />
               </div>
             );

@@ -14,7 +14,7 @@ export const TYPE = {
 
 export const TITLE = {
   label: "Tattoo Title",
-  id: "type",
+  id: "title",
   type: "text",
   schema: z.string().trim().optional(),
   required: true,

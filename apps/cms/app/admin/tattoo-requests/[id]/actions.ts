@@ -10,7 +10,10 @@ import { createClientTattoo } from "@/business/clientTattoo";
 import { zodIssuesToErrors } from "@hyperinkstudio/utils";
 //
 import { type ClientTattoo } from "@/business/types";
-import { TATT_REQ_ADMIN_EDITABLE_LIST } from "@/business/tattooRequest";
+import {
+  TATT_REQ_ADMIN_EDITABLE_LIST,
+  CLIENT_TATT_ADMIN_EDITABLE_LIST,
+} from "@/business/tattooRequest";
 
 import { type TattReqEditable } from "@/business/tattooRequest";
 //
@@ -41,28 +44,33 @@ export async function createAClientTattooFlow(
 
   const { pvtProfileId: userId } = await getUserData();
 
-  const parsedReq = z
-    .object({
-      ...Object.fromEntries(
-        TATT_REQ_ADMIN_EDITABLE_LIST.map(({ id, schema }) => [id, schema]),
-      ),
-    })
-    .safeParse(formDataObject);
-
   const actionResults: TattReqFormState = {
     tattooRequest: null,
     errors: null,
   };
 
-  if (!parsedReq.success) {
+  const combinedList = [
+    ...TATT_REQ_ADMIN_EDITABLE_LIST,
+    ...CLIENT_TATT_ADMIN_EDITABLE_LIST,
+  ];
+
+  const parsedForm = z
+    .object(
+      Object.fromEntries(combinedList.map(({ id, schema }) => [id, schema])),
+    )
+    .safeParse(formDataObject);
+
+  console.log(parsedForm);
+
+  if (!parsedForm.success) {
     console.log("success function");
-    const { issues } = parsedReq.error;
+    const { issues } = parsedForm.error;
 
     actionResults.errors = zodIssuesToErrors(issues);
 
     return actionResults;
   }
-  const parsedFormData = parsedReq.data as Partial<TattReqEditableAction>;
+  const parsedFormData = parsedForm.data as Partial<TattReqEditableAction>;
 
   const { email, phone, ...tattooData } = parsedFormData;
 
@@ -103,6 +111,7 @@ export async function createAClientTattooFlow(
 
   const { data, error } = await createClientTattoo(client, {
     client_id: localClientId,
+    title: tattooData.title,
     type: tattooData.type,
     flash_id: tattooData.flash_id ?? null,
     flash_name: tattooData.flash_name ?? null,

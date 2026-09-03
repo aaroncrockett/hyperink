@@ -115,6 +115,12 @@ export function BookingForm({
           id="title"
           value={flashId ? "Flash: " + flashName : "custom"}
         />
+        <Input
+          type="hidden"
+          name="type"
+          id="type"
+          value={flashId ? "flash" : "custom"}
+        />
       </div>
       {tattReqPending && <p>pending tattoo request</p>}
       {tattReq.errors && <FormMetaErrors errors={tattReq.errors} />}

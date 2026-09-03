@@ -602,6 +602,7 @@ export type Database = {
           ref_images: Json | null
           seen_at: string | null
           size: string | null
+          title: string | null
           type: string | null
           updated_at: string
           user_id: string
@@ -627,6 +628,7 @@ export type Database = {
           ref_images?: Json | null
           seen_at?: string | null
           size?: string | null
+          title?: string | null
           type?: string | null
           updated_at?: string
           user_id: string
@@ -652,6 +654,7 @@ export type Database = {
           ref_images?: Json | null
           seen_at?: string | null
           size?: string | null
+          title?: string | null
           type?: string | null
           updated_at?: string
           user_id?: string
