@@ -89,12 +89,12 @@ export type Database = {
           total_farout_reschedules: number | null
           total_nearby_reschedules: number | null
           total_noshows: number | null
-          total_price: number | null
-          total_price_paid: number | null
+          total_price: number
+          total_price_paid: number
           total_price_paid_at: string | null
           total_session_hours: number | null
           total_tattooed_hours: number | null
-          total_tipped_paid: number | null
+          total_tipped_paid: number
           type: string | null
           updated_at: string
         }
@@ -127,12 +127,12 @@ export type Database = {
           total_farout_reschedules?: number | null
           total_nearby_reschedules?: number | null
           total_noshows?: number | null
-          total_price?: number | null
-          total_price_paid?: number | null
+          total_price?: number
+          total_price_paid?: number
           total_price_paid_at?: string | null
           total_session_hours?: number | null
           total_tattooed_hours?: number | null
-          total_tipped_paid?: number | null
+          total_tipped_paid?: number
           type?: string | null
           updated_at?: string
         }
@@ -165,12 +165,12 @@ export type Database = {
           total_farout_reschedules?: number | null
           total_nearby_reschedules?: number | null
           total_noshows?: number | null
-          total_price?: number | null
-          total_price_paid?: number | null
+          total_price?: number
+          total_price_paid?: number
           total_price_paid_at?: string | null
           total_session_hours?: number | null
           total_tattooed_hours?: number | null
-          total_tipped_paid?: number | null
+          total_tipped_paid?: number
           type?: string | null
           updated_at?: string
         }
@@ -589,6 +589,12 @@ export type Database = {
           budget: number
           client_tattoo_id: string | null
           created_at: string
+          deposit_amount: number
+          deposit_amount_paid: number
+          deposit_amount_paid_at: string | null
+          drawing_amount: number
+          drawing_amount_paid: number
+          drawing_amount_paid_at: string | null
           email: string
           first_name: string | null
           flash_id: string | null
@@ -599,7 +605,6 @@ export type Database = {
           last_name: string | null
           notes: string | null
           of_age: boolean | null
-          paid_amount: number | null
           phone: string
           placement: string | null
           preferred_name: string
@@ -616,6 +621,12 @@ export type Database = {
           budget?: number
           client_tattoo_id?: string | null
           created_at?: string
+          deposit_amount?: number
+          deposit_amount_paid?: number
+          deposit_amount_paid_at?: string | null
+          drawing_amount?: number
+          drawing_amount_paid?: number
+          drawing_amount_paid_at?: string | null
           email: string
           first_name?: string | null
           flash_id?: string | null
@@ -626,7 +637,6 @@ export type Database = {
           last_name?: string | null
           notes?: string | null
           of_age?: boolean | null
-          paid_amount?: number | null
           phone: string
           placement?: string | null
           preferred_name: string
@@ -643,6 +653,12 @@ export type Database = {
           budget?: number
           client_tattoo_id?: string | null
           created_at?: string
+          deposit_amount?: number
+          deposit_amount_paid?: number
+          deposit_amount_paid_at?: string | null
+          drawing_amount?: number
+          drawing_amount_paid?: number
+          drawing_amount_paid_at?: string | null
           email?: string
           first_name?: string | null
           flash_id?: string | null
@@ -653,7 +669,6 @@ export type Database = {
           last_name?: string | null
           notes?: string | null
           of_age?: boolean | null
-          paid_amount?: number | null
           phone?: string
           placement?: string | null
           preferred_name?: string

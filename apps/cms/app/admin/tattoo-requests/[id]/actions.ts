@@ -7,7 +7,7 @@ import { createClientTattoo } from "@/business/clientTattoo";
 //
 import { zodIssuesToErrors } from "@hyperinkstudio/utils";
 //
-import { type ClientTattoo } from "@/business/types";
+import { type ClientTattoo, type ClientAsClientPerson } from "@/business/types";
 import {
   TATT_REQ_ADMIN_EDITABLE_LIST,
   CLIENT_TATT_ADMIN_EDITABLE_LIST,
@@ -24,13 +24,20 @@ type TattReqEditableAction = TattReqEditable & {
   flash_name?: string;
 };
 
-type TattReqForm = Partial<TattReqEditableAction> & {
-  existingClient: string;
-  client_id?: string;
-};
+type TattReqForm =
+  | (Partial<TattReqEditableAction> & {
+      existingClient: string;
+      client_id?: string;
+    })
+  | ClientTattoo
+  | ClientAsClientPerson
+  | null;
+
+type TattReqFormTypes =
+  TattReqForm | ClientTattoo | ClientAsClientPerson | null;
 
 export type TattReqFormState = {
-  tattooRequest: TattReqForm | ClientTattoo | null;
+  tattooRequest: TattReqFormTypes;
   errors: Record<string, string> | null;
 };
 
