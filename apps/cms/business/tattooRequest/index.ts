@@ -50,8 +50,6 @@ export const CLIENT_TATT_ADMIN_EDITABLE_KEYS = getKeysFromCollection(
   CLIENT_TATT_ADMIN_EDITABLE,
 );
 
-export type TattReqFormDisplay = TattReq_Src.TattReqFormDisplay;
-
 export type TattReqFormEditable = typeof TATT_REQ_ADMIN_EDITABLE;
 
 export type ClientTattFormEditable = typeof TATT_REQ_ADMIN_EDITABLE;
