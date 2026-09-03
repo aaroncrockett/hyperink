@@ -66,7 +66,7 @@ export function EditTattReqForm({
           id="client_id"
           name="client_id"
           label="Client Id"
-          type="hidden"
+
           value={client_id ?? ""}
         />
         <Input
@@ -91,7 +91,7 @@ export function EditTattReqForm({
         <Input
           id="client_tattoo_id"
           name="client_tattoo_id"
-          type="hidden"
+          label="client_tattoo_id"
           value={tattRequest.client_tattoo_id ?? ""}
         />
         {CLIENT_TATT_ADMIN_EDITABLE_LIST.map(({ id, label, ...field }, i) => {
