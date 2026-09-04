@@ -52,7 +52,7 @@ export function TattooRequests({
                       className="text-secondary-500 font-bold underline"
                       href={`${ADMIN_TATT_REQ.href}/${id}`}
                     >
-                      EDIT
+                      View
                     </NextLinkWrapper>
                   </span>
 
