@@ -1,5 +1,19 @@
+import { Accordion } from "@skeletonlabs/skeleton-react";
+//
 import Image from "next/image";
+import dynamic from "next/dynamic";
+//
 import { Page, Heading } from "@hyperinkstudio/ui-react-next/components";
+//
+import { Icon } from "@/ui/Icon";
+
+// import { ChevronDownIcon } from "lucide-react";
+import { Fragment } from "react";
+
+const componentMap = {
+  newClientInfo: dynamic(() => import("./_components/NewClientInfo")),
+  returnClientInfo: dynamic(() => import("./_components/ReturnClientInfo")),
+};
 export default function ThankYou() {
   return (
     <Page cls="main-padding">
@@ -17,41 +31,9 @@ export default function ThankYou() {
       <div className="flex flex-col md:gap-6 gap-4">
         <div className="bg-surface-200-800/40 rounded-xl p-4 flex flex-col gap-2">
           <Heading as="h2">First Time Clients</Heading>
-          <ul className="flex flex-col gap-1.5">
-            <li>
-              📢 You must purchase a{" "}
-              <span className="font-bold">partly *refundable* $40</span>{" "}
-              consultation to get a tattoo.
-            </li>
-            <li>
-              💬 During the consoltation I will discuss the tattoo process and
-              ensure we are a good fit.
-            </li>
-            <li>
-              👍 If you feel it is not a good fit, I will return $30 of the $40.
-              If I feel it isn&apos;t a good fit I will return your entire fee.
-            </li>
-            <li>
-              If we go ahead with the tattoo, the fee will be applied to your
-              total deposit of $100.
-            </li>
-            <li>
-              ✌️ For no-shows or breaking the *reschedule/cancelation* policy,
-              your fee will not be returned.
-            </li>
-            <li>
-              🖤🖤🖤 I&apos;ll check in to see if you have any questions in a
-              couple days. But I can not book a time until you have paid the
-              booking fee.🖤🖤🖤
-            </li>
-          </ul>
         </div>
         <div className="bg-surface-200-800/40 rounded-xl p-4 flex flex-col gap-2">
           <Heading as="h2">Returning Clients</Heading>
-          <p className="flex flex-col gap-1.5">
-            🖤🖤🖤 Returning clients should pay the entire $100 deposit.
-            Reminder: Custom Tattoos, have an addition drawing fee.🖤🖤🖤
-          </p>
         </div>
         <div className="bg-secondary-100-900/40 rounded p-4 flex flex-col gap-2 justify-center items-center">
           <Heading cls="text-center" textColorCls="text-secondary-500" as="h2">
