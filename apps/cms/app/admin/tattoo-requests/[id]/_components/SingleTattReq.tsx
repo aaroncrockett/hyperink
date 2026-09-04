@@ -21,7 +21,7 @@ import {
 import { createAClientTattooFlow } from "../actions";
 import { Button, Input } from "@/ui";
 
-export function EditTattReqForm({
+export function SingleTattReq({
   tattRequest,
   existingClient,
   client_id,
