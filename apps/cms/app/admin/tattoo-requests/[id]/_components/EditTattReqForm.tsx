@@ -33,7 +33,6 @@ export function EditTattReqForm({
   const [isEditing, setIsEditing] = useState(false);
 
   const initialState = {
-    tattooRequest: null,
     errors: null,
   };
 
@@ -66,7 +65,7 @@ export function EditTattReqForm({
           id="client_id"
           name="client_id"
           label="Client Id"
-
+          type="hidden"
           value={client_id ?? ""}
         />
         <Input

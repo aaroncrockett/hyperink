@@ -1,5 +1,7 @@
 "use server";
 import { z } from "zod";
+//
+import { redirect } from "next/navigation";
 
 import { createClientPerson } from "@hyperinkstudio/api";
 //
@@ -39,7 +41,6 @@ type TattReqForm = Partial<TattReqEditableAction> & TattReqImmutable;
 // type TattReqUnions = TattReqForm | ClientTattoo | ClientAsClientPerson | null;
 
 export type TattReqReturns = {
-  tattooRequest: TattooRequest | null;
   errors: Record<string, string> | null;
 };
 
@@ -52,7 +53,6 @@ export async function createAClientTattooFlow(
   const { pvtProfileId: userId } = await getUserData();
 
   const actionResults: TattReqReturns = {
-    tattooRequest: null,
     errors: null,
   };
 
@@ -106,7 +106,7 @@ export async function createAClientTattooFlow(
 
   let clientId = client_id;
 
-  if (client_id === null) {
+  if (clientId === null) {
     const { error, data } = await createClientPerson(
       client,
       {
@@ -185,13 +185,11 @@ export async function createAClientTattooFlow(
         return actionResults;
       }
 
-      actionResults.tattooRequest = updatedTattReq as TattooRequest;
-
-      return actionResults;
+      redirect(`/admin/tattoo-requests/${tatt_req_id}/success`);
     }
   }
   console.error(
-    "should not be able to edit tatt req if there is a a client_tattoo_id or client_id",
+    "should not be able to edit tatt req if there is a a client_tattoo_id",
   );
   actionResults.errors = { logicError: "error. hyperink" };
   return actionResults;
