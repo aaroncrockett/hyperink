@@ -48,10 +48,14 @@ Limited LLM use for the following:
 
 - Aide in tasks like debugging and catching/fixing sytax mistakes.
 - As a brainstorming tool.
-- Aide in summarizing docs or code bases for me.
-- Aide in writing small, localized amounts of code, reviewed and edited by myself. I still hand-code a lot. (it helps to remember or grasp the problem, and is still sometimes easier than fighting mistakes by LLMs)
+- Aide in summarizing docs or code bases.
+- Aide in writing some small and localized pieces of code, reviewed and edited by myself. I still hand-code the majority of my code.
 - Aide in some technical writing. Always edited and reviewed by myself.
 - For placeholder text and data.
+
+Instead of fixing the typo "sytax" when I noticed it, I decided to leave it. As proof that I don't rely on LLMs very much. Because, for all it's flaws, it doesn't make spelling mistakes that I know of.
+
+I hate the way it writes copy so much, I often would rather the typos, than the nonsenical and generic writing it produces.
 
 ## Project Development & Growth
 
