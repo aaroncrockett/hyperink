@@ -127,11 +127,6 @@ export async function createAClientTattooFlow(
     clientId = data.id;
   }
 
-  if (clientId === null) {
-    actionResults.errors = { client_id: "client_id is null!" };
-    return actionResults;
-  }
-
   if (client_tattoo_id === null) {
     const { data, error } = await createClientTattoo(
       client,
