@@ -1,7 +1,7 @@
 // Local
 import { createSSClient } from "@/auth/server";
 import { getLastThreeTatReqs } from "@/business/tattooRequest";
-import { TattooRequests } from "../(features)/TattooRequests";
+import { TattooRequests } from "../_components/TattooRequests";
 // Local UI
 import { Page, Heading } from "@/ui";
 

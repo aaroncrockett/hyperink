@@ -7,7 +7,7 @@ import { ADMIN_TATT_REQ } from "@/consts";
 // Local UI
 import { Page, Heading } from "@/ui";
 // Local Other
-import { TattooRequests } from "./(features)/TattooRequests";
+import { TattooRequests } from "./_components/TattooRequests";
 import { getUserData } from "./getUserData";
 import { NextLinkWrapper } from "@/ui";
 
@@ -21,8 +21,6 @@ export default async function AdminHomePage() {
     const { data: tattReqData } = await getLastThreeTatReqs(dbClient);
     tattooRequests = tattReqData;
   }
-
-  console.log(tattooRequests);
 
   return (
     <Page>

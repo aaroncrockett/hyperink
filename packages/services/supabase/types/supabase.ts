@@ -61,6 +61,7 @@ export type Database = {
       }
       client_tattoo: {
         Row: {
+          budget: number
           client_id: string
           completed_at: string | null
           created_at: string
@@ -88,16 +89,17 @@ export type Database = {
           total_farout_reschedules: number | null
           total_nearby_reschedules: number | null
           total_noshows: number | null
-          total_price: number | null
-          total_price_paid: number | null
+          total_price: number
+          total_price_paid: number
           total_price_paid_at: string | null
           total_session_hours: number | null
           total_tattooed_hours: number | null
-          total_tipped_paid: number | null
+          total_tipped_paid: number
           type: string | null
           updated_at: string
         }
         Insert: {
+          budget?: number
           client_id: string
           completed_at?: string | null
           created_at?: string
@@ -125,16 +127,17 @@ export type Database = {
           total_farout_reschedules?: number | null
           total_nearby_reschedules?: number | null
           total_noshows?: number | null
-          total_price?: number | null
-          total_price_paid?: number | null
+          total_price?: number
+          total_price_paid?: number
           total_price_paid_at?: string | null
           total_session_hours?: number | null
           total_tattooed_hours?: number | null
-          total_tipped_paid?: number | null
+          total_tipped_paid?: number
           type?: string | null
           updated_at?: string
         }
         Update: {
+          budget?: number
           client_id?: string
           completed_at?: string | null
           created_at?: string
@@ -162,12 +165,12 @@ export type Database = {
           total_farout_reschedules?: number | null
           total_nearby_reschedules?: number | null
           total_noshows?: number | null
-          total_price?: number | null
-          total_price_paid?: number | null
+          total_price?: number
+          total_price_paid?: number
           total_price_paid_at?: string | null
           total_session_hours?: number | null
           total_tattooed_hours?: number | null
-          total_tipped_paid?: number | null
+          total_tipped_paid?: number
           type?: string | null
           updated_at?: string
         }
@@ -583,8 +586,15 @@ export type Database = {
       tattoo_request: {
         Row: {
           bluesky_id: string | null
+          budget: number
           client_tattoo_id: string | null
           created_at: string
+          deposit_amount: number
+          deposit_amount_paid: number
+          deposit_amount_paid_at: string | null
+          drawing_amount: number
+          drawing_amount_paid: number
+          drawing_amount_paid_at: string | null
           email: string
           first_name: string | null
           flash_id: string | null
@@ -595,7 +605,6 @@ export type Database = {
           last_name: string | null
           notes: string | null
           of_age: boolean | null
-          paid_amount: number | null
           phone: string
           placement: string | null
           preferred_name: string
@@ -609,8 +618,15 @@ export type Database = {
         }
         Insert: {
           bluesky_id?: string | null
+          budget?: number
           client_tattoo_id?: string | null
           created_at?: string
+          deposit_amount?: number
+          deposit_amount_paid?: number
+          deposit_amount_paid_at?: string | null
+          drawing_amount?: number
+          drawing_amount_paid?: number
+          drawing_amount_paid_at?: string | null
           email: string
           first_name?: string | null
           flash_id?: string | null
@@ -621,7 +637,6 @@ export type Database = {
           last_name?: string | null
           notes?: string | null
           of_age?: boolean | null
-          paid_amount?: number | null
           phone: string
           placement?: string | null
           preferred_name: string
@@ -635,8 +650,15 @@ export type Database = {
         }
         Update: {
           bluesky_id?: string | null
+          budget?: number
           client_tattoo_id?: string | null
           created_at?: string
+          deposit_amount?: number
+          deposit_amount_paid?: number
+          deposit_amount_paid_at?: string | null
+          drawing_amount?: number
+          drawing_amount_paid?: number
+          drawing_amount_paid_at?: string | null
           email?: string
           first_name?: string | null
           flash_id?: string | null
@@ -647,7 +669,6 @@ export type Database = {
           last_name?: string | null
           notes?: string | null
           of_age?: boolean | null
-          paid_amount?: number | null
           phone?: string
           placement?: string | null
           preferred_name?: string

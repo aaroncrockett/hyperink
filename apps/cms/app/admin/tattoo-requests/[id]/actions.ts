@@ -1,56 +1,62 @@
 "use server";
 import { z } from "zod";
+//
+import { redirect } from "next/navigation";
 
 import { createClientPerson } from "@hyperinkstudio/api";
 //
 import { createClientTattoo } from "@/business/clientTattoo";
+import { updateTattooRequest } from "@/business/tattooRequest";
 //
 import { zodIssuesToErrors } from "@hyperinkstudio/utils";
 //
-import { type ClientTattoo } from "@/business/types";
+import type { ClientTattoo } from "@/business/types";
 import {
-  TATT_REQ_ADMIN_EDITABLE_LIST,
-  CLIENT_TATT_ADMIN_EDITABLE_LIST,
+  TATT_REQ_ADMIN_LIST,
+  CLIENT_TATT_ADMIN_LIST,
 } from "@/business/tattooRequest";
 
-import { type TattReqEditable } from "@/business/tattooRequest";
+import {
+  type TattReqEditable,
+  type ClientTattEditable,
+} from "@/business/tattooRequest";
 //
 import { createSSClient } from "@/auth/server";
 //
 import { getUserData } from "@/app/admin/getUserData";
 
-type TattReqEditableAction = TattReqEditable & {
+// values
+type TattReqEditableAction = TattReqEditable & ClientTattEditable;
+type TattReqImmutable = {
+  existingClient: string;
+  client_id?: string;
+  tatt_req_id: string;
+  client_tattoo_id: string;
   flash_id?: string;
   flash_name?: string;
 };
 
-type TattReqForm = Partial<TattReqEditableAction> & {
-  existingClient: string;
-  client_id?: string;
-};
+type TattReqForm = Partial<TattReqEditableAction> & TattReqImmutable;
 
-export type TattReqFormState = {
-  tattooRequest: TattReqForm | ClientTattoo | null;
+// type TattReqUnions = TattReqForm | ClientTattoo | ClientAsClientPerson | null;
+
+export type TattReqReturns = {
   errors: Record<string, string> | null;
 };
 
 export async function createAClientTattooFlow(
-  prevState: TattReqFormState,
+  prevState: TattReqReturns,
   formData: FormData,
-): Promise<TattReqFormState> {
+): Promise<TattReqReturns> {
   const formDataObject = Object.fromEntries(formData.entries());
 
   const { pvtProfileId: userId } = await getUserData();
 
-  const actionResults: TattReqFormState = {
-    tattooRequest: null,
+  const actionResults: TattReqReturns = {
     errors: null,
   };
 
-  const combinedList = [
-    ...TATT_REQ_ADMIN_EDITABLE_LIST,
-    ...CLIENT_TATT_ADMIN_EDITABLE_LIST,
-  ];
+  const combinedList = [...TATT_REQ_ADMIN_LIST, ...CLIENT_TATT_ADMIN_LIST];
 
   const parsedForm = z
     .object(
@@ -58,19 +64,26 @@ export async function createAClientTattooFlow(
     )
     .safeParse(formDataObject);
 
-  console.log(parsedForm);
-
   if (!parsedForm.success) {
-    console.log("success function");
     const { issues } = parsedForm.error;
 
     actionResults.errors = zodIssuesToErrors(issues);
 
     return actionResults;
   }
-  const parsedFormData = parsedForm.data as Partial<TattReqEditableAction>;
+  const parsedFormData = parsedForm.data as Partial<TattReqForm>;
 
-  const { email, phone, ...tattooData } = parsedFormData;
+  const { email, phone, preferred_name, title, ...reqForm } = parsedFormData;
+
+  const clientPersonFormData = {
+    email: email,
+    phone: phone,
+    preferred_name: preferred_name,
+  };
+
+  const clientTattooFormData = {
+    title: title,
+  };
 
   const client = await createSSClient();
 
@@ -78,14 +91,21 @@ export async function createAClientTattooFlow(
     ? (formDataObject.client_id as string)
     : null;
 
-  let localClientId = client_id;
+  const tatt_req_id = formDataObject.tatt_req_id
+    ? (formDataObject.tatt_req_id as string)
+    : null;
 
-  if (client_id === null) {
+  const client_tattoo_id = formDataObject.client_tattoo_id
+    ? (formDataObject.client_tattoo_id as string)
+    : null;
+
+  let clientId = client_id;
+
+  if (clientId === null) {
     const { error, data } = await createClientPerson(
       client,
       {
-        email: email,
-        phone: phone,
+        ...clientPersonFormData,
       },
       userId,
     );
@@ -99,30 +119,68 @@ export async function createAClientTattooFlow(
       return actionResults;
     }
 
-    localClientId = data.id;
+    clientId = data.id;
   }
 
-  if (localClientId === null) {
-    actionResults.errors = { client_id: "client_id is null!" };
-    return actionResults;
+  if (client_tattoo_id === null) {
+    const { data, error } = await createClientTattoo(
+      client,
+      {
+        client_id: clientId,
+        title: clientTattooFormData.title,
+        type: reqForm.type,
+        flash_id: reqForm.flash_id ?? null,
+        flash_name: reqForm.flash_name ?? null,
+      },
+      true,
+    );
+
+    if (error) {
+      console.error(error);
+      actionResults.errors = {
+        clientTatt: "error creating a client tattoo",
+      };
+      return actionResults;
+    }
+
+    const clientTattooData = data as ClientTattoo | null;
+
+    if (
+      clientTattooData &&
+      "client_id" in clientTattooData &&
+      "id" in clientTattooData
+    ) {
+      const { error } = await updateTattooRequest(
+        client,
+        {
+          client_tattoo_id: clientTattooData.id,
+          ...clientPersonFormData,
+          ...clientTattooFormData,
+        },
+        [{ field: "id", value: tatt_req_id }],
+        { returnType: "single" },
+      );
+
+      console.log({
+        client_tattoo_id: clientTattooData.id,
+        ...clientPersonFormData,
+        ...clientTattooFormData,
+      });
+
+      if (error) {
+        console.error(error);
+        actionResults.errors = {
+          clientTatt: "error udpating the tattoo request with client_tattoo_id",
+        };
+        return actionResults;
+      }
+
+      redirect(`/admin/tattoo-requests/${tatt_req_id}/success`);
+    }
   }
-
-  const { data, error } = await createClientTattoo(client, {
-    client_id: localClientId,
-    title: tattooData.title,
-    type: tattooData.type,
-    flash_id: tattooData.flash_id ?? null,
-    flash_name: tattooData.flash_name ?? null,
-  });
-
-  if (error) {
-    console.error(error);
-    actionResults.errors = { clientTatt: "error creating client tattll" };
-    return actionResults;
-  }
-
-  const clientTattooData = data as TattReqForm | ClientTattoo | null;
-  actionResults.tattooRequest = clientTattooData;
-
+  console.error(
+    "should not be able to edit tatt req if there is a a client_tattoo_id",
+  );
+  actionResults.errors = { logicError: "error. hyperink" };
   return actionResults;
 }

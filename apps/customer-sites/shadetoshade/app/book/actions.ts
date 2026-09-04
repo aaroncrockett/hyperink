@@ -1,17 +1,17 @@
 "use server";
 import { z } from "zod";
 //
+import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
+//
 import { createTattooRequest, FLASH_NAME } from "@/business/tattooRequest";
 import { zodIssuesToErrors } from "@hyperinkstudio/utils";
 import { createServiceClient } from "@/auth/serviceClient";
 //
-import { type TattReqFormDisplayWithFlash } from "./types";
-
 import { TATT_REQ_BODY, TYPE_FIELD, FLASH_ID } from "@/business/tattooRequest";
 
 export type TattRequestFormState = {
   errors: Record<string, string> | null;
-  tattooRequest?: TattReqFormDisplayWithFlash | null;
 };
 
 export async function createTattooRequestAction(
@@ -19,7 +19,6 @@ export async function createTattooRequestAction(
   formData: FormData,
 ): Promise<TattRequestFormState> {
   const actionResults: TattRequestFormState = {
-    tattooRequest: null,
     errors: null,
   };
 
@@ -72,8 +71,6 @@ export async function createTattooRequestAction(
       tattooRequest: "tattoo request results were undefined or null",
     };
   }
-
-  actionResults.tattooRequest = result.data;
-
-  return actionResults;
+  revalidatePath("/book");
+  redirect("/book/thank-you");
 }

@@ -80,5 +80,6 @@ export type SBOrder = {
 export type SBOptions = {
   limit?: number;
   order?: SBOrder;
+  returnType?: "select" | "single";
   [key: string]: unknown;
 };

@@ -3,7 +3,7 @@ import { useState, useActionState } from "react";
 // hyperink
 import { INPUT_TYPES_MAP } from "@hyperinkstudio/business";
 //
-import { toLabelValue } from "@hyperinkstudio/utils";
+import { toLabelValue, formatPhone } from "@hyperinkstudio/utils";
 //
 import {
   Form,
@@ -32,10 +32,10 @@ export function BookingForm({
   clearFlashUrlParams,
 }: BookingFormProps) {
   const [showFormBody, setShowFormBody] = useState(false);
+  const [phone, setPhone] = useState("");
 
   const initialState = {
     errors: null,
-    tattooRequest: null,
   };
 
   const [tattReq, tattReqActionState, tattReqPending] = useActionState(
@@ -88,6 +88,23 @@ export function BookingForm({
                   id={req.id}
                   label={req.label}
                   required={req.required ?? false}
+                />
+              );
+            }
+
+            if (req.id === "phone") {
+              return (
+                <Input
+                  key={req.id}
+                  id={req.id}
+                  label={req.label}
+                  required={req.required ?? false}
+                  type={INPUT_TYPES_MAP[req.type]}
+                  value={phone}
+                  onChange={(e) => {
+                    const value = (e.target as HTMLInputElement).value;
+                    setPhone(formatPhone(value));
+                  }}
                 />
               );
             }

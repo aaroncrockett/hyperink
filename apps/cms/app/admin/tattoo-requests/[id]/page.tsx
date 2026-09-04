@@ -3,7 +3,7 @@ import { getTattooRequestById } from "@/business/tattooRequest";
 import { createSSClient } from "@/auth/server";
 import { getClientPersonByEmail } from "@/business/clientPersons";
 // Local
-import { EditTattReqForm } from "./_components/EditTattReqForm";
+import { SingleTattReq } from "./_components/SingleTattReq";
 // Local UI
 import { Page, Heading } from "@/ui";
 
@@ -43,7 +43,7 @@ export default async function TattooRequestPage({
             No client was found. We will create a Tattoo Record alongside a new
             client profile.
           </p>
-          <EditTattReqForm
+          <SingleTattReq
             existingClient={false}
             tattRequest={tattRequest}
             client_id={null}
@@ -72,15 +72,19 @@ export default async function TattooRequestPage({
       {/* // one person found. we can add the request to them */}
       {clientPersons && clientPersons.length === 1 && (
         <>
-          <p className="font-bold bg-secondary-300-700">
-            {clientPersons[0].preferred_name} was found {clientPersons[0].email}
+          <p className="font-bold bg-surface-200-800/40 p-4 rounded-xl flex flex-col gap-2">
+            Client {clientPersons[0].preferred_name} was found!
+            <span>Email: {clientPersons[0].email}</span>
+            <span>Phone:{clientPersons[0].phone}</span>
           </p>
-          <span>Email: {clientPersons[0].email}</span>
-          <span>{clientPersons[0].phone}</span>
-          <p className="italic">
-            We can create a new tattoo and add it to their records
-          </p>
-          <EditTattReqForm
+
+          {!tattRequest.client_tattoo_id && (
+            <p className="italic">
+              We can create a new tattoo and add it to their records
+            </p>
+          )}
+
+          <SingleTattReq
             client_id={clientPersons[0].id}
             existingClient={true}
             tattRequest={tattRequest}
