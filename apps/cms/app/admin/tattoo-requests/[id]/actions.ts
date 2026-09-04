@@ -12,8 +12,8 @@ import { zodIssuesToErrors } from "@hyperinkstudio/utils";
 //
 import type { ClientTattoo, TattooRequest } from "@/business/types";
 import {
-  TATT_REQ_ADMIN_EDITABLE_LIST,
-  CLIENT_TATT_ADMIN_EDITABLE_LIST,
+  TATT_REQ_ADMIN_LIST,
+  CLIENT_TATT_ADMIN_LIST,
 } from "@/business/tattooRequest";
 
 import {
@@ -56,10 +56,7 @@ export async function createAClientTattooFlow(
     errors: null,
   };
 
-  const combinedList = [
-    ...TATT_REQ_ADMIN_EDITABLE_LIST,
-    ...CLIENT_TATT_ADMIN_EDITABLE_LIST,
-  ];
+  const combinedList = [...TATT_REQ_ADMIN_LIST, ...CLIENT_TATT_ADMIN_LIST];
 
   const parsedForm = z
     .object(

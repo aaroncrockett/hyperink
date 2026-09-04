@@ -26,14 +26,14 @@ export const TATT_REQ_ADMIN_SHORT = {
   created_at: TattReqBase.CREATED_AT,
 };
 
-export const TATT_REQ_ADMIN_EDITABLE = {
+export const TATT_REQ_ADMIN = {
   preferred_name: TattReqBase.PREFERRED_NAME,
   email: TattReqBase.EMAIL,
   phone: TattReqBase.PHONE,
   type: TattReqBase.TYPE,
 };
 
-export const CLIENT_TATT_ADMIN_EDITABLE = {
+export const CLIENT_TATT_ADMIN = {
   title: TattReqBase.TITLE,
 };
 
@@ -43,25 +43,18 @@ export const TATT_REQ_ADMIN_SHORT_LIST =
 export const TATT_REQ_ADMIN_SHORT_KEYS =
   getKeysFromCollection(TATT_REQ_ADMIN_SHORT);
 
-export const TATT_REQ_ADMIN_EDITABLE_LIST = getValuesFromCollection(
-  TATT_REQ_ADMIN_EDITABLE,
-);
+export const TATT_REQ_ADMIN_LIST = getValuesFromCollection(TATT_REQ_ADMIN);
 
-export const TATT_REQ_ADMIN_EDITABLE_KEYS = getKeysFromCollection(
-  TATT_REQ_ADMIN_EDITABLE,
-);
+export const TATT_REQ_ADMIN_KEYS = getKeysFromCollection(TATT_REQ_ADMIN);
 
-export const CLIENT_TATT_ADMIN_EDITABLE_LIST = getValuesFromCollection(
-  CLIENT_TATT_ADMIN_EDITABLE,
-);
+export const CLIENT_TATT_ADMIN_LIST =
+  getValuesFromCollection(CLIENT_TATT_ADMIN);
 
-export const CLIENT_TATT_ADMIN_EDITABLE_KEYS = getKeysFromCollection(
-  CLIENT_TATT_ADMIN_EDITABLE,
-);
+export const CLIENT_TATT_ADMIN_KEYS = getKeysFromCollection(CLIENT_TATT_ADMIN);
 
-export type TattReqFormEditable = typeof TATT_REQ_ADMIN_EDITABLE;
+export type TattReqFormEditable = typeof TATT_REQ_ADMIN;
 
-export type ClientTattFormEditable = typeof TATT_REQ_ADMIN_EDITABLE;
+export type ClientTattFormEditable = typeof TATT_REQ_ADMIN;
 
 export type TattReqEditable = Pick<
   TattooRequest,
