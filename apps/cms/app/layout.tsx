@@ -1,5 +1,5 @@
 // Next
-∑import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { League_Gothic, Outfit } from "next/font/google";
 // @ Locals
 import { cn } from "@/utils/cn";
