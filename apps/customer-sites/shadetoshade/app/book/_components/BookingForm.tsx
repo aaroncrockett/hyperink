@@ -36,7 +36,6 @@ export function BookingForm({
 
   const initialState = {
     errors: null,
-    tattooRequest: null,
   };
 
   const [tattReq, tattReqActionState, tattReqPending] = useActionState(

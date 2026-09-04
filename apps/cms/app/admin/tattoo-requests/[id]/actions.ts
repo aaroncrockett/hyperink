@@ -150,7 +150,7 @@ export async function createAClientTattooFlow(
       "client_id" in clientTattooData &&
       "id" in clientTattooData
     ) {
-      const { data: updatedTattReq, error } = await updateTattooRequest(
+      const { error } = await updateTattooRequest(
         client,
         {
           client_tattoo_id: clientTattooData.id,
