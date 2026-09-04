@@ -12,7 +12,7 @@ export function Success() {
         className="flex flex-row gap-2 md:gap-4"
         href={INTERNAL_ADMIN_LINKS.admin.href}
       >
-        <Icon name={INTERNAL_ADMIN_LINKS.admin.icon} />{" "}
+        <Icon name={INTERNAL_ADMIN_LINKS.admin.icon} />
         {INTERNAL_ADMIN_LINKS.admin.name}
       </Link>
     </Page>

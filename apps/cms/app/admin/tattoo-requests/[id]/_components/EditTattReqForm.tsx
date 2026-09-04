@@ -91,6 +91,7 @@ export function EditTattReqForm({
           id="client_tattoo_id"
           name="client_tattoo_id"
           label="client_tattoo_id"
+          type="hidden"
           value={tattRequest.client_tattoo_id ?? ""}
         />
         {CLIENT_TATT_ADMIN_EDITABLE_LIST.map(({ id, label, ...field }, i) => {
