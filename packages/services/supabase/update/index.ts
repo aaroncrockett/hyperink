@@ -1,7 +1,7 @@
 import type { AllowedTable, AppTables, Client, SBOptions } from "../types";
 import { handleLimit, handleOrder } from "../helpers";
 
-type By<T extends AllowedTable> = {
+export type By<T extends AllowedTable> = {
   field: keyof AppTables[T];
   value: AppTables[T][keyof AppTables[T]];
 };
