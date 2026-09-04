@@ -16,6 +16,7 @@ export {
   createTattooRequest,
   getRecentlyCreatedRequests,
   getTattooRequestById,
+  updateTattooRequest,
 } from "@hyperinkstudio/api";
 
 export * from "./types";
