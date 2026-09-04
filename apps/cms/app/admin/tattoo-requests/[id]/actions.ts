@@ -76,8 +76,7 @@ export async function createAClientTattooFlow(
   }
   const parsedFormData = parsedForm.data as Partial<TattReqForm>;
 
-  const { email, phone, preferred_name, seen_at, title, ...reqForm } =
-    parsedFormData;
+  const { email, phone, preferred_name, title, ...reqForm } = parsedFormData;
 
   const clientPersonFormData = {
     email: email,
@@ -87,7 +86,6 @@ export async function createAClientTattooFlow(
 
   const clientTattooFormData = {
     title: title,
-    seen_at: seen_at ? new Date().toISOString() : null,
   };
 
   const client = await createSSClient();

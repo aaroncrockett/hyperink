@@ -31,7 +31,6 @@ export const TATT_REQ_ADMIN_EDITABLE = {
   email: TattReqBase.EMAIL,
   phone: TattReqBase.PHONE,
   type: TattReqBase.TYPE,
-  seen_at: TattReqBase.SEEN_AT,
 };
 
 export const CLIENT_TATT_ADMIN_EDITABLE = {
@@ -66,7 +65,7 @@ export type ClientTattFormEditable = typeof TATT_REQ_ADMIN_EDITABLE;
 
 export type TattReqEditable = Pick<
   TattooRequest,
-  "preferred_name" | "email" | "phone" | "type" | "seen_at"
+  "preferred_name" | "email" | "phone" | "type"
 >;
 
 export type ClientTattEditable = Pick<ClientTattoo, "title">;
