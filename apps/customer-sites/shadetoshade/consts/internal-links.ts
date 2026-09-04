@@ -36,6 +36,7 @@ export const INTERNAL_LINKS = {
 export const MOBILE_FOOTER_LINKS = [
   INTERNAL_LINKS.flash,
   INTERNAL_LINKS.tattoos,
+  INTERNAL_LINKS.faq,
   INTERNAL_LINKS.book,
 ];
 
@@ -44,4 +45,6 @@ export const MENU_LINKS = [
   INTERNAL_LINKS.flash,
   INTERNAL_LINKS.tattoos,
   INTERNAL_LINKS.about,
+  INTERNAL_LINKS.faq,
+  INTERNAL_LINKS.book,
 ];
