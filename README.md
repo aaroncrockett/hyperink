@@ -53,9 +53,7 @@ Limited LLM use for the following:
 - Aide in some technical writing. Always edited and reviewed by myself.
 - For placeholder text and data.
 
-Instead of fixing the typo "sytax" when I noticed it, I decided to leave it. As proof that I don't rely on LLMs very much. Because, for all it's flaws, it doesn't make spelling mistakes that I know of.
-
-I hate the way it writes copy so much, I often would rather the typos, than the nonsenical and generic writing it produces.
+Instead of fixing the typo "sytax" when I noticed it, I decided to leave it. As proof that I don't rely on LLMs very much.
 
 ## Project Development & Growth
 
