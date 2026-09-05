@@ -1,7 +1,8 @@
 "use client";
 import { ReactNode } from "react";
 import { Dialog, Portal } from "@skeletonlabs/skeleton-react";
-import { Menu, XIcon } from "lucide-react";
+//
+import { AnimatedMenuIcon } from "@hyperinkstudio/ui-react-next/components";
 
 type MenuMobileProps = {
   children: ReactNode;
@@ -20,25 +21,29 @@ export default function MenuMobile({ className, children }: MenuMobileProps) {
   return (
     <div className={className}>
       <Dialog>
-        <Dialog.Trigger>
-          <Menu className="drop-shadow-xs" />
-        </Dialog.Trigger>
+        <Dialog.Context>
+          {(dialog) => (
+            <Dialog.Trigger>
+              <AnimatedMenuIcon
+                menuIconColor="bg-surface-950-50"
+                open={dialog.open}
+              />
+            </Dialog.Trigger>
+          )}
+        </Dialog.Context>
         <Portal>
           <Dialog.Backdrop
-            className={`fixed inset-0 z-50 bg-surface-700-300/50 ${animBackdrop}`}
+            className={`fixed inset-0 z-50 bg-surface-600-400/30 ${animBackdrop}`}
           />
           <Dialog.Positioner className="fixed inset-0 z-50 flex justify-start">
             <Dialog.Content
-              className={`h-screen  w-sm shadow-sm relative ${animModal}`}
+              className={`h-screen w-sm shadow-sm relative ${animModal}`}
             >
-              <div className="h-full p-4 noise-bg-opac-0pt8">
+              <div className="h-full p-4 bg-surface-900-100/95">
                 <div className="flex items-center justify-between">
-                  <Dialog.Title className="text-2xl font-bold">
+                  <Dialog.Title className="text-3xl pb-1.5 text-secondary-500 display">
                     SHADE TO SHADE
                   </Dialog.Title>
-                  <Dialog.CloseTrigger className="btn-icon">
-                    <XIcon />
-                  </Dialog.CloseTrigger>
                 </div>
                 <Dialog.Context>
                   {(dialog) => (

@@ -2,6 +2,7 @@ export { ComboBox } from "./ComboBox";
 export { Form } from "./FormClient";
 export { FormError } from "./FormError";
 export { Heading } from "./Heading";
+export { AnimatedMenuIcon } from "./AnimatedMenuIcon";
 export { Input } from "./Input";
 export { InputCheck } from "./InputCheck";
 export { InputTextArea } from "./InputTextArea";

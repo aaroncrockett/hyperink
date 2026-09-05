@@ -2,7 +2,7 @@ export * from "./Button";
 export * from "./ComboBox";
 export * from "./Heading";
 export * from "./Icon";
-export * from "./IconMenu";
+export * from "@hyperinkstudio/ui-react-next/components/AnimatedMenuIcon";
 export * from "./Input";
 export * from "./NextLinkWrapper";
 export * from "./Page";

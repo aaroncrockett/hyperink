@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 // Skeleton
 import { Dialog, Portal } from "@skeletonlabs/skeleton-react";
 //
-import { IconMenu } from "@/ui";
+import { AnimatedMenuIcon } from "@hyperinkstudio/ui-react-next/components";
 
 type MenuMobileProps = {
   children: ReactNode;
@@ -30,13 +30,13 @@ export default function MenuMobile({
         <Dialog.Context>
           {(dialog) => (
             <Dialog.Trigger>
-              <IconMenu open={dialog.open} />
+              <AnimatedMenuIcon open={dialog.open} />
             </Dialog.Trigger>
           )}
         </Dialog.Context>
         <Portal>
           <Dialog.Backdrop
-            className={`fixed inset-0 z-50 bg-surface-500-/50 ${animBackdrop}`}
+            className={`fixed inset-0 z-50 bg-surface-600-400/30 ${animBackdrop}`}
           />
           <Dialog.Positioner className="fixed inset-0 z-50 flex justify-start">
             <Dialog.Content

@@ -17,7 +17,7 @@ export default function Nav({ ...props }: NavProps) {
 
   return (
     <nav className={cn(props.className)} {...props}>
-      <ul className="flex flex-col gap-2 px-4">
+      <ul className="flex flex-col gap-1.5 px-0.5">
         {MENU_LINKS.map((link) => {
           const Icon = link.icon;
 
@@ -25,7 +25,7 @@ export default function Nav({ ...props }: NavProps) {
             <li key={link.href}>
               <Link
                 href={getHrefWithSearchParams(link.href, searchParams)}
-                className="flex flex-row items-center gap-2 text-primary-500! text-lg! font-bold hover:text-secondary-300!"
+                className="flex flex-row items-center gap-2 text-secondary-500 text-lg!  hover:text-secondary-200-800!"
               >
                 {Icon && <Icon className="w-5 h-5" />}
                 {link.name.toUpperCase()}
