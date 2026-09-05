@@ -1,4 +1,6 @@
 "use client";
+import Link from "next/link";
+//
 import { ReactNode } from "react";
 import { Dialog, Portal } from "@skeletonlabs/skeleton-react";
 //
@@ -42,7 +44,9 @@ export default function MenuMobile({ className, children }: MenuMobileProps) {
               <div className="h-full p-4 bg-surface-900-100/95">
                 <div className="flex items-center justify-between">
                   <Dialog.Title className="text-3xl pb-1.5 text-secondary-500 display">
-                    SHADE TO SHADE
+                    <Link className="hover:text-secondary-300" href="/">
+                      SHADE TO SHADE
+                    </Link>
                   </Dialog.Title>
                 </div>
                 <Dialog.Context>
