@@ -1,6 +1,6 @@
 // Next
 import type { Metadata } from "next";
-import { League_Gothic, Outfit } from "next/font/google";
+import { League_Gothic, Outfit, Rubik, Rubik_Dirt } from "next/font/google";
 import "@fontsource/rubik-dirt";
 // @ Locals
 import { cn } from "@/utils/cn";
@@ -20,6 +20,20 @@ const leagueGothic = League_Gothic({
   variable: "--font-league-gothic",
   weight: "400",
   subsets: ["latin"],
+});
+
+import {} from "next/font/google";
+
+const rubik = Rubik({
+  subsets: ["latin"],
+  variable: "--font-rubik",
+  weight: ["400", "500", "600", "700"],
+});
+
+const rubikDirt = Rubik_Dirt({
+  subsets: ["latin"],
+  variable: "--font-rubik-dirt",
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -59,7 +73,7 @@ export default async function RootLayout({
     <html
       lang="en"
       data-theme="hyperinknue"
-      className={`h-full antialiased ${outfit.variable} ${leagueGothic.variable}`}
+      className={`h-full antialiased ${outfit.variable} ${leagueGothic.variable} ${rubik.variable} ${rubikDirt.variable}`}
     >
       <body className={`h-full`}>
         <div className={cn("grid min-h-screen mx-auto grid-rows-[auto_1fr]")}>

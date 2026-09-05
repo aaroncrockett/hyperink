@@ -3,17 +3,26 @@
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-react";
 @import "./hyperinknue.css";
-@import "@fontsource/rubik-dirt";
 
 @theme {
-  /* --font-display: var(--font-league-gothic), "Arial Narrow", Arial, sans-serif; */
   --font-sans-serif: var(--font-outfit), Arial, sans-serif;
-  --font-display: "Rubik Dirt", sans-serif;
+  --font-display: "Rubik", sans-serif;
+  --font-display-secondary: var(--font-rubik-dirt), sans-serif;
 }
 
+body,
+p,
 span {
-  font-family: var(--font-outfit), Arial, sans-serif;
-  @apply text-sm md:text-base text-surface-950-50;
+  @apply font-sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply: font-display;
 }
 
 :root {
