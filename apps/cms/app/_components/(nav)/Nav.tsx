@@ -28,6 +28,7 @@ type NavProps = ComponentPropsWithoutRef<"nav"> & {
   pathname: string;
   showIcon?: boolean;
   ulCls?: string;
+  isSignedIn?: boolean;
 };
 
 export default function Nav({
@@ -43,6 +44,7 @@ export default function Nav({
   pathname,
   showIcon = true,
   ulCls,
+  isSignedIn = false,
   ...props
 }: NavProps) {
   const links =
@@ -50,7 +52,6 @@ export default function Nav({
 
   const flexLayout = dir === "col" ? "flex flex-col" : "flex flex-row";
   // TEMP HARD CODED
-  const isAuthenticated = true;
 
   return (
     <nav
@@ -82,22 +83,22 @@ export default function Nav({
         {!isAdmin && (
           <li>
             <NextLinkWrapper
-              href={isAuthenticated ? ADMIN.href : LOGIN.href}
+              href={isSignedIn ? ADMIN.href : LOGIN.href}
               textColorCls="hover:text-primary-500!"
               className={cn(linkCls, "flex flex-row gap-3 font-bold uppercase")}
             >
               {showIcon &&
-                (isAuthenticated ? (
+                (isSignedIn ? (
                   <Icon name={ADMIN.icon} />
                 ) : (
                   <Icon name={LOGIN.icon} />
                 ))}
 
-              {isAuthenticated ? ADMIN.name : LOGIN.name + " / " + SIGNUP.name}
+              {isSignedIn ? ADMIN.name : LOGIN.name + " / " + SIGNUP.name}
             </NextLinkWrapper>
           </li>
         )}
-        {!isAdmin && <SignOut />}
+        {!isAdmin && isSignedIn && <SignOut />}
       </ul>
     </nav>
   );
