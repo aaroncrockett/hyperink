@@ -76,31 +76,34 @@ export default function Home() {
           >
             No AI. And no future enshitification.
           </Heading>
-          <p className={cn(pCls, darkText)}>
-            Real people to answer your questions, not AI Bots. Lorem ipsum dolor
-            sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-            ea commodo consequat. Duis aute irure dolor in reprehenderit in
-            voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-            officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit
-            amet, consectetur adipiscing elit. Integer vitae justo eget magna
-            fermentum iaculis eu non diam. Aenean sed enim vel sem consequat
-            tincidunt. Curabitur vitae nunc sed velit dignissim sodales ut eu
-            sem. Donec pretium vulputate sapien nec sagittis aliquam malesuada
-            bibendum. Vestibulum morbi blandit cursus risus at ultrices mi
-            tempus imperdiet. Nunc sed blandit libero volutpat sed cras ornare
-            arcu. Aliquam malesuada bibendum arcu vitae elementum curabitur
-            vitae. Pellentesque habitant morbi tristique senectus et netus et
-            malesuada fames. Mauris in aliquam sem fringilla ut morbi tincidunt
-            augue interdum. Eget lorem dolor sed viverra ipsum nunc aliquet
-            bibendum enim. Facilisi etiam dignissim diam quis enim lobortis
-            scelerisque fermentum. Tellus molestie nunc non blandit massa enim
-            nec dui nunc. At ultrices mi tempus imperdiet nulla malesuada
-            pellentesque elit eget. Viverra accumsan in nisl nisi scelerisque eu
-            ultrices vitae. Elementum sagittis vitae et leo duis ut diam quam
-            nulla. Nibh tellus molestie nunc non blandit massa enim nec.
+          <p className={cn(pCls, lightText)}>
+            Real people to answer your questions, not AI Bots.
+          </p>
+          <p className={cn(pCls, lightText)}>
+            Filler text, y&rsquo;all. Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+            esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+            cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum. Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit. Integer vitae justo eget magna fermentum iaculis eu
+            non diam. Aenean sed enim vel sem consequat tincidunt. Curabitur
+            vitae nunc sed velit dignissim sodales ut eu sem. Donec pretium
+            vulputate sapien nec sagittis aliquam malesuada bibendum. Vestibulum
+            morbi blandit cursus risus at ultrices mi tempus imperdiet. Nunc sed
+            blandit libero volutpat sed cras ornare arcu. Aliquam malesuada
+            bibendum arcu vitae elementum curabitur vitae. Pellentesque habitant
+            morbi tristique senectus et netus et malesuada fames. Mauris in
+            aliquam sem fringilla ut morbi tincidunt augue interdum. Eget lorem
+            dolor sed viverra ipsum nunc aliquet bibendum enim. Facilisi etiam
+            dignissim diam quis enim lobortis scelerisque fermentum. Tellus
+            molestie nunc non blandit massa enim nec dui nunc. At ultrices mi
+            tempus imperdiet nulla malesuada pellentesque elit eget. Viverra
+            accumsan in nisl nisi scelerisque eu ultrices vitae. Elementum
+            sagittis vitae et leo duis ut diam quam nulla. Nibh tellus molestie
+            nunc non blandit massa enim nec.
           </p>
         </PageSection>
       </Page>
