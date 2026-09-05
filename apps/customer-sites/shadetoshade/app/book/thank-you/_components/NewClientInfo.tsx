@@ -29,9 +29,8 @@ export default function NewClientInfo() {
           policy, your fee will not be returned.
         </li>
         <li>
-          🖤🖤🖤 I&apos;ll check in to see if you have any questions in a couple
-          days. But I can not book a time until you have paid the booking
-          fee.🖤🖤🖤
+          🖤 I&apos;ll check in to see if you have any questions within a couple
+          days. But I can not book a time until you have paid the booking fee.🖤
         </li>
       </ul>
     </>
