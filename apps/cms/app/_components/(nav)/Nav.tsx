@@ -34,7 +34,7 @@ type NavProps = ComponentPropsWithoutRef<"nav"> & {
 export default function Nav({
   className,
   dir = "col",
-  gapCls = "gap-4",
+  gapCls = "gap-3",
   isAdmin = null,
   layoutOptCls = "justify-center items-center",
   liCls,

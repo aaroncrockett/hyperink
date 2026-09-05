@@ -4,6 +4,8 @@ import { ReactNode } from "react";
 // Skeleton
 import { Dialog, Portal } from "@skeletonlabs/skeleton-react";
 //
+import Link from "next/link";
+//
 import { AnimatedMenuIcon } from "@hyperinkstudio/ui-react-next/components";
 
 type MenuMobileProps = {
@@ -44,8 +46,8 @@ export default function MenuMobile({
             >
               <div className="h-full p-4">
                 <div className="flex items-center justify-between">
-                  <Dialog.Title className="text-5xl  pb-5 text-primary-500 font-display ">
-                    {title}
+                  <Dialog.Title className="text-3xl pb-4 text-primary-500 font-display">
+                    <Link href="/">{title}</Link>
                   </Dialog.Title>
                 </div>
                 <Dialog.Context>

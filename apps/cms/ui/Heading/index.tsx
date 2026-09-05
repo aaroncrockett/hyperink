@@ -33,9 +33,9 @@ export function Heading({
   const h6Size = "text-lg md:text-xl";
 
   if ((LARGE_HEADERS as readonly string[]).includes(as)) {
-    textColor = textColorCls ? textColorCls : "text-tertiary-500";
+    textColor = textColorCls ? textColorCls : "text-tertiary-600";
     fontFace = fontFaceCls ? fontFaceCls : "font-display";
-    uppercase = uppercaseCls ? uppercaseCls : "uppercase";
+    uppercase = uppercaseCls ? uppercaseCls : "";
   }
 
   if ((SMALL_HEADERS as readonly string[]).includes(as)) {

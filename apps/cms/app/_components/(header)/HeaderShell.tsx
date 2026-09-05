@@ -77,7 +77,7 @@ export function HeaderShell({ isSignedIn }: ShellProps) {
           href={getHrefWithSearchParams(HOME.href, searchParams)}
         >
           <Image
-            src="/images/hyperink-lt-grey-green-logo.svg"
+            src="/images/hyperink-lt-green-green-logo.svg"
             alt="Hyperink - Logo"
             width={201}
             height={40}
