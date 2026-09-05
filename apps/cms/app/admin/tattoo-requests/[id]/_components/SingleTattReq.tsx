@@ -50,12 +50,10 @@ export function SingleTattReq({
         })}
         {TATT_REQ_ADMIN_LIST.map(({ id, label }) => {
           return (
-            <>
-              <div className="flex flex-row gap-2" key={id}>
-                <span>{label}</span>
-                <span>{tattRequest[id]}</span>
-              </div>
-            </>
+            <div className="flex flex-row gap-2" key={id}>
+              <span>{label}</span>
+              <span>{tattRequest[id]}</span>
+            </div>
           );
         })}
       </>
