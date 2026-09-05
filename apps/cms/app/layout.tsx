@@ -1,6 +1,7 @@
 // Next
 import type { Metadata } from "next";
 import { League_Gothic, Outfit } from "next/font/google";
+import "@fontsource/rubik-dirt";
 // @ Locals
 import { cn } from "@/utils/cn";
 // Local UI

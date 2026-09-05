@@ -25,6 +25,12 @@ export function Heading({
   let textColor = "";
   let fontFace = "";
   let uppercase = "";
+  const h1Size = "text-3xl md:text-4xl";
+  const h2Size = "text-2xl md:text-3xl";
+  const h3Size = "text-xl md:text-2xl";
+  const h4Size = "text-lg md:text-xl";
+  const h5Size = "text-lg";
+  const h6Size = "text-lg md:text-xl";
 
   if ((LARGE_HEADERS as readonly string[]).includes(as)) {
     textColor = textColorCls ? textColorCls : "text-tertiary-500";
@@ -40,6 +46,12 @@ export function Heading({
 
   return (
     <HeadingUI
+      h1Size={h1Size}
+      h2Size={h2Size}
+      h3Size={h3Size}
+      h4Size={h4Size}
+      h5Size={h5Size}
+      h6Size={h6Size}
       fontFaceCls={fontFace}
       textColorCls={textColor}
       uppercaseCls={uppercase}

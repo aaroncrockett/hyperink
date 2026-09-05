@@ -28,10 +28,10 @@ export default async function AdminLayout({
               paddingCls="px-2 pt-1 lg:pt-4 md:pt-3 lg:px-4 md:px-3"
               marginCls="mx-auto"
             />
-            <main className="flex-1 h-full">{children}</main>
+            <main className="flex-1 h-full bg-surface-100-900">{children}</main>
 
             <footer className="sticky bottom-0 w-full h-auto mx-auto shrink-0 lg:hidden">
-              <LayoutNavFooter className="flex w-full h-full gap-4 p-4 lg:hidden bg-surface-900-100" />
+              <LayoutNavFooter className="flex w-full h-full gap-4 p-4 lg:hidden bg-surface-800-200" />
             </footer>
           </div>
         </div>
