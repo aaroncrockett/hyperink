@@ -72,7 +72,7 @@ export default function RootLayout({
                 {/* shown on md or above */}
                 <DTFooter className="flex-row items-center justify-between hidden w-full text-sm main-padding md:flex bg-primary-500"></DTFooter>
               </main>
-              {/* shown bellow md */}
+              {/* shown below md */}
               <MobileFooterNav className="main-padding sticky bottom-0 flex items-center bg-primary-500! justify-between w-full h-auto mx-auto md:hidden z-20" />
             </div>
           </div>
