@@ -5,10 +5,12 @@ import { signOut } from "@hyperinkstudio/services";
 import { createBrowserClient } from "@/auth/client";
 import { Button } from "@/ui";
 export function SignOut({
+  btnColorCls,
   useButton = true,
   cls,
 }: {
   useButton?: boolean;
+  btnColorCls?: string;
   cls?: string;
 }) {
   const handleSignOut = async () => {
@@ -25,7 +27,9 @@ export function SignOut({
   };
 
   return useButton ? (
-    <Button onClick={handleSignOut}>Sign out</Button>
+    <Button btnColorCls={btnColorCls} onClick={handleSignOut}>
+      Sign out
+    </Button>
   ) : (
     <span
       onKeyDown={(e) => {

@@ -52,7 +52,7 @@ export function HeaderShell({ isSignedIn }: ShellProps) {
 
             {isAdmin && isSignedIn && (
               <div className="hidden lg:block">
-                <SignOut />
+                <SignOut btnColorCls="bg-primary-500 text-surface-950-50" />
               </div>
             )}
 
@@ -73,7 +73,7 @@ export function HeaderShell({ isSignedIn }: ShellProps) {
         }
       >
         <NextLinkWrapper
-          className="w-full h-12 px-2 sm:px-0"
+          className="w-full flex px-2 sm:px-0"
           href={getHrefWithSearchParams(HOME.href, searchParams)}
         >
           <Image
@@ -81,7 +81,7 @@ export function HeaderShell({ isSignedIn }: ShellProps) {
             alt="Hyperink - Logo"
             width={201}
             height={40}
-            className="w-auto h-12 mx-auto"
+            className="w-auto h-auto min-h-12 mx-auto"
             loading="eager"
           />
         </NextLinkWrapper>
