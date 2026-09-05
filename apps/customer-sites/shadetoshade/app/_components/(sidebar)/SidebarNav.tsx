@@ -25,7 +25,7 @@ export default function Nav({ ...props }: NavProps) {
             <li key={link.href}>
               <Link
                 href={getHrefWithSearchParams(link.href, searchParams)}
-                className="flex flex-row items-center gap-2 text-secondary-500 text-lg!  hover:text-secondary-200-800!"
+                className="flex flex-row items-center gap-1 text-secondary-500 text-lg! hover:text-secondary-200-800! md:ml-4"
               >
                 {Icon && <Icon className="w-5 h-5" />}
                 {link.name.toUpperCase()}
