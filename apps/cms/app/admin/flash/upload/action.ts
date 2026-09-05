@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 // Hyperink"
 import { zodIssuesToErrors } from "@hyperinkstudio/utils";
 // @
-import { getUserData } from "@/app/admin/getUserData";
+import { getUserData } from "@/app/getUserData";
 //
 import {
   uploadFlashImage,

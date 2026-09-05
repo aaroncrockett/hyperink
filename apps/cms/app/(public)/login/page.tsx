@@ -1,11 +1,12 @@
-import { login, signup } from "./actions";
+// import { login, signup } from "./actions";
 import SignInWithGoogle from "./WithGoogle";
-import { Button, Input } from "@/ui";
+import { Page, Heading } from "@/ui";
 
 export default function LoginPage() {
   return (
-    <>
-      <form className="w-full max-w-md mx-auto space-y-4">
+    <Page>
+      <div className="flex-col flex justify-center items-center gap-4 bg-secondary-200-800/40 rounded-xl p-4">
+        {/* <form className="w-full max-w-md mx-auto space-y-4">
         <Input name="email" type="email" label="Email" />
 
         <label className="label">
@@ -25,8 +26,13 @@ export default function LoginPage() {
         >
           Sign up
         </Button>
-      </form>
-      <SignInWithGoogle />
-    </>
+      </form> */}
+        <Heading cls="text-center" as="h3">
+          Sign In / Sign Up
+        </Heading>
+        <p className="text-center">More login methods are coming soon!</p>
+        <SignInWithGoogle />
+      </div>
+    </Page>
   );
 }

@@ -7,6 +7,8 @@ import { cn } from "@/utils/cn";
 import "./globals.css";
 import { HeaderShell } from "./_components/(header)/HeaderShell";
 
+import { getUserData } from "@/app/getUserData";
+
 const outfit = Outfit({
   variable: "--font-outfit",
   subsets: ["latin"],
@@ -44,11 +46,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { user } = await getUserData();
+
+  const isSignedIn = !!user;
   return (
     <html
       lang="en"
@@ -57,7 +62,7 @@ export default function RootLayout({
     >
       <body className={`h-full`}>
         <div className={cn("grid min-h-screen mx-auto grid-rows-[auto_1fr]")}>
-          <HeaderShell />
+          <HeaderShell isSignedIn={isSignedIn} />
           {children}
         </div>
       </body>

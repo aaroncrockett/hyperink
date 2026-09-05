@@ -11,6 +11,8 @@ import { NextLinkWrapper } from "@/ui";
 import { getHrefWithSearchParams } from "@hyperinkstudio/utils";
 // local
 import { HOME } from "@/consts";
+//
+import { SignOut } from "@/app/_components/HandleSignout";
 
 const MenuMobile = dynamic(() => import("./MenuMobile"), {
   ssr: false,
@@ -19,8 +21,11 @@ const MenuMobile = dynamic(() => import("./MenuMobile"), {
 import Header from "./Header";
 import Image from "next/image";
 import Nav from "../(nav)/Nav";
+type ShellProps = {
+  isSignedIn: boolean;
+};
 
-export function HeaderShell({}) {
+export function HeaderShell({ isSignedIn }: ShellProps) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const isAdmin = pathname.startsWith("/admin");
@@ -41,6 +46,12 @@ export function HeaderShell({}) {
               />
             </MenuMobile>
 
+            {isAdmin && isSignedIn && (
+              <div>
+                <SignOut />
+              </div>
+            )}
+
             {!isAdmin && (
               <div className="hidden lg:block">
                 <Nav
@@ -48,9 +59,9 @@ export function HeaderShell({}) {
                   pathname={pathname}
                   dir="row"
                   ulCls="lg:justify-end"
-
                   linkCurrentCls="text-surface-300-700! font-bold"
                   linkCls="text-surface-50-950!"
+                  isSignedIn={isSignedIn}
                 />
               </div>
             )}

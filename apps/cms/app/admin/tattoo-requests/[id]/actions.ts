@@ -23,7 +23,7 @@ import {
 //
 import { createSSClient } from "@/auth/server";
 //
-import { getUserData } from "@/app/admin/getUserData";
+import { getUserData } from "@/app/getUserData";
 
 // values
 type TattReqEditableAction = TattReqEditable & ClientTattEditable;
