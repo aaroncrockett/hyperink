@@ -3,7 +3,7 @@ import { Icon } from "@/ui";
 import { Page, Heading } from "@/ui";
 import { INTERNAL_ADMIN_LINKS } from "@/consts";
 
-export function Success() {
+export default function Success() {
   return (
     <Page cls="mx-auto">
       <Heading as="h2">Success!</Heading>A tattoo and client have been created

@@ -50,10 +50,12 @@ export function SingleTattReq({
         })}
         {TATT_REQ_ADMIN_LIST.map(({ id, label }) => {
           return (
-            <div className="flex flex-row gap-2" key={id}>
-              <span>{label}</span>
-              <span>{tattRequest[id]}</span>
-            </div>
+            <>
+              <div className="flex flex-row gap-2" key={id}>
+                <span>{label}</span>
+                <span>{tattRequest[id]}</span>
+              </div>
+            </>
           );
         })}
       </>
@@ -87,31 +89,34 @@ export function SingleTattReq({
             id="flash_id"
             name="flash_id"
             type="hidden"
+            wrapperCls="absolute -z-50 h-0 w-0 hidden"
             value={tattRequest.flash_id ?? ""}
           />
           <Input
             id="flash_name"
             name="flash_name"
             type="hidden"
+            wrapperCls="absolute -z-50 h-0 w-0 hidden"
             value={tattRequest.flash_name ?? ""}
           />
           <Input
             id="tatt_req_id"
             name="tatt_req_id"
             type="hidden"
+            wrapperCls="absolute -z-50 h-0 w-0 hidden"
             value={tattRequest.id ?? ""}
           />
           <Input
             id="client_tattoo_id"
             name="client_tattoo_id"
-            label="client_tattoo_id"
             type="hidden"
+            wrapperCls="absolute -z-50 h-0 w-0 hidden"
             value={tattRequest.client_tattoo_id ?? ""}
           />
         </div>
-        {CLIENT_TATT_ADMIN_LIST.map(({ id, label, ...field }, i) => {
+        {CLIENT_TATT_ADMIN_LIST.map(({ id, label, ...field }) => {
           return (
-            <div key={id + i}>
+            <div key={id}>
               {id === "title" && (
                 <Input
                   id={id}
@@ -123,6 +128,15 @@ export function SingleTattReq({
                   defaultValue={tattRequest.flash_name ?? ""}
                 />
               )}
+              <div className="absolute -z-50 h-0 w-0 ">
+                <Input
+                  defaultValue={(tattRequest[id] as string) ?? ""}
+                  id={id}
+                  name={id}
+                  type="hidden"
+                />
+                {id}
+              </div>
             </div>
           );
         })}
@@ -131,6 +145,15 @@ export function SingleTattReq({
             <div className="flex flex-row gap-2" key={id}>
               <span>{label}</span>
               <span>{tattRequest[id]}</span>
+              {id}
+              <div className="absolute -z-50 h-0 w-0 hidden">
+                <Input
+                  defaultValue={(tattRequest[id] as string) ?? ""}
+                  id={id}
+                  name={id}
+                  type="hidden"
+                />
+              </div>
             </div>
           );
         })}
