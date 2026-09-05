@@ -59,6 +59,24 @@ export default function Nav({
       {...props}
     >
       <ul className={cn(flexLayout, gapCls, layoutOptCls, ulCls)}>
+        {!isAdmin && (
+          <li className="lg:hidden inline-block">
+            <NextLinkWrapper
+              href={isSignedIn ? ADMIN.href : LOGIN.href}
+              textColorCls="hover:text-primary-500!"
+              className={cn(linkCls, "flex flex-row gap-3 font-bold uppercase")}
+            >
+              {showIcon &&
+                (isSignedIn ? (
+                  <Icon name={ADMIN.icon} />
+                ) : (
+                  <Icon name={LOGIN.icon} />
+                ))}
+
+              {isSignedIn ? ADMIN.name : LOGIN.name + " / " + SIGNUP.name}
+            </NextLinkWrapper>
+          </li>
+        )}
         {links.map((link) => {
           return (
             <li
@@ -81,7 +99,7 @@ export default function Nav({
           );
         })}
         {!isAdmin && (
-          <li>
+          <li className="hidden lg:inline-block">
             <NextLinkWrapper
               href={isSignedIn ? ADMIN.href : LOGIN.href}
               textColorCls="hover:text-primary-500!"
@@ -98,7 +116,15 @@ export default function Nav({
             </NextLinkWrapper>
           </li>
         )}
-        {!isAdmin && isSignedIn && <SignOut />}
+        {isAdmin && isSignedIn && (
+          <span className="flex flex-row gap-2">
+            <Icon cls="md:hidden" name="logout" color="white" />
+            <SignOut
+              cls={cn(linkCls, "font-bold uppercase")}
+              useButton={false}
+            />
+          </span>
+        )}
       </ul>
     </nav>
   );

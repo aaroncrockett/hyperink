@@ -36,19 +36,22 @@ export function HeaderShell({ isSignedIn }: ShellProps) {
         isAdmin={isAdmin}
         tail={
           <>
-            <MenuMobile className="block lg:hidden 0" title="HyperInk">
-              <Nav
-                className="flex w-auto h-full lg:hidden"
-                isAdmin={isAdmin}
-                pathname={pathname}
-                linkCls="text-surface-50!"
-                linkCurrentCls="text-primary-300!"
-                layoutOptCls="items-start"
-              />
+            <MenuMobile className="lg:hidden block" title="HyperInk">
+              <div className="flex h-full flex-col">
+                <Nav
+                  className="flex w-auto flex-1 h-full lg:hidden"
+                  isAdmin={isAdmin}
+                  pathname={pathname}
+                  linkCls="text-surface-50!"
+                  linkCurrentCls="text-primary-300!"
+                  layoutOptCls="items-start"
+                  isSignedIn={isSignedIn}
+                />
+              </div>
             </MenuMobile>
 
             {isAdmin && isSignedIn && (
-              <div>
+              <div className="hidden lg:block">
                 <SignOut />
               </div>
             )}
