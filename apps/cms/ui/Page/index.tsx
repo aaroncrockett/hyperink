@@ -12,7 +12,7 @@ export function Page({
   sectional = false,
   ...props
 }: PageProps) {
-  const defaultBgColorCls = "bg-surface-50=950";
+  const defaultBgColorCls = "bg-surface-50-950";
   let computedWrapperBgColorCls = "";
 
   if (sectional) {
