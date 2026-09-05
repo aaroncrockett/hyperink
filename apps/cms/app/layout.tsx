@@ -20,15 +20,15 @@ const leagueGothic = League_Gothic({
 });
 
 export const metadata: Metadata = {
-  title: "HyperInk: Tattoo Booking & Client Records",
+  title: "HyperInk: Tattoo Booking & Client Records.",
   description: "Tattoo Artists in Portland Oregon",
   icons: {
     icon: "/favicon.svg",
   },
   openGraph: {
-    title: "HyperInk Tattoo Booking - Tattoo Artist in Portland, OR.",
+    title: "HyperInk: Tattoo Booking & Client Records.",
     description:
-      "Tattoo Booking and Client Records Web App - Mobile and Desktop. Owned and created by Artists.",
+      "Tattoo Booking and Client Records Web App - Mobile & Desktop. Run & created by Artists.",
     url: "https://hyperink.studio",
     siteName: "HyperInk Tattoo Booking & Client Records",
     locale: "en_US",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
         url: "https://hyperink.studio/images/hyperink-card-display-logo.webp",
         width: 1000,
         height: 800,
-        alt: "HyperInk Tattoo Booking & Client Records",
+        alt: "HyperInk Tattoo Booking & Client Records.",
       },
     ],
   },
