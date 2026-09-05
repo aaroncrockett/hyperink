@@ -10,7 +10,7 @@ import { Icon } from "@/ui/Icon";
 // import { ChevronDownIcon } from "lucide-react";
 
 import { CreditCard } from "./_components/CreditCard";
-import { VenmoCash } from "./_components/VenmoCash";
+import { VenmoCash } from "@/app/_components/VenmoCash";
 import { Contact } from "./_components/Contact";
 
 const componentMap = {

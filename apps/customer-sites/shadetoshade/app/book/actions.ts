@@ -4,11 +4,20 @@ import { z } from "zod";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 //
-import { createTattooRequest, FLASH_NAME } from "@/business/tattooRequest";
 import { zodIssuesToErrors } from "@hyperinkstudio/utils";
-import { createServiceClient } from "@/auth/serviceClient";
+import type { TattooRequest } from "@hyperinkstudio/services";
 //
-import { TATT_REQ_BODY, TYPE_FIELD, FLASH_ID } from "@/business/tattooRequest";
+import {
+  createTattooRequest,
+  FLASH_NAME,
+  TATT_REQ_BODY,
+  TYPE_FIELD,
+  FLASH_ID,
+} from "@/business/tattooRequest";
+import { createServiceClient } from "@/auth/serviceClient";
+import { sendEmail } from "@/utils/email";
+//
+import { customerEmail } from "./helpers";
 
 export type TattRequestFormState = {
   errors: Record<string, string> | null;
@@ -46,11 +55,11 @@ export async function createTattooRequestAction(
 
   const serviceClient = createServiceClient();
 
-  const tattRequestValues = parsedReq.data;
+  const tattRequestValues = parsedReq.data as TattooRequest;
 
   const tattRequestData = {
-    user_id: process.env.ARTIST_ID!,
     ...tattRequestValues,
+    user_id: process.env.ARTIST_ID!,
   };
 
   const result = await createTattooRequest(serviceClient, tattRequestData);
@@ -71,6 +80,23 @@ export async function createTattooRequestAction(
       tattooRequest: "tattoo request results were undefined or null",
     };
   }
+
+  await sendEmail({
+    to: tattRequestData?.email,
+    subject: "Thanks for reaching out!",
+    html: `
+        ${customerEmail()}
+    `,
+  });
+
+  await sendEmail({
+    to: process.env.SENDER_EMAIL!,
+    subject: "An email was sent to a client!",
+    html: `
+        ${customerEmail()}
+    `,
+  });
+
   revalidatePath("/book");
   redirect("/book/thank-you");
 }
