@@ -6,6 +6,7 @@ import type {
   OAuthResponse,
   UserResponse,
   SignInWithOAuthCredentials,
+  SignOut,
 } from "@supabase/supabase-js";
 
 import type { FileObject, StorageError } from "@supabase/storage-js";
@@ -26,6 +27,10 @@ export type SignUp = (
   authedClient: SupabaseClient,
   data: SignInWithPasswordCredentials,
 ) => Promise<AuthResponse>;
+
+export type SignOut = (
+  authedClient: SupabaseClient,
+) => ReturnType<SupabaseClient["auth"]["signOut"]>;
 
 export type ExchangeCodeForSession = (
   authedClient: SupabaseClient,

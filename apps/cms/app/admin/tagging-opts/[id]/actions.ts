@@ -1,7 +1,7 @@
 "use server";
 import z from "zod";
 // @/app
-import { getUserData } from "@/app/admin/getUserData";
+import { getUserData } from "@/app/getUserData";
 
 // @/db
 import {

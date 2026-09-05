@@ -6,7 +6,7 @@ import { LayoutNavWrapper } from "./_components/layout/LayoutNavWrapper";
 import { LayoutNavFooter } from "./_components/layout/LayoutNavFooter";
 import { LayoutSubNav } from "./_components/layout/LayoutSubNav";
 // Locals
-import { getUserData } from "./getUserData";
+import { getUserData } from "../getUserData";
 
 export default async function AdminLayout({
   children,

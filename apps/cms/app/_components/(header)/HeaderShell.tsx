@@ -11,6 +11,8 @@ import { NextLinkWrapper } from "@/ui";
 import { getHrefWithSearchParams } from "@hyperinkstudio/utils";
 // local
 import { HOME } from "@/consts";
+//
+import { SignOut } from "@/app/_components/HandleSignout";
 
 const MenuMobile = dynamic(() => import("./MenuMobile"), {
   ssr: false,
@@ -41,6 +43,12 @@ export function HeaderShell({}) {
               />
             </MenuMobile>
 
+            {isAdmin && (
+              <div>
+                <SignOut />
+              </div>
+            )}
+
             {!isAdmin && (
               <div className="hidden lg:block">
                 <Nav
@@ -48,7 +56,6 @@ export function HeaderShell({}) {
                   pathname={pathname}
                   dir="row"
                   ulCls="lg:justify-end"
-
                   linkCurrentCls="text-surface-300-700! font-bold"
                   linkCls="text-surface-50-950!"
                 />

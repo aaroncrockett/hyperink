@@ -3,6 +3,7 @@ import type {
   GetUser,
   SignInWithPassword,
   SignUp,
+  SignOut,
   VerifyOtp,
   SignInWithOAuth,
 } from "./server/types";
@@ -17,6 +18,9 @@ export const signInWithPassword: SignInWithPassword = async (client, data) => {
 
 export const signUp: SignUp = async (client, data) => {
   return client.auth.signUp(data);
+};
+export const signOut: SignOut = async (client) => {
+  return client.auth.signOut();
 };
 export const signInWithOAuth: SignInWithOAuth = async (client, data) => {
   return client.auth.signInWithOAuth(data);

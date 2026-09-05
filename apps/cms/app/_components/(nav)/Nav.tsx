@@ -12,6 +12,7 @@ import {
   SIGNUP,
   ADMIN,
 } from "@/consts";
+import { SignOut } from "@/app/_components/HandleSignout";
 import { NextLinkWrapper } from "@/ui";
 //
 import { Icon } from "@/ui/";
@@ -19,6 +20,7 @@ type NavProps = ComponentPropsWithoutRef<"nav"> & {
   dir?: "col" | "row";
   gapCls?: string;
   isAdmin?: boolean | null;
+  layoutOptCls?: string;
   liCls?: string;
   linkCls?: string;
   liCurrentCls?: string;
@@ -33,6 +35,7 @@ export default function Nav({
   dir = "col",
   gapCls = "gap-4",
   isAdmin = null,
+  layoutOptCls = "justify-center items-center",
   liCls,
   liCurrentCls,
   linkCurrentCls,
@@ -54,7 +57,7 @@ export default function Nav({
       className={cn("col-start-1 row-start-1 row-span-3", className)}
       {...props}
     >
-      <ul className={cn(flexLayout, gapCls, ulCls)}>
+      <ul className={cn(flexLayout, gapCls, layoutOptCls, ulCls)}>
         {links.map((link) => {
           return (
             <li
@@ -94,6 +97,7 @@ export default function Nav({
             </NextLinkWrapper>
           </li>
         )}
+        {!isAdmin && <SignOut />}
       </ul>
     </nav>
   );
