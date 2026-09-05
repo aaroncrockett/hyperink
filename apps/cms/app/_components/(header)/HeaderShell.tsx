@@ -38,11 +38,12 @@ export function HeaderShell({ isSignedIn }: ShellProps) {
           <>
             <MenuMobile className="block lg:hidden 0" title="HyperInk">
               <Nav
-                className="flex w-auto h-full lg:hidden "
+                className="flex w-auto h-full lg:hidden"
                 isAdmin={isAdmin}
                 pathname={pathname}
                 linkCls="text-surface-50!"
                 linkCurrentCls="text-primary-300!"
+                layoutOptCls="items-start"
               />
             </MenuMobile>
 
