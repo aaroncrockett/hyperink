@@ -14,7 +14,7 @@ export function Contact() {
         <span>💅✨.</span>
 
         <Heading cls="text-center" textColorCls="text-secondary-500" as="h2">
-          More info about me in the links bellow!
+          More info about me in the links below!
         </Heading>
 
         <span>✨💅</span>
@@ -23,7 +23,7 @@ export function Contact() {
         <p className="display text-2xl md:text-3xl">
           Website chat coming soon.
         </p>
-        <p>In the meantime feel free to reach out bellow or on social media:</p>
+        <p>In the meantime feel free to reach out below or on social media:</p>
         <p>{minorProtection}</p>
       </div>
 
