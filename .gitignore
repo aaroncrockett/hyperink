@@ -1,0 +1,64 @@
+# Node / dependencies
+node_modules/
+.pnp/
+.pnp.cjs
+.pnpm-debug.log*
+
+# pnpm store (optional if inside repo)
+.pnpm-store/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+lerna-debug.log*
+pnpm-debug.log*
+logs
+*.log
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# Build output
+dist/
+build/
+out/
+
+# Next.js
+.next/
+.next-static/
+.next-tmp/
+.next/cache/
+.vercel/
+
+# Tests / coverage
+coverage/
+*.lcov
+
+# Env files
+.env
+.env.*.local
+.env.local
+.env.test
+.env.development
+.env.production
+
+# Local Supabase config (if any)
+.supabase/
+supabase/.temp/
+supabase/.branches/
+
+
+# TypeScript
+*.tsbuildinfo
+
+# Misc
+*.swp
+*.swo
+
+# Ignore the ghost directory and everything inside
+ghost/
