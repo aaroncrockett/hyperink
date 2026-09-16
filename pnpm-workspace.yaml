@@ -2,3 +2,4 @@ packages:
   - "apps/cms"
   - "apps/sites/*"
   - "packages/*"
+  - "packages/ui/*"

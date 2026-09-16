@@ -9,12 +9,15 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@hyperink/utils": "workspace:*",
+    "@hyperink/ui-react": "workspace:*",
     "next": "16.3.5",
     "react": "19.2.8",
-    "react-dom": "19.2.8",
-    "@hyperink/utils": "workspace:*"
+    "react-dom": "19.2.8"
   },
   "devDependencies": {
+    "@skeletonlabs/skeleton": "^5.0.1",
+    "@skeletonlabs/skeleton-react": "^5.0.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

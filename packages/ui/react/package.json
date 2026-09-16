@@ -1,0 +1,27 @@
+{
+  "name": "@hyperink/ui-react",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "check": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": "^19",
+    "react-dom": "^19",
+    "motion": "^13.1.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@hyperink/utils": "workspace:*",
+    "@skeletonlabs/skeleton": "^4.12.1",
+    "@skeletonlabs/skeleton-react": "^4.12.1",
+    "lucide-react": "^0.577.0"
+  }
+}
