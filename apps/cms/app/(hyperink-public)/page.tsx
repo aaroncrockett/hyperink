@@ -1,5 +1,3 @@
-import Image from "next/image";
-//
 import { cn } from "@hyperink/utils";
 //
 import { Page, PageSection } from "@hyperink/ui-react/components";
