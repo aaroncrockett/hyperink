@@ -3,10 +3,25 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev:cms": "PORT=3000 pnpm --filter cms dev",
+    "dev:s2s": "PORT=3001 pnpm --filter shade-to-shade dev",
+    "dev:tools": "pnpm --filter tools dev",
+    "build": "pnpm --recursive --aggregate-output build",
+    "lint": "pnpm --recursive --aggregate-output lint",
+    "test": "pnpm --recursive --aggregate-output test",
+    "check": "pnpm --recursive --aggregate-output check",
+    "format": "pnpm --recursive --aggregate-output format",
+    "format:check": "pnpm --recursive --aggregate-output format:check"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "eslint": "^9.0.0",
+    "prettier": "^3.3.0",
+    "vitest": "^2.0.0"
+  },
+  "engines": {
+    "node": "24.x",
+    "pnpm": "10.28.0"
+  },
   "packageManager": "pnpm@10.28.0"
 }

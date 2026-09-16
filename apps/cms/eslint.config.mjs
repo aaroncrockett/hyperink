@@ -5,6 +5,15 @@ import nextTs from "eslint-config-next/typescript";
 const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
+
+  // unsure if this is needed. remove if not needed
+  // {
+  //   settings: {
+  //     next: {
+  //       rootDir: "apps/cms",
+  //     },
+  //   },
+  // },
   // Override default ignores of eslint-config-next.
   globalIgnores([
     // Default ignores of eslint-config-next:
