@@ -1,10 +1,35 @@
-// Next
+//
 import type { Metadata } from "next";
-
-// @ Locals
+import { League_Gothic, Outfit, Rubik, Rubik_Dirt } from "next/font/google";
+import "@fontsource/rubik-dirt";
+//
 import { cn } from "@hyperink/utils";
-// Local UI
+//
 import "./globals.css";
+
+const outfit = Outfit({
+  variable: "--font-outfit",
+  subsets: ["latin"],
+  weight: ["100", "300", "500", "700", "900"],
+});
+
+const leagueGothic = League_Gothic({
+  variable: "--font-league-gothic",
+  weight: "400",
+  subsets: ["latin"],
+});
+
+const rubik = Rubik({
+  subsets: ["latin"],
+  variable: "--font-rubik",
+  weight: ["400", "500", "600", "700"],
+});
+
+const rubikDirt = Rubik_Dirt({
+  subsets: ["latin"],
+  variable: "--font-rubik-dirt",
+  weight: "400",
+});
 
 export const metadata: Metadata = {
   title: "HyperInk: Tattoo Booking & Client Records.",
@@ -37,7 +62,11 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-theme="hyperinknue" className={`h-full antialiased `}>
+    <html
+      lang="en"
+      data-theme="hyperinknue"
+      className={`h-full antialiased ${outfit.variable} ${leagueGothic.variable} ${rubik.variable} ${rubikDirt.variable}`}
+    >
       <body className={`h-full`}>
         <div className={cn("grid min-h-screen mx-auto grid-rows-[auto_1fr]")}>
           {children}

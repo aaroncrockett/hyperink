@@ -13,7 +13,10 @@
     "@hyperink/ui-react": "workspace:*",
     "next": "16.3.5",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "lucide-react": "^0.577.0",
+    "motion": "^13.1.1",
+    "@fontsource/rubik-dirt": "^5.3.0"
   },
   "devDependencies": {
     "@skeletonlabs/skeleton": "^5.0.1",

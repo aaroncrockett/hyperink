@@ -3,3 +3,29 @@
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-react";
 @import "./hyperinknue.css";
+
+@theme {
+  --font-sans-serif: var(--font-outfit), Arial, sans-serif;
+  --font-display: "Rubik", sans-serif;
+  --font-display-secondary: var(--font-rubik-dirt), sans-serif;
+}
+
+@layer base {
+  body,
+  p,
+  span {
+    @apply font-sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display;
+  }
+  h1 {
+    @apply text-4xl md:text-5xl;
+  }
+}
