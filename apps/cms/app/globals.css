@@ -32,6 +32,6 @@
 
 @layer utility {
   button {
-    @apply p-3 rounded-sm preset-filled-secondary-500;
+    @apply p-3 rounded-sm btn preset-filled-secondary-500;
   }
 }
