@@ -9,14 +9,15 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@hyperink/utils": "workspace:*",
     "@hyperink/ui-react": "workspace:*",
-    "next": "16.3.5",
-    "react": "19.2.8",
-    "react-dom": "19.2.8",
+    "@hyperink/utils": "workspace:*",
+    "@hyperink/service-providers": "workspace:*",
+    "@fontsource/rubik-dirt": "^5.3.0",
     "lucide-react": "^0.577.0",
     "motion": "^13.1.1",
-    "@fontsource/rubik-dirt": "^5.3.0"
+    "next": "16.3.5",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
   },
   "devDependencies": {
     "@skeletonlabs/skeleton": "^5.0.1",
