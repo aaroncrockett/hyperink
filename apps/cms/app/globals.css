@@ -14,7 +14,7 @@
   body,
   p,
   span {
-    @apply font-sans-serif;
+    @apply font-sans-serif text-surface-950-50;
   }
 
   h1,
@@ -23,9 +23,15 @@
   h4,
   h5,
   h6 {
-    @apply font-display;
+    @apply font-display text-surface-800-200;
   }
   h1 {
     @apply text-4xl md:text-5xl;
+  }
+}
+
+@layer utility {
+  button {
+    @apply p-3 rounded-sm preset-filled-secondary-500;
   }
 }
