@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@hyperink/api": "workspace:*",
     "@hyperink/ui-react": "workspace:*",
     "@hyperink/utils": "workspace:*",
     "@hyperink/service-providers": "workspace:*",
