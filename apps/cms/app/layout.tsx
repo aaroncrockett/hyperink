@@ -6,6 +6,7 @@ import "@fontsource/rubik-dirt";
 import { cn } from "@hyperink/utils";
 //
 import "./globals.css";
+import { Toaster } from "./_components/Toaster";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -68,8 +69,9 @@ export default async function RootLayout({
       className={`h-full antialiased ${outfit.variable} ${leagueGothic.variable} ${rubik.variable} ${rubikDirt.variable}`}
     >
       <body className={`h-full`}>
-        <div className={cn("grid min-h-screen mx-auto grid-rows-[auto_1fr]")}>
+        <div className={cn("grid grid-rows-[auto_1fr] mx-auto min-h-screen")}>
           {children}
+          <Toaster />
         </div>
       </body>
     </html>
