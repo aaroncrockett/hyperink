@@ -1,15 +1,15 @@
-// create or get client
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { createBrowserClient as createClient } from "@supabase/ssr";
+import type { Database } from "./types";
 
-let client: SupabaseClient;
+let client: SupabaseClient<Database>;
 
 export const createBrowserClient = (
   publicURL: string,
   publicKey: string,
-): SupabaseClient => {
+): SupabaseClient<Database> => {
   if (!client) {
-    client = createClient(publicURL, publicKey);
+    client = createClient<Database>(publicURL, publicKey);
   }
 
   return client;

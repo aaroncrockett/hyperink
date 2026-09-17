@@ -6,7 +6,7 @@ import type {
   SignOut,
   VerifyOtp,
   SignInWithOAuth,
-} from "./server/types";
+} from "./types";
 
 export const verifyOtp: VerifyOtp = async (client, data) => {
   return client.auth.verifyOtp(data);

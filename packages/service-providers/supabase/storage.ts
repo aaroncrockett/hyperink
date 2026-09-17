@@ -1,13 +1,11 @@
 import { SupabaseClient } from "@supabase/supabase-js";
-import type { RemoveFile, UploadFile, GetPublicURL } from "./server/types";
+import type { RemoveFile, UploadFile, GetPublicURL } from "./types";
 
 export const uploadFile: UploadFile = async (
-  authedClient: SupabaseClient,
+  client: SupabaseClient,
   { bucket, path, file },
 ) => {
-  const { data, error } = await authedClient.storage
-    .from(bucket)
-    .upload(path, file);
+  const { data, error } = await client.storage.from(bucket).upload(path, file);
 
   if (error) {
     return { data: null, error };
@@ -17,12 +15,10 @@ export const uploadFile: UploadFile = async (
 };
 
 export const removeFile: RemoveFile = async (
-  authedClient: SupabaseClient,
+  client: SupabaseClient,
   { bucket, path },
 ) => {
-  const { data, error } = await authedClient.storage
-    .from(bucket)
-    .remove([path]);
+  const { data, error } = await client.storage.from(bucket).remove([path]);
 
   if (error) {
     return { data: null, error };
@@ -32,10 +28,10 @@ export const removeFile: RemoveFile = async (
 };
 
 export const getPublicUrl: GetPublicURL = async (
-  authedClient: SupabaseClient,
+  client: SupabaseClient,
   { bucket, path },
 ) => {
-  const { data } = await authedClient.storage.from(bucket).getPublicUrl(path);
+  const { data } = await client.storage.from(bucket).getPublicUrl(path);
 
   return { data: data ?? [], error: null };
 };

@@ -1,5 +1,5 @@
+import type { Database } from "./types";
 import { createClient } from "@supabase/supabase-js";
 
-export function createServiceClient(dbUrl: string, serviceKey: string) {
-  return createClient(dbUrl, serviceKey);
-}
+export const createServiceClient = (dbUrl: string, serviceKey: string) =>
+  createClient<Database>(dbUrl, serviceKey);
