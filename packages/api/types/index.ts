@@ -1,5 +1,6 @@
 import { MergeDeep } from "type-fest";
-import { Database as DatabaseGenerated } from "@hyperink/service-providers";
+import type { Database as DatabaseGenerated } from "@hyperink/service-providers";
+export type { Tables } from "@hyperink/service-providers";
 import { CustomFlashRow as CustomFlashRowSrc } from "./flash";
 export type { FlashTagging, FlashUIRow } from "./flash";
 
