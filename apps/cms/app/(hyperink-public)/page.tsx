@@ -12,7 +12,7 @@ export default function Home() {
       <div
         className="bg-cover bg-center bg-fixed w-full"
         style={{
-          backgroundImage: "url('/images/hp/hp-intro.webp')",
+          backgroundImage: "url('/hp/hp-intro.webp')",
         }}
       >
         <PageSection
