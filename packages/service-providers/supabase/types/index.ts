@@ -1,2 +1,2 @@
-export * from "./exported-supabase";
+export * from "./supabase-index";
 export * from "./supabase-js";

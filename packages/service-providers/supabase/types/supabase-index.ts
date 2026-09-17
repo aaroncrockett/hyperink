@@ -1,11 +1,18 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { User } from "@supabase/supabase-js";
-import type { Database as DatabaseSrc, Tables } from "./supabase";
+import type { Database as DatabaseSrc } from "./supabase";
 
-export type Client = SupabaseClient<Database>;
+export type { Tables } from "./supabase";
+export type Client = SupabaseClient<DatabaseSrc>;
 export type AuthUser = User;
-
 export type Database = DatabaseSrc;
+export type Json =
+  | string
+  | number
+  | boolean
+  | null
+  | { [key: string]: Json | undefined }
+  | Json[];
 
 export interface Cookies {
   cookies: {

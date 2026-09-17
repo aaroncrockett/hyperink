@@ -1,0 +1,2 @@
+ALTER TABLE public.flash
+  ALTER COLUMN styles DROP NOT NULL;

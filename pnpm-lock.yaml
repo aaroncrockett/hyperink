@@ -29,6 +29,9 @@ importers:
       '@fontsource/rubik-dirt':
         specifier: ^5.3.0
         version: 5.3.0
+      '@hyperink/api':
+        specifier: workspace:*
+        version: link:../../packages/api
       '@hyperink/service-providers':
         specifier: workspace:*
         version: link:../../packages/service-providers
@@ -127,6 +130,15 @@ importers:
       typescript:
         specifier: ^5
         version: 5.9.3
+
+  packages/api:
+    dependencies:
+      '@hyperink/service-providers':
+        specifier: workspace:*
+        version: link:../service-providers
+      '@hyperink/utils':
+        specifier: workspace:*
+        version: link:../utils
 
   packages/service-providers:
     dependencies:
