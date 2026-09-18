@@ -31,7 +31,13 @@
 }
 
 @layer utility {
-  button {
+  .hyper-btn {
     @apply p-3 rounded-sm btn preset-filled-secondary-500;
+  }
+  .hyper-btn-base {
+    @apply p-3 rounded-sm btn;
+  }
+  button {
+    @apply cursor-pointer;
   }
 }

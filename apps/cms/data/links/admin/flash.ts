@@ -1,4 +1,4 @@
-import { ADMIN_ROOT } from "../index";
+import { ADMIN_ROOT } from "./root";
 
 const FLASH_ID = "flash";
 export const ROOT = {

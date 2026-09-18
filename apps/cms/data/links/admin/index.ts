@@ -1,5 +1,6 @@
+import { ADMIN_ROOT } from "./root";
+
 import { FLASH_LINKS } from "./flash";
-export const ADMIN_ROOT = "/admin";
 
 export const ADMIN = {
   href: ADMIN_ROOT,

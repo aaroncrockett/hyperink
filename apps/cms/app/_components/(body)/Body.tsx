@@ -1,7 +1,7 @@
 import type { ComponentPropsWithoutRef } from "react";
 //
-import { HeaderShell } from "../(header)/HeaderShell";
 import { cn } from "@hyperink/utils";
+import { HeaderShell } from "../(header)/HeaderShell";
 import { Toaster } from "../Toaster";
 
 type BodyProps = ComponentPropsWithoutRef<"body"> & {
