@@ -1,8 +1,7 @@
 import {
   Client,
-  Tables,
   Database,
-  QueryData,
+  Where,
   // Where,
   // AllowedTable,
   // AppTables,
@@ -22,24 +21,22 @@ export function createSupabaseQueries<T extends KeyOfTables>(table: T) {
 
       const query = client.from(table).select(select);
 
-      type GenericQuery = QueryData<typeof query>;
-
       return query;
     },
 
-    // sbGetWhere(
-    //   client: Client,
-    //   selectKeys: (keyof AppTables[T] & string)[],
-    //   where: Where<T>[],
-    // ) {
-    //   let query = this.sbGet(client, selectKeys);
+    sbGetWhere<K extends KeyOfColumns<T>>(
+      client: Client,
+      selectKeys: KeyOfColumns<T>[],
+      where: Where<T, K>[],
+    ) {
+      let query = this.sbGet(client, selectKeys);
 
-    //   for (const condition of where) {
-    //     query = query.eq(condition.columnKey as any, condition.value!);
-    //   }
+      for (const condition of where) {
+        query = query.eq(condition.columnKey as any, condition.value!);
+      }
 
-    //   return query;
-    // },
+      return query;
+    },
 
     // sbGetOverlapping(
     //   client: Client,

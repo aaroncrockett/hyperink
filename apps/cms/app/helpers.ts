@@ -14,7 +14,7 @@ export type AuthMetadata = {
 type GetType = "user" | "profile" | "user-profile";
 
 export const getUserData = cache(
-  async (getType: GetType = "user", getMetaAuthMetadata: boolean = false) => {
+  async (getType: GetType = "user", getMetaData: boolean = false) => {
     const dbClient = await createSSClient();
     const {
       data: { user },
@@ -32,9 +32,8 @@ export const getUserData = cache(
     }
 
     if (getType === "profile" || getType === "user-profile") {
-      console.log(getMetaAuthMetadata);
       // const profileData = getProfileData(dbClient, user);
-      // const authMetadata = getMetaAuthMetadata ? profileData.authMetadata : null;
+      // const authMetadata = getMetaData ? profileData.authMetadata : null;
       // if (getType === "profile") {
       //   return {
       //     profile: profile,

@@ -140,6 +140,12 @@ importers:
         specifier: workspace:*
         version: link:../utils
 
+  packages/data-helpers:
+    dependencies:
+      zod:
+        specifier: ^4.4.3
+        version: 4.6.5
+
   packages/service-providers:
     dependencies:
       '@hyperink/service-providers':
