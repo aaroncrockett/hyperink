@@ -1,6 +1,6 @@
 import "./globals.css";
-import { outfit, leagueGothic, rubik, rubikDirt } from "./(data)/index";
-export { metadata } from "./(data)/index";
+import { outfit, leagueGothic, rubik, rubikDirt } from "./_data/index";
+export { metadata } from "./_data/index";
 import { getUserData } from "./helpers";
 import { Body } from "./_components/(body)/Body";
 

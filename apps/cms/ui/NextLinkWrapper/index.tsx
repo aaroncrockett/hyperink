@@ -20,7 +20,7 @@ export function NextLinkWrapper({
     <Link
       key={props.href + "nextlinkwrapper"}
       // transitionTypes={[transition]}
-      className={cn(textColorCls, props.className)}
+      className={cn(textColorCls)}
       {...props}
     >
       {children}
