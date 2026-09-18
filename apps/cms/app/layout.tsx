@@ -1,7 +1,7 @@
 import "./globals.css";
-import { outfit, leagueGothic, rubik, rubikDirt } from "./_data/index";
-export { metadata } from "./_data/index";
-import { getUserData } from "./helpers";
+import { outfit, leagueGothic, rubik, rubikDirt } from "./_data";
+export { metadata } from "./_data";
+import { getUserData } from "./_helpers";
 import { Body } from "./_components/(body)/Body";
 
 export default async function RootLayout({
