@@ -33,6 +33,8 @@ I am the sole developer for HyperInk.
 
 This project has git hub Issues and a git workflow which I don't follow religiously. But is intenteded to establish structure as the project grows.
 
+Notes (sort of a pre-docs) contain docs for the git workflow
+
 This is a re-develop of an earlier version.
 
 ### Project Growth
