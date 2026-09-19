@@ -1,35 +1,40 @@
 import {
   Client,
   Database,
-  Where,
   // Where,
   // AllowedTable,
   // AppTables,
 } from "@hyperink/service-providers";
 
+import type {
+  UiDbMapping,
+  KeyOfTables,
+  KeyOfColumns,
+  KeyOfColumnsUI,
+  KeyOfTablesUI,
+  Where,
+} from "../types";
+
 const extractSelect = (selectKeys: string[]) =>
   selectKeys.length ? selectKeys.join(",") : "*";
 
-type KeyOfTables = keyof Database["public"]["Tables"];
-type KeyOfColumns<T extends KeyOfTables> =
-  keyof Database["public"]["Tables"][T]["Row"];
-
-export function createSupabaseQueries<T extends KeyOfTables>(table: T) {
+export function createSupabaseQueries<T extends KeyOfTables | KeyOfTablesUI>(
+  table: T,
+  uiDbMapping: UiDbMapping | null,
+) {
   return {
-    sbGet(client: Client, selectKeys: KeyOfColumns<T>[]) {
-      const select = extractSelect(selectKeys.map(String));
+    sbGetWhere(client: Client, selectKeys: string[], where: Where[]) {
+      let internalSelectKeys = [];
 
-      const query = client.from(table).select(select);
+      internalSelectKeys = uiDbMapping
+        ? selectKeys.map((key) => {
+            return uiDbMapping.toDb;
+          })
+        : selectKeys;
 
-      return query;
-    },
+      const select = extractSelect(internalSelectKeys.map(String));
 
-    sbGetWhere<K extends KeyOfColumns<T>>(
-      client: Client,
-      selectKeys: KeyOfColumns<T>[],
-      where: Where<T, K>[],
-    ) {
-      let query = this.sbGet(client, selectKeys);
+      let query = client.from(table).select(select);
 
       for (const condition of where) {
         query = query.eq(condition.columnKey as any, condition.value!);

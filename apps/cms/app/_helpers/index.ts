@@ -2,6 +2,8 @@ import { cache } from "react";
 import { createSSClient, getAuthedUser } from "@/auth/server";
 // import type { AuthUser, Client } from "@hyperink/service-providers";
 
+import { getUserProfile } from "@hyperink/helpers/profile";
+
 export type AuthMetadata = {
   provider: string;
   isEmailVerified: boolean;
@@ -14,47 +16,62 @@ export type AuthMetadata = {
 type GetType = "user" | "profile" | "user-profile";
 
 export const getUserData = cache(
-  async (getType: GetType = "user", getMetaData: boolean = false) => {
+  async (getType: GetType = "user", getMetaData = false) => {
     const dbClient = await createSSClient();
+
     const {
       data: { user },
     } = await getAuthedUser(dbClient);
 
-    if (!user) {
-      return { user: null };
-    }
+    const safeErrorMsg =
+      "Unable to load your account. Please try again, and if the error continues, contact Hyperink.";
 
-    if (getType === "user") {
+    if (user && getType === "user") {
       return {
         user,
         userId: user.id,
+        errors: null,
       };
     }
 
-    if (getType === "profile" || getType === "user-profile") {
-      // const profileData = getProfileData(dbClient, user);
-      // const authMetadata = getMetaData ? profileData.authMetadata : null;
-      // if (getType === "profile") {
-      //   return {
-      //     profile: profile,
-      //     userId: user.id,
-      //     authMetadata: authMetadata ,
-      //   };
-      // }
-      //   if (getType === "user-profile") {
-      //     return {
-      //     profile: profile,
-      //     userId: user.id,
-      //     user,
-      //     authMetadata: authMetadata ,
-      // };
+    if (user && (getType === "profile" || getType === "user-profile")) {
+      const { data: profileData, error: profileError } = await getUserProfile(
+        dbClient,
+        [],
+        user.id,
+      );
+
+      if (profileError) {
+        return {
+          user,
+          userId: null,
+          profile: null,
+          errors: { userError: safeErrorMsg },
+        };
+      }
+      const authMetadata = getMetaData ? user.user_metadata : null;
+
+      if (getType === "profile") {
+        return {
+          profile: profileData,
+          userId: user.id,
+          authMetadata,
+          errors: null,
+        };
+      }
+
+      return {
+        profile: profileData,
+        userId: user.id,
+        user,
+        authMetadata,
+        errors: null,
+      };
     }
 
     return {
       user: null,
       userId: null,
-      profile: null,
-      authMetadata: null,
     };
   },
 );

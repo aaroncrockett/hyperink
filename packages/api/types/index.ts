@@ -1,8 +1,13 @@
 import { MergeDeep } from "type-fest";
 import type { Database as DatabaseGenerated } from "@hyperink/service-providers";
-export type { Tables } from "@hyperink/service-providers";
-import { CustomFlashRow as CustomFlashRowSrc } from "./flash";
-export type { FlashTagging, FlashUIRow } from "./flash";
+import {
+  FlashRow as FlashRowSrc,
+  FlashUIRow as FlashUIRowSrc,
+} from "@hyperink/api/flash";
+import {
+  ProfileRow as ProfileRowSrc,
+  ProfileUIRow as ProfileUIRowSrc,
+} from "@hyperink/api/profile";
 
 export type Database = MergeDeep<
   DatabaseGenerated,
@@ -10,7 +15,26 @@ export type Database = MergeDeep<
     public: {
       Tables: {
         flash: {
-          Row: CustomFlashRowSrc;
+          Row: FlashRowSrc;
+        };
+        profile: {
+          Row: ProfileRowSrc;
+        };
+      };
+    };
+  }
+>;
+
+export type DatabaseUI = MergeDeep<
+  DatabaseGenerated,
+  {
+    public: {
+      Tables: {
+        flash: {
+          Row: FlashUIRowSrc;
+        };
+        profile: {
+          Row: ProfileUIRowSrc;
         };
       };
     };
@@ -26,4 +50,37 @@ export type UIMetaData<T, K extends keyof T> = {
 
 export type UIRowMeta<T> = {
   [K in keyof T]: UIMetaData<T, K>;
+};
+
+export type KeyOfTables = keyof Database["public"]["Tables"];
+export type KeyOfColumns<T extends KeyOfTables> =
+  keyof Database["public"]["Tables"][T]["Row"];
+export type Column<
+  T extends KeyOfTables,
+  K extends KeyOfColumns<T>,
+> = DatabaseUI["public"]["Tables"][T]["Row"][K];
+
+export type KeyOfTablesUI = keyof DatabaseUI["public"]["Tables"];
+export type KeyOfColumnsUI<T extends KeyOfTables> =
+  keyof DatabaseUI["public"]["Tables"][T]["Row"];
+export type ColumnUI<
+  T extends KeyOfTablesUI,
+  K extends KeyOfColumnsUI<T>,
+> = DatabaseUI["public"]["Tables"][T]["Row"][K];
+
+export type UiDbMapping = {
+  toUi: string;
+  toDb: string;
+};
+
+// export type Where<
+//   T extends KeyOfTables | KeyOfTablesUI,
+//   K extends KeyOfColumns<T> | KeyOfColumnsUI<T>,
+// > = {
+//   columnKey: K;
+//   value: ColumnUI<T, K>;
+// };
+export type Where = {
+  columnKey: string;
+  value: string;
 };

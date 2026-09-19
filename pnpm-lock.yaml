@@ -136,6 +136,9 @@ importers:
 
   packages/api:
     dependencies:
+      '@hyperink/api':
+        specifier: workspace:*
+        version: 'link:'
       '@hyperink/service-providers':
         specifier: workspace:*
         version: link:../service-providers
@@ -145,6 +148,15 @@ importers:
 
   packages/helpers:
     dependencies:
+      '@hyperink/api':
+        specifier: workspace:*
+        version: link:../api
+      '@hyperink/service-providers':
+        specifier: workspace:*
+        version: link:../service-providers
+      '@hyperink/utils':
+        specifier: workspace:*
+        version: link:../utils
       zod:
         specifier: ^4.4.3
         version: 4.6.5

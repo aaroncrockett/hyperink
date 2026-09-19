@@ -4,11 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "dependencies": {
+    "@hyperink/api": "workspace:*",
     "@hyperink/utils": "workspace:*",
     "@hyperink/service-providers": "workspace:*"
   },
   "exports": {
     ".": "./index.ts",
-    "./flash": "./tables/flash/index.ts"
+    "./flash": "./tables/flash/index.ts",
+    "./profile": "./tables/profile/index.ts"
   }
 }

@@ -4,6 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "dependencies": {
-    "zod": "^4.4.3"
+    "zod": "^4.4.3",
+    "@hyperink/api": "workspace:*",
+    "@hyperink/utils": "workspace:*",
+    "@hyperink/service-providers": "workspace:*"
+  },
+  "exports": {
+    ".": "./index.ts",
+    "./profile": "./cms/profile/index.ts"
   }
 }
