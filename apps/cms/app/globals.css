@@ -11,12 +11,6 @@
 }
 
 @layer base {
-  body,
-  p,
-  span {
-    @apply font-sans-serif text-surface-950-50;
-  }
-
   h1,
   h2,
   h3,
@@ -32,7 +26,7 @@
 
 @layer utility {
   .hyper-btn {
-    @apply p-3 rounded-sm btn preset-filled-secondary-500;
+    @apply p-3 rounded-sm preset-filled-secondary-500 btn;
   }
   .hyper-btn-base {
     @apply p-3 rounded-sm btn;
@@ -40,4 +34,35 @@
   button {
     @apply cursor-pointer;
   }
+  /***************/
+  /*** INPUTS ***/
+  /***************/
+
+  /* Input */
+  /*********/
+  /* Input Wrapper */
+  .hI-input-wrapper {
+    @apply gap-1 m-0;
+  }
+  .hI-input-wrap-align {
+    @apply justify-start;
+  }
+  /* Input */
+  .hI-input {
+    @apply input;
+  }
+  .hI-input-layout {
+    @apply m-0;
+  }
+  /* Input Label */
+  .hI-input-label {
+    @apply font-bold;
+  }
+  /* Input Error */
+  .hI-input-error {
+    @apply: text-red-500;
+  }
+
+  /* Input Check */
+  /*********/
 }
