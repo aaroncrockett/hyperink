@@ -46,6 +46,7 @@ export type UIMetaData<T, K extends keyof T> = {
   label: string;
   readOnly?: boolean;
   display?: boolean;
+  [key: string]: any;
 };
 
 export type UIRowMeta<T> = {

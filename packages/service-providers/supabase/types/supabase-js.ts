@@ -8,7 +8,12 @@ import type {
   SignInWithOAuthCredentials,
 } from "@supabase/supabase-js";
 
-export type { QueryResult, QueryData, QueryError } from "@supabase/supabase-js";
+export type {
+  QueryResult,
+  QueryData,
+  QueryError,
+  User,
+} from "@supabase/supabase-js";
 
 import type { FileObject, StorageError } from "@supabase/storage-js";
 
