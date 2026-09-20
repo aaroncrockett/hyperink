@@ -32,6 +32,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               Input
             </Link>
           </li>
+          <li className="bg-secondary-500 p-2 rounded-2xl">
+            <Link className="p-2 font-bold" href="/input-check">
+              Input Check
+            </Link>
+          </li>
         </ul>
         {children}
       </body>
