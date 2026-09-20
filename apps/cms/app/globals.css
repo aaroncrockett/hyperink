@@ -25,10 +25,10 @@
 }
 
 @layer utility {
-  .hyper-btn {
+  .hI-btn {
     @apply p-3 rounded-sm preset-filled-secondary-500 btn;
   }
-  .hyper-btn-base {
+  .hI-btn-base {
     @apply p-3 rounded-sm btn;
   }
   button {
@@ -42,17 +42,20 @@
   /*********/
   /* Input Wrapper */
   .hI-input-wrapper {
-    @apply gap-1 m-0;
+    @apply m-0;
   }
   .hI-input-wrap-align {
-    @apply justify-start;
+    @apply justify-start items-center;
   }
   /* Input */
   .hI-input {
-    @apply input;
+    @apply bg-surface-200-800/20 border-2 border-surface-200-800 input p-2;
   }
   .hI-input-layout {
     @apply m-0;
+  }
+  .hI-input-text-color {
+    @apply text-surface-950-50;
   }
   /* Input Label */
   .hI-input-label {
@@ -60,7 +63,7 @@
   }
   /* Input Error */
   .hI-input-error {
-    @apply: text-red-500;
+    @apply text-error-500;
   }
 
   /* Input Check */
