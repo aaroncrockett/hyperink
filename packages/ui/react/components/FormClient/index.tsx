@@ -17,7 +17,6 @@ export const FormClient = forwardRef<HTMLFormElement, FormProps>(
     {
       action,
       children,
-      className,
       submitBtnCls,
       submitBtnUtilCls = "btn",
       submitBtnColorCls = "preset-filled-secondary-500",

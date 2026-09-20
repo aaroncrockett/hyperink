@@ -11,12 +11,6 @@
 }
 
 @layer base {
-  body,
-  p,
-  span {
-    @apply font-sans-serif text-surface-950-50;
-  }
-
   h1,
   h2,
   h3,
@@ -31,13 +25,61 @@
 }
 
 @layer utility {
-  .hyper-btn {
-    @apply p-3 rounded-sm btn preset-filled-secondary-500;
+  .hI-btn {
+    @apply p-3 rounded-sm preset-filled-secondary-500 btn;
   }
-  .hyper-btn-base {
+  .hI-btn-base {
     @apply p-3 rounded-sm btn;
   }
   button {
     @apply cursor-pointer;
+  }
+  /***************/
+  /*** INPUTS ***/
+  /***************/
+
+  /* Input */
+  /*********/
+  /* Input Wrapper */
+  .hI-input-wrapper {
+    @apply m-0;
+  }
+
+  /* Input */
+  .hI-input {
+    @apply bg-surface-200-800/20 border-2 border-surface-200-800 input p-2;
+  }
+  .hI-input-layout {
+    @apply m-0;
+  }
+  .hI-input-text-color {
+    @apply text-surface-950-50;
+  }
+  /* Input Label */
+  .hI-input-label {
+    @apply font-bold;
+  }
+  /* Input Error */
+  .hI-input-error {
+    @apply text-error-500;
+  }
+
+  /* Input Check */
+  /*********/
+
+  .hI-input-check-wrap {
+    @apply flex flex-row;
+  }
+
+  .hI-input-check-wrap-align {
+    @apply justify-start items-center;
+  }
+
+  .hI-input-check-wrap-layout {
+    @apply gap-2 m-0;
+  }
+
+  .hI-input-check {
+    @apply bg-surface-200-800/20 border-2 border-surface-200-800 checkbox;
   }
 }
