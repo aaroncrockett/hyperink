@@ -1,11 +1,12 @@
 {
-  "name": "@hyperink/helpers",
+  "name": "@hyperink/api-domain-helpers",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "dependencies": {
     "zod": "^4.4.3",
     "@hyperink/api": "workspace:*",
+    "@hyperink/api-domain-helpers": "workspace:*",
     "@hyperink/utils": "workspace:*",
     "@hyperink/service-providers": "workspace:*"
   },

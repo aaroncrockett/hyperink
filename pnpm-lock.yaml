@@ -32,9 +32,9 @@ importers:
       '@hyperink/api':
         specifier: workspace:*
         version: link:../../packages/api
-      '@hyperink/helpers':
+      '@hyperink/api-domain-helpers':
         specifier: workspace:*
-        version: link:../../packages/helpers
+        version: link:../../packages/api-domain-helpers
       '@hyperink/service-providers':
         specifier: workspace:*
         version: link:../../packages/service-providers
@@ -146,11 +146,14 @@ importers:
         specifier: workspace:*
         version: link:../utils
 
-  packages/helpers:
+  packages/api-domain-helpers:
     dependencies:
       '@hyperink/api':
         specifier: workspace:*
         version: link:../api
+      '@hyperink/api-domain-helpers':
+        specifier: workspace:*
+        version: 'link:'
       '@hyperink/service-providers':
         specifier: workspace:*
         version: link:../service-providers
