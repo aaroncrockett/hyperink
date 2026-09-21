@@ -18,7 +18,7 @@ import type {
 const extractSelect = (selectKeys: string[]) =>
   selectKeys.length ? selectKeys.join(",") : "*";
 
-export function createSupabaseQueries<T extends KeyOfTables | KeyOfTablesUI>(
+export function createSupabaseGetQueries<T extends KeyOfTables | KeyOfTablesUI>(
   table: T,
   uiDbMapping: UiDbMapping | null,
 ) {

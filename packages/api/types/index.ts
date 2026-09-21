@@ -80,4 +80,5 @@ export type Where = {
 export type HIAPIError = {
   message: string;
   details: string;
+  [key: string]: string;
 };

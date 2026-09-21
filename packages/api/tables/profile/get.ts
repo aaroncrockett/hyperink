@@ -1,5 +1,5 @@
-import { createSupabaseQueries } from "@hyperink/api";
+import { createSupabaseGetQueries } from "@hyperink/api";
 
-const profileQueries = createSupabaseQueries("profile", null);
+const profileQueries = createSupabaseGetQueries("profile", null);
 
 export const getProfile = profileQueries.sbGetWhere;

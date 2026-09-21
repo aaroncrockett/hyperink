@@ -1,11 +1,14 @@
 import { HIAPIError } from "@hyperink/api";
-export const get = async <T>(fn: (...args: any[]) => any, ...args: any[]) => {
+export const execute = async <T>(
+  fn: (...args: any[]) => any,
+  ...args: any[]
+) => {
   const query = fn(...args);
 
   const result = await query;
   if (!result) {
     return {
-      error: new Error("Profile query was not created"),
+      type: "supbase error",
     };
   }
 
@@ -13,6 +16,7 @@ export const get = async <T>(fn: (...args: any[]) => any, ...args: any[]) => {
 
   const error: HIAPIError | null = resultError
     ? {
+        type: "supbase error",
         message: resultError.message,
         details: resultError.details,
       }

@@ -19,11 +19,7 @@ export default async function IntroProfile() {
       </div>
 
       {user && userId && (
-        <ProfileForm
-          user={user}
-          userId={userId}
-          providerMetadata={providerMetadata}
-        />
+        <ProfileForm userId={userId} providerMetadata={providerMetadata} />
       )}
     </div>
   );

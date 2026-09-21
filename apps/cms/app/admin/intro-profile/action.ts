@@ -1,75 +1,66 @@
 "use server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { METADATA_ITEMS_SCHEMA, CHECK_LIST_ITEMS_SCHEMA } from "./data";
-import { getUserProfile } from "@hyperink/api-domain-helpers/profile";
+import { METADATA_SCHEMA, CHECK_LIST_SCHEMA } from "./data";
+import { createUserProfile } from "@hyperink/api-domain-helpers/profile";
+import {
+  validateFormData,
+  type ErrorPageData,
+} from "@hyperink/api-domain-helpers";
 
-import { z } from "zod";
-//
-// import { createProfile } from "@hyperink/api";
-// import { zodIssuesToErrors } from "@hyperink/utils";
-//
-// import { INTRO_PROFILE_SCHEMA } from "@/business/profile";
-//
 import { createSSClient } from "@/auth/server";
 
+import type { ProfileToVerify } from "@hyperink/api/profile";
+
 export async function createIntroProfileData(
+  previousState: ErrorPageData,
   formData: FormData,
-): Promise<void> {
-  const formDataObject = Object.fromEntries(formData.entries());
+): Promise<ErrorPageData> {
+  const validatedMetadata = validateFormData(formData, METADATA_SCHEMA);
 
-  const itemsSchema = z.object(METADATA_ITEMS_SCHEMA);
+  if (validatedMetadata.errors) {
+    return {
+      errors: { ...validatedMetadata.errors },
+    };
+  }
 
-  const itemsResult = itemsSchema.safeParse(formDataObject);
+  const validatedToVerifyData = validateFormData(formData, CHECK_LIST_SCHEMA);
 
-  const schema = z.object(CHECK_LIST_ITEMS_SCHEMA);
+  if (validatedToVerifyData.errors) {
+    return {
+      errors: { ...validatedToVerifyData.errors },
+    };
+  }
 
-  const checkListResults = schema.safeParse(formDataObject);
-
-  const checkListItems = Object.entries(checkListResults)
+  // If user checks a contact type, it will return true
+  // use the key of true items to send as as ProfileToVery
+  const validatedCheckListItems = Object.entries(
+    validatedToVerifyData.data ?? {},
+  )
     .filter(([, value]) => value)
-    .map(([key]) => key);
+    .map(([key]) => key) as ProfileToVerify;
+
+  console.log(validatedMetadata);
+
+  const validatedData = {
+    ...validatedMetadata.data,
+    to_verify: validatedCheckListItems,
+  };
+  // //
 
   const client = await createSSClient();
 
-  // if (!result.success) {
-  //   console.log(result.error);
-  //   return;
-  // }
+  console.log(validatedData);
 
-  // if (!result.success) {
-  //   console.log(result.error);
-  //   return;
-  // }
-  // const result = INTRO_PROFILE_SCHEMA.safeParse(formDataObject);
-  // if (!result.success) {
-  //   console.error(
-  //     "There was an error parsing the intro profile:",
-  //     zodIssuesToErrors(result.error.issues),
-  //   );
-  //   return;
-  // }
-  // const parsedData = result.data;
-  // const to_verify = [
-  //   parsedData.pref_instagram && "instagram",
-  //   parsedData.pref_bsky && "blue_sky",
-  //   parsedData.pref_phone && "phone",
-  //   parsedData.pref_email && "email",
-  // ].filter((val): val is string => Boolean(val));
-  // const ssClient = await createSSClient();
-  // const params = {
-  //   id: parsedData.id,
-  //   bsky_id: parsedData.bsky_id,
-  //   email: parsedData.email,
-  //   instagram_id: parsedData.instagram_id,
-  //   phone: parsedData.phone,
-  //   preferred_name: parsedData.preferred_name,
-  //   to_verify: to_verify,
-  // };
-  // const { error } = await createProfile(ssClient, params);
-  // if (error) {
-  //   console.error(error);
-  // }
-  // revalidatePath("/admin");
-  // redirect("/");
+  const { error } = await createUserProfile(client, validatedData);
+
+  if (error) {
+    return {
+      errors: { ...error },
+    };
+  }
+
+  return {
+    errors: null,
+  };
 }

@@ -57,7 +57,7 @@ export const CHECK_LIST = [
   { id: "use-bsky", match: "bsky_id", label: "blue sky" },
 ];
 
-export const METADATA_ITEMS_SCHEMA: Partial<{
+export const METADATA_SCHEMA: Partial<{
   [K in keyof ProfileUIRow]: z.ZodType<ProfileUIRow[K]>;
 }> = {
   id: z.string(),
@@ -69,14 +69,8 @@ export const METADATA_ITEMS_SCHEMA: Partial<{
   instagram_id: z.string().nullable(),
 };
 
-export const METADATA_SCHEMA = z.object(METADATA_ITEMS_SCHEMA);
-
-export const CHECK_LIST_ITEMS_SCHEMA = {
+export const CHECK_LIST_SCHEMA = {
   "use-instagram": z.preprocess((value) => value === "on", z.boolean()),
   "use-email": z.preprocess((value) => value === "on", z.boolean()),
   "use-bsky": z.preprocess((value) => value === "on", z.boolean()),
 };
-
-export const CHECK_LIST_SCHEMA = z.object(CHECK_LIST_ITEMS_SCHEMA);
-
-export type CheckListForm = z.infer<typeof CHECK_LIST_SCHEMA>;
