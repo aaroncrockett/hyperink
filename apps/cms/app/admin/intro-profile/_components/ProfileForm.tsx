@@ -1,15 +1,8 @@
 "use client";
-import { useState } from "react";
-import { formatPhone } from "@hyperink/utils";
 
-// import { createIntroProfileData } from "../action";
+import { createIntroProfileData } from "../action";
 
-import {
-  PROFILE_ID,
-  PROFILE_METADATA_LIST,
-  PROFILE_METADATA,
-  CHECK_LIST,
-} from "../data";
+import { PROFILE_ID, PROFILE_METADATA_LIST, CHECK_LIST } from "../data";
 import { type User } from "@hyperink/service-providers";
 //
 import {
@@ -37,7 +30,7 @@ export function ProfileForm({ user, userId, providerMetadata }: IntroProfile) {
 
   return (
     <Form
-      // action={createIntroProfileData}
+      action={createIntroProfileData}
       className="gap-4 grid grid-cols-1 md:grid-cols-2 bg-surface-200-800/20 p-6 rounded"
     >
       <Input

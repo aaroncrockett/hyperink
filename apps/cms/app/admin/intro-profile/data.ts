@@ -1,5 +1,7 @@
 import type { ProfileUIRow } from "@hyperink/api/profile";
 import type { UIRowMeta } from "@hyperink/api";
+// import type { UIMetaData } from "@hyperink/api";
+import { z } from "zod";
 
 type IntroProfileForm = Pick<
   ProfileUIRow,
@@ -54,3 +56,27 @@ export const CHECK_LIST = [
   { id: "use-email", match: "email", label: "email" },
   { id: "use-bsky", match: "bsky_id", label: "blue sky" },
 ];
+
+export const METADATA_ITEMS_SCHEMA: Partial<{
+  [K in keyof ProfileUIRow]: z.ZodType<ProfileUIRow[K]>;
+}> = {
+  id: z.string(),
+  email: z.email(),
+  first_name: z.string().nullable(),
+  last_name: z.string().nullable(),
+  preferred_name: z.string().nullable(),
+  bsky_id: z.string().nullable(),
+  instagram_id: z.string().nullable(),
+};
+
+export const METADATA_SCHEMA = z.object(METADATA_ITEMS_SCHEMA);
+
+export const CHECK_LIST_ITEMS_SCHEMA = {
+  "use-instagram": z.preprocess((value) => value === "on", z.boolean()),
+  "use-email": z.preprocess((value) => value === "on", z.boolean()),
+  "use-bsky": z.preprocess((value) => value === "on", z.boolean()),
+};
+
+export const CHECK_LIST_SCHEMA = z.object(CHECK_LIST_ITEMS_SCHEMA);
+
+export type CheckListForm = z.infer<typeof CHECK_LIST_SCHEMA>;

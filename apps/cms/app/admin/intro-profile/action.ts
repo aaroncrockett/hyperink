@@ -12,7 +12,7 @@ import { createSSClient } from "@/auth/server";
 export async function createIntroProfileData(
   formData: FormData,
 ): Promise<void> {
-  // const formDataObject = Object.fromEntries(formData.entries());
+  const formDataObject = Object.fromEntries(formData.entries());
   // const result = INTRO_PROFILE_SCHEMA.safeParse(formDataObject);
   // if (!result.success) {
   //   console.error(

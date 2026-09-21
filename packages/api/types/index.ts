@@ -73,15 +73,11 @@ export type UiDbMapping = {
   toUi: string;
   toDb: string;
 };
-
-// export type Where<
-//   T extends KeyOfTables | KeyOfTablesUI,
-//   K extends KeyOfColumns<T> | KeyOfColumnsUI<T>,
-// > = {
-//   columnKey: K;
-//   value: ColumnUI<T, K>;
-// };
 export type Where = {
   columnKey: string;
   value: string;
+};
+export type HIAPIError = {
+  message: string;
+  details: string;
 };

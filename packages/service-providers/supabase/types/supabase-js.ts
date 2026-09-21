@@ -6,6 +6,7 @@ import type {
   OAuthResponse,
   UserResponse,
   SignInWithOAuthCredentials,
+  PostgrestFilterBuilder,
 } from "@supabase/supabase-js";
 
 export type {
@@ -13,6 +14,7 @@ export type {
   QueryData,
   QueryError,
   User,
+  PostgrestFilterBuilder,
 } from "@supabase/supabase-js";
 
 import type { FileObject, StorageError } from "@supabase/storage-js";

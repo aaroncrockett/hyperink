@@ -2,7 +2,7 @@ import { cache } from "react";
 import { createSSClient, getAuthedUser } from "@/auth/server";
 // import type { AuthUser, Client } from "@hyperink/service-providers";
 
-import { getUserProfile } from "@hyperink/helpers/profile";
+import { getUserProfile } from "@hyperink/api-domain-helpers/profile";
 
 export type ProviderMetadata = {
   email: string;
@@ -101,13 +101,3 @@ export const getUserData = cache(async (getType: GetType = "user") => {
     errors: null,
   };
 });
-
-// export const getProfileData = (dbClient: Client, user: AuthUser | null) => {
-
-//   const profile = await getProfileByUserId(dbClient, user.id);
-// const profile = await getProfileByUserId(dbClient, user.id);
-//   if (!profile) {
-//     return { profile: null, ProviderMetadata: ProviderMetadata };
-//   }
-// return { profile, ProviderMetadata: ProviderMetadata };
-// };
