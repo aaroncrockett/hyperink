@@ -1,6 +1,10 @@
 "use server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { METADATA_ITEMS_SCHEMA, CHECK_LIST_ITEMS_SCHEMA } from "./data";
+import { getUserProfile } from "@hyperink/api-domain-helpers/profile";
+
+import { z } from "zod";
 //
 // import { createProfile } from "@hyperink/api";
 // import { zodIssuesToErrors } from "@hyperink/utils";
@@ -13,6 +17,30 @@ export async function createIntroProfileData(
   formData: FormData,
 ): Promise<void> {
   const formDataObject = Object.fromEntries(formData.entries());
+
+  const itemsSchema = z.object(METADATA_ITEMS_SCHEMA);
+
+  const itemsResult = itemsSchema.safeParse(formDataObject);
+
+  const schema = z.object(CHECK_LIST_ITEMS_SCHEMA);
+
+  const checkListResults = schema.safeParse(formDataObject);
+
+  const checkListItems = Object.entries(checkListResults)
+    .filter(([, value]) => value)
+    .map(([key]) => key);
+
+  const client = await createSSClient();
+
+  // if (!result.success) {
+  //   console.log(result.error);
+  //   return;
+  // }
+
+  // if (!result.success) {
+  //   console.log(result.error);
+  //   return;
+  // }
   // const result = INTRO_PROFILE_SCHEMA.safeParse(formDataObject);
   // if (!result.success) {
   //   console.error(
