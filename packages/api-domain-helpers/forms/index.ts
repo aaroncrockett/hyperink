@@ -31,3 +31,12 @@ export const validateFormData = (
   validationData.data = validatedMetadata as Record<string, string> | null;
   return validationData;
 };
+
+export function toLabelValue(value: string) {
+  return {
+    value,
+    label: value
+      .replace(/[_,-]|\+|-/g, " ")
+      .replace(/\b\w/g, (char) => char.toUpperCase()),
+  };
+}

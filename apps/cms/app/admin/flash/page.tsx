@@ -1,3 +1,4 @@
+import { Page } from "@hyperink/ui-react/components";
 export default function Flash() {
-  return <p>Flash</p>;
+  return <Page>Flash</Page>;
 }

@@ -1,19 +1,19 @@
-// import type { UIRowMeta, FlashUIRow } from "@hyperink/api";
+import type { TagOpts, OptionsUIRow } from "@hyperink/api/options";
+import type { UIRowMeta } from "@hyperink/api";
 
-// type FlashUI = Pick<UIRowMeta<FlashUIRow>, "id" | "styles">;
+type OptTagsUI = Pick<OptionsUIRow, "id"> | TagOpts;
 
-// const UIData: FlashUI = {
-//   id: {
-//     id: "id",
-//     label: "ID",
-//     readOnly: true,
-//     display: false,
-//   },
-
-//   styles: {
-//     id: "styles",
-//     label: "Styles",
-//     readOnly: false,
-//     display: true,
-//   },
-// };
+const optsTagsUi: UIRowMeta<OptTagsUI> = {
+  id: {
+    id: "id",
+    label: "Id",
+    readOnly: true,
+    display: false,
+  },
+  collections: {
+    id: "collections",
+    label: "Collections",
+    readOnly: false,
+    display: true,
+  },
+};
