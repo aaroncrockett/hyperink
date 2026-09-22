@@ -6,12 +6,13 @@
 export default function AboutPage() {
   return (
     // <ViewTransition transition="nav-forward">
-      <div>
-        <h1 >About</h1>
-        <p>About the business</p>
+    //       </ViewTransition>
+    <div>
+      <h1>About</h1>
+      <p>About the business</p>
 
-        <section>
-          {/* <Suspense
+      <section>
+        {/* <Suspense
             fallback={
               <ViewTransition exit="slide-down" default="none">
                 <PhotographerListSkeleton />
@@ -22,8 +23,7 @@ export default function AboutPage() {
               <PhotographerList />
             </ViewTransition>
           </Suspense> */}
-        </section>
-      </div>
-    {/* </ViewTransition> */}
+      </section>
+    </div>
   );
 }
