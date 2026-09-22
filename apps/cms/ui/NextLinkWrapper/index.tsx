@@ -7,6 +7,7 @@ import { cn } from "@hyperink/utils";
 
 type LinkProps = ComponentPropsWithoutRef<typeof Link> & {
   textColorCls?: string;
+
   // transition?: Transition;
 };
 
@@ -19,9 +20,9 @@ export function NextLinkWrapper({
   return (
     <Link
       {...props}
-      key={props.href + "nextlinkwrapper"}
+      key={props.href + "-next-link-wrapper"}
+      className={cn(textColorCls, props.className)}
       // transitionTypes={[transition]}
-      className={cn(textColorCls)}
     >
       {children}
     </Link>

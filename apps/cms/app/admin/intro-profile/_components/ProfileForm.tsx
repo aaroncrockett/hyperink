@@ -67,7 +67,9 @@ export function ProfileForm({ userId, providerMetadata }: IntroProfile) {
         })}
 
         <div className="flex flex-col gap-2 md:col-span-2 bg-surface-200-800/60 px-4 pt-2 pb-3 rounded-xl font-bold">
-          <p className="text-lg">Preferred Contact Methods:</p>
+          <p className="text-surface-950-50 text-lg">
+            Preferred Contact Methods:
+          </p>
           <div className="sm:flex sm:flex-row gap-4 grid grid-cols-2">
             {CHECK_LIST.map((input) => {
               return (

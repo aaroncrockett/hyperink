@@ -11,7 +11,7 @@ export default async function AdminLayout({
 }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-[minmax(auto)_1fr] lg:grid-cols-[minmax(200px,auto)_1fr]">
-      <div className="hidden lg:block bg-surface-900-100">
+      <div className="hidden lg:block bg-surface-900-100 p-4">
         <Nav />
       </div>
 
