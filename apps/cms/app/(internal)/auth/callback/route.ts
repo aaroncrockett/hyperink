@@ -15,14 +15,14 @@ export async function GET(request: Request) {
   if (!next.startsWith("/admin")) next = "/admin";
 
   if (code) {
-    const authedClient: Client = await createSSClient();
+    const client: Client = await createSSClient();
 
-    const { error } = await exchangeCodeForSession(authedClient, code);
+    const { error } = await exchangeCodeForSession(client, code);
 
     if (!error) {
       const {
         data: { user },
-      } = await getAuthedUser(authedClient);
+      } = await getAuthedUser(client);
       if (!user) throw new Error("Unauthorized");
 
       return NextResponse.redirect(`${origin}${next}`);
