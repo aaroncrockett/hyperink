@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { zodIssuesToErrors } from "@hyperink/api-domain-helpers";
-import { type GenericValidationData } from "@/types";
+import { type GenericValidationData } from "../types";
 
 export const validateFormData = (
   formData: FormData,
