@@ -3,15 +3,17 @@ import { ComponentPropsWithoutRef } from "react";
 import { useRouter } from "next/navigation";
 //
 import { signOut } from "@hyperink/service-providers";
-import { Button } from "@hyperink/ui-react/components";
+import { cn } from "@hyperink/utils";
 //
 import { createBrowserClient } from "@/auth/client";
 
 export function SignOut({
   useButton = true,
+  classNameUtils = "hI-btn-secondary",
   ...props
 }: Omit<ComponentPropsWithoutRef<"button">, "children"> & {
   useButton?: boolean;
+  classNameUtils?: string;
 }) {
   const router = useRouter();
   const handleSignOut = async () => {
@@ -29,13 +31,12 @@ export function SignOut({
 
   if (useButton) {
     return (
-      <Button
-        btnUtilClassName="hI-btn-base preset-filled-primary-500"
-        {...props}
+      <button
+        className={cn(props.className, classNameUtils)}
         onClick={handleSignOut}
       >
         Sign out
-      </Button>
+      </button>
     );
   }
 

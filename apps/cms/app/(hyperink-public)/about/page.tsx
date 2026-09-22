@@ -1,7 +1,6 @@
 // React
 // import { ViewTransition } from "@/ui/";
 // Hyperink UI
-// import { Heading } from "@hyperinkstudio/ui-react-next/components";
 
 export default function AboutPage() {
   return (

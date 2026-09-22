@@ -10,7 +10,6 @@ import { FileUpload } from "@skeletonlabs/skeleton-react";
 import {
   FormClient as Form,
   ErrorsDisplay,
-  Heading,
 } from "@hyperink/ui-react/components";
 
 import { toLabelValue } from "@hyperink/api-domain-helpers";
@@ -106,13 +105,7 @@ export function FlashForm({ tagOpts }: FlashFormParams) {
                   )} */}
 
                   <FileUpload.Label>
-                    <Heading
-                      as="h1"
-
-                      className="font-display uppercase"
-                    >
-                      Upload Flash
-                    </Heading>
+                    <h1 className="hI-h1">Upload Flash</h1>
                   </FileUpload.Label>
 
                   {!hasFile && <FilePicker FileUpload={FileUpload} />}

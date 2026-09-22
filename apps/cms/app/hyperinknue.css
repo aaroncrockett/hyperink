@@ -1,8 +1,8 @@
 [data-theme="hyperinknue"] {
   --text-scaling: 1;
-  --typo-base--font-family: system-ui, sans-serif;
+  --typo-base--font-family: var(--font-outfit) sans-serif;
   --typo-base--font-size: inherit;
-  --typo-base--color-light: var(--color-surface-50);
+  --typo-base--color-light: var(--color-surface-950);
   --typo-base--color-dark: var(--color-surface-50);
   --typo-base--line-height: inherit;
   --typo-base--font-weight: normal;
@@ -14,7 +14,7 @@
   --typo-base--word-spacing: inherit;
   --typo-base--hyphens: inherit;
   --typo-base--text-transform: inherit;
-  --typo-heading--font-family: inherit;
+  --typo-heading--font-family: "Rubik", sans-serif;
   --typo-heading--color-light: inherit;
   --typo-heading--color-dark: inherit;
   --typo-heading--font-weight: bold;
@@ -28,8 +28,8 @@
   --typo-heading--text-transform: inherit;
   --typo-anchor--font-family: inherit;
   --typo-anchor--font-size: inherit;
-  --typo-anchor--color-light: var(--color-primary-500);
-  --typo-anchor--color-dark: var(--color-primary-500);
+  --typo-anchor--color-light: var(--color-secondary-500);
+  --typo-anchor--color-dark: var(--color-secondary-500);
   --typo-anchor--line-height: inherit;
   --typo-anchor--font-weight: inherit;
   --typo-anchor--font-style: inherit;

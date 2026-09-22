@@ -10,89 +10,108 @@
   --font-display-secondary: var(--font-rubik-dirt), sans-serif;
 }
 
-@layer base {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-display text-surface-800-200;
-  }
-  h1 {
-    @apply text-4xl md:text-5xl;
-  }
+/***************/
+/*** BTN ***/
+/***************/
+
+@utility hI-btn {
+  @apply btn;
+  padding-block: calc((var(--btn-size) - --spacing(0.5)) / 2 + --spacing(0.5));
+  padding-inline: calc((var(--btn-size) - --spacing(0.633)) / 2 + --spacing(1));
 }
 
-@layer utility {
-  /***************/
-  /*** HEADER ***/
-  /***************/
+@utility hI-btn-secondary {
+  @apply hI-btn preset-filled-secondary-500;
+}
 
-  .hI-header h1 {
-    @apply text-4xl md:text-5xl;
-  }
-  .hI-header h2 {
-    @apply text-3xl md:text-4xl;
-  }
-  .hI-header h3 {
-    @apply text-2xl md:text-3xl;
-  }
+@utility hI-btn-primary {
+  @apply hI-btn preset-filled-primary-500;
+}
 
-  /***************/
-  /*** BTN ***/
-  /***************/
+/***************/
+/*** HEADER ***/
+/***************/
 
-  .hI-btn {
-    @apply p-3 rounded-sm preset-filled-secondary-500 btn;
-  }
-  .hI-btn-base {
-    @apply p-3 rounded-sm btn;
-  }
-  button {
-    @apply cursor-pointer;
-  }
+@utility hI-h1 {
+  @apply font-display text-4xl md:text-5xl;
+}
 
-  /***************/
-  /*** INPUTS ***/
-  /***************/
+@utility hI-h1-dirt {
+  @apply font-display-secondary! hI-h1;
+}
 
-  /* Input Component and global inputs */
-  /*********/
-  .hI-input-wrapper {
-    @apply m-0;
-  }
-  .hI-input {
-    @apply bg-surface-200-800/20 border-2 border-surface-200-800 input p-2;
-  }
-  .hI-input-layout {
-    @apply m-0;
-  }
-  .hI-input-text-color {
-    @apply text-surface-950-50;
-  }
-  .hI-input-label {
-    @apply font-bold;
-  }
-  .hI-input-error {
-    @apply text-error-500;
-  }
+@utility hI-h2 {
+  @apply font-display text-3xl md:text-4xl;
+}
 
-  /* Input Check */
-  /*********/
-  .hI-input-check-wrap {
-    @apply flex flex-row;
-  }
+@utility hI-h2-dirt {
+  @apply font-display-secondary! hI-h2;
+}
 
-  .hI-input-check-wrap-align {
-    @apply justify-start items-center;
-  }
+@utility hI-h3 {
+  @apply text-2xl md:text-3xl;
+}
 
-  .hI-input-check-wrap-layout {
-    @apply gap-2 m-0;
-  }
+@utility hI-h3-dirt {
+  @apply font-display-secondary hI-h3;
+}
 
-  .hI-input-check {
-    @apply bg-surface-200-800/20 border-2 border-surface-200-800 checkbox;
-  }
+@utility hI-h4 {
+  @apply text-xl md:text-2xl;
+}
+
+@utility hI-h5 {
+  @apply text-lg md:text-xl;
+}
+
+@utility hI-h6 {
+  @apply text-lg md:text-xl;
+}
+
+/***************/
+/*** INPUTS ***/
+/***************/
+
+/* Input Component and global inputs */
+/*********/
+@utility hI-input-wrapper {
+  @apply m-0;
+}
+
+@utility hI-input {
+  @apply bg-surface-200-800/20 border-2 border-surface-200-800 input p-2;
+}
+
+@utility hI-input-layout {
+  @apply m-0;
+}
+
+@utility hI-input-text-color {
+  @apply text-surface-950-50;
+}
+
+@utility hI-input-label {
+  @apply font-bold;
+}
+
+@utility hI-input-error {
+  @apply text-error-500;
+}
+
+/* Input Check */
+/*********/
+@utility hI-input-check-wrap {
+  @apply flex flex-row;
+}
+
+@utility hI-input-check-wrap-align {
+  @apply justify-start items-center;
+}
+
+@utility hI-input-check-wrap-layout {
+  @apply gap-2 m-0;
+}
+
+@utility hI-input-check {
+  @apply bg-surface-200-800/20 border-2 border-surface-200-800 checkbox;
 }

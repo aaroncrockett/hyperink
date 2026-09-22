@@ -15,5 +15,9 @@ export default async function Admin() {
     );
   }
 
-  return <div>admin</div>;
+  return (
+    <div>
+      <button className="hI-btn-primary">hi hi</button>
+    </div>
+  );
 }

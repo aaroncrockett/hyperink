@@ -1,7 +1,7 @@
 // @ Local
 
 import { getUsersTagOptions } from "@hyperink/api-domain-helpers/options";
-import { Heading, Page } from "@hyperink/ui-react/components";
+import { Page } from "@hyperink/ui-react/components";
 //
 import { FlashForm } from "./_components/FlashForm";
 import { getAuthedUser, createSSClient } from "@/auth/server";
@@ -24,7 +24,7 @@ export default async function FlashUploadPage() {
   return (
     // <ViewTransition transition="nav-forward">
     <Page>
-      <Heading as="h1">Upload</Heading>
+      <h1 className="hI-h1">Upload</h1>
       <FlashForm tagOpts={tagOpts} />
     </Page>
     // </ViewTransition>

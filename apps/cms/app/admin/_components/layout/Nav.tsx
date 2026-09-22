@@ -12,8 +12,7 @@ export function Nav() {
         return (
           <li key={link.href + link.name + "-admin-nav"}>
             <NextLinkWrapper
-              textColorCls="text-surface-200-800"
-              className="flex flex-row gap-2 font-bold"
+              className="flex flex-row gap-2 font-bold text-surface-200-800"
               href={link.href}
             >
               <Icon size="lg" name={link.icon} />

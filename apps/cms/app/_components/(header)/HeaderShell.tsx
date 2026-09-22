@@ -58,10 +58,10 @@ export function HeaderShell({ isSignedIn }: ShellProps) {
                     <li key={link.href + link.name + "-root-nav"}>
                       <NextLinkWrapper
                         href={link.href}
-                        textColorCls="hover:text-primary-500!"
+
                         className={cn(
                           linkCls,
-                          "flex flex-row gap-1.5 font-bold ",
+                          "flex flex-row gap-1.5 font-bold text-primary-500",
                           pathname === link.href && linkCurrentCls,
                         )}
                       >
@@ -89,10 +89,10 @@ export function HeaderShell({ isSignedIn }: ShellProps) {
                   <li className="lg:hidden inline-block">
                     <NextLinkWrapper
                       href={isSignedIn ? ADMIN.href : LOGIN.href}
-                      textColorCls="hover:text-primary-500!"
+
                       className={cn(
                         linkCls,
-                        "flex flex-row gap-3 font-bold uppercase",
+                        "flex flex-row gap-3 font-bold uppercase hover:text-primary-500",
                       )}
                     >
                       {isSignedIn ? (
@@ -117,10 +117,9 @@ export function HeaderShell({ isSignedIn }: ShellProps) {
                       <li key={link.href + link.name + "-root-nav"}>
                         <NextLinkWrapper
                           href={link.href}
-                          textColorCls="hover:text-primary-500!"
                           className={cn(
                             linkCls,
-                            "flex flex-row gap-1.5 font-bold ",
+                            "flex flex-row gap-1.5 font-bold hover:text-primary-500",
                             pathname === link.href && linkCurrentCls,
                           )}
                         >
@@ -135,10 +134,10 @@ export function HeaderShell({ isSignedIn }: ShellProps) {
                   <li className="inline-block">
                     <NextLinkWrapper
                       href={isSignedIn ? ADMIN.href : LOGIN.href}
-                      textColorCls="hover:text-primary-500!"
+
                       className={cn(
                         linkCls,
-                        "flex flex-row gap-1.5 font-bold uppercase",
+                        "flex flex-row gap-1.5 font-bold uppercase hover:text-primary-500",
                       )}
                     >
                       {isSignedIn ? (
