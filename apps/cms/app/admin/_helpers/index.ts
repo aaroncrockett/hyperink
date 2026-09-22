@@ -4,14 +4,10 @@ import { getUserData } from "@/app/_helpers";
 //
 
 export const init = async () => {
-  const { user, profile, userId, authMetadata, errors } = await getUserData(
-    "user-profile",
-    true,
-  );
+  const { user, profile, providerMetadata, userId, errors } =
+    await getUserData("user-profile");
 
-  if (errors) return { errors };
-
-  if (user && authMetadata && !authMetadata.isEmailVerified) {
+  if (user && providerMetadata && !providerMetadata.isEmailVerified) {
     return {
       errors: {
         userError:
@@ -30,6 +26,8 @@ export const init = async () => {
   if (user && (!profile || profile.to_verify === null)) {
     redirect("/admin/intro-profile");
   }
+
+  if (errors) return { errors };
 
   return { userId };
 };
