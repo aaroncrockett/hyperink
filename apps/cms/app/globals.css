@@ -25,6 +25,24 @@
 }
 
 @layer utility {
+  /***************/
+  /*** HEADER ***/
+  /***************/
+
+  .hI-header h1 {
+    @apply text-4xl md:text-5xl;
+  }
+  .hI-header h2 {
+    @apply text-3xl md:text-4xl;
+  }
+  .hI-header h3 {
+    @apply text-2xl md:text-3xl;
+  }
+
+  /***************/
+  /*** BTN ***/
+  /***************/
+
   .hI-btn {
     @apply p-3 rounded-sm preset-filled-secondary-500 btn;
   }
@@ -34,18 +52,16 @@
   button {
     @apply cursor-pointer;
   }
+
   /***************/
   /*** INPUTS ***/
   /***************/
 
-  /* Input */
+  /* Input Component and global inputs */
   /*********/
-  /* Input Wrapper */
   .hI-input-wrapper {
     @apply m-0;
   }
-
-  /* Input */
   .hI-input {
     @apply bg-surface-200-800/20 border-2 border-surface-200-800 input p-2;
   }
@@ -55,18 +71,15 @@
   .hI-input-text-color {
     @apply text-surface-950-50;
   }
-  /* Input Label */
   .hI-input-label {
     @apply font-bold;
   }
-  /* Input Error */
   .hI-input-error {
     @apply text-error-500;
   }
 
   /* Input Check */
   /*********/
-
   .hI-input-check-wrap {
     @apply flex flex-row;
   }
