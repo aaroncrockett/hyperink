@@ -19,7 +19,7 @@ export function LayoutNavFooter({ className, ...props }: NavFooterProps) {
   const uploadName = INTERNAL_FLASH_LINKS.upload.icon;
   const tattReqName = INTERNAL_ADMIN_LINKS.tattReq.icon;
   return (
-    <nav className={cn(className)} {...props}>
+    <nav {...props} className={cn(className)}>
       <ul className="flex flex-row justify-between items-center gap-4 w-full">
         <li>
           <NextLinkWrapper

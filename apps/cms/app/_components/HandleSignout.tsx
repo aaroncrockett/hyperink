@@ -28,7 +28,7 @@ export function SignOut({
 
   if (useButton) {
     return (
-      <button onClick={handleSignOut} {...props}>
+      <button {...props} onClick={handleSignOut}>
         Sign out
       </button>
     );
@@ -36,6 +36,7 @@ export function SignOut({
 
   return (
     <span
+      {...props}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
           handleSignOut();
@@ -44,7 +45,6 @@ export function SignOut({
       role="button"
       tabIndex={0}
       onClick={handleSignOut}
-      {...props}
     >
       Sign out
     </span>

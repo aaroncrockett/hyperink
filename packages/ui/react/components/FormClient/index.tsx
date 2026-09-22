@@ -18,8 +18,7 @@ export const FormClient = forwardRef<HTMLFormElement, FormProps>(
       action,
       children,
       submitBtnCls,
-      submitBtnUtilCls = "btn",
-      submitBtnColorCls = "preset-filled-secondary-500",
+      submitBtnUtilCls = "hI-btn",
       submitBtnWrapperCls,
       submitDisabled = false,
       submitText = "Submit",
@@ -28,14 +27,14 @@ export const FormClient = forwardRef<HTMLFormElement, FormProps>(
     ref,
   ) => {
     return (
-      <form ref={ref} action={action} {...props}>
+      <form {...props} ref={ref} action={action}>
         {children}
 
         <div className={submitBtnWrapperCls}>
           <button
             type="submit"
             disabled={submitDisabled}
-            className={cn(submitBtnCls, submitBtnColorCls, submitBtnUtilCls)}
+            className={cn(submitBtnCls, submitBtnUtilCls)}
           >
             {submitText}
           </button>

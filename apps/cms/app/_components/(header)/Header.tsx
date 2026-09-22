@@ -20,7 +20,7 @@ export default function Header({
   ...props
 }: HeaderProps) {
   return (
-    <header className={className} {...props}>
+    <header {...props} className={className}>
       <div className="flex flex-col justify-between mx-auto max-w-300">
         <div
           className={cn(

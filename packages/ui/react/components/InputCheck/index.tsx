@@ -52,12 +52,12 @@ export function InputCheck({
         </label>
       )}
       <input
+        {...props}
         id={id}
         name={name}
         type="checkbox"
         checked={checked}
         className={cn(props.className, inputUtilClassName)}
-        {...props}
       />
       {labelOrder === "after" && (
         <label

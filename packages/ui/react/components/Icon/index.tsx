@@ -71,10 +71,10 @@ export function Icon({
 
   return (
     <IconComponent
+      {...props}
       {...(useFill ? { fill: fillColor } : {})}
       color={color}
       className={cn(sizes[size], props.className)}
-      {...props}
     />
   );
 }

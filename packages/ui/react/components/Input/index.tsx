@@ -98,6 +98,7 @@ export function Input({
         </label>
       )}
       <input
+        {...props}
         className={cn(
           inputUtilClassName,
           textColorUtilClassName,
@@ -113,7 +114,6 @@ export function Input({
         placeholder={placeholder}
         type={type}
         {...(value !== undefined ? { value } : {})}
-        {...props}
       />
       {desc && (
         <div

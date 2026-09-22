@@ -28,6 +28,7 @@ export function PageSection({
 }: PageSectionProps) {
   const content = (
     <section
+      {...props}
       className={cn(
         className,
         displayCls,
@@ -36,7 +37,6 @@ export function PageSection({
         maxWidthCls,
         paddingCls,
       )}
-      {...props}
     >
       {children}
     </section>

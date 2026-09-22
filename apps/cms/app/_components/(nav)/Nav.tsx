@@ -26,7 +26,7 @@ export default function Nav({
   // TEMP HARD CODED
 
   return (
-    <nav className={props.className} {...props}>
+    <nav {...props} className={props.className}>
       <ul className={cn(flexLayout, gapCls, layoutOptCls, ulCls)}>
         {lead}
         {props.children}
