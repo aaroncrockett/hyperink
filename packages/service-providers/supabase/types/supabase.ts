@@ -202,7 +202,7 @@ export type Database = {
           readable_name: string
           remaining_availability: number | null
           sold_at: string | null
-          styles: Json
+          styles: Json | null
           tags: Json | null
           total_availability: number | null
           user_id: string
@@ -221,7 +221,7 @@ export type Database = {
           readable_name: string
           remaining_availability?: number | null
           sold_at?: string | null
-          styles?: Json
+          styles?: Json | null
           tags?: Json | null
           total_availability?: number | null
           user_id: string
@@ -240,7 +240,7 @@ export type Database = {
           readable_name?: string
           remaining_availability?: number | null
           sold_at?: string | null
-          styles?: Json
+          styles?: Json | null
           tags?: Json | null
           total_availability?: number | null
           user_id?: string
@@ -251,36 +251,36 @@ export type Database = {
         Row: {
           client_tattoo_opts: Json | null
           created_at: string
-          display_opts: Json | null
           flash_opts: Json | null
           id: string
           profile_id: string
           profile_opts: Json | null
           request_opts: Json | null
+          tag_opts: Json | null
           tattoo_image_opts: Json | null
           updated_at: string
         }
         Insert: {
           client_tattoo_opts?: Json | null
           created_at?: string
-          display_opts?: Json | null
           flash_opts?: Json | null
           id?: string
           profile_id: string
           profile_opts?: Json | null
           request_opts?: Json | null
+          tag_opts?: Json | null
           tattoo_image_opts?: Json | null
           updated_at?: string
         }
         Update: {
           client_tattoo_opts?: Json | null
           created_at?: string
-          display_opts?: Json | null
           flash_opts?: Json | null
           id?: string
           profile_id?: string
           profile_opts?: Json | null
           request_opts?: Json | null
+          tag_opts?: Json | null
           tattoo_image_opts?: Json | null
           updated_at?: string
         }

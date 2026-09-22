@@ -12,6 +12,7 @@
   },
   "exports": {
     ".": "./index.ts",
-    "./profile": "./cms/profile/index.ts"
+    "./profile": "./cms/profile/index.ts",
+    "./options": "./cms/options/index.ts"
   }
 }

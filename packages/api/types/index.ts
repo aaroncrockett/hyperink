@@ -5,6 +5,10 @@ import {
   FlashUIRow as FlashUIRowSrc,
 } from "@hyperink/api/flash";
 import {
+  OptionsRow as OptionsRowSrc,
+  OptionsUIRow as OptionsUIRowSrc,
+} from "@hyperink/api/options";
+import {
   ProfileRow as ProfileRowSrc,
   ProfileUIRow as ProfileUIRowSrc,
 } from "@hyperink/api/profile";
@@ -16,6 +20,9 @@ export type Database = MergeDeep<
       Tables: {
         flash: {
           Row: FlashRowSrc;
+        };
+        options: {
+          Row: OptionsRowSrc;
         };
         profile: {
           Row: ProfileRowSrc;
@@ -35,6 +42,9 @@ export type DatabaseUI = MergeDeep<
         };
         profile: {
           Row: ProfileUIRowSrc;
+        };
+        options: {
+          Row: OptionsUIRowSrc;
         };
       };
     };
