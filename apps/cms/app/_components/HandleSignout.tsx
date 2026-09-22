@@ -3,6 +3,7 @@ import { ComponentPropsWithoutRef } from "react";
 import { useRouter } from "next/navigation";
 //
 import { signOut } from "@hyperink/service-providers";
+import { Button } from "@hyperink/ui-react/components";
 //
 import { createBrowserClient } from "@/auth/client";
 
@@ -28,9 +29,13 @@ export function SignOut({
 
   if (useButton) {
     return (
-      <button {...props} onClick={handleSignOut}>
+      <Button
+        btnUtilClassName="hI-btn-base preset-filled-primary-500"
+        {...props}
+        onClick={handleSignOut}
+      >
         Sign out
-      </button>
+      </Button>
     );
   }
 

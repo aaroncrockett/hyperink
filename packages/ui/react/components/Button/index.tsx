@@ -7,8 +7,8 @@ type FormErrorProps = ComponentPropsWithoutRef<"button"> & {
 };
 
 export function Button({
-  btnUtilClassName = "",
-  btnClassName = "hI-btn",
+  btnUtilClassName = "hI-btn",
+  btnClassName = "",
   children,
   ...props
 }: FormErrorProps) {
