@@ -25,11 +25,20 @@ export const createUsersCollectionTags = async (
   inserts: Partial<TagOpts>,
   id: OptionsUIRow["profile_id"],
 ) => {
-  // const query = getOptions(
-  //   client,
-  //   ["tagOpts"],
-  //   [{ columnKey: "profile_id", value: id }],
-  // );
-  const query = getUsersTagOptions(client, id);
-  return await single(createTagOpts, client, inserts, id);
+  const { error, data } = await getUsersTagOptions(client, id);
+
+  if (error) {
+    return { error, data };
+  }
+  const styles = data.styles as TagOpts["styles"];
+  const tags = data.tags as TagOpts["tags"];
+
+  const tagOpts = {
+    tag_opts: {
+      collections: [inserts.collections ?? []],
+      styles: [...styles],
+      tags: [...tags],
+    },
+  };
+  return await single(createTagOpts, client, tagOpts, id);
 };
