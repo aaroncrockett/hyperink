@@ -14,11 +14,7 @@ export default async function TaggingPage() {
   } = await getAuthedUser(serverClient);
 
   if (!user) return;
-  const { data, error } = await getUsersTagOptions(
-    serverClient,
-    ["tag_opts"],
-    user.id,
-  );
+  const { data, error } = await getUsersTagOptions(serverClient, user.id);
 
   if (error)
     return (

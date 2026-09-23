@@ -10,12 +10,14 @@ import { single } from "../../internal-helpers/";
 
 export const getUsersTagOptions = async (
   client: Client,
-  selectKeys: (keyof OptionsUIRow)[],
   id: OptionsUIRow["profile_id"],
 ) => {
-  return await single(getOptions, client, selectKeys, [
-    { columnKey: "profile_id", value: id },
-  ]);
+  return await single(
+    getOptions,
+    client,
+    ["tag_opts"],
+    [{ columnKey: "profile_id", value: id }],
+  );
 };
 
 export const createUsersCollectionTags = async (
@@ -23,5 +25,11 @@ export const createUsersCollectionTags = async (
   inserts: Partial<TagOpts>,
   id: OptionsUIRow["profile_id"],
 ) => {
+  // const query = getOptions(
+  //   client,
+  //   ["tagOpts"],
+  //   [{ columnKey: "profile_id", value: id }],
+  // );
+  const query = getUsersTagOptions(client, id);
   return await single(createTagOpts, client, inserts, id);
 };

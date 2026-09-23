@@ -15,11 +15,7 @@ export default async function FlashUploadPage() {
 
   if (!user) return;
 
-  const { data: tagOpts } = await getUsersTagOptions(
-    serverClient,
-    ["tag_opts"],
-    user.id,
-  );
+  const { data: tagOpts } = await getUsersTagOptions(serverClient, user.id);
 
   return (
     // <ViewTransition transition="nav-forward">
