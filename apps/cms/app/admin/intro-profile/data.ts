@@ -57,7 +57,7 @@ export const CHECK_LIST = [
   { id: "use-bsky", match: "bsky_id", label: "blue sky" },
 ];
 
-export const METADATA_SCHEMA: Partial<{
+export const INTRO_PROFILE_SCHEMA: Partial<{
   [K in keyof ProfileUIRow]: z.ZodType<ProfileUIRow[K]>;
 }> = {
   id: z.string(),
