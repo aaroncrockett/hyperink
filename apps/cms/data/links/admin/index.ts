@@ -16,8 +16,8 @@ export const ADMIN_TATT_REQ = {
   shortName: "Tatt Req",
 };
 export const ADMIN_OPTIONS = {
-  href: `${ADMIN_ROOT}/tagging-opts`,
-  name: "Tagging Options",
+  href: `${ADMIN_ROOT}/options`,
+  name: "Options",
   icon: "tag",
 };
 export const ADMIN_PROFILE = {
@@ -32,7 +32,6 @@ export const INTERNAL_ADMIN_LINKS = {
   flash: FLASH_LINKS.flash,
   tattReq: ADMIN_TATT_REQ,
   options: ADMIN_OPTIONS,
-  profile: ADMIN_PROFILE,
 };
 
 export const INTERNAL_FLASH_LINKS = FLASH_LINKS;

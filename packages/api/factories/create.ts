@@ -1,13 +1,7 @@
 import { Client } from "@hyperink/service-providers";
-
-import type {
-  UiDbMapping,
-  KeyOfTables,
-  KeyOfColumns,
-  KeyOfColumnsUI,
-  KeyOfTablesUI,
-  Where,
-} from "../types";
+//
+import type { UiDbMapping, KeyOfTables, KeyOfTablesUI } from "../types";
+import { extractSelect } from "./helpers";
 
 export function createSupabaseCreateQueries<
   T extends KeyOfTables | KeyOfTablesUI,
@@ -15,7 +9,8 @@ export function createSupabaseCreateQueries<
   return {
     create(
       client: Client,
-      inserts: Record<string, string>[] | Record<string, string>,
+      inserts: Record<string, any>[] | Record<string, any>,
+      selectKeys?: string[] | undefined,
     ) {
       const insertArray = Array.isArray(inserts) ? inserts : [inserts];
 
@@ -28,7 +23,24 @@ export function createSupabaseCreateQueries<
         ),
       ) as any;
 
-      return client.from(table).insert(internalInserts);
+      let internalSelectKeys: string[] = [];
+      let select: string = "";
+
+      if (selectKeys !== undefined) {
+        internalSelectKeys = uiDbMapping
+          ? selectKeys.map((key) => {
+              return uiDbMapping.toDb;
+            })
+          : selectKeys;
+        select = extractSelect(internalSelectKeys.map(String));
+      }
+
+      console.log(internalInserts);
+      console.log(table);
+
+      return select
+        ? client.from(table).insert(internalInserts).select(select)
+        : client.from(table).insert(internalInserts);
     },
   };
 }
