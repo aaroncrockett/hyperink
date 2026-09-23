@@ -1,22 +1,7 @@
-import {
-  Client,
-  Database,
-  // Where,
-  // AllowedTable,
-  // AppTables,
-} from "@hyperink/service-providers";
-
-import type {
-  UiDbMapping,
-  KeyOfTables,
-  KeyOfColumns,
-  KeyOfColumnsUI,
-  KeyOfTablesUI,
-  Where,
-} from "../types";
-
-const extractSelect = (selectKeys: string[]) =>
-  selectKeys.length ? selectKeys.join(",") : "*";
+import { Client } from "@hyperink/service-providers";
+//
+import { extractSelect } from "./helpers";
+import type { UiDbMapping, KeyOfTables, KeyOfTablesUI, Where } from "../types";
 
 export function createSupabaseGetQueries<T extends KeyOfTables | KeyOfTablesUI>(
   table: T,

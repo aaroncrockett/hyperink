@@ -8,18 +8,20 @@ import { cn } from "@hyperink/utils";
 
 type LinkProps = ComponentPropsWithoutRef<typeof Link> & {
   // transition?: Transition;
+  utilClassName?: string;
 };
 
 export function NextLinkWrapper({
   children,
   // transition = "nav-forward",
+  utilClassName = "dark:text-secondary-200 text-secondary-600",
   ...props
 }: LinkProps) {
   return (
     <Link
       {...props}
       key={props.href + "-next-link-wrapper"}
-      className={cn(props.className)}
+      className={cn(props.className, utilClassName)}
       // transitionTypes={[transition]}
     >
       {children}

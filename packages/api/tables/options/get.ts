@@ -1,5 +1,5 @@
 import { createSupabaseGetQueries } from "@hyperink/api";
 
-const tagOpts = createSupabaseGetQueries("profile", null);
+const baseGetTagOpts = createSupabaseGetQueries("options", null);
 
-export const getTagOpts = tagOpts.sbGetWhere;
+export const getOptions = baseGetTagOpts.sbGetWhere;

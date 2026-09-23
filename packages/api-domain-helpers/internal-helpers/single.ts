@@ -5,18 +5,9 @@ export const single = async <T>(
 ) => {
   const query = fn(...args);
 
-  const result = await (
+  const { data, resultError } = await (
     query?.single() as { overrideTypes: <U, V>() => any }
   ).overrideTypes<T, { merge: false }>();
-
-  if (!result) {
-    return {
-      data: null,
-      error: new Error("Profile query was not created"),
-    };
-  }
-
-  const { data, error: resultError } = result;
 
   const error: HIAPIError | null = resultError
     ? {

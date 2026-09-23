@@ -59,6 +59,14 @@ export type UIMetaData<T, K extends keyof T> = {
   [key: string]: any;
 };
 
+export type UIMetaDataAny = {
+  id: string;
+  label: string;
+  readOnly?: boolean;
+  display?: boolean;
+  [key: string]: any;
+};
+
 export type UIRowMeta<T> = {
   [K in keyof T]: UIMetaData<T, K>;
 };
