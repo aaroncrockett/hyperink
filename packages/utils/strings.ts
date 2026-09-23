@@ -34,3 +34,6 @@ export const formatPhone = (value: string) => {
 
   return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
 };
+
+export const stringToArray = (value: string | string[] | undefined) =>
+  Array.isArray(value) ? value : value ? [value] : [];
