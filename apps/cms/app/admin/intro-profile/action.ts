@@ -1,6 +1,6 @@
 "use server";
 import { redirect } from "next/navigation";
-import { METADATA_SCHEMA, CHECK_LIST_SCHEMA } from "./data";
+import { INTRO_PROFILE_SCHEMA, CHECK_LIST_SCHEMA } from "./data";
 import { createUserProfile } from "@hyperink/api-domain-helpers/profile";
 import {
   validateFormData,
@@ -15,7 +15,7 @@ export async function createIntroProfileData(
   previousState: ErrorPageData,
   formData: FormData,
 ): Promise<ErrorPageData> {
-  const validatedMetadata = validateFormData(formData, METADATA_SCHEMA);
+  const validatedMetadata = validateFormData(formData, INTRO_PROFILE_SCHEMA);
 
   if (validatedMetadata.errors) {
     return {
