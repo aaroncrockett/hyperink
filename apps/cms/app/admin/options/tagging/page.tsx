@@ -14,6 +14,7 @@ export default async function TaggingPage() {
   } = await getAuthedUser(serverClient);
 
   if (!user) return;
+
   const { data, error } = await getUsersTagOptions(serverClient, user.id);
 
   if (error)
@@ -24,5 +25,6 @@ export default async function TaggingPage() {
     );
 
   if (data) return <TaggingOpts opts={data} />;
+
   if (!data) redirect("/admin/options/tagging/create-collection");
 }

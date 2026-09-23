@@ -14,9 +14,6 @@ export default async function CreateCollectionPage() {
   return (
     <Page>
       <Form action={createCollection}>
-        {INTRO_COLLECTION.collections.id}
-        {INTRO_COLLECTION.profile_id?.id}
-        {user.id}
         <Input
           name={INTRO_COLLECTION.collections?.id}
           label={INTRO_COLLECTION.collections?.label}

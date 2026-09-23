@@ -6,9 +6,9 @@ export const OPTIONS_TABLE = "options";
 type TagOptsCollections = {};
 
 export type TagOpts = {
-  collections?: string[];
-  styles?: string[];
-  tags?: string[];
+  collections: string[];
+  styles: string[];
+  tags: string[];
 };
 
 export type OptionsRow = MergeDeep<

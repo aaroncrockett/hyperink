@@ -1,44 +1,12 @@
-// "use client";
-// import { useState } from "react";
 import type { TagOpts } from "@hyperink/api/options";
-import { OPTS_METADATA } from "@/app/admin/options/data";
-// import {
-//   type ProfileTaggingOptionsDisplay,
-//   createTaggingOption,
-// } from "@/business/profileTaggingOpts";
 //
-
-// import { denormalizeFromKabobCase } from "@hyperinkstudio/utils";
+import { OPTS_METADATA } from "@/app/admin/options/data";
+//
 import { ADMIN_OPTIONS } from "@/data/links";
 //
 import { NextLinkWrapper } from "@/ui";
-//
-// import { CreateCollection } from "./CreateCollection";
 
-export function TaggingOpts({
-  opts,
-  // opts,
-  // userId,
-}: {
-  opts?: TagOpts;
-  // opts: ProfileTaggingOptionsDisplay | null;
-  // userId: string;
-}) {
-  // const [options, setOptions] = useState(opts);
-  // const client = createBrowserClient();
-
-  // const handleCollection = async (collection: string) => {
-  //   const { data, error } = await createTaggingOption(client, {
-  //     tag_opts: [collection as string],
-  //     profile_id: userId,
-  //   });
-  //   if (!error) {
-  //     if (data) {
-  //       setOptions(data);
-  //     }
-  //   }
-  // };
-
+export function TaggingOpts({ opts }: { opts?: TagOpts }) {
   const optsCol = OPTS_METADATA.tag_opts.id;
   return (
     <>
