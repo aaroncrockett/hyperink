@@ -17,6 +17,8 @@ export default async function TaggingPage() {
 
   const { data, error } = await getUsersTagOptions(serverClient, user.id);
 
+  console.log(data);
+
   if (error)
     return (
       <Page>

@@ -85,7 +85,7 @@ export type UiDbMapping = {
 };
 export type Where = {
   columnKey: string;
-  value: string;
+  value: any;
 };
 export type HIAPIError = {
   message: string;

@@ -62,3 +62,6 @@ supabase/.branches/
 
 # Ignore the ghost directory and everything inside
 ghost/
+
+# Vitest reports and artifacts
+.vitest/

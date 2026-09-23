@@ -1,46 +1,35 @@
 import { Client } from "@hyperink/service-providers";
 //
-import type { UiDbMapping, KeyOfTables, KeyOfTablesUI } from "../types";
-import { extractSelect } from "./helpers";
+import type { UiDbMapping, KeyOfTables, KeyOfTablesUI, Where } from "../types";
+import { extractSelect, mapInsertsToDb, mapSelectsToDb } from "./helpers";
 
 export function createSupabaseCreateQueries<
   T extends KeyOfTables | KeyOfTablesUI,
 >(table: T, uiDbMapping: UiDbMapping | null) {
   return {
-    create(
-      client: Client,
-      inserts: Record<string, any>[] | Record<string, any>,
-      selectKeys?: string[] | undefined,
-    ) {
-      const insertArray = Array.isArray(inserts) ? inserts : [inserts];
+    create(client: Client, inserts: any[], selectKeys?: string[] | undefined) {
+      const internalInserts = uiDbMapping
+        ? mapInsertsToDb(inserts, uiDbMapping)
+        : inserts;
 
-      const internalInserts = insertArray.map((insert) =>
-        Object.fromEntries(
-          Object.entries(insert).map(([key, value]) => [
-            uiDbMapping?.[key as keyof UiDbMapping] ?? key,
-            value,
-          ]),
-        ),
-      ) as any;
-
-      let internalSelectKeys: string[] = [];
       let select: string = "";
 
       if (selectKeys !== undefined) {
-        internalSelectKeys = uiDbMapping
-          ? selectKeys.map((key) => {
-              return uiDbMapping.toDb;
-            })
+        const internalSelectKeys = uiDbMapping
+          ? mapSelectsToDb(selectKeys, uiDbMapping)
           : selectKeys;
         select = extractSelect(internalSelectKeys.map(String));
       }
-
+      console.log("pre");
+      console.log(selectKeys);
       console.log(internalInserts);
-      console.log(table);
 
       return select
-        ? client.from(table).insert(internalInserts).select(select)
-        : client.from(table).insert(internalInserts);
+        ? client
+            .from(table)
+            .insert(internalInserts as any)
+            .select(select)
+        : client.from(table).insert(internalInserts as any);
     },
   };
 }

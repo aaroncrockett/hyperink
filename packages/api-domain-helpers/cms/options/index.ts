@@ -20,25 +20,18 @@ export const getUsersTagOptions = async (
   );
 };
 
-export const createUsersCollectionTags = async (
+export const initCollectionTagsAndResetRemaining = async (
   client: Client,
-  inserts: Partial<TagOpts>,
+  inserts: Pick<TagOpts, "collections">,
   id: OptionsUIRow["profile_id"],
-) => {
-  const { error, data } = await getUsersTagOptions(client, id);
-
-  if (error) {
-    return { error, data };
-  }
-  const styles = data.styles as TagOpts["styles"];
-  const tags = data.tags as TagOpts["tags"];
-
+): Promise<
+  | { data: Partial<TagOpts>; error: null }
+  | { data: null; error: Record<string, any> }
+> => {
   const tagOpts = {
-    tag_opts: {
-      collections: [inserts.collections ?? []],
-      styles: [...styles],
-      tags: [...tags],
-    },
+    collections: inserts.collections,
+    styles: [],
+    tags: [],
   };
   return await single(createTagOpts, client, tagOpts, id);
 };

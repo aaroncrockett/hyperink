@@ -1,6 +1,6 @@
 import { Client } from "@hyperink/service-providers";
 //
-import { extractSelect } from "./helpers";
+import { extractSelect, mapSelectsToDb } from "./helpers";
 import type { UiDbMapping, KeyOfTables, KeyOfTablesUI, Where } from "../types";
 
 export function createSupabaseGetQueries<T extends KeyOfTables | KeyOfTablesUI>(
@@ -9,12 +9,8 @@ export function createSupabaseGetQueries<T extends KeyOfTables | KeyOfTablesUI>(
 ) {
   return {
     sbGetWhere(client: Client, selectKeys: string[], where: Where[]) {
-      let internalSelectKeys = [];
-
-      internalSelectKeys = uiDbMapping
-        ? selectKeys.map((key) => {
-            return uiDbMapping.toDb;
-          })
+      const internalSelectKeys = uiDbMapping
+        ? mapSelectsToDb(selectKeys, uiDbMapping)
         : selectKeys;
 
       const select = extractSelect(internalSelectKeys.map(String));

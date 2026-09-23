@@ -14,13 +14,19 @@ const baseCreateTagOpts = createSupabaseCreateQueries("options", null);
 
 export const createTagOpts = (
   client: Client,
-  inserts: Partial<TagOpts>,
+  inserts: TagOpts,
   id: OptionsUIRow["profile_id"],
 ) => {
-  const internalInserts = {
-    profile_id: id,
-    tag_opts: inserts.tag_opts,
+  const tagOpts = {
+    tag_opts: inserts,
   };
+
+  const profileId = {
+    profile_id: id,
+    value: id,
+  };
+
+  const internalInserts = [profileId, tagOpts];
 
   return baseCreateTagOpts.create(client, internalInserts);
 };

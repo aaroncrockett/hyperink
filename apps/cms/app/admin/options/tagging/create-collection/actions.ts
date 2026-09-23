@@ -1,7 +1,7 @@
 "use server";
 import { redirect } from "next/navigation";
 //
-import { createUsersCollectionTags } from "@hyperink/api-domain-helpers/options";
+import { initCollectionTagsAndResetRemaining } from "@hyperink/api-domain-helpers/options";
 import { validateFormData } from "@hyperink/api-domain-helpers";
 //
 import { INTRO_COLLECTION_SCHEMA } from "@/app/admin/options/tagging/create-collection/data";
@@ -17,8 +17,17 @@ export async function createCollection(formData: FormData) {
 
   const client = await createSSClient();
 
-  const { profile_id: profileId, ...rest } = validatedMetadata.data;
+  const { profile_id: profileId, collections } = validatedMetadata.data;
 
-  const { error } = await createUsersCollectionTags(client, rest, profileId);
-  redirect("/admin/options/tagging");
+  const { error } = await initCollectionTagsAndResetRemaining(
+    client,
+    { collections },
+    profileId,
+  );
+
+  if (error) {
+    console.error("initCollectionTagsAndResetRemaining error");
+    redirect("/error");
+  }
+  redirect("/admin/options/");
 }

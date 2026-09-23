@@ -5,7 +5,7 @@ export const single = async <T>(
 ) => {
   const query = fn(...args);
 
-  const { data, resultError } = await (
+  const { data, error: resultError } = await (
     query?.single() as { overrideTypes: <U, V>() => any }
   ).overrideTypes<T, { merge: false }>();
 
