@@ -12,6 +12,6 @@ export const INTRO_COLLECTION = {
 };
 
 export const INTRO_COLLECTION_SCHEMA = {
-  collections: z.string(),
+  collections: z.string().transform((value) => [value]),
   profile_id: z.string(),
 };
