@@ -10,12 +10,7 @@ export const getUserProfile = async (
   selectKeys: (keyof ProfileUIRow)[],
   id: ProfileUIRow["id"],
 ) => {
-  return (
-    await getProfile,
-    client,
-    selectKeys,
-    [{ columnKey: "id", value: id }]
-  );
+  return (await getProfile, client, selectKeys, [{ id: id }]);
 };
 export const createUserProfile = async (
   client: Client,

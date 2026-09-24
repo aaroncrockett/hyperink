@@ -14,7 +14,7 @@ export const getUsersTagOptions = async (
   const { data, error } = await getOptions(
     client,
     ["tag_opts"],
-    [{ columnKey: "profile_id", value: id }],
+    [{ profile_id: id }],
   );
 
   return { data, error };

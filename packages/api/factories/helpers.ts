@@ -1,4 +1,4 @@
-import type { UiDbMapping, BroadWhere, Execute } from "../types";
+import type { UiDbMapping, RecordStringAny, Execute } from "../types";
 import { HIAPIError } from "@hyperink/api";
 import { Client } from "@hyperink/service-providers";
 
@@ -6,7 +6,7 @@ export const extractSelect = (selectKeys: string[]) =>
   selectKeys.length ? selectKeys.join(",") : "*";
 
 export const mapInsertsToDb = (
-  inserts: BroadWhere[],
+  inserts: RecordStringAny[],
   uiDbMapping?: UiDbMapping | null,
 ) =>
   inserts.map((insert) =>

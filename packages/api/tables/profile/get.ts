@@ -3,14 +3,14 @@ import type { Client } from "@hyperink/service-providers";
 
 import { type ProfileUIRow } from "@hyperink/api/profile";
 
-import type { Where } from "../../types";
+import type { DBKeyValue } from "../../types";
 
 const profileQueries = createSupabaseGetQueries("profile", null);
 
 export const getProfile = (
   client: Client,
   selectKeys: (keyof ProfileUIRow)[],
-  where: Where<ProfileUIRow>[],
+  where: DBKeyValue<ProfileUIRow>[],
 ) => {
   const execute = {
     method: "single",

@@ -5,7 +5,7 @@ import type {
   UiDbMapping,
   KeyOfTables,
   KeyOfTablesUI,
-  Where,
+  DBKeyValue,
   ExecuteSelect,
 } from "../types";
 
@@ -28,7 +28,7 @@ export function createSupabaseGetQueries<T extends KeyOfTables | KeyOfTablesUI>(
   return {
     async sbGetWhere<I>(
       client: Client,
-      where: Where<I>[],
+      where: DBKeyValue<I>[],
       execute: ExecuteSelect,
       modifyQuery?: (query: any) => any,
     ) {
@@ -43,7 +43,8 @@ export function createSupabaseGetQueries<T extends KeyOfTables | KeyOfTablesUI>(
       const inserts = mapInsertsToDb(where as any, uiDbMapping);
 
       for (const condition of where) {
-        query = (query as any).eq(condition.columnKey, condition.value!);
+        const [key, value] = Object.entries(condition)[0];
+        query = (query as any).eq(key, value);
       }
 
       if (modifyQuery) {

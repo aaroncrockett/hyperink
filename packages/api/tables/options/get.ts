@@ -3,7 +3,7 @@ import type { Client } from "@hyperink/service-providers";
 
 import { type OptionsUIRow } from "@hyperink/api/options";
 
-import type { Where } from "../../types";
+import type { DBKeyValue } from "../../types";
 
 const baseGetTagOpts = createSupabaseGetQueries("options", null);
 
@@ -12,7 +12,7 @@ const baseGetTagOpts = createSupabaseGetQueries("options", null);
 export const getOptions = (
   client: Client,
   selectKeys: (keyof OptionsUIRow)[],
-  where: Where<OptionsUIRow>[],
+  where: DBKeyValue<OptionsUIRow>[],
 ) => {
   const execute = {
     method: "single",

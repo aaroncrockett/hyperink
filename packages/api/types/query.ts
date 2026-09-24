@@ -2,18 +2,14 @@ export type UiDbMapping = {
   toUi: string;
   toDb: string;
 };
-export type Where<I> = {
+export type DBKeyValue<I> = {
   [K in keyof I]: {
-    columnKey: K;
-    value: I[K];
+    [P in K]: any;
   };
 }[keyof I];
 
-export type BroadWhere = {
-  columnKey: string;
-  value: any;
-};
-export type HIAPIError = {
+export type RecordStringAny = Record<string, any>;
+type HIAPIError = {
   message: string;
   details: string;
   [key: string]: string;

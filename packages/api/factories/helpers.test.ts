@@ -3,7 +3,7 @@ import { mapInsertsToDb, mapSelectsToDb, extractSelect } from "./helpers";
 
 describe("mapInsertsToDb", () => {
   it("maps keys using uiDbMapping", () => {
-    const inserts = [{ columnKey: "profile_id", value: "123" }];
+    const inserts = [{ profile_id: "123" }];
     const map = {
       toUi: "profile_id",
       toDb: "user_id",
@@ -19,12 +19,10 @@ describe("mapInsertsToDb", () => {
   it("maps multiple inserts using uiDbMapping", () => {
     const inserts = [
       {
-        columnKey: "profile_id",
-        value: JSON.stringify("123"),
+        profile_id: JSON.stringify("123"),
       },
       {
-        columnKey: "tag_opts",
-        value: JSON.stringify({
+        tag_opts: JSON.stringify({
           collections: ["collection-a", "collection-b"],
           styles: ["style-a"],
           tags: ["tag-a", "tag-b"],
