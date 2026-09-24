@@ -1,27 +1,56 @@
 import { Client } from "@hyperink/service-providers";
 //
-import { extractSelect, mapSelectsToDb } from "./helpers";
-import type { UiDbMapping, KeyOfTables, KeyOfTablesUI, Where } from "../types";
+
+import type {
+  UiDbMapping,
+  KeyOfTables,
+  KeyOfTablesUI,
+  Where,
+  ExecuteSelect,
+} from "../types";
+
+import {
+  mapSelectsToDb,
+  mapInsertsToDb,
+  extractSelect,
+  executeQuery,
+} from "./helpers";
+
+const executeDefault = {
+  method: "single",
+  keys: [],
+};
 
 export function createSupabaseGetQueries<T extends KeyOfTables | KeyOfTablesUI>(
   table: T,
   uiDbMapping: UiDbMapping | null,
 ) {
   return {
-    sbGetWhere(client: Client, selectKeys: string[], where: Where[]) {
-      const internalSelectKeys = uiDbMapping
-        ? mapSelectsToDb(selectKeys, uiDbMapping)
-        : selectKeys;
+    async sbGetWhere<I>(
+      client: Client,
+      where: Where<I>[],
+      execute: ExecuteSelect,
+      modifyQuery?: (query: any) => any,
+    ) {
+      const arrayKeys = mapSelectsToDb(
+        execute.keys satisfies keyof I[],
+        uiDbMapping,
+      );
+      const selectKeys = extractSelect(arrayKeys ?? []);
 
-      const select = extractSelect(internalSelectKeys.map(String));
+      let query = client.from(table).select(selectKeys);
 
-      let query = client.from(table).select(select);
+      const inserts = mapInsertsToDb(where as any, uiDbMapping);
 
       for (const condition of where) {
-        query = query.eq(condition.columnKey as any, condition.value!);
+        query = (query as any).eq(condition.columnKey, condition.value!);
       }
 
-      return query;
+      if (modifyQuery) {
+        query = modifyQuery(query);
+      }
+
+      return await executeQuery(uiDbMapping, execute, query);
     },
 
     // sbGetOverlapping(

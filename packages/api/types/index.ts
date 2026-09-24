@@ -13,6 +13,8 @@ import {
   ProfileUIRow as ProfileUIRowSrc,
 } from "@hyperink/api/profile";
 
+export * from "./query";
+
 export type Database = MergeDeep<
   DatabaseGenerated,
   {
@@ -78,17 +80,3 @@ export type ColumnUI<
   T extends KeyOfTablesUI,
   K extends KeyOfColumnsUI<T>,
 > = DatabaseUI["public"]["Tables"][T]["Row"][K];
-
-export type UiDbMapping = {
-  toUi: string;
-  toDb: string;
-};
-export type Where = {
-  columnKey: string;
-  value: any;
-};
-export type HIAPIError = {
-  message: string;
-  details: string;
-  [key: string]: string;
-};
