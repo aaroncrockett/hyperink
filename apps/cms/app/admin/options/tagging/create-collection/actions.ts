@@ -4,10 +4,7 @@ import { redirect } from "next/navigation";
 import { initCollectionTagsAndResetRemaining } from "@hyperink/api-domain-helpers/options";
 import { zodIssuesToErrors } from "@hyperink/api-domain-helpers";
 //
-import {
-  INTRO_COLLECTION_SCHEMA,
-  type IntroCollectionSchemaTypes,
-} from "./data";
+import { INTRO_COLLECTION_SCHEMA } from "./data";
 import { createSSClient } from "@/auth/server";
 
 export async function createCollection(formData: FormData) {
@@ -24,7 +21,7 @@ export async function createCollection(formData: FormData) {
 
   const client = await createSSClient();
 
-  const data: IntroCollectionSchemaTypes = validatedResult.data;
+  const data = validatedResult.data;
 
   const { error } = await initCollectionTagsAndResetRemaining(
     client,
