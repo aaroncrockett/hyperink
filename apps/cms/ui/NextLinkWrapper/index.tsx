@@ -14,7 +14,7 @@ type LinkProps = ComponentPropsWithoutRef<typeof Link> & {
 export function NextLinkWrapper({
   children,
   // transition = "nav-forward",
-  utilClassName = "dark:text-secondary-200 text-secondary-600",
+  utilClassName = "dark:text-secondary-200 text-secondary-600 hover:dark:text-secondary-50 hover:text-secondary-400 ",
   ...props
 }: LinkProps) {
   return (
