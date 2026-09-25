@@ -1,9 +1,8 @@
-import { cache } from "react";
 import { createSSClient, getAuthedUser } from "@/auth/server";
-// import type { AuthUser, Client } from "@hyperink/service-providers";
 
 import { getUserProfile } from "@hyperink/api-domain-helpers/profile";
 import { type ProfileUIRow } from "@hyperink/api/profile";
+import { User } from "@supabase/supabase-js";
 
 export type ProviderMetadata = {
   email: string;
@@ -14,93 +13,77 @@ export type ProviderMetadata = {
   provider: string;
 };
 
-type GetType = "user" | "profile" | "user-profile";
+export const getInitUserAndProfileData = async (
+  select: (keyof ProfileUIRow)[],
+) => {
+  const dbClient = await createSSClient();
 
-// getType === "user" = just user info. good for first filling out profile. includes provider data to pre-fill a form. doesn't fetch a profile.
-// getType === "profile" = good after a profile is already created. contains the userId (same as profileId) and the profile object. Does not contain the user object or provider data.
-// getType === "user-profile" = if you need every thing.
+  const {
+    data: { user },
+  } = await getAuthedUser(dbClient);
 
-export const getUserData = cache(
-  async (getType: GetType = "user", select: (keyof ProfileUIRow)[]) => {
-    const dbClient = await createSSClient();
+  const safeErrorMsg =
+    "Unable to load your account. Please try again, and if the error continues, contact Hyperink.";
 
-    const {
-      data: { user },
-    } = await getAuthedUser(dbClient);
+  const providerMetadata: ProviderMetadata = {
+    email: "",
+    fullName: "",
+    isEmailVerified: false,
+    name: "",
+    phone: "",
+    provider: "",
+  };
 
-    const safeErrorMsg =
-      "Unable to load your account. Please try again, and if the error continues, contact Hyperink.";
+  providerMetadata.email = user?.email ?? user?.user_metadata.email ?? "";
+  providerMetadata.fullName = user?.user_metadata.full_name ?? "";
+  providerMetadata.isEmailVerified = user?.user_metadata.email_verified;
+  providerMetadata.name = user?.user_metadata.name ?? "";
+  providerMetadata.phone = user?.phone ?? "";
+  providerMetadata.provider = user?.app_metadata.provider ?? "";
 
-    const providerMetadata: ProviderMetadata = {
-      email: "",
-      fullName: "",
-      isEmailVerified: false,
-      name: "",
-      phone: "",
-      provider: "",
-    };
+  type UserProfileDateData = {
+    user: User | null;
+    userId: string | null;
+    profile: ProfileUIRow | null;
+    providerMetadata: null | ProviderMetadata;
+  };
 
-    if (user && (getType === "user" || getType === "user-profile")) {
-      providerMetadata.email = user?.email ?? user?.user_metadata.email ?? "";
-      providerMetadata.fullName = user?.user_metadata.full_name ?? "";
-      providerMetadata.isEmailVerified = user?.user_metadata.email_verified;
-      providerMetadata.name = user?.user_metadata.name ?? "";
-      providerMetadata.phone = user?.phone ?? "";
-      providerMetadata.provider = user?.app_metadata.provider ?? "";
-    }
+  let userProfileData: UserProfileDateData = {
+    user,
+    userId: null,
+    profile: null,
+    providerMetadata: null,
+  };
 
-    if (user && getType === "user") {
-      return {
-        user,
-        userId: user.id,
-        providerMetadata,
-        profile: null,
-        error: null,
-      };
-    }
-
-    if (user && (getType === "profile" || getType === "user-profile")) {
-      const { data: profileData, error: profileError } = await getUserProfile(
-        dbClient,
-        select,
-        user.id,
-      );
-
-      if (profileError) {
-        return {
-          user,
-          userId: null,
-          profile: null,
-          providerMetadata: null,
-          error: { message: safeErrorMsg },
-        };
-      }
-
-      if (getType === "profile") {
-        return {
-          user: null,
-          userId: user.id,
-          providerMetadata: null,
-          profile: profileData,
-          error: null,
-        };
-      }
-
-      return {
-        user,
-        userId: user.id,
-        providerMetadata,
-        profile: profileData,
-        error: null,
-      };
-    }
-
+  if (!user || !user.id) {
     return {
-      user: null,
-      userId: null,
-      providerMetadata: null,
-      profile: null,
-      error: null,
+      data: userProfileData,
+      error: { message: safeErrorMsg },
     };
-  },
-);
+  }
+
+  const { data: profileData, error: profileError } = await getUserProfile(
+    dbClient,
+    select,
+    user?.id,
+  );
+
+  if (profileError) {
+    return {
+      data: userProfileData,
+      error: { message: safeErrorMsg },
+    };
+  }
+
+  userProfileData = {
+    user,
+    userId: user.id,
+    profile: profileData,
+    providerMetadata: providerMetadata,
+  };
+
+  return {
+    data: userProfileData,
+    error: null,
+  };
+};

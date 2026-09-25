@@ -1,33 +1,42 @@
 "use server";
 import { redirect } from "next/navigation";
 //
-// import { initCollectionTagsAndResetRemaining } from "@hyperink/api-domain-helpers/options";
-import { validateFormData } from "@hyperink/api-domain-helpers";
+import { initCollectionTagsAndResetRemaining } from "@hyperink/api-domain-helpers/options";
+import { zodIssuesToErrors } from "@hyperink/api-domain-helpers";
 //
-import { INTRO_COLLECTION_SCHEMA } from "@/app/admin/options/tagging/create-collection/data";
+import {
+  INTRO_COLLECTION_SCHEMA,
+  type IntroCollectionSchemaTypes,
+} from "./data";
 import { createSSClient } from "@/auth/server";
 
 export async function createCollection(formData: FormData) {
-  // const validatedMetadata = validateFormData(formData, INTRO_COLLECTION_SCHEMA);
+  const validatedResult = INTRO_COLLECTION_SCHEMA.safeParse(
+    Object.fromEntries(formData),
+  );
 
-  // if (validatedMetadata.errors || !validatedMetadata.data) {
-  //   console.error(validatedMetadata.errors);
-  //   redirect("/error");
-  // }
+  if (!validatedResult.success) {
+    const errors = zodIssuesToErrors(validatedResult.error?.issues ?? []);
 
-  // const client = await createSSClient();
+    console.error(errors.message);
+    redirect("/error");
+  }
 
-  // const { profile_id: profileId, collections } = validatedMetadata.data;
+  const client = await createSSClient();
 
-  // const { error } = await initCollectionTagsAndResetRemaining(
-  //   client,
-  //   { collections },
-  //   profileId,
-  // );
+  const data: IntroCollectionSchemaTypes = validatedResult.data;
 
-  // if (error) {
-  //   console.error("initCollectionTagsAndResetRemaining error");
-  //   redirect("/error");
-  // }
+  const { error } = await initCollectionTagsAndResetRemaining(
+    client,
+    {
+      collections: data.collections,
+    },
+
+    data.profile_id,
+  );
+  if (error) {
+    console.error("initCollectionTagsAndResetRemaining error");
+    redirect("/error");
+  }
   redirect("/admin/options/");
 }

@@ -13,7 +13,7 @@ export const getProfile = async (
   where: DBKeyValue<ProfileUIRow>[],
 ) => {
   const execute = {
-    method: "single",
+    method: "maybe-single",
     keys: selectKeys,
   } as const;
 

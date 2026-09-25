@@ -1,13 +1,13 @@
 import { redirect } from "next/navigation";
 //
-import { getUserData } from "@/app/_helpers";
+import { getInitUserAndProfileData } from "@/app/_helpers";
 //
 
 export const init = async () => {
-  const { user, profile, providerMetadata, error } = await getUserData(
-    "user-profile",
-    [],
-  );
+  const {
+    data: { user, profile, userId, providerMetadata },
+    error,
+  } = await getInitUserAndProfileData([]);
 
   if (user && providerMetadata && !providerMetadata.isEmailVerified) {
     return {
@@ -35,5 +35,5 @@ export const init = async () => {
 
   if (error) return { error };
 
-  return profile;
+  return { profile, user, userId, providerMetadata };
 };

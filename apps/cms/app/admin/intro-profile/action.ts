@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { INTRO_PROFILE_SCHEMA, CHECK_LIST_SCHEMA } from "./data";
 import { createUserProfile } from "@hyperink/api-domain-helpers/profile";
 import {
-  validateFormData,
+  zodIssuesToErrors,
   type HIFormData,
 } from "@hyperink/api-domain-helpers";
 
@@ -15,20 +15,28 @@ export async function createIntroProfileData(
   previousState: HIFormData,
   formData: FormData,
 ): Promise<HIFormData> {
-  const validatedMetadata = validateFormData(formData, INTRO_PROFILE_SCHEMA);
+  const validatedMetadata = INTRO_PROFILE_SCHEMA.safeParse(
+    Object.fromEntries(formData),
+  );
 
-  if (validatedMetadata.error) {
+  if (!validatedMetadata.success) {
+    const errors = zodIssuesToErrors(validatedMetadata.error?.issues ?? []);
+
     return {
-      error: { ...validatedMetadata.error },
+      error: { message: errors.message },
       data: null,
     };
   }
 
-  const validatedToVerifyData = validateFormData(formData, CHECK_LIST_SCHEMA);
+  const validatedToVerifyData = CHECK_LIST_SCHEMA.safeParse(
+    Object.fromEntries(formData),
+  );
 
-  if (validatedToVerifyData.error) {
+  if (!validatedToVerifyData.success) {
+    const errors = zodIssuesToErrors(validatedToVerifyData.error?.issues ?? []);
+
     return {
-      error: { ...validatedToVerifyData.error },
+      error: { message: errors.message },
       data: null,
     };
   }

@@ -57,9 +57,14 @@ export const CHECK_LIST = [
   { id: "use-bsky", match: "bsky_id", label: "blue sky" },
 ];
 
-export const INTRO_PROFILE_SCHEMA: Partial<{
-  [K in keyof ProfileUIRow]: z.ZodType<ProfileUIRow[K]>;
-}> = {
+type KeyOfIntroProfile =
+  keyof typeof PROFILE_METADATA | keyof typeof PROFILE_ID;
+
+type IntroProfileSchema = {
+  [K in KeyOfIntroProfile]: z.ZodType;
+};
+
+export const INTRO_PROFILE_SCHEMA = z.object({
   id: z.string(),
   email: z.email(),
   first_name: z.string().nullable(),
@@ -67,10 +72,12 @@ export const INTRO_PROFILE_SCHEMA: Partial<{
   preferred_name: z.string().nullable(),
   bsky_id: z.string().nullable(),
   instagram_id: z.string().nullable(),
-};
+}) satisfies z.ZodObject<IntroProfileSchema>;
 
-export const CHECK_LIST_SCHEMA = {
+export type IntroCollectionSchemaTypes = z.infer<typeof INTRO_PROFILE_SCHEMA>;
+
+export const CHECK_LIST_SCHEMA = z.object({
   "use-instagram": z.preprocess((value) => value === "on", z.boolean()),
   "use-email": z.preprocess((value) => value === "on", z.boolean()),
   "use-bsky": z.preprocess((value) => value === "on", z.boolean()),
-};
+});

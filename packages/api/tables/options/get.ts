@@ -15,7 +15,7 @@ export const getOptions = (
   where: DBKeyValue<OptionsUIRow>[],
 ) => {
   const execute = {
-    method: "single",
+    method: "maybe-single",
     keys: selectKeys,
   } as const;
   return baseGetTagOpts.sbGetWhere<OptionsUIRow>(client, where, execute);

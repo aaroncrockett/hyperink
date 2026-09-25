@@ -33,5 +33,9 @@ export const initCollectionTagsAndResetRemaining = async (
     styles: [],
     tags: [],
   };
+  type CreateTagInsert = {
+    profile_id?: OptionsUIRow["profile_id"];
+    tag_opts?: OptionsUIRow["tag_opts"];
+  };
   return await createTagOpts(client, tagOpts, id);
 };

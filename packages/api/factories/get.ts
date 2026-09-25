@@ -16,7 +16,7 @@ import {
 } from "./helpers";
 
 const executeDefault = {
-  method: "single",
+  method: "maybe-single",
   keys: [],
 };
 

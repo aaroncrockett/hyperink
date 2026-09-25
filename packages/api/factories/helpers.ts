@@ -60,7 +60,10 @@ export const executeQuery = async <T>(
       T,
       { merge: false }
     >();
-    return handleResult(result);
+
+    const resulta = handleResult(result);
+
+    return resulta;
   }
 
   if (execute.method === "single") {
