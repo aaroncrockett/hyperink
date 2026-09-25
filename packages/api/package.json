@@ -6,6 +6,7 @@
   "dependencies": {
     "@hyperink/api": "workspace:*",
     "@hyperink/service-providers": "workspace:*",
+    "@hyperink/api-domain-helpers": "workspace:*",
     "@hyperink/utils": "workspace:*"
   },
   "exports": {

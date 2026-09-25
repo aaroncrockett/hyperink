@@ -1,14 +1,14 @@
 import { z } from "zod";
 import { zodIssuesToErrors } from "@hyperink/api-domain-helpers";
-import { type GenericValidationData } from "../types";
+import { type HIFormData } from "../types";
 
-export const validateFormData = (
+export const validateFormData = <T extends Record<string, z.ZodType>>(
   formData: FormData,
-  schema: Record<string, z.ZodType>,
+  schema: T,
 ) => {
-  const validationData: GenericValidationData = {
+  const validationData: HIFormData = {
     data: null,
-    errors: null,
+    error: null,
   };
 
   const formDataObject = Object.fromEntries(formData.entries());
@@ -16,19 +16,21 @@ export const validateFormData = (
   const itemsSchema = z.object(schema);
 
   const {
-    data: validatedMetadata,
+    data,
     success: validatedMetadataSuccess,
-    error: validatedMetadataError,
+    error,
   } = itemsSchema.safeParse(formDataObject);
 
   if (!validatedMetadataSuccess) {
-    const errors = zodIssuesToErrors(validatedMetadataError?.issues ?? []);
+    const errors = zodIssuesToErrors(error?.issues ?? []);
 
-    validationData.errors = { ...errors };
-    return validationData;
+    validationData.error = {
+      message: error.message,
+      rawError: errors,
+    };
   }
 
-  validationData.data = validatedMetadata as Record<string, string> | null;
+  validationData.data = data ?? null;
   return validationData;
 };
 

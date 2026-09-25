@@ -2,12 +2,12 @@
 
 import { useActionState } from "react";
 //
-import { type ErrorPageData } from "@hyperink/api-domain-helpers";
+import { type HIFormData } from "@hyperink/api-domain-helpers";
 import {
   FormClient as Form,
   Input,
   InputCheck,
-  ErrorsDisplay,
+  ErrorDisplay,
 } from "@hyperink/ui-react/components";
 //
 import { ProviderMetadata } from "@/app/_helpers";
@@ -15,8 +15,9 @@ import { ProviderMetadata } from "@/app/_helpers";
 import { createIntroProfileData } from "../action";
 import { PROFILE_ID, PROFILE_METADATA_LIST, CHECK_LIST } from "../data";
 
-const initialState: ErrorPageData = {
-  errors: null,
+const initialState: HIFormData = {
+  error: null,
+  data: null,
 };
 
 type IntroProfile = {
@@ -86,7 +87,7 @@ export function ProfileForm({ userId, providerMetadata }: IntroProfile) {
       </Form>
 
       {isPending && <p>Pending results...</p>}
-      {formState.errors && <ErrorsDisplay errors={formState.errors} />}
+      {formState.error && <ErrorDisplay error={formState.error.message} />}
     </>
   );
 }

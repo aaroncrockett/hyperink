@@ -1,14 +1,9 @@
 import { createSupabaseCreateQueries } from "@hyperink/api";
-import {
-  type OptionsUIRow,
-  type TagOpts,
-  getOptions,
-} from "@hyperink/api/options";
+import { type OptionsUIRow, type TagOpts } from "@hyperink/api/options";
 
 //
 import type { Client } from "@hyperink/service-providers";
 //
-import { normalizeToKabobCase } from "@hyperink/utils";
 
 const baseCreateTagOpts = createSupabaseCreateQueries("options", null);
 
@@ -16,6 +11,7 @@ export const createTagOpts = (
   client: Client,
   inserts: TagOpts,
   id: OptionsUIRow["profile_id"],
+  selectKeys?: null | (keyof OptionsUIRow)[],
 ) => {
   const tagOpts = {
     tag_opts: inserts,
@@ -23,10 +19,18 @@ export const createTagOpts = (
 
   const profileId = {
     profile_id: id,
-    value: id,
   };
+
+  const execute = {
+    method: selectKeys ? "single" : "execute",
+    keys: selectKeys ?? null,
+  } as const;
 
   const internalInserts = [profileId, tagOpts];
 
-  return baseCreateTagOpts.create(client, internalInserts);
+  return baseCreateTagOpts.create<OptionsUIRow>(
+    client,
+    internalInserts,
+    execute,
+  );
 };

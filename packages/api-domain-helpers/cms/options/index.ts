@@ -6,18 +6,18 @@ import {
   type OptionsUIRow,
   type TagOpts,
 } from "@hyperink/api/options";
-import { single } from "../../internal-helpers/";
 
 export const getUsersTagOptions = async (
   client: Client,
   id: OptionsUIRow["profile_id"],
 ) => {
-  return await single(
-    getOptions,
+  const { data, error } = await getOptions(
     client,
     ["tag_opts"],
-    [{ columnKey: "profile_id", value: id }],
+    [{ profile_id: id }],
   );
+
+  return { data, error };
 };
 
 export const initCollectionTagsAndResetRemaining = async (
@@ -33,5 +33,5 @@ export const initCollectionTagsAndResetRemaining = async (
     styles: [],
     tags: [],
   };
-  return await single(createTagOpts, client, tagOpts, id);
+  return await createTagOpts(client, tagOpts, id);
 };

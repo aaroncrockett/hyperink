@@ -1,7 +1,7 @@
 import "./globals.css";
 import { outfit, leagueGothic, rubik, rubikDirt } from "./_data";
 export { metadata } from "./_data";
-import { getUserData } from "./_helpers";
+import { getAuthedUser, createSSClient } from "@/auth/server";
 import { Body } from "./_components/(body)/Body";
 
 export default async function RootLayout({
@@ -9,9 +9,12 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { userId } = await getUserData();
+  const serverClient = await createSSClient();
+  const {
+    data: { user },
+  } = await getAuthedUser(serverClient);
 
-  const isSignedIn = !!userId;
+  const isSignedIn = !!user?.id;
   return (
     <html
       lang="en"

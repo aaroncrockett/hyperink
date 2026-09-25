@@ -4,7 +4,7 @@ import { INTRO_PROFILE_SCHEMA, CHECK_LIST_SCHEMA } from "./data";
 import { createUserProfile } from "@hyperink/api-domain-helpers/profile";
 import {
   validateFormData,
-  type ErrorPageData,
+  type HIFormData,
 } from "@hyperink/api-domain-helpers";
 
 import { createSSClient } from "@/auth/server";
@@ -12,22 +12,24 @@ import { createSSClient } from "@/auth/server";
 import type { ProfileToVerify } from "@hyperink/api/profile";
 
 export async function createIntroProfileData(
-  previousState: ErrorPageData,
+  previousState: HIFormData,
   formData: FormData,
-): Promise<ErrorPageData> {
+): Promise<HIFormData> {
   const validatedMetadata = validateFormData(formData, INTRO_PROFILE_SCHEMA);
 
-  if (validatedMetadata.errors) {
+  if (validatedMetadata.error) {
     return {
-      errors: { ...validatedMetadata.errors },
+      error: { ...validatedMetadata.error },
+      data: null,
     };
   }
 
   const validatedToVerifyData = validateFormData(formData, CHECK_LIST_SCHEMA);
 
-  if (validatedToVerifyData.errors) {
+  if (validatedToVerifyData.error) {
     return {
-      errors: { ...validatedToVerifyData.errors },
+      error: { ...validatedToVerifyData.error },
+      data: null,
     };
   }
 
@@ -50,7 +52,8 @@ export async function createIntroProfileData(
 
   if (error) {
     return {
-      errors: { ...error },
+      error: { ...error },
+      data: null,
     };
   }
 

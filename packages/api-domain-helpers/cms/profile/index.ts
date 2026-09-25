@@ -4,19 +4,17 @@ import {
   createProfile,
   type ProfileUIRow,
 } from "@hyperink/api/profile";
-import { execute, single } from "../../internal-helpers/";
+
 export const getUserProfile = async (
   client: Client,
   selectKeys: (keyof ProfileUIRow)[],
   id: ProfileUIRow["id"],
 ) => {
-  return await single(getProfile, client, selectKeys, [
-    { columnKey: "id", value: id },
-  ]);
+  return await getProfile(client, selectKeys, [{ id }]);
 };
 export const createUserProfile = async (
   client: Client,
-  inserts: Partial<ProfileUIRow>[] | Partial<ProfileUIRow>,
+  inserts: Partial<ProfileUIRow>,
 ) => {
-  return await execute(createProfile, client, inserts);
+  return createProfile(client, [inserts]);
 };
