@@ -5,8 +5,8 @@ import { init } from "./_helpers";
 export default async function Admin() {
   const initialized = await init();
 
-  if (initialized?.errors) {
-    return <ErrorDisplay error={initialized.errors.userError} />;
+  if (initialized?.error) {
+    return <ErrorDisplay error={initialized.error.message} />;
   }
 
   if (initialized?.notVerified) {

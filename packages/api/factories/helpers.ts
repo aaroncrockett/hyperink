@@ -1,6 +1,5 @@
 import type { UiDbMapping, RecordStringAny, Execute } from "../types";
-import { HIAPIError } from "@hyperink/api";
-import { Client } from "@hyperink/service-providers";
+import { HIError } from "@hyperink/api-domain-helpers";
 
 export const extractSelect = (selectKeys: string[]) =>
   selectKeys.length ? selectKeys.join(",") : "*";
@@ -33,7 +32,7 @@ export const single = async <T>(
     query?.select().single() as { overrideTypes: <U, V>() => any }
   ).overrideTypes<T, { merge: false }>();
 
-  const error: HIAPIError | null = resultError
+  const error: HIError | null = resultError
     ? {
         message: resultError.message,
         details: resultError.details,
@@ -95,7 +94,7 @@ export const handleResult = (result: any, type = "exectue") => {
 
   const { error: resultError } = result;
 
-  const error: HIAPIError | null = resultError
+  const error: HIError | null = resultError
     ? {
         message: resultError.message,
         details: resultError.details,
@@ -104,28 +103,3 @@ export const handleResult = (result: any, type = "exectue") => {
 
   return { error, data: result.data ?? null };
 };
-
-// export const execute = async <T>(
-//   fn: (...args: any[]) => any,
-//   ...args: any[]
-// ) => {
-//   const query = fn(...args);
-
-//   const result = await query;
-//   if (!result) {
-//     return {
-//       type: "supbase error",
-//     };
-//   }
-
-//   const { error: resultError } = result;
-
-//   const error: HIAPIError | null = resultError
-//     ? {
-//         message: resultError.message,
-//         details: resultError.details,
-//       }
-//     : null;
-
-//   return { error };
-// };

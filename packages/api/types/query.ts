@@ -3,21 +3,14 @@ export type UiDbMapping = {
   toDb: string;
 };
 export type DBKeyValue<I> = {
-  [K in keyof I]: {
-    [P in K]: any;
-  };
-}[keyof I];
+  [K in keyof I]?: any;
+};
 
 export type RecordStringAny = Record<string, any>;
-type HIAPIError = {
-  message: string;
-  details: string;
-  [key: string]: string;
-};
 
 export type Execute = {
   method: ExecuteMethods;
-  keys: null | [];
+  keys: null | string[];
 };
 
 export type ExecuteSelect = {

@@ -4,22 +4,28 @@ import { getUserData } from "@/app/_helpers";
 //
 
 export const init = async () => {
-  const { user, profile, providerMetadata, userId, errors } =
-    await getUserData("user-profile");
+  const { user, profile, providerMetadata, userId, error } = await getUserData(
+    "user-profile",
+    [],
+  );
 
   if (user && providerMetadata && !providerMetadata.isEmailVerified) {
     return {
-      errors: {
-        userError:
+      error: {
+        message:
           "your email has not been verified through your provider, please verify before you sign up.",
       },
+      data: null,
     };
   }
 
   if (user && profile && !profile?.is_verified) {
     return {
-      notVerified:
-        "You have not been verified yet. I will be contacting you soon:! :D",
+      error: {
+        message:
+          "You have not been verified yet. I will be contacting you soon:! :D",
+      },
+      data: null,
     };
   }
 
@@ -27,7 +33,7 @@ export const init = async () => {
     redirect("/admin/intro-profile");
   }
 
-  if (errors) return { errors };
+  if (error) return { error };
 
-  return { userId };
+  return profile;
 };

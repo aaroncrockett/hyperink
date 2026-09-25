@@ -10,11 +10,11 @@ export const getUserProfile = async (
   selectKeys: (keyof ProfileUIRow)[],
   id: ProfileUIRow["id"],
 ) => {
-  return (await getProfile, client, selectKeys, [{ id: id }]);
+  return await getProfile(client, selectKeys, [{ id }]);
 };
 export const createUserProfile = async (
   client: Client,
-  inserts: Partial<ProfileUIRow>[] | Partial<ProfileUIRow>,
+  inserts: Partial<ProfileUIRow>,
 ) => {
-  return (await createProfile, client, inserts);
+  return createProfile(client, [inserts]);
 };

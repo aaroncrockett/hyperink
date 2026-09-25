@@ -2,7 +2,7 @@ import { ProfileForm } from "./_components/ProfileForm";
 import { getUserData } from "@/app/_helpers";
 
 export default async function IntroProfile() {
-  const { user, userId, providerMetadata } = await getUserData("user");
+  const { user, userId, providerMetadata } = await getUserData("user", []);
   return (
     <div className="flex flex-col gap-4 p-4">
       <div className="text-secondary-500 text-center">

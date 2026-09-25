@@ -1,4 +1,4 @@
-import { HIAPIError } from "@hyperink/api";
+import { HIError } from "../types";
 export const execute = async <T>(
   fn: (...args: any[]) => any,
   ...args: any[]
@@ -14,9 +14,8 @@ export const execute = async <T>(
 
   const { error: resultError } = result;
 
-  const error: HIAPIError | null = resultError
+  const error: HIError | null = resultError
     ? {
-        type: "supbase error",
         message: resultError.message,
         details: resultError.details,
       }

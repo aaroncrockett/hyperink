@@ -7,7 +7,7 @@ import type { DBKeyValue } from "../../types";
 
 const profileQueries = createSupabaseGetQueries("profile", null);
 
-export const getProfile = (
+export const getProfile = async (
   client: Client,
   selectKeys: (keyof ProfileUIRow)[],
   where: DBKeyValue<ProfileUIRow>[],
@@ -17,5 +17,5 @@ export const getProfile = (
     keys: selectKeys,
   } as const;
 
-  profileQueries.sbGetWhere<ProfileUIRow>(client, where, execute);
+  return await profileQueries.sbGetWhere<ProfileUIRow>(client, where, execute);
 };
