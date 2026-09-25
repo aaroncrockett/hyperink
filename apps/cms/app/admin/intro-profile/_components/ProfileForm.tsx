@@ -22,7 +22,7 @@ const initialState: HIFormData = {
 
 type IntroProfile = {
   userId: string;
-  providerMetadata: ProviderMetadata;
+  providerMetadata: ProviderMetadata | null;
 };
 
 export function ProfileForm({ userId, providerMetadata }: IntroProfile) {
