@@ -7,10 +7,7 @@ import { FileUpload } from "@skeletonlabs/skeleton-react";
 // import { type ProfileTaggingOptionsDisplay } from "@/business/profileTaggingOpts";
 // import { UPLOAD_OPTIONS, type UploadOption } from "@/business/flash";
 //
-import {
-  FormClient as Form,
-  ErrorsDisplay,
-} from "@hyperink/ui-react/components";
+import { FormClient as Form } from "@hyperink/ui-react/components";
 
 import { toLabelValue } from "@hyperink/api-domain-helpers";
 import type { TagOpts } from "@hyperink/api/options";
