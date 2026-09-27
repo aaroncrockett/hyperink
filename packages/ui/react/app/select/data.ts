@@ -51,8 +51,8 @@ export const docs = [
     type: "string",
   },
   {
-    name: "inputUtilClassName",
-    description: "Overrides input classes. hI-input-check",
+    name: "selectUtilClassName",
+    description: "Overrides select classes. hI-select-check",
     type: "string",
   },
   {

@@ -26,18 +26,26 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex flex-col p-4 min-h-full">
-        <ul className="flex flex-row gap-2 p-4">
-          <li className="bg-secondary-500 p-2 rounded-2xl">
-            <Link className="p-2 font-bold" href="/input">
-              Input
-            </Link>
-          </li>
-          <li className="bg-secondary-500 p-2 rounded-2xl">
-            <Link className="p-2 font-bold" href="/input-check">
-              Input Check
-            </Link>
-          </li>
-        </ul>
+        <div>
+          <h1 className="font-bold text-2xl">HyperInk UI Playground</h1>
+          <ul className="flex flex-row gap-2 p-2 pb-4">
+            <li className="rounded-2xl text-secondary-500 hover:text-secondary-400 text-lg hover:underline">
+              <Link className="font-bold" href="/input">
+                Input
+              </Link>
+            </li>
+            <li className="rounded-2xl text-secondary-500 hover:text-secondary-400 text-lg hover:underline">
+              <Link className="font-bold" href="/input-check">
+                Input Check
+              </Link>
+            </li>
+            <li className="rounded-2xl text-secondary-500 hover:text-secondary-400 text-lg hover:underline">
+              <Link className="font-bold" href="/select">
+                Select
+              </Link>
+            </li>
+          </ul>
+        </div>
         {children}
       </body>
     </html>

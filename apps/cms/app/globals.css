@@ -14,6 +14,17 @@
 /*** BTN ***/
 /***************/
 
+select {
+  print-color-adjust: exact;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%23808080' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+  background-position: right 0.25rem center;
+  background-repeat: no-repeat;
+  background-size: 1.25em 1.25em;
+  padding-right: 2rem;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
 @utility hI-btn {
   @apply btn;
   padding-block: calc((var(--btn-size) - --spacing(0.5)) / 2 + --spacing(0.5));
@@ -91,7 +102,7 @@
 }
 
 @utility hI-input-label {
-  @apply font-bold;
+  @apply font-bold label;
 }
 
 @utility hI-input-error {

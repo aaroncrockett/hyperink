@@ -1,26 +1,34 @@
+import { cn } from "@hyperink/utils";
+import React from "react";
 import type { ComponentPropsWithoutRef } from "react";
 
-import { cn } from "@hyperink/utils";
+type SelectOption = {
+  label: string;
+  value: string;
+  [key: string]: unknown;
+};
 
-type InputProps = ComponentPropsWithoutRef<"input"> & {
+type SelectProps = ComponentPropsWithoutRef<"select"> & {
   desc?: string;
   descClassName?: string;
   descUtilClassName?: string;
-  defaultValue?: string | number;
+  defaultValue?: string;
   dir?: "row" | "col";
   disabled?: boolean;
   errorClassName?: string;
   errorUtilClassName?: string;
   error?: string | null;
   id?: string;
-  inputUtilClassName?: string;
   label?: string;
   labelClassName?: string;
   labelUtilClassName?: string;
   name?: string;
+  options: SelectOption[];
+  optionsClassName?: string;
+  optionsUtilClassName?: string;
   placeholder?: string;
-  readOnly?: boolean;
   required?: boolean;
+  selectUtilClassName?: string;
   textColorUtilClassName?: string;
   type?: React.HTMLInputTypeAttribute;
   value?: string;
@@ -30,7 +38,7 @@ type InputProps = ComponentPropsWithoutRef<"input"> & {
   wrapperUtilClassName?: string;
 };
 
-export function Input({
+export function Select({
   defaultValue,
   desc,
   descClassName,
@@ -41,14 +49,15 @@ export function Input({
   errorUtilClassName = "hI-input-error",
   error = null,
   id,
-  inputUtilClassName = "hI-input hI-input-layout",
   label,
-  labelClassName,
-  labelUtilClassName = "hI-input-label",
+  labelClassName = "hI-input-label",
+  labelUtilClassName,
   name,
-  placeholder,
-  readOnly,
+  options,
+  optionsClassName,
+  optionsUtilClassName,
   required = false,
+  selectUtilClassName = "hI-input hI-input-layout",
   textColorUtilClassName = "hI-input-text-color",
   type = "text",
   value,
@@ -56,8 +65,9 @@ export function Input({
   wrapperAlignUtilClassName,
   wrapperGapUtilClassName,
   wrapperUtilClassName = "hI-input-wrapper",
+
   ...props
-}: InputProps) {
+}: SelectProps) {
   const computedLayout = dir === "row" ? "flex flex-row" : "flex flex-col";
 
   const computedWrapperAlign =
@@ -73,7 +83,8 @@ export function Input({
     ? wrapperGapUtilClassName
     : computedWrapperGap;
 
-  const inputName = name ? name : id;
+  const selectName = name ? name : id;
+
   return (
     <div
       className={cn(
@@ -97,24 +108,35 @@ export function Input({
           {required && "*"} {label}
         </label>
       )}
-      <input
-        {...props}
+
+      <select
+        id={id}
+        name={selectName}
+        required={required}
+        disabled={disabled}
         className={cn(
-          inputUtilClassName,
+          selectUtilClassName,
           textColorUtilClassName,
           props.className,
         )}
-        defaultValue={defaultValue}
-        disabled={disabled}
-        id={id}
-        name={inputName}
-        onChange={props.onChange}
-        readOnly={readOnly}
-        required={required}
-        placeholder={placeholder}
-        type={type}
+
         {...(value !== undefined ? { value } : {})}
-      />
+        {...(defaultValue !== undefined ? { defaultValue } : {})}
+        {...props}
+      >
+        {!required && <option value="">Select...</option>}
+
+        {options &&
+          options.map((option) => (
+            <option
+              className={cn(optionsClassName, optionsUtilClassName)}
+              key={option.value}
+              value={option.value}
+            >
+              {option.label}
+            </option>
+          ))}
+      </select>
       {desc && (
         <div
           className={cn(
