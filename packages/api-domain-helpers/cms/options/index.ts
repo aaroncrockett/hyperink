@@ -1,5 +1,7 @@
 import type { Client } from "@hyperink/service-providers";
-
+//
+import { capitalizeWords } from "@hyperink/utils";
+//
 import {
   getOptions,
   createTagOpts,
@@ -17,7 +19,20 @@ export const getUsersTagOptions = async (
     [{ profile_id: id }],
   );
 
-  return { data, error };
+  if (!data) return { data, error };
+
+  const tagOpts = data.tag_opts satisfies TagOpts as TagOpts;
+
+  tagOpts.collections = tagOpts.collections.map((value: string) =>
+    capitalizeWords(value),
+  );
+  tagOpts.tags = tagOpts.tags.map((value: string) => capitalizeWords(value));
+
+  tagOpts.styles = tagOpts.styles.map((value: string) =>
+    capitalizeWords(value),
+  );
+
+  return { data: tagOpts, error };
 };
 
 export const initCollectionTagsAndResetRemaining = async (

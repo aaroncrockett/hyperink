@@ -1,4 +1,4 @@
-import type { FileUploadType } from "../../types";
+import type { FileUploadType } from "../../data";
 import { FileIcon } from "lucide-react";
 
 export function FilePicker({ FileUpload }: { FileUpload: FileUploadType }) {

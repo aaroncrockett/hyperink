@@ -9,15 +9,9 @@ export default async function Admin() {
     return <ErrorDisplay error={initialized.error.message} />;
   }
 
-  if (initialized?.notVerified) {
-    return (
-      <p className="text-tertiary-500 text-2xl">{initialized.notVerified}</p>
-    );
-  }
-
   return (
     <div>
-      <button className="hI-btn-primary">hi hi</button>
+      <p>Hey</p>
     </div>
   );
 }

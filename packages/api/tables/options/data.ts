@@ -18,4 +18,6 @@ export type OptionsRow = MergeDeep<
   }
 >;
 
+export type TagOptsUI = TagOpts;
+
 export type OptionsUIRow = OptionsRow;

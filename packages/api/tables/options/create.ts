@@ -1,9 +1,7 @@
 import { createSupabaseCreateQueries } from "@hyperink/api";
 import { type OptionsUIRow, type TagOpts } from "@hyperink/api/options";
 
-//
 import type { Client } from "@hyperink/service-providers";
-//
 
 const baseCreateTagOpts = createSupabaseCreateQueries("options", null);
 
