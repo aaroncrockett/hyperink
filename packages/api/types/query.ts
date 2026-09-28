@@ -7,10 +7,16 @@ export type DBKeyValue<I> = {
   [K in keyof I]?: any;
 };
 
+export type Options = {
+  onConflict?: string;
+  [key: string]: any;
+};
+
 export type RecordStringAny = Record<string, any>;
 
 export type Execute = {
   method: ExecuteMethods;
+  options?: Options;
   keys: null | string[];
 };
 
