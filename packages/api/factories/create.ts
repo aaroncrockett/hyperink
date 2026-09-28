@@ -10,7 +10,7 @@ import { mapInsertsToDb, executeQuery } from "./helpers";
 //
 import type { Execute } from "../types";
 
-const executeDefault = {
+const executeDefault: Execute = {
   method: "execute",
   keys: [],
 };
@@ -22,7 +22,7 @@ export function createSupabaseCreateQueries<
     async create<I>(
       client: Client,
       inserts: DBKeyValue<I>[],
-      execute: Execute,
+      execute: Execute = executeDefault,
       modifyQuery?: (query: any) => any,
     ) {
       const internalInserts = mapInsertsToDb(inserts as any, uiDbMapping);
