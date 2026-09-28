@@ -85,6 +85,7 @@ export const executeQuery = async <T>(
       const selectKeys = extractSelect(
         mapSelectsToDb(execute.keys ?? [], uiDbMapping),
       );
+
       query = (query as DynamicSupabaseQuery).select(selectKeys);
     }
     const result = await (query as DynamicSupabaseQuery)
