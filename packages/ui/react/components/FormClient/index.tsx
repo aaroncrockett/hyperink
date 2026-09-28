@@ -18,7 +18,7 @@ export const FormClient = forwardRef<HTMLFormElement, FormProps>(
       action,
       children,
       submitBtnCls,
-      submitBtnUtilCls = "hI-btn-secondary",
+      submitBtnUtilCls = "hI-btn-primary",
       submitBtnWrapperCls,
       submitDisabled = false,
       submitText = "Submit",

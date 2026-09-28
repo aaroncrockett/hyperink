@@ -26,16 +26,16 @@ select {
 }
 
 @utility hI-btn {
-  @apply btn;
+  @apply btn rounded-full cursor-pointer;
   padding-block: calc((var(--btn-size) - --spacing(0.5)) / 2 + --spacing(0.5));
   padding-inline: calc((var(--btn-size) - --spacing(0.633)) / 2 + --spacing(1));
 }
 
-@utility hI-btn-secondary {
-  @apply hI-btn preset-filled-secondary-500;
+@utility hI-btn-primary {
+  @apply hI-btn preset-filled-surface-900-100 text-primary-500 shadow-xs  hover:text-primary-400 font-bold;
 }
 
-@utility hI-btn-primary {
+@utility hI-btn-secondary {
   @apply hI-btn preset-filled-primary-500;
 }
 
@@ -44,7 +44,7 @@ select {
 /***************/
 
 @utility hI-h1 {
-  @apply font-display text-4xl md:text-5xl;
+  @apply font-display text-3xl md:text-4xl text-secondary-800-200;
 }
 
 @utility hI-h1-dirt {
@@ -52,7 +52,7 @@ select {
 }
 
 @utility hI-h2 {
-  @apply font-display text-3xl md:text-4xl;
+  @apply font-display text-2xl md:text-3xl;
 }
 
 @utility hI-h2-dirt {
@@ -60,7 +60,7 @@ select {
 }
 
 @utility hI-h3 {
-  @apply text-2xl md:text-3xl;
+  @apply text-xl md:text-2xl;
 }
 
 @utility hI-h3-dirt {
@@ -68,7 +68,7 @@ select {
 }
 
 @utility hI-h4 {
-  @apply text-xl md:text-2xl;
+  @apply text-lg md:text-xl;
 }
 
 @utility hI-h5 {
@@ -90,7 +90,7 @@ select {
 }
 
 @utility hI-input {
-  @apply bg-surface-200-800/20 border-2 border-surface-200-800 input p-2;
+  @apply bg-surface-200-800/20 border-2 border-surface-200-800 input p-2 rounded-sm;
 }
 
 @utility hI-input-layout {
