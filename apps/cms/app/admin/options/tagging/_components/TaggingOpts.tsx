@@ -1,13 +1,11 @@
 import type { TagOpts } from "@hyperink/api/options";
-//
-import { OPTS_METADATA } from "@/app/admin/options/data";
+
 //
 import { ADMIN_OPTIONS } from "@/data/links";
 //
 import { NextLinkWrapper } from "@/ui";
 
 export function TaggingOpts({ opts }: { opts?: TagOpts }) {
-  const optsCol = OPTS_METADATA.tag_opts.id;
   return (
     <>
       <p>page</p>
@@ -23,7 +21,7 @@ export function TaggingOpts({ opts }: { opts?: TagOpts }) {
                   </span>
                   <NextLinkWrapper
                     className="h-full font-bold text-secondary-500 underline"
-                    href={`${ADMIN_OPTIONS.href}/${optsCol}/${key}`}
+                    href={`${ADMIN_OPTIONS.href}/tagging/${key}`}
                   >
                     EDIT
                   </NextLinkWrapper>

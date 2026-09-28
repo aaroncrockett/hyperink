@@ -6,7 +6,7 @@ import { getUsersTagOptions } from "@hyperink/api-domain-helpers/options";
 import { createSSClient, getAuthedUser } from "@/auth/server";
 import { TaggingOpts } from "./_components/TaggingOpts";
 
-export default async function TaggingPage() {
+export default async function TaggingOptionsPage() {
   const serverClient = await createSSClient();
 
   const {
