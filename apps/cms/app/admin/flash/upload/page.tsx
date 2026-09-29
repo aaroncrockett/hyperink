@@ -1,11 +1,11 @@
-// @ Local
-
 import { getUsersTagOptions } from "@hyperink/api-domain-helpers/options";
 import { Page, ErrorDisplay } from "@hyperink/ui-react/components";
 //
-import { FlashForm } from "./_components/FlashForm";
+import { ViewTransition } from "@/ui";
 import { getAuthedUser, createSSClient } from "@/auth/server";
-
+//
+import { FlashForm } from "./_components/FlashForm";
+//
 export default async function FlashUploadPage() {
   const serverClient = await createSSClient();
 
@@ -27,11 +27,11 @@ export default async function FlashUploadPage() {
   const collections = tagOptsData.collections;
 
   return (
-    // <ViewTransition transition="nav-forward">
-    <Page>
-      <h1 className="hI-h1">Upload</h1>
-      <FlashForm collectionOpts={collections} />
-    </Page>
-    // </ViewTransition>
+    <ViewTransition transition="slide">
+      <Page className="bg-surface-50-950 h-full">
+        <h1 className="hI-h1">Upload</h1>
+        <FlashForm collectionOpts={collections} />
+      </Page>
+    </ViewTransition>
   );
 }

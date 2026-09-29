@@ -19,7 +19,10 @@ export default async function AdminLayout({
         <LayoutSubNav className="flex flex-col md:gap-4 w-full px-2 pt-1 lg:pt-4 md:pt-3 lg:px-4 md:px-3 mx-auto" />
         <main className="flex-1 bg-surface-100-900 h-full">{children}</main>
         <footer className="lg:hidden bottom-0 sticky mx-auto w-full h-auto shrink-0">
-          <LayoutNavFooter className="lg:hidden flex gap-4 bg-surface-800-200 p-4 w-full h-full" />
+          <LayoutNavFooter
+            style={{ viewTransitionName: "site-sticky" }}
+            className="lg:hidden flex gap-4 bg-surface-800-200 p-4 w-full h-full"
+          />
         </footer>
       </div>
     </div>
