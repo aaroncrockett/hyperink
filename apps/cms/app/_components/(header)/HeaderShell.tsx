@@ -160,7 +160,7 @@ export function HeaderShell({ isSignedIn }: ShellProps) {
     >
       <NextLinkWrapper className="flex px-2 sm:px-0 w-full" href={HOME.href}>
         <Image
-          src="/hyperink-black-green.svg"
+          src="/hyperink-black-green-glow.svg"
           alt="Hyperink - Logo"
           width={201}
           height={40}
