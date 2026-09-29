@@ -1,4 +1,5 @@
 export { AnimatedMenuIcon } from "./AnimatedMenuIcon";
+export { ComboBox } from "./ComboBox";
 export { ErrorDisplay, ErrorsDisplay } from "./ErrorDisplays";
 export { FormClient } from "./FormClient";
 export { Icon } from "./Icon";
