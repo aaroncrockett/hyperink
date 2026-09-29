@@ -126,3 +126,7 @@ select {
 @utility hI-input-check {
   @apply bg-surface-200-800/20 border-2 border-surface-200-800 checkbox;
 }
+
+@utility hI-next-link-wrapper {
+  @apply text-surface-950-50 hover:text-primary-600-400 font-bold italic underline;
+}
