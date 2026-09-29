@@ -6,7 +6,8 @@ import { usePathname } from "next/navigation";
 // hyperink
 import { cn, getPathSegments } from "@hyperink/utils/";
 // @
-import { NextLinkWrapper, Icon } from "@/ui";
+import { NextLinkWrapper } from "@/ui";
+import { Icon } from "@hyperink/ui-react/components";
 type Link = {
   href: string;
   name: string;
