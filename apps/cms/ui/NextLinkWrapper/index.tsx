@@ -4,17 +4,17 @@ import { ComponentPropsWithoutRef } from "react";
 //
 import { cn } from "@hyperink/utils";
 
-// type Transition = "nav-forward" | "nav-back" | "slide-up" | "none";
+type Transition = "nav-forward" | "nav-back" | "slide-up" | "none";
 
 type LinkProps = ComponentPropsWithoutRef<typeof Link> & {
-  // transition?: Transition;
+  transition?: Transition;
   utilClassName?: string;
 };
 
 export function NextLinkWrapper({
   children,
-  // transition = "nav-forward",
-  utilClassName = " text-surface-950-50  hover:text-primary-800-200 font-bold italic underline",
+  transition = "nav-forward",
+  utilClassName = " text-surface-950-50 hover:text-primary-800-200 font-bold italic underline",
   ...props
 }: LinkProps) {
   return (
@@ -22,7 +22,7 @@ export function NextLinkWrapper({
       {...props}
       key={props.href + "-next-link-wrapper"}
       className={cn(props.className, utilClassName)}
-      // transitionTypes={[transition]}
+      transitionTypes={[transition]}
     >
       {children}
     </Link>
