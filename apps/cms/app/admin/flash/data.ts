@@ -9,7 +9,7 @@ export type FileUploadContext = Parameters<
   NonNullable<React.ComponentProps<typeof FileUpload.Context>["children"]>
 >[0];
 
-export type FlashUi = Pick<
+export type FlashUI = Pick<
   FlashUIRow,
   | "id"
   | "collection"
@@ -23,7 +23,11 @@ export type FlashUi = Pick<
   | "user_id"
 >;
 
-const flashMetadata: UIRowMeta<FlashUi> = {
+export type FlashUIPublic = FlashUI & {
+  public_url: string;
+};
+
+export const FLASH_METADATA: UIRowMeta<FlashUI> = {
   id: {
     id: "id",
     label: "Id",
@@ -86,4 +90,8 @@ const flashMetadata: UIRowMeta<FlashUi> = {
   },
 };
 
-export type FlashMetadata = typeof flashMetadata;
+export const FLASH_METADATA_LIST = Object.values(FLASH_METADATA);
+
+export const FLASH_METADATA_KEYS = Object.keys(FLASH_METADATA);
+
+export type FlashMetadata = typeof FLASH_METADATA;

@@ -1,7 +1,5 @@
 import type { Client } from "@hyperink/service-providers";
 //
-import { capitalizeWords, normalizeToKabobCase } from "@hyperink/utils";
-//
 import {
   getOptions as getOptsSrc,
   createTagOpts,
@@ -10,7 +8,13 @@ import {
   type TagOpts,
 } from "@hyperink/api/options";
 //
-import { normalizeTagOpts, capitalizeTagOpts } from "./helpers";
+import {
+  normalizeTagOpts as normalizeTagOptsSrc,
+  capitalizeTagOpts as capitalizeTagOptsSrc,
+} from "./helpers";
+
+export const normalizeTagOpts = normalizeTagOptsSrc;
+export const capitalizeTagOpts = capitalizeTagOptsSrc;
 
 export const getOptions = async (
   client: Client,
@@ -45,7 +49,7 @@ export const getUsersTagOptions = async (
 
   if (!data) return { data, error };
 
-  const tagOpts = capitalizeTagOpts(data.tag_opts);
+  const tagOpts = capitalizeTagOptsSrc(data.tag_opts);
 
   return { data: tagOpts, error };
 };
@@ -71,7 +75,7 @@ export const mergeUsersTagOptions = async (
     [tag]: options,
   };
 
-  const normalizedTagOpts = normalizeTagOpts(mergedTagOpts);
+  const normalizedTagOpts = normalizeTagOptsSrc(mergedTagOpts);
 
   const { data, error } = await upsertTagOpts(client, normalizedTagOpts, id, [
     "tag_opts",
@@ -79,7 +83,7 @@ export const mergeUsersTagOptions = async (
 
   if (!data) return { data, error };
 
-  const tagOpts = capitalizeTagOpts(data.tag_opts);
+  const tagOpts = capitalizeTagOptsSrc(data.tag_opts);
 
   return { data: tagOpts, error };
 };
