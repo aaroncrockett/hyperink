@@ -7,9 +7,11 @@ import {
 } from "@hyperink/api-domain-helpers/flash";
 //
 import { createSSClient, getAuthedUser } from "@/auth/server";
+import { ViewTransition } from "@/ui";
 //
 import { FLASH_METADATA_KEYS, type FlashUI } from "./data";
 import { Flash } from "./_components/Flash";
+//
 export default async function FlashPage() {
   const client = await createSSClient();
 
@@ -68,13 +70,15 @@ export default async function FlashPage() {
     );
 
   return (
-    <Page>
-      <Flash
-        flash={flashData}
-        collection={initCollection}
-        collections={collections}
-        userId={user.id}
-      />
-    </Page>
+    <ViewTransition transition="slide">
+      <Page className="bg-surface-50-950 h-full">
+        <Flash
+          flash={flashData}
+          collection={initCollection}
+          collections={collections}
+          userId={user.id}
+        />
+      </Page>
+    </ViewTransition>
   );
 }

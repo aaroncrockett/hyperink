@@ -23,7 +23,8 @@ export function LayoutNavFooter({ className, ...props }: NavFooterProps) {
       <ul className="flex flex-row justify-between items-center gap-4 w-full">
         <li>
           <NextLinkWrapper
-            className="flex flex-col items-center text-primary-500!"
+            className="flex flex-col items-center text-surface-50-950! hover:text-primary-400! no-underline!"
+            utilClassName=""
             href={INTERNAL_ADMIN_LINKS.admin.href}
           >
             <Icon name={adminName} size="md" />
@@ -32,7 +33,7 @@ export function LayoutNavFooter({ className, ...props }: NavFooterProps) {
         </li>
         <li>
           <NextLinkWrapper
-            className="flex flex-col items-center text-primary-500!"
+            className="flex flex-col items-center text-surface-50-950! hover:text-primary-400! no-underline!"
             href={INTERNAL_ADMIN_LINKS.flash.href}
           >
             <Icon name={uploadName} size="md" />
@@ -41,7 +42,7 @@ export function LayoutNavFooter({ className, ...props }: NavFooterProps) {
         </li>
         <li>
           <NextLinkWrapper
-            className="flex flex-col items-center text-primary-500"
+            className="flex flex-col items-center text-surface-50-950! hover:text-primary-400! no-underline!"
             href={INTERNAL_ADMIN_LINKS.tattReq.href}
           >
             <Icon name={tattReqName} size="md" />

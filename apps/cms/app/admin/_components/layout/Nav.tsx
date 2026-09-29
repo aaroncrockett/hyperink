@@ -13,7 +13,7 @@ export function Nav() {
           <li key={link.href + link.name + "-admin-nav"}>
             <NextLinkWrapper
               className="flex flex-row gap-2 font-bold"
-              utilClassName="text-surface-200-800 hover:text-secondary-200-800"
+              utilClassName="text-surface-100-900 hover:text-primary-400"
               href={link.href}
             >
               <Icon size="lg" name={link.icon} />
