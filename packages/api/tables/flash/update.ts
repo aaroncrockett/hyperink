@@ -23,3 +23,22 @@ export const updateFlash = (
     execute,
   );
 };
+
+export const updateFlashWithin = (
+  client: Client,
+  inserts: Partial<FlashUIRow>,
+  within: Partial<Record<keyof FlashUIRow, string[]>>,
+  selectKeys?: null | (keyof FlashUIRow)[],
+) => {
+  const execute = {
+    method: selectKeys ? "maybe-single" : "execute",
+    keys: selectKeys ?? null,
+  } as const;
+
+  return baseCreateTagOpts.updateWithin<Partial<FlashUIRow>>(
+    client,
+    inserts,
+    within,
+    execute,
+  );
+};

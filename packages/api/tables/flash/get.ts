@@ -20,6 +20,19 @@ export const getFlash = async (
   return baseGetTagOpts.sbGetWhere<FlashUIRow>(client, where, execute);
 };
 
+export const getWithin = async (
+  client: Client,
+  selectKeys: (keyof FlashUIRow)[],
+  within: DBKeyValue<FlashUIRow>[],
+) => {
+  const execute = {
+    method: "select",
+    keys: selectKeys,
+  } as const;
+
+  return baseGetTagOpts.sbGetWithin<FlashUIRow>(client, within, execute);
+};
+
 export const getFlashLimitByRecent = async (
   client: Client,
   selectKeys: (keyof FlashUIRow)[],

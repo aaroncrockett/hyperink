@@ -53,6 +53,35 @@ export function createSupabaseGetQueries<T extends KeyOfTables | KeyOfTablesUI>(
       return await executeQuery(uiDbMapping, execute, query, false);
     },
 
+    async sbGetWithin<I>(
+      client: Client,
+      within: DBKeyValue<I>[],
+      execute: ExecuteSelect,
+      modifyQuery?: (query: any) => any,
+    ) {
+      const keys = execute.keys ?? [];
+
+      const arrayKeys = mapSelectsToDb(
+        keys as Extract<keyof I, string>[],
+        uiDbMapping,
+      );
+      const selectKeys = extractSelect(arrayKeys ?? []);
+
+      let query = client.from(table).select(selectKeys);
+
+      for (const condition of within) {
+        const [key, values] = Object.entries(condition)[0];
+
+        query = (query as any).in(key, values);
+      }
+
+      if (modifyQuery) {
+        query = modifyQuery(query);
+      }
+
+      return await executeQuery(uiDbMapping, execute, query, false);
+    },
+
     // sbGetOverlapping(
     //   client: Client,
     //   selectKeys: (keyof AppTables[T] & string)[],
