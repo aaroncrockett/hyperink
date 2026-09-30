@@ -55,7 +55,7 @@ export function PageAdminNav({ links }: PageAdminNavsProps) {
   };
 
   return (
-    <ul className="flex flex-row justify-around gap-3 border-b-3 bg-surface-200-800/20 border-surface-300-700/20 my-2 rounded-t">
+    <ul className="flex flex-row justify-around gap-3 border-b-3 bg-surface-200-800/20 border-surface-300-700/20 my-2 rounded">
       {links.map((link) => {
         const transitionKey = getTransitionKey(link.href);
 
@@ -84,7 +84,7 @@ export function PageAdminNav({ links }: PageAdminNavsProps) {
                   stiffness: 360,
                   damping: 35,
                 }}
-                className="relative inline-flex flex-col items-center justify-center gap-1 p-3 pb-4 mb-1 text-sm rounded-t"
+                className="relative inline-flex flex-col items-center justify-center gap-1 p-3 pb-4 mb-1 text-sm rounded"
               >
                 {link.name}
                 <Icon size="md" name={link.icon} />

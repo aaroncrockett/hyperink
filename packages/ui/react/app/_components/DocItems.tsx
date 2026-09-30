@@ -13,7 +13,7 @@ export function DocItems({ items }: DocItemsProps) {
     <ul className="flex flex-col gap-1">
       {items.map((item) => (
         <li
-          className="even:bg-surface-100-900 odd:bg-surface-50-950 p-2 rounded-xl"
+          className="even:bg-surface-100-900 odd:bg-surface-50-950 p-2 rounded"
           key={item.name}
         >
           <span className="font-bold">{item.name}</span> -{" "}

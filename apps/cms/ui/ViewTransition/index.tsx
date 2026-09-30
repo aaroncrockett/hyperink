@@ -2,8 +2,8 @@
 import { ViewTransition as ReactViewTransition } from "react";
 
 const slide = {
-  enter: "slide-down",
-  exit: "slide-up",
+  enter: "fade-in",
+  exit: "fade-out",
   default: "none",
 } as const;
 

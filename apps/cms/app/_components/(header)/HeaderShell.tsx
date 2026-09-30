@@ -39,11 +39,11 @@ export function HeaderShell({ isSignedIn }: ShellProps) {
     isAdmin !== null && isAdmin ? MENU_ADMIN_LINKS : MENU_PUBLIC_LINKS;
 
   const linkCls = "text-surface-50-950!";
-  const linkCurrentCls = "text-surface-300-700! font-bold";
+  const linkCurrentCls = "text-primary-700! font-bold";
 
   return (
     <Header
-      className="top-0 z-10 sticky bg-surface-800-200 shadow-xs mx-auto p-2 w-full"
+      className="top-0 z-10 sticky bg-surface-950-50 shadow-xs mx-auto p-2 w-full"
       isAdmin={isAdmin}
       tail={
         <>
@@ -61,12 +61,11 @@ export function HeaderShell({ isSignedIn }: ShellProps) {
 
                         className={cn(
                           linkCls,
-                          "flex flex-row gap-1.5 font-bold text-primary-500",
+                          "flex flex-row gap-1.5 font-bold text-primary-500 no-underline!",
                           pathname === link.href && linkCurrentCls,
                         )}
                       >
                         <Icon name={link.icon} />
-
                         {link.name.toUpperCase()}
                       </NextLinkWrapper>
                     </li>
@@ -92,7 +91,7 @@ export function HeaderShell({ isSignedIn }: ShellProps) {
 
                       className={cn(
                         linkCls,
-                        "flex flex-row gap-3 font-bold uppercase hover:text-primary-500",
+                        "flex flex-row gap-3 font-bold uppercase hover:text-primary-500 no-underline!",
                       )}
                     >
                       {isSignedIn ? (
@@ -119,7 +118,7 @@ export function HeaderShell({ isSignedIn }: ShellProps) {
                           href={link.href}
                           className={cn(
                             linkCls,
-                            "flex flex-row gap-1.5 font-bold hover:text-primary-500",
+                            "flex flex-row gap-1.5 font-bold hover:text-primary-500 no-underline!",
                             pathname === link.href && linkCurrentCls,
                           )}
                         >
@@ -137,7 +136,7 @@ export function HeaderShell({ isSignedIn }: ShellProps) {
 
                       className={cn(
                         linkCls,
-                        "flex flex-row gap-1.5 font-bold uppercase hover:text-primary-500",
+                        "flex flex-row gap-1.5 font-bold uppercase hover:text-primary-500 no-underline!",
                       )}
                     >
                       {isSignedIn ? (
@@ -164,7 +163,7 @@ export function HeaderShell({ isSignedIn }: ShellProps) {
           alt="Hyperink - Logo"
           width={201}
           height={40}
-          className="mx-auto w-auto h-auto min-h-12"
+          className="mx-auto w-auto h-auto min-h-12 pt-1"
           loading="eager"
         />
       </NextLinkWrapper>

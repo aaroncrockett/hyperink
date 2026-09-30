@@ -24,7 +24,7 @@ export default function Header({
       <div className="flex flex-col justify-between mx-auto max-w-300">
         <div
           className={cn(
-            "flex justify-between items-center p-2 max-w-300 h-16",
+            "flex justify-between items-center p-1 max-w-300 h-12",
             isAdmin === false && "lg:justify-end",
           )}
         >

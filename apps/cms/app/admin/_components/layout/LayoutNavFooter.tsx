@@ -23,29 +23,29 @@ export function LayoutNavFooter({ className, ...props }: NavFooterProps) {
       <ul className="flex flex-row justify-between items-center gap-4 w-full">
         <li>
           <NextLinkWrapper
-            className="flex flex-col items-center text-surface-50-950! hover:text-primary-400! no-underline!"
+            className="flex flex-col items-center text-surface-50-950! hover:text-primary-400! no-underline! text-sm! w-22"
             utilClassName=""
             href={INTERNAL_ADMIN_LINKS.admin.href}
           >
-            <Icon name={adminName} size="md" />
+            <Icon name={adminName} size="sm" />
             {adminName}
           </NextLinkWrapper>
         </li>
         <li>
           <NextLinkWrapper
-            className="flex flex-col items-center text-surface-50-950! hover:text-primary-400! no-underline!"
+            className="flex flex-col items-center text-surface-50-950! hover:text-primary-400! no-underline! text-sm! w-22"
             href={INTERNAL_ADMIN_LINKS.flash.href}
           >
-            <Icon name={uploadName} size="md" />
+            <Icon name={uploadName} size="sm" />
             {uploadName}
           </NextLinkWrapper>
         </li>
         <li>
           <NextLinkWrapper
-            className="flex flex-col items-center text-surface-50-950! hover:text-primary-400! no-underline!"
+            className="flex flex-col items-center text-surface-50-950! hover:text-primary-400! no-underline! text-sm! w-22"
             href={INTERNAL_ADMIN_LINKS.tattReq.href}
           >
-            <Icon name={tattReqName} size="md" />
+            <Icon name={tattReqName} size="sm" />
             {INTERNAL_ADMIN_LINKS.tattReq.shortName}
           </NextLinkWrapper>
         </li>

@@ -15,6 +15,14 @@ html {
 }
 
 /***************/
+/*** LINKS ***/
+/***************/
+
+@utility hI-next-link-wrapper {
+  @apply text-surface-950-50 hover:text-primary-600-400 font-bold italic underline;
+}
+
+/***************/
 /*** BTN ***/
 /***************/
 
@@ -84,7 +92,7 @@ select {
 }
 
 /***************/
-/*** INPUTS ***/
+/*** INPUTS START ***/
 /***************/
 
 /* Input Component and global inputs */
@@ -94,7 +102,7 @@ select {
 }
 
 @utility hI-input {
-  @apply bg-surface-200-800/20 border-2 border-surface-200-800 input p-2 rounded-sm;
+  @apply bg-surface-200-800/20 border-2 border-surface-200-800 input p-2 rounded;
 }
 
 @utility hI-input-layout {
@@ -131,25 +139,25 @@ select {
   @apply bg-surface-200-800/20 border-2 border-surface-200-800 checkbox;
 }
 
-@utility hI-next-link-wrapper {
-  @apply text-surface-950-50 hover:text-primary-600-400 font-bold italic underline;
-}
+/***************/
+/*** INPUTS END ***/
+/***************/
 
 /***************/
 /* // TRANSITIONS START // */
 /***************/
 :root {
-  --duration-exit: 190ms;
-  --duration-enter: 230ms;
-  --duration-move: 400ms;
-  --duration-fade-exit: 60ms;
-  --duration-fade-enter: 290ms;
+  --duration-exit: 290ms;
+  --duration-enter: 330ms;
+  --duration-move: 360ms;
+  --duration-fade-exit: 240ms;
+  --duration-fade-enter: 370ms;
 }
 
 @keyframes fade {
   from {
     filter: blur(2px);
-    opacity: 0.1;
+    opacity: 0;
   }
   to {
     filter: blur(0);
