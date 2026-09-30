@@ -54,8 +54,8 @@ export function FlashForm({ collectionOpts }: FlashFormProps) {
                 const hasFile = fileUpload.acceptedFiles.length > 0;
 
                 return (
-                  <div className="flex flex-col gap-2 p-3 pt-4 mb-4 rounded sm:gap-3 md:gap-4 bg-surface-200-800/30">
-                    <div className="flex flex-col gap-1.5 bg-surface-100-900/80 p-3 border-3 border-surface-200-800 rounded-xl">
+                  <div className="flex flex-col gap-2 p-3 pt-4 mb-4 rounded-sm sm:gap-3 md:gap-4 bg-surface-200-800/30">
+                    <div className="flex flex-col gap-1.5 bg-surface-100-900/80 p-3 border-3 border-surface-200-800 rounded-sm">
                       <Select
                         label="Upload Type"
                         options={uploadOptionsLabelPairs}

@@ -43,7 +43,7 @@ export function ProfileForm({ userId, providerMetadata }: IntroProfile) {
     <>
       <Form
         action={formAction}
-        className="gap-4 grid grid-cols-1 md:grid-cols-2 bg-surface-200-800/20 p-6 rounded"
+        className="gap-4 grid grid-cols-1 md:grid-cols-2 bg-surface-200-800/20 p-6 rounded-sm"
       >
         <Input
           wrapperClassName="hidden"
@@ -67,7 +67,7 @@ export function ProfileForm({ userId, providerMetadata }: IntroProfile) {
           );
         })}
 
-        <div className="flex flex-col gap-2 md:col-span-2 bg-surface-200-800/60 px-4 pt-2 pb-3 rounded-xl font-bold">
+        <div className="flex flex-col gap-2 md:col-span-2 bg-surface-200-800/60 px-4 pt-2 pb-3 rounded-sm font-bold">
           <p className="text-surface-950-50 text-lg">
             Preferred Contact Methods:
           </p>

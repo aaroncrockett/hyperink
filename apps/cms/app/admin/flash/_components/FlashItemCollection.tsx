@@ -83,7 +83,7 @@ export function FlashItem({
               scale: 1.025,
               color: "var(--color-primary-300)",
             }}
-            className="absolute top-2 right-2 bg-surface-800/80 rounded-xl p-2 hidden group-hover:block gap-2"
+            className="absolute top-2 right-2 bg-surface-800/80 rounded-sm p-2 hidden group-hover:block gap-2"
           >
             <Link
               onClick={(e) => e.stopPropagation()}
@@ -103,7 +103,7 @@ export function FlashItem({
               scale: 1.025,
               color: "var(--color-primary-300)",
             }}
-            className="absolute top-2 left-2 bg-surface-800/80  rounded-xl p-2 hidden group-hover:block"
+            className="absolute top-2 left-2 bg-surface-800/80  rounded-sm p-2 hidden group-hover:block"
           >
             <Link
               onClick={(e) => {

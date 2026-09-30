@@ -4,7 +4,7 @@ import { ErrorsDisplay, Page } from "@hyperink/ui-react/components";
 import { getUsersTagOptions } from "@hyperink/api-domain-helpers/options";
 //
 import { createSSClient, getAuthedUser } from "@/auth/server";
-import { TaggingOpts } from "./_components/TaggingOpts";
+import { Tagging } from "./_components/Tagging";
 
 export default async function TaggingOptionsPage() {
   const serverClient = await createSSClient();
@@ -24,7 +24,7 @@ export default async function TaggingOptionsPage() {
       </Page>
     );
 
-  if (data) return <TaggingOpts opts={data} />;
+  if (data) return <Tagging opts={data} />;
 
   if (!data) redirect("/admin/options/tagging/create-collection");
 }

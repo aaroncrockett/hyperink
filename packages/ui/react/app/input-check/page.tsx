@@ -9,22 +9,22 @@ export default function InputCheckPage() {
       <p>Inputs</p>
 
       <div className="gap-3 grid grid-cols-2 docs">
-        <div className="bg-secondary-100-900/40 p-4 rounded text-surface-950-50">
+        <div className="bg-secondary-100-900/40 p-4 rounded-sm text-surface-950-50">
           <p className="font-bold">DOCS</p>
           <DocItems items={docs} />
         </div>
         <div className="flex flex-col gap-3">
           <p className="text-surface-950-50">Examples</p>
-          <div className="bg-secondary-300-700/10 p-4 rounded">
+          <div className="bg-secondary-300-700/10 p-4 rounded-sm">
             <InputCheck label="ipnut check basic" />
           </div>
-          <div className="bg-secondary-300-700/10 p-4 rounded">
+          <div className="bg-secondary-300-700/10 p-4 rounded-sm">
             <InputCheck labelOrder="before" label="ipnut check before align" />
           </div>
-          <div className="bg-secondary-300-700/10 p-4 rounded">
+          <div className="bg-secondary-300-700/10 p-4 rounded-sm">
             <InputCheck error="WRONG" label="ipnut check w/ error" />
           </div>
-          <div className="bg-secondary-300-700/10 p-4 rounded">
+          <div className="bg-secondary-300-700/10 p-4 rounded-sm">
             <InputCheck
               labelOrder="before"
               error="WRONG, AGAIN! BUDDY."

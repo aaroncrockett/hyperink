@@ -30,7 +30,7 @@ export function OptionsChips({
   };
 
   return (
-    <div className="flex flex-col gap-8 p-4 pt-6 rounded bg-surface-200-800/30">
+    <div className="flex flex-col gap-8 p-4 pt-6 rounded-sm bg-surface-200-800/30">
       <div className="space-y-2">
         <p className="text-lg font-bold">Selected:</p>
         {selected.length > 0 && (
@@ -38,7 +38,7 @@ export function OptionsChips({
             {selected.map((option) => (
               <span
                 key={option}
-                className="font-bold cursor-pointer chip bg-secondary-200-800 hover:bg-surface-400-600 text-surface-950-50!"
+                className="font-bold cursor-pointer chip bg-secondary-200-800 hover:bg-surface-400-600 text-surface-950-50! rounded-full"
                 onClick={() => {
                   onSelect(option, "remove");
                   createToaster();

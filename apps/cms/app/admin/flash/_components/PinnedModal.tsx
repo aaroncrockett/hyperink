@@ -105,7 +105,7 @@ export function PinnedModal({
       exit={{ opacity: 0 }}
       className="fixed z-9999 inset-0 bg-primary-500/90"
     >
-      <div className="fixed z-9999 bg-surface-950-50/90 inset-2 md:inset-3 lg:inset-4 rounded">
+      <div className="fixed z-9999 bg-surface-950-50/90 inset-2 md:inset-3 lg:inset-4 rounded-sm">
         <div
           className="absolute top-4 right-4 cursor-pointer"
           onClick={(e) => {

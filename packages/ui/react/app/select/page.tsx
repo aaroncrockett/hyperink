@@ -22,40 +22,40 @@ export default function InputPage() {
       <p>Inputs</p>
 
       <div className="gap-3 grid grid-cols-2 docs">
-        <div className="bg-secondary-100-900/40 p-4 rounded text-surface-950-50">
+        <div className="bg-secondary-100-900/40 p-4 rounded-sm text-surface-950-50">
           <p className="font-bold">DOCS</p>
           <DocItems items={docs} />
         </div>
         <div className="flex flex-col gap-3">
           <p className="text-surface-950-50">Examples</p>
-          <div className="bg-secondary-300-700/10 p-4 rounded">
+          <div className="bg-secondary-300-700/10 p-4 rounded-sm">
             <Select label="With two options" options={options} />
           </div>
-          <div className="bg-secondary-300-700/10 p-4 rounded">
+          <div className="bg-secondary-300-700/10 p-4 rounded-sm">
             <Select
               desc="This is a place to select. Here is my description!"
               label="With a description"
               options={options}
             />
           </div>
-          <div className="bg-secondary-300-700/10 p-4 rounded">
+          <div className="bg-secondary-300-700/10 p-4 rounded-sm">
             <Select
               options={options}
               error="here is an error"
               label="With error"
             />
           </div>
-          <div className="bg-secondary-300-700/10 p-4 rounded">
+          <div className="bg-secondary-300-700/10 p-4 rounded-sm">
             <Select options={options} disabled={true} label="Disabled" />
           </div>
-          <div className="bg-secondary-300-700/10 p-4 rounded">
+          <div className="bg-secondary-300-700/10 p-4 rounded-sm">
             <Select
               options={options}
               label="With Placeholder"
               placeholder="placeholder"
             />
           </div>
-          <div className="bg-secondary-300-700/10 p-4 rounded">
+          <div className="bg-secondary-300-700/10 p-4 rounded-sm">
             <Select
               required={true}
               options={options}
@@ -63,7 +63,7 @@ export default function InputPage() {
               placeholder="placeholder"
             />
           </div>
-          <div className="bg-secondary-300-700/10 p-4 rounded">
+          <div className="bg-secondary-300-700/10 p-4 rounded-sm">
             <Select
               dir="row"
               options={options}
@@ -71,7 +71,7 @@ export default function InputPage() {
               placeholder="this is a row"
             />
           </div>
-          <div className="bg-secondary-300-700/10 p-4 rounded">
+          <div className="bg-secondary-300-700/10 p-4 rounded-sm">
             <Select
               dir="row"
               options={options}
@@ -81,7 +81,7 @@ export default function InputPage() {
               desc="hi hi hi! whats up?"
             />
           </div>
-          <div className="bg-secondary-300-700/10 p-4 rounded">
+          <div className="bg-secondary-300-700/10 p-4 rounded-sm">
             <Select
               dir="col"
               options={options}

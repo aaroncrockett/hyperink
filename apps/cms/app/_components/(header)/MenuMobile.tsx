@@ -27,7 +27,7 @@ export default function MenuMobile({
   title = "",
 }: MenuMobileProps) {
   return (
-    <div className={className}>
+    <div id="mobile-menu" className={className}>
       <Dialog>
         <Dialog.Context>
           {(dialog) => (
