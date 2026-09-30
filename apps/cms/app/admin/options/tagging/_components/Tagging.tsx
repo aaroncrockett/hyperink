@@ -5,7 +5,7 @@ import { ADMIN_OPTIONS } from "@/data/links";
 //
 import { NextLinkWrapper } from "@/ui";
 
-export function TaggingOpts({ opts }: { opts?: TagOpts }) {
+export function Tagging({ opts }: { opts?: TagOpts }) {
   return (
     <>
       <p>page</p>
@@ -20,7 +20,7 @@ export function TaggingOpts({ opts }: { opts?: TagOpts }) {
                     {key.toUpperCase()}
                   </span>
                   <NextLinkWrapper
-                    className="h-full font-bold text-secondary-500 underline"
+                    className="h-full"
                     href={`${ADMIN_OPTIONS.href}/tagging/${key}`}
                   >
                     EDIT
@@ -35,7 +35,6 @@ export function TaggingOpts({ opts }: { opts?: TagOpts }) {
                         className="bg-surface-100-900/40 p-2 rounded"
                         key={item + i}
                       >
-                        {/* {denormalizeFromKabobCase(item)} */}
                         {item}
                       </li>
                     ))}

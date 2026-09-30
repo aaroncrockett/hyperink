@@ -38,7 +38,7 @@ export function OptionsChips({
             {selected.map((option) => (
               <span
                 key={option}
-                className="font-bold cursor-pointer chip bg-secondary-200-800 hover:bg-surface-400-600 text-surface-950-50!"
+                className="font-bold cursor-pointer chip bg-secondary-200-800 hover:bg-surface-400-600 text-surface-950-50! rounded-full"
                 onClick={() => {
                   onSelect(option, "remove");
                   createToaster();

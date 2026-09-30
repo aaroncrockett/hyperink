@@ -1,14 +1,14 @@
-import type { FlashMetadata, FlashUi } from "../data";
+import type { FlashMetadata, FlashUI } from "../data";
 import { z } from "zod";
 
 export type UploadFileUi = Pick<
-  FlashUi,
-  "collection" | "readable_name" | "total_availability"
+  FlashUI,
+  "collection" | "readable_name" | "total_availability" | "description"
 >;
 
 export type UploadFileMetadata = Pick<
   FlashMetadata,
-  "collection" | "readable_name" | "total_availability"
+  "collection" | "readable_name" | "total_availability" | "description" | "name"
 >;
 
 export const uploadOptions = {
@@ -48,7 +48,18 @@ type UploadFileSchema = {
 export const uploadFileMetadata: UploadFileMetadata &
   typeof optionTypeMetadata = {
   opt_type: optionTypeMetadata.opt_type,
-
+  description: {
+    id: "description",
+    label: "Description",
+    type: "text",
+    display: true,
+  },
+  name: {
+    id: "name",
+    label: "Name",
+    type: "hidden",
+    display: false,
+  },
   collection: {
     id: "collection",
     label: "Collection",
@@ -61,7 +72,6 @@ export const uploadFileMetadata: UploadFileMetadata &
     type: "text",
     display: false,
   },
-
   total_availability: {
     id: "total_availability",
     label: "Total Availability",
@@ -74,4 +84,6 @@ export const UPLOAD_FILE_SCHEMA = z.object({
   collection: z.string(),
   readable_name: z.string(),
   total_availability: z.coerce.number().int().min(1).max(10).optional(),
+  description: z.string().max(125),
+  name: z.string(),
 }) satisfies z.ZodObject<UploadFileSchema>;

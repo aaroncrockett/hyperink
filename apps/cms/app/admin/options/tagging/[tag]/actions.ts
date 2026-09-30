@@ -51,7 +51,7 @@ export async function upsertTagOpts(
   );
 
   return {
-    error: { message: error.message },
+    error: { message: error?.message ?? "merge users tag options error" },
   };
 
   if (unSelectedStr.length) {
