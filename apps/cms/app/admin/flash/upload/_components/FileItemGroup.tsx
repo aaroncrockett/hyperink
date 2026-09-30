@@ -41,11 +41,19 @@ export function FileItemGroup({
                 </span>
               </div>
               <Input
+                type={uploadFileMetadata.name.type}
+                name={uploadFileMetadata.name.id}
+                id={uploadFileMetadata.name.id}
+                required={true}
+                wrapperClassName="hidden"
+              />
+              <Input
                 type={uploadFileMetadata.readable_name.type}
                 label={uploadFileMetadata.readable_name.label}
                 name={uploadFileMetadata.readable_name.id}
                 id={uploadFileMetadata.readable_name.id}
-                wrapperClassName="md:w-2/3 xl:w-1/2  w-full"
+                required={true}
+                wrapperClassName="md:w-2/3 xl:w-1/2 w-full"
               />
               <Input
                 type={uploadFileMetadata.total_availability.type}
@@ -55,7 +63,15 @@ export function FileItemGroup({
                 min={1}
                 max={5}
                 desc="leave blank if this doesn't apply"
-                wrapperClassName="md:w-2/3 xl:w-1/2  w-full"
+                wrapperClassName="md:w-2/3 xl:w-1/2 w-full"
+              />
+              <Input
+                type={uploadFileMetadata.description.type}
+                label={uploadFileMetadata.description.label}
+                name={uploadFileMetadata.description.id}
+                id={uploadFileMetadata.description.id}
+                required={true}
+                wrapperClassName="md:w-2/3 xl:w-1/2 w-full"
               />
               {uploadOption && uploadOption === "general" && (
                 <Select

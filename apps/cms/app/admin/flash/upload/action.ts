@@ -31,13 +31,17 @@ export async function fileUploadDataAction(
   const collections = formData.getAll("collection");
 
   const readableNames = formData.getAll("readable_name");
-  const allAvailable = formData.getAll("total_availability");
+  const availablility = formData.getAll("total_availability");
+  const name = formData.getAll("name");
+  const description = formData.getAll("description");
 
-  const validatedData = readableNames.map((name, index) => {
+  const validatedData = readableNames.map((readableName, index) => {
     const result = UPLOAD_FILE_SCHEMA.safeParse({
       collection: optType === "general" ? collections[index] : collections[0],
-      readable_name: name,
-      total_availability: allAvailable[index],
+      readable_name: readableName,
+      total_availability: availablility[index],
+      description: description[index],
+      name: name[index],
     });
 
     if (!result.success) {
@@ -65,14 +69,14 @@ export async function fileUploadDataAction(
     validatedData.map(async (result) => {
       if (!result.data)
         return {
-          error: { message: "error in uploading flash" },
+          error: { message: "error in uploading flash, no data was returned" },
           data: null,
         };
       const response = await uploadFlash(dbClient, user.id, result.data);
 
-      if (response.error) {
+      if (response?.error) {
         return {
-          error: { message: "error in uploading flash" },
+          error: { message: response?.error ?? "error in uploading flash b" },
           data: null,
         };
       }
@@ -85,7 +89,7 @@ export async function fileUploadDataAction(
 
   if (found && found.error) {
     return {
-      error: { message: found.error.message },
+      error: { message: "error uploading flash" },
       data: null,
     };
   }

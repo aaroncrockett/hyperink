@@ -7,16 +7,16 @@ import {
 export const capitalizeTagOpts = (tagOpts: TagOpts): TagOpts => {
   return {
     ...tagOpts,
-    ...(tagOpts.collections && {
-      collections: tagOpts.collections.map((tag) =>
+    ...(tagOpts?.collections && {
+      collections: tagOpts?.collections.map((tag) =>
         denormalizeFromKabobCase(tag),
       ),
     }),
-    ...(tagOpts.tags && {
-      tags: tagOpts.tags.map((tag) => denormalizeFromKabobCase(tag)),
+    ...(tagOpts?.tags && {
+      tags: tagOpts?.tags.map((tag) => denormalizeFromKabobCase(tag)),
     }),
-    ...(tagOpts.styles && {
-      styles: tagOpts.styles.map((tag) => denormalizeFromKabobCase(tag)),
+    ...(tagOpts?.styles && {
+      styles: tagOpts?.styles.map((tag) => denormalizeFromKabobCase(tag)),
     }),
   };
 };
@@ -24,14 +24,14 @@ export const capitalizeTagOpts = (tagOpts: TagOpts): TagOpts => {
 export const normalizeTagOpts = (tagOpts: TagOpts): TagOpts => {
   return {
     ...tagOpts,
-    ...(tagOpts.collections && {
-      collections: tagOpts.collections.map((tag) => normalizeToKabobCase(tag)),
+    ...(tagOpts?.collections && {
+      collections: tagOpts?.collections.map((tag) => normalizeToKabobCase(tag)),
     }),
-    ...(tagOpts.tags && {
-      tags: tagOpts.tags.map((tag) => normalizeToKabobCase(tag)),
+    ...(tagOpts?.tags && {
+      tags: tagOpts?.tags.map((tag) => normalizeToKabobCase(tag)),
     }),
-    ...(tagOpts.styles && {
-      styles: tagOpts.styles.map((tag) => normalizeToKabobCase(tag)),
+    ...(tagOpts?.styles && {
+      styles: tagOpts?.styles.map((tag) => normalizeToKabobCase(tag)),
     }),
   };
 };
