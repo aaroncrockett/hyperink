@@ -13,6 +13,7 @@ export type FlashUI = Pick<
   FlashUIRow,
   | "id"
   | "collection"
+  | "description"
   | "isPublic"
   | "path"
   | "total_availability"
@@ -37,6 +38,12 @@ export const FLASH_METADATA: UIRowMeta<FlashUI> = {
   collection: {
     id: "collection",
     label: "Collection",
+    readOnly: false,
+    display: true,
+  },
+  description: {
+    id: "description",
+    label: "Description",
     readOnly: false,
     display: true,
   },

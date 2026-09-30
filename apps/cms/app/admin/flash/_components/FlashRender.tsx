@@ -8,7 +8,8 @@ import { createBrowserClient } from "@/auth/client";
 //
 // import { FlashItem } from "./FlashItem";
 import { useFlashContext } from "./FlashProvider";
-import { FlashItem } from "./FlashItem";
+import { FlashItemGeneral } from "./FlashItemGeneral";
+import { FlashItemCollection } from "./FlashItemCollection";
 import { FLASH_METADATA_KEYS, type FlashUI } from "../data";
 
 const client = createBrowserClient();
@@ -20,7 +21,7 @@ export function FlashRender() {
     flashState,
     setFlashState,
     collections,
-    userId,
+    user_id,
   } = useFlashContext();
 
   const [errorState, setErrorState] = useState("");
@@ -28,7 +29,7 @@ export function FlashRender() {
   const onCollectionChange = async (value: string) => {
     const flashSelectKeys = [...FLASH_METADATA_KEYS] as (keyof FlashUI)[];
 
-    const where = [{ user_id: userId, collection: value }];
+    const where = [{ user_id: user_id, collection: value }];
 
     const { data: flashData, error: flashError } = await getFlash(
       client,
@@ -70,14 +71,25 @@ export function FlashRender() {
           (data) =>
             data?.public_url && (
               <div key={data.id + collectionState}>
-                <FlashItem
-                  className="grid gap-2 md:gap-4 relative"
-                  collection={collectionState}
-                  // id={data.id}
-                  public_url={data.public_url}
-                  // pinned_order={data.pinned_order ?? null}
-                  readable_name={data.readable_name ?? ""}
-                />
+                {collectionState && collections ? (
+                  <FlashItemCollection
+                    className="grid gap-2 md:gap-4 relative"
+                    collection={collectionState}
+                    user_id={data.user_id ?? ""}
+                    public_url={data.public_url}
+                    readable_name={data.readable_name ?? ""}
+                    pinned_order={data.pinned_order ?? null}
+                    id={data.id ?? ""}
+                  />
+                ) : (
+                  <FlashItemGeneral
+                    className="grid gap-2 md:gap-4 relative"
+                    user_id={data.user_id ?? ""}
+                    public_url={data.public_url}
+                    readable_name={data.readable_name ?? ""}
+                    id={data.id ?? ""}
+                  />
+                )}
               </div>
             ),
         )}

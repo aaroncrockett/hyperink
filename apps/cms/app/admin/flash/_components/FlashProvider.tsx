@@ -1,8 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState } from "react";
-//
-import { capitalizeWords } from "@hyperink/utils";
+
 //
 import type { FlashUIPublic } from "../data";
 
@@ -13,7 +12,7 @@ type FlashContextType = {
   getFirstThreeFlash: () => Partial<FlashUIPublic>[];
   setCollectionState: React.Dispatch<React.SetStateAction<string>>;
   setFlashState: React.Dispatch<React.SetStateAction<Partial<FlashUIPublic>[]>>;
-  userId: string;
+  user_id: string;
 };
 
 const FlashContext = createContext<FlashContextType | null>(null);
@@ -23,18 +22,16 @@ export function FlashProvider({
   collection,
   collections,
   flash,
-  userId,
+  user_id,
 }: {
   children: React.ReactNode;
   collection: string | null;
   collections: string[];
   flash: Partial<FlashUIPublic>[];
-  userId: string;
+  user_id: string;
 }) {
   const [flashState, setFlashState] = useState<Partial<FlashUIPublic>[]>(flash);
-  const [collectionState, setCollectionState] = useState(
-    capitalizeWords(collection ?? ""),
-  );
+  const [collectionState, setCollectionState] = useState(collection ?? "");
 
   const getFirstThreeFlash = () => flashState.slice(0, 3);
 
@@ -47,7 +44,7 @@ export function FlashProvider({
         getFirstThreeFlash,
         setCollectionState,
         setFlashState,
-        userId,
+        user_id,
       }}
     >
       {children}
