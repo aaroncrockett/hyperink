@@ -139,17 +139,17 @@ select {
 /* // TRANSITIONS START // */
 /***************/
 :root {
-  --duration-exit: 190ms;
-  --duration-enter: 230ms;
+  --duration-exit: 290ms;
+  --duration-enter: 330ms;
   --duration-move: 400ms;
-  --duration-fade-exit: 60ms;
-  --duration-fade-enter: 290ms;
+  --duration-fade-exit: 260ms;
+  --duration-fade-enter: 420ms;
 }
 
 @keyframes fade {
   from {
     filter: blur(2px);
-    opacity: 0.1;
+    opacity: 0;
   }
   to {
     filter: blur(0);
