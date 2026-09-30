@@ -12,6 +12,8 @@ import {
   normalizeTagOpts as normalizeTagOptsSrc,
   capitalizeTagOpts as capitalizeTagOptsSrc,
 } from "./helpers";
+//
+import { normalizeToKabobCase } from "@hyperink/utils";
 
 export const normalizeTagOpts = normalizeTagOptsSrc;
 export const capitalizeTagOpts = capitalizeTagOptsSrc;
@@ -96,8 +98,11 @@ export const initCollectionTagsAndResetRemaining = async (
   | { data: Partial<TagOpts>; error: null }
   | { data: null; error: Record<string, any> }
 > => {
+  const collections = inserts.collections.map((col) =>
+    normalizeToKabobCase(col),
+  );
   const tagOpts = {
-    collections: inserts.collections,
+    collections: collections,
     styles: [],
     tags: [],
   };

@@ -8,14 +8,18 @@ import {
 } from "@hyperink/api/flash";
 import {
   getOptions as getOptsSrc,
-  type TagOpts,
   type OptionsUIRow,
 } from "@hyperink/api/options";
 import { uploadFile, removeFile } from "@hyperink/api";
+
 //
 import { capitalizeTagOpts } from "../options";
 //
 import type { DBKeyValue } from "../../types";
+import {
+  denormalizeFromKabobCase,
+  normalizeToKabobCase,
+} from "@hyperink/utils";
 
 const BUCKET = "user-images";
 
@@ -36,7 +40,7 @@ export const getUsersFlashAndTagOptions = async (
     flashOpts: data.flash_opts ?? {},
   };
 
-  return { data: tagOpts, error };
+  return { data: optionsData, error };
 };
 
 export const getFlash = async (
@@ -44,6 +48,14 @@ export const getFlash = async (
   selectKeys: (keyof FlashUIRow)[],
   where: DBKeyValue<FlashUIRow>[],
 ) => {
+  where.map((item) => {
+    if (item?.collection) {
+      item.collection = normalizeToKabobCase(item.collection);
+    }
+
+    return item;
+  });
+
   const { data, error: flashError } = await getFlashLimitByRecent(
     client,
     selectKeys,
@@ -64,6 +76,9 @@ export const getFlash = async (
 
       return {
         ...data,
+        ...(data.collection && {
+          collection: denormalizeFromKabobCase(data.collection),
+        }),
         public_url: url.publicUrl,
       };
     }),

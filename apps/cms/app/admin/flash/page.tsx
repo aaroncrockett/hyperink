@@ -40,7 +40,7 @@ export default async function FlashPage() {
   }
   // if no default collection, get the first collection
   if (!defaultCollection.length && collections.length) {
-    firstCollection = tagOpts[0];
+    firstCollection = collections[0];
   }
   const initCollection = defaultCollection
     ? defaultCollection
@@ -64,9 +64,11 @@ export default async function FlashPage() {
 
   if (!flashData)
     return (
-      <Page>
-        <p>NoFlash yet!</p>
-      </Page>
+      <ViewTransition transition="slide">
+        <Page className="bg-surface-50-950 h-full">
+          <p>NoFlash yet!</p>
+        </Page>
+      </ViewTransition>
     );
 
   return (

@@ -4,73 +4,73 @@ import { Portal } from "@skeletonlabs/skeleton-react";
 import { AnimatePresence, motion } from "motion/react";
 //
 import Link from "next/link";
-import Image from "next/image";
 import { ComponentPropsWithoutRef } from "react";
 //
 import { cn } from "@hyperink/utils";
-// Local @'s
-// import { INTERNAL_FLASH_LINKS } from "@/consts";
-// import { Icon } from "@/ui";
-// Local
+//
+import { FlashItemImage } from "./FlashItemImage";
+//
+import { INTERNAL_FLASH_LINKS } from "@/data/links";
+import { Icon } from "@hyperink/ui-react/components";
 
-// import { useFlashItemMenu, usePinnedModal } from "../_hooks";
-// import { FlashItemMenu } from "./FlashItemMenu";
-// import { PinnedModal } from "./PinnedModal";
+import { useFlashItemMenu, usePinnedModal } from "../_hooks";
+import { FlashItemMenu } from "./FlashItemMenu";
+import { PinnedModal } from "./PinnedModal";
 
 type FlashItemProps = ComponentPropsWithoutRef<"li"> & {
   readable_name: string;
-  // id: string;
+  id: string;
   public_url: string;
-  // pinned_order: number | null;
+  pinned_order: number | null;
   collection: string;
 };
 
 export function FlashItem({
   readable_name,
-  // id,
+  id,
   public_url,
-  // pinned_order,
+  pinned_order,
   collection,
   ...props
 }: FlashItemProps) {
-  // const { modalState, handleModalState } = usePinnedModal();
-  // const { menuState, handleFlashItemClick } = useFlashItemMenu();
+  const { modalState, handleModalState } = usePinnedModal();
+  const { menuState, handleFlashItemClick } = useFlashItemMenu();
 
   return (
     <li
       className={cn("group cursor-pointer", props.className)}
 
-      // onClick={(e) => {
-      //   handleFlashItemClick();
-      //   props.onClick?.(e);
-      // }}
+      onClick={(e) => {
+        handleFlashItemClick();
+        props.onClick?.(e);
+      }}
     >
+      In Colllections comp
       {/* modal and menu states */}
-      {/* <AnimatePresence mode="wait" initial={false}> */}
-      {/* {modalState && (
+      <AnimatePresence mode="wait" initial={false}>
+        {modalState && (
           <Portal>
             <PinnedModal
               pinned_order={pinned_order}
               readable_name={readable_name}
               id={id}
-              publicUrl={public_url}
+              public_url={public_url}
               collection={collection}
               handleModalState={(e) => handleModalState(e)}
             />
           </Portal>
-        )} */}
-      {/* </AnimatePresence> */}
-      {/* <AnimatePresence mode="wait" initial={false}>
+        )}
+      </AnimatePresence>
+      <AnimatePresence mode="wait" initial={false}>
         {menuState && (
           <FlashItemMenu
             handleModalState={(e) => handleModalState(e)}
             id={id}
           />
         )}
-      </AnimatePresence> */}
-
+      </AnimatePresence>
       {/* Icon, Menu short-cuts -- :on-hover */}
-      {/* {!menuState && (
+      {!menuState && (
         <>
           <motion.span
             initial={{ color: "var(--color-surface-50)" }}
@@ -117,24 +117,13 @@ export function FlashItem({
             </Link>
           </motion.span>
         </>
-      )} */}
-
+      )}
       {/* Flash Item  */}
-      <div className="flex flex-col gap-2 md:gap-4 justify-around p-2 sm:p-4 bg-surface-200-800/40 rounded-sm">
-        <Image
-          src={public_url}
-          alt={`${readable_name ?? ""} - flash image`}
-          width={0}
-          height={0}
-          sizes="100vw"
-          className="w-full h-auto shadow"
-          loading="eager"
-        />
-
-        <p className="text-3xl text-center font-display text-surface-800-200">
-          {readable_name}
-        </p>
-      </div>
+      <FlashItemImage
+        id={id}
+        readable_name={readable_name}
+        public_url={public_url}
+      />
     </li>
   );
 }

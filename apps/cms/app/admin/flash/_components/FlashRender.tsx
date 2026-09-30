@@ -8,7 +8,7 @@ import { createBrowserClient } from "@/auth/client";
 //
 // import { FlashItem } from "./FlashItem";
 import { useFlashContext } from "./FlashProvider";
-import { FlashItem } from "./FlashItem";
+import { FlashItemGeneral } from "./FlashItemGeneral";
 import { FLASH_METADATA_KEYS, type FlashUI } from "../data";
 
 const client = createBrowserClient();
@@ -70,14 +70,16 @@ export function FlashRender() {
           (data) =>
             data?.public_url && (
               <div key={data.id + collectionState}>
-                <FlashItem
-                  className="grid gap-2 md:gap-4 relative"
-                  collection={collectionState}
-                  // id={data.id}
-                  public_url={data.public_url}
-                  // pinned_order={data.pinned_order ?? null}
-                  readable_name={data.readable_name ?? ""}
-                />
+                {collectionState && collections ? (
+                  <h4 className="hI-h4 font-bold">We have collections!</h4>
+                ) : (
+                  <FlashItemGeneral
+                    className="grid gap-2 md:gap-4 relative"
+                    id={data.user_id ?? ""}
+                    public_url={data.public_url}
+                    readable_name={data.readable_name ?? ""}
+                  />
+                )}
               </div>
             ),
         )}

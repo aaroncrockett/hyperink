@@ -1,8 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState } from "react";
-//
-import { capitalizeWords } from "@hyperink/utils";
+
 //
 import type { FlashUIPublic } from "../data";
 
@@ -32,9 +31,7 @@ export function FlashProvider({
   userId: string;
 }) {
   const [flashState, setFlashState] = useState<Partial<FlashUIPublic>[]>(flash);
-  const [collectionState, setCollectionState] = useState(
-    capitalizeWords(collection ?? ""),
-  );
+  const [collectionState, setCollectionState] = useState(collection ?? "");
 
   const getFirstThreeFlash = () => flashState.slice(0, 3);
 
