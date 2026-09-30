@@ -102,7 +102,7 @@ select {
 }
 
 @utility hI-input {
-  @apply bg-surface-200-800/20 border-2 border-surface-200-800 input p-2 rounded-sm;
+  @apply bg-surface-200-800/20 border-2 border-surface-200-800 input p-2 rounded;
 }
 
 @utility hI-input-layout {

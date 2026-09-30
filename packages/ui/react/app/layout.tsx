@@ -29,17 +29,17 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <div>
           <h1 className="font-bold text-2xl">HyperInk UI Playground</h1>
           <ul className="flex flex-row gap-2 p-2 pb-4">
-            <li className="rounded-sm text-secondary-500 hover:text-primary-400 text-lg hover:underline">
+            <li className="rounded text-secondary-500 hover:text-primary-400 text-lg hover:underline">
               <Link className="font-bold" href="/input">
                 Input
               </Link>
             </li>
-            <li className="rounded-sm text-secondary-500 hover:text-primary-400 text-lg hover:underline">
+            <li className="rounded text-secondary-500 hover:text-primary-400 text-lg hover:underline">
               <Link className="font-bold" href="/input-check">
                 Input Check
               </Link>
             </li>
-            <li className="rounded-sm text-secondary-500 hover:text-primary-400 text-lg hover:underline">
+            <li className="rounded text-secondary-500 hover:text-primary-400 text-lg hover:underline">
               <Link className="font-bold" href="/select">
                 Select
               </Link>

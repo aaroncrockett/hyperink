@@ -12,7 +12,7 @@ export function FlashItemImage({
   public_url,
 }: FlashItemProps) {
   return (
-    <div className="flex flex-col gap-2 md:gap-4 justify-around p-2 sm:p-4 bg-surface-200-800/40 rounded-sm">
+    <div className="flex flex-col gap-2 md:gap-4 justify-around p-2 sm:p-4 bg-surface-200-800/40 rounded">
       <Image
         src={public_url}
         alt={`${readable_name ?? ""} - flash image`}

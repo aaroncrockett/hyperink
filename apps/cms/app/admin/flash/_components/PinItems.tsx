@@ -55,7 +55,7 @@ export function PinItems({ items, handleSetItems }: PinItemsProps) {
       {items.map((item, i) => (
         <div
           className={cn(
-            "flex flex-col gap-2 md:gap-4 justify-start items-center p-2 sm:p-4 rounded-sm",
+            "flex flex-col gap-2 md:gap-4 justify-start items-center p-2 sm:p-4 rounded",
             i === 3 ? "bg-tertiary-500/40" : "bg-surface-500/40",
           )}
           key={item.id || i}

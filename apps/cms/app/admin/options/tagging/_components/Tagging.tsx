@@ -32,7 +32,7 @@ export function Tagging({ opts }: { opts?: TagOpts }) {
                     .filter((item): item is string => typeof item === "string")
                     .map((item) => (
                       <li
-                        className="bg-surface-100-900/40 p-2 rounded-sm"
+                        className="bg-surface-100-900/40 p-2 rounded"
                         key={item + i}
                       >
                         {item}

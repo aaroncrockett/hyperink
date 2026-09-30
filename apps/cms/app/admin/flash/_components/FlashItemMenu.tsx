@@ -20,7 +20,7 @@ export function FlashItemMenu({ id, handleModalState }: FlashItemMenuProps) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="absolute inset-0 z-10 bg-surface-950-50/90 flex flex-col gap-4 justify-center items-center rounded-sm"
+      className="absolute inset-0 z-10 bg-surface-950-50/90 flex flex-col gap-4 justify-center items-center rounded"
     >
       <motion.span
         className="absolute top-[12%] right-[12%]"

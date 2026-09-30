@@ -15,7 +15,7 @@ type FlashProps = {
 
 export function Flash({ flash, collection, collections, userId }: FlashProps) {
   return (
-    <div className="flex flex-col gap-4 bg-surface-200-800/20 rounded-sm p-2 md:p-4">
+    <div className="flex flex-col gap-4 bg-surface-200-800/20 rounded p-2 md:p-4">
       <FlashProvider
         flash={flash}
         collection={collection}
