@@ -101,13 +101,18 @@ export const uploadFlash = async (
   });
   if (uploadError) return { error: uploadError, data: null };
 
-  const { file, ...flashInserts } = inserts;
+  const { file, collection, ...flashInserts } = inserts;
+
+  const normalizedCollection = collection
+    ? normalizeToKabobCase(collection)
+    : undefined;
 
   const { data: flashData, error: flashError } = await createFlash(
     client,
     {
       ...flashInserts,
       path,
+      ...(collection ? { collection: normalizeToKabobCase(collection) } : {}),
     },
     userId,
   );
