@@ -141,9 +141,9 @@ select {
 :root {
   --duration-exit: 290ms;
   --duration-enter: 330ms;
-  --duration-move: 400ms;
-  --duration-fade-exit: 260ms;
-  --duration-fade-enter: 420ms;
+  --duration-move: 360ms;
+  --duration-fade-exit: 240ms;
+  --duration-fade-enter: 370ms;
 }
 
 @keyframes fade {
