@@ -1,4 +1,4 @@
-import { Input } from "@/ui/Input";
+import { Input } from "@hyperink/ui-react/components";
 import Image from "next/image";
 type ItemProps = {
   publicUrl: string;

@@ -23,7 +23,7 @@ export function FlashItemMenu({ id, handleModalState }: FlashItemMenuProps) {
       className="absolute inset-0 z-10 bg-surface-950-50/90 flex flex-col gap-4 justify-center items-center rounded"
     >
       <motion.span
-        className="absolute top-[12%] right-[12%]"
+        className="absolute top-[5%] right-[5%]"
         initial={{ color: "var(--color-surface-200)" }}
         whileHover={{
           y: -1,
@@ -76,7 +76,7 @@ export function FlashItemMenu({ id, handleModalState }: FlashItemMenuProps) {
             e.stopPropagation();
             handleModalState(e);
           }}
-          href={`${INTERNAL_FLASH_LINKS.flash.href}/${id}`}
+          href=""
           className="text-lg md:text-xl underline text-center font-bold flex gap-3 items-center justify-center"
         >
           <Icon name="pin" />

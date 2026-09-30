@@ -19,18 +19,20 @@ import { PinnedModal } from "./PinnedModal";
 
 type FlashItemProps = ComponentPropsWithoutRef<"li"> & {
   collection: string;
-  id: string;
+  user_id: string;
   pinned_order: number | null;
   public_url: string;
   readable_name: string;
+  id: string;
 };
 
 export function FlashItemCollection({
   readable_name,
-  id,
+  user_id,
   public_url,
   pinned_order,
   collection,
+  id,
   ...props
 }: FlashItemProps) {
   const { modalState, handleModalState } = usePinnedModal();
@@ -45,7 +47,6 @@ export function FlashItemCollection({
         props.onClick?.(e);
       }}
     >
-      In Colllections comp
       {/* modal and menu states */}
       <AnimatePresence mode="wait" initial={false}>
         {modalState && (
@@ -53,7 +54,7 @@ export function FlashItemCollection({
             <PinnedModal
               pinned_order={pinned_order}
               readable_name={readable_name}
-              id={id}
+              user_id={user_id}
               public_url={public_url}
               collection={collection}
               handleModalState={(e) => handleModalState(e)}
@@ -119,11 +120,7 @@ export function FlashItemCollection({
         </>
       )}
       {/* Flash Item  */}
-      <FlashItemImage
-        id={id}
-        readable_name={readable_name}
-        public_url={public_url}
-      />
+      <FlashItemImage readable_name={readable_name} public_url={public_url} />
     </li>
   );
 }

@@ -78,7 +78,7 @@ export default async function FlashPage() {
           flash={flashData}
           collection={initCollection}
           collections={collections}
-          userId={user.id}
+          user_id={user.id}
         />
       </Page>
     </ViewTransition>

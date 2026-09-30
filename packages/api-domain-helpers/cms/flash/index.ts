@@ -5,6 +5,7 @@ import {
   createFlash,
   type FlashUIRow,
   getFlashLimitByRecent,
+  updateFlash,
 } from "@hyperink/api/flash";
 import {
   getOptions as getOptsSrc,
@@ -88,6 +89,7 @@ export const getFlash = async (
     data: fullData,
   };
 };
+
 export const uploadFlash = async (
   client: Client,
   userId: string,
@@ -136,3 +138,44 @@ export const uploadFlash = async (
 
 export const getPublicUrlForFlash = async (client: Client, path: string) =>
   await getPublicUrl(client, { bucket: BUCKET, path });
+
+// *FLAG* This can be dangerous so flagging for testing or rethinking.
+// If there is a failure in logic and we miss pinned flash, the orders will not work as expected.
+// This currently depends on never accidently tagging more than 3 items.
+// It also denpends on the flash functionality accurently grabbing the three flash items which should be pinned.
+// If any of this breaks or doesn't work as intended, there could be a mess.
+// This is fine for right now, for alpha/beta mvp.
+export const resetAndUpdatePinnedFlash = async (
+  client: Client,
+  flash: Partial<FlashUIRow>[],
+  items: Partial<FlashUIRow>[],
+) => {
+  try {
+    await Promise.all(
+      flash.map((item) =>
+        updateFlash(client, {
+          id: item?.id ?? "",
+          pinned_order: null,
+        }),
+      ),
+    );
+
+    await Promise.all(
+      items
+        .filter((item) => item.pinned_order != null && item.id !== "")
+        .map((item) =>
+          updateFlash(client, {
+            id: item.id!,
+            pinned_order: item.pinned_order!,
+          }),
+        ),
+    );
+
+    return { error: null, data: null };
+  } catch (error) {
+    return {
+      error: { message: "error resetting and updating flash" },
+      data: null,
+    };
+  }
+};
