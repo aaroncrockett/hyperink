@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 //
 import { useState } from "react";
 //
-import { Icon, ErrorDisplay } from "@hyperink/ui-react/components";
+import { Icon } from "@hyperink/ui-react/components";
 import {
   resetAndUpdatePinnedFlash,
   getFlash,
@@ -22,14 +22,14 @@ type ModalProps = {
   collection: string;
   pinned_order: number | null;
   readable_name: string;
-  user_id: string;
+  id: string;
   public_url: string;
 };
 
 export function PinnedModal({
   handleModalState,
   readable_name,
-  user_id,
+  id,
   pinned_order,
   public_url,
 }: ModalProps) {
@@ -39,33 +39,21 @@ export function PinnedModal({
   const [items, setItems] = useState(
     getPinnedFlash(
       flash,
-      { readable_name: readable_name, id: user_id, public_url: public_url },
+      { readable_name: readable_name, id: id, public_url: public_url },
       pinned_order,
     ),
   );
+
   const handleSetItems = (newItems: Partial<FlashUI>[]) => setItems(newItems);
 
   const handleUpdatePinned = async () => {
     const browserClient = await createBrowserClient();
 
-    const { error: pinnedError } = await resetAndUpdatePinnedFlash(
-      browserClient,
-      flash,
-      items,
-    );
-
-    if (pinnedError)
-      return (
-        <ErrorDisplay
-          error={
-            pinnedError.message ?? "error resetting up updating pinned flash."
-          }
-        />
-      );
+    await resetAndUpdatePinnedFlash(browserClient, flash, items);
 
     const flashSelectKeys = [...FLASH_METADATA_KEYS] as (keyof FlashUI)[];
 
-    const where = [{ user_id: user_id, collection: collectionState }];
+    const where = [{ id: id, collection: collectionState }];
 
     const { data: flashData, error: flashError } = await getFlash(
       browserClient,
@@ -73,14 +61,9 @@ export function PinnedModal({
       where,
     );
 
-    if (flashError)
-      return (
-        <ErrorDisplay error={flashError.message ?? "error getting flash."} />
-      );
+    if (flashError) return;
 
-    if (!flashData) {
-      return <ErrorDisplay error="error and we don't have any flash!" />;
-    }
+    if (!flashData) return;
 
     setFlashState(flashData);
   };

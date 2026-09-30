@@ -83,9 +83,6 @@ export function FileItemGroup({
                   options={collectionOpts.map((value: string) =>
                     toLabelValue(value),
                   )}
-                  // onChange={(e) => {
-                  //   console.log(e);
-                  // }}
                 />
               )}
 

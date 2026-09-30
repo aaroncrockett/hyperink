@@ -54,7 +54,7 @@ export function FlashItemCollection({
             <PinnedModal
               pinned_order={pinned_order}
               readable_name={readable_name}
-              user_id={user_id}
+              id={id}
               public_url={public_url}
               collection={collection}
               handleModalState={(e) => handleModalState(e)}

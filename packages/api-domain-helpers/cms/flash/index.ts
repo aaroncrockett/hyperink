@@ -150,32 +150,45 @@ export const resetAndUpdatePinnedFlash = async (
   flash: Partial<FlashUIRow>[],
   items: Partial<FlashUIRow>[],
 ) => {
-  try {
-    await Promise.all(
-      flash.map((item) =>
-        updateFlash(client, {
-          id: item?.id ?? "",
-          pinned_order: null,
-        }),
-      ),
-    );
+  const resetResults = await Promise.all(
+    flash.map((item) =>
+      updateFlash(client, { pinned_order: null }, [{ id: item?.id ?? "" }]),
+    ),
+  );
 
-    await Promise.all(
-      items
-        .filter((item) => item.pinned_order != null && item.id !== "")
-        .map((item) =>
-          updateFlash(client, {
-            id: item.id!,
-            pinned_order: item.pinned_order!,
-          }),
-        ),
-    );
+  const resetError = resetResults.find((result) => result.error);
 
-    return { error: null, data: null };
-  } catch (error) {
+  if (resetError) {
     return {
-      error: { message: "error resetting and updating flash" },
+      error:
+        resetError?.message ?? "There is an error resetting the pinned order",
       data: null,
     };
   }
+
+  const updateResults = await Promise.all(
+    items
+      .filter((item) => item.pinned_order != null && item.id !== "")
+
+      .map((item) =>
+        updateFlash(client, { pinned_order: item.pinned_order }, [
+          { id: item?.id ?? "" },
+        ]),
+      ),
+  );
+
+  const updateError = updateResults.find((result) => result.error);
+
+  if (updateError) {
+    return {
+      error:
+        resetError?.message ?? "There is an error setting the pinned order",
+      data: null,
+    };
+  }
+
+  return {
+    error: null,
+    data: null,
+  };
 };

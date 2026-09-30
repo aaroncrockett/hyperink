@@ -23,12 +23,18 @@ export function createSupabaseUpdateQueries<
     async update<I>(
       client: Client,
       updates: DBKeyValue<I>,
+      where: DBKeyValue<I>[],
       execute: Execute = executeDefault,
       modifyQuery?: (query: any) => any,
     ) {
       const internalUpdates = mapInsertsToDb([updates] as any, uiDbMapping)[0];
 
       let query = client.from(table).update(internalUpdates as any);
+
+      for (const condition of where) {
+        const [key, value] = Object.entries(condition)[0];
+        query = (query as any).eq(key, value);
+      }
 
       if (modifyQuery) {
         query = modifyQuery(query);

@@ -10,6 +10,13 @@ type PinItemsProps = {
 };
 
 export function PinItems({ items, handleSetItems }: PinItemsProps) {
+  // if (
+  //   items[0].pinned_order === 1 &&
+  //   items[1].pinned_order === null &&
+  //   items[2] === null
+  // ) {
+  //   handleSetItems(items);
+  // }
   const handleDragStart = (
     e: React.DragEvent<HTMLDivElement>,
     index: number,

@@ -11,7 +11,7 @@ export const getPinnedFlash = (
     return {
       readable_name: "",
       pinned_order: null,
-      user_id: "",
+      id: "",
       public_url: "",
     };
   };
@@ -33,7 +33,7 @@ export const getPinnedFlash = (
     // if there is a start loc, put the pin there
     if (startLoc !== null) {
       slots[startLoc].readable_name = currentFlash.readable_name;
-      slots[startLoc].user_id = currentFlash.user_id;
+      slots[startLoc].id = currentFlash.id;
       slots[startLoc].public_url = currentFlash.public_url;
       if (startLoc === 0) slots[startLoc].pinned_order = 1;
       slots.push(createPlaceHolder());

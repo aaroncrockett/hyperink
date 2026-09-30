@@ -3,11 +3,12 @@ import { type FlashUIRow } from "@hyperink/api/flash";
 
 import type { Client } from "@hyperink/service-providers";
 
-const baseCreateTagOpts = createSupabaseUpdateQueries("options", null);
+const baseCreateTagOpts = createSupabaseUpdateQueries("flash", null);
 
 export const updateFlash = (
   client: Client,
   inserts: Partial<FlashUIRow>,
+  where: Partial<FlashUIRow>[],
   selectKeys?: null | (keyof FlashUIRow)[],
 ) => {
   const execute = {
@@ -18,6 +19,7 @@ export const updateFlash = (
   return baseCreateTagOpts.update<Partial<FlashUIRow>>(
     client,
     inserts,
+    where,
     execute,
   );
 };
