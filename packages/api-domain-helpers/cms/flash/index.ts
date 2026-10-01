@@ -5,7 +5,9 @@ import {
   createFlash,
   type FlashUIRow,
   getFlashLimitByRecent,
-  updateFlash,
+  getWithin,
+  updateFlash as updateFlashSrc,
+  updateFlashWithin as updateFlashWithinSrc,
 } from "@hyperink/api/flash";
 import {
   getOptions as getOptsSrc,
@@ -90,6 +92,112 @@ export const getFlash = async (
   };
 };
 
+export const getFlashWithin = async (
+  client: Client,
+  selectKeys: (keyof FlashUIRow)[],
+  within: DBKeyValue<FlashUIRow>[],
+) => {
+  const normalizedWithin = within.map((item) => {
+    if (item?.collection) {
+      return {
+        ...item,
+        collection: item.collection.map((i: string) => normalizeToKabobCase(i)),
+      };
+    }
+
+    return item;
+  });
+
+  const { data, error: flashError } = await getWithin(
+    client,
+    selectKeys,
+    normalizedWithin,
+  );
+
+  if (flashError)
+    return {
+      data: null,
+      error: { message: "error getting flash" },
+    };
+
+  const flashData = data satisfies FlashUIRow[] as FlashUIRow[];
+
+  const fullData = await Promise.all(
+    flashData.map(async (data) => {
+      const { data: url } = await getPublicUrlForFlash(client, data.path);
+
+      return {
+        ...data,
+        ...(data.collection && {
+          collection: denormalizeFromKabobCase(data.collection),
+        }),
+        public_url: url.publicUrl,
+      };
+    }),
+  );
+  return {
+    error: null,
+    data: fullData,
+  };
+};
+
+export const getPublicUrlForFlash = async (client: Client, path: string) =>
+  await getPublicUrl(client, { bucket: BUCKET, path });
+
+// *FLAG* This can be dangerous so flagging for testing or rethinking.
+// If there is a failure in logic and we miss pinned flash, the orders will not work as expected.
+// This currently depends on never accidently tagging more than 3 items.
+// It also denpends on the flash functionality accurently grabbing the three flash items which should be pinned.
+// If any of this breaks or doesn't work as intended, there could be a mess.
+// This is fine for right now, for alpha/beta mvp.
+export const resetAndUpdatePinnedFlash = async (
+  client: Client,
+  flash: Partial<FlashUIRow>[],
+  items: Partial<FlashUIRow>[],
+) => {
+  const resetResults = await Promise.all(
+    flash.map((item) =>
+      updateFlashSrc(client, { pinned_order: null }, [{ id: item?.id ?? "" }]),
+    ),
+  );
+
+  const resetError = resetResults.find((result) => result.error);
+
+  if (resetError) {
+    return {
+      error:
+        resetError?.message ?? "There is an error resetting the pinned order",
+      data: null,
+    };
+  }
+
+  const updateResults = await Promise.all(
+    items
+      .filter((item) => item.pinned_order != null && item.id !== "")
+
+      .map((item) =>
+        updateFlashSrc(client, { pinned_order: item.pinned_order }, [
+          { id: item?.id ?? "" },
+        ]),
+      ),
+  );
+
+  const updateError = updateResults.find((result) => result.error);
+
+  if (updateError) {
+    return {
+      error:
+        resetError?.message ?? "There is an error setting the pinned order",
+      data: null,
+    };
+  }
+
+  return {
+    error: null,
+    data: null,
+  };
+};
+
 export const uploadFlash = async (
   client: Client,
   userId: string,
@@ -136,59 +244,4 @@ export const uploadFlash = async (
   return { data, error: null };
 };
 
-export const getPublicUrlForFlash = async (client: Client, path: string) =>
-  await getPublicUrl(client, { bucket: BUCKET, path });
-
-// *FLAG* This can be dangerous so flagging for testing or rethinking.
-// If there is a failure in logic and we miss pinned flash, the orders will not work as expected.
-// This currently depends on never accidently tagging more than 3 items.
-// It also denpends on the flash functionality accurently grabbing the three flash items which should be pinned.
-// If any of this breaks or doesn't work as intended, there could be a mess.
-// This is fine for right now, for alpha/beta mvp.
-export const resetAndUpdatePinnedFlash = async (
-  client: Client,
-  flash: Partial<FlashUIRow>[],
-  items: Partial<FlashUIRow>[],
-) => {
-  const resetResults = await Promise.all(
-    flash.map((item) =>
-      updateFlash(client, { pinned_order: null }, [{ id: item?.id ?? "" }]),
-    ),
-  );
-
-  const resetError = resetResults.find((result) => result.error);
-
-  if (resetError) {
-    return {
-      error:
-        resetError?.message ?? "There is an error resetting the pinned order",
-      data: null,
-    };
-  }
-
-  const updateResults = await Promise.all(
-    items
-      .filter((item) => item.pinned_order != null && item.id !== "")
-
-      .map((item) =>
-        updateFlash(client, { pinned_order: item.pinned_order }, [
-          { id: item?.id ?? "" },
-        ]),
-      ),
-  );
-
-  const updateError = updateResults.find((result) => result.error);
-
-  if (updateError) {
-    return {
-      error:
-        resetError?.message ?? "There is an error setting the pinned order",
-      data: null,
-    };
-  }
-
-  return {
-    error: null,
-    data: null,
-  };
-};
+export const updateFlashWithin = updateFlashWithinSrc;

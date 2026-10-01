@@ -50,9 +50,10 @@ export async function upsertTagOpts(
     selectedArr,
   );
 
-  return {
-    error: { message: error?.message ?? "merge users tag options error" },
-  };
+  if (error)
+    return {
+      error: { message: error.message ?? "error merging tag options" },
+    };
 
   if (unSelectedStr.length) {
     const unselectedArr = unSelectedStr?.split("+").filter(Boolean);
@@ -64,9 +65,9 @@ export async function upsertTagOpts(
 
     const rejoinedUnselected = normalUnselectedArr?.join("+");
     redirect(
-      `/admin/tagging/${tagType}/tagged-images?unselected=${encodeURIComponent(rejoinedUnselected ?? "")}`,
+      `/admin/options/tagging/${tagType}/tagged-images?unselected=${encodeURIComponent(rejoinedUnselected ?? "")}`,
     );
   }
 
-  return actionResults;
+  redirect("/admin/");
 }
