@@ -20,7 +20,6 @@ export function FlashItemGeneral({
 }: FlashItemProps) {
   return (
     <li className={cn("group cursor-pointer", props.className)}>
-      in here gurl
       <FlashItemImage readable_name={readable_name} public_url={public_url} />
     </li>
   );
