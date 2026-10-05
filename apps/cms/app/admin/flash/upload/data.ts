@@ -38,10 +38,10 @@ const optionTypeMetadata = {
   },
 };
 
-type KeyOfFileMetadataProfile = keyof UploadFileMetadata &
+export type KeyOfFileMetadataProfile = keyof UploadFileMetadata &
   typeof optionTypeMetadata;
 
-type UploadFileSchema = {
+export type UploadFileSchema = {
   [K in KeyOfFileMetadataProfile]: z.ZodType;
 };
 

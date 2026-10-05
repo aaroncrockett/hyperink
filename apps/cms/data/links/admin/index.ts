@@ -38,3 +38,4 @@ export const INTERNAL_FLASH_LINKS = FLASH_LINKS;
 
 export const MENU_ADMIN_LINKS = Object.values(INTERNAL_ADMIN_LINKS);
 export const FLASH_LINKS_LIST = Object.values(FLASH_LINKS);
+export const FLASH_LINKS_KEYS = Object.keys(FLASH_LINKS);

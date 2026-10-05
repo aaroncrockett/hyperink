@@ -8,6 +8,8 @@ import {
 //
 import { ErrorDisplay, Page } from "@hyperink/ui-react/components";
 import { createSSClient, getAuthedUser } from "@/auth/server";
+//
+import { TaggedImagesComponent } from "./_components/TaggedImages";
 
 export default async function TaggedImages({
   params,
@@ -41,7 +43,7 @@ export default async function TaggedImages({
   if (tag === "collections") {
     const { data, error } = await getFlashWithin(
       serverClient,
-      [],
+      ["id", "collection", "path", "readable_name"],
       [{ collection: unselectedSplit ?? [] }],
     );
     if (error || data === null) return <ErrorDisplay error="no user found" />;
@@ -61,7 +63,12 @@ export default async function TaggedImages({
       <h1 className="hI-h1">Tagged Images</h1>
 
       {flash?.map((item) => (
-        <div key={item.id}>{item.readable_name}</div>
+        <TaggedImagesComponent
+          key={item.id}
+          item={item}
+          tag={tag}
+          tags={tagData.collections}
+        />
       ))}
     </Page>
   );

@@ -19,7 +19,6 @@ import { PinnedModal } from "./PinnedModal";
 
 type FlashItemProps = ComponentPropsWithoutRef<"li"> & {
   collection: string;
-  user_id: string;
   pinned_order: number | null;
   public_url: string;
   readable_name: string;
@@ -28,7 +27,6 @@ type FlashItemProps = ComponentPropsWithoutRef<"li"> & {
 
 export function FlashItemCollection({
   readable_name,
-  user_id,
   public_url,
   pinned_order,
   collection,

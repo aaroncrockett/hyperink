@@ -39,7 +39,7 @@ export function Page({
         </div>
       )}
       {!sectional && (
-        <div className={cn("flex-1", className)}>
+        <div className={cn("flex-1", className, heightCls)}>
           <div
             className={cn(
               innerCls,

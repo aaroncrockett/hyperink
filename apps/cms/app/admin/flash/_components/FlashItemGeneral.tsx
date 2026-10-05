@@ -4,23 +4,27 @@ import { ComponentPropsWithoutRef } from "react";
 //
 import { cn } from "@hyperink/utils";
 //
+import { NextLinkWrapper } from "@/ui";
+//
 import { FlashItemImage } from "./FlashItemImage";
 
 type FlashItemProps = ComponentPropsWithoutRef<"li"> & {
   readable_name: string;
   public_url: string;
-  user_id: string;
   id: string;
 };
 
 export function FlashItemGeneral({
   readable_name,
   public_url,
+  id,
   ...props
 }: FlashItemProps) {
   return (
     <li className={cn("group cursor-pointer", props.className)}>
-      <FlashItemImage readable_name={readable_name} public_url={public_url} />
+      <NextLinkWrapper href={`flash/${id}`}>
+        <FlashItemImage readable_name={readable_name} public_url={public_url} />
+      </NextLinkWrapper>
     </li>
   );
 }

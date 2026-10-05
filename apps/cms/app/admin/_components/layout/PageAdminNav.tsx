@@ -19,9 +19,10 @@ type Link = {
 
 type PageAdminNavsProps = {
   links: Link[];
+  keys: string[];
 };
 
-export function PageAdminNav({ links }: PageAdminNavsProps) {
+export function PageAdminNav({ links, keys }: PageAdminNavsProps) {
   const pathname = usePathname();
 
   const getTransitionKey = (href: string) => {
@@ -31,9 +32,7 @@ export function PageAdminNav({ links }: PageAdminNavsProps) {
     const currentKey = currentSegments[currentSegments.length - 1];
 
     if (destinationSegments[0] !== "admin") {
-      console.error(
-        "There is a problem with the page admin nav. We may not be in the admin!!",
-      );
+      console.error("There is a problem with the page admin nav.");
       return "none";
     }
 
@@ -53,9 +52,15 @@ export function PageAdminNav({ links }: PageAdminNavsProps) {
     if (destinationOrder > currentOrder) return "nav-forward";
     if (destinationOrder < currentOrder) return "nav-back";
   };
-
+  console.log(pathname);
+  const dimNav = !keys.includes(pathname);
   return (
-    <ul className="flex flex-row justify-around gap-3 border-b-3 bg-surface-200-800/20 border-surface-300-700/20 my-2 rounded">
+    <ul
+      className={cn(
+        "flex flex-row justify-around gap-3 border-b-3 bg-surface-200-800/20 border-surface-300-700/20 my-2 rounded",
+        dimNav && "",
+      )}
+    >
       {links.map((link) => {
         const transitionKey = getTransitionKey(link.href);
 
@@ -67,7 +72,7 @@ export function PageAdminNav({ links }: PageAdminNavsProps) {
               transition={transitionKey}
               className={cn(
                 "py-1 px-3",
-                pathname === link.href && "text-surface-900-100 font-bold",
+                isCurrent && "text-surface-900-100 font-bold",
               )}
               href={link.href}
             >

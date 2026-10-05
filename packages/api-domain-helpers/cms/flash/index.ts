@@ -6,6 +6,7 @@ import {
   type FlashUIRow,
   getFlashLimitByRecent,
   getWithin,
+  getFlash as getFlashSrc,
   updateFlash as updateFlashSrc,
   updateFlashWithin as updateFlashWithinSrc,
 } from "@hyperink/api/flash";
@@ -44,6 +45,36 @@ export const getUsersFlashAndTagOptions = async (
   };
 
   return { data: optionsData, error };
+};
+
+export const getFlashById = async (
+  client: Client,
+  selectKeys: (keyof FlashUIRow)[],
+  id: string,
+) => {
+  const { data, error: flashError } = await getFlashSrc(client, selectKeys, [
+    { id: id },
+  ]);
+
+  if (flashError)
+    return {
+      error: { message: flashError.message ?? "error getting flash by id" },
+      data: null,
+    };
+
+  const flash = data[0] as FlashUIRow;
+
+  const { data: url } = await getPublicUrlForFlash(client, flash.path);
+
+  const flashData = {
+    ...flash,
+    public_url: url.publicUrl,
+  };
+
+  return {
+    data: flashData,
+    error: null,
+  };
 };
 
 export const getFlash = async (
@@ -245,3 +276,5 @@ export const uploadFlash = async (
 };
 
 export const updateFlashWithin = updateFlashWithinSrc;
+
+export const updateFlash = updateFlashSrc;

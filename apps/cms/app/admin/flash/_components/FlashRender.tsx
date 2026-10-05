@@ -75,7 +75,6 @@ export function FlashRender() {
                   <FlashItemCollection
                     className="grid gap-2 md:gap-4 relative"
                     collection={collectionState}
-                    user_id={data.user_id ?? ""}
                     public_url={data.public_url}
                     readable_name={data.readable_name ?? ""}
                     pinned_order={data.pinned_order ?? null}
@@ -84,7 +83,6 @@ export function FlashRender() {
                 ) : (
                   <FlashItemGeneral
                     className="grid gap-2 md:gap-4 relative"
-                    user_id={data.user_id ?? ""}
                     public_url={data.public_url}
                     readable_name={data.readable_name ?? ""}
                     id={data.id ?? ""}
