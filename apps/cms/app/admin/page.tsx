@@ -11,7 +11,7 @@ export default async function Admin() {
 
   return (
     <div>
-      <p>Hey</p>
+      <h1>Admin</h1>
     </div>
   );
 }

@@ -46,7 +46,7 @@ export function EditFlash({ flashItem, collections }: EditFlashProps) {
           type={editFlashMetadata.readable_name.type}
           required={true}
           defaultValue={flashItem.readable_name ?? ""}
-          wrapperClassName="md:w-2/3 xl:w-1/2 w-full"
+          wrapperClassName="w-full"
         />
         <Input
           name={editFlashMetadata.description.id}
@@ -55,7 +55,7 @@ export function EditFlash({ flashItem, collections }: EditFlashProps) {
           type={editFlashMetadata.description.type}
           required={true}
           defaultValue={flashItem.description ?? ""}
-          wrapperClassName="md:w-2/3 xl:w-1/2 w-full"
+          wrapperClassName="w-full"
         />
         <Input
           type={editFlashMetadata.total_availability.type}
@@ -65,7 +65,7 @@ export function EditFlash({ flashItem, collections }: EditFlashProps) {
           min={1}
           max={5}
           defaultValue={flashItem.total_availability ?? 0}
-          wrapperClassName="md:w-2/3 xl:w-1/2 w-full"
+          wrapperClassName="w-full"
         />
 
         <Select
@@ -73,7 +73,7 @@ export function EditFlash({ flashItem, collections }: EditFlashProps) {
           name={editFlashMetadata.collection.id}
           label={editFlashMetadata.collection.label}
           type={editFlashMetadata.collection.type}
-          wrapperClassName="md:w-2/3 xl:w-1/2  w-full"
+          wrapperClassName=" w-full"
           defaultValue={flashItem.collection ?? collections[0] ?? ""}
           options={collections.map((value: string) => toLabelValue(value))}
         />
