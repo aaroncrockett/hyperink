@@ -25,8 +25,6 @@ export function LayoutSubNav({ ...props }: React.ComponentProps<"div">) {
   const segments = getPathSegments(pathname);
   const section = getSection(segments[1]);
 
-  console.log(section);
-
   if (!section) return null;
   return (
     <div {...props}>

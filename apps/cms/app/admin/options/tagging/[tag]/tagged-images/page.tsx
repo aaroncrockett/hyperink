@@ -31,7 +31,6 @@ export default async function TaggedImages({
   if (!user) return <ErrorDisplay error="no user found" />;
 
   const unselectedSplit = unselected?.split("+").filter(Boolean);
-  console.log(unselectedSplit, "unselected split");
 
   const { data: tagData, error } = await getUsersTagOptions(
     serverClient,

@@ -52,7 +52,6 @@ export function PageAdminNav({ links, keys }: PageAdminNavsProps) {
     if (destinationOrder > currentOrder) return "nav-forward";
     if (destinationOrder < currentOrder) return "nav-back";
   };
-  console.log(pathname);
   const dimNav = !keys.includes(pathname);
   return (
     <ul

@@ -11,7 +11,7 @@ import {
   updateFlashWithin as updateFlashWithinSrc,
 } from "@hyperink/api/flash";
 import {
-  getOptions as getOptsSrc,
+  getOptions as getOptionsSrc,
   type OptionsUIRow,
 } from "@hyperink/api/options";
 import { uploadFile, removeFile } from "@hyperink/api";
@@ -31,7 +31,7 @@ export const getUsersFlashAndTagOptions = async (
   client: Client,
   id: OptionsUIRow["profile_id"],
 ) => {
-  const { data, error } = await getOptsSrc(
+  const { data, error } = await getOptionsSrc(
     client,
     ["tag_opts", "flash_opts"],
     [{ profile_id: id }],
