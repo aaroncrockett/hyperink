@@ -4,7 +4,7 @@ import { ErrorDisplay } from "@hyperink/ui-react/components";
 import { getUsersFlashAndTagOptions } from "@hyperink/api-domain-helpers/flash";
 //
 import { createSSClient, getAuthedUser } from "@/auth/server";
-import { ViewTransition } from "@/ui";
+import { NextLinkWrapper, ViewTransition } from "@/ui";
 //
 import { initFlash } from "./helpers";
 import { Flash } from "./_components/Flash";
@@ -56,7 +56,10 @@ export default async function FlashPage() {
         )}
         {defaultCollection === "" && (
           <p className="p-2 rounded card preset-filled-warning-500">
-            You don&lsquo;t have a default collection yet. Choose one here -
+            You don&lsquo;t have a default collection yet.{" "}
+            <NextLinkWrapper href="/admin/flash/preferences">
+              Choose one{" "}
+            </NextLinkWrapper>
           </p>
         )}
         <Flash
