@@ -1,4 +1,9 @@
 import { FlashUIPublic } from "./data";
+import { FlashOptsUI } from "@hyperink/api/options";
+import { getFlash } from "@hyperink/api-domain-helpers/flash";
+import type { Client } from "@hyperink/service-providers";
+
+import { FLASH_METADATA_KEYS, type FlashUI } from "./data";
 
 export const getPinnedFlash = (
   flash: Partial<FlashUIPublic>[],
@@ -55,4 +60,50 @@ export const getPinnedFlash = (
   slots.push(createPlaceHolder());
 
   return slots;
+};
+
+export const initFlash = async (
+  client: Client,
+  userId: string,
+  flashOpts: FlashOptsUI,
+) => {
+  let defaultCollection = "";
+
+  if (flashOpts && flashOpts.defaultCollection) {
+    defaultCollection = flashOpts.defaultCollection;
+  }
+
+  const flashSelectKeys = [...FLASH_METADATA_KEYS] as (keyof FlashUI)[];
+
+  let emptyDefault = false;
+
+  if (defaultCollection !== "") {
+    const where = [{ user_id: userId }, { collection: defaultCollection }];
+
+    const { data: flashData } = await getFlash(client, flashSelectKeys, where);
+
+    if (flashData) {
+      return {
+        emptyDefault,
+        defaultCollection: defaultCollection,
+        flashData: flashData,
+        flashError: null,
+      };
+    }
+    emptyDefault = true;
+  }
+  const where = [{ user_id: userId }];
+
+  const { data: flashData, error: flashError } = await getFlash(
+    client,
+    flashSelectKeys,
+    where,
+  );
+
+  return {
+    emptyDefault,
+    defaultCollection: "",
+    flashData: flashData,
+    flashError: flashError,
+  };
 };

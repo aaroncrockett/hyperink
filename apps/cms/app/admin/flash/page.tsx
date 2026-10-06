@@ -1,15 +1,12 @@
 import { Page } from "@hyperink/ui-react/components";
 //
 import { ErrorDisplay } from "@hyperink/ui-react/components";
-import {
-  getUsersFlashAndTagOptions,
-  getFlash,
-} from "@hyperink/api-domain-helpers/flash";
+import { getUsersFlashAndTagOptions } from "@hyperink/api-domain-helpers/flash";
 //
 import { createSSClient, getAuthedUser } from "@/auth/server";
 import { ViewTransition } from "@/ui";
 //
-import { FLASH_METADATA_KEYS, type FlashUI } from "./data";
+import { initFlash } from "./helpers";
 import { Flash } from "./_components/Flash";
 //
 export default async function FlashPage() {
@@ -32,33 +29,8 @@ export default async function FlashPage() {
 
   if (optsError) return <ErrorDisplay error="get options error" />;
 
-  let defaultCollection = "";
-  let firstCollection = "";
-
-  if (flashOpts && flashOpts.defaultCollection) {
-    defaultCollection = flashOpts.defaultcollection;
-  }
-  // if no default collection, get the first collection
-  if (!defaultCollection.length && collections.length) {
-    firstCollection = collections[0];
-  }
-  const initCollection = defaultCollection
-    ? defaultCollection
-    : firstCollection;
-
-  const flashSelectKeys = [...FLASH_METADATA_KEYS] as (keyof FlashUI)[];
-
-  const where = [
-    { user_id: user.id },
-    // if default collection, gey by default collection as well as by id
-    ...(initCollection ? [{ collection: initCollection }] : []),
-  ];
-
-  const { data: flashData, error: flashError } = await getFlash(
-    client,
-    flashSelectKeys,
-    where,
-  );
+  const { defaultCollection, emptyDefault, flashData, flashError } =
+    await initFlash(client, user.id, flashOpts);
 
   if (flashError) return <ErrorDisplay error="get flash error" />;
 
@@ -66,7 +38,9 @@ export default async function FlashPage() {
     return (
       <ViewTransition transition="slide">
         <Page className="bg-surface-50-950 h-full">
-          <p>NoFlash yet!</p>
+          <p className="p-2 rounded card preset-filled-warning-500">
+            NoFlash yet! Add some! :D
+          </p>
         </Page>
       </ViewTransition>
     );
@@ -74,9 +48,20 @@ export default async function FlashPage() {
   return (
     <ViewTransition transition="slide">
       <Page className="bg-surface-50-950 h-full">
+        {emptyDefault && (
+          <p className="p-2 rounded card preset-filled-warning-500">
+            Your default collection is empty of flash. Edit some flash to add it
+            to your default collection.
+          </p>
+        )}
+        {defaultCollection === "" && (
+          <p className="p-2 rounded card preset-filled-warning-500">
+            You don&lsquo;t have a default collection yet. Choose one here -
+          </p>
+        )}
         <Flash
           flash={flashData}
-          collection={initCollection}
+          collection={defaultCollection}
           collections={collections}
           user_id={user.id}
         />
