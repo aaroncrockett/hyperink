@@ -18,7 +18,7 @@ export function FlashItemImage({ readable_name, public_url }: FlashItemProps) {
         loading="eager"
       />
 
-      <p className="text-3xl text-center font-display text-surface-800-200">
+      <p className="text-2xl  text-center font-display text-surface-800-200">
         {readable_name}
       </p>
     </div>

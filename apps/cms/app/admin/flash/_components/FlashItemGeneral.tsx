@@ -22,7 +22,10 @@ export function FlashItemGeneral({
 }: FlashItemProps) {
   return (
     <li className={cn("group cursor-pointer", props.className)}>
-      <NextLinkWrapper href={`flash/${id}`}>
+      <NextLinkWrapper
+        className="no-underline! hover:underline!"
+        href={`flash/${id}`}
+      >
         <FlashItemImage readable_name={readable_name} public_url={public_url} />
       </NextLinkWrapper>
     </li>
