@@ -25,7 +25,9 @@ export const capitalizeFlashOpts = (flashOpts: FlashOpts): FlashOpts => {
   return {
     ...flashOpts,
     ...(flashOpts?.default_collection && {
-      defaultCollection: denormalizeFromKabobCase(flashOpts.default_collection),
+      default_collection: denormalizeFromKabobCase(
+        flashOpts.default_collection,
+      ),
     }),
   };
 };

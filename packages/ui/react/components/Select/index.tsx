@@ -120,9 +120,8 @@ export function Select({
           props.className,
         )}
 
-        {...(value !== undefined ? { value } : {})}
-        {...(defaultValue !== undefined ? { defaultValue } : {})}
         {...props}
+        {...(value !== undefined ? { value } : { defaultValue })}
       >
         {!required && <option value="">Select...</option>}
 

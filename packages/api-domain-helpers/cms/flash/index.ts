@@ -23,6 +23,7 @@ import {
   denormalizeFromKabobCase,
   normalizeToKabobCase,
 } from "@hyperink/utils";
+import { capitalizeFlashOpts } from "../options/helpers";
 
 const BUCKET = "user-images";
 
@@ -40,9 +41,11 @@ export const getUsersFlashAndTagOptions = async (
   if (!data) return { data, error };
 
   const tagOpts = capitalizeTagOpts(data.tag_opts) ?? {};
+  const flashOpts = capitalizeFlashOpts(data.flash_opts) ?? {};
+
   const optionsData = {
     tagOpts: tagOpts,
-    flashOpts: data.flash_opts ?? {},
+    flashOpts: flashOpts,
   };
 
   return { data: optionsData, error };

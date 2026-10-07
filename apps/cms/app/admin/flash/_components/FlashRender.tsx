@@ -1,6 +1,6 @@
 import { useState } from "react";
 //
-import { NULL_COLLECTION_VALUE } from "@hyperink/api/options";
+
 import { toLabelValue } from "@hyperink/api-domain-helpers";
 import { getFlash } from "@hyperink/api-domain-helpers/flash";
 import { Select, ErrorDisplay } from "@hyperink/ui-react/components";
@@ -25,9 +25,7 @@ export function FlashRender() {
 
   const [errorState, setErrorState] = useState("");
 
-  const collectionsWithNull = [NULL_COLLECTION_VALUE, ...collections];
-
-  const [collectionsState] = useState(collectionsWithNull);
+  const [collectionsState] = useState(collections);
 
   const onCollectionChange = async (
     e: React.ChangeEvent<HTMLSelectElement>,
@@ -37,7 +35,7 @@ export function FlashRender() {
     const value = e.target.value;
 
     const where =
-      value !== NULL_COLLECTION_VALUE
+      value !== ""
         ? [{ user_id: user_id }, { collection: value }]
         : [{ user_id: user_id }];
 
@@ -61,14 +59,16 @@ export function FlashRender() {
 
   return (
     <>
-      {collectionsLabelValue && (
-        <Select
-          defaultValue={collectionState}
-          label="Filter By Collection"
-          options={collectionsLabelValue}
-          onChange={onCollectionChange}
-        />
-      )}
+      <div className="bg-surface-200-800/20 border-surface-300-700/70 border-2 p-4 rounded">
+        {collectionsLabelValue && (
+          <Select
+            defaultValue={collectionState}
+            label="Filter By Collection"
+            options={collectionsLabelValue}
+            onChange={onCollectionChange}
+          />
+        )}
+      </div>
       {collectionState && collections && (
         <h4 className="hI-h4 font-bold">Collection: {collectionState}</h4>
       )}
