@@ -16,11 +16,10 @@ export const mapInsertsToDb = (
       ]),
     ),
   );
-
 export const mapSelectsToDb = (
   selectKeys: string[],
   uiDbMapping?: UiDbMapping | null,
-) => selectKeys.map(() => uiDbMapping?.toDb ?? "");
+) => selectKeys.map((key) => uiDbMapping?.toDb ?? key);
 
 export const single = async <T>(
   fn: (...args: any[]) => any,

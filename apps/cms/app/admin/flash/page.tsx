@@ -29,8 +29,11 @@ export default async function FlashPage() {
 
   if (optsError) return <ErrorDisplay error="get options error" />;
 
-  const { defaultCollection, emptyDefault, flashData, flashError } =
-    await initFlash(client, user.id, flashOpts);
+  const { defaultCollection, flashData, flashError } = await initFlash(
+    client,
+    user.id,
+    flashOpts,
+  );
 
   if (flashError) return <ErrorDisplay error="get flash error" />;
 
@@ -48,12 +51,6 @@ export default async function FlashPage() {
   return (
     <ViewTransition transition="slide">
       <Page className="bg-surface-50-950 h-full">
-        {emptyDefault && (
-          <p className="p-2 rounded card preset-filled-warning-500">
-            Your default collection is empty of flash. Edit some flash to add it
-            to your default collection.
-          </p>
-        )}
         {defaultCollection === "" && (
           <p className="p-2 rounded card preset-filled-warning-500">
             You don&lsquo;t have a default collection yet.{" "}
@@ -62,6 +59,7 @@ export default async function FlashPage() {
             </NextLinkWrapper>
           </p>
         )}
+
         <Flash
           flash={flashData}
           collection={defaultCollection}

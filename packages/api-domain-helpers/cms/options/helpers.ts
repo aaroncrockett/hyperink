@@ -1,4 +1,4 @@
-import { type TagOpts } from "@hyperink/api/options";
+import { FlashOpts, type TagOpts } from "@hyperink/api/options";
 import {
   normalizeToKabobCase,
   denormalizeFromKabobCase,
@@ -17,6 +17,15 @@ export const capitalizeTagOpts = (tagOpts: TagOpts): TagOpts => {
     }),
     ...(tagOpts?.styles && {
       styles: tagOpts?.styles.map((tag) => denormalizeFromKabobCase(tag)),
+    }),
+  };
+};
+
+export const capitalizeFlashOpts = (flashOpts: FlashOpts): FlashOpts => {
+  return {
+    ...flashOpts,
+    ...(flashOpts?.default_collection && {
+      defaultCollection: denormalizeFromKabobCase(flashOpts.default_collection),
     }),
   };
 };

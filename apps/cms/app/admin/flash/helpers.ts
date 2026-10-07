@@ -69,41 +69,62 @@ export const initFlash = async (
 ) => {
   let defaultCollection = "";
 
-  if (flashOpts && flashOpts.defaultCollection) {
-    defaultCollection = flashOpts.defaultCollection;
-  }
+  const getGenericFlash = async () => {
+    const where = [{ user_id: userId }];
 
-  const flashSelectKeys = [...FLASH_METADATA_KEYS] as (keyof FlashUI)[];
-
-  let emptyDefault = false;
-
-  if (defaultCollection !== "") {
-    const where = [{ user_id: userId }, { collection: defaultCollection }];
-
-    const { data: flashData } = await getFlash(client, flashSelectKeys, where);
-
-    if (flashData) {
+    const { data: flashData, error } = await getFlash(
+      client,
+      flashSelectKeys,
+      where,
+    );
+    if (error) {
       return {
-        emptyDefault,
         defaultCollection: defaultCollection,
         flashData: flashData,
         flashError: null,
       };
     }
-    emptyDefault = true;
-  }
-  const where = [{ user_id: userId }];
 
-  const { data: flashData, error: flashError } = await getFlash(
-    client,
-    flashSelectKeys,
-    where,
-  );
-
-  return {
-    emptyDefault,
-    defaultCollection: "",
-    flashData: flashData,
-    flashError: flashError,
+    return {
+      defaultCollection: defaultCollection,
+      flashData: flashData,
+      flashError: null,
+    };
   };
+
+  if (flashOpts && flashOpts.default_collection) {
+    defaultCollection = flashOpts.default_collection;
+  }
+
+  const flashSelectKeys = [...FLASH_METADATA_KEYS] as (keyof FlashUI)[];
+
+  if (defaultCollection !== "") {
+    const where = [{ user_id: userId }, { collection: defaultCollection }];
+
+    const { data: flashCollData, error: flashCollError } = await getFlash(
+      client,
+      flashSelectKeys,
+      where,
+    );
+
+    if (flashCollError) {
+      return {
+        defaultCollection: defaultCollection,
+        flashData: [],
+        flashError: flashCollError,
+      };
+    }
+
+    if (flashCollData) {
+      return {
+        defaultCollection: defaultCollection,
+        flashData: flashCollData,
+        flashError: null,
+      };
+    }
+
+    return getGenericFlash();
+  }
+
+  return getGenericFlash();
 };

@@ -4,7 +4,7 @@ import { Database as DatabaseGenerated } from "@hyperink/service-providers";
 export const OPTIONS_TABLE = "options";
 
 export type FlashOpts = {
-  defaultCollection: string;
+  default_collection: string;
 };
 
 export type TagOpts = {

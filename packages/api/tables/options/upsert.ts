@@ -1,15 +1,15 @@
 import { createSupabaseUpsertQueries } from "@hyperink/api";
-import { type OptionsUIRow, type TagOpts } from "@hyperink/api/options";
+import type { OptionsUIRow, TagOpts, FlashOpts } from "@hyperink/api/options";
 
 import type { Client } from "@hyperink/service-providers";
 
 const baseCreateTagOpts = createSupabaseUpsertQueries("options", null);
 
-export const upsertTagOpts = (
+export const upsertUserOptions = (
   client: Client,
-  tagInserts: TagOpts,
+  tagInserts: TagOpts | FlashOpts,
   id: OptionsUIRow["profile_id"],
-  selectKeys?: null | (keyof OptionsUIRow)[],
+  selectKey: keyof OptionsUIRow,
 ) => {
   const profileId = {
     profile_id: id,
@@ -20,22 +20,35 @@ export const upsertTagOpts = (
   };
 
   const execute = {
-    method: selectKeys ? "maybe-single" : "execute",
-    keys: selectKeys ?? null,
-    options: options,
-  } as const;
+    method: "maybe-single" as const,
+    keys: [...selectKey],
+    options,
+  };
 
   type CreateTagInsert = {
     profile_id?: OptionsUIRow["profile_id"];
-    tag_opts?: OptionsUIRow["tag_opts"];
+    opts?: OptionsUIRow;
   };
 
-  const internalInserts = [
-    {
-      ...profileId,
-      tag_opts: tagInserts,
-    },
-  ];
+  let internalInserts = [] as any;
+
+  if (selectKey === "tag_opts") {
+    internalInserts = [
+      {
+        ...profileId,
+        tag_opts: tagInserts,
+      },
+    ];
+  }
+
+  if (selectKey === "flash_opts") {
+    internalInserts = [
+      {
+        ...profileId,
+        flash_opts: tagInserts,
+      },
+    ];
+  }
 
   return baseCreateTagOpts.upsert<CreateTagInsert>(
     client,

@@ -2,7 +2,7 @@ import { useState } from "react";
 //
 import { toLabelValue } from "@hyperink/api-domain-helpers";
 import { getFlash } from "@hyperink/api-domain-helpers/flash";
-import { ComboBox, ErrorDisplay } from "@hyperink/ui-react/components";
+import { Select, ErrorDisplay } from "@hyperink/ui-react/components";
 //
 import { createBrowserClient } from "@/auth/client";
 //
@@ -26,10 +26,17 @@ export function FlashRender() {
 
   const [errorState, setErrorState] = useState("");
 
-  const onCollectionChange = async (value: string) => {
+  const collectionsWithNull = ["_none_", ...collections];
+
+  const [collectionsState] = useState(collectionsWithNull);
+
+  const onCollectionChange = async (
+    e: React.ChangeEvent<HTMLSelectElement>,
+  ) => {
+    const value = e.target.value;
     const flashSelectKeys = [...FLASH_METADATA_KEYS] as (keyof FlashUI)[];
 
-    const where = [{ user_id: user_id, collection: value }];
+    const where = [{ user_id: user_id }, { collection: value }];
 
     const { data: flashData, error: flashError } = await getFlash(
       client,
@@ -45,7 +52,7 @@ export function FlashRender() {
     setCollectionState(value);
   };
 
-  const collectionsLabelValue = collections?.map((coll) => {
+  const collectionsLabelValue = collectionsState?.map((coll) => {
     return toLabelValue(coll);
   });
 
@@ -54,12 +61,13 @@ export function FlashRender() {
   }
   return (
     <>
-      {collectionsLabelValue && collectionsLabelValue.length > 1 && (
-        <ComboBox
+      {collectionsLabelValue.length}
+      {collectionsLabelValue && (
+        <Select
           defaultValue={collectionState}
           label="Filter By Collection"
-          data={collectionsLabelValue}
-          onValueChangeCb={onCollectionChange}
+          options={collectionsLabelValue}
+          onChange={onCollectionChange}
         />
       )}
       {collectionState && collections && (
