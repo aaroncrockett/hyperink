@@ -1,18 +1,17 @@
 import { useState } from "react";
 //
+import { NULL_COLLECTION_VALUE } from "@hyperink/api/options";
 import { toLabelValue } from "@hyperink/api-domain-helpers";
 import { getFlash } from "@hyperink/api-domain-helpers/flash";
-import { ComboBox, ErrorDisplay } from "@hyperink/ui-react/components";
+import { Select, ErrorDisplay } from "@hyperink/ui-react/components";
 //
 import { createBrowserClient } from "@/auth/client";
 //
-// import { FlashItem } from "./FlashItem";
+
 import { useFlashContext } from "./FlashProvider";
 import { FlashItemGeneral } from "./FlashItemGeneral";
 import { FlashItemCollection } from "./FlashItemCollection";
 import { FLASH_METADATA_KEYS, type FlashUI } from "../data";
-
-const client = createBrowserClient();
 
 export function FlashRender() {
   const {
@@ -26,40 +25,48 @@ export function FlashRender() {
 
   const [errorState, setErrorState] = useState("");
 
-  const onCollectionChange = async (value: string) => {
-    const flashSelectKeys = [...FLASH_METADATA_KEYS] as (keyof FlashUI)[];
+  const collectionsWithNull = [NULL_COLLECTION_VALUE, ...collections];
 
-    const where = [{ user_id: user_id, collection: value }];
+  const [collectionsState] = useState(collectionsWithNull);
+
+  const onCollectionChange = async (
+    e: React.ChangeEvent<HTMLSelectElement>,
+  ) => {
+    const client = createBrowserClient();
+
+    const value = e.target.value;
+
+    const where =
+      value !== NULL_COLLECTION_VALUE
+        ? [{ user_id: user_id }, { collection: value }]
+        : [{ user_id: user_id }];
 
     const { data: flashData, error: flashError } = await getFlash(
       client,
-      flashSelectKeys,
+      [...FLASH_METADATA_KEYS] as (keyof FlashUI)[],
       where,
     );
 
-    if (flashError) {
-      setErrorState("get flash error");
-    }
+    if (flashError) setErrorState("get flash error");
 
     setFlashState(flashData ?? []);
     setCollectionState(value);
   };
 
-  const collectionsLabelValue = collections?.map((coll) => {
+  const collectionsLabelValue = collectionsState?.map((coll) => {
     return toLabelValue(coll);
   });
 
-  if (errorState) {
-    return <ErrorDisplay error={errorState} />;
-  }
+  if (errorState) return <ErrorDisplay error={errorState} />;
+
   return (
     <>
-      {collectionsLabelValue && collectionsLabelValue.length > 1 && (
-        <ComboBox
+      {collectionsLabelValue && (
+        <Select
           defaultValue={collectionState}
           label="Filter By Collection"
-          data={collectionsLabelValue}
-          onValueChangeCb={onCollectionChange}
+          options={collectionsLabelValue}
+          onChange={onCollectionChange}
         />
       )}
       {collectionState && collections && (

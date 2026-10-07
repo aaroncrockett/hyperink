@@ -3,20 +3,29 @@ import type { Client } from "@hyperink/service-providers";
 import {
   getOptions as getOptsSrc,
   createTagOpts,
-  upsertTagOpts,
+  upsertUserOptions,
   type OptionsUIRow,
   type TagOpts,
+  type FlashOpts,
 } from "@hyperink/api/options";
 //
+
 import {
   normalizeTagOpts as normalizeTagOptsSrc,
   capitalizeTagOpts as capitalizeTagOptsSrc,
+  capitalizeFlashOpts as capitalizeFlashOptsSrc,
 } from "./helpers";
 //
-import { normalizeToKabobCase } from "@hyperink/utils";
+import {
+  normalizeToKabobCase,
+  denormalizeFromKabobCase,
+} from "@hyperink/utils";
 
 export const normalizeTagOpts = normalizeTagOptsSrc;
 export const capitalizeTagOpts = capitalizeTagOptsSrc;
+export const capitalizeFlashOpts = capitalizeFlashOptsSrc;
+
+// GETS
 
 export const getOptions = async (
   client: Client,
@@ -27,6 +36,11 @@ export const getOptions = async (
   switch (type) {
     case "tags": {
       return getUsersTagOptions(client, id);
+      break;
+    }
+
+    case "flash": {
+      return getUsersFlashOptions(client, id);
       break;
     }
 
@@ -56,6 +70,27 @@ export const getUsersTagOptions = async (
   return { data: tagOpts, error };
 };
 
+export const getUsersFlashOptions = async (
+  client: Client,
+  id: OptionsUIRow["profile_id"],
+) => {
+  const { data, error } = await getOptsSrc(
+    client,
+    ["flash_opts"],
+    [{ profile_id: id }],
+  );
+
+  if (!data) return { data, error };
+
+  const defaultCollection = denormalizeFromKabobCase(
+    data.flash_opts?.default_collection ?? "",
+  );
+
+  return { data: defaultCollection, error };
+};
+
+// UPSERT
+
 export const mergeUsersTagOptions = async (
   client: Client,
   id: OptionsUIRow["profile_id"],
@@ -79,16 +114,57 @@ export const mergeUsersTagOptions = async (
 
   const normalizedTagOpts = normalizeTagOptsSrc(mergedTagOpts);
 
-  const { data, error } = await upsertTagOpts(client, normalizedTagOpts, id, [
+  const { data, error } = await upsertUserOptions(
+    client,
+    normalizedTagOpts,
+    id,
     "tag_opts",
-  ]);
+  );
 
   if (!data) return { data, error };
 
   const tagOpts = capitalizeTagOptsSrc(data.tag_opts);
 
-  return { data: tagOpts, error };
+  return { data: options, error };
 };
+
+export const mergeUsersDefaultCollection = async (
+  client: Client,
+  id: OptionsUIRow["profile_id"],
+  collection: string,
+) => {
+  const { data: initOptsData, error: initOptsError } = await getOptsSrc(
+    client,
+    ["flash_opts"],
+    [{ profile_id: id }],
+  );
+
+  if (!initOptsData) return { data: initOptsData, error: initOptsError };
+
+  const initTagOpts = initOptsData.flash_opts satisfies FlashOpts as FlashOpts;
+
+  const mergedTagOpts = {
+    ...initTagOpts,
+    default_collection: normalizeToKabobCase(collection),
+  };
+
+  const { data, error } = await upsertUserOptions(
+    client,
+    mergedTagOpts,
+    id,
+    "flash_opts",
+  );
+
+  if (!data || !data.default_collection) return { data, error };
+
+  const defaultCollection = denormalizeFromKabobCase(
+    data.flash_opts?.default_collection,
+  );
+
+  return { data: defaultCollection, error };
+};
+
+// CREATE
 
 export const initCollectionTagsAndResetRemaining = async (
   client: Client,

@@ -14,10 +14,9 @@ import {
   getOptions as getOptionsSrc,
   type OptionsUIRow,
 } from "@hyperink/api/options";
+import { capitalizeTagOpts } from "@hyperink/api-domain-helpers/options";
 import { uploadFile, removeFile } from "@hyperink/api";
 
-//
-import { capitalizeTagOpts } from "../options";
 //
 import type { DBKeyValue } from "../../types";
 import {
@@ -82,9 +81,12 @@ export const getFlash = async (
   selectKeys: (keyof FlashUIRow)[],
   where: DBKeyValue<FlashUIRow>[],
 ) => {
-  where.map((item) => {
-    if (item?.collection) {
-      item.collection = normalizeToKabobCase(item.collection);
+  where = where.map((item) => {
+    if (item.collection) {
+      return {
+        ...item,
+        collection: normalizeToKabobCase(item.collection),
+      };
     }
 
     return item;
@@ -98,11 +100,19 @@ export const getFlash = async (
 
   const flashData = data satisfies FlashUIRow[] as FlashUIRow[];
 
-  if (flashError)
+  if (flashError) {
     return {
       data: null,
       error: { message: "error getting flash" },
     };
+  }
+
+  if (!flashData) {
+    return {
+      error: null,
+      data: [],
+    };
+  }
 
   const fullData = await Promise.all(
     flashData.map(async (data) => {
