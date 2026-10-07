@@ -190,7 +190,20 @@ export const getPublicUrlForFlash = async (client: Client, path: string) =>
 // UPDATES
 export const updateFlashWithin = updateFlashWithinSrc;
 
-export const updateFlash = updateFlashSrc;
+// export const updateFlash = updateFlashSrc;
+
+export const updateFlash = (
+  client: Client,
+  inserts: Partial<FlashUIRow>,
+  where: Partial<FlashUIRow>[],
+  selectKeys?: null | (keyof FlashUIRow)[],
+) => {
+  const normalizedInserts = {
+    ...inserts,
+    collection: normalizeToKabobCase(inserts?.collection ?? ""),
+  };
+  return updateFlashSrc(client, normalizedInserts, where, selectKeys);
+};
 
 // OTHERS
 
