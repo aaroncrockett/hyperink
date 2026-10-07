@@ -84,7 +84,9 @@ export function ComboBox({
       collection={collection}
       onOpenChange={onOpenChange}
       onInputValueChange={onInputValueChange}
-      readOnly={readOnly}
+      allowCustomValue={false}
+      openOnClick={true}
+      // readOnly={readOnly}
     >
       {label && (
         <Combobox.Label className={cn(labelClassName, labelUtilClassName)}>
@@ -107,8 +109,8 @@ export function ComboBox({
           <Combobox.Content
             className={cn(contentWrapperUtilClassName, contentWrapperClassName)}
           >
-            {items.map((item) => (
-              <div key={item.value}>
+            {items.map((item, i) => (
+              <div key={item.value + i.toString()}>
                 <Combobox.Item
                   className={cn(itemUtilClassName, itemClassName)}
                   item={item}
