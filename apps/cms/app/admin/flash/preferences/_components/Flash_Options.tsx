@@ -12,24 +12,26 @@ import {
 import { createBrowserClient } from "@/auth/client";
 import { zodIssuesToErrors } from "@hyperink/api-domain-helpers";
 import { mergeUsersDefaultCollection } from "@hyperink/api-domain-helpers/options";
-import { FlashOptsUI, TagOpts } from "@hyperink/api/options";
+import { TagOpts } from "@hyperink/api/options";
 import { toLabelValue } from "@hyperink/api-domain-helpers";
 import { NextLinkWrapper } from "@/ui";
 
 type FlashOptionsProps = {
-  flashOpts: FlashOptsUI;
+  defaultCollection: string;
   tagOpts: TagOpts;
   id: string;
 };
 
-export function FlashOptions({ flashOpts, tagOpts, id }: FlashOptionsProps) {
+export function FlashOptions({
+  defaultCollection,
+  tagOpts,
+  id,
+}: FlashOptionsProps) {
   const [isEditing, setIsEditing] = useState(
-    flashOpts?.default_collection === "" ? false : true,
+    defaultCollection === "" ? true : false,
   );
 
-  const [collection, setCollection] = useState(
-    flashOpts?.default_collection ?? "",
-  );
+  const [collection, setCollection] = useState(defaultCollection ?? "");
 
   const [error, setError] = useState("");
 
@@ -72,32 +74,40 @@ export function FlashOptions({ flashOpts, tagOpts, id }: FlashOptionsProps) {
   const hasError = error !== "";
 
   return (
-    <div>
+    <div className="bg-surface-100-900 p-2 rounded">
       {hasError && <ErrorDisplay error={error} />}
-      {!tagOpts.collections.length && (
+      {!tagOpts?.collections?.length && (
         <div>
           You need to create collections in order to pick a default.{" "}
           <NextLinkWrapper href="/admin/options/tagging/collections"></NextLinkWrapper>
         </div>
       )}
       {!hasError && !isEditing && (
-        <div>
-          {collection}
-          <button onClick={() => setIsEditing(true)}>Edit</button>
+        <div className="flex flex-col gap-3 items-start text-lg">
+          <span className="text-2xl flex gap-2">Default Collection:</span>
+          <span className="text-lg flex gap-3 bg-surface-200-800/50 p-2 rounded w-full font-bold">
+            {collection}{" "}
+            <button
+              className="hI-btn hI-btn-primary btn-sm"
+              onClick={() => setIsEditing(true)}
+            >
+              Edit
+            </button>
+          </span>
         </div>
       )}
 
-      {!hasError && tagOpts.collections.length && isEditing && (
+      {!hasError && tagOpts?.collections?.length && isEditing && (
         <Form
           onSubmit={(e) => {
             e.preventDefault();
             handleSubmit(e);
           }}
+          className="flex flex-col gap-3"
         >
           <Select
             label={FLASH_OPTS_METADATA.default_collection.label}
             name={FLASH_OPTS_METADATA.default_collection.id}
-            defaultValue={collection}
             options={tagOpts?.collections.map((value: string) =>
               toLabelValue(value),
             )}

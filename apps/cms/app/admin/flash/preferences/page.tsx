@@ -2,7 +2,10 @@ import { Page, ErrorDisplay } from "@hyperink/ui-react/components";
 
 import { createSSClient, getAuthedUser } from "@/auth/server";
 
-import { getUsersFlashOptions } from "@hyperink/api-domain-helpers/options";
+import {
+  getUsersFlashOptions,
+  getUsersTagOptions,
+} from "@hyperink/api-domain-helpers/options";
 
 import { ViewTransition } from "@/ui";
 import { FlashOptions } from "./_components/Flash_Options";
@@ -16,16 +19,18 @@ export default async function PreferencesPage() {
 
   if (!user) return <ErrorDisplay error="no user found" />;
 
-  const { data: flashOptsData, error: flashOptsError } =
+  const { data: defaultCollection, error: flashOptsError } =
     await getUsersFlashOptions(client, user?.id);
+  console.log(defaultCollection);
 
-  const { data: tagOptsData, error: tagOptsError } = await getUsersFlashOptions(
+  if (flashOptsError) return <ErrorDisplay error="error getting tag options" />;
+
+  const { data: tagOptsData, error: tagOptsError } = await getUsersTagOptions(
     client,
     user?.id,
   );
 
-  if (flashOptsError)
-    return <ErrorDisplay error="error getting flash options" />;
+  if (tagOptsError) return <ErrorDisplay error="error getting flash options" />;
 
   return (
     <ViewTransition transition="slide">
@@ -34,7 +39,7 @@ export default async function PreferencesPage() {
         <FlashOptions
           id={user.id}
           tagOpts={tagOptsData}
-          flashOpts={flashOptsData}
+          defaultCollection={defaultCollection}
         />
       </Page>
     </ViewTransition>

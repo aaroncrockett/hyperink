@@ -69,7 +69,7 @@ export const initFlash = async (
 ) => {
   let defaultCollection = "";
 
-  const getGenericFlash = async () => {
+  const getGenericFlash = async (msg: string) => {
     const where = [{ user_id: userId }];
 
     const { data: flashData, error } = await getFlash(
@@ -79,14 +79,16 @@ export const initFlash = async (
     );
     if (error) {
       return {
-        defaultCollection: defaultCollection,
+        initMsg: null,
+        defaultCollection: "",
         flashData: flashData,
         flashError: null,
       };
     }
 
     return {
-      defaultCollection: defaultCollection,
+      initMsg: msg,
+      defaultCollection: "",
       flashData: flashData,
       flashError: null,
     };
@@ -109,22 +111,28 @@ export const initFlash = async (
 
     if (flashCollError) {
       return {
-        defaultCollection: defaultCollection,
+        initMsg: null,
         flashData: [],
         flashError: flashCollError,
+        defaultCollection: "",
       };
     }
 
-    if (flashCollData) {
+    if (flashCollData.length) {
       return {
-        defaultCollection: defaultCollection,
+        initMsg: null,
         flashData: flashCollData,
         flashError: null,
+        defaultCollection,
       };
     }
 
-    return getGenericFlash();
+    return getGenericFlash(
+      "Your default collection has no flash associated with it. Click to edit your flash to add it to a collection.",
+    );
   }
 
-  return getGenericFlash();
+  return getGenericFlash(
+    "You have no default collection yet. You can choose one under preferences.",
+  );
 };

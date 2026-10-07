@@ -3,6 +3,8 @@ import { Database as DatabaseGenerated } from "@hyperink/service-providers";
 //
 export const OPTIONS_TABLE = "options";
 
+export const NULL_COLLECTION_VALUE = "-- none --";
+
 export type FlashOpts = {
   default_collection: string;
 };

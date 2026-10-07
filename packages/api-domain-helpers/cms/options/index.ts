@@ -82,9 +82,11 @@ export const getUsersFlashOptions = async (
 
   if (!data) return { data, error };
 
-  const tagOpts = capitalizeTagOptsSrc(data.tag_opts);
+  const defaultCollection = denormalizeFromKabobCase(
+    data.flash_opts?.default_collection ?? "",
+  );
 
-  return { data: tagOpts, error };
+  return { data: defaultCollection, error };
 };
 
 // UPSERT

@@ -29,7 +29,7 @@ export default async function FlashPage() {
 
   if (optsError) return <ErrorDisplay error="get options error" />;
 
-  const { defaultCollection, flashData, flashError } = await initFlash(
+  const { defaultCollection, flashData, flashError, initMsg } = await initFlash(
     client,
     user.id,
     flashOpts,
@@ -53,10 +53,7 @@ export default async function FlashPage() {
       <Page className="bg-surface-50-950 h-full">
         {defaultCollection === "" && (
           <p className="p-2 rounded card preset-filled-warning-500">
-            You don&lsquo;t have a default collection yet.{" "}
-            <NextLinkWrapper href="/admin/flash/preferences">
-              Choose one{" "}
-            </NextLinkWrapper>
+            {initMsg}
           </p>
         )}
 

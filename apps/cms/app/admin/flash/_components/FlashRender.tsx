@@ -1,18 +1,17 @@
 import { useState } from "react";
 //
+import { NULL_COLLECTION_VALUE } from "@hyperink/api/options";
 import { toLabelValue } from "@hyperink/api-domain-helpers";
 import { getFlash } from "@hyperink/api-domain-helpers/flash";
 import { Select, ErrorDisplay } from "@hyperink/ui-react/components";
 //
 import { createBrowserClient } from "@/auth/client";
 //
-// import { FlashItem } from "./FlashItem";
+
 import { useFlashContext } from "./FlashProvider";
 import { FlashItemGeneral } from "./FlashItemGeneral";
 import { FlashItemCollection } from "./FlashItemCollection";
 import { FLASH_METADATA_KEYS, type FlashUI } from "../data";
-
-const client = createBrowserClient();
 
 export function FlashRender() {
   const {
@@ -26,27 +25,29 @@ export function FlashRender() {
 
   const [errorState, setErrorState] = useState("");
 
-  const collectionsWithNull = ["_none_", ...collections];
+  const collectionsWithNull = [NULL_COLLECTION_VALUE, ...collections];
 
   const [collectionsState] = useState(collectionsWithNull);
 
   const onCollectionChange = async (
     e: React.ChangeEvent<HTMLSelectElement>,
   ) => {
-    const value = e.target.value;
-    const flashSelectKeys = [...FLASH_METADATA_KEYS] as (keyof FlashUI)[];
+    const client = createBrowserClient();
 
-    const where = [{ user_id: user_id }, { collection: value }];
+    const value = e.target.value;
+
+    const where =
+      value !== NULL_COLLECTION_VALUE
+        ? [{ user_id: user_id }, { collection: value }]
+        : [{ user_id: user_id }];
 
     const { data: flashData, error: flashError } = await getFlash(
       client,
-      flashSelectKeys,
+      [...FLASH_METADATA_KEYS] as (keyof FlashUI)[],
       where,
     );
 
-    if (flashError) {
-      setErrorState("get flash error");
-    }
+    if (flashError) setErrorState("get flash error");
 
     setFlashState(flashData ?? []);
     setCollectionState(value);
@@ -56,12 +57,10 @@ export function FlashRender() {
     return toLabelValue(coll);
   });
 
-  if (errorState) {
-    return <ErrorDisplay error={errorState} />;
-  }
+  if (errorState) return <ErrorDisplay error={errorState} />;
+
   return (
     <>
-      {collectionsLabelValue.length}
       {collectionsLabelValue && (
         <Select
           defaultValue={collectionState}

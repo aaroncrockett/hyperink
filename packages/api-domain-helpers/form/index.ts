@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { denormalizeFromKabobCase } from "@hyperink/utils";
 export function validateUploadFiles(formData: FormData, min = 1, max = 5) {
   const files = formData
     .getAll("file")
@@ -46,8 +47,6 @@ export function zodIssuesToErrors(
 export function toLabelValue(value: string) {
   return {
     value,
-    label: value
-      .replace(/[_,-]|\+|-/g, " ")
-      .replace(/\b\w/g, (char) => char.toUpperCase()),
+    label: denormalizeFromKabobCase(value),
   };
 }

@@ -101,7 +101,6 @@ export const getFlash = async (
   const flashData = data satisfies FlashUIRow[] as FlashUIRow[];
 
   if (flashError) {
-    console.log(flashError);
     return {
       data: null,
       error: { message: "error getting flash" },
