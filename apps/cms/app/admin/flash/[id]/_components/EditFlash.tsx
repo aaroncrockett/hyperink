@@ -1,8 +1,7 @@
 "use client";
 //
 import { useActionState } from "react";
-//
-import { HIError } from "@hyperink/api-domain-helpers";
+
 //
 import {
   Input,
@@ -19,16 +18,13 @@ const initState = {
   error: null,
 };
 
-const handleUpdateFlash = () => {
-  // updateFlash
-};
-
 type EditFlashProps = {
   flashItem: Partial<FlashUIPublic>;
   collections: string[];
+  id: string;
 };
 
-export function EditFlash({ flashItem, collections }: EditFlashProps) {
+export function EditFlash({ flashItem, collections, id }: EditFlashProps) {
   const [actionState, formAction] = useActionState(
     updateFlashAction,
     initState,
@@ -39,6 +35,7 @@ export function EditFlash({ flashItem, collections }: EditFlashProps) {
         action={formAction}
         className="gap-4 grid grid-cols-1 md:grid-cols-2 bg-surface-200-800/20 p-6 rounded"
       >
+        <input className="hidden" type="hidden" name="id" value={id} />
         <Input
           name={editFlashMetadata.readable_name.id}
           label={editFlashMetadata.readable_name.label}

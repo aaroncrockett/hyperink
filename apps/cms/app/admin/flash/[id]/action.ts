@@ -1,11 +1,10 @@
 "use server";
 
+import { HIError } from "@hyperink/api-domain-helpers";
+
 import { zodIssuesToErrors } from "@hyperink/api-domain-helpers";
 
 import { updateFlash } from "@hyperink/api-domain-helpers/flash";
-
-// // 3rd party
-import z from "zod";
 // // Next
 import { redirect } from "next/navigation";
 
@@ -41,7 +40,8 @@ export async function updateFlashAction(
   }
 
   const { error } = await updateFlash(client, validatedData.data, [
-    { id: user.id },
+    { id: validatedData.data.id },
+    { user_id: user.id },
   ]);
 
   if (error) {
@@ -50,7 +50,5 @@ export async function updateFlashAction(
     };
   }
 
-  return {
-    error: null,
-  };
+  redirect("/admin/flash");
 }

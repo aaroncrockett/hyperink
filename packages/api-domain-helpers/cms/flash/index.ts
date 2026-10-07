@@ -26,6 +26,8 @@ import {
 
 const BUCKET = "user-images";
 
+// GETS
+
 export const getUsersFlashAndTagOptions = async (
   client: Client,
   id: OptionsUIRow["profile_id"],
@@ -185,6 +187,13 @@ export const getFlashWithin = async (
 export const getPublicUrlForFlash = async (client: Client, path: string) =>
   await getPublicUrl(client, { bucket: BUCKET, path });
 
+// UPDATES
+export const updateFlashWithin = updateFlashWithinSrc;
+
+export const updateFlash = updateFlashSrc;
+
+// OTHERS
+
 // *FLAG* This can be dangerous so flagging for testing or rethinking.
 // If there is a failure in logic and we miss pinned flash, the orders will not work as expected.
 // This currently depends on never accidently tagging more than 3 items.
@@ -284,7 +293,3 @@ export const uploadFlash = async (
   };
   return { data, error: null };
 };
-
-export const updateFlashWithin = updateFlashWithinSrc;
-
-export const updateFlash = updateFlashSrc;

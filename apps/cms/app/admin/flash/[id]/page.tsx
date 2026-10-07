@@ -47,7 +47,7 @@ export default async function FlashItemEdit({ params }: Props) {
     <ViewTransition transition="slide">
       <Page>
         <h1 className="hI-h1">Edit Flash</h1>
-        <EditFlash collections={collections} flashItem={data} />
+        <EditFlash id={id} collections={collections} flashItem={data} />
       </Page>
     </ViewTransition>
   );
