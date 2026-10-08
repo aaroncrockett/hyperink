@@ -12,16 +12,12 @@ import { Fragment } from "react/jsx-runtime";
 type FileUploadProps = {
   fileUpload: FileUploadContext;
   FileUpload: FileUploadType;
-  uploadOption: UploadOptions;
   uploadFileMetadata: UploadFileMetadata;
-  collectionOpts: string[];
 };
 
 export function FileItemGroup({
   FileUpload,
   fileUpload,
-  uploadOption,
-  collectionOpts,
   uploadFileMetadata,
 }: FileUploadProps) {
   return (
@@ -64,18 +60,6 @@ export function FileItemGroup({
                 required={true}
                 wrapperClassName="md:w-2/3 xl:w-1/2 w-full"
               />
-              {uploadOption && uploadOption === "general" && (
-                <Select
-                  id={uploadFileMetadata.collection.id}
-                  name={uploadFileMetadata.collection.id}
-                  label={uploadFileMetadata.collection.label}
-                  type={uploadFileMetadata.collection.type}
-                  wrapperClassName="md:w-2/3 xl:w-1/2  w-full"
-                  options={collectionOpts.map((value: string) =>
-                    toLabelValue(value),
-                  )}
-                />
-              )}
 
               <FileUpload.ItemDeleteTrigger className="absolute top-0 right-0 text-2xl font-bold" />
             </FileUpload.Item>

@@ -26,19 +26,13 @@ export async function fileUploadDataAction(
 
   const validatedFileData = validateUploadFiles(formData);
 
-  const optType = formData.get("opt_type");
-  const collections = formData.getAll("collection");
-
   const titleNames = formData.getAll("title");
-  const availablility = formData.getAll("total_availability");
   const name = formData.getAll("name");
   const description = formData.getAll("description");
 
   const validatedData = titleNames.map((title, index) => {
     const result = UPLOAD_FILE_SCHEMA.safeParse({
-      collection: optType === "general" ? collections[index] : collections[0],
       title: title,
-      total_availability: availablility[index],
       description: description[index],
       name: name[index],
     });
@@ -88,10 +82,12 @@ export async function fileUploadDataAction(
 
   if (found && found.error) {
     return {
-      error: { message: "error uploading flash" },
+      error: {
+        message: (found?.error.message as string) ?? "error uploading flash",
+      },
       data: null,
     };
   }
 
-  redirect("/admin/flash");
+  redirect("/admin/tattoos");
 }

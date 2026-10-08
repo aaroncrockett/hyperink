@@ -9,28 +9,17 @@ import { TattoosForm } from "./_components/TattoosForm";
 export default async function TattooUploadPage() {
   const serverClient = await createSSClient();
 
-  const {
-    data: { user },
-  } = await getAuthedUser(serverClient);
+  // const {
+  //   data: { user },
+  // } = await getAuthedUser(serverClient);
 
-  if (!user) return <ErrorDisplay error="no user" />;
-
-  const { data: tagOptsData, error } = await getUsersTagOptions(
-    serverClient,
-    user.id,
-  );
-
-  if (!tagOptsData) return <ErrorDisplay error="no tag options returned" />;
-
-  if (error) return <ErrorDisplay error={error.message} />;
-
-  const collections = tagOptsData.collections;
+  // if (!user) return <ErrorDisplay error="no user" />;
 
   return (
     <ViewTransition transition="slide">
       <Page className="bg-surface-50-950 h-full">
         <h1 className="hI-h1">Upload</h1>
-        <TattoosForm collectionOpts={collections} />
+        <TattoosForm />
       </Page>
     </ViewTransition>
   );

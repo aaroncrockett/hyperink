@@ -75,7 +75,6 @@ export const uploadFileMetadata: UploadFileMetadata &
 };
 
 export const UPLOAD_FILE_SCHEMA = z.object({
-  collection: z.string(),
   title: z.string(),
   description: z.string().max(125),
   name: z.string(),
