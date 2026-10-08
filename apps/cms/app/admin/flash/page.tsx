@@ -37,12 +37,12 @@ export default async function FlashPage() {
 
   if (flashError) return <ErrorDisplay error="get flash error" />;
 
-  if (!flashData)
+  if (!flashData || !flashData.length)
     return (
       <ViewTransition transition="slide">
         <Page className="bg-surface-50-950 h-full">
           <p className="p-2 rounded card preset-filled-warning-500">
-            NoFlash yet! Add some! :D
+            No uploaded flash yet.
           </p>
         </Page>
       </ViewTransition>
