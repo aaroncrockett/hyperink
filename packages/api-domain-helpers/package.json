@@ -13,6 +13,7 @@
   "exports": {
     ".": "./index.ts",
     "./profile": "./cms/profile/index.ts",
+    "./tattoo": "./cms/tattoo/index.ts",
     "./options": "./cms/options/index.ts",
     "./flash": "./cms/flash/index.ts"
   }

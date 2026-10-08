@@ -12,6 +12,7 @@
   "exports": {
     ".": "./index.ts",
     "./flash": "./tables/flash/index.ts",
+    "./tattoo": "./tables/tattoo/index.ts",
     "./profile": "./tables/profile/index.ts",
     "./options": "./tables/options/index.ts"
   },

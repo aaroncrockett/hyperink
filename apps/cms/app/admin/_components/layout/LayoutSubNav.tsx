@@ -4,7 +4,12 @@ import { usePathname } from "next/navigation";
 //
 import { getPathSegments } from "@hyperink/utils";
 //
-import { FLASH_LINKS_LIST, FLASH_LINKS_KEYS } from "@/data/links";
+import {
+  FLASH_LINKS_LIST,
+  FLASH_LINKS_KEYS,
+  TATTOOS_LINKS_LIST,
+  TATTOOS_LINKS_KEYS,
+} from "@/data/links";
 //
 import { PageAdminNav } from "./PageAdminNav";
 
@@ -14,10 +19,16 @@ const sectionMap = {
     links: FLASH_LINKS_LIST,
     keys: FLASH_LINKS_KEYS,
   },
+  tattoos: {
+    heading: "Tattoos",
+    links: TATTOOS_LINKS_LIST,
+    keys: TATTOOS_LINKS_KEYS,
+  },
 };
 
 const getSection = (segmentKey: string) => {
   if (segmentKey === "flash") return sectionMap["flash"];
+  if (segmentKey === "tattoos") return sectionMap["tattoos"];
 };
 
 export function LayoutSubNav({ ...props }: React.ComponentProps<"div">) {
