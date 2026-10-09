@@ -34,6 +34,10 @@ export async function fileUploadDataAction(
   const name = formData.getAll("name");
   const description = formData.getAll("description");
 
+  let schemaMapError: null | string = null;
+
+  console.log(formData);
+
   const validatedData = readableNames.map((readableName, index) => {
     const result = UPLOAD_FILE_SCHEMA.safeParse({
       collection: optType === "general" ? collections[index] : collections[0],
@@ -46,14 +50,20 @@ export async function fileUploadDataAction(
     if (!result.success) {
       const errors = zodIssuesToErrors(result.error.issues);
 
-      return {
-        error: { message: errors.message },
-        data: null,
-      };
+      schemaMapError = errors.message ?? "error within schema map";
+
+      console.error(schemaMapError, 1);
+
+      return;
     }
 
-    if (!validatedFileData || !validatedFileData.data)
-      return { data: null, error: { message: "file error" } };
+    if (!validatedFileData || !validatedFileData.data) {
+      schemaMapError = "error within schema map";
+
+      console.error(schemaMapError, 2);
+
+      return;
+    }
 
     return {
       error: null,
@@ -64,31 +74,37 @@ export async function fileUploadDataAction(
     };
   });
 
-  const results = await Promise.all(
+  if (schemaMapError) return { data: null, error: { message: schemaMapError } };
+
+  let validatedDataMapError: null | string = null;
+
+  await Promise.all(
     validatedData.map(async (result) => {
-      if (!result.data)
-        return {
-          error: { message: "error in uploading flash, no data was returned" },
-          data: null,
-        };
+      if (!result || !result.data) {
+        validatedDataMapError = "error within validated data mapping";
+
+        console.error(validatedDataMapError, 1);
+
+        return;
+      }
+
       const response = await uploadFlash(dbClient, user.id, result.data);
 
       if (response?.error) {
-        return {
-          error: { message: response?.error ?? "error in uploading flash b" },
-          data: null,
-        };
+        console.error(validatedDataMapError, 2);
+
+        validatedDataMapError = "error within validated data mapping";
+
+        return;
       }
 
       return { data: response.data, error: null };
     }),
   );
 
-  const found = results.find((result) => result.error);
-
-  if (found && found.error) {
+  if (validatedDataMapError) {
     return {
-      error: { message: "error uploading flash" },
+      error: { message: validatedDataMapError },
       data: null,
     };
   }

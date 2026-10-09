@@ -33,8 +33,10 @@ export function FlashForm({ collectionOpts }: FlashFormProps) {
     error: null,
   };
 
+  const FILE_MAX = 5;
+
   const defaultUploadOption =
-    "general" satisfies UploadOptions as UploadOptions;
+    "collection" satisfies UploadOptions as UploadOptions;
 
   const [uploadOption, setUploadOption] =
     useState<UploadOptions>(defaultUploadOption);
@@ -48,7 +50,7 @@ export function FlashForm({ collectionOpts }: FlashFormProps) {
     <>
       {!actionState?.error && (
         <Form action={setActionState}>
-          <FileUpload accept="image/*" maxFiles={5} name="file">
+          <FileUpload accept="image/*" maxFiles={FILE_MAX} name="file">
             <FileUpload.Context>
               {(fileUpload) => {
                 const hasFile = fileUpload.acceptedFiles.length > 0;
@@ -59,7 +61,7 @@ export function FlashForm({ collectionOpts }: FlashFormProps) {
                       <Select
                         label="Upload Type"
                         options={uploadOptionsLabelPairs}
-                        defaultValue={uploadOptionsLabelPairs[1].value}
+                        defaultValue={defaultUploadOption}
                         name={uploadFileMetadata.opt_type.id}
                         id={uploadFileMetadata.opt_type.id}
                         onChange={(e) =>
@@ -98,7 +100,12 @@ export function FlashForm({ collectionOpts }: FlashFormProps) {
                     )}
 
                     <FileUpload.Label>
-                      <h2 className="hI-h3">Upload Flash</h2>
+                      <h2 className="hI-h3">
+                        Upload Flash:{" "}
+                        <span className="text-md italic">
+                          *upload up to {FILE_MAX} images.
+                        </span>{" "}
+                      </h2>
                     </FileUpload.Label>
 
                     {!hasFile && <FilePicker FileUpload={FileUpload} />}

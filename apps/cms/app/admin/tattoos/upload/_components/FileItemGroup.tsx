@@ -1,7 +1,7 @@
 //
-import { toLabelValue } from "@hyperink/api-domain-helpers";
+import { createRandom12Chars } from "@hyperink/utils";
 //
-import { Input, Select } from "@hyperink/ui-react/components";
+import { Input } from "@hyperink/ui-react/components";
 
 import { type UploadOptions, type UploadFileMetadata } from "../data";
 import type { FileUploadType, FileUploadContext } from "../../data";
@@ -41,6 +41,7 @@ export function FileItemGroup({
                 name={uploadFileMetadata.name.id}
                 id={uploadFileMetadata.name.id}
                 required={true}
+                value={file.name + createRandom12Chars()}
                 wrapperClassName="hidden"
               />
               <Input

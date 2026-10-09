@@ -37,3 +37,12 @@ export const formatPhone = (value: string) => {
 
 export const stringToArray = (value: string | string[] | undefined) =>
   Array.isArray(value) ? value : value ? [value] : [];
+
+export const createRandom12Chars = () => {
+  const bytes = new Uint8Array(9);
+  crypto.getRandomValues(bytes);
+
+  return Array.from(bytes, (byte) => byte.toString(36).padStart(2, "0"))
+    .join("")
+    .slice(0, 12);
+};
