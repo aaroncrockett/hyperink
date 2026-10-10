@@ -68,7 +68,7 @@ export const getFlashById = async (
 
   const flash = data[0] as FlashUIRow;
 
-  const { data: url } = await getPublicUrlForFlash(client, flash.path);
+  const { data: url } = await getPublicUrlForFlash(client, flash?.path);
 
   const flashData = {
     ...flash,
