@@ -1,14 +1,14 @@
 import { useState } from "react";
 
-export function useFlashItemMenu() {
+export function useTattooItemMenu() {
   const [menuState, setMenuState] = useState(false);
 
-  const handleFlashItemClick = () => {
+  const handleTattooItemClick = () => {
     setMenuState((isOpen) => !isOpen);
   };
 
   return {
     menuState,
-    handleFlashItemClick,
+    handleTattooItemClick,
   };
 }

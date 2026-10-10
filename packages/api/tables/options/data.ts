@@ -5,7 +5,7 @@ export const OPTIONS_TABLE = "options";
 
 export const NULL_COLLECTION_VALUE = "-- none --";
 
-export type FlashOpts = {
+export type TattooOpts = {
   default_collection: string;
 };
 
@@ -19,10 +19,10 @@ export type OptionsRow = MergeDeep<
   DatabaseGenerated["public"]["Tables"]["options"]["Row"],
   {
     tag_opts: TagOpts;
-    flash_opts: FlashOpts;
+    flash_opts: TattooOpts;
   }
 >;
 
 export type TagOptsUI = TagOpts;
-export type FlashOptsUI = FlashOpts;
+export type TattooOptsUI = TattooOpts;
 export type OptionsUIRow = OptionsRow;

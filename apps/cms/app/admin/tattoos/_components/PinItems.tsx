@@ -2,11 +2,11 @@ import Image from "next/image";
 //
 import { cn } from "@hyperink/utils";
 //
-import { FlashUIPublic } from "../data";
+import { TattooUIPublic } from "../data";
 
 type PinItemsProps = {
-  items: Partial<FlashUIPublic>[];
-  handleSetItems: (items: Partial<FlashUIPublic>[]) => void;
+  items: Partial<TattooUIPublic>[];
+  handleSetItems: (items: Partial<TattooUIPublic>[]) => void;
 };
 
 export function PinItems({ items, handleSetItems }: PinItemsProps) {
@@ -35,9 +35,7 @@ export function PinItems({ items, handleSetItems }: PinItemsProps) {
     const newItems = [...items];
     const [item] = newItems.splice(dragIndex, 1);
 
-    const firstEmptyIndex = newItems.findIndex(
-      (item) => item.readable_name === "",
-    );
+    const firstEmptyIndex = newItems.findIndex((item) => item.title === "");
 
     if (
       dropIndex !== 3 &&
@@ -66,9 +64,9 @@ export function PinItems({ items, handleSetItems }: PinItemsProps) {
             i === 3 ? "bg-tertiary-500/40" : "bg-surface-500/40",
           )}
           key={item.id || i}
-          draggable={item.readable_name != ""}
+          draggable={item.title != ""}
           onDragStart={
-            item.readable_name != "" ? (e) => handleDragStart(e, i) : undefined
+            item.title != "" ? (e) => handleDragStart(e, i) : undefined
           }
           onDragOver={(e) => e.preventDefault()}
           onDrop={(e) => handleDrop(e, i)}
@@ -92,7 +90,7 @@ export function PinItems({ items, handleSetItems }: PinItemsProps) {
           {item.public_url && (
             <Image
               src={item.public_url}
-              alt={`${item.readable_name ?? ""} - flash image`}
+              alt={`${item.title ?? ""} - tattoo image`}
               width={0}
               height={0}
               sizes="100vw"
@@ -100,9 +98,9 @@ export function PinItems({ items, handleSetItems }: PinItemsProps) {
             />
           )}
 
-          {item.readable_name && (
+          {item.title && (
             <p className="md:text-xl text-lg text-center text-surface-50-950">
-              {item.readable_name}
+              {item.title}
             </p>
           )}
         </div>

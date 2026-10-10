@@ -4,22 +4,22 @@ import { HIError } from "@hyperink/api-domain-helpers";
 
 import { zodIssuesToErrors } from "@hyperink/api-domain-helpers";
 
-import { updateFlash } from "@hyperink/api-domain-helpers/flash";
+import { updateTattoos } from "@hyperink/api-domain-helpers/tattoo";
 // // Next
 import { redirect } from "next/navigation";
 
 import { createSSClient, getAuthedUser } from "@/auth/server";
 // //
-import { EDIT_FLASH_SCHEMA } from "./data";
+import { EDIT_TATTOO_SCHEMA } from "./data";
 
-type UploadFlashState = {
+type UploadTattooState = {
   error: HIError | null;
 };
 
-export async function updateFlashAction(
-  prevState: UploadFlashState,
+export async function updateTattooAction(
+  prevState: UploadTattooState,
   formData: FormData,
-): Promise<UploadFlashState> {
+): Promise<UploadTattooState> {
   const client = await createSSClient();
   const {
     data: { user },
@@ -27,7 +27,7 @@ export async function updateFlashAction(
 
   if (!user) return { error: { message: "no user" } };
 
-  const validatedData = EDIT_FLASH_SCHEMA.safeParse(
+  const validatedData = EDIT_TATTOO_SCHEMA.safeParse(
     Object.fromEntries(formData),
   );
 
@@ -35,20 +35,20 @@ export async function updateFlashAction(
     const errors = zodIssuesToErrors(validatedData.error?.issues ?? []);
 
     return {
-      error: { message: errors.message ?? "edit flash error" },
+      error: { message: errors.message ?? "edit tattoo error" },
     };
   }
 
-  const { error } = await updateFlash(client, validatedData.data, [
+  const { error } = await updateTattoos(client, validatedData.data, [
     { id: validatedData.data.id },
-    { user_id: user.id },
+    { profile_tattoo_id: user.id },
   ]);
 
   if (error) {
     return {
-      error: { message: error.message ?? "edit flash error" },
+      error: { message: error.message ?? "edit tatoo error" },
     };
   }
 
-  redirect("/admin/flash");
+  redirect("/admin/tattoos");
 }

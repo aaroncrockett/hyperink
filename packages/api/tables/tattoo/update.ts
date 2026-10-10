@@ -1,22 +1,22 @@
 import { createSupabaseUpdateQueries } from "@hyperink/api";
-import { type FlashUIRow } from "@hyperink/api/flash";
+import { type TattooUIRow } from "@hyperink/api/tattoo";
 
 import type { Client } from "@hyperink/service-providers";
 
-const baseCreateTagOpts = createSupabaseUpdateQueries("flash", null);
+const baseCreateTagOpts = createSupabaseUpdateQueries("tattoo_image", null);
 
-export const updateFlash = (
+export const updateTattoos = (
   client: Client,
-  inserts: Partial<FlashUIRow>,
-  where: Partial<FlashUIRow>[],
-  selectKeys?: null | (keyof FlashUIRow)[],
+  inserts: Partial<TattooUIRow>,
+  where: Partial<TattooUIRow>[],
+  selectKeys?: null | (keyof TattooUIRow)[],
 ) => {
   const execute = {
     method: selectKeys ? "maybe-single" : "execute",
     keys: selectKeys ?? null,
   } as const;
 
-  return baseCreateTagOpts.update<Partial<FlashUIRow>>(
+  return baseCreateTagOpts.update<Partial<TattooUIRow>>(
     client,
     inserts,
     where,
@@ -24,18 +24,18 @@ export const updateFlash = (
   );
 };
 
-export const updateFlashWithin = (
+export const updateTattoosWithin = (
   client: Client,
-  inserts: Partial<FlashUIRow>,
-  within: Partial<Record<keyof FlashUIRow, string[]>>,
-  selectKeys?: null | (keyof FlashUIRow)[],
+  inserts: Partial<TattooUIRow>,
+  within: Partial<Record<keyof TattooUIRow, string[]>>,
+  selectKeys?: null | (keyof TattooUIRow)[],
 ) => {
   const execute = {
     method: selectKeys ? "maybe-single" : "execute",
     keys: selectKeys ?? null,
   } as const;
 
-  return baseCreateTagOpts.updateWithin<Partial<FlashUIRow>>(
+  return baseCreateTagOpts.updateWithin<Partial<TattooUIRow>>(
     client,
     inserts,
     within,

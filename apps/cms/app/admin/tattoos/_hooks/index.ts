@@ -1,2 +1,2 @@
-export * from "./useFlashItemClick";
+export * from "./useTattooItemClick";
 export * from "./usePinnedModal";

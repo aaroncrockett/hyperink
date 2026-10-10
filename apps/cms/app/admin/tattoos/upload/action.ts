@@ -62,14 +62,16 @@ export async function fileUploadDataAction(
     validatedData.map(async (result) => {
       if (!result.data)
         return {
-          error: { message: "error in uploading flash, no data was returned" },
+          error: {
+            message: "error in uploading tattoos, no data was returned",
+          },
           data: null,
         };
       const response = await uploadTattoos(dbClient, user.id, result.data);
 
       if (response?.error) {
         return {
-          error: { message: response?.error ?? "error in uploading flash b" },
+          error: { message: response?.error ?? "error in uploading tattoos b" },
           data: null,
         };
       }
@@ -83,7 +85,7 @@ export async function fileUploadDataAction(
   if (found && found.error) {
     return {
       error: {
-        message: (found?.error.message as string) ?? "error uploading flash",
+        message: (found?.error.message as string) ?? "error uploading tattoos",
       },
       data: null,
     };

@@ -3,7 +3,7 @@ import { type TattooUIRow } from "@hyperink/api/tattoo";
 
 import type { Client } from "@hyperink/service-providers";
 
-const baseCreateFlashData = createSupabaseCreateQueries("tattoo_image", null);
+const baseCreateTattooData = createSupabaseCreateQueries("tattoo_image", null);
 
 export const createTattoos = (
   client: Client,
@@ -25,7 +25,7 @@ export const createTattoos = (
 
   type InternalInserts = (typeof internalInserts)[number];
 
-  return baseCreateFlashData.create<InternalInserts>(
+  return baseCreateTattooData.create<InternalInserts>(
     client,
     internalInserts,
     execute,

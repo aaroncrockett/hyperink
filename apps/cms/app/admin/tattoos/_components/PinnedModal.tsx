@@ -6,71 +6,70 @@ import { useState } from "react";
 //
 import { Icon } from "@hyperink/ui-react/components";
 import {
-  resetAndUpdatePinnedFlash,
-  getFlash,
-} from "@hyperink/api-domain-helpers/flash";
+  resetAndUpdatePinnedTattoos,
+  getTattoos,
+} from "@hyperink/api-domain-helpers/tattoo";
 //
 import { createBrowserClient } from "@/auth/client";
 //
-import { type FlashUI, FLASH_METADATA_KEYS } from "../data";
-import { getPinnedFlash } from "../helpers";
+import { type TattooUI, TATTOO_METADATA_KEYS } from "../data";
+import { getPinnedTattoos } from "../helpers";
 import { PinItems } from "./PinItems";
-import { useFlashContext } from "./TattoosProvider";
+import { useTattoosContext } from "./TattoosProvider";
 
 type ModalProps = {
   handleModalState: (e: React.MouseEvent) => void;
-  collection: string;
   pinned_order: number | null;
-  readable_name: string;
+  title: string;
   id: string;
   public_url: string;
 };
 
 export function PinnedModal({
   handleModalState,
-  readable_name,
+  title,
   id,
   pinned_order,
   public_url,
 }: ModalProps) {
-  const { getFirstThreeFlash, collectionState, setFlashState } =
-    useFlashContext();
-  const flash = getFirstThreeFlash();
+  const { getFirstThreeTattoos, tattoosState, setTattoosState } =
+    useTattoosContext();
+  const tattoos = getFirstThreeTattoos();
   const [items, setItems] = useState(
-    getPinnedFlash(
-      flash,
-      { readable_name: readable_name, id: id, public_url: public_url },
+    getPinnedTattoos(
+      tattoos,
+      { title: title, id: id, public_url: public_url },
       pinned_order,
     ),
   );
 
-  const handleSetItems = (newItems: Partial<FlashUI>[]) => setItems(newItems);
+  const handleSetItems = (newItems: Partial<TattooUI>[]) => setItems(newItems);
 
   const handleUpdatePinned = async () => {
     const browserClient = await createBrowserClient();
 
-    await resetAndUpdatePinnedFlash(browserClient, flash, items);
+    await resetAndUpdatePinnedTattoos(browserClient, tattoos, items);
 
-    const flashSelectKeys = [...FLASH_METADATA_KEYS] as (keyof FlashUI)[];
+    const tattooSelectKeys = [...TATTOO_METADATA_KEYS] as (keyof TattooUI)[];
 
-    const where = [{ id: id, collection: collectionState }];
+    const where = [{ id: id, collection: tattoosState }];
 
-    const { data: flashData, error: flashError } = await getFlash(
+    const { data: tattooData, error: tattooError } = await getTattoos(
       browserClient,
-      flashSelectKeys,
+      tattooSelectKeys,
       where,
     );
 
-    if (flashError) return;
+    if (tattooError) return;
 
-    if (!flashData) return;
+    if (!tattooData) return;
 
-    setFlashState(flashData);
+    setTattoosState(tattooData);
   };
 
   return (
     <motion.div
-      key="flash-modal"
+      key="tattoo-modal"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}

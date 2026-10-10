@@ -40,7 +40,7 @@ export const getFlashLimitByRecent = async (
 ) => {
   const execute = {
     method: "select",
-    keys: selectKeys,
+    keys: selectKeys as string[],
   } as const;
 
   return baseGetTagOpts.sbGetWhere<FlashUIRow>(

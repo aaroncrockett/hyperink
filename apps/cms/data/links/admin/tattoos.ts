@@ -27,7 +27,7 @@ export const PREFERENCES = {
   order: 3,
 };
 
-// ALL FLASH LINKS
+// ALL TATTOO LINKS
 export const TATTOOS_LINKS = {
   tattoos: ROOT,
   upload: UPLOAD,

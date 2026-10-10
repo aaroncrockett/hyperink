@@ -1,18 +1,17 @@
 //
-import { getFlashById } from "@hyperink/api-domain-helpers/flash";
-import { getUsersTagOptions } from "@hyperink/api-domain-helpers/options";
+import { getTattooById } from "@hyperink/api-domain-helpers/tattoo";
 import { ErrorDisplay, Page } from "@hyperink/ui-react/components";
 //
 import { createSSClient, getAuthedUser } from "@/auth/server";
 import { ViewTransition } from "@/ui";
 //
-import { EditFlash } from "./_components/EditFlash";
+import { EditTattoo } from "./_components/EditTattoo";
 
 type Props = {
   params: Promise<{ id: string }>;
 };
 
-export default async function FlashItemEdit({ params }: Props) {
+export default async function TattooItemEdit({ params }: Props) {
   const { id } = await params;
 
   const client = await createSSClient();
@@ -23,21 +22,9 @@ export default async function FlashItemEdit({ params }: Props) {
 
   if (!user) return <ErrorDisplay error="no user" />;
 
-  const { data: tagOptsData, error: tagError } = await getUsersTagOptions(
+  const { data, error } = await getTattooById(
     client,
-    user.id,
-  );
-
-  if (!tagOptsData) return <ErrorDisplay error="no tag options returned" />;
-
-  if (tagError)
-    return <ErrorDisplay error={tagError.message ?? "tag options error"} />;
-
-  const collections = tagOptsData.collections;
-
-  const { data, error } = await getFlashById(
-    client,
-    ["collection", "readable_name", "total_availability", "description"],
+    ["title", "description"],
     id,
   );
 
@@ -46,8 +33,8 @@ export default async function FlashItemEdit({ params }: Props) {
   return (
     <ViewTransition transition="slide">
       <Page>
-        <h1 className="hI-h1">Edit Flash</h1>
-        <EditFlash id={id} collections={collections} flashItem={data} />
+        <h1 className="hI-h1">Edit Tattoo</h1>
+        <EditTattoo id={id} tattooItem={data} />
       </Page>
     </ViewTransition>
   );

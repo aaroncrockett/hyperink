@@ -1,9 +1,4 @@
-import { TattooUIPublic } from "./data";
-import { FlashOptsUI } from "@hyperink/api/options";
-// import { getTattoo } from "@hyperink/api-domain-helpers/tattoo";
-import type { Client } from "@hyperink/service-providers";
-
-import { TATTOO_METADATA_KEYS, type TattooUI } from "./data";
+import { type TattooUIPublic } from "./data";
 
 export const getPinnedTattoos = (
   tattoo: Partial<TattooUIPublic>[],
@@ -14,7 +9,7 @@ export const getPinnedTattoos = (
 
   const createPlaceHolder = () => {
     return {
-      readable_name: "",
+      title: "",
       pinned_order: null,
       id: "",
       public_url: "",
@@ -60,69 +55,4 @@ export const getPinnedTattoos = (
   slots.push(createPlaceHolder());
 
   return slots;
-};
-
-export const initTattoos = async (
-  client: Client,
-  userId: string,
-  tattooOpts: FlashOptsUI,
-) => {
-  // let defaultCollection = "";
-  // const getGenericTattoos = async (msg: string) => {
-  //   const where = [{ user_id: userId }];
-  //   const { data: flashData, error } = await getTattoos(
-  //     client,
-  //     tattooSelectKeys,
-  //     where,
-  //   );
-  //   if (error) {
-  //     return {
-  //       initMsg: null,
-  //       defaultCollection: "",
-  //       flashData: flashData,
-  //       flashError: null,
-  //     };
-  //   }
-  //   return {
-  //     initMsg: msg,
-  //     defaultCollection: "",
-  //     flashData: flashData,
-  //     flashError: null,
-  //   };
-  // };
-  // if (tattooOpts && tattooOpts.default_collection) {
-  //   defaultCollection = tattooOpts.default_collection;
-  // }
-  // const tattooSelectKeys = [...TATTOO_METADATA_KEYS] as (keyof TattooUI)[];
-  // if (defaultCollection !== "") {
-  //   const where = [{ user_id: userId }, { collection: defaultCollection }];
-  //   const { data: flashCollData, error: flashCollError } = await getTattoo(
-  //     client,
-  //     tattooSelectKeys,
-  //     where,
-  //   );
-  //   if (flashCollError) {
-  //     return {
-  //       initMsg: null,
-  //       flashData: [],
-  //       flashError: flashCollError,
-  //       defaultCollection: "",
-  //     };
-  //   }
-  //   console.log(flashCollData);
-  //   if (flashCollData.length) {
-  //     return {
-  //       initMsg: null,
-  //       flashData: flashCollData,
-  //       flashError: null,
-  //       defaultCollection,
-  //     };
-  //   }
-  //   return getGenericTattoos(
-  //     "Your default collection has no flash associated with it. Click to edit your flash to add it to a collection.",
-  //   );
-  // }
-  // return getGenericTattoos(
-  //   "You have no default collection yet. You can choose one under preferences.",
-  // );
 };

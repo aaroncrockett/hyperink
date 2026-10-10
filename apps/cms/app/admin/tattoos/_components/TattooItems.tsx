@@ -8,40 +8,38 @@ import { ComponentPropsWithoutRef } from "react";
 //
 import { cn } from "@hyperink/utils";
 //
-import { FlashItemImage } from "./TattooItemImage";
+import { TattooItemImage } from "./TattooItemImage";
 //
-import { INTERNAL_FLASH_LINKS } from "@/data/links";
+import { INTERNAL_TATTOOS_LINKS } from "@/data/links";
 import { Icon } from "@hyperink/ui-react/components";
 
-import { useFlashItemMenu, usePinnedModal } from "../_hooks";
-import { FlashItemMenu } from "./TattooItemMenu";
+import { useTattooItemMenu, usePinnedModal } from "../_hooks";
+import { TattooItemMenu } from "./TattooItemMenu";
 import { PinnedModal } from "./PinnedModal";
 
-type FlashItemProps = ComponentPropsWithoutRef<"li"> & {
-  collection: string;
+type TattooItemProps = ComponentPropsWithoutRef<"li"> & {
   pinned_order: number | null;
   public_url: string;
-  readable_name: string;
+  title: string;
   id: string;
 };
 
-export function FlashItemCollection({
-  readable_name,
+export function TattooItems({
+  title,
   public_url,
   pinned_order,
-  collection,
   id,
   ...props
-}: FlashItemProps) {
+}: TattooItemProps) {
   const { modalState, handleModalState } = usePinnedModal();
-  const { menuState, handleFlashItemClick } = useFlashItemMenu();
+  const { menuState, handleTattooItemClick } = useTattooItemMenu();
 
   return (
     <li
       className={cn("group cursor-pointer", props.className)}
 
       onClick={(e) => {
-        handleFlashItemClick();
+        handleTattooItemClick();
         props.onClick?.(e);
       }}
     >
@@ -51,10 +49,10 @@ export function FlashItemCollection({
           <Portal>
             <PinnedModal
               pinned_order={pinned_order}
-              readable_name={readable_name}
+              title={title}
               id={id}
               public_url={public_url}
-              collection={collection}
+
               handleModalState={(e) => handleModalState(e)}
             />
           </Portal>
@@ -62,7 +60,7 @@ export function FlashItemCollection({
       </AnimatePresence>
       <AnimatePresence mode="wait" initial={false}>
         {menuState && (
-          <FlashItemMenu
+          <TattooItemMenu
             handleModalState={(e) => handleModalState(e)}
             id={id}
           />
@@ -86,7 +84,7 @@ export function FlashItemCollection({
           >
             <Link
               onClick={(e) => e.stopPropagation()}
-              href={`${INTERNAL_FLASH_LINKS.flash.href}/${id}`}
+              href={`${INTERNAL_TATTOOS_LINKS.tattoos.href}/${id}`}
             >
               <Icon name="edit" />
             </Link>
@@ -117,8 +115,8 @@ export function FlashItemCollection({
           </motion.span>
         </>
       )}
-      {/* Flash Item  */}
-      <FlashItemImage readable_name={readable_name} public_url={public_url} />
+
+      <TattooItemImage title={title} public_url={public_url} />
     </li>
   );
 }

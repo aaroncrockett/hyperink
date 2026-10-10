@@ -1,22 +1,22 @@
 import type { UIRowMeta } from "@hyperink/api";
-import type { FlashOpts } from "@hyperink/api/options";
+import type { TattooOpts } from "@hyperink/api/options";
 import { z } from "zod";
 
-export type FlashOptsUI = Pick<FlashOpts, "default_collection">;
+export type TattooOptsUI = Pick<TattooOpts, "default_collection">;
 
-export const FLASH_OPTS_METADATA: UIRowMeta<FlashOptsUI> = {
+export const TATTOO_OPTS_METADATA: UIRowMeta<TattooOptsUI> = {
   default_collection: {
     id: "default_collection",
     label: "Default Collection",
   },
 };
 
-export const EDIT_FLASH_SCHEMA = z.object({
+export const EDIT_TATTOO_SCHEMA = z.object({
   default_collection: z.string().min(1, "Collection is required"),
 });
 
-export const FLASH_METADATA_LIST = Object.values(FLASH_OPTS_METADATA);
+export const TATTOO_METADATA_LIST = Object.values(TATTOO_OPTS_METADATA);
 
-export const FLASH_METADATA_KEYS = Object.keys(FLASH_OPTS_METADATA);
+export const TATTOO_METADATA_KEYS = Object.keys(TATTOO_OPTS_METADATA);
 
-export type FlashMetadata = typeof FLASH_OPTS_METADATA;
+export type TattooMetadata = typeof TATTOO_OPTS_METADATA;

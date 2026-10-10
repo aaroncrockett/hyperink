@@ -1,52 +1,49 @@
 import { createSupabaseGetQueries } from "@hyperink/api";
 import type { Client } from "@hyperink/service-providers";
 
-import { type FlashUIRow } from "@hyperink/api/flash";
+import { type TattooUIRow } from "@hyperink/api/tattoo";
 
 import type { DBKeyValue } from "../../types";
 
-const baseGetTagOpts = createSupabaseGetQueries("flash", null);
+const baseGetTatttos = createSupabaseGetQueries("tattoo_image", null);
 
-export const getFlash = async (
+export const getTattoos = async (
   client: Client,
-  selectKeys: (keyof FlashUIRow)[],
-  where: DBKeyValue<FlashUIRow>[],
+  selectKeys: (keyof TattooUIRow)[],
+  where: DBKeyValue<TattooUIRow>[],
 ) => {
   const execute = {
     method: "select",
     keys: selectKeys,
   } as const;
 
-  return baseGetTagOpts.sbGetWhere<FlashUIRow>(client, where, execute);
+  return baseGetTatttos.sbGetWhere<TattooUIRow>(client, where, execute);
 };
 
-export const getWithin = async (
+// export const getTattoosWithin = async (
+//   client: Client,
+//   selectKeys: (keyof TattooUIRow)[],
+//   within: DBKeyValue<TattooUIRow>[],
+// ) => {
+//   const execute = {
+//     method: "select",
+//     keys: selectKeys,
+//   } as const;
+
+//   return baseGetTatttos.sbGetWithin<TattooUIRow>(client, within, execute);
+// };
+
+export const getTattoosLimitByRecent = async (
   client: Client,
-  selectKeys: (keyof FlashUIRow)[],
-  within: DBKeyValue<FlashUIRow>[],
+  selectKeys: (keyof TattooUIRow)[],
+  where: DBKeyValue<TattooUIRow>[],
 ) => {
   const execute = {
     method: "select",
-    keys: selectKeys,
+    keys: selectKeys as string[],
   } as const;
 
-  return baseGetTagOpts.sbGetWithin<FlashUIRow>(client, within, execute);
-};
-
-export const getFlashLimitByRecent = async (
-  client: Client,
-  selectKeys: (keyof FlashUIRow)[],
-  where: DBKeyValue<FlashUIRow>[],
-) => {
-  const execute = {
-    method: "select",
-    keys: selectKeys,
-  } as const;
-
-  return baseGetTagOpts.sbGetWhere<FlashUIRow>(
-    client,
-    where,
-    execute,
-    (query) => query.order("created_at", { ascending: false }).limit(30),
+  return baseGetTatttos.sbGetWhere<any>(client, where, execute, (query) =>
+    query.order("created_at", { ascending: false }).limit(30),
   );
 };

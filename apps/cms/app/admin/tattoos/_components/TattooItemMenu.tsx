@@ -6,17 +6,17 @@ import Link from "next/link";
 // Local @'s
 import { Icon } from "@hyperink/ui-react/components";
 // Local
-import { INTERNAL_FLASH_LINKS } from "@/data/links";
+import { INTERNAL_TATTOOS_LINKS } from "@/data/links";
 
-type FlashItemMenuProps = {
+type TattooItemMenuProps = {
   id: string;
   handleModalState: (e: React.MouseEvent) => void;
 };
 
-export function FlashItemMenu({ id, handleModalState }: FlashItemMenuProps) {
+export function TattooItemMenu({ id, handleModalState }: TattooItemMenuProps) {
   return (
     <motion.span
-      key="flash-item"
+      key="tatoo-item"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -51,11 +51,11 @@ export function FlashItemMenu({ id, handleModalState }: FlashItemMenuProps) {
       >
         <Link
           onClick={(e) => e.stopPropagation()}
-          href={`${INTERNAL_FLASH_LINKS.flash.href}/${id}`}
+          href={`${INTERNAL_TATTOOS_LINKS.tattoos.href}/${id}`}
           className="text-lg md:text-xl underline text-center font-bold flex gap-3 items-center justify-center"
         >
           <Icon name="edit" />
-          Edit Flash
+          Edit Tattoos
         </Link>
       </motion.span>
       <motion.span
@@ -80,7 +80,7 @@ export function FlashItemMenu({ id, handleModalState }: FlashItemMenuProps) {
           className="text-lg md:text-xl underline text-center font-bold flex gap-3 items-center justify-center"
         >
           <Icon name="pin" />
-          Pin Flash
+          Pin Tattoos
         </Link>
       </motion.span>
     </motion.span>
