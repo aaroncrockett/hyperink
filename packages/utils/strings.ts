@@ -17,6 +17,17 @@ export function denormalizeFromKabobCase(
   return capitalize ? capitalizeWords(result) : result;
 }
 
+export const normalizeObjectValues = (
+  items: Record<string, string>,
+  key: string,
+) =>
+  items?.[key] ? { ...items, [key]: normalizeToKabobCase(items[key]) } : items;
+
+export const normalizeObjectArrayValues = (
+  items: Record<string, string>[],
+  key: string,
+) => items.map((item) => normalizeObjectValues(item, key));
+
 export function capitalizeWords(value: string): string {
   return value.replace(/(^|\s)\S/g, (char) => char.toUpperCase());
 }
