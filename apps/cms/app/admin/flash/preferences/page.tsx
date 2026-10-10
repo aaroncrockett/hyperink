@@ -21,7 +21,6 @@ export default async function PreferencesPage() {
 
   const { data: defaultCollection, error: flashOptsError } =
     await getUsersFlashOptions(client, user?.id);
-  console.log(defaultCollection);
 
   if (flashOptsError) return <ErrorDisplay error="error getting tag options" />;
 

@@ -36,8 +36,6 @@ export async function fileUploadDataAction(
 
   let schemaMapError: null | string = null;
 
-  console.log(formData);
-
   const validatedData = readableNames.map((readableName, index) => {
     const result = UPLOAD_FILE_SCHEMA.safeParse({
       collection: optType === "general" ? collections[index] : collections[0],

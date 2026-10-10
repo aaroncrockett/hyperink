@@ -118,8 +118,6 @@ export const initFlash = async (
       };
     }
 
-    console.log(flashCollData);
-
     if (flashCollData.length) {
       return {
         initMsg: null,
