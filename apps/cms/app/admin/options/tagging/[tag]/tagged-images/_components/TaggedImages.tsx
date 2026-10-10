@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 //
 import { type FlashUIRow } from "@hyperink/api/flash";
+import { type TattooUIRow } from "@hyperink/api/tattoo";
 import { capitalizeWords } from "@hyperink/utils";
 //
 import { Page, Select } from "@hyperink/ui-react/components";
@@ -12,7 +13,7 @@ import { createBrowserClient } from "@/auth/client";
 const client = createBrowserClient();
 
 type TaggedImagesProps = {
-  item: Partial<FlashUIRow>;
+  item: Partial<FlashUIRow | TattooUIRow>;
   tag: string;
   tags: string[];
 };
@@ -68,7 +69,7 @@ export function TaggedImagesComponent({ item, tags, tag }: TaggedImagesProps) {
         />
       )}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-        {item?.map((flash, i) => {
+        {/* {item.map((flash, i) => {
           const isSelected = flash.id
             ? selectedImages.includes(flash.id)
             : false;
@@ -91,7 +92,7 @@ export function TaggedImagesComponent({ item, tags, tag }: TaggedImagesProps) {
               </div>
             </button>
           );
-        })}
+        })} */}
       </div>
     </Page>
   );
